@@ -21,6 +21,9 @@
 		<!-- content -->
 		<div class="content-wrapper">
 			<div class="container">
+
+			{!! Breadcrumbs::render() !!}
+
 			@yield('content')
 
 
