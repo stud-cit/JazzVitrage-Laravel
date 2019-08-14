@@ -9,17 +9,31 @@
 		<div class="collapse navbar-collapse sidenav" id="navbarResponsive">
 			
 			<ul class="navbar-nav navbar-sidenav" id="Accordion">
-				<li class="nav-item"  title="Користувачі">
-					<a class="nav-link"  href="#" >
+				<li class="nav-item" title="Нові заяви">
+					<a class="nav-link" href="/admin">
 						<i class="fa fa-fw fa-users"></i>
-						<span class="nav-link-text">Користувачі</span>
+						<span class="nav-link-text">Нові заяви</span>
 					</a>
 				</li>
 
-				<li class="nav-item"  title="Профіль">
-					<a class="nav-link " href="#" >
+				<li class="nav-item" title="Видалені заяви">
+					<a class="nav-link" href="/removed-statements">
 						<i class="fa fa-fw fa-user"></i>
-						<span class="nav-link-text">Профіль</span>
+						<span class="nav-link-text">Видалені заяви</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Список учасників">
+					<a class="nav-link" href="/list-participants">
+						<i class="fa fa-fw fa-user"></i>
+						<span class="nav-link-text">Список учасників</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Результати оцінювання">
+					<a class="nav-link" href="/evaluation-results">
+						<i class="fa fa-fw fa-user"></i>
+						<span class="nav-link-text">Результати оцінювання</span>
 					</a>
 				</li>
 			</ul>

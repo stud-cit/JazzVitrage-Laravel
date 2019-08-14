@@ -27,8 +27,20 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 //Админка
 // Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/admin', ['as' => 'admin.home', function () {
-        return view('admin.home');
+    Route::get('/admin', ['as' => 'admin.newStatements', function () {
+        return view('admin.newStatements');
+    }]);
+
+    Route::get('/removed-statements', ['as' => 'admin.removedStatements', function () {
+        return view('admin.removedStatements');
+    }]);
+
+    Route::get('/list-participants', ['as' => 'admin.listParticipants', function () {
+        return view('admin.listParticipants');
+    }]);
+
+    Route::get('/evaluation-results', ['as' => 'admin.evaluationResults', function () {
+        return view('admin.evaluationResults');
     }]);
 
 // });

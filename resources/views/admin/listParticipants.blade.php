@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        Admin
+        Список учасників
     </div>
 
 @endsection
