@@ -3,6 +3,7 @@
 //Головна
 Route::get('/', 'HomeController@index');
 
+
 Route::get('/application', 'ApplicationController@index');
 Route::post('/application', 'ApplicationController@store');
 
@@ -21,6 +22,7 @@ Route::get('/position', 'PositionController@position');
 //Контакти
 Route::get('/jury', 'ContactsController@jury');
 Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
+
 
 //Админка
 // Route::group(['middleware' => 'auth'], function () {
@@ -43,6 +45,3 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 // });
 // Auth::routes();
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
