@@ -1739,11 +1739,122 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       keywords: null,
-      results: []
+      results: [],
+      members: []
     };
   },
   watch: {
@@ -1762,6 +1873,20 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return _this.results = reponse.data;
       })["catch"](function (error) {});
+    },
+    getFullList: function getFullList() {
+      var _this2 = this;
+
+      axios.get('/get-members').then(function (response) {
+        _this2.dataLang = response.data;
+
+        _this2.dataLoaded.push(true);
+      })["catch"](function (error) {// swal({
+        //     icon: "error",
+        //     title: 'Помилка',
+        //     text: error.response.status + " " + error.responsestatusText
+        // });
+      });
     }
   }
 });
@@ -37109,43 +37234,220 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.keywords,
-          expression: "keywords"
-        }
-      ],
-      attrs: { type: "text" },
-      domProps: { value: _vm.keywords },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.keywords = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _vm.results.length > 0
-      ? _c(
-          "ul",
-          _vm._l(_vm.results, function(result) {
-            return _c("li", {
-              key: result.id,
-              domProps: { textContent: _vm._s(result.name) }
-            })
-          }),
-          0
-        )
-      : _vm._e()
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("form", { attrs: { role: "form" } }, [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              "margin-bottom": "-35px",
+              "margin-left": "10px",
+              "font-size": "24px"
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-search",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          staticStyle: { "padding-left": "40px" },
+          attrs: { type: "text" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-bordered table-responsive accordion",
+          attrs: { id: "accordion" }
+        },
+        [
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Example")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Example")]),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "30px" } }),
+              _vm._v(" "),
+              _c("th", { attrs: { width: "30px" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tbody", { staticClass: "card" }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c("td", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-check-circle",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _c("td", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-times-circle",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "tr",
+              {
+                staticClass: "collapse show",
+                attrs: {
+                  id: "collapse1",
+                  "aria-labelledby": "headingOne",
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  { staticClass: "card-body", attrs: { colspan: "5" } },
+                  [
+                    _vm._v(
+                      "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+                    )
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("tbody", { staticClass: "card" }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [_vm._v("\n                    Example\n                ")]
+              ),
+              _vm._v(" "),
+              _c("td", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-check-circle",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _c("td", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-times-circle",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "tr",
+              {
+                staticClass: "collapse show",
+                attrs: {
+                  id: "collapse1",
+                  "aria-labelledby": "headingOne",
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  { staticClass: "card-body", attrs: { colspan: "5" } },
+                  [
+                    _vm._v(
+                      "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -49296,30 +49598,11 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  if (window.innerWidth < 992) {
-    // Toggle sidebar
-    $(".navbar-toggler-right").click(function (e) {
-      e.preventDefault();
-      $("body").toggleClass("sidenav-toggled");
-      $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
-      $(".navbar-sidenav .sidenav-second-level").removeClass("show");
-    });
-  }
-
   $("#sidenavToggler").click(function (e) {
     e.preventDefault();
     $("body").toggleClass("sidenav-toggled");
-    $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
-    $(".navbar-sidenav .sidenav-second-level").removeClass("show");
+    $(".navbar-sidenav .nav-link-collapse").addClass("collapsed"); // $(".navbar-sidenav .sidenav-second-level").removeClass("show");
   }); // Text redactor
-
-  $(".field-redactor").click(function () {
-    $(this).htmlarea({
-      // Override/Specify the Toolbar buttons to show
-      toolbar: [["html", "bold", "italic", "underline", "strikethrough"], ["justifyleft", "justifycenter", "justifyright"], ["p", "h1", "h2", "h3", "h4", "h5", "h6"], ["indent", "outdent"], ["link", "unlink"], ["orderedlist", "unorderedlist"]]
-    });
-    $(this).prev().find('iframe').focus();
-  });
 });
 
 /***/ }),
@@ -49567,10 +49850,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
+/***/ "./resources/sass/admin.sass":
+/*!***********************************!*\
+  !*** ./resources/sass/admin.sass ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -49579,14 +49862,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/admin.sass ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
 
 
 /***/ })

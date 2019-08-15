@@ -11,7 +11,7 @@
 	 @include('layouts.admin.styles')
 </head>
 
-<body class="sidenav-toggled">
+<body class="">
 
 	<div id="app">
 
