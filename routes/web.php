@@ -42,6 +42,9 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::get('/evaluation-results', ['as' => 'admin.orgСommittee.evaluationResults', function () {
         return view('admin.orgСommittee.evaluationResults');
     }]);
+    // Route::get('get-members', ['as' => 'admin.orgСommittee.evaluationResults', function () {
+    //     return view('admin.orgСommittee.evaluationResults');
+    // }]);
 
 // });
 // Auth::routes();
