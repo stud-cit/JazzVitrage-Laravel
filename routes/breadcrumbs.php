@@ -19,3 +19,19 @@ Breadcrumbs::register('admin.orgСommittee.listParticipants', function($breadcru
 Breadcrumbs::register('admin.orgСommittee.evaluationResults', function($breadcrumbs) {
     $breadcrumbs->push('Результати оцінювання', route('admin.orgСommittee.evaluationResults'));
 });
+
+// Всі заяви
+Breadcrumbs::register('admin.jury.allStatements', function($breadcrumbs) {
+    $breadcrumbs->push('Всі заяви', route('admin.jury.allStatements'));
+});
+
+// Оцінювання
+Breadcrumbs::register('admin.jury.evaluation', function($breadcrumbs) {
+    $breadcrumbs->parent('admin.jury.allStatements');
+    $breadcrumbs->push('Оцінювання', route('admin.jury.evaluation'));
+});
+
+// Інформація
+Breadcrumbs::register('admin.jury.information', function($breadcrumbs) {
+    $breadcrumbs->push('Інформація', route('admin.jury.information'));
+});

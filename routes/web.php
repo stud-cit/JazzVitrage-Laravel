@@ -31,20 +31,32 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
         return view('admin.orgСommittee.newStatements');
     }]);
 
-    Route::get('/removed-statements', ['as' => 'admin.orgСommittee.removedStatements', function () {
+    Route::get('/admin/removed-statements', ['as' => 'admin.orgСommittee.removedStatements', function () {
         return view('admin.orgСommittee.removedStatements');
     }]);
 
-    Route::get('/list-participants', ['as' => 'admin.orgСommittee.listParticipants', function () {
+    Route::get('/admin/list-participants', ['as' => 'admin.orgСommittee.listParticipants', function () {
         return view('admin.orgСommittee.listParticipants');
     }]);
 
-    Route::get('/evaluation-results', ['as' => 'admin.orgСommittee.evaluationResults', function () {
+    Route::get('/admin/evaluation-results', ['as' => 'admin.orgСommittee.evaluationResults', function () {
         return view('admin.orgСommittee.evaluationResults');
     }]);
     // Route::get('get-members', ['as' => 'admin.orgСommittee.evaluationResults', function () {
     //     return view('admin.orgСommittee.evaluationResults');
     // }]);
+
+    Route::get('/admin/evaluation', ['as' => 'admin.jury.evaluation', function () {
+        return view('admin.jury.evaluation');
+    }]);
+
+    Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
+        return view('admin.jury.allStatements');
+    }]);
+
+    Route::get('/admin/information', ['as' => 'admin.jury.information', function () {
+        return view('admin.jury.information');
+    }]);
 
 // });
 // Auth::routes();

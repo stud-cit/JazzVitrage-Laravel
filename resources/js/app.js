@@ -28,11 +28,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import NewStatementComponent from './components/NewStatementComponent';
+import RemovedStatementComponent from './components/RemovedStatementComponent';
 
 const app = new Vue({
     el: '#app',
     components: {
     	NewStatementComponent,
+    	RemovedStatementComponent
     }
 });
 

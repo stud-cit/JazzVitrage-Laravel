@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <removed-statement-component>
+    Інформація
 
 @endsection

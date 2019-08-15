@@ -35,7 +35,7 @@
                                            
                     <td>
 
-                        <a href="#"><i class="fa fa-2x fa-times-circle" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 <tr id="collapse1" class="collapse "  data-parent="#accordion">

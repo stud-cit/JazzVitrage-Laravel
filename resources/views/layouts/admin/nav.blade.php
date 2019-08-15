@@ -17,25 +17,40 @@
 				</li>
 
 				<li class="nav-item" title="Видалені заяви">
-					<a class="nav-link" href="/removed-statements">
-						<i class="fa fa-fw fa-user"></i>
+					<a class="nav-link" href="/admin/removed-statements">
+						<i class="fa fa-trash"></i>
 						<span class="nav-link-text">Видалені заяви</span>
 					</a>
 				</li>
 
 				<li class="nav-item" title="Список учасників">
-					<a class="nav-link" href="/list-participants">
-						<i class="fa fa-fw fa-user"></i>
+					<a class="nav-link" href="/admin/list-participants">
+						<i class="fa fa-list"></i>
 						<span class="nav-link-text">Список учасників</span>
 					</a>
 				</li>
 
 				<li class="nav-item" title="Результати оцінювання">
-					<a class="nav-link" href="/evaluation-results">
-						<i class="fa fa-fw fa-user"></i>
+					<a class="nav-link" href="/admin/evaluation-results">
+						<i class="fa fa-list-ol"></i>
 						<span class="nav-link-text">Результати оцінювання</span>
 					</a>
 				</li>
+
+				<li class="nav-item" title="Всі заяви">
+					<a class="nav-link" href="/admin/all-statements">
+						<i class="fa fa-address-card"></i>
+						<span class="nav-link-text">Всі заяви</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Інформація">
+					<a class="nav-link" href="/admin/information">
+						<i class="fa fa-info-circle"></i>
+						<span class="nav-link-text">Інформація</span>
+					</a>
+				</li>
+
 			</ul>
 
 			<ul class="navbar-nav sidenav-toggler">
