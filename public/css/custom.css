@@ -1,0 +1,16 @@
+.evaluationInfo .col-6 b {
+    display: block;
+    font-size: 14px;
+}
+.evaluationInfo {
+    font-size: 18px;
+    padding: 20px;
+}
+.evaluationInfo .evaluationName {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.comeBack a {
+    text-decoration: none;
+    font-weight: bold;
+}
