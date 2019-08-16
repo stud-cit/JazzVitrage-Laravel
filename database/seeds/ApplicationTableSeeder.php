@@ -15,19 +15,19 @@ class ApplicationTableSeeder extends Seeder
             'application_id' => 1,
             'nomination_id' => 1,
             'application_type_id' => 1,
-            'status' => '',
+            'status' => 'created',
         ]);
         DB::table('application')->insert([
             'application_id' => 2,
             'nomination_id' => 2,
             'application_type_id' => 2,
-            'status' => '',
+            'status' => 'created',
         ]);
         DB::table('application')->insert([
             'application_id' => 3,
             'nomination_id' => 3,
             'application_type_id' => 3,
-            'status' => '',
+            'status' => 'created',
         ]);
     }
 }

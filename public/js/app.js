@@ -50153,25 +50153,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 0:
-<<<<<<< HEAD
 /*!***************************************************************!*\
   !*** multi ./resources/js/app.js ./resources/sass/admin.sass ***!
   \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-=======
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> back-work
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
 
 
 /***/ })

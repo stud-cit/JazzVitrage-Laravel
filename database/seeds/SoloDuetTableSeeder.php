@@ -16,7 +16,7 @@ class SoloDuetTableSeeder extends Seeder
             'name' => 'Им’я сольного учасника',
             'surname' => 'Прізвище сольного учасника',
             'patronomic' => 'По батькові сольного учасника',
-            'data_birthday' => '15.08.2019',
+            'data_birthday' => '2019-08-16',
             'email' => 'hansolo@email.com',
             'passport_photo' => 'passport-photo.png',
             'in' => '547435445',
@@ -25,6 +25,21 @@ class SoloDuetTableSeeder extends Seeder
             'parent_patronomic' => 'По батькові батьків учасника',
             'is_duet' => 0,
             'application_id' => 3,
+        ]);
+        DB::table('solo_duet')->insert([
+            'solo_id' => 2,
+            'name' => 'Им’я сольного учасника',
+            'surname' => 'Прізвище сольного учасника',
+            'patronomic' => 'По батькові сольного учасника',
+            'data_birthday' => '2019-08-16',
+            'email' => 'hansolo@email.com',
+            'passport_photo' => 'passport-photo.png',
+            'in' => '547435445',
+            'parent_name' => 'Ім’я батьків учасника',
+            'parent_surname' => 'Прізвище батьків учасника',
+            'parent_patronomic' => 'По батькові батьків учасника',
+            'is_duet' => 1,
+            'application_id' => 2,
         ]);
     }
 }
