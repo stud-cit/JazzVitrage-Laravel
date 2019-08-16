@@ -1847,6 +1847,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/get-all-members').then(function (response) {
         _this2.members = response.data;
       });
+    },
+    archiveMember: function archiveMember(event) {
+      var _this3 = this;
+
+      var id = event.target.getAttribute('data-value');
+      axios.post('/archive-members/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this3.getFullList();
+        }
+      });
     }
   }
 });
@@ -1918,61 +1928,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       keywords: null,
       results: [],
-      members: []
+      members: [],
+      search: ''
     };
   },
   created: function created() {
     this.getFullList();
   },
-  // watch: {
-  //     keywords(after, before) {
-  //         this.fetch();
-  //     }
-  // },
-  methods: {
-    // fetch() {
-    //     axios.get('/api/search', { params: { keywords: this.keywords } })
-    //         .then(response => this.results = reponse.data)
-    //         .catch(error => {});
-    // },
-    getFullList: function getFullList() {
+  computed: {
+    filteredList: function filteredList() {
       var _this = this;
 
+      return this.members.filter(function (members) {
+        if (!members.group) {
+          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase());
+        } else {
+          return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
+        }
+      });
+    }
+  },
+  methods: {
+    getFullList: function getFullList() {
+      var _this2 = this;
+
       axios.get('/get-members').then(function (response) {
-        _this.members = response.data; // console.log(this.members);
+        _this2.members = response.data; // console.log(this.members);
+      })["catch"](function (error) {// swal({
+        //     icon: "error",
+        //     title: 'Помилка',
+        //     text: error.response.status + " " + error.responsestatusText
+        // });
+      });
+    },
+    archiveMember: function archiveMember(event) {
+      var _this3 = this;
+
+      var id = event.target.getAttribute('data-value'); // console.log(id);
+
+      axios.post('/archive-members/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this3.getFullList();
+        }
       })["catch"](function (error) {// swal({
         //     icon: "error",
         //     title: 'Помилка',
@@ -37627,7 +37629,13 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(item.app_type.name))]),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", [
+                _c("i", {
+                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                  attrs: { "data-value": item.application_id },
+                  on: { click: _vm.archiveMember }
+                })
+              ])
             ])
           ])
         })
@@ -37650,19 +37658,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Тип заявки")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "30px" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fa fa-2x fa-times-circle",
-          attrs: { "aria-hidden": "true" }
-        })
       ])
     ])
   }
@@ -37689,9 +37684,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("br"),
+    _c("form", { staticClass: "search", attrs: { role: "form" } }, [
+      _c("i", {
+        staticClass: "fa fa-search",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text" },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      })
+    ]),
     _vm._v(" "),
     _c(
       "table",
@@ -37700,9 +37720,9 @@ var render = function() {
         attrs: { id: "accordion" }
       },
       [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
-        _vm._l(_vm.members, function(item, index) {
+        _vm._l(_vm.filteredList, function(item, index) {
           return _c("tbody", { staticClass: "card" }, [
             _c("tr", [
               _c(
@@ -37710,7 +37730,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37727,7 +37747,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37752,7 +37772,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37764,11 +37784,37 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(2, true),
-              _vm._m(3, true)
+              _vm._m(1, true),
+              _c("td", [
+                _c("i", {
+                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                  attrs: { "data-value": item.application_id },
+                  on: { click: _vm.archiveMember }
+                })
+              ])
             ]),
             _vm._v(" "),
-            _vm._m(4, true)
+            _c(
+              "tr",
+              {
+                staticClass: "collapse ",
+                attrs: {
+                  id: "collapse" + (index + 1),
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  { staticClass: "card-body", attrs: { colspan: "5" } },
+                  [
+                    _vm._v(
+                      "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+                    )
+                  ]
+                )
+              ]
+            )
           ])
         })
       ],
@@ -37777,35 +37823,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { attrs: { role: "form" } }, [
-      _c(
-        "div",
-        {
-          staticStyle: {
-            "margin-bottom": "-35px",
-            "margin-left": "10px",
-            "font-size": "24px"
-          }
-        },
-        [
-          _c("i", {
-            staticClass: "fa fa-search",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        staticStyle: { "padding-left": "40px" },
-        attrs: { type: "text" }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -37829,45 +37846,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fa fa-2x fa-check-circle",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
+      _c("i", { staticClass: "fa fa-2x fa-check-circle btn btn-default p-0" })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fa fa-2x fa-times-circle",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "tr",
-      {
-        staticClass: "collapse ",
-        attrs: { id: "collapse1", "data-parent": "#accordion" }
-      },
-      [
-        _c("td", { staticClass: "card-body", attrs: { colspan: "5" } }, [
-          _vm._v(
-            "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
-          )
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -50198,7 +50178,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/EvaluationResultsComponent */ "./resources/js/components/EvaluationResultsComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./admin */ "./resources/js/admin.js");
+__webpack_require__(/*! ./admin */ "./resources/js/admin.js"); // require('swal')
+
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));

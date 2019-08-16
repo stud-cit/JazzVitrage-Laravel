@@ -18,7 +18,7 @@
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</td>
                 <td>{{ item.app_type.name }}</td>
-                <td><a href="#"><i class="fa fa-2x fa-times-circle" aria-hidden="true"></i></a></td>
+                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" :data-value="item.application_id" @click="archiveMember"></i></td>
             </tr>
       </tbody>
       </table>
@@ -53,6 +53,15 @@ export default {
             .then((response) => {
                 this.members = response.data;
             })
+        },
+        archiveMember(event){
+            const id =  event.target.getAttribute('data-value');
+            axios.post('/archive-members/'+id)
+                .then((response) => {
+                    if(response.status == 200) {
+                        this.getFullList();
+                    }
+                })
         }
     },
 }

@@ -10,11 +10,12 @@ class ApplicationController extends Controller
 {
     public function index()
     {	
-//    	 $model = Application::with('appType', 'soloDuet', 'group')->get();
+
 
 
         return view('application');
     }
+
     public function store(Request $request)
     {
         // TO DO
@@ -28,7 +29,22 @@ class ApplicationController extends Controller
      
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->get();
+         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
+
+    public function archiveMembers($id)
+    {
+        $model = Application::find($id);
+
+        $model->status = 'archive';
+
+        if($model->save()){
+            return 'ok';
+        }
+//        if($model->appType->name == 'дует' || $model->appType->name == 'соліст'){
+//
+//        }
+
+    }
 }

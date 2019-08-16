@@ -1,6 +1,6 @@
 require('./bootstrap');
 require('./admin');
-
+// require('swal')
 window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i);
