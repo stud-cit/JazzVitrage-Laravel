@@ -37353,7 +37353,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37370,7 +37370,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37395,7 +37395,7 @@ var render = function() {
                 {
                   attrs: {
                     "data-toggle": "collapse",
-                    "data-target": "#collapse1"
+                    "data-target": "#collapse" + (index + 1)
                   }
                 },
                 [
@@ -37411,7 +37411,27 @@ var render = function() {
               _vm._m(3, true)
             ]),
             _vm._v(" "),
-            _vm._m(4, true)
+            _c(
+              "tr",
+              {
+                staticClass: "collapse ",
+                attrs: {
+                  id: "collapse" + (index + 1),
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c(
+                  "td",
+                  { staticClass: "card-body", attrs: { colspan: "5" } },
+                  [
+                    _vm._v(
+                      "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+                    )
+                  ]
+                )
+              ]
+            )
           ])
         })
       ],
@@ -37492,25 +37512,6 @@ var staticRenderFns = [
         })
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "tr",
-      {
-        staticClass: "collapse ",
-        attrs: { id: "collapse1", "data-parent": "#accordion" }
-      },
-      [
-        _c("td", { staticClass: "card-body", attrs: { colspan: "5" } }, [
-          _vm._v(
-            "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
-          )
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -50159,8 +50160,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
 
 
 /***/ })
