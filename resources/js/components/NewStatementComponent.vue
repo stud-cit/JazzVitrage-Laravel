@@ -11,24 +11,24 @@
                 <tr>
                     
                     <th>#</th>
-                    <th>Example</th>
-                    <th>Example</th>
+                    <th>ПІБ Учасника</th>
+                    <th>Тип Заявки</th>
                     
                     <th width="30px"></th>
                     <th width="30px"></th>
                 </tr>
           </thead>
           
-          <tbody class="card">
+          <tbody class="card" v-for="(item, index) in members">
                 <tr>
                     <td data-toggle="collapse" data-target="#collapse1">
-                        Example
+                        {{index+1}}
                     </td>
                     <td data-toggle="collapse" data-target="#collapse1">
-                        Example
+                        {{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name}}
                     </td>
                     <td data-toggle="collapse" data-target="#collapse1">
-                        Example
+                       {{ item.app_type.name }}
                     </td>
                     <td>
                         <a href="#"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
@@ -91,25 +91,29 @@ export default {
             members: []
         };
     },
+    created () {
+        this.getFullList();
 
-    watch: {
-        keywords(after, before) {
-            this.fetch();
-        }
     },
 
+    // watch: {
+    //     keywords(after, before) {
+    //         this.fetch();
+    //     }
+    // },
+
     methods: {
-        fetch() {
-            axios.get('/api/search', { params: { keywords: this.keywords } })
-                .then(response => this.results = reponse.data)
-                .catch(error => {});
-        },
+        // fetch() {
+        //     axios.get('/api/search', { params: { keywords: this.keywords } })
+        //         .then(response => this.results = reponse.data)
+        //         .catch(error => {});
+        // },
         getFullList(){
             axios.get('/get-members')
             .then((response) => {
 
-                this.dataLang = response.data;
-                this.dataLoaded.push(true);
+                this.members = response.data;
+                // console.log(this.members);
 
             })
             .catch((error) => {

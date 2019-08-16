@@ -1822,30 +1822,25 @@ __webpack_require__.r(__webpack_exports__);
       members: []
     };
   },
-  watch: {
-    keywords: function keywords(after, before) {
-      this.fetch();
-    }
+  created: function created() {
+    this.getFullList();
   },
+  // watch: {
+  //     keywords(after, before) {
+  //         this.fetch();
+  //     }
+  // },
   methods: {
-    fetch: function fetch() {
+    // fetch() {
+    //     axios.get('/api/search', { params: { keywords: this.keywords } })
+    //         .then(response => this.results = reponse.data)
+    //         .catch(error => {});
+    // },
+    getFullList: function getFullList() {
       var _this = this;
 
-      axios.get('/api/search', {
-        params: {
-          keywords: this.keywords
-        }
-      }).then(function (response) {
-        return _this.results = reponse.data;
-      })["catch"](function (error) {});
-    },
-    getFullList: function getFullList() {
-      var _this2 = this;
-
       axios.get('/get-members').then(function (response) {
-        _this2.dataLang = response.data;
-
-        _this2.dataLoaded.push(true);
+        _this.members = response.data; // console.log(this.members);
       })["catch"](function (error) {// swal({
         //     icon: "error",
         //     title: 'Помилка',
@@ -37336,137 +37331,186 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "table",
+      {
+        staticClass: "table table-bordered accordion",
+        attrs: { id: "accordion" }
+      },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._l(_vm.members, function(item, index) {
+          return _c("tbody", { staticClass: "card" }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(index + 1) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        item.solo_duet
+                          ? item.solo_duet.name +
+                              " " +
+                              item.solo_duet.surname +
+                              " " +
+                              item.solo_duet.patronomic
+                          : item.group.name
+                      ) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse1"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                   " +
+                      _vm._s(item.app_type.name) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._m(3, true)
+            ]),
+            _vm._v(" "),
+            _vm._m(4, true)
+          ])
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("form", { attrs: { role: "form" } }, [
-        _c(
-          "div",
-          {
-            staticStyle: {
-              "margin-bottom": "-35px",
-              "margin-left": "10px",
-              "font-size": "24px"
-            }
-          },
-          [
-            _c("i", {
-              staticClass: "fa fa-search",
-              attrs: { "aria-hidden": "true" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          staticStyle: { "padding-left": "40px" },
-          attrs: { type: "text" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
+    return _c("form", { attrs: { role: "form" } }, [
       _c(
-        "table",
+        "div",
         {
-          staticClass: "table table-bordered accordion",
-          attrs: { id: "accordion" }
+          staticStyle: {
+            "margin-bottom": "-35px",
+            "margin-left": "10px",
+            "font-size": "24px"
+          }
         },
         [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Example")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Example")]),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "30px" } }),
-              _vm._v(" "),
-              _c("th", { attrs: { width: "30px" } })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", { staticClass: "card" }, [
-            _c("tr", [
-              _c(
-                "td",
-                {
-                  attrs: {
-                    "data-toggle": "collapse",
-                    "data-target": "#collapse1"
-                  }
-                },
-                [_vm._v("\n                    Example\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  attrs: {
-                    "data-toggle": "collapse",
-                    "data-target": "#collapse1"
-                  }
-                },
-                [_vm._v("\n                    Example\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                {
-                  attrs: {
-                    "data-toggle": "collapse",
-                    "data-target": "#collapse1"
-                  }
-                },
-                [_vm._v("\n                    Example\n                ")]
-              ),
-              _vm._v(" "),
-              _c("td", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", {
-                    staticClass: "fa fa-2x fa-check-circle",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ])
-              ]),
-              _c("td", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("i", {
-                    staticClass: "fa fa-2x fa-times-circle",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tr",
-              {
-                staticClass: "collapse ",
-                attrs: { id: "collapse1", "data-parent": "#accordion" }
-              },
-              [
-                _c(
-                  "td",
-                  { staticClass: "card-body", attrs: { colspan: "5" } },
-                  [
-                    _vm._v(
-                      "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
-                    )
-                  ]
-                )
-              ]
-            )
-          ])
+          _c("i", {
+            staticClass: "fa fa-search",
+            attrs: { "aria-hidden": "true" }
+          })
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        staticStyle: { "padding-left": "40px" },
+        attrs: { type: "text" }
+      })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ПІБ Учасника")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Тип Заявки")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "30px" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "30px" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fa fa-2x fa-check-circle",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", {
+          staticClass: "fa fa-2x fa-times-circle",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "tr",
+      {
+        staticClass: "collapse ",
+        attrs: { id: "collapse1", "data-parent": "#accordion" }
+      },
+      [
+        _c("td", { staticClass: "card-body", attrs: { colspan: "5" } }, [
+          _vm._v(
+            "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

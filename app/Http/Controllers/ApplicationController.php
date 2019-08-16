@@ -10,8 +10,8 @@ class ApplicationController extends Controller
 {
     public function index()
     {	
-    	// $model = Application::find(1)->appType;
-    	// dd($model);
+//    	 $model = Application::with('appType', 'soloDuet', 'group')->get();
+
 
         return view('application');
     }
@@ -20,12 +20,9 @@ class ApplicationController extends Controller
         // TO DO
     }
 
-    // public function getMembers()
-    // {
-    	
-    //     return [
-    //     	'names' =>,
-    //     	'types' =>
-    //     ]
-    // }
+     public function getMembers()
+     {
+         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'created')->get();
+         return response()->json($data);
+     }
 }

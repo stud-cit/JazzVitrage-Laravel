@@ -20,6 +20,7 @@ class CreateTasksApplication extends Migration
             $table->increments('application_id');
             $table->integer('nomination_id')->unsigned();
             $table->integer('application_type_id')->unsigned();
+            $table->string('status', 20);
             $table->timestamps();
         });
 

@@ -13,11 +13,11 @@ class Application extends Model
 	{
 		return $this->belongsTo('App\Models\ApplicationType', 'application_type_id');
 	}
-	public function app()
+	public function group()
 	{
 		return $this->hasOne('App\Models\GroupPeople', 'application_id');
 	}
-	public function app()
+	public function soloDuet()
 	{
 		return $this->hasOne('App\Models\SoloDuet', 'application_id');
 	}
