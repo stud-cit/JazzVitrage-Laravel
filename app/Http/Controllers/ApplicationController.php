@@ -25,4 +25,10 @@ class ApplicationController extends Controller
          $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'created')->get();
          return response()->json($data);
      }
+     
+     public function getAllMembers()
+     {
+         $data = Application::with('appType', 'soloDuet', 'group')->get();
+         return response()->json($data);
+     }
 }

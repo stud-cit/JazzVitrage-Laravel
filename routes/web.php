@@ -57,5 +57,6 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     }]);
 // VUE запросы
  Route::get('get-members',  'ApplicationController@getMembers');
+ Route::get('get-all-members',  'ApplicationController@getAllMembers');
 // });
 // Auth::routes();
