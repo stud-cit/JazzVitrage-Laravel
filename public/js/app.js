@@ -1788,32 +1788,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1825,22 +1799,28 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getFullList();
   },
-  // watch: {
-  //     keywords(after, before) {
-  //         this.fetch();
-  //     }
-  // },
   methods: {
-    // fetch() {
-    //     axios.get('/api/search', { params: { keywords: this.keywords } })
-    //         .then(response => this.results = reponse.data)
-    //         .catch(error => {});
-    // },
     getFullList: function getFullList() {
       var _this = this;
 
       axios.get('/get-members').then(function (response) {
         _this.members = response.data; // console.log(this.members);
+      })["catch"](function (error) {// swal({
+        //     icon: "error",
+        //     title: 'Помилка',
+        //     text: error.response.status + " " + error.responsestatusText
+        // });
+      });
+    },
+    archiveMember: function archiveMember(event) {
+      var _this2 = this;
+
+      var id = event.target.getAttribute('data-value'); // console.log(id);
+
+      axios.post('/archive-members/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this2.getFullList();
+        }
       })["catch"](function (error) {// swal({
         //     icon: "error",
         //     title: 'Помилка',
@@ -37408,7 +37388,15 @@ var render = function() {
               ),
               _vm._v(" "),
               _vm._m(2, true),
-              _vm._m(3, true)
+              _c("td", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-times-circle",
+                    attrs: { "data-value": item.application_id },
+                    on: { click: _vm.archiveMember }
+                  })
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c(
@@ -37493,23 +37481,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("td", [
       _c("a", { attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fa fa-2x fa-check-circle",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", {
-          staticClass: "fa fa-2x fa-times-circle",
-          attrs: { "aria-hidden": "true" }
-        })
+        _c("i", { staticClass: "fa fa-2x fa-check-circle" })
       ])
     ])
   }
@@ -49845,7 +49817,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./admin.js */ "./resources/js/admin.js");
+__webpack_require__(/*! ./admin.js */ "./resources/js/admin.js"); // require('swal')
+
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**

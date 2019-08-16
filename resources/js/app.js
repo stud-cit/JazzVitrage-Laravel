@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 require('./admin.js');
-
+// require('swal')
 window.Vue = require('vue');
 
 /**

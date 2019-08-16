@@ -31,11 +31,11 @@
                        {{ item.app_type.name }}
                     </td>
                     <td>
-                        <a href="#"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-2x fa-check-circle" ></i></a>
                                            
                     <td>
 
-                        <a href="#"><i class="fa fa-2x fa-times-circle" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-2x fa-times-circle" :data-value="item.application_id" @click="archiveMember"></i></a>
                     </td>
                 </tr>
                 <tr :id="'collapse'+(index+1)" class="collapse "  data-parent="#accordion">
@@ -46,33 +46,7 @@
                     </td>
                 </tr>
             </tbody>
-            <!-- <tbody class="card">
-                <tr>
-                    <td data-toggle="collapse" data-target="#collapse1">
-                        Example
-                    </td>
-                    <td data-toggle="collapse" data-target="#collapse1">
-                        Example
-                    </td>
-                    <td data-toggle="collapse" data-target="#collapse1">
-                        Example
-                    </td>
-                    <td>
-                        <a href="#"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
-                                           
-                    <td>
 
-                        <a href="#"><i class="fa fa-2x fa-times-circle" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
-                <tr id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <td colspan="5" class="card-body">
-                      
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      
-                    </td>
-                </tr>
-            </tbody> -->
             
 
               
@@ -96,18 +70,10 @@ export default {
 
     },
 
-    // watch: {
-    //     keywords(after, before) {
-    //         this.fetch();
-    //     }
-    // },
+
 
     methods: {
-        // fetch() {
-        //     axios.get('/api/search', { params: { keywords: this.keywords } })
-        //         .then(response => this.results = reponse.data)
-        //         .catch(error => {});
-        // },
+
         getFullList(){
             axios.get('/get-members')
             .then((response) => {
@@ -123,6 +89,25 @@ export default {
                 //     text: error.response.status + " " + error.responsestatusText
                 // });
             });
+        },
+        archiveMember(event){
+
+            const id =  event.target.getAttribute('data-value');
+            // console.log(id);
+            axios.post('/archive-members/'+id)
+                .then((response) => {
+                    if(response.status == 200 ) {
+                        this.getFullList();
+                    }
+
+                })
+                .catch((error) => {
+                    // swal({
+                    //     icon: "error",
+                    //     title: 'Помилка',
+                    //     text: error.response.status + " " + error.responsestatusText
+                    // });
+                });
         }
     }
 }
