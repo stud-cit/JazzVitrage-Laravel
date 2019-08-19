@@ -1,21 +1,27 @@
 <template>
     <div>
-        <table class="table table-bordered">
-            <thead>
+      <table class="table table-bordered">
+      <thead>
             <tr>
-                <th>Example</th>
-                <th>Example</th>
-                <th>Example</th>
+                <th width="30px">№</th>
+                <th>ПІБ Учасника / Назва групи</th>
+                <th>Тип заявки</th>
             </tr>
-            </thead>
-            <tbody>
+      </thead>
+      <tbody v-for="(item, index) in members">
             <tr>
-                <td><router-link :to="{ path: '/admin/all-statements/evaluation/1' }">evaluation</router-link></td>
-                <td>Example</td>
-                <td>Example</td>
+
+                <td>{{ index + 1 }}</td>
+                <td v-if="item.solo_duet">
+                    <router-link :to="{ path: '/admin/all-statements/evaluation/1' }">{{ item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic }}</router-link>
+                </td>
+                <td v-else>
+                    <router-link :to="{ name: 'jury-evaluation' }">{{ item.group.name }}</router-link>
+                </td>
+                <td>{{ item.app_type.name }}</td>
             </tr>
-            </tbody>
-        </table>
+      </tbody>
+      </table>
 
     </div>
 </template>
@@ -24,40 +30,19 @@
     export default {
         data() {
             return {
-                // members: [],
-                // search: '',
+                members: [],
             }
         },
-        // created() {
-        //     this.getFullList();
-        // },
-        // computed: {
-        //     filteredList() {
-        //         return this.members.filter(members => {
-        //             if(!members.group) {
-        //                 return members.solo_duet.name.toLowerCase().includes(this.search.toLowerCase())
-        //             } else {
-        //                 return members.group.name.toLowerCase().includes(this.search.toLowerCase())
-        //             }
-        //         })
-        //     }
-        // },
-        // methods: {
-        //     getFullList() {
-        //         axios.get('/get-all-members')
-        //             .then((response) => {
-        //                 this.members = response.data;
-        //             })
-        //     },
-        //     archiveMember(event){
-        //         const id =  event.target.getAttribute('data-value');
-        //         axios.post('/archive-members/'+id)
-        //             .then((response) => {
-        //                 if(response.status == 200) {
-        //                     this.getFullList();
-        //                 }
-        //             })
-        //     }
-        // },
+        created() {
+            this.getFullList();
+        },
+        methods: {
+            getFullList() {
+                axios.get('/get-all-members')
+                .then((response) => {
+                    this.members = response.data;
+                })
+            }
+        }
     }
 </script>

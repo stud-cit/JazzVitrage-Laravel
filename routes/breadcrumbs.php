@@ -35,3 +35,8 @@ Breadcrumbs::register('admin.jury.evaluation', function($breadcrumbs) {
 Breadcrumbs::register('admin.jury.information', function($breadcrumbs) {
     $breadcrumbs->push('Інформація', route('admin.jury.information'));
 });
+
+// Відеогалерея
+Breadcrumbs::register('admin.admin.videoGallery', function($breadcrumbs) {
+    $breadcrumbs->push('Відеогалерея', route('admin.admin.videoGallery'));
+});

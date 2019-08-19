@@ -14,6 +14,8 @@ import RemovedStatementComponent from './components/RemovedStatementComponent';
 
 import ListParticipantsComponent from './components/ListParticipantsComponent';
 import EvaluationResultsComponent from './components/EvaluationResultsComponent';
+
+import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
 
@@ -46,6 +48,8 @@ const app = new Vue({
         RemovedStatementComponent,
         ListParticipantsComponent,
         EvaluationResultsComponent,
+        EvaluationComponent,
+        VideoGalleryComponent,
         AllStatementComponent
     },
     router,

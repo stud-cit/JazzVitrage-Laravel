@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <router-view></router-view>
+    <video-gallery-component></video-gallery-component>
 
 @endsection

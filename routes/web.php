@@ -52,6 +52,10 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::get('/admin/information', ['as' => 'admin.jury.information', function () {
         return view('admin.jury.information');
     }]);
+
+    Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
+        return view('admin.admin.videoGallery');
+    }]);
 // VUE базовые роуты
 Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
     return view('admin.jury.allStatements');
