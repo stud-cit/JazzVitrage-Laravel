@@ -10,6 +10,7 @@
       </thead>
       <tbody v-for="(item, index) in members">
             <tr>
+
                 <td>{{ index + 1 }}</td>
                 <td>
                     <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</router-link>
@@ -18,6 +19,7 @@
             </tr>
       </tbody>
       </table>
+
     </div>
 </template>
 
