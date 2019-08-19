@@ -43,12 +43,6 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
         return view('admin.orgСommittee.evaluationResults');
     }]);
 
-
-//    Route::get('/admin/evaluation', ['as' => 'admin.jury.evaluation', function () {
-//        return view('admin.jury.evaluation');
-//    }]);
-
-
     Route::get('/admin/information', ['as' => 'admin.jury.information', function () {
         return view('admin.jury.information');
     }]);

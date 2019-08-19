@@ -1761,7 +1761,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.members.filter(function (members) {
         if (!members.group) {
-          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase());
+          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase()) || members.solo_duet.surname.toLowerCase().includes(_this.search.toLowerCase()) || members.solo_duet.patronomic.toLowerCase().includes(_this.search.toLowerCase());
         } else {
           return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
         }
@@ -2214,9 +2214,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -38377,31 +38374,36 @@ var render = function() {
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
-              item.solo_duet
-                ? _c("td", [
-                    _c("a", { attrs: { href: "/admin/evaluation" } }, [
+              _c(
+                "td",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "jury-evaluation",
+                          params: { id: item.application_id }
+                        }
+                      }
+                    },
+                    [
                       _vm._v(
                         _vm._s(
-                          item.solo_duet.name +
-                            " " +
-                            item.solo_duet.surname +
-                            " " +
-                            item.solo_duet.patronomic
+                          item.solo_duet
+                            ? item.solo_duet.name +
+                                " " +
+                                item.solo_duet.surname +
+                                " " +
+                                item.solo_duet.patronomic
+                            : item.group.name
                         )
                       )
-                    ])
-                  ])
-                : _c(
-                    "td",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "jury-evaluation" } } },
-                        [_vm._v(_vm._s(item.group.name))]
-                      )
-                    ],
-                    1
-                  ),
+                    ]
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(item.app_type.name))])
             ])
@@ -53648,7 +53650,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'jury-all-statements',
     component: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: '/admin/all-statements/evaluation',
+    path: '/admin/all-statements/:id',
     name: 'jury-evaluation',
     component: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]

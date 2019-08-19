@@ -11,11 +11,8 @@
       <tbody v-for="(item, index) in members">
             <tr>
                 <td>{{ index + 1 }}</td>
-                <td v-if="item.solo_duet">
-                    <a href="/admin/evaluation">{{ item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic }}</a>
-                </td>
-                <td v-else>
-                    <router-link :to="{ name: 'jury-evaluation' }">{{ item.group.name }}</router-link>
+                <td>
+                    <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</router-link>
                 </td>
                 <td>{{ item.app_type.name }}</td>
             </tr>

@@ -62,7 +62,9 @@ export default {
         filteredList() {
             return this.members.filter(members => {
                 if(!members.group) {
-                    return members.solo_duet.name.toLowerCase().includes(this.search.toLowerCase())
+                    return members.solo_duet.name.toLowerCase().includes(this.search.toLowerCase()) || 
+                    members.solo_duet.surname.toLowerCase().includes(this.search.toLowerCase()) || 
+                    members.solo_duet.patronomic.toLowerCase().includes(this.search.toLowerCase())
                 } else {
                     return members.group.name.toLowerCase().includes(this.search.toLowerCase())
                 }
