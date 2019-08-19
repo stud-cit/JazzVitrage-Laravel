@@ -33,7 +33,7 @@
                                            
                     <td>
 
-                        <i class="fa fa-2x fa-times-circle btn btn-default p-0" :data-value="item.application_id" @click="archiveMember"></i>
+                        <i class="fa fa-2x fa-times-circle btn btn-default p-0"  @click="archiveMember(item.application_id)"></i>
                     </td>
                 </tr>
                 <tr :id="'collapse'+(index+1)" class="collapse "  data-parent="#accordion">
@@ -87,7 +87,10 @@ export default {
             axios.get('/get-members')
             .then((response) => {
 
-                this.members = response.data;
+                this.members = response.data.filter(app =>{
+
+                    return app.status =="created";
+                });
 
 
             })
@@ -99,10 +102,9 @@ export default {
                 });
             });
         },
-        archiveMember(event){
+        archiveMember(id){
 
-            const id =  event.target.getAttribute('data-value');
-            // console.log(id);
+
             axios.post('/archive-members/'+id)
                 .then((response) => {
                     if(response.status == 200 ) {

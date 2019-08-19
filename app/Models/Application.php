@@ -21,4 +21,6 @@ class Application extends Model
 	{
 		return $this->hasOne('App\Models\SoloDuet', 'application_id');
 	}
+
+
 }

@@ -34,7 +34,7 @@ class CreateTasksTableGroupPeople extends Migration
         
         Schema::table('group_people', function (Blueprint $table) {
             
-            $table->foreign('application_id')->references('application_id')->on('application');
+            $table->foreign('application_id')->references('application_id')->on('application')->onDelete('cascade');
         });
     }
 

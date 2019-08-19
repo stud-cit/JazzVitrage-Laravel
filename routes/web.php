@@ -50,16 +50,27 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
         return view('admin.admin.videoGallery');
     }]);
+
 // VUE базовые роуты
-Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
-    return view('admin.jury.allStatements');
-}])->where('any', '.*');
-Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
-    return view('admin.jury.allStatements');
-}]);
+
+    Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
+        return view('admin.jury.allStatements');
+    }])->where('any', '.*');
+    Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
+        return view('admin.jury.allStatements');
+    }]);
+
 // VUE запросы
- Route::get('get-members',  'ApplicationController@getMembers');
- Route::get('get-all-members',  'ApplicationController@getAllMembers');
- Route::post('archive-members/{id}/',  'ApplicationController@archiveMembers');
+
+    Route::get('get-members',  'ApplicationController@getMembers');
+
+    Route::get('get-all-members',  'ApplicationController@getAllMembers');
+
+    Route::post('archive-members/{id}/',  'ApplicationController@archiveMembers');
+
+    Route::post('unarchive-members/{id}/',  'ApplicationController@unarchiveMembers');
+
+    Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
+
 // });
 // Auth::routes();

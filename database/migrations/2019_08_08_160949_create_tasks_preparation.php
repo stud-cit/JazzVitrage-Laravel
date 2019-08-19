@@ -35,7 +35,7 @@ class CreateTasksPreparation extends Migration
         
         Schema::table('preparation', function (Blueprint $table) {
             $table->index('application_id');
-            $table->foreign('application_id')->references('application_id')->on('application');
+            $table->foreign('application_id')->references('application_id')->on('application')->onDelete('cascade');
         });
     }
 

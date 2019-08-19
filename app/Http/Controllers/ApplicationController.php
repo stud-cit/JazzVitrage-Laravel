@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Application;
+use App\Models\GroupPeople;
 use App\Models\ApplicationType;
 
 class ApplicationController extends Controller
@@ -23,7 +24,7 @@ class ApplicationController extends Controller
 
      public function getMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'created')->get();
+         $data = Application::with('appType', 'soloDuet', 'group')->get();
          return response()->json($data);
      }
      
@@ -42,9 +43,26 @@ class ApplicationController extends Controller
         if($model->save()){
             return 'ok';
         }
-//        if($model->appType->name == 'дует' || $model->appType->name == 'соліст'){
-//
-//        }
+
+    }
+    public function unarchiveMembers($id)
+    {
+        $model = Application::find($id);
+
+        $model->status = 'created';
+
+        if($model->save()){
+            return ;
+        }
+
+    }
+    public function deleteMembers($id)
+    {
+        $model = Application::find($id);
+
+        if($model->delete()){
+            return ;
+        }
 
     }
 }
