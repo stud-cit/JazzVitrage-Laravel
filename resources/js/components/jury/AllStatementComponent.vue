@@ -10,13 +10,13 @@
             </thead>
             <tbody>
             <tr>
-                <td><a href="">Example</a></td>
+                <td><router-link :to="{ path: '/admin/all-statements/evaluation/1' }">evaluation</router-link></td>
                 <td>Example</td>
                 <td>Example</td>
             </tr>
             </tbody>
         </table>
-        <router-link :to="{ name: 'jury-evaluation' }">evaluation</router-link>
+
     </div>
 </template>
 

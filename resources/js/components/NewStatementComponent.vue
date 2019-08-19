@@ -51,7 +51,7 @@
           
     
       </table>
-        <router-link :to="{ name: 'hello' }">hello</router-link>
+
     </div>
 </template>
 
@@ -88,15 +88,15 @@ export default {
             .then((response) => {
 
                 this.members = response.data;
-                // console.log(this.members);
+
 
             })
             .catch((error) => {
-                // swal({
-                //     icon: "error",
-                //     title: 'Помилка',
-                //     text: error.response.status + " " + error.responsestatusText
-                // });
+                swal({
+                    icon: "error",
+                    title: 'Помилка',
+                    text: error.response.status
+                });
             });
         },
         archiveMember(event){
@@ -108,14 +108,17 @@ export default {
                     if(response.status == 200 ) {
                         this.getFullList();
                     }
+                    swal("Запис був успішно доданий до архіву", {
+                        icon: "success",
+                    });
 
                 })
                 .catch((error) => {
-                    // swal({
-                    //     icon: "error",
-                    //     title: 'Помилка',
-                    //     text: error.response.status + " " + error.responsestatusText
-                    // });
+                    swal({
+                        icon: "error",
+                        title: 'Помилка',
+                        text: 'Не вдалося додати заяву до архіву'
+                    });
                 });
         }
     }

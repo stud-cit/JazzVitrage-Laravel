@@ -31,7 +31,7 @@ const router = new VueRouter({
             component: AllStatementComponent,
         },
         {
-            path: '/admin/all-statements/evaluation',
+            path: '/admin/all-statements/evaluation/:id',
             name: 'jury-evaluation',
             component: EvaluationComponent,
         },
