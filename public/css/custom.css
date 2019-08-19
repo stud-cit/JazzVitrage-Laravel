@@ -23,3 +23,42 @@
     padding-left: 40px;
     margin-bottom: 25px;
 }
+
+.fotoGallery {
+    height: 200px;
+}
+
+.fotoGallery .fa-calendar {
+    font-size: 12px;
+    position: absolute;
+    padding-top: 15px;
+    margin-right: 30px;
+    right: 0;
+}
+
+.fotoGallery .fa-download {
+    position: absolute;
+    border: 1px solid silver;
+    padding: 10px;
+    margin: 15px 30px;
+    right: 0;
+    bottom: 0;
+}
+
+.fotoGallery .fa-share {
+    position: absolute;
+    border: 1px solid silver;
+    padding: 10px;
+    margin: 15px 80px;
+    right: 0;
+    bottom: 0;
+}
+
+.fotoGallery .fa-search {
+    position: absolute;
+    padding: 25px;
+    border: 1px solid silver;
+    border-radius: 50px;
+    left: 40%;
+    top: 30%;
+}

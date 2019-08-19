@@ -11,6 +11,10 @@ import RemovedStatementComponent from './components/RemovedStatementComponent';
 
 import ListParticipantsComponent from './components/ListParticipantsComponent';
 import EvaluationResultsComponent from './components/EvaluationResultsComponent';
+import EvaluationComponent from './components/EvaluationComponent';
+import AllStatementsComponent from './components/AllStatementsComponent';
+
+import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 
 const app = new Vue({
     el: '#app',
@@ -18,7 +22,10 @@ const app = new Vue({
     	NewStatementComponent,
         RemovedStatementComponent,
         ListParticipantsComponent,
-        EvaluationResultsComponent
+        EvaluationResultsComponent,
+        EvaluationComponent,
+        AllStatementsComponent,
+        VideoGalleryComponent
     }
 });
 

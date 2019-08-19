@@ -51,6 +51,13 @@
 					</a>
 				</li>
 
+				<li class="nav-item" title="Відеогалерея">
+					<a class="nav-link" href="/admin/video-gallery">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Відеогалерея</span>
+					</a>
+				</li>
+
 			</ul>
 
 			<ul class="navbar-nav sidenav-toggler">

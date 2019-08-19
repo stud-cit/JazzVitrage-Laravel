@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <all-statements-component></all-statements-component>
+    <video-gallery-component></video-gallery-component>
 
 @endsection
