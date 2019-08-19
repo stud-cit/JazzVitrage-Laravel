@@ -51,6 +51,7 @@
           
     
       </table>
+        <router-link :to="{ name: 'hello' }">hello</router-link>
     </div>
 </template>
 

@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <all-statements-component></all-statements-component>
+    <router-view></router-view>
 
 @endsection

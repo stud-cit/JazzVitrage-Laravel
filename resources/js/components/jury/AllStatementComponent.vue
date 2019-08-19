@@ -15,7 +15,7 @@
                     <a href="/admin/evaluation">{{ item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic }}</a>
                 </td>
                 <td v-else>
-                    <a href="/admin/evaluation">{{ item.group.name }}</a>
+                    <router-link :to="{ name: 'jury-evaluation' }">{{ item.group.name }}</router-link>
                 </td>
                 <td>{{ item.app_type.name }}</td>
             </tr>
@@ -25,22 +25,22 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            members: [],
-        }
-    },
-    created() {
-        this.getFullList();
-    },
-    methods: {
-        getFullList() {
-            axios.get('/get-all-members')
-            .then((response) => {
-                this.members = response.data;
-            })
+    export default {
+        data() {
+            return {
+                members: [],
+            }
+        },
+        created() {
+            this.getFullList();
+        },
+        methods: {
+            getFullList() {
+                axios.get('/get-all-members')
+                .then((response) => {
+                    this.members = response.data;
+                })
+            }
         }
     }
-}
 </script>

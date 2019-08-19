@@ -4,8 +4,8 @@
 
     
         
-        
-        	 <new-statement-component></new-statement-component>
+        	<router-view></router-view>
+        	 {{--<new-statement-component></new-statement-component>--}}
      
        
         

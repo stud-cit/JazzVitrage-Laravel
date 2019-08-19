@@ -2,7 +2,8 @@
 <div>
     <div class="row">
         <div class="col-12 pb-3 comeBack">
-            <a href="/admin/all-statements"><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</a>
+            <router-link :to="{ name: 'jury-all-statements' }"><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</router-link>
+            
         </div>
         <div class="col-8">
             <div class="border" style="width: 100%; height: 400px;"></div>
