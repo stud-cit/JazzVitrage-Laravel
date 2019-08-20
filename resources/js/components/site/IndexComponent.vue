@@ -79,7 +79,7 @@
             </div>
         </section>
 
-
+        <section class="sections"></section>
         <footer class="footer">
             <p class="text-block">music-concurs@email.com</p>
             <p class="text-block">+38 (050) 123 4568</p>

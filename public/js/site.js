@@ -37128,6 +37128,8 @@ var render = function() {
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
+    _c("section", { staticClass: "sections" }),
+    _vm._v(" "),
     _vm._m(3)
   ])
 }
