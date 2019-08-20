@@ -1760,11 +1760,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.members.filter(function (members) {
-        if (!members.group) {
-          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase()) || members.solo_duet.surname.toLowerCase().includes(_this.search.toLowerCase()) || members.solo_duet.patronomic.toLowerCase().includes(_this.search.toLowerCase());
-        } else {
-          return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
-        }
+        return members.name.toLowerCase().includes(_this.search.toLowerCase()) || members.type.toLowerCase().includes(_this.search.toLowerCase());
       });
     }
   },
@@ -1773,7 +1769,24 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-all-members').then(function (response) {
-        _this2.members = response.data;
+        response.data.forEach(function (member) {
+          if (member.solo_duet.length == 0) {
+            _this2.members.push({
+              name: member.group.name,
+              type: member.app_type.name
+            });
+          } else if (member.solo_duet.length == 1) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              type: member.app_type.name
+            });
+          } else if (member.solo_duet.length == 2) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              type: member.app_type.name
+            });
+          }
+        });
       });
     }
   }
@@ -1833,11 +1846,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.members.filter(function (members) {
-        if (!members.group) {
-          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase());
-        } else {
-          return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
-        }
+        return members.name.toLowerCase().includes(_this.search.toLowerCase()) || members.type.toLowerCase().includes(_this.search.toLowerCase());
       });
     }
   },
@@ -1846,7 +1855,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-all-members').then(function (response) {
-        _this2.members = response.data;
+        _this2.members = [];
+        response.data.forEach(function (member) {
+          if (member.solo_duet.length == 0) {
+            _this2.members.push({
+              name: member.group.name,
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 1) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 2) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          }
+        });
       });
     },
     archiveMember: function archiveMember(event) {
@@ -1947,11 +1977,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.members.filter(function (members) {
-        if (!members.group) {
-          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase());
-        } else {
-          return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
-        }
+        return members.name.toLowerCase().includes(_this.search.toLowerCase()) || members.type.toLowerCase().includes(_this.search.toLowerCase());
       });
     }
   },
@@ -1960,8 +1986,29 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-members').then(function (response) {
-        _this2.members = response.data.filter(function (app) {
+        _this2.members = [];
+        response.data.filter(function (app) {
           return app.status == "created";
+        }).forEach(function (member) {
+          if (member.solo_duet.length == 0) {
+            _this2.members.push({
+              name: member.group.name,
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 1) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 2) {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          }
         });
       })["catch"](function (error) {
         swal({
@@ -2259,10 +2306,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      members: []
+      members: ''
     };
   },
   created: function created() {
@@ -2342,7 +2395,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      member: '',
+      type: '',
+      school: '',
+      program: '',
+      group: null,
+      count: 0
+    };
+  },
+  created: function created() {
+    this.getMember();
+    this.getAllMembers();
+  },
+  computed: {
+    nextButtonShow: function nextButtonShow() {
+      return this.$route.params.id == this.count ? false : true;
+    }
+  },
+  methods: {
+    getMember: function getMember() {
+      var _this = this;
+
+      axios.get('/get-member/' + this.$route.params.id).then(function (response) {
+        _this.member = response.data[0].solo_duet;
+        _this.group = response.data[0].group;
+        _this.type = response.data[0].app_type;
+        _this.school = response.data[0].preparation;
+        _this.program = response.data[0].presentation;
+      });
+    },
+    getAllMembers: function getAllMembers() {
+      var _this2 = this;
+
+      axios.get('/get-all-members').then(function (response) {
+        _this2.count = response.data.length;
+      });
+    },
+    nextMember: function nextMember() {
+      this.$router.push({
+        name: 'jury-evaluation',
+        params: {
+          id: ++this.$route.params.id
+        }
+      });
+      this.getMember();
+    }
+  }
+});
 
 /***/ }),
 
@@ -37697,21 +37828,9 @@ var render = function() {
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    item.solo_duet
-                      ? item.solo_duet.name +
-                          " " +
-                          item.solo_duet.surname +
-                          " " +
-                          item.solo_duet.patronomic
-                      : item.group.name
-                  )
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(item.app_type.name))])
+              _c("td", [_vm._v(_vm._s(item.type))])
             ])
           ])
         })
@@ -37847,26 +37966,14 @@ var render = function() {
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    item.solo_duet
-                      ? item.solo_duet.name +
-                          " " +
-                          item.solo_duet.surname +
-                          " " +
-                          item.solo_duet.patronomic
-                      : item.group.name
-                  )
-                )
-              ]),
+              _c("td", [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(item.app_type.name))]),
+              _c("td", [_vm._v(_vm._s(item.type))]),
               _vm._v(" "),
               _c("td", [
                 _c("i", {
                   staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
-                  attrs: { "data-value": item.application_id },
+                  attrs: { "data-value": item.id },
                   on: { click: _vm.archiveMember }
                 })
               ])
@@ -37987,15 +38094,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(
-                        item.solo_duet
-                          ? item.solo_duet.name +
-                              " " +
-                              item.solo_duet.surname +
-                              " " +
-                              item.solo_duet.patronomic
-                          : item.group.name
-                      ) +
+                      _vm._s(item.name) +
                       "\n                "
                   )
                 ]
@@ -38012,7 +38111,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                   " +
-                      _vm._s(item.app_type.name) +
+                      _vm._s(item.type) +
                       "\n                "
                   )
                 ]
@@ -38024,7 +38123,7 @@ var render = function() {
                   staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
                   on: {
                     click: function($event) {
-                      return _vm.archiveMember(item.application_id)
+                      return _vm.archiveMember(item.id)
                     }
                   }
                 })
@@ -38462,36 +38561,99 @@ var render = function() {
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
-              _c(
-                "td",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: {
-                          name: "jury-evaluation",
-                          params: { id: item.application_id }
-                        }
-                      }
-                    },
+              item.solo_duet.length == 0
+                ? _c(
+                    "td",
                     [
-                      _vm._v(
-                        _vm._s(
-                          item.solo_duet
-                            ? item.solo_duet.name +
-                                " " +
-                                item.solo_duet.surname +
-                                " " +
-                                item.solo_duet.patronomic
-                            : item.group.name
-                        )
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "jury-evaluation",
+                              params: { id: item.application_id }
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(item.group.name))]
                       )
-                    ]
+                    ],
+                    1
                   )
-                ],
-                1
-              ),
+                : _vm._e(),
+              _vm._v(" "),
+              item.solo_duet.length == 1
+                ? _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "jury-evaluation",
+                              params: { id: item.application_id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              item.solo_duet[0].name +
+                                " " +
+                                item.solo_duet[0].surname +
+                                " " +
+                                item.solo_duet[0].patronomic
+                            )
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              item.solo_duet.length == 2
+                ? _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "jury-evaluation",
+                              params: { id: item.application_id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              item.solo_duet[0].name +
+                                " " +
+                                item.solo_duet[0].surname +
+                                " " +
+                                item.solo_duet[0].patronomic
+                            ) + ", "
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            " " +
+                              _vm._s(
+                                item.solo_duet[1].name +
+                                  " " +
+                                  item.solo_duet[1].surname +
+                                  " " +
+                                  item.solo_duet[1].patronomic
+                              )
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(item.app_type.name))])
             ])
@@ -38567,7 +38729,287 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _vm._m(2)
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row border evaluationInfo" }, [
+        _vm.group != null
+          ? _c("div", { staticClass: "col-9" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12 evaluationName" }, [
+                  _c("b", [_vm._v("Назва:")]),
+                  _vm._v(" " + _vm._s(_vm.group.name))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("Тип:")]),
+                  _vm._v(
+                    " " + _vm._s(_vm.type.name) + "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Кількість учасників:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.group.count_people) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [_vm._v("Середній вік:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.group.average_age) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [_vm._v("Адреса:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.school.school_address) +
+                      "\r\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("ПІП викладача:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.school.teacher_name +
+                          "  " +
+                          _vm.school.teacher_surname +
+                          " " +
+                          _vm.school.teacher_patronomic
+                      ) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Програма кожного твору:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_one +
+                          " - " +
+                          _vm.program.author_one +
+                          ";"
+                      ) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_two +
+                          " - " +
+                          _vm.program.author_two +
+                          ";"
+                      ) +
+                      "\r\n                    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.member.length == 1
+          ? _c("div", { staticClass: "col-9" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12 evaluationName" }, [
+                  _c("b", [_vm._v("ПІП:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.member[0].name +
+                          " " +
+                          _vm.member[0].surname +
+                          " " +
+                          _vm.member[0].patronomic
+                      )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("Тип:")]),
+                  _vm._v(
+                    " " + _vm._s(_vm.type.name) + "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Дата народження:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.member.data_birthday) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [_vm._v("Адреса:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.school.school_address) +
+                      "\r\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("ПІП викладача:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.school.teacher_name +
+                          "  " +
+                          _vm.school.teacher_surname +
+                          " " +
+                          _vm.school.teacher_patronomic
+                      ) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Програма кожного твору:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_one +
+                          " - " +
+                          _vm.program.author_one +
+                          ";"
+                      ) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_two +
+                          " - " +
+                          _vm.program.author_two +
+                          ";"
+                      ) +
+                      "\r\n                    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.member.length == 2
+          ? _c("div", { staticClass: "col-9" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12 evaluationName" }, [
+                  _c("b", [_vm._v("ПІП:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.member[0].name +
+                          " " +
+                          _vm.member[0].surname +
+                          " " +
+                          _vm.member[0].patronomic
+                      ) +
+                      ", " +
+                      _vm._s(
+                        _vm.member[1].name +
+                          "  " +
+                          _vm.member[1].surname +
+                          " " +
+                          _vm.member[1].patronomic
+                      )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("Тип:")]),
+                  _vm._v(
+                    " " + _vm._s(_vm.type.name) + "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Дата народження:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.member[0].data_birthday +
+                          ", " +
+                          _vm.member[1].data_birthday
+                      ) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [_vm._v("Адреса:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.school.school_address) +
+                      "\r\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _c("b", [_vm._v("ПІП викладача:")]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.school.teacher_name +
+                          "  " +
+                          _vm.school.teacher_surname +
+                          " " +
+                          _vm.school.teacher_patronomic
+                      ) +
+                      "\r\n                        "
+                  ),
+                  _c("b", { staticClass: "mt-3" }, [
+                    _vm._v("Програма кожного твору:")
+                  ]),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_one +
+                          " - " +
+                          _vm.program.author_one +
+                          ";"
+                      ) +
+                      " "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    " " +
+                      _vm._s(
+                        _vm.program.composition_two +
+                          " - " +
+                          _vm.program.author_two +
+                          ";"
+                      ) +
+                      "\r\n                    "
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary btn-block",
+              attrs: { type: "button" }
+            },
+            [_vm._v("Зберегти")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.nextButtonShow,
+                  expression: "nextButtonShow"
+                }
+              ],
+              staticClass: "btn btn-outline-secondary btn-block mt-4",
+              attrs: { type: "button" },
+              on: { click: _vm.nextMember }
+            },
+            [_vm._v("Наступний учасник")]
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -38623,61 +39065,6 @@ var staticRenderFns = [
           staticClass: "form-control",
           attrs: { type: "number", id: "originality" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row border evaluationInfo" }, [
-        _c("div", { staticClass: "col-9" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12 evaluationName" }, [
-              _c("b", [_vm._v("ПІП:")]),
-              _vm._v(" Івченко Юлія Олександрівна")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6" }, [
-              _c("b", [_vm._v("Тип:")]),
-              _vm._v(" соліст\r\n                        "),
-              _c("b", { staticClass: "mt-3" }, [_vm._v("Дата народження:")]),
-              _vm._v(" 10.10.2010\r\n                        "),
-              _c("b", { staticClass: "mt-3" }, [_vm._v("Адреса:")]),
-              _vm._v(" м. Суми, вул. Засумська 3\r\n                    ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6" }, [
-              _c("b", [_vm._v("ПІП викладача:")]),
-              _vm._v(" Иванов Иван Иванович\r\n                        "),
-              _c("b", { staticClass: "mt-3" }, [
-                _vm._v("Програма та хронометраж кожного твору:")
-              ]),
-              _vm._v(" Лорем ипсум долор сит амет\r\n                    ")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary btn-block",
-              attrs: { type: "button" }
-            },
-            [_vm._v("Зберегти")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-secondary btn-block mt-4",
-              attrs: { type: "button" }
-            },
-            [_vm._v("Наступний учасник")]
-          )
-        ])
       ])
     ])
   }
@@ -54330,9 +54717,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
 
 
 /***/ })

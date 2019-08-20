@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Application;
 use App\Models\GroupPeople;
 use App\Models\ApplicationType;
+use App\Models\Preparation;
+use App\Models\Presentation;
 
 class ApplicationController extends Controller
 {
     public function index()
     {	
-
-
-
         return view('application');
     }
 
@@ -31,6 +30,12 @@ class ApplicationController extends Controller
      public function getAllMembers()
      {
          $data = Application::with('appType', 'soloDuet', 'group')->where('status', '!=', 'archive')->get();
+         return response()->json($data);
+     }
+
+     public function getMember($id)
+     {
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('application_id', '=', $id)->get();
          return response()->json($data);
      }
 

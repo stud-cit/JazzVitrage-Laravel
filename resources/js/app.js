@@ -52,7 +52,7 @@ const app = new Vue({
         VideoGalleryComponent,
         AllStatementComponent
     },
-    router,
+    router
 });
 
 

@@ -66,6 +66,8 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
     Route::get('get-all-members',  'ApplicationController@getAllMembers');
 
+    Route::get('get-member/{id}/',  'ApplicationController@getMember');
+
     Route::post('archive-members/{id}/',  'ApplicationController@archiveMembers');
 
     Route::post('unarchive-members/{id}/',  'ApplicationController@unarchiveMembers');

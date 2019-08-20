@@ -39,8 +39,8 @@
             <tbody v-for="(item, index) in filteredList">
                 <tr>
                     <td>{{ index + 1 }}</td>
-                    <td>{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</td>
-                    <td>{{ item.app_type.name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.type }}</td>
                 </tr>
             </tbody>
         </table>
@@ -61,13 +61,7 @@ export default {
     computed: {
         filteredList() {
             return this.members.filter(members => {
-                if(!members.group) {
-                    return members.solo_duet.name.toLowerCase().includes(this.search.toLowerCase()) || 
-                    members.solo_duet.surname.toLowerCase().includes(this.search.toLowerCase()) || 
-                    members.solo_duet.patronomic.toLowerCase().includes(this.search.toLowerCase())
-                } else {
-                    return members.group.name.toLowerCase().includes(this.search.toLowerCase())
-                }
+                return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
             })
         }
     },
@@ -75,7 +69,26 @@ export default {
         getFullList() {
             axios.get('/get-all-members')
             .then((response) => {
-                this.members = response.data;
+                response.data.forEach(member => {
+                    if(member.solo_duet.length == 0) {
+                        this.members.push({
+                            name: member.group.name, 
+                            type: member.app_type.name
+                        })
+                    }
+                    else if(member.solo_duet.length == 1) {
+                        this.members.push({
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                            type: member.app_type.name
+                        })
+                    }
+                    else if(member.solo_duet.length == 2) {
+                        this.members.push({
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
+                            type: member.app_type.name
+                        })
+                    }
+                });
             })
         }
     },
