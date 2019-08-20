@@ -1,7 +1,7 @@
 <?php
 
 //Головна
-Route::get('/', 'HomeController@index');
+Route::get('/', 'SiteController@index')->name('site');
 
 
 Route::get('/application', 'ApplicationController@index');
