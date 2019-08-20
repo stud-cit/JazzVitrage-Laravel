@@ -1,0 +1,197 @@
+body {
+  line-height: 1;
+  position: relative;
+}
+
+.main-section {
+  padding-top: 135px;
+  background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
+  background-size: cover;
+}
+
+.sections {
+  background-color: #14042f;
+  padding-top: 60px;
+  padding-bottom: 495px;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.header .navbar-light {
+  justify-content: space-between;
+  background-image: linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%);
+  padding: 0;
+}
+
+.header .navbar-light .nav-menu {
+  flex-grow: 0;
+}
+
+.header .navbar-light .nav-menu .nav-link {
+  padding: 12px;
+  color: #393939;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.header .navbar-light .nav-menu .active {
+  color: #ffa407;
+}
+
+.header .navbar-light .nav-menu .add-application {
+  padding: 30px;
+  margin-left: 22px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(180deg, #ff0000 0%, #ba0b0b 88%, #770707 100%);
+}
+
+.header .ticker {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
+  background-color: #810caa;
+  padding: 20px 0;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.preview {
+  padding-top: 175px;
+  position: relative;
+  padding-bottom: 276px;
+  overflow: hidden;
+}
+
+.preview .top-layout {
+  background-image: linear-gradient(109deg, rgba(255, 255, 255, 0.48) 0%, #7d0ca5 100%);
+  -webkit-clip-path: polygon(0 0, 86% 0, 70% 100%, 0% 100%);
+          clip-path: polygon(0 0, 86% 0, 70% 100%, 0% 100%);
+}
+
+.preview .top-layout .preview-logo {
+  margin: 62px 0;
+}
+
+.preview .top-layout .preview-text {
+  max-width: 634px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 200px;
+}
+
+.preview::after {
+  content: "";
+  display: block;
+  width: 844px;
+  height: 920px;
+  position: absolute;
+  background: url(/images/preview-tool.png?3d5096219f93f45bce8561696c5638b8) no-repeat;
+  background-size: cover;
+  right: -85px;
+  top: 135px;
+}
+
+.nominations {
+  padding-top: 60px;
+}
+
+.nominations .title-nominations {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 65px;
+}
+
+.nominations .title-nominations .text {
+  position: absolute;
+  top: 30px;
+}
+
+.nominations .title-nominations .text .title {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 37px;
+  font-weight: 900;
+  letter-spacing: 3.7px;
+}
+
+.nominations .title-nominations .text .subtitle {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.nominations .nominations-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nominations .nominations-list .nominations-items {
+  position: relative;
+  background-image: linear-gradient(180deg, #810caa 0%, #760b9b 50%, #410655 100%);
+  border: 15px solid #fff;
+  border-radius: 50%;
+  width: 310px;
+  height: 310px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.nominations .nominations-list .nominations-items img {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.nominations .nominations-list .nominations-items .items-title {
+  height: 0;
+  width: 0;
+}
+
+.nominations .nominations-list .nominations-items:hover .items-title {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+  z-index: 5;
+}
+

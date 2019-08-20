@@ -1703,6 +1703,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -37020,9 +37104,191 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    index\n")])
+  return _c("div", [
+    _c(
+      "header",
+      { staticClass: "header" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "marquee",
+          { staticClass: "ticker", attrs: { scrollamount: "10" } },
+          [
+            _vm._v(
+              "\n            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс\n        "
+            )
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
+      _c("div", { staticClass: "container" }, [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+          _c("img", { attrs: { src: "img/logo.svg", alt: "" } })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "navbar-toggler",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#nav-menu"
+            }
+          },
+          [_c("span", { staticClass: "navbar-toggler-icon" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse nav-menu",
+            attrs: { id: "nav-menu" }
+          },
+          [
+            _c("div", { staticClass: "navbar-nav" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-item nav-link active",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("КОНКУРС")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                [_vm._v("ГАЛЕРЕЯ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                [_vm._v("ПОЛОЖЕННЯ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                [_vm._v("КОНТАКТИ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                [_vm._v("Конфр")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "add-application" }, [
+              _vm._v("ЗАПОВНИТИ ЗАЯВКУ")
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "main-section preview" }, [
+      _c("div", { staticClass: "top-layout" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-7" }, [
+              _c("img", {
+                staticClass: "preview-logo",
+                attrs: { src: "img/preview-logo.svg", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "preview-text" }, [
+                _vm._v(
+                  "Протягом березня-квітня 2016 року в місті Суми\n                            проходив Другий обласний дитячий фестиваль-\n                            конкурс джазової музики «Джаз Вітраж». Головна\n                            мета цього нового творчого проекту -\n                            популяризація класичного та сучасного\n                            джазового мистецтва серед дітей та молоді сумського краю"
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections nominations" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "title-nominations" }, [
+          _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "text" }, [
+            _c("h2", { staticClass: "title" }, [_vm._v("НОМІНАЦІЇ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "nominations-list" }, [
+          _c("div", { staticClass: "nominations-items" }, [
+            _c("img", { attrs: { src: "img/piano.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "nominations-items" }, [
+            _c("img", { attrs: { src: "img/microphone.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "nominations-items" }, [
+            _c("img", { attrs: { src: "img/nots.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "footer" }, [
+      _c("p", { staticClass: "text-block" }, [
+        _vm._v("music-concurs@email.com")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-block" }, [_vm._v("+38 (050) 123 4568")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-block" }, [_vm._v("Created by studCIT")])
+    ])
+  }
+]
 render._withStripped = true
 
 
