@@ -37,6 +37,13 @@
 					</a>
 				</li>
 
+				<li class="nav-item" title="Додати журі">
+					<a class="nav-link" href="/admin/add-jury">
+						<i class="fa fa-gavel"></i>
+						<span class="nav-link-text">Додати журі</span>
+					</a>
+				</li>
+
 				<li class="nav-item" title="Всі заяви">
 					<a class="nav-link" href="/admin/all-statements">
 						<i class="fa fa-address-card"></i>

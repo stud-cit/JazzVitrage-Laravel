@@ -20,6 +20,11 @@ Breadcrumbs::register('admin.orgСommittee.evaluationResults', function($breadcr
     $breadcrumbs->push('Результати оцінювання', route('admin.orgСommittee.evaluationResults'));
 });
 
+// Додати журі
+Breadcrumbs::register('admin.superAdmin.addJury', function($breadcrumbs) {
+    $breadcrumbs->push('Додати журі', route('admin.superAdmin.addJury'));
+});
+
 // Всі заяви
 Breadcrumbs::register('admin.jury.allStatements', function($breadcrumbs) {
     $breadcrumbs->push('Всі заяви', route('admin.jury.allStatements'));

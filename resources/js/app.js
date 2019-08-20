@@ -19,6 +19,8 @@ import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
 
+import AddJuryComponent from './components/superAdmin/AddJuryComponent';
+
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -50,7 +52,8 @@ const app = new Vue({
         EvaluationResultsComponent,
         EvaluationComponent,
         VideoGalleryComponent,
-        AllStatementComponent
+        AllStatementComponent,
+        AddJuryComponent
     },
     router
 });

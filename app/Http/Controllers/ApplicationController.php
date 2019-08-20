@@ -33,6 +33,12 @@ class ApplicationController extends Controller
          return response()->json($data);
      }
 
+     public function getAllJury()
+     {
+         $data = "";
+         return response()->json($data);
+     }
+
      public function getMember($id)
      {
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('application_id', '=', $id)->get();

@@ -2477,6 +2477,152 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      keywords: null,
+      results: [],
+      members: [],
+      search: '',
+      items: []
+    };
+  },
+
+  /*created () {
+  	this.getFullJuryList();
+  },*/
+  methods: {
+    addNomination: function addNomination() {
+      this.items.push({
+        tags: ''
+      });
+    },
+    deleteNomination: function deleteNomination(index) {
+      this.items.splice(index, 1);
+    }
+    /*getFullJuryList(){
+    	axios.get('/get-all-jury')
+    		.then((response) => {
+    				this.members = response.data;
+    			// console.log(this.members);
+    			})
+    		.catch((error) => {
+    			// swal({
+    			//     icon: "error",
+    			//     title: 'Помилка',
+    			//     text: error.response.status + " " + error.responsestatusText
+    			// });
+    		});
+    },
+    archiveMember(event){
+    		const id =  event.target.getAttribute('data-value');
+    	// console.log(id);
+    	axios.post('/archive-members/'+id)
+    		.then((response) => {
+    			if(response.status == 200 ) {
+    				this.getFullJuryList();
+    			}
+    			})
+    		.catch((error) => {
+    			// swal({
+    			//     icon: "error",
+    			//     title: 'Помилка',
+    			//     text: error.response.status + " " + error.responsestatusText
+    			// });
+    		});
+    }*/
+
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -39075,6 +39221,251 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "border border-secondary position-relative mb-4" },
+      [
+        _c("div", { staticClass: "d-flex" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-5 col-md-offset-2" }, [
+            _c(
+              "div",
+              { staticClass: "col-sm inline" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "brtop", attrs: { for: "nomination" } },
+                  [_vm._v("Номінація")]
+                ),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass:
+                    "fa fa-plus-circle btn btn-default float-right button-position p-0",
+                  on: { click: _vm.addNomination }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.items, function(item, index) {
+                  return _c("div", { key: item.id }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: item.value,
+                            expression: "item.value"
+                          }
+                        ],
+                        staticClass: "form-control nomination-width",
+                        attrs: { id: "nomination" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              item,
+                              "value",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", [_vm._v("Інструментальний жанр")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Вокальний жанр")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Композиція")])
+                      ]
+                    ),
+                    _vm._v(" " + _vm._s(item.tags) + "\n                "),
+                    _c("i", {
+                      staticClass:
+                        "fa fa-minus-circle btn btn-default float-right button-position p-0",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteNomination(index)
+                        }
+                      }
+                    })
+                  ])
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(4)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-5" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "brtop", attrs: { for: "pib-jury" } }, [
+          _vm._v("ПІП журі")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", id: "pib-jury", placeholder: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "brtop", attrs: { for: "jury-photo" } }, [
+          _vm._v("Фото")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control-file",
+          attrs: { type: "file", id: "jury-photo" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "brtop", attrs: { for: "email" } }, [
+          _vm._v("Електронна адреса")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "email", id: "email", placeholder: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "brtop", attrs: { for: "jury-rank" } }, [
+          _vm._v("Звання члена журі")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", id: "jury-rank", placeholder: "" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass: "form-control nomination-width",
+        attrs: { id: "nomination" }
+      },
+      [
+        _c("option", [_vm._v("Інструментальний жанр")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Вокальний жанр")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Композиція")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "additional-position" }, [
+      _c("label", { staticClass: "brtop", attrs: { for: "additional-info" } }, [
+        _vm._v("Додаткова інформація")
+      ]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: { id: "additional-info", rows: "4" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "float-right" }, [
+      _c("div", { staticClass: "row justify-content-right add-button" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-secondary btn-width",
+            attrs: { type: "button" }
+          },
+          [_vm._v("Додати")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-bordered" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { attrs: { width: "7%" } }, [_vm._v("№")]),
+          _vm._v(" "),
+          _c("th", { attrs: { width: "18%" } }, [_vm._v("ПІП журі")]),
+          _vm._v(" "),
+          _c("th", { attrs: { width: "21%" } }, [_vm._v("Електронна адеса")]),
+          _vm._v(" "),
+          _c("th", { attrs: { width: "21%" } }, [_vm._v("Звання члена журі")]),
+          _vm._v(" "),
+          _c("th", { attrs: { width: "21%" } }, [_vm._v("Номінація")]),
+          _vm._v(" "),
+          _c("th"),
+          _vm._v(" "),
+          _c("th")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -54096,6 +54487,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/admin/VideoGalleryComponent */ "./resources/js/components/admin/VideoGalleryComponent.vue");
 /* harmony import */ var _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/jury/AllStatementComponent */ "./resources/js/components/jury/AllStatementComponent.vue");
 /* harmony import */ var _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/jury/EvaluationComponent */ "./resources/js/components/jury/EvaluationComponent.vue");
+/* harmony import */ var _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/superAdmin/AddJuryComponent */ "./resources/js/components/superAdmin/AddJuryComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./admin */ "./resources/js/admin.js"); // require('swal')
@@ -54106,6 +54498,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
 
 
 
@@ -54139,7 +54532,8 @@ var app = new Vue({
     EvaluationResultsComponent: _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
     EvaluationComponent: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
     VideoGalleryComponent: _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    AllStatementComponent: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
+    AllStatementComponent: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    AddJuryComponent: _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   router: router
 });
@@ -54688,6 +55082,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/superAdmin/AddJuryComponent.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddJuryComponent.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddJuryComponent.vue?vue&type=template&id=a1c7602c& */ "./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c&");
+/* harmony import */ var _AddJuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddJuryComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddJuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/superAdmin/AddJuryComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddJuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddJuryComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddJuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddJuryComponent.vue?vue&type=template&id=a1c7602c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddJuryComponent_vue_vue_type_template_id_a1c7602c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/admin.sass":
 /*!***********************************!*\
   !*** ./resources/sass/admin.sass ***!
@@ -54717,9 +55180,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+__webpack_require__(/*! E:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! E:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+module.exports = __webpack_require__(/*! E:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
 
 
 /***/ })
