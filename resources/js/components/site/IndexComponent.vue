@@ -57,29 +57,137 @@
 
                 </div>
                 <div class="nominations-list">
-                    <div class="nominations-items">
+                    <a href="" class="nominations-items">
 
                             <img src="img/piano.png" alt="">
                             <div class="items-title">Вокальний жанр</div>
 
-                    </div>
-                    <div class="nominations-items">
+                    </a>
+                    <a href="" class="nominations-items">
 
                             <img src="img/microphone.png" alt="">
                             <div class="items-title">Вокальний жанр</div>
 
-                    </div>
-                    <div class="nominations-items">
+                    </a>
+                    <a href="" class="nominations-items">
 
                             <img src="img/nots.png" alt="">
                             <div class="items-title">Вокальний жанр</div>
 
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="sections"></section>
+        <section class="sections position">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7">
+                        <!--<video controls>-->
+                            <!--<source src="video/position.mp4" type="video/mp4" >-->
+                        <!--</video>-->
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xFa2_PVMeDQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-xl-5">
+                        <h2 class="title-section">Положення</h2>
+                        <p class="subtitle">КОНКУРСУ</p>
+                        <p class="text">Протягом березня-квітня 2016 року в місті
+                            Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»...</p>
+                        <div class="btn-group">
+                            <button class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</button>
+                            <button class="btn btn-download">ЗАВАНТАЖИТИ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sections gallery">
+            <div class="container">
+                <h2 class="title-section">ГАЛЕРЕЯ</h2>
+                <div class="row">
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                </div>
+                <div class="text-center">
+                    <button class="archive">АРХІВ</button>
+                </div>
+            </div>
+        </section>
+        <section class="sections members">
+            <div class="container">
+                <h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>
+
+                <table class="table">
+                    <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
         <footer class="footer">
             <p class="text-block">music-concurs@email.com</p>
             <p class="text-block">+38 (050) 123 4568</p>

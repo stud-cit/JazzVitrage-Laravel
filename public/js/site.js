@@ -1787,6 +1787,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -37128,9 +37236,13 @@ var render = function() {
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),
-    _c("section", { staticClass: "sections" }),
+    _vm._m(3),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(4),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _vm._m(6)
   ])
 }
 var staticRenderFns = [
@@ -37249,7 +37361,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "nominations-list" }, [
-          _c("div", { staticClass: "nominations-items" }, [
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
             _c("img", { attrs: { src: "img/piano.png", alt: "" } }),
             _vm._v(" "),
             _c("div", { staticClass: "items-title" }, [
@@ -37257,7 +37369,7 @@ var staticRenderFns = [
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "nominations-items" }, [
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
             _c("img", { attrs: { src: "img/microphone.png", alt: "" } }),
             _vm._v(" "),
             _c("div", { staticClass: "items-title" }, [
@@ -37265,12 +37377,236 @@ var staticRenderFns = [
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "nominations-items" }, [
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
             _c("img", { attrs: { src: "img/nots.png", alt: "" } }),
             _vm._v(" "),
             _c("div", { staticClass: "items-title" }, [
               _vm._v("Вокальний жанр")
             ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections position" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-7" }, [
+            _c("iframe", {
+              attrs: {
+                width: "100%",
+                height: "100%",
+                src: "https://www.youtube.com/embed/xFa2_PVMeDQ",
+                frameborder: "0",
+                allowfullscreen: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-5" }, [
+            _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle" }, [_vm._v("КОНКУРСУ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text" }, [
+              _vm._v(
+                "Протягом березня-квітня 2016 року в місті\n                        Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»..."
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group" }, [
+              _c("button", { staticClass: "btn btn-read" }, [
+                _vm._v("ЧИТАТИ ПОВНІСТЮ")
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-download" }, [
+                _vm._v("ЗАВАНТАЖИТИ")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center" }, [
+          _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections members" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [
+          _vm._v("СПИСКИ УЧАСНИКІВ")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _c("tr", [
+            _c("th", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
           ])
         ])
       ])

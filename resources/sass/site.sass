@@ -9,8 +9,16 @@ body
 .sections
    background-color: #14042f
    padding-top: 60px
-   padding-bottom: 495px
-
+   padding-bottom: 270px
+   .title-section
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 48px
+      font-weight: 900
+      letter-spacing: 4.8px
+      text-transform: uppercase
+      text-align: center
 .header
    position: absolute
    top: 0
@@ -127,6 +135,7 @@ body
          justify-content: center
          align-items: flex-end
          overflow: hidden
+         text-decoration: none
 
          img
             position: absolute
@@ -141,6 +150,7 @@ body
             width: 0
          &:hover
             .items-title
+               transition: height 0.2s ease
                background-color: rgba(0, 0, 0, 0.7)
                height: 100px
                width: 100%
@@ -152,4 +162,69 @@ body
                font-weight: 900
                letter-spacing: 1.7px
                z-index: 5
+.position
+   .title-section
+      text-align: left
+   .subtitle
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 18px
+      font-weight: 500
+      letter-spacing: 1.8px
+      margin-top: 15px
+   .text
+      margin-top: 65px
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 16px
+      font-weight: 400
+      letter-spacing: 1.6px
+      line-height: 1.5
+   .btn-group
+      margin-top: 80px
+      display: flex
+      justify-content: space-between
+      .btn
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+         border-radius: 10px !important
+         width: 160px
+         height: 65px
+         padding: auto
+         font-family: Montserrat
+         font-size: 16px
+         font-weight: 900
+         letter-spacing: 1.6px
+         line-height: 1.5
+         white-space: pre-line
+         border: none
+         outline: none
+      .btn-read
+         background-image: linear-gradient(180deg, #810caa 0%, #760b9b 89%, #410655 100%)
+         color: #ffffff
+         border-top-right-radius: 10px
+         border-bottom-right-radius: 10px
 
+      .btn-download
+         background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+         color: #410655
+         width: 255px
+.gallery
+   .title-section
+      text-align: center
+      margin-bottom: 25px
+   .gallery-item
+      margin: 5px 0
+   .archive
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+      border-radius: 10px
+      background-image: linear-gradient(180deg, #810caa 0%, #760b9b 89%, #410655 100%)
+      padding: 14px 48px
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 16px
+      font-weight: 900
+      letter-spacing: 1.6px
+      border: none
+      outline: none
+      margin-top: 10px
