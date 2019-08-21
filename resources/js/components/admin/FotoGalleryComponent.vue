@@ -21,7 +21,7 @@
             <div class="col-5">
                 <label for="foto">Фото в оригінальній якості</label>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="foto">
+                    <input type="file" class="custom-file-input" id="foto" multiple>
                     <label class="custom-file-label"></label>
                 </div>
                 <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5">Додати</button>

@@ -76,7 +76,7 @@
 
 				<li class="nav-item" title="Фотогалерея">
 					<a class="nav-link" href="/admin/foto-gallery">
-						<i class="fa fa-video-camera"></i>
+						<i class="fa fa-file-image-o"></i>
 						<span class="nav-link-text">Фотогалерея</span>
 					</a>
 				</li>

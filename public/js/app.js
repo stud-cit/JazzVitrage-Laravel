@@ -38752,7 +38752,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "custom-file" }, [
             _c("input", {
               staticClass: "custom-file-input",
-              attrs: { type: "file", id: "foto" }
+              attrs: { type: "file", id: "foto", multiple: "" }
             }),
             _vm._v(" "),
             _c("label", { staticClass: "custom-file-label" })
