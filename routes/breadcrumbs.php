@@ -39,3 +39,13 @@ Breadcrumbs::register('admin.jury.information', function($breadcrumbs) {
 Breadcrumbs::register('admin.admin.videoGallery', function($breadcrumbs) {
     $breadcrumbs->push('Відеогалерея', route('admin.admin.videoGallery'));
 });
+
+// Фотогалерея
+Breadcrumbs::register('admin.admin.fotoGallery', function($breadcrumbs) {
+    $breadcrumbs->push('Фотогалерея', route('admin.admin.fotoGallery'));
+});
+
+// Загальна інформація
+Breadcrumbs::register('admin.admin.mainInformation', function($breadcrumbs) {
+    $breadcrumbs->push('Загальна інформація', route('admin.admin.mainInformation'));
+});

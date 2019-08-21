@@ -9,6 +9,9 @@
 		<div class="collapse navbar-collapse sidenav" id="navbarResponsive">
 			
 			<ul class="navbar-nav navbar-sidenav" id="Accordion">
+
+				{{-- Орг.комітет --}}
+
 				<li class="nav-item" title="Нові заяви">
 					<a class="nav-link" href="/admin">
 						<i class="fa fa-fw fa-users"></i>
@@ -37,12 +40,7 @@
 					</a>
 				</li>
 
-				<li class="nav-item" title="Додати журі">
-					<a class="nav-link" href="/admin/add-jury">
-						<i class="fa fa-gavel"></i>
-						<span class="nav-link-text">Додати журі</span>
-					</a>
-				</li>
+				{{-- Журі --}}
 
 				<li class="nav-item" title="Всі заяви">
 					<a class="nav-link" href="/admin/all-statements">
@@ -58,12 +56,58 @@
 					</a>
 				</li>
 
+				{{-- Супер адмін --}}
+
+				<li class="nav-item" title="Додати журі">
+					<a class="nav-link" href="/admin/add-jury">
+						<i class="fa fa-gavel"></i>
+						<span class="nav-link-text">Додати журі</span>
+					</a>
+				</li>
+
+				{{-- Адмін --}}
+
 				<li class="nav-item" title="Відеогалерея">
 					<a class="nav-link" href="/admin/video-gallery">
 						<i class="fa fa-video-camera"></i>
 						<span class="nav-link-text">Відеогалерея</span>
 					</a>
 				</li>
+
+				<li class="nav-item" title="Фотогалерея">
+					<a class="nav-link" href="/admin/foto-gallery">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Фотогалерея</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Загальна інформація">
+					<a class="nav-link" href="/admin/main-information">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Загальна інформація</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Комітет">
+					<a class="nav-link" href="#">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Комітет</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Положення">
+					<a class="nav-link" href="#">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Положення</span>
+					</a>
+				</li> 
+
+				<li class="nav-item" title="Журі">
+					<a class="nav-link" href="#">
+						<i class="fa fa-video-camera"></i>
+						<span class="nav-link-text">Журі</span>
+					</a>
+				</li> 
 
 			</ul>
 

@@ -15,10 +15,16 @@ import RemovedStatementComponent from './components/RemovedStatementComponent';
 import ListParticipantsComponent from './components/ListParticipantsComponent';
 import EvaluationResultsComponent from './components/EvaluationResultsComponent';
 
+// Адмін
 import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
+import FotoGalleryComponent from './components/admin/FotoGalleryComponent';
+import MainInformationComponent from './components/admin/MainInformationComponent';
+
+//Журі
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
 
+//Супер адмін
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
 
 const router = new VueRouter({
@@ -52,6 +58,8 @@ const app = new Vue({
         EvaluationResultsComponent,
         EvaluationComponent,
         VideoGalleryComponent,
+        FotoGalleryComponent,
+        MainInformationComponent,
         AllStatementComponent,
         AddJuryComponent
     },

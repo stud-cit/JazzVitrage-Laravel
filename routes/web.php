@@ -50,6 +50,15 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
         return view('admin.admin.videoGallery');
     }]);
+
+    Route::get('/admin/foto-gallery', ['as' => 'admin.admin.fotoGallery', function () {
+        return view('admin.admin.fotoGallery');
+    }]);
+
+    Route::get('/admin/main-information', ['as' => 'admin.admin.mainInformation', function () {
+        return view('admin.admin.mainInformation');
+    }]);
+
     Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
         return view('admin.superAdmin.addJury');
     }]);
