@@ -74,6 +74,11 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 // VUE запросы
 
+    // Галерея
+    Route::get('get-foto', 'GalleryController@getFoto');
+    Route::post('post-foto', 'GalleryController@postFoto');
+    Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
+
     Route::get('get-all-jury', 'ApplicationController@getAllJury');
 
     Route::get('get-members',  'ApplicationController@getMembers');

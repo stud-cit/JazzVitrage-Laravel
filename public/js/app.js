@@ -2260,14 +2260,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      file: [],
+      foto: [],
+      yearCompetition: new Date().getFullYear(),
+      typeEvent: 'Джаз-Вітраж',
+      form: new FormData(),
+      load: false
+    };
   },
-  methods: {}
+  created: function created() {
+    this.getFoto();
+  },
+  computed: {
+    years: function years() {
+      var year = new Date().getFullYear();
+      return Array.from({
+        length: year - 2000
+      }, function (value, index) {
+        return 2001 + index;
+      });
+    }
+  },
+  methods: {
+    getFoto: function getFoto() {
+      var _this = this;
+
+      axios.get('/get-foto').then(function (response) {
+        _this.foto = response.data;
+      });
+    },
+    fieldChange: function fieldChange() {
+      var changeFile = this.$refs.file.files;
+
+      for (var i = 0; i < changeFile.length; i++) {
+        if (changeFile[i].type == 'image/jpeg') {
+          changeFile[i].valid = true;
+        } else {
+          changeFile[i].valid = false;
+        }
+
+        this.file.push(changeFile[i]);
+      }
+    },
+    uploadFile: function uploadFile() {
+      var _this2 = this;
+
+      this.load = true;
+
+      for (var i = 0; i < this.file.length; i++) {
+        if (this.file[i].valid) {
+          this.form.append('pics[]', this.file[i]);
+        }
+      }
+
+      this.form.append('type', this.typeEvent);
+      this.form.append('year', this.yearCompetition);
+      axios.post('/post-foto', this.form).then(function (res) {
+        _this2.file = [];
+        _this2.load = false;
+
+        _this2.getFoto();
+      });
+    },
+    delFile: function delFile(index) {
+      this.file.splice(index, 1);
+    },
+    delFoto: function delFoto(id, index) {
+      var _this3 = this;
+
+      axios.post('/delete-foto/' + id).then(function () {
+        _this3.foto.splice(index, 1);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -7201,6 +7269,112 @@ __webpack_require__.r(__webpack_exports__);
 
 }));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.uploadFiles[data-v-55ac80da] {\n    border: 1px solid silver;\n    width: 100%;\n    margin-top: 10px;\n    padding: 10px 15px;\n    border-radius: 5px;\n}\n.uploadFiles i[data-v-55ac80da] {\n    position: absolute;\n    right: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -37964,6 +38138,545 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/sweetalert/dist/sweetalert.min.js":
 /*!********************************************************!*\
   !*** ./node_modules/sweetalert/dist/sweetalert.min.js ***!
@@ -38686,10 +39399,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38701,21 +39414,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
+  return _c("div", [
+    _c("form", { attrs: { enctype: "multipart/form-data" } }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-5" }, [
           _c("label", { attrs: { for: "typeEvent" } }, [_vm._v("Тип заходу")]),
           _vm._v(" "),
           _c(
             "select",
-            { staticClass: "form-control", attrs: { id: "typeEvent" } },
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.typeEvent,
+                  expression: "typeEvent"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "typeEvent" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.typeEvent = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
             [
               _c("option", [_vm._v("Джаз-Вітраж")]),
               _vm._v(" "),
@@ -38731,14 +39464,39 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "select",
-            { staticClass: "form-control", attrs: { id: "yearCompetition" } },
-            [
-              _c("option", [_vm._v("2019")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("2018")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("2017")])
-            ]
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.yearCompetition,
+                  expression: "yearCompetition"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "yearCompetition" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.yearCompetition = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.years, function(year, index) {
+              return _c("option", { key: index, domProps: { value: year } }, [
+                _vm._v(_vm._s(year))
+              ])
+            }),
+            0
           )
         ]),
         _vm._v(" "),
@@ -38749,68 +39507,133 @@ var staticRenderFns = [
             _vm._v("Фото в оригінальній якості")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "custom-file" }, [
-            _c("input", {
-              staticClass: "custom-file-input",
-              attrs: { type: "file", id: "foto", multiple: "" }
-            }),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-file-label" })
-          ]),
+          _c(
+            "div",
+            { staticClass: "custom-file" },
+            [
+              _c("input", {
+                ref: "file",
+                staticClass: "custom-file-input",
+                attrs: { type: "file", id: "foto", multiple: "" },
+                on: {
+                  change: function($event) {
+                    return _vm.fieldChange()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { staticClass: "custom-file-label" }, [
+                _vm._v(_vm._s("Кількість обраних файлів: " + _vm.file.length))
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.file, function(item, index) {
+                return _c("div", { key: index }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "uploadFiles",
+                      style: item.valid ? { color: "black" } : { color: "red" }
+                    },
+                    [
+                      _vm._v(_vm._s(item.name) + " "),
+                      _c("i", {
+                        staticClass: "fa fa-times-circle btn btn-default p-1",
+                        on: {
+                          click: function($event) {
+                            return _vm.delFile(index)
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              }),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "load" } }, [
+                _vm.load
+                  ? _c("div", { staticStyle: { "text-align": "center" } }, [
+                      _vm._v("Завантаження")
+                    ])
+                  : _vm._e()
+              ])
+            ],
+            2
+          ),
           _vm._v(" "),
           _c(
             "button",
             {
               staticClass: "btn btn-outline-secondary float-right mt-4 px-5",
-              attrs: { type: "button" }
+              attrs: { type: "button", disabled: _vm.file.length == 0 },
+              on: { click: _vm.uploadFile }
             },
             [_vm._v("Додати")]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-4" }, [
-          _c("div", { staticClass: "border fotoGallery" }, [
-            _c("i", { staticClass: "fa fa-calendar" }, [_vm._v(" 04.05.08")]),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-search" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-share" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-download" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4" }, [
-          _c("div", { staticClass: "border fotoGallery" }, [
-            _c("i", { staticClass: "fa fa-calendar" }, [_vm._v(" 04.05.08")]),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-search" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-share" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-download" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4" }, [
-          _c("div", { staticClass: "border fotoGallery" }, [
-            _c("i", { staticClass: "fa fa-calendar" }, [_vm._v(" 04.05.08")]),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-search" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-share" }),
-            _vm._v(" "),
-            _c("i", { staticClass: "fa fa-download" })
-          ])
-        ])
       ])
-    ])
-  }
-]
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.foto, function(item, index) {
+        return _c(
+          "silentbox-group",
+          { key: item.foto_id, staticClass: "col-4" },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "border fotoGallery",
+                style: {
+                  backgroundImage: "url(" + "/img/uploads/" + item.file + ")"
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-times-circle btn btn-default p-0",
+                  on: {
+                    click: function($event) {
+                      return _vm.delFoto(item.foto_id, index)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fa fa-calendar" }, [
+                  _vm._v(" " + _vm._s(item.year))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "silentbox-single",
+                  {
+                    attrs: {
+                      src: "/img/uploads/" + item.file,
+                      description: String(item.year)
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-search" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "/img/uploads/" + item.file, download: "" }
+                  },
+                  [_c("i", { staticClass: "fa fa-download" })]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      }),
+      1
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42766,6 +43589,980 @@ if (inBrowser && window.Vue) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-silentbox/dist/vue-silentbox.esm.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vue-silentbox/dist/vue-silentbox.esm.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var VideoUrlDecoderMixin = {
+    methods: {
+        getYoutubeVideoId: function getYoutubeVideoId(url) { 
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+            var match  = url.match(regExp);
+
+            return (match !== undefined && match[7] !== undefined) ? match[7] : false;
+        },
+        getVimeoVideoId: function getVimeoVideoId(url) {
+            return /(vimeo(pro)?\.com)\/(?:[^\d]+)?(\d+)\??(.*)?$/.exec(url)[3];
+        }
+    }
+};
+
+var ItemMixin = {
+    mixins: [ VideoUrlDecoderMixin ], 
+    methods: {
+        getThumnail: function getThumnail(src) {
+            if (src.includes('youtube.com') || src.includes('youtu.be')) {
+                var videoId = this.getYoutubeVideoId(src);
+                
+                return 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+            } else if (src.includes('vimeo.com')) {
+                var videoDetails = this.httpGet('https://vimeo.com/api/v2/video/54802209.json');
+
+                return videoDetails[0].thumbnail_medium;
+            } else {
+                return src;
+            }
+        },
+        httpGet: function httpGet(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", url, false);
+            xmlHttp.send(null);
+
+            return JSON.parse(xmlHttp.responseText);
+        }
+    }
+};
+
+//
+
+var script = {
+    name: 'SilentboxItem',
+    mixins: [ ItemMixin ],
+    props: {
+        // Media source, it could be an image or a youtube video.
+        'src': {
+            type: String,
+            required: true
+        },
+        // True if video should be autoplayed.
+        'autoplay': {
+            type: Boolean,
+            default: function default$1() {
+                return false;
+            }
+        },
+        // Short description below image.
+        'description': String,
+        'position': {},
+        'thumbnailWidth': {
+            type: String,
+            default: '200px'
+        },
+        'thumbnailHeight': {
+            type: String,
+            default: '150px'
+        },
+        // Hide player controls
+        'hideControls': {
+            type: Boolean,
+            default: function default$2() {
+                return false;
+            }
+        }
+    },
+    computed: {
+        /**
+         * Get embed URL.
+         * @return {string|null}
+         */
+        embedUrl: function embedUrl() {
+            if (this.src !== null) {
+                return this.src;
+            }
+
+            return null;
+        }
+    },
+    methods: {
+        /**
+         * Emit an event that overlay should be hidden.
+         *
+         * @return {void}
+         */
+        closeSilentBoxOverlay: function closeSilentBoxOverlay() {
+            this.$parent.$emit('closeSilentboxOverlay');
+        },
+        /**
+         * Emit an event that overlay should be opened.
+         *
+         * @return {void}
+         */
+        openSilentBoxOverlay: function openSilentBoxOverlay() {
+            var this$1 = this;
+
+            var itemIndex = this.$parent.items.list.findIndex(function (item) { return item.src === this$1.src; });
+
+            this.$parent.$emit('openSilentboxOverlay', {
+                url: this.embedUrl,
+                position: itemIndex,
+                autoplay: this.autoplay,
+                description: this.description
+            });
+        }
+    },
+    created: function created() {
+        // Push items to the parent component.
+        // TODO: do it in parent component
+        this.$parent.items.list.push({
+            src: this.src,
+            autoplay: this.autoplay,
+            desc: this.description,
+            position: this.position
+        });
+    }
+};
+
+function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
+/* server only */
+, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+  if (typeof shadowMode !== 'boolean') {
+    createInjectorSSR = createInjector;
+    createInjector = shadowMode;
+    shadowMode = false;
+  } // Vue.extend constructor export interop.
+
+
+  var options = typeof script === 'function' ? script.options : script; // render functions
+
+  if (template && template.render) {
+    options.render = template.render;
+    options.staticRenderFns = template.staticRenderFns;
+    options._compiled = true; // functional template
+
+    if (isFunctionalTemplate) {
+      options.functional = true;
+    }
+  } // scopedId
+
+
+  if (scopeId) {
+    options._scopeId = scopeId;
+  }
+
+  var hook;
+
+  if (moduleIdentifier) {
+    // server build
+    hook = function hook(context) {
+      // 2.3 injection
+      context = context || // cached call
+      this.$vnode && this.$vnode.ssrContext || // stateful
+      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
+      // 2.2 with runInNewContext: true
+
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+      } // inject component styles
+
+
+      if (style) {
+        style.call(this, createInjectorSSR(context));
+      } // register component module identifier for async chunk inference
+
+
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier);
+      }
+    }; // used by ssr in case component is cached and beforeCreate
+    // never gets called
+
+
+    options._ssrRegister = hook;
+  } else if (style) {
+    hook = shadowMode ? function () {
+      style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+    } : function (context) {
+      style.call(this, createInjector(context));
+    };
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // register for functional component in vue file
+      var originalRender = options.render;
+
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context);
+        return originalRender(h, context);
+      };
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+    }
+  }
+
+  return script;
+}
+
+var normalizeComponent_1 = normalizeComponent;
+
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
+function createInjector(context) {
+  return function (id, style) {
+    return addStyle(id, style);
+  };
+}
+var HEAD = document.head || document.getElementsByTagName('head')[0];
+var styles = {};
+
+function addStyle(id, css) {
+  var group = isOldIE ? css.media || 'default' : id;
+  var style = styles[group] || (styles[group] = {
+    ids: new Set(),
+    styles: []
+  });
+
+  if (!style.ids.has(id)) {
+    style.ids.add(id);
+    var code = css.source;
+
+    if (css.map) {
+      // https://developer.chrome.com/devtools/docs/javascript-debugging
+      // this makes source maps inside style tags work properly in Chrome
+      code += '\n/*# sourceURL=' + css.map.sources[0] + ' */'; // http://stackoverflow.com/a/26603875
+
+      code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
+    }
+
+    if (!style.element) {
+      style.element = document.createElement('style');
+      style.element.type = 'text/css';
+      if (css.media) { style.element.setAttribute('media', css.media); }
+      HEAD.appendChild(style.element);
+    }
+
+    if ('styleSheet' in style.element) {
+      style.styles.push(code);
+      style.element.styleSheet.cssText = style.styles.filter(Boolean).join('\n');
+    } else {
+      var index = style.ids.size - 1;
+      var textNode = document.createTextNode(code);
+      var nodes = style.element.childNodes;
+      if (nodes[index]) { style.element.removeChild(nodes[index]); }
+      if (nodes.length) { style.element.insertBefore(textNode, nodes[index]); }else { style.element.appendChild(textNode); }
+    }
+  }
+}
+
+var browser = createInjector;
+
+/* script */
+var __vue_script__ = script;
+
+/* template */
+var __vue_render__ = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "span",
+    {
+      staticClass: "silentbox-item",
+      attrs: { src: _vm.src },
+      on: { click: _vm.openSilentBoxOverlay }
+    },
+    [
+      _vm._t("default", [
+        _c("img", {
+          attrs: {
+            src: _vm.getThumnail(_vm.src),
+            width: _vm.thumbnailWidth,
+            height: _vm.thumbnailHeight
+          }
+        })
+      ])
+    ],
+    2
+  )
+};
+var __vue_staticRenderFns__ = [];
+__vue_render__._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__ = function (inject) {
+    if (!inject) { return }
+    inject("data-v-4428b144_0", { source: ".silentbox-item {\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n/*# sourceMappingURL=item.vue.map */", map: {"version":3,"sources":["/mnt/c/Projects/Silencesys/Silentbox/src/Silentbox/components/item.vue","item.vue"],"names":[],"mappings":"AAkGA;EACA,eAAA;EACA,0BAAA;ACjGA;;AAEA,mCAAmC","file":"item.vue","sourcesContent":["<template>\r\n    <span class=\"silentbox-item\" :src=\"src\" @click=\"openSilentBoxOverlay\">\r\n        <slot>\r\n            <img :src=\"getThumnail(src)\" :width=\"thumbnailWidth\" :height=\"thumbnailHeight\" />\r\n        </slot>\r\n    </span>\r\n</template>\r\n\r\n<script>\r\n    import ItemMixin from './../mixins/item';\r\n\r\n    export default {\r\n        name: 'SilentboxItem',\r\n        mixins: [ ItemMixin ],\r\n        props: {\r\n            // Media source, it could be an image or a youtube video.\r\n            'src': {\r\n                type: String,\r\n                required: true\r\n            },\r\n            // True if video should be autoplayed.\r\n            'autoplay': {\r\n                type: Boolean,\r\n                default() {\r\n                    return false;\r\n                }\r\n            },\r\n            // Short description below image.\r\n            'description': String,\r\n            'position': {},\r\n            'thumbnailWidth': {\r\n                type: String,\r\n                default: '200px'\r\n            },\r\n            'thumbnailHeight': {\r\n                type: String,\r\n                default: '150px'\r\n            },\r\n            // Hide player controls\r\n            'hideControls': {\r\n                type: Boolean,\r\n                default() {\r\n                    return false;\r\n                }\r\n            }\r\n        },\r\n        computed: {\r\n            /**\r\n             * Get embed URL.\r\n             * @return {string|null}\r\n             */\r\n            embedUrl() {\r\n                if (this.src !== null) {\r\n                    return this.src;\r\n                }\r\n\r\n                return null;\r\n            }\r\n        },\r\n        methods: {\r\n            /**\r\n             * Emit an event that overlay should be hidden.\r\n             *\r\n             * @return {void}\r\n             */\r\n            closeSilentBoxOverlay() {\r\n                this.$parent.$emit('closeSilentboxOverlay');\r\n            },\r\n            /**\r\n             * Emit an event that overlay should be opened.\r\n             *\r\n             * @return {void}\r\n             */\r\n            openSilentBoxOverlay() {\r\n                let itemIndex = this.$parent.items.list.findIndex(item => item.src === this.src);\r\n\r\n                this.$parent.$emit('openSilentboxOverlay', {\r\n                    url: this.embedUrl,\r\n                    position: itemIndex,\r\n                    autoplay: this.autoplay,\r\n                    description: this.description\r\n                });\r\n            }\r\n        },\r\n        created() {\r\n            // Push items to the parent component.\r\n            // TODO: do it in parent component\r\n            this.$parent.items.list.push({\r\n                src: this.src,\r\n                autoplay: this.autoplay,\r\n                desc: this.description,\r\n                position: this.position\r\n            });\r\n        }\r\n    }\r\n</script>\r\n\r\n<style lang=\"scss\">\r\n    .silentbox-item {\r\n        cursor: pointer;\r\n        text-decoration: underline;\r\n    }\r\n</style>",".silentbox-item {\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n/*# sourceMappingURL=item.vue.map */"]}, media: undefined });
+
+  };
+  /* scoped */
+  var __vue_scope_id__ = undefined;
+  /* module identifier */
+  var __vue_module_identifier__ = undefined;
+  /* functional template */
+  var __vue_is_functional_template__ = false;
+  /* style inject SSR */
+  
+
+  
+  var item = normalizeComponent_1(
+    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+    __vue_inject_styles__,
+    __vue_script__,
+    __vue_scope_id__,
+    __vue_is_functional_template__,
+    __vue_module_identifier__,
+    browser,
+    undefined
+  );
+
+//
+
+var script$1 = {
+    name: 'SilentboxOverlay',
+    mixins: [ VideoUrlDecoderMixin ],
+    data: function data() {
+        return {
+            video: false
+        }
+    },
+    computed: {
+        /**
+         * Get the right embed URL.
+         */
+        getEmbedUrl: function getEmbedUrl() {
+            return this.handleUrl(this.$parent.embedUrl);
+        },
+        /**
+         * Get autoplay state.
+         */
+        getAutoplayState: function getAutoplayState() {
+            if (this.$parent.autoplay !== undefined && this.$parent.autoplay !== false) {
+                return "autoplay";
+            }
+             return "";
+        },
+        /**
+         * Check whether overlay is visible or not.
+         */
+        isVisible: function isVisible() {
+            if (this.$parent.overlayVisibility !== undefined && this.$parent.overlayVisibility !== false) {
+                return true;
+            }
+
+            return false;
+        }
+    },
+    watch: {
+        isVisible: function (value) {
+            if (document !== undefined) {
+                this.bodyScrolling();
+            }
+        }
+    },
+    methods: {
+        bodyScrolling: function bodyScrolling() {
+            var body = document.body;
+
+            // add class only if overlay should be visible
+            if (this.isVisible && ! body.classList.contains('silentbox-is-opened')) {
+                return body.classList.add('silentbox-is-opened');
+            }
+
+            // remove class only if overlay should be hidden
+            if (! this.isVisible && body.classList.contains('silentbox-is-opened')) {
+                return body.classList.remove('silentbox-is-opened')
+            }
+        },
+        /**
+         * Move to next item.
+         */
+        moveToNextItem: function moveToNextItem() {
+            this.$parent.nextItem();
+        },
+        /**
+         * Move to previous item.
+         */
+        moveToPreviousItem: function moveToPreviousItem()
+        {
+            this.$parent.prevItem();
+        },
+        /**
+         * Hide silentbox overlay.
+         */
+        closeSilentboxOverlay: function closeSilentboxOverlay() {
+            this.$parent.$emit('closeSilentboxOverlay');
+        },
+        /**
+         * Search for known video services URLs and return their players if recognized.
+         * Unrecognized URLs are handled as images.
+         * 
+         * @param  {string} url
+         * @return {string}
+         */
+        handleUrl: function handleUrl(url) {
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                this.video = true;
+                return this.getYoutubeVideo(url);
+            } else if (url.includes("vimeo")) {
+                this.video = true;
+                return this.getVimeoVideo(url);
+            } else {
+                // Given url is not a video URL thus return it as it is.
+                this.video = false;
+                return url;
+            }
+        },
+        /**
+         * Get embed URL for youtube.com
+         * 
+         * @param  {string} url 
+         * @return {string} 
+         */
+        getYoutubeVideo: function getYoutubeVideo(url) {
+            var videoUrl = "";
+            var videoId  = this.getYoutubeVideoId(url);
+
+            if (videoId) {
+                videoUrl = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+
+                if (this.$parent.autoplay) {
+                    videoUrl += '&amp;autoplay=1';
+                }
+                if (this.$parent.showControls) {
+                    videoUrl += '&amp;controls=0';
+                }
+            }
+
+            return videoUrl;
+        },
+        /**
+         * Get embed URL for vimeo.com
+         * 
+         * @param  {string} url 
+         * @return {string} 
+         */
+        getVimeoVideo: function getVimeoVideo(url) {          
+                var videoUrl = "";
+                var vimoId = /(vimeo(pro)?\.com)\/(?:[^\d]+)?(\d+)\??(.*)?$/.exec(url)[3];
+
+                if (vimoId !== undefined) {
+                    videoUrl = 'https://player.vimeo.com/video/'+ vimoId + '?api=1';
+                    if (this.$parent.autoplay) {
+                        videoUrl += '&autoplay=1';
+                    }
+                }
+
+                return videoUrl;
+        },
+    }
+};
+
+/* script */
+var __vue_script__$1 = script$1;
+
+/* template */
+var __vue_render__$1 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _vm.isVisible
+    ? _c("div", { attrs: { id: "silentbox-overlay" } }, [
+        _c("div", {
+          attrs: { id: "silentbox-overlay__background" },
+          on: {
+            click: function($event) {
+              $event.stopPropagation();
+              return _vm.closeSilentboxOverlay($event)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            attrs: { id: "silentbox-overlay__content" },
+            on: {
+              click: function($event) {
+                $event.stopPropagation();
+                return _vm.closeSilentboxOverlay($event)
+              }
+            }
+          },
+          [
+            _c("div", { attrs: { id: "silentbox-overlay__embed" } }, [
+              _c("div", { attrs: { id: "silentbox-overlay__container" } }, [
+                _vm.video
+                  ? _c("iframe", {
+                      attrs: {
+                        width: "100%",
+                        height: "100%",
+                        src: _vm.getEmbedUrl,
+                        frameborder: "0",
+                        allow: _vm.getAutoplayState,
+                        allowfullscreen: ""
+                      }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.video
+                  ? _c("img", {
+                      attrs: {
+                        width: "auto",
+                        height: "auto",
+                        src: _vm.getEmbedUrl
+                      }
+                    })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              this.$parent.description
+                ? _c("p", { attrs: { id: "silentbox-overlay__description" } }, [
+                    _vm._v(_vm._s(this.$parent.description))
+                  ])
+                : _vm._e()
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            attrs: {
+              id: "silentbox-overlay__close-button",
+              role: "button",
+              tabindex: "3"
+            },
+            on: {
+              click: function($event) {
+                $event.stopPropagation();
+                return _vm.closeSilentboxOverlay($event)
+              },
+              keyup: function($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.closeSilentboxOverlay($event)
+              }
+            }
+          },
+          [_c("div", { staticClass: "icon" })]
+        ),
+        _vm._v(" "),
+        this.$parent.items.total > 0
+          ? _c("div", { attrs: { id: "silentbox-overlay__arrow-buttons" } }, [
+              _c("div", {
+                staticClass: "arrow arrow-previous",
+                attrs: { role: "button", tabindex: "2" },
+                on: {
+                  click: _vm.moveToPreviousItem,
+                  keyup: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.moveToPreviousItem($event)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "arrow arrow-next",
+                attrs: { role: "button", tabindex: "1" },
+                on: {
+                  click: _vm.moveToNextItem,
+                  keyup: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.moveToNextItem($event)
+                  }
+                }
+              })
+            ])
+          : _vm._e()
+      ])
+    : _vm._e()
+};
+var __vue_staticRenderFns__$1 = [];
+__vue_render__$1._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__$1 = function (inject) {
+    if (!inject) { return }
+    inject("data-v-030dd6b5_0", { source: ".silentbox-is-opened {\n  overflow: hidden;\n}\n#silentbox-overlay {\n  display: block;\n  height: 100vh;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100vw;\n  z-index: 999;\n}\n#silentbox-overlay__background {\n  background: rgba(0, 0, 0, 0.75);\n  backdrop-filter: blur(20px);\n  cursor: default;\n  display: block;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#silentbox-overlay__content {\n  cursor: default;\n  display: block;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#silentbox-overlay__embed {\n  bottom: 0;\n  cursor: default;\n  display: block;\n  height: 80%;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: -2.5rem;\n  width: 75%;\n}\n#silentbox-overlay__embed img,\n#silentbox-overlay__embed iframe {\n  background-color: #000;\n  bottom: 0;\n  box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.45);\n  cursor: default;\n  display: block;\n  left: 0;\n  margin: auto;\n  max-height: 100%;\n  max-width: 100%;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n#silentbox-overlay__container {\n  cursor: default;\n  height: 100%;\n  margin: 0 0 1.5rem 0;\n  position: relative;\n  text-align: center;\n  width: 100%;\n}\n#silentbox-overlay__description {\n  display: block;\n  padding-top: 1rem;\n  text-align: center;\n  color: #fff;\n}\n#silentbox-overlay__close-button {\n  background: rgba(0, 0, 0, 0);\n  border: none;\n  color: #fff;\n  cursor: pointer;\n  height: 2.5rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  transition: background-color 250ms ease-out;\n  width: 2.5rem;\n}\n#silentbox-overlay__close-button:hover, #silentbox-overlay__close-button:focus {\n  background-color: rgba(0, 0, 0, 0.5);\n  outline: none;\n}\n#silentbox-overlay__close-button .icon {\n  color: #fff;\n  cursor: pointer;\n  height: 1rem;\n  left: 0.7rem;\n  margin: 50% 50% 0 0;\n  position: absolute;\n  right: 0px;\n  top: -0.5rem;\n  transition: 250ms ease;\n  width: 1rem;\n}\n#silentbox-overlay__close-button .icon:before, #silentbox-overlay__close-button .icon:after {\n  background: #fff;\n  content: \"\";\n  height: 2px;\n  left: 5%;\n  position: absolute;\n  top: 50%;\n  transition: 250ms ease;\n  width: 100%;\n}\n#silentbox-overlay__close-button .icon:before {\n  transform: rotate(-45deg);\n}\n#silentbox-overlay__close-button .icon:after {\n  transform: rotate(45deg);\n}\n#silentbox-overlay__close-button .icon:hover:before, #silentbox-overlay__close-button .icon:hover:after, #silentbox-overlay__close-button .icon:focus:before, #silentbox-overlay__close-button .icon:focus:after {\n  background: #58e8d2;\n  left: 25%;\n  width: 50%;\n}\n#silentbox-overlay__arrow-buttons .arrow {\n  border-left: 2px solid #fff;\n  border-top: 2px solid #fff;\n  cursor: pointer;\n  height: 1.5rem;\n  position: absolute;\n  width: 1.5rem;\n}\n#silentbox-overlay__arrow-buttons .arrow:hover, #silentbox-overlay__arrow-buttons .arrow:focus {\n  outline: none;\n  border-color: #58e8d2;\n}\n#silentbox-overlay__arrow-buttons .arrow-previous {\n  left: 2rem;\n  top: 50%;\n  transform: rotate(-45deg);\n}\n#silentbox-overlay__arrow-buttons .arrow-previous:hover, #silentbox-overlay__arrow-buttons .arrow-previous:focus {\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-name: pulsingPrevious;\n}\n#silentbox-overlay__arrow-buttons .arrow-next {\n  right: 2rem;\n  top: 50%;\n  transform: rotate(135deg);\n}\n#silentbox-overlay__arrow-buttons .arrow-next:hover, #silentbox-overlay__arrow-buttons .arrow-next:focus {\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-name: pulsingNext;\n}\n@keyframes pulsingNext {\n0% {\n    animation-timing-function: ease-in;\n    right: 2rem;\n}\n25% {\n    animation-timing-function: ease-in;\n    right: 1.75rem;\n}\n75% {\n    animation-timing-function: ease-in;\n    right: 2.25rem;\n}\n100% {\n    animation-timing-function: ease-in;\n    right: 2rem;\n}\n}\n@keyframes pulsingPrevious {\n0% {\n    animation-timing-function: ease-in;\n    left: 2rem;\n}\n25% {\n    animation-timing-function: ease-in;\n    left: 1.75rem;\n}\n75% {\n    animation-timing-function: ease-in;\n    left: 2.25rem;\n}\n100% {\n    animation-timing-function: ease-in;\n    left: 2rem;\n}\n}\n\n/*# sourceMappingURL=overlay.vue.map */", map: {"version":3,"sources":["/mnt/c/Projects/Silencesys/Silentbox/src/Silentbox/components/overlay.vue","overlay.vue"],"names":[],"mappings":"AAqLA;EACA,gBAAA;ACpLA;ADuLA;EACA,cAAA;EACA,aAAA;EACA,OAAA;EACA,eAAA;EACA,MAAA;EACA,YAAA;EACA,YAAA;ACpLA;AD+JA;EAwBA,+BAAA;EACA,2BAAA;EACA,eAAA;EACA,cAAA;EACA,YAAA;EACA,OAAA;EACA,kBAAA;EACA,MAAA;EACA,WAAA;ACpLA;ADoJA;EAoCA,eAAA;EACA,cAAA;EACA,YAAA;EACA,kBAAA;EACA,WAAA;ACrLA;AD6IA;EA4CA,SAAA;EACA,eAAA;EACA,cAAA;EACA,WAAA;EACA,OAAA;EACA,YAAA;EACA,kBAAA;EACA,QAAA;EACA,YAAA;EACA,UAAA;ACtLA;ADwLA;;EAEA,sBAjDA;EAkDA,SAAA;EACA,0CAAA;EACA,eAAA;EACA,cAAA;EACA,OAAA;EACA,YAAA;EACA,gBAAA;EACA,eAAA;EACA,kBAAA;EACA,QAAA;EACA,MAAA;ACtLA;ADkHA;EAyEA,eAAA;EACA,YAAA;EACA,oBAAA;EACA,kBAAA;EACA,kBAAA;EACA,WAAA;ACxLA;AD0GA;EAkFA,cAAA;EACA,iBAAA;EACA,kBAAA;EACA,WA/EA;AC1GA;ADoGA;EAyFA,4BAAA;EACA,YAAA;EACA,WArFA;EAsFA,eAAA;EACA,cAAA;EACA,kBAAA;EACA,QAAA;EACA,MAAA;EACA,2CAAA;EACA,aAAA;AC1LA;AD2LA;EAEA,oCAAA;EACA,aAAA;AC1LA;AD6LA;EACA,WApGA;EAqGA,eAAA;EACA,YAAA;EACA,YAAA;EACA,mBAAA;EACA,kBAAA;EACA,UAAA;EACA,YAAA;EACA,sBAAA;EACA,WAAA;AC3LA;AD4LA;EAEA,gBAhHA;EAiHA,WAAA;EACA,WAAA;EACA,QAAA;EACA,kBAAA;EACA,QAAA;EACA,sBAAA;EACA,WAAA;AC3LA;AD6LA;EACA,yBAAA;AC3LA;AD6LA;EACA,wBAAA;AC3LA;AD+LA;EAEA,mBAlIA;EAmIA,SAAA;EACA,UAAA;AC9LA;ADqMA;EACA,2BAAA;EACA,0BAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;EACA,aAAA;ACnMA;ADoMA;EAEA,aAAA;EACA,qBArJA;AC9CA;ADsMA;EACA,UAAA;EACA,QAAA;EACA,yBAAA;ACpMA;ADqMA;EAEA,sBAAA;EACA,mCAAA;EACA,+BAAA;ACpMA;ADuMA;EACA,WAAA;EACA,QAAA;EACA,yBAAA;ACrMA;ADsMA;EAEA,sBAAA;EACA,mCAAA;EACA,2BAAA;ACrMA;AD4MA;AACA;IACA,kCAAA;IACA,WAAA;ACzME;AD2MF;IACA,kCAAA;IACA,cAAA;ACzME;AD2MF;IACA,kCAAA;IACA,cAAA;ACzME;AD2MF;IACA,kCAAA;IACA,WAAA;ACzME;AACF;AD2MA;AACA;IACA,kCAAA;IACA,UAAA;ACzME;AD2MF;IACA,kCAAA;IACA,aAAA;ACzME;AD2MF;IACA,kCAAA;IACA,aAAA;ACzME;AD2MF;IACA,kCAAA;IACA,UAAA;ACzME;AACF;;AAEA,sCAAsC","file":"overlay.vue","sourcesContent":["<template>\r\n    <div id=\"silentbox-overlay\" v-if=\"isVisible\">\r\n        <div id=\"silentbox-overlay__background\" @click.stop=\"closeSilentboxOverlay\"></div>\r\n\r\n        <div id=\"silentbox-overlay__content\" @click.stop=\"closeSilentboxOverlay\">\r\n            <div id=\"silentbox-overlay__embed\">\r\n                <div id=\"silentbox-overlay__container\">\r\n                    <iframe width=\"100%\" height=\"100%\" v-if=\"video\" :src=\"getEmbedUrl\" frameborder=\"0\" :allow=\"getAutoplayState\" allowfullscreen></iframe>\r\n                    <img width=\"auto\" height=\"auto\" :src=\"getEmbedUrl\" v-if=\"! video\">\r\n                </div>\r\n                <p id=\"silentbox-overlay__description\" v-if=\"this.$parent.description\">{{ this.$parent.description }}</p>\r\n            </div>\r\n        </div>\r\n\r\n        <div id=\"silentbox-overlay__close-button\" role=\"button\" tabindex=\"3\" @click.stop=\"closeSilentboxOverlay\" @keyup.enter=\"closeSilentboxOverlay\">\r\n            <div class=\"icon\"></div>\r\n        </div>\r\n\r\n        <div id=\"silentbox-overlay__arrow-buttons\" v-if=\"this.$parent.items.total > 0\">\r\n            <div class=\"arrow arrow-previous\" role=\"button\" tabindex=\"2\" @click=\"moveToPreviousItem\" @keyup.enter=\"moveToPreviousItem\"></div>\r\n            <div class=\"arrow arrow-next\" role=\"button\" tabindex=\"1\" @click=\"moveToNextItem\" @keyup.enter=\"moveToNextItem\"></div>\r\n        </div>\r\n    </div>\r\n</template>\r\n\r\n<script>\r\n    import VideoUrlDecoderMixin from './../mixins/videoUrlDecoder';\r\n\r\n    export default {\r\n        name: 'SilentboxOverlay',\r\n        mixins: [ VideoUrlDecoderMixin ],\r\n        data() {\r\n            return {\r\n                video: false\r\n            }\r\n        },\r\n        computed: {\r\n            /**\r\n             * Get the right embed URL.\r\n             */\r\n            getEmbedUrl() {\r\n                return this.handleUrl(this.$parent.embedUrl);\r\n            },\r\n            /**\r\n             * Get autoplay state.\r\n             */\r\n            getAutoplayState() {\r\n                if (this.$parent.autoplay !== undefined && this.$parent.autoplay !== false) {\r\n                    return \"autoplay\";\r\n                }\r\n                 return \"\";\r\n            },\r\n            /**\r\n             * Check whether overlay is visible or not.\r\n             */\r\n            isVisible() {\r\n                if (this.$parent.overlayVisibility !== undefined && this.$parent.overlayVisibility !== false) {\r\n                    return true;\r\n                }\r\n\r\n                return false;\r\n            }\r\n        },\r\n        watch: {\r\n            isVisible: function (value) {\r\n                if (document !== undefined) {\r\n                    this.bodyScrolling();\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            bodyScrolling() {\r\n                let body = document.body;\r\n\r\n                // add class only if overlay should be visible\r\n                if (this.isVisible && ! body.classList.contains('silentbox-is-opened')) {\r\n                    return body.classList.add('silentbox-is-opened');\r\n                }\r\n\r\n                // remove class only if overlay should be hidden\r\n                if (! this.isVisible && body.classList.contains('silentbox-is-opened')) {\r\n                    return body.classList.remove('silentbox-is-opened')\r\n                }\r\n            },\r\n            /**\r\n             * Move to next item.\r\n             */\r\n            moveToNextItem() {\r\n                this.$parent.nextItem();\r\n            },\r\n            /**\r\n             * Move to previous item.\r\n             */\r\n            moveToPreviousItem()\r\n            {\r\n                this.$parent.prevItem();\r\n            },\r\n            /**\r\n             * Hide silentbox overlay.\r\n             */\r\n            closeSilentboxOverlay() {\r\n                this.$parent.$emit('closeSilentboxOverlay');\r\n            },\r\n            /**\r\n             * Search for known video services URLs and return their players if recognized.\r\n             * Unrecognized URLs are handled as images.\r\n             * \r\n             * @param  {string} url\r\n             * @return {string}\r\n             */\r\n            handleUrl(url) {\r\n                if (url.includes('youtube.com') || url.includes('youtu.be')) {\r\n                    this.video = true;\r\n                    return this.getYoutubeVideo(url);\r\n                } else if (url.includes(\"vimeo\")) {\r\n                    this.video = true;\r\n                    return this.getVimeoVideo(url);\r\n                } else {\r\n                    // Given url is not a video URL thus return it as it is.\r\n                    this.video = false;\r\n                    return url;\r\n                }\r\n            },\r\n            /**\r\n             * Get embed URL for youtube.com\r\n             * \r\n             * @param  {string} url \r\n             * @return {string} \r\n             */\r\n            getYoutubeVideo(url) {\r\n                let videoUrl = \"\";\r\n                let videoId  = this.getYoutubeVideoId(url);\r\n\r\n                if (videoId) {\r\n                    videoUrl = 'https://www.youtube.com/embed/' + videoId + '?rel=0';\r\n\r\n                    if (this.$parent.autoplay) {\r\n                        videoUrl += '&amp;autoplay=1';\r\n                    }\r\n                    if (this.$parent.showControls) {\r\n                        videoUrl += '&amp;controls=0';\r\n                    }\r\n                }\r\n\r\n                return videoUrl;\r\n            },\r\n            /**\r\n             * Get embed URL for vimeo.com\r\n             * \r\n             * @param  {string} url \r\n             * @return {string} \r\n             */\r\n            getVimeoVideo(url) {          \r\n                    let videoUrl = \"\";\r\n                    const vimoId = /(vimeo(pro)?\\.com)\\/(?:[^\\d]+)?(\\d+)\\??(.*)?$/.exec(url)[3];\r\n\r\n                    if (vimoId !== undefined) {\r\n                        videoUrl = 'https://player.vimeo.com/video/'+ vimoId + '?api=1';\r\n                        if (this.$parent.autoplay) {\r\n                            videoUrl += '&autoplay=1';\r\n                        }\r\n                    }\r\n\r\n                    return videoUrl;\r\n            },\r\n        }\r\n    }\r\n</script>\r\n\r\n<style lang=\"scss\">\r\n@mixin element($element) {\r\n    &__#{$element} {\r\n        @content;\r\n    }\r\n}\r\n\r\n// Colours used in silentbox\r\n$main:   #fff;\r\n$accent: #58e8d2;\r\n$bg: #000;\r\n\r\n.silentbox-is-opened {\r\n    overflow: hidden;\r\n}\r\n\r\n#silentbox-overlay {\r\n    display: block;\r\n    height: 100vh;\r\n    left: 0;\r\n    position: fixed;\r\n    top: 0;\r\n    width: 100vw;\r\n    z-index: 999;\r\n\r\n    @include element(background) {\r\n        background: rgba($bg, .75);\r\n        backdrop-filter: blur(20px);\r\n        cursor: default;\r\n        display: block;\r\n        height: 100%;\r\n        left: 0;\r\n        position: absolute;\r\n        top: 0;\r\n        width: 100%;\r\n    }\r\n\r\n    @include element(content) {\r\n        cursor: default;\r\n        display: block;\r\n        height: 100%;\r\n        position: relative;\r\n        width: 100%;\r\n    }\r\n\r\n    @include element(embed) {\r\n        bottom: 0;\r\n        cursor: default;\r\n        display: block;\r\n        height: 80%;\r\n        left: 0;\r\n        margin: auto;\r\n        position: absolute;\r\n        right: 0;\r\n        top: -2.5rem;\r\n        width: 75%;\r\n\r\n        img,\r\n        iframe {\r\n            background-color: $bg;\r\n            bottom: 0;\r\n            box-shadow: 0 0 1.5rem rgba($bg, .45);\r\n            cursor: default;\r\n            display: block;\r\n            left: 0;\r\n            margin: auto;\r\n            max-height: 100%;\r\n            max-width: 100%;\r\n            position: absolute;\r\n            right: 0;\r\n            top: 0;\r\n        }\r\n    }\r\n\r\n    @include element(container) {\r\n        cursor: default;\r\n        height: 100%;\r\n        margin: 0 0 1.5rem 0;\r\n        position: relative;\r\n        text-align: center;\r\n        width: 100%;\r\n    }\r\n\r\n    @include element(description) {\r\n        display: block;\r\n        padding-top: 1rem;\r\n        text-align: center;\r\n        color: $main;\r\n    }\r\n\r\n    @include element(close-button) {\r\n        background: rgba($bg, .0);\r\n        border: none;\r\n        color: $main;\r\n        cursor: pointer;\r\n        height: 2.5rem;\r\n        position: absolute;\r\n        right: 0;\r\n        top: 0;\r\n        transition: background-color 250ms ease-out;\r\n        width: 2.5rem;\r\n        &:hover,\r\n        &:focus {\r\n            background-color: rgba($bg, .5);\r\n            outline: none;\r\n        }\r\n\r\n        .icon {\r\n            color: $main;\r\n            cursor: pointer;\r\n            height: 1rem;\r\n            left: .7rem;\r\n            margin: 50% 50% 0 0;\r\n            position: absolute;\r\n            right: 0px;\r\n            top: -.5rem;\r\n            transition: 250ms ease;\r\n            width: 1rem;\r\n            &:before,\r\n            &:after {\r\n                background: $main;\r\n                content: \"\";\r\n                height: 2px;\r\n                left: 5%;\r\n                position: absolute;\r\n                top: 50%;\r\n                transition: 250ms ease;\r\n                width: 100%;\r\n            }\r\n            &:before {\r\n                transform: rotate(-45deg);\r\n            }\r\n            &:after {\r\n                transform: rotate(45deg);\r\n            }\r\n            &:hover,\r\n            &:focus {\r\n                &:before,\r\n                &:after {\r\n                    background: $accent;\r\n                    left: 25%;\r\n                    width: 50%;\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    @include element(arrow-buttons) {\r\n        .arrow {\r\n            border-left: 2px solid $main;\r\n            border-top: 2px solid $main;\r\n            cursor: pointer;\r\n            height: 1.5rem;\r\n            position: absolute;\r\n            width: 1.5rem;\r\n            &:hover,\r\n            &:focus {\r\n                outline: none;\r\n                border-color: $accent;\r\n            }\r\n        }\r\n        .arrow-previous {\r\n            left: 2rem;\r\n            top: 50%;\r\n            transform: rotate(-45deg);\r\n            &:hover,\r\n            &:focus {\r\n                animation-duration: 1s;\r\n                animation-iteration-count: infinite;\r\n                animation-name: pulsingPrevious;\r\n            }\r\n        }\r\n        .arrow-next {\r\n            right: 2rem;\r\n            top: 50%;\r\n            transform: rotate(135deg);\r\n            &:hover,\r\n            &:focus {\r\n                animation-duration: 1s;\r\n                animation-iteration-count: infinite;\r\n                animation-name: pulsingNext;\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n// Animations\r\n@keyframes pulsingNext {\r\n    0%   {\r\n        animation-timing-function: ease-in;\r\n        right: 2rem;\r\n    }\r\n    25%  {\r\n        animation-timing-function: ease-in;\r\n        right: 1.75rem;\r\n    }\r\n    75%  {\r\n        animation-timing-function: ease-in;\r\n        right: 2.25rem;\r\n    }\r\n    100% {\r\n        animation-timing-function: ease-in;\r\n        right: 2rem;\r\n    }\r\n}\r\n@keyframes pulsingPrevious {\r\n    0%   {\r\n        animation-timing-function: ease-in;\r\n        left: 2rem;\r\n    }\r\n    25%  {\r\n        animation-timing-function: ease-in;\r\n        left: 1.75rem;\r\n    }\r\n    75%  {\r\n        animation-timing-function: ease-in;\r\n        left: 2.25rem;\r\n    }\r\n    100% {\r\n        animation-timing-function: ease-in;\r\n        left: 2rem;\r\n    }\r\n}\r\n</style>\r\n",".silentbox-is-opened {\n  overflow: hidden;\n}\n\n#silentbox-overlay {\n  display: block;\n  height: 100vh;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100vw;\n  z-index: 999;\n}\n#silentbox-overlay__background {\n  background: rgba(0, 0, 0, 0.75);\n  backdrop-filter: blur(20px);\n  cursor: default;\n  display: block;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%;\n}\n#silentbox-overlay__content {\n  cursor: default;\n  display: block;\n  height: 100%;\n  position: relative;\n  width: 100%;\n}\n#silentbox-overlay__embed {\n  bottom: 0;\n  cursor: default;\n  display: block;\n  height: 80%;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: -2.5rem;\n  width: 75%;\n}\n#silentbox-overlay__embed img,\n#silentbox-overlay__embed iframe {\n  background-color: #000;\n  bottom: 0;\n  box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.45);\n  cursor: default;\n  display: block;\n  left: 0;\n  margin: auto;\n  max-height: 100%;\n  max-width: 100%;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n#silentbox-overlay__container {\n  cursor: default;\n  height: 100%;\n  margin: 0 0 1.5rem 0;\n  position: relative;\n  text-align: center;\n  width: 100%;\n}\n#silentbox-overlay__description {\n  display: block;\n  padding-top: 1rem;\n  text-align: center;\n  color: #fff;\n}\n#silentbox-overlay__close-button {\n  background: rgba(0, 0, 0, 0);\n  border: none;\n  color: #fff;\n  cursor: pointer;\n  height: 2.5rem;\n  position: absolute;\n  right: 0;\n  top: 0;\n  transition: background-color 250ms ease-out;\n  width: 2.5rem;\n}\n#silentbox-overlay__close-button:hover, #silentbox-overlay__close-button:focus {\n  background-color: rgba(0, 0, 0, 0.5);\n  outline: none;\n}\n#silentbox-overlay__close-button .icon {\n  color: #fff;\n  cursor: pointer;\n  height: 1rem;\n  left: 0.7rem;\n  margin: 50% 50% 0 0;\n  position: absolute;\n  right: 0px;\n  top: -0.5rem;\n  transition: 250ms ease;\n  width: 1rem;\n}\n#silentbox-overlay__close-button .icon:before, #silentbox-overlay__close-button .icon:after {\n  background: #fff;\n  content: \"\";\n  height: 2px;\n  left: 5%;\n  position: absolute;\n  top: 50%;\n  transition: 250ms ease;\n  width: 100%;\n}\n#silentbox-overlay__close-button .icon:before {\n  transform: rotate(-45deg);\n}\n#silentbox-overlay__close-button .icon:after {\n  transform: rotate(45deg);\n}\n#silentbox-overlay__close-button .icon:hover:before, #silentbox-overlay__close-button .icon:hover:after, #silentbox-overlay__close-button .icon:focus:before, #silentbox-overlay__close-button .icon:focus:after {\n  background: #58e8d2;\n  left: 25%;\n  width: 50%;\n}\n#silentbox-overlay__arrow-buttons .arrow {\n  border-left: 2px solid #fff;\n  border-top: 2px solid #fff;\n  cursor: pointer;\n  height: 1.5rem;\n  position: absolute;\n  width: 1.5rem;\n}\n#silentbox-overlay__arrow-buttons .arrow:hover, #silentbox-overlay__arrow-buttons .arrow:focus {\n  outline: none;\n  border-color: #58e8d2;\n}\n#silentbox-overlay__arrow-buttons .arrow-previous {\n  left: 2rem;\n  top: 50%;\n  transform: rotate(-45deg);\n}\n#silentbox-overlay__arrow-buttons .arrow-previous:hover, #silentbox-overlay__arrow-buttons .arrow-previous:focus {\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-name: pulsingPrevious;\n}\n#silentbox-overlay__arrow-buttons .arrow-next {\n  right: 2rem;\n  top: 50%;\n  transform: rotate(135deg);\n}\n#silentbox-overlay__arrow-buttons .arrow-next:hover, #silentbox-overlay__arrow-buttons .arrow-next:focus {\n  animation-duration: 1s;\n  animation-iteration-count: infinite;\n  animation-name: pulsingNext;\n}\n\n@keyframes pulsingNext {\n  0% {\n    animation-timing-function: ease-in;\n    right: 2rem;\n  }\n  25% {\n    animation-timing-function: ease-in;\n    right: 1.75rem;\n  }\n  75% {\n    animation-timing-function: ease-in;\n    right: 2.25rem;\n  }\n  100% {\n    animation-timing-function: ease-in;\n    right: 2rem;\n  }\n}\n@keyframes pulsingPrevious {\n  0% {\n    animation-timing-function: ease-in;\n    left: 2rem;\n  }\n  25% {\n    animation-timing-function: ease-in;\n    left: 1.75rem;\n  }\n  75% {\n    animation-timing-function: ease-in;\n    left: 2.25rem;\n  }\n  100% {\n    animation-timing-function: ease-in;\n    left: 2rem;\n  }\n}\n\n/*# sourceMappingURL=overlay.vue.map */"]}, media: undefined });
+
+  };
+  /* scoped */
+  var __vue_scope_id__$1 = undefined;
+  /* module identifier */
+  var __vue_module_identifier__$1 = undefined;
+  /* functional template */
+  var __vue_is_functional_template__$1 = false;
+  /* style inject SSR */
+  
+
+  
+  var overlay = normalizeComponent_1(
+    { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
+    __vue_inject_styles__$1,
+    __vue_script__$1,
+    __vue_scope_id__$1,
+    __vue_is_functional_template__$1,
+    __vue_module_identifier__$1,
+    browser,
+    undefined
+  );
+
+//
+
+var script$2 = {
+    name: 'SilentboxSingle',
+    mixins: [ ItemMixin ],
+    props: {
+        // Media source, it could be an image or a youtube video.
+        'src': {
+            type: String,
+            required: true
+        },
+        // Should be video autoplayed.
+        'autoplay': {
+            type: Boolean,
+            default: function default$1() {
+                return false;
+            }
+        },
+        // Short description below image.
+        'description': String,
+        'thumbnailWidth': {
+            type: String,
+            default: '200px'
+        },
+        'thumbnailHeight': {
+            type: String,
+            default: '150px'
+        },
+        // Hide player controls
+        'hideControls': {
+            type: Boolean,
+            default: function default$2() {
+                return false;
+            }
+        }
+    },
+    data: function data() {
+        return {
+            overlayVisibility: false,
+            embedUrl: undefined,
+            items: {
+                total: 0,
+                position: 0
+            }
+        }
+    },
+    methods: {
+        /**
+         * Hide the Silenbotx overlay.
+         * 
+         * @return {void}
+         */
+        closeSilentBoxOverlay: function closeSilentBoxOverlay() {
+            this.overlayVisibility = false;
+        },
+        /**
+         * Open Silentbox with given media.
+         * 
+         * @return {void}
+         */
+        openSilentBoxOverlay: function openSilentBoxOverlay() {
+            if (this.src !== null) {
+                this.embedUrl = this.src;
+            }
+            this.overlayVisibility = true;
+        }
+    },
+    components: {
+        SilentboxOverlay: overlay,
+        SilentboxItem: item
+    },
+    mounted: function mounted() {
+        var this$1 = this;
+
+        this.$on('closeSilentboxOverlay', function () {
+            this$1.overlayVisibility = false;
+        });
+
+        window.addEventListener('keyup', function (event) {
+            if (event.which == 27) {
+                this$1.overlayVisibility = false;
+            }
+        });
+    }
+};
+
+/* script */
+var __vue_script__$2 = script$2;
+
+/* template */
+var __vue_render__$2 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "span",
+    {
+      staticClass: "silentbox-single",
+      attrs: { src: _vm.src },
+      on: { click: _vm.openSilentBoxOverlay }
+    },
+    [
+      _vm._t("default", [
+        _c("img", {
+          attrs: {
+            src: _vm.getThumnail(_vm.src),
+            width: _vm.thumbnailWidth,
+            height: _vm.thumbnailHeight
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("silentbox-overlay")
+    ],
+    2
+  )
+};
+var __vue_staticRenderFns__$2 = [];
+__vue_render__$2._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__$2 = function (inject) {
+    if (!inject) { return }
+    inject("data-v-1add3286_0", { source: ".silentbox-single {\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n/*# sourceMappingURL=single.vue.map */", map: {"version":3,"sources":["/mnt/c/Projects/Silencesys/Silentbox/src/Silentbox/components/single.vue","single.vue"],"names":[],"mappings":"AAkGA;EACA,eAAA;EACA,0BAAA;ACjGA;;AAEA,qCAAqC","file":"single.vue","sourcesContent":["<template>\r\n    <span class=\"silentbox-single\" :src=\"src\" @click=\"openSilentBoxOverlay\">\r\n        <slot>\r\n            <img :src=\"getThumnail(src)\" :width=\"thumbnailWidth\" :height=\"thumbnailHeight\">\r\n        </slot>\r\n        <silentbox-overlay></silentbox-overlay>\r\n    </span>\r\n</template>\r\n\r\n<script>\r\n    import SilentboxItem from './item.vue';\r\n    import SilentboxOverlay from './overlay.vue';\r\n    import ItemMixin from './../mixins/item';\r\n\r\n    export default {\r\n        name: 'SilentboxSingle',\r\n        mixins: [ ItemMixin ],\r\n        props: {\r\n            // Media source, it could be an image or a youtube video.\r\n            'src': {\r\n                type: String,\r\n                required: true\r\n            },\r\n            // Should be video autoplayed.\r\n            'autoplay': {\r\n                type: Boolean,\r\n                default() {\r\n                    return false;\r\n                }\r\n            },\r\n            // Short description below image.\r\n            'description': String,\r\n            'thumbnailWidth': {\r\n                type: String,\r\n                default: '200px'\r\n            },\r\n            'thumbnailHeight': {\r\n                type: String,\r\n                default: '150px'\r\n            },\r\n            // Hide player controls\r\n            'hideControls': {\r\n                type: Boolean,\r\n                default() {\r\n                    return false;\r\n                }\r\n            }\r\n        },\r\n        data() {\r\n            return {\r\n                overlayVisibility: false,\r\n                embedUrl: undefined,\r\n                items: {\r\n                    total: 0,\r\n                    position: 0\r\n                }\r\n            }\r\n        },\r\n        methods: {\r\n            /**\r\n             * Hide the Silenbotx overlay.\r\n             * \r\n             * @return {void}\r\n             */\r\n            closeSilentBoxOverlay() {\r\n                this.overlayVisibility = false;\r\n            },\r\n            /**\r\n             * Open Silentbox with given media.\r\n             * \r\n             * @return {void}\r\n             */\r\n            openSilentBoxOverlay() {\r\n                if (this.src !== null) {\r\n                    this.embedUrl = this.src;\r\n                }\r\n                this.overlayVisibility = true;\r\n            }\r\n        },\r\n        components: {\r\n            SilentboxOverlay,\r\n            SilentboxItem\r\n        },\r\n        mounted() {\r\n            this.$on('closeSilentboxOverlay', () => {\r\n                this.overlayVisibility = false;\r\n            });\r\n\r\n            window.addEventListener('keyup', (event) => {\r\n                if (event.which == 27) {\r\n                    this.overlayVisibility = false;\r\n                }\r\n            });\r\n        }\r\n    }\r\n</script>\r\n\r\n<style lang=\"scss\">\r\n    .silentbox-single {\r\n        cursor: pointer;\r\n        text-decoration: underline;\r\n    }\r\n</style>",".silentbox-single {\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n/*# sourceMappingURL=single.vue.map */"]}, media: undefined });
+
+  };
+  /* scoped */
+  var __vue_scope_id__$2 = undefined;
+  /* module identifier */
+  var __vue_module_identifier__$2 = undefined;
+  /* functional template */
+  var __vue_is_functional_template__$2 = false;
+  /* style inject SSR */
+  
+
+  
+  var single = normalizeComponent_1(
+    { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
+    __vue_inject_styles__$2,
+    __vue_script__$2,
+    __vue_scope_id__$2,
+    __vue_is_functional_template__$2,
+    __vue_module_identifier__$2,
+    browser,
+    undefined
+  );
+
+//
+
+var script$3 = {
+    name: 'SilentboxGroup',
+    data: function data() {
+        return {
+            overlayVisibility: false,
+            embedUrl: '',
+            items: {
+                total: 0,
+                position: 0,
+                list: []
+            },
+            autoplay: false,
+            description: ''
+        }
+    },
+    watch: {
+        /**
+         * Update total number of items when object changes.
+         *
+         * @param  {Object} current
+         * @param  {Object} old
+         * @return {void}
+         */
+        'items.list': function (current, old) {
+            this.updateTotal(current);
+        }
+    },
+    methods: {
+        /**
+         * Update count of total items in group.
+         *
+         * @param  {object} items
+         * @return {void}
+         */
+        updateTotal: function updateTotal(items) {
+            this.items.total = this.items.list.length;
+        },
+        /**
+         * Move to next item in a group.
+         *
+         * @return {void}
+         */
+        nextItem: function nextItem() {
+            if (this.items.position !== (this.items.total - 1)) {
+                this.items.position++;
+            } else {
+                this.items.position = 0;
+            }
+
+            this.embedUrl = this.items.list[this.items.position].src;
+
+            this.autoplay = (this.items.list[this.items.position].autoplay !== undefined)
+                ? this.items.list[this.items.position].autoplay : false;
+
+            this.description = (this.items.list[this.items.position].desc !== undefined)
+                ? this.items.list[this.items.position].desc : false;
+        },
+        /**
+         * Move to previous item in a group.
+         *
+         * @return {void}
+         */
+        prevItem: function prevItem() {
+            if (this.items.position !== 0) {
+                this.items.position--;
+            } else {
+                this.items.position = this.items.total - 1;
+            }
+
+            this.embedUrl = this.items.list[this.items.position].src;
+
+            this.autoplay = (this.items.list[this.items.position].autoplay !== undefined)
+                ? this.items.list[this.items.position] : false;
+
+            this.description = (this.items.list[this.items.position].desc !== undefined)
+                ? this.items.list[this.items.position].desc : false;
+        },
+        /**
+         * Set item that shuld be displayed.
+         *
+         * @return {void}
+         */
+        setOpened: function setOpened(item) {
+            this.embedUrl = item.url;
+            this.items.position = item.position;
+            this.overlayVisibility = true;
+            this.autoplay = item.autoplay;
+            this.description = item.description;
+        }
+    },
+    components: {
+        'silentbox-overlay': overlay
+    },
+    mounted: function mounted() {
+        var this$1 = this;
+
+        // Hide overlay when user click outside or on close button.
+        this.$on('closeSilentboxOverlay', function () {
+            this$1.overlayVisibility = false;
+        });
+
+        // Set first opened item when overlay opens.
+        this.$on('openSilentboxOverlay', function (item) {
+            this$1.setOpened(item);
+        });
+
+        // Update total number of available items in group.
+        this.updateTotal(this.items);
+
+        // Listen to key events.
+        window.addEventListener('keyup', function (event) {
+            // Escape: 27
+            if (event.which === 27) {
+                this$1.overlayVisibility = false;
+            }
+            // Right arrow: 39
+            if (event.which === 39) {
+                this$1.nextItem();
+            }
+            // Left arrow: 37
+            if (event.which === 37) {
+                this$1.prevItem();
+            }
+        });
+    }
+};
+
+/* script */
+var __vue_script__$3 = script$3;
+
+/* template */
+var __vue_render__$3 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "section",
+    { attrs: { id: "silentbox-group" } },
+    [_vm._t("default"), _vm._v(" "), _c("silentbox-overlay")],
+    2
+  )
+};
+var __vue_staticRenderFns__$3 = [];
+__vue_render__$3._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__$3 = undefined;
+  /* scoped */
+  var __vue_scope_id__$3 = undefined;
+  /* module identifier */
+  var __vue_module_identifier__$3 = undefined;
+  /* functional template */
+  var __vue_is_functional_template__$3 = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+
+  
+  var group = normalizeComponent_1(
+    { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
+    __vue_inject_styles__$3,
+    __vue_script__$3,
+    __vue_scope_id__$3,
+    __vue_is_functional_template__$3,
+    __vue_module_identifier__$3,
+    undefined,
+    undefined
+  );
+
+var VueSilentbox = {};
+
+VueSilentbox.install = function(Vue, options) {
+  Vue.mixin({
+    components: {
+      'silentbox-single': single,
+      'silentbox-group': group,
+      'silentbox-item': item
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VueSilentbox);
 
 
 /***/ }),
@@ -54826,16 +56623,17 @@ $(document).ready(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_NewStatementComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/NewStatementComponent */ "./resources/js/components/NewStatementComponent.vue");
-/* harmony import */ var _components_RemovedStatementComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RemovedStatementComponent */ "./resources/js/components/RemovedStatementComponent.vue");
-/* harmony import */ var _components_ListParticipantsComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ListParticipantsComponent */ "./resources/js/components/ListParticipantsComponent.vue");
-/* harmony import */ var _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/EvaluationResultsComponent */ "./resources/js/components/EvaluationResultsComponent.vue");
-/* harmony import */ var _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/admin/VideoGalleryComponent */ "./resources/js/components/admin/VideoGalleryComponent.vue");
-/* harmony import */ var _components_admin_FotoGalleryComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/admin/FotoGalleryComponent */ "./resources/js/components/admin/FotoGalleryComponent.vue");
-/* harmony import */ var _components_admin_MainInformationComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/admin/MainInformationComponent */ "./resources/js/components/admin/MainInformationComponent.vue");
-/* harmony import */ var _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/jury/AllStatementComponent */ "./resources/js/components/jury/AllStatementComponent.vue");
-/* harmony import */ var _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/jury/EvaluationComponent */ "./resources/js/components/jury/EvaluationComponent.vue");
-/* harmony import */ var _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/superAdmin/AddJuryComponent */ "./resources/js/components/superAdmin/AddJuryComponent.vue");
+/* harmony import */ var vue_silentbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-silentbox */ "./node_modules/vue-silentbox/dist/vue-silentbox.esm.js");
+/* harmony import */ var _components_NewStatementComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/NewStatementComponent */ "./resources/js/components/NewStatementComponent.vue");
+/* harmony import */ var _components_RemovedStatementComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/RemovedStatementComponent */ "./resources/js/components/RemovedStatementComponent.vue");
+/* harmony import */ var _components_ListParticipantsComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ListParticipantsComponent */ "./resources/js/components/ListParticipantsComponent.vue");
+/* harmony import */ var _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EvaluationResultsComponent */ "./resources/js/components/EvaluationResultsComponent.vue");
+/* harmony import */ var _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/admin/VideoGalleryComponent */ "./resources/js/components/admin/VideoGalleryComponent.vue");
+/* harmony import */ var _components_admin_FotoGalleryComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/admin/FotoGalleryComponent */ "./resources/js/components/admin/FotoGalleryComponent.vue");
+/* harmony import */ var _components_admin_MainInformationComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/admin/MainInformationComponent */ "./resources/js/components/admin/MainInformationComponent.vue");
+/* harmony import */ var _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/jury/AllStatementComponent */ "./resources/js/components/jury/AllStatementComponent.vue");
+/* harmony import */ var _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/jury/EvaluationComponent */ "./resources/js/components/jury/EvaluationComponent.vue");
+/* harmony import */ var _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/superAdmin/AddJuryComponent */ "./resources/js/components/superAdmin/AddJuryComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./admin */ "./resources/js/admin.js"); // require('swal')
@@ -54845,7 +56643,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 
+
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Vue.use(vue_silentbox__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 
@@ -54869,26 +56669,26 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   {
     path: '/admin/all-statements',
     name: 'jury-all-statements',
-    component: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: '/admin/all-statements/:id',
     name: 'jury-evaluation',
-    component: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }]
 });
 var app = new Vue({
   el: '#app',
   components: {
-    NewStatementComponent: _components_NewStatementComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
-    RemovedStatementComponent: _components_RemovedStatementComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ListParticipantsComponent: _components_ListParticipantsComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    EvaluationResultsComponent: _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
-    EvaluationComponent: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
-    VideoGalleryComponent: _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    FotoGalleryComponent: _components_admin_FotoGalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
-    MainInformationComponent: _components_admin_MainInformationComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
-    AllStatementComponent: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
-    AddJuryComponent: _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
+    NewStatementComponent: _components_NewStatementComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    RemovedStatementComponent: _components_RemovedStatementComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ListParticipantsComponent: _components_ListParticipantsComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    EvaluationResultsComponent: _components_EvaluationResultsComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    EvaluationComponent: _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
+    VideoGalleryComponent: _components_admin_VideoGalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    FotoGalleryComponent: _components_admin_FotoGalleryComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
+    MainInformationComponent: _components_admin_MainInformationComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    AllStatementComponent: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
+    AddJuryComponent: _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   router: router
 });
@@ -55239,9 +57039,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FotoGalleryComponent.vue?vue&type=template&id=55ac80da& */ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&");
+/* harmony import */ var _FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true& */ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true&");
 /* harmony import */ var _FotoGalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FotoGalleryComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& */ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -55249,13 +57051,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _FotoGalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "55ac80da",
   null
   
 )
@@ -55281,19 +57083,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da& ***!
-  \***********************************************************************************************/
+/***/ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=style&index=0&id=55ac80da&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_style_index_0_id_55ac80da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true& ***!
+  \***********************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FotoGalleryComponent.vue?vue&type=template&id=55ac80da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/FotoGalleryComponent.vue?vue&type=template&id=55ac80da&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FotoGalleryComponent_vue_vue_type_template_id_55ac80da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
