@@ -121,13 +121,14 @@
             <div class="container">
                 <h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>
 
-                <table class="table">
-                    <tr>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
+                <table class="table-members">
+                    <tr class="table-title">
+                        <th>N</th>
+                        <th>П.І.Б. /<br>
+                            НАЗВА КОЛЕКТИВУ </th>
+                        <th>Місто</th>
+                        <th>НАЗВА ЗАКЛАДУ</th>
+                        <th>ВИКЛАДАЧ</th>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -186,6 +187,73 @@
                         <td>5</td>
                     </tr>
                 </table>
+                <div class="search-block">
+                    <input type="text" placeholder="ПОШУК">
+                    <select name=""  class="nomination">
+                        <option value="" selected="selected" >номінація</option>
+                        <option value="1">1</option>
+                    </select>
+                    <select name=""  class="category">
+                        <option value="" selected="selected" >вік.категорія</option>
+                        <option value="1">вік.категорія1</option>
+                    </select>
+                    <button class="clean">Очистити</button>
+
+                </div>
+                <ul class="pagination">
+                    <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
+                    <li>1 : 16</li>
+                    <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                </ul>
+            </div>
+
+        </section>
+        <section class="sections video-gallery">
+            <div class="container">
+                <div id="carousel" class="carousel slide" data-ride="carousel">
+                    <img src="img/carousel-img.png" alt="" class="carousel-img">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel" data-slide-to="1"></li>
+                        <li data-target="#carousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
+                        </div>
+                        <div class="carousel-item">
+                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
+                        </div>
+                        <div class="carousel-item">
+                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
+                        </div>
+                    </div>
+
+                </div>
+                <div class="gallery-content">
+                    <div class="row">
+                        <div class="col-xl-3">
+                            <h3 class="title-video">ВІДЕОГАЛЕРЕЯ</h3>
+                            <p class="subtitle">КРАЩИХ РОБІТ</p>
+                            <ul class="pagination">
+                                <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
+                                <li>1 : 16</li>
+                                <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                            </ul>
+                            <button class="archive">АРХІВ</button>
+                        </div>
+                        <div class="col-xl-5">
+                            <video  class="video" controls>
+                                <source src="video/position.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="col-xl-4">
+                            <video  class="video" controls>
+                                <source src="video/position.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <footer class="footer">

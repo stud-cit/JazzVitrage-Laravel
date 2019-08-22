@@ -19,6 +19,30 @@ body
       letter-spacing: 4.8px
       text-transform: uppercase
       text-align: center
+.pagination
+   color: #ffffff
+   font-family: Montserrat
+   font-size: 20px
+   font-weight: 500
+   letter-spacing: -1px
+   margin-top: 15px
+
+   li
+      margin: 0 5px
+      width: 50px
+      height: 50px
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+   .controls
+      font-size: 26px
+      &.active
+         border-radius: 25px
+         background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+         color: #14042f
+
+
 .header
    position: absolute
    top: 0
@@ -228,3 +252,140 @@ body
       border: none
       outline: none
       margin-top: 10px
+.members
+   .table-members
+      margin-top: 25px
+      border-radius: 50px 50px 0 0
+      border: none
+      width: 100%
+      tr
+         background-color: #410655
+         &:nth-child(2n+1)
+            background-color: #810caa
+      th,td
+         padding: 25px 10px
+         text-align: center
+         color: #410655
+         font-family: Montserrat
+         font-size: 16px
+         font-weight: 700
+         letter-spacing: 1.6px
+      td
+         color: #fff
+
+      th
+         border-right: 1px solid #000000
+         color: #410655
+         font-family: "Montserrat"
+         font-size: 16px
+         font-weight: 700
+         letter-spacing: 1.6px
+         line-height: 1.5
+         vertical-align: middle
+   .table-title
+      background-image: linear-gradient(180deg, #f9c003 0%, #f9b703 87%, #803002 100%)
+      border: none
+      th:first-child
+         border-radius: 50px 0 0 0
+      th:last-child
+         border-radius: 0 50px 0 0
+         border: none
+   .search-block
+      border-radius: 0 0 50px 50px
+      padding: 23px 10px
+      display: flex
+      justify-content: center
+      background-image: linear-gradient(180deg, #f9c003 0%, #f3a303 91%, #7d2e02 100%)
+      input
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+         border: none
+         border-radius: 10px 0 0 10px
+         padding: 0 30px
+         height: 64px
+         background-image: linear-gradient(180deg, #ffffff 0%, #f3f3f3 90%, #808080 100%)
+         color: #747474
+         font-family: Montserrat
+         font-size: 20px
+         font-weight: 700
+         letter-spacing: 2px
+         min-width: 380px
+      select
+         height: 64px
+         border: none
+         padding: 0 20px
+         min-width: 190px
+         text-align: center
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+         background-image: linear-gradient(180deg, #ffffff 0%, #f3f3f3 89%, #808080 100%)
+         color: #3f3d56
+         font-family: "Open Sans"
+         font-size: 20px
+         font-weight: 400
+         &:last-of-type
+            border-radius: 0 10px 10px 0
+      .clean
+         height: 64px
+         width: 160px
+         margin-left: 20px
+         border: none
+         outline: none
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+         border-radius: 10px
+         background-image: linear-gradient(180deg, #810caa 0%, #760b9b 89%, #410655 100%)
+         color: #ffffff
+         font-family: "Open Sans"
+         font-size: 20px
+         font-weight: 400
+   .pagination
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 20px
+      font-weight: 500
+      letter-spacing: -1px
+      margin-top: 15px
+      display: flex
+      justify-content: center
+
+      li
+         margin: 0 5px
+         width: 50px
+         height: 50px
+         display: flex
+         justify-content: center
+         align-items: center
+         cursor: pointer
+      .controls
+         font-size: 26px
+         &.active
+            border-radius: 25px
+            background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+            color: #14042f
+.video-gallery
+   padding-top: 35px
+   .carousel
+      padding: 0 95px
+      padding-bottom: 40px
+      position: relative
+      .carousel-item
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 20px
+         font-weight: 400
+         letter-spacing: 2px
+         text-align: right
+      .carousel-img
+         position: absolute
+         right: 0
+         top: 0
+      .carousel-indicators
+         li
+            background-color: #707070
+            width: 15px
+            height: 15px
+            border-radius: 50%
+            &.active
+               background-color: #e2e2e2
+   .gallery-content
+      margin-top: 150px
+      .video
+         width: 100%

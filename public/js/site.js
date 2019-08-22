@@ -1895,6 +1895,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -37242,7 +37310,9 @@ var render = function() {
     _vm._v(" "),
     _vm._m(5),
     _vm._v(" "),
-    _vm._m(6)
+    _vm._m(6),
+    _vm._v(" "),
+    _vm._m(7)
   ])
 }
 var staticRenderFns = [
@@ -37500,17 +37570,21 @@ var staticRenderFns = [
           _vm._v("СПИСКИ УЧАСНИКІВ")
         ]),
         _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c("tr", [
-            _c("th", [_vm._v("1")]),
+        _c("table", { staticClass: "table-members" }, [
+          _c("tr", { staticClass: "table-title" }, [
+            _c("th", [_vm._v("N")]),
             _vm._v(" "),
-            _c("th", [_vm._v("2")]),
+            _c("th", [
+              _vm._v("П.І.Б. /"),
+              _c("br"),
+              _vm._v("\n                        НАЗВА КОЛЕКТИВУ ")
+            ]),
             _vm._v(" "),
-            _c("th", [_vm._v("3")]),
+            _c("th", [_vm._v("Місто")]),
             _vm._v(" "),
-            _c("th", [_vm._v("4")]),
+            _c("th", [_vm._v("НАЗВА ЗАКЛАДУ")]),
             _vm._v(" "),
-            _c("th", [_vm._v("5")])
+            _c("th", [_vm._v("ВИКЛАДАЧ")])
           ]),
           _vm._v(" "),
           _c("tr", [
@@ -37607,6 +37681,151 @@ var staticRenderFns = [
             _c("td", [_vm._v("4")]),
             _vm._v(" "),
             _c("td", [_vm._v("5")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "search-block" }, [
+          _c("input", { attrs: { type: "text", placeholder: "ПОШУК" } }),
+          _vm._v(" "),
+          _c("select", { staticClass: "nomination", attrs: { name: "" } }, [
+            _c("option", { attrs: { value: "", selected: "selected" } }, [
+              _vm._v("номінація")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+          ]),
+          _vm._v(" "),
+          _c("select", { staticClass: "category", attrs: { name: "" } }, [
+            _c("option", { attrs: { value: "", selected: "selected" } }, [
+              _vm._v("вік.категорія")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("вік.категорія1")])
+          ]),
+          _vm._v(" "),
+          _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "pagination" }, [
+          _c("li", { staticClass: "controls" }, [
+            _c("i", {
+              staticClass: "fa fa-long-arrow-left",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("li", [_vm._v("1 : 16")]),
+          _vm._v(" "),
+          _c("li", { staticClass: "controls active" }, [
+            _c("i", {
+              staticClass: "fa fa-long-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections video-gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass: "carousel slide",
+            attrs: { id: "carousel", "data-ride": "carousel" }
+          },
+          [
+            _c("img", {
+              staticClass: "carousel-img",
+              attrs: { src: "img/carousel-img.png", alt: "" }
+            }),
+            _vm._v(" "),
+            _c("ol", { staticClass: "carousel-indicators" }, [
+              _c("li", {
+                staticClass: "active",
+                attrs: { "data-target": "#carousel", "data-slide-to": "0" }
+              }),
+              _vm._v(" "),
+              _c("li", {
+                attrs: { "data-target": "#carousel", "data-slide-to": "1" }
+              }),
+              _vm._v(" "),
+              _c("li", {
+                attrs: { "data-target": "#carousel", "data-slide-to": "2" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "carousel-inner" }, [
+              _c("div", { staticClass: "carousel-item active" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "carousel-item" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "carousel-item" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "gallery-content" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-xl-3" }, [
+              _c("h3", { staticClass: "title-video" }, [
+                _vm._v("ВІДЕОГАЛЕРЕЯ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "controls" }, [
+                  _c("i", {
+                    staticClass: "fa fa-long-arrow-left",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("li", [_vm._v("1 : 16")]),
+                _vm._v(" "),
+                _c("li", { staticClass: "controls active" }, [
+                  _c("i", {
+                    staticClass: "fa fa-long-arrow-right",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-5" }, [
+              _c("video", { staticClass: "video", attrs: { controls: "" } }, [
+                _c("source", {
+                  attrs: { src: "video/position.mp4", type: "video/mp4" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-4" }, [
+              _c("video", { staticClass: "video", attrs: { controls: "" } }, [
+                _c("source", {
+                  attrs: { src: "video/position.mp4", type: "video/mp4" }
+                })
+              ])
+            ])
           ])
         ])
       ])
