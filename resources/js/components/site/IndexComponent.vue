@@ -11,11 +11,20 @@
                     </button>
                     <div class="collapse navbar-collapse nav-menu" id="nav-menu">
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link active" href="#">КОНКУРС</a>
-                            <a class="nav-item nav-link" href="#">ГАЛЕРЕЯ</a>
-                            <a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a>
-                            <a class="nav-item nav-link" href="#">КОНТАКТИ</a>
-                            <a class="nav-item nav-link" href="#">Конфр</a>
+                            <li class="dropdown">
+                                <a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+
+
+                            <li><a class="nav-item nav-link" href="#">ГАЛЕРЕЯ</a></li>
+                            <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
+                            <li><a class="nav-item nav-link" href="#">КОНТАКТИ</a></li>
+                            <li><a class="nav-item nav-link" href="#">Конфр</a></li>
 
 
                         </div>
@@ -283,9 +292,21 @@
         <section class="sections contacts">
             <div class="left-layer">
                 <img src="img/contacts-layer.png" alt="">
-                <!--<div class="absolute-layer">-->
-
-                <!--</div>-->
+                <div class="text-layer">
+                    <div class="text-row">
+                        <p class="title-field">Адреса: </p>
+                        <p class="text-field">Суми, Сумська область,
+                            40000</p>
+                    </div>
+                    <div class="text-row">
+                        <p class="title-field">Телефон: </p>
+                        <p class="text-field">+38 (050) 123 4568</p>
+                    </div>
+                    <div class="text-row">
+                        <p class="title-field">Соц. мережі: </p>
+                        <p class="text-field">Facebok</p>
+                    </div>
+                </div>
             </div>
             <div class="right-layer">
                 <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
@@ -300,7 +321,7 @@
                         <input type="email" placeholder="ПОШТА">
                     </div>
                     <div class="form-row">
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" cols="30" rows="6"></textarea>
                     </div>
                     <div class="text-center">
                         <button class="submit">НАДІСЛАТИ</button>
