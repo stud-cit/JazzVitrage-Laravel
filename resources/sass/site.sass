@@ -56,7 +56,25 @@ body
       padding: 0
       .nav-menu
          flex-grow: 0
+         .dropdown-menu
+            padding: 0
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5)
+            .dropdown-item
+               padding: 16px
+               text-align: center
+               color: #410655
+               font-family: Montserrat
+               font-size: 14px
+               font-weight: 700
+               letter-spacing: 1.4px
+               text-transform: uppercase
+               &:hover
+                  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16)
+                  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
 
+         .dropdown-toggle
+            &::after
+              display: none
          .nav-link
              padding: 12px
              color: #393939
@@ -445,6 +463,34 @@ body
       z-index: 5
       img
          height: 100%
+      .text-layer
+         position: absolute
+         right: 150px
+         top: 330px
+         height: 45%
+         display: flex
+         flex-direction: column
+         justify-content: space-between
+         z-index: 5
+         .text-row
+            .title-field
+               display: block
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 28px
+               font-weight: 600
+               margin-bottom: 20px
+               height: 28px
+            .text-field
+               display: block
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 400
+               margin-bottom: 10px
+               height: 20px
+
+
 
    .right-layer
       width: 100%

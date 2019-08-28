@@ -73,6 +73,31 @@ body {
   flex-grow: 0;
 }
 
+.header .navbar-light .nav-menu .dropdown-menu {
+  padding: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.header .navbar-light .nav-menu .dropdown-menu .dropdown-item {
+  padding: 16px;
+  text-align: center;
+  color: #410655;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.header .navbar-light .nav-menu .dropdown-menu .dropdown-item:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+}
+
+.header .navbar-light .nav-menu .dropdown-toggle::after {
+  display: none;
+}
+
 .header .navbar-light .nav-menu .nav-link {
   padding: 12px;
   color: #393939;
@@ -575,6 +600,37 @@ body {
 
 .contacts .left-layer img {
   height: 100%;
+}
+
+.contacts .left-layer .text-layer {
+  position: absolute;
+  right: 150px;
+  top: 330px;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.contacts .left-layer .text-layer .text-row .title-field {
+  display: block;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  height: 28px;
+}
+
+.contacts .left-layer .text-layer .text-row .text-field {
+  display: block;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  height: 20px;
 }
 
 .contacts .right-layer {

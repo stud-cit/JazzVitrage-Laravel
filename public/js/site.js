@@ -2017,6 +2017,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -37415,38 +37436,80 @@ var staticRenderFns = [
           },
           [
             _c("div", { staticClass: "navbar-nav" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-item nav-link active",
-                  attrs: { href: "#" }
-                },
-                [_vm._v("КОНКУРС")]
-              ),
+              _c("li", { staticClass: "dropdown" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-item nav-link active dropdown-toggle",
+                    attrs: {
+                      href: "#",
+                      id: "navbarDropdown",
+                      role: "button",
+                      "data-toggle": "dropdown"
+                    }
+                  },
+                  [_vm._v("КОНКУРС")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "navbarDropdown" }
+                  },
+                  [
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Action")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Another action")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Something else here")]
+                    )
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                [_vm._v("ГАЛЕРЕЯ")]
-              ),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("ГАЛЕРЕЯ")]
+                )
+              ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                [_vm._v("ПОЛОЖЕННЯ")]
-              ),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("ПОЛОЖЕННЯ")]
+                )
+              ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                [_vm._v("КОНТАКТИ")]
-              ),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("КОНТАКТИ")]
+                )
+              ]),
               _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                [_vm._v("Конфр")]
-              )
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("Конфр")]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("button", { staticClass: "add-application" }, [
@@ -37924,7 +37987,31 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "sections contacts" }, [
       _c("div", { staticClass: "left-layer" }, [
-        _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } })
+        _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-layer" }, [
+          _c("div", { staticClass: "text-row" }, [
+            _c("p", { staticClass: "title-field" }, [_vm._v("Адреса: ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-field" }, [
+              _vm._v("Суми, Сумська область,\n                        40000")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-row" }, [
+            _c("p", { staticClass: "title-field" }, [_vm._v("Телефон: ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-field" }, [
+              _vm._v("+38 (050) 123 4568")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-row" }, [
+            _c("p", { staticClass: "title-field" }, [_vm._v("Соц. мережі: ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-field" }, [_vm._v("Facebok")])
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "right-layer" }, [
@@ -37959,7 +38046,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "form-row" }, [
             _c("textarea", {
-              attrs: { name: "", id: "", cols: "30", rows: "10" }
+              attrs: { name: "", id: "", cols: "30", rows: "6" }
             })
           ]),
           _vm._v(" "),
