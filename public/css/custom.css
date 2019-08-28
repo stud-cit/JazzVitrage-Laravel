@@ -62,3 +62,37 @@
     left: 40%;
     top: 30%;
 }
+.inline {
+    display: inline-block;
+}
+.brtop {
+    margin-bottom:-5px;
+    font-weight: bold;
+    font-size: 12px;
+    display:inline-block;
+}
+.btn-width {
+    width: 150px;
+    margin-right: 38px;
+}
+.nomination-width {
+    width: 270px;
+}
+.button-position {
+    margin-top: -39px;
+    margin-right: 18px;
+    height: 38px;
+    font-size: 2.5em;
+}
+.additional-position {
+    padding-top: 14px;
+    padding-left: 16px;
+}
+#additional-info {
+    width: 320px;
+}
+.add-button {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    float: right;
+}

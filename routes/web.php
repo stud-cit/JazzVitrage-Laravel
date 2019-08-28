@@ -51,6 +51,18 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
         return view('admin.admin.videoGallery');
     }]);
 
+    Route::get('/admin/foto-gallery', ['as' => 'admin.admin.fotoGallery', function () {
+        return view('admin.admin.fotoGallery');
+    }]);
+
+    Route::get('/admin/main-information', ['as' => 'admin.admin.mainInformation', function () {
+        return view('admin.admin.mainInformation');
+    }]);
+
+    Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
+        return view('admin.superAdmin.addJury');
+    }]);
+
 // VUE базовые роуты
 
     Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
@@ -62,9 +74,13 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 // VUE запросы
 
+    Route::get('get-all-jury', 'ApplicationController@getAllJury');
+
     Route::get('get-members',  'ApplicationController@getMembers');
 
     Route::get('get-all-members',  'ApplicationController@getAllMembers');
+
+    Route::get('get-member/{id}/',  'ApplicationController@getMember');
 
     Route::post('archive-members/{id}/',  'ApplicationController@archiveMembers');
 

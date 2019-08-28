@@ -19,8 +19,14 @@ class Application extends Model
 	}
 	public function soloDuet()
 	{
-		return $this->hasOne('App\Models\SoloDuet', 'application_id');
+		return $this->hasMany('App\Models\SoloDuet', 'application_id');
 	}
-
-
+	public function preparation()
+	{
+		return $this->hasOne('App\Models\Preparation', 'application_id');
+	}
+	public function presentation()
+	{
+		return $this->hasOne('App\Models\Presentation', 'application_id');
+	}
 }

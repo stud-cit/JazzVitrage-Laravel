@@ -19,7 +19,7 @@
             </div>
             <div class="col-2"></div>
             <div class="col-5">
-                <label for="foto">Відео</label>
+                <label for="foto">Фото в оригінальній якості</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="foto">
                     <label class="custom-file-label"></label>

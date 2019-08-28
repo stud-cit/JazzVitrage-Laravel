@@ -16,9 +16,9 @@
       <tbody v-for="(item, index) in filteredList">
             <tr>
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</td>
-                <td>{{ item.app_type.name }}</td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" :data-value="item.application_id" @click="archiveMember"></i></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.type }}</td>
+                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" :data-value="item.id" @click="archiveMember"></i></td>
             </tr>
       </tbody>
       </table>
@@ -40,11 +40,7 @@ export default {
     computed: {
         filteredList() {
             return this.members.filter(members => {
-                if(!members.group) {
-                    return members.solo_duet.name.toLowerCase().includes(this.search.toLowerCase())
-                } else {
-                    return members.group.name.toLowerCase().includes(this.search.toLowerCase())
-                }
+                return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
             })
         }
     },
@@ -52,7 +48,30 @@ export default {
         getFullList() {
             axios.get('/get-all-members')
             .then((response) => {
-                this.members = response.data;
+                this.members = [];
+                response.data.forEach(member => {
+                    if(member.solo_duet.length == 0) {
+                        this.members.push({
+                            name: member.group.name, 
+                            type: member.app_type.name,
+                            id: member.application_id
+                        })
+                    }
+                    else if(member.solo_duet.length == 1) {
+                        this.members.push({
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                            type: member.app_type.name,
+                            id: member.application_id
+                        })
+                    }
+                    else if(member.solo_duet.length == 2) {
+                        this.members.push({
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
+                            type: member.app_type.name,
+                            id: member.application_id
+                        })
+                    }
+                });
             })
         },
         archiveMember(event){

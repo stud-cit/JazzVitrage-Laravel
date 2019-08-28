@@ -12,8 +12,14 @@
             <tr>
 
                 <td>{{ index + 1 }}</td>
-                <td>
-                    <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ item.solo_duet ? item.solo_duet.name + ' ' + item.solo_duet.surname + ' ' + item.solo_duet.patronomic : item.group.name }}</router-link>
+                <td v-if="item.solo_duet.length == 0">
+                    <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ item.group.name }}</router-link>
+                </td>
+                <td v-if="item.solo_duet.length == 1">
+                    <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ `${item.solo_duet[0].name} ${item.solo_duet[0].surname} ${item.solo_duet[0].patronomic}` }}</router-link>
+                </td>
+                <td v-if="item.solo_duet.length == 2">
+                    <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ `${item.solo_duet[0].name} ${item.solo_duet[0].surname} ${item.solo_duet[0].patronomic}` }}, <br> {{ `${item.solo_duet[1].name} ${item.solo_duet[1].surname} ${item.solo_duet[1].patronomic}` }}</router-link>
                 </td>
                 <td>{{ item.app_type.name }}</td>
             </tr>
@@ -27,7 +33,7 @@
     export default {
         data() {
             return {
-                members: [],
+                members: '',
             }
         },
         created() {
