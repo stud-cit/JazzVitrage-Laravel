@@ -12,7 +12,6 @@ class PreparationTableSeeder extends Seeder
     public function run()
     {
         DB::table('preparation')->insert([
-            'preparation_id' => 1,
             'school_one' => 'Сумська Музична школа 1',
             'school_address' => 'м.Суми, вул.Засумська 1',
             'school_email' => 'email@school.lol1',
@@ -29,7 +28,6 @@ class PreparationTableSeeder extends Seeder
             'application_id' => 1,
         ]);
         DB::table('preparation')->insert([
-            'preparation_id' => 1,
             'school_one' => 'Сумська Музична школа 2',
             'school_address' => 'м.Суми, вул.Засумська 2',
             'school_email' => 'email@school.lol2',
@@ -46,7 +44,6 @@ class PreparationTableSeeder extends Seeder
             'application_id' => 2,
         ]);
         DB::table('preparation')->insert([
-            'preparation_id' => 1,
             'school_one' => 'Сумська Музична школа 1',
             'school_address' => 'м.Суми, вул.Засумська 1',
             'school_email' => 'email@school.lol1',
