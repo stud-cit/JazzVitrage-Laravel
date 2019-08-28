@@ -210,12 +210,12 @@
         </section>
         <section class="sections video-gallery">
             <div class="container">
-                <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div id="carousel-text" class="carousel slide" data-ride="carousel">
                     <img src="img/carousel-img.png" alt="" class="carousel-img">
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel" data-slide-to="1"></li>
-                        <li data-target="#carousel" data-slide-to="2"></li>
+                        <li data-target="#carousel-text" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-text" data-slide-to="1"></li>
+                        <li data-target="#carousel-text" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -242,24 +242,78 @@
                             </ul>
                             <button class="archive">АРХІВ</button>
                         </div>
-                        <div class="col-xl-5">
-                            <video  class="video" controls>
-                                <source src="video/position.mp4" type="video/mp4">
+                        <div class="col-xl-5 d-flex align-items-end">
+                            <!--<div id="carousel-video"  class="carousel slide" data-ride="carousel">-->
+
+
+                                <!--<div class="carousel-inner">-->
+                                    <!--<div  class="carousel-item active" >-->
+                                        <!--<video  class="video" controls>-->
+                                            <!--<source src="video/position.mp4" type="video/mp4">-->
+                                        <!--</video>-->
+                                    <!--</div>-->
+                                    <!--<div  class="carousel-item" >-->
+                                        <!--<video  class="video" controls>-->
+                                            <!--<source src="video/mult1.mp4" type="video/mp4">-->
+                                        <!--</video>-->
+                                    <!--</div>-->
+                                    <!--<div  class="carousel-item" >-->
+                                        <!--<video  class="video" controls>-->
+                                            <!--&lt;!&ndash;<source src="video/position.mp4" type="video/mp4">&ndash;&gt;-->
+                                        <!--</video>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!---->
+
+                            <!--</div>-->
+                            <video width="440" height="302" poster="img/video-bg.png" class="video active-video" controls>
+                                <source src="video/mult1.mp4" type="video/mp4">
                             </video>
+
                         </div>
-                        <div class="col-xl-4">
-                            <video  class="video" controls>
-                                <source src="video/position.mp4" type="video/mp4">
+                        <div class="col-xl-4 d-flex align-items-end">
+                            <video  class="video" controls poster="img/video-bg.png">
+                                <source src="video/mult1.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <section class="sections contacts">
+            <div class="left-layer">
+                <img src="img/contacts-layer.png" alt="">
+                <!--<div class="absolute-layer">-->
+
+                <!--</div>-->
+            </div>
+            <div class="right-layer">
+                <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
+                <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
+                <form action="" class="contacts-form">
+                    <div class="form-row">
+                        <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
+                        <input type="text" placeholder="ВАШЕ ІМ'Я">
+                    </div>
+                    <div class="form-row">
+                        <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
+                        <input type="email" placeholder="ПОШТА">
+                    </div>
+                    <div class="form-row">
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button class="submit">НАДІСЛАТИ</button>
+                    </div>
+                </form>
+            </div>
+        </section>
         <footer class="footer">
-            <p class="text-block">music-concurs@email.com</p>
-            <p class="text-block">+38 (050) 123 4568</p>
-            <p class="text-block">Created by studCIT</p>
+            <div class="container">
+                <p class="text-block">music-concurs@email.com</p>
+                <p class="text-block">+38 (050) 123 4568</p>
+                <p class="text-block">Created by studCIT</p>
+            </div>
         </footer>
     </div>
 </template>
@@ -280,7 +334,19 @@
 
         },
         methods: {
+            nextSlide(event){
 
+                // const container = document.getElementById('carousel-video');
+                console.log(event);
+                // const activeEl = container.querySelector('.active');
+                // if(activeEl.nextSibling) {
+                //     const nextEl = activeEl.nextSibling;
+                // }
+                // else {
+                //     const nextEl = container.firstChild;
+                // }
+                // console.log(nextEl);
+            }
 
         },
 

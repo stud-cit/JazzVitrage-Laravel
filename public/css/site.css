@@ -152,6 +152,17 @@ body {
   top: 135px;
 }
 
+@media (max-width: 1400px) {
+  .preview .top-layout {
+    -webkit-clip-path: polygon(0 0, 94% 0, 70% 100%, 0% 100%);
+            clip-path: polygon(0 0, 94% 0, 70% 100%, 0% 100%);
+  }
+
+  .preview::after {
+    right: -20%;
+  }
+}
+
 .nominations {
   padding-top: 60px;
 }
@@ -396,6 +407,7 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   min-width: 380px;
+  outline: none;
 }
 
 .members .search-block select {
@@ -410,6 +422,7 @@ body {
   font-family: "Open Sans";
   font-size: 20px;
   font-weight: 400;
+  outline: none;
 }
 
 .members .search-block select:last-of-type {
@@ -464,15 +477,16 @@ body {
 
 .video-gallery {
   padding-top: 35px;
+  background-color: black;
 }
 
-.video-gallery .carousel {
+.video-gallery #carousel-text {
   padding: 0 95px;
   padding-bottom: 40px;
   position: relative;
 }
 
-.video-gallery .carousel .carousel-item {
+.video-gallery #carousel-text .carousel-item {
   color: #ffffff;
   font-family: Montserrat;
   font-size: 20px;
@@ -481,20 +495,20 @@ body {
   text-align: right;
 }
 
-.video-gallery .carousel .carousel-img {
+.video-gallery #carousel-text .carousel-img {
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.video-gallery .carousel .carousel-indicators li {
+.video-gallery #carousel-text .carousel-indicators li {
   background-color: #707070;
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
 
-.video-gallery .carousel .carousel-indicators li.active {
+.video-gallery #carousel-text .carousel-indicators li.active {
   background-color: #e2e2e2;
 }
 
@@ -504,5 +518,264 @@ body {
 
 .video-gallery .gallery-content .video {
   width: 100%;
+  height: 300px;
+  outline: none;
+}
+
+.video-gallery .gallery-content .title-video {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2.6px;
+}
+
+.video-gallery .gallery-content .subtitle {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  margin-bottom: 80px;
+  margin-top: 5px;
+}
+
+.video-gallery .gallery-content .archive {
+  margin-top: 30px;
+  width: 255px;
+  height: 65px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+  border: none;
+  outline: none;
+  color: #410655;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+}
+
+.contacts {
+  padding: 0 0 0 0;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.contacts .left-layer {
+  position: absolute;
+  width: 42%;
+  line-height: 0;
+  left: -10px;
+  top: 0;
+  z-index: 5;
+}
+
+.contacts .left-layer img {
+  height: 100%;
+}
+
+.contacts .right-layer {
+  width: 100%;
+  background: #ffffff url(/images/contacts-microphone.png?020cd38d303bf985624f80584989594f) no-repeat right 60px bottom;
+  background-size: auto 90%;
+  margin-top: 90px;
+  padding: 75px 20px 170px 45%;
+  margin-bottom: 50px;
+}
+
+.contacts .right-layer .contacts-title {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #7800a8;
+  font-family: Montserrat;
+  font-size: 43px;
+  font-weight: 900;
+  letter-spacing: 4.3px;
+}
+
+.contacts .right-layer .subtitle {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #7800a8;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+}
+
+.contacts .right-layer .contacts-form {
+  padding: 30px 0;
+}
+
+.contacts .right-layer .contacts-form .form-row {
+  margin: 30px 0;
+  max-width: 635px;
+  border: 1px solid #a1a1a1;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.contacts .right-layer .contacts-form .form-row input,
+.contacts .right-layer .contacts-form .form-row textarea {
+  border: none;
+  padding: 17px 30px;
+  flex-grow: 1;
+  outline: none;
+  resize: none;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row input::-webkit-input-placeholder,
+.contacts .right-layer .contacts-form .form-row textarea::-webkit-input-placeholder {
+  color: #bebebe;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row input::-moz-placeholder,
+.contacts .right-layer .contacts-form .form-row textarea::-moz-placeholder {
+  color: #bebebe;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row input:-ms-input-placeholder,
+.contacts .right-layer .contacts-form .form-row textarea:-ms-input-placeholder {
+  color: #bebebe;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row input::-ms-input-placeholder,
+.contacts .right-layer .contacts-form .form-row textarea::-ms-input-placeholder {
+  color: #bebebe;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row input::placeholder,
+.contacts .right-layer .contacts-form .form-row textarea::placeholder {
+  color: #bebebe;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row span {
+  height: 58px;
+  width: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #bebebe;
+  border-right: 1px solid #a1a1a1;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within {
+  border: 1px solid #ffa407;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within input::-webkit-input-placeholder {
+  color: #ffa407;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within input::-moz-placeholder {
+  color: #ffa407;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within input:-ms-input-placeholder {
+  color: #ffa407;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within input::-ms-input-placeholder {
+  color: #ffa407;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within input::placeholder {
+  color: #ffa407;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.contacts .right-layer .contacts-form .form-row:focus-within span {
+  color: #ffa407;
+  border-right: 1px solid #ffa407;
+}
+
+.contacts .right-layer .contacts-form .text-center {
+  max-width: 635px;
+}
+
+.contacts .right-layer .contacts-form .submit {
+  width: 255px;
+  height: 65px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 90%, #ffa064 100%);
+  color: #410655;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  outline: none;
+  border: none;
+}
+
+@media (max-width: 1400px) {
+  .contacts .left-layer {
+    width: 60%;
+    left: -18%;
+  }
+}
+
+.footer {
+  padding: 40px 0;
+  background-color: #393939;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer .container .text-block {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
 }
 

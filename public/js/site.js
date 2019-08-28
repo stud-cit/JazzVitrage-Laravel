@@ -1963,13 +1963,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
   },
   created: function created() {},
   computed: {},
-  methods: {}
+  methods: {
+    nextSlide: function nextSlide(event) {
+      // const container = document.getElementById('carousel-video');
+      console.log(event); // const activeEl = container.querySelector('.active');
+      // if(activeEl.nextSibling) {
+      //     const nextEl = activeEl.nextSibling;
+      // }
+      // else {
+      //     const nextEl = container.firstChild;
+      // }
+      // console.log(nextEl);
+    }
+  }
 });
 
 /***/ }),
@@ -37312,7 +37378,9 @@ var render = function() {
     _vm._v(" "),
     _vm._m(6),
     _vm._v(" "),
-    _vm._m(7)
+    _vm._m(7),
+    _vm._v(" "),
+    _vm._m(8)
   ])
 }
 var staticRenderFns = [
@@ -37736,7 +37804,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass: "carousel slide",
-            attrs: { id: "carousel", "data-ride": "carousel" }
+            attrs: { id: "carousel-text", "data-ride": "carousel" }
           },
           [
             _c("img", {
@@ -37747,15 +37815,15 @@ var staticRenderFns = [
             _c("ol", { staticClass: "carousel-indicators" }, [
               _c("li", {
                 staticClass: "active",
-                attrs: { "data-target": "#carousel", "data-slide-to": "0" }
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "0" }
               }),
               _vm._v(" "),
               _c("li", {
-                attrs: { "data-target": "#carousel", "data-slide-to": "1" }
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "1" }
               }),
               _vm._v(" "),
               _c("li", {
-                attrs: { "data-target": "#carousel", "data-slide-to": "2" }
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "2" }
               })
             ]),
             _vm._v(" "),
@@ -37811,20 +37879,39 @@ var staticRenderFns = [
               _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-xl-5" }, [
-              _c("video", { staticClass: "video", attrs: { controls: "" } }, [
-                _c("source", {
-                  attrs: { src: "video/position.mp4", type: "video/mp4" }
-                })
-              ])
+            _c("div", { staticClass: "col-xl-5 d-flex align-items-end" }, [
+              _c(
+                "video",
+                {
+                  staticClass: "video active-video",
+                  attrs: {
+                    width: "440",
+                    height: "302",
+                    poster: "img/video-bg.png",
+                    controls: ""
+                  }
+                },
+                [
+                  _c("source", {
+                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
+                  })
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4" }, [
-              _c("video", { staticClass: "video", attrs: { controls: "" } }, [
-                _c("source", {
-                  attrs: { src: "video/position.mp4", type: "video/mp4" }
-                })
-              ])
+            _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
+              _c(
+                "video",
+                {
+                  staticClass: "video",
+                  attrs: { controls: "", poster: "img/video-bg.png" }
+                },
+                [
+                  _c("source", {
+                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
+                  })
+                ]
+              )
             ])
           ])
         ])
@@ -37835,14 +37922,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "footer" }, [
-      _c("p", { staticClass: "text-block" }, [
-        _vm._v("music-concurs@email.com")
+    return _c("section", { staticClass: "sections contacts" }, [
+      _c("div", { staticClass: "left-layer" }, [
+        _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } })
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "text-block" }, [_vm._v("+38 (050) 123 4568")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "text-block" }, [_vm._v("Created by studCIT")])
+      _c("div", { staticClass: "right-layer" }, [
+        _c("h2", { staticClass: "contacts-title" }, [
+          _vm._v("У ВАС Є ПИТАННЯ?")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "subtitle" }, [_vm._v("ЗАПОВНІТЬ ФОРМУ НИЖЧЕ")]),
+        _vm._v(" "),
+        _c("form", { staticClass: "contacts-form", attrs: { action: "" } }, [
+          _c("div", { staticClass: "form-row" }, [
+            _c("span", [
+              _c("i", {
+                staticClass: "fa fa-2x fa-user",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text", placeholder: "ВАШЕ ІМ'Я" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("span", [
+              _c("i", {
+                staticClass: "fa fa-2x fa-envelope",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "email", placeholder: "ПОШТА" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("textarea", {
+              attrs: { name: "", id: "", cols: "30", rows: "10" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-center" }, [
+            _c("button", { staticClass: "submit" }, [_vm._v("НАДІСЛАТИ")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "footer" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("p", { staticClass: "text-block" }, [
+          _vm._v("music-concurs@email.com")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-block" }, [_vm._v("+38 (050) 123 4568")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-block" }, [_vm._v("Created by studCIT")])
+      ])
     ])
   }
 ]
