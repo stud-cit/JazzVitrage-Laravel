@@ -4,8 +4,10 @@ require('./bootstrap');
 import Vue from 'vue';
 
 
-
+import HeaderComponent from './components/site/HeaderComponent';
+import FooterComponent from './components/site/FooterComponent';
 import Index from './components/site/IndexComponent';
+import MembersList from './components/site/MembersListComponent';
 
 import VueRouter from 'vue-router';
 
@@ -22,11 +24,11 @@ const router = new VueRouter({
             name: 'index',
             component: Index
         },
-        // {
-        //     path: '/admin/all-statements',
-        //     name: 'jury-all-statements',
-        //     component: AllStatementComponent,
-        // },
+        {
+            path: '/members',
+            name: 'members',
+            component: MembersList,
+        },
         // {
         //     path: '/admin/all-statements/:id',
         //     name: 'jury-evaluation',
@@ -39,6 +41,9 @@ const app = new Vue({
     el: '#site-app',
     components: {
         Index,
+        MembersList,
+        HeaderComponent,
+        FooterComponent
     },
     router
 });

@@ -3,12 +3,6 @@ body {
   position: relative;
 }
 
-.main-section {
-  padding-top: 135px;
-  background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
-  background-size: cover;
-}
-
 .sections {
   background-color: #14042f;
   padding-top: 60px;
@@ -136,6 +130,12 @@ body {
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+.main-section {
+  padding-top: 135px;
+  background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
+  background-size: cover;
 }
 
 .preview {
@@ -638,7 +638,7 @@ body {
   background: #ffffff url(/images/contacts-microphone.png?020cd38d303bf985624f80584989594f) no-repeat right 60px bottom;
   background-size: auto 90%;
   margin-top: 90px;
-  padding: 75px 20px 170px 45%;
+  padding: 75px 20px 150px 45%;
   margin-bottom: 50px;
 }
 
