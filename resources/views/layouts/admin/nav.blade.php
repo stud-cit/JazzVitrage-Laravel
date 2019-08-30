@@ -49,19 +49,26 @@
 					</a>
 				</li>
 
-				<li class="nav-item" title="Інформація">
-					<a class="nav-link" href="/admin/information">
-						<i class="fa fa-info-circle"></i>
-						<span class="nav-link-text">Інформація</span>
-					</a>
-				</li>
-
 				{{-- Супер адмін --}}
 
 				<li class="nav-item" title="Додати журі">
 					<a class="nav-link" href="/admin/add-jury">
 						<i class="fa fa-gavel"></i>
 						<span class="nav-link-text">Додати журі</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Додати в орг. комітет">
+					<a class="nav-link" href="/admin/add-to-org-committee">
+						<i class="fa fa-users"></i>
+						<span class="nav-link-text">Додати в орг. комітет</span>
+					</a>
+				</li>
+
+				<li class="nav-item" title="Додати адміністратора">
+					<a class="nav-link" href="/admin/add-admin-org-committee">
+						<i class="fa fa-users"></i>
+						<span class="nav-link-text">Додати адміністратора</span>
 					</a>
 				</li>
 
@@ -83,15 +90,8 @@
 
 				<li class="nav-item" title="Загальна інформація">
 					<a class="nav-link" href="/admin/main-information">
-						<i class="fa fa-video-camera"></i>
+						<i class="fa fa-info-circle"></i>
 						<span class="nav-link-text">Загальна інформація</span>
-					</a>
-				</li>
-
-				<li class="nav-item" title="Комітет">
-					<a class="nav-link" href="#">
-						<i class="fa fa-video-camera"></i>
-						<span class="nav-link-text">Комітет</span>
 					</a>
 				</li>
 
@@ -99,13 +99,6 @@
 					<a class="nav-link" href="#">
 						<i class="fa fa-video-camera"></i>
 						<span class="nav-link-text">Положення</span>
-					</a>
-				</li> 
-
-				<li class="nav-item" title="Журі">
-					<a class="nav-link" href="#">
-						<i class="fa fa-video-camera"></i>
-						<span class="nav-link-text">Журі</span>
 					</a>
 				</li> 
 
@@ -130,7 +123,7 @@
 			<div class="user-block">
 				<div class="user-content d-none d-lg-flex">
 					<img src="{{ url('/') }}/img/user.png" alt="">
-					<div class="welcome">Ви увійшли як Name</div>
+					<div class="welcome">Ви увійшли як </div>
 				</div>
 				<a class="logout" data-toggle="modal" data-target="#modalLogout">
 					<i class="fa fa-fw fa-sign-out"></i>Вихід

@@ -2,8 +2,6 @@
 
 //Головна
 Route::get('/', 'SiteController@index')->name('site');
-
-
 Route::get('/application', 'ApplicationController@index');
 Route::post('/application', 'ApplicationController@store');
 
@@ -63,6 +61,13 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
         return view('admin.superAdmin.addJury');
     }]);
 
+    Route::get('/admin/add-to-org-committee', ['as' => 'admin.superAdmin.addToOrgCommittee', function () {
+        return view('admin.superAdmin.addToOrgCommittee');
+    }]);
+    Route::get('/admin/add-admin-org-committee', ['as' => 'admin.superAdmin.addAdminOrgCommittee', function () {
+        return view('admin.superAdmin.addAdminOrgCommittee');
+    }]);
+
 // VUE базовые роуты
 
     Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
@@ -79,7 +84,14 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::post('post-foto', 'GalleryController@postFoto');
     Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
 
-    Route::get('get-all-jury', 'ApplicationController@getAllJury');
+    Route::get('get-all-jury', 'UserController@getAllJury');
+    Route::get('get-all-org', 'UserController@getAllOrg');
+    Route::get('get-all-admin-org', 'UserController@getAllAdmin');
+    Route::post('post-all-jury', 'UserController@postJury');
+    Route::post('post-all-org', 'UserController@postOrg');
+    Route::post('post-all-admin', 'UserController@postAdmin');
+    Route::post('delete-user/{id}/', 'UserController@deleteUser');
+
 
     Route::get('get-members',  'ApplicationController@getMembers');
 

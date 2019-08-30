@@ -2682,6 +2682,127 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      admin: [],
+      name: '',
+      surname: '',
+      email: '',
+      form: new FormData()
+    };
+  },
+  created: function created() {
+    this.getFullAdminOrgCommitteeList();
+  },
+  methods: {
+    getFullAdminOrgCommitteeList: function getFullAdminOrgCommitteeList() {
+      var _this = this;
+
+      axios.get('/get-all-admin-org').then(function (response) {
+        var _this$admin;
+
+        (_this$admin = _this.admin).push.apply(_this$admin, _toConsumableArray(response.data));
+      });
+    },
+    postAdmin: function postAdmin() {
+      var _this2 = this;
+
+      this.form.append('name', this.name);
+      this.form.append('surname', this.surname);
+      this.form.append('email', this.email);
+      axios.post('/post-all-admin', this.form).then(function (response) {
+        _this2.admin = [];
+
+        _this2.getFullAdminOrgCommitteeList();
+      });
+    },
+    deleteAdminOrgCommittee: function deleteAdminOrgCommittee(id, index) {
+      var _this3 = this;
+
+      axios.post('/delete-user/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this3.admin.splice(index, 1);
+        }
+
+        swal("Адміністратор був успішно видалений", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=script&lang=js& ***!
@@ -2691,15 +2812,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -2771,58 +2891,224 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      keywords: null,
-      results: [],
-      members: [],
-      search: '',
-      items: []
+      jurys: [],
+      name: '',
+      surname: '',
+      patronymic: '',
+      email: '',
+      rank: '',
+      additionalInfo: '',
+      options: [{
+        value: 'Інструментальний жанр'
+      }, {
+        value: 'Вокальний жанр'
+      }, {
+        value: 'Композиція'
+      }],
+      items: [{
+        id: 1
+      }],
+      form: new FormData()
     };
   },
-
-  /*created () {
-  	this.getFullJuryList();
-  },*/
+  created: function created() {
+    this.getFullJuryList();
+  },
   methods: {
     addNomination: function addNomination() {
       this.items.push({
-        tags: ''
+        id: this.items[this.items.length - 1].id + 1
       });
     },
     deleteNomination: function deleteNomination(index) {
       this.items.splice(index, 1);
-    }
-    /*getFullJuryList(){
-    	axios.get('/get-all-jury')
-    		.then((response) => {
-    				this.members = response.data;
-    			// console.log(this.members);
-    			})
-    		.catch((error) => {
-    			// swal({
-    			//     icon: "error",
-    			//     title: 'Помилка',
-    			//     text: error.response.status + " " + error.responsestatusText
-    			// });
-    		});
     },
-    archiveMember(event){
-    		const id =  event.target.getAttribute('data-value');
-    	// console.log(id);
-    	axios.post('/archive-members/'+id)
-    		.then((response) => {
-    			if(response.status == 200 ) {
-    				this.getFullJuryList();
-    			}
-    			})
-    		.catch((error) => {
-    			// swal({
-    			//     icon: "error",
-    			//     title: 'Помилка',
-    			//     text: error.response.status + " " + error.responsestatusText
-    			// });
-    		});
-    }*/
+    getFullJuryList: function getFullJuryList() {
+      var _this = this;
 
+      axios.get('/get-all-jury').then(function (response) {
+        var _this$jurys;
+
+        (_this$jurys = _this.jurys).push.apply(_this$jurys, _toConsumableArray(response.data));
+      });
+    },
+    postAllJury: function postAllJury() {
+      var _this2 = this;
+
+      var selects = document.querySelectorAll('select');
+      var valOptions = [];
+
+      for (var index = 0; index < selects.length; index++) {
+        valOptions.push(selects[index].value);
+      }
+
+      this.form.append('name', this.name);
+      this.form.append('surname', this.surname);
+      this.form.append('patronymic', this.patronymic);
+      this.form.append('email', this.email);
+      this.form.append('rank', this.rank);
+      this.form.append('photo', this.$refs.juryfile.files[0]);
+      this.form.append('nominations', valOptions);
+      this.form.append('informations', this.additionalInfo);
+      axios.post('/post-all-jury', this.form).then(function () {
+        _this2.jurys = [];
+
+        _this2.getFullJuryList();
+      });
+    },
+    deleteJury: function deleteJury(id, index) {
+      var _this3 = this;
+
+      axios.post('/delete-user/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this3.jurys.splice(index, 1);
+        }
+
+        swal("Журі був успішно видалений", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      committees: [],
+      name: '',
+      surname: '',
+      patronymic: '',
+      email: '',
+      additionalInfo: '',
+      form: new FormData()
+    };
+  },
+  created: function created() {
+    this.getFullOrgCommitteeList();
+  },
+  methods: {
+    getFullOrgCommitteeList: function getFullOrgCommitteeList() {
+      var _this = this;
+
+      axios.get('/get-all-org').then(function (response) {
+        var _this$committees;
+
+        (_this$committees = _this.committees).push.apply(_this$committees, _toConsumableArray(response.data));
+      });
+    },
+    postAllOrg: function postAllOrg() {
+      var _this2 = this;
+
+      this.form.append('name', this.name);
+      this.form.append('surname', this.surname);
+      this.form.append('patronymic', this.patronymic);
+      this.form.append('email', this.email);
+      this.form.append('photo', this.$refs.file.files[0]);
+      this.form.append('informations', this.informations);
+      axios.post('/post-all-org', this.form).then(function (response) {
+        _this2.committees = [];
+
+        _this2.getFullOrgCommitteeList();
+      });
+    },
+    deleteOrgCommittee: function deleteOrgCommittee(id, index) {
+      var _this3 = this;
+
+      axios.post('/delete-user/' + id).then(function (response) {
+        if (response.status == 200) {
+          _this3.committees.splice(index, 1);
+        }
+
+        swal("Член орг. комітету був успішно видалений", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
+      });
+    }
   }
 });
 
@@ -40390,6 +40676,231 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", { attrs: { enctype: "multipart/form-data" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-5" }, [
+          _c("label", { staticClass: "brtop", attrs: { for: "name" } }, [
+            _vm._v("Прізвище")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "name" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "surname" } }, [
+            _vm._v("Ім'я")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.surname,
+                expression: "surname"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "surname" },
+            domProps: { value: _vm.surname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.surname = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-2" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-5" }, [
+          _c("label", { staticClass: "brtop", attrs: { for: "email" } }, [
+            _vm._v("Електронна адреса")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "email", id: "email" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary float-right mt-4 px-5",
+              attrs: { type: "button" },
+              on: { click: _vm.postAdmin }
+            },
+            [_vm._v("Додати")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.admin, function(item, index) {
+          return _c("tbody", { key: index }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(index + 1))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.surname))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.email))]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("td", [
+                _c("i", {
+                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteAdminOrgCommittee(item.user_id, index)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "7%" } }, [_vm._v("№")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Прізвище")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Ім’я")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Електронна адеса")]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fa fa-2x fa-pencil-square btn btn-default p-0" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddJuryComponent.vue?vue&type=template&id=a1c7602c& ***!
@@ -40406,77 +40917,193 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "border border-secondary position-relative mb-4" },
-      [
-        _c("div", { staticClass: "d-flex" }, [
-          _vm._m(0),
+    _c("form", { attrs: { enctype: "multipart/form-data" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-5" }, [
+          _c("label", { staticClass: "brtop", attrs: { for: "name" } }, [
+            _vm._v("Прізвище")
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-5 col-md-offset-2" }, [
-            _c(
-              "div",
-              { staticClass: "col-sm inline" },
-              [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "name" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "surname" } }, [
+            _vm._v("Ім'я")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.surname,
+                expression: "surname"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "surname" },
+            domProps: { value: _vm.surname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.surname = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "patronymic" } }, [
+            _vm._v("По батькові")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.patronymic,
+                expression: "patronymic"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "patronymic" },
+            domProps: { value: _vm.patronymic },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.patronymic = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "jury-photo" } }, [
+            _vm._v("Фото")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            ref: "juryfile",
+            staticClass: "form-control-file",
+            attrs: { type: "file", id: "jury-photo" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "email" } }, [
+            _vm._v("Електронна адреса")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "email", id: "email" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "rank" } }, [
+            _vm._v("Звання члена журі")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.rank,
+                expression: "rank"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "rank" },
+            domProps: { value: _vm.rank },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.rank = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-2" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-5" },
+          [
+            _c("label", { staticClass: "brtop" }, [_vm._v("Номінація")]),
+            _vm._v(" "),
+            _vm._l(_vm.items, function(item, index) {
+              return _c("div", { key: item.id, staticClass: "mb-2" }, [
                 _c(
-                  "label",
-                  { staticClass: "brtop", attrs: { for: "nomination" } },
-                  [_vm._v("Номінація")]
+                  "select",
+                  {
+                    staticClass: "form-control",
+                    staticStyle: { width: "80%" }
+                  },
+                  _vm._l(_vm.options, function(option, index) {
+                    return _c("option", { key: index }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(option.value) +
+                          "\n                        "
+                      )
+                    ])
+                  }),
+                  0
                 ),
                 _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass:
-                    "fa fa-plus-circle btn btn-default float-right button-position p-0",
-                  on: { click: _vm.addNomination }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.items, function(item, index) {
-                  return _c("div", { key: item.id }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: item.value,
-                            expression: "item.value"
-                          }
-                        ],
-                        staticClass: "form-control nomination-width",
-                        attrs: { id: "nomination" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              item,
-                              "value",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
+                index == 0
+                  ? _c("i", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.items.length < 3,
+                          expression: "items.length < 3"
                         }
-                      },
-                      [
-                        _c("option", [_vm._v("Інструментальний жанр")]),
-                        _vm._v(" "),
-                        _c("option", [_vm._v("Вокальний жанр")]),
-                        _vm._v(" "),
-                        _c("option", [_vm._v("Композиція")])
-                      ]
-                    ),
-                    _vm._v(" " + _vm._s(item.tags) + "\n                "),
-                    _c("i", {
+                      ],
+                      staticClass:
+                        "fa fa-plus-circle btn btn-default float-right button-position p-0",
+                      on: { click: _vm.addNomination }
+                    })
+                  : _c("i", {
                       staticClass:
                         "fa fa-minus-circle btn btn-default float-right button-position p-0",
                       on: {
@@ -40485,21 +41112,140 @@ var render = function() {
                         }
                       }
                     })
-                  ])
-                })
+              ])
+            }),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "info" } }, [
+              _vm._v("Членство в спілках журі")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.additionalInfo,
+                  expression: "additionalInfo"
+                }
               ],
-              2
-            ),
+              staticClass: "form-control",
+              attrs: { id: "info", rows: "3" },
+              domProps: { value: _vm.additionalInfo },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.additionalInfo = $event.target.value
+                }
+              }
+            }),
             _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3)
-          ])
-        ])
-      ]
-    ),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-secondary float-right mt-4 px-5",
+                attrs: { type: "button" },
+                on: { click: _vm.postAllJury }
+              },
+              [_vm._v("Додати")]
+            )
+          ],
+          2
+        )
+      ])
+    ]),
     _vm._v(" "),
-    _vm._m(4)
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.jurys, function(item, index) {
+          return _c("tbody", { key: index }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(index + 1))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [
+                  _vm._v(
+                    _vm._s(
+                      item.name + " " + item.surname + " " + item.patronymic
+                    )
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.email))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.rank))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.nominations))]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("td", [
+                _c("i", {
+                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteJury(item.user_id, index)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -40507,49 +41253,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-5" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "brtop", attrs: { for: "pib-jury" } }, [
-          _vm._v("ПІП журі")
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "7%" } }, [_vm._v("№")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "pib-jury", placeholder: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "brtop", attrs: { for: "jury-photo" } }, [
-          _vm._v("Фото")
-        ]),
+        _c("th", { attrs: { width: "18%" } }, [_vm._v("ПІП журі")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control-file",
-          attrs: { type: "file", id: "jury-photo" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "brtop", attrs: { for: "email" } }, [
-          _vm._v("Електронна адреса")
-        ]),
+        _c("th", { attrs: { width: "21%" } }, [_vm._v("Електронна адеса")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "email", id: "email", placeholder: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "brtop", attrs: { for: "jury-rank" } }, [
-          _vm._v("Звання члена журі")
-        ]),
+        _c("th", { attrs: { width: "21%" } }, [_vm._v("Звання члена журі")]),
         _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "jury-rank", placeholder: "" }
-        })
+        _c("th", { attrs: { width: "21%" } }, [_vm._v("Номінація")]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   },
@@ -40557,75 +41275,295 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass: "form-control nomination-width",
-        attrs: { id: "nomination" }
-      },
-      [
-        _c("option", [_vm._v("Інструментальний жанр")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Вокальний жанр")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Композиція")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "additional-position" }, [
-      _c("label", { staticClass: "brtop", attrs: { for: "additional-info" } }, [
-        _vm._v("Додаткова інформація")
-      ]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { id: "additional-info", rows: "4" }
-      })
+    return _c("td", [
+      _c("i", { staticClass: "fa fa-2x fa-pencil-square btn btn-default p-0" })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "float-right" }, [
-      _c("div", { staticClass: "row justify-content-right add-button" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-secondary btn-width",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Додати")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table table-bordered" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", { attrs: { width: "7%" } }, [_vm._v("№")]),
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", { attrs: { enctype: "multipart/form-data" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-5" }, [
+          _c("label", { staticClass: "brtop", attrs: { for: "name" } }, [
+            _vm._v("Прізвище")
+          ]),
           _vm._v(" "),
-          _c("th", { attrs: { width: "18%" } }, [_vm._v("ПІП журі")]),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "name" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
-          _c("th", { attrs: { width: "21%" } }, [_vm._v("Електронна адеса")]),
+          _c("label", { staticClass: "brtop", attrs: { for: "surname" } }, [
+            _vm._v("Ім'я")
+          ]),
           _vm._v(" "),
-          _c("th", { attrs: { width: "21%" } }, [_vm._v("Звання члена журі")]),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.surname,
+                expression: "surname"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "surname" },
+            domProps: { value: _vm.surname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.surname = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
-          _c("th", { attrs: { width: "21%" } }, [_vm._v("Номінація")]),
+          _c("label", { staticClass: "brtop", attrs: { for: "patronymic" } }, [
+            _vm._v("По батькові")
+          ]),
           _vm._v(" "),
-          _c("th"),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.patronymic,
+                expression: "patronymic"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", id: "patronymic" },
+            domProps: { value: _vm.patronymic },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.patronymic = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
-          _c("th")
+          _c("label", { staticClass: "brtop", attrs: { for: "email" } }, [
+            _vm._v("Електронна адреса")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "email", id: "email" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-2" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-5" }, [
+          _c("label", { staticClass: "brtop", attrs: { for: "jury-photo" } }, [
+            _vm._v("Фото")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            ref: "file",
+            staticClass: "form-control-file",
+            attrs: { type: "file", id: "jury-photo" }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "brtop", attrs: { for: "info" } }, [
+            _vm._v("Біографія")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.additionalInfo,
+                expression: "additionalInfo"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "info", rows: "3" },
+            domProps: { value: _vm.additionalInfo },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.additionalInfo = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary float-right mt-4 px-5",
+              attrs: { type: "button" },
+              on: { click: _vm.postAllOrg }
+            },
+            [_vm._v("Додати")]
+          )
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.committees, function(item, index) {
+          return _c("tbody", { key: index }, [
+            _c("tr", [
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(index + 1))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.surname))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1)
+                  }
+                },
+                [_vm._v(_vm._s(item.patronymic))]
+              ),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("td", [
+                _c("i", {
+                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteOrgCommittee(item.user_id, index)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "7%" } }, [_vm._v("№")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Прізвище")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Ім’я")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("По-батькові")]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("i", { staticClass: "fa fa-2x fa-pencil-square btn btn-default p-0" })
     ])
   }
 ]
@@ -56634,6 +57572,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/jury/AllStatementComponent */ "./resources/js/components/jury/AllStatementComponent.vue");
 /* harmony import */ var _components_jury_EvaluationComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/jury/EvaluationComponent */ "./resources/js/components/jury/EvaluationComponent.vue");
 /* harmony import */ var _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/superAdmin/AddJuryComponent */ "./resources/js/components/superAdmin/AddJuryComponent.vue");
+/* harmony import */ var _components_superAdmin_AddToOrgCommitteeComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/superAdmin/AddToOrgCommitteeComponent */ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue");
+/* harmony import */ var _components_superAdmin_AddAdminOrgCommitteeComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/superAdmin/AddAdminOrgCommitteeComponent */ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./admin */ "./resources/js/admin.js"); // require('swal')
@@ -56657,6 +57597,8 @@ Vue.use(vue_silentbox__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
  //Супер адмін
+
+
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -56688,7 +57630,9 @@ var app = new Vue({
     FotoGalleryComponent: _components_admin_FotoGalleryComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
     MainInformationComponent: _components_admin_MainInformationComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
     AllStatementComponent: _components_jury_AllStatementComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
-    AddJuryComponent: _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
+    AddJuryComponent: _components_superAdmin_AddJuryComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
+    AddToOrgCommitteeComponent: _components_superAdmin_AddToOrgCommitteeComponent__WEBPACK_IMPORTED_MODULE_12__["default"],
+    AddAdminOrgCommitteeComponent: _components_superAdmin_AddAdminOrgCommitteeComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
   },
   router: router
 });
@@ -57393,6 +58337,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634& */ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634&");
+/* harmony import */ var _AddAdminOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAdminOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAdminOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAdminOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634& ***!
+  \*************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddAdminOrgCommitteeComponent.vue?vue&type=template&id=43ac8634&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAdminOrgCommitteeComponent_vue_vue_type_template_id_43ac8634___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/superAdmin/AddJuryComponent.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/superAdmin/AddJuryComponent.vue ***!
@@ -57462,6 +58475,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828& */ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828&");
+/* harmony import */ var _AddToOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddToOrgCommitteeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddToOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddToOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddToOrgCommitteeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddToOrgCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/superAdmin/AddToOrgCommitteeComponent.vue?vue&type=template&id=4c785828&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddToOrgCommitteeComponent_vue_vue_type_template_id_4c785828___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/admin.sass":
 /*!***********************************!*\
   !*** ./resources/sass/admin.sass ***!
@@ -57491,9 +58573,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
 
 
 /***/ })
