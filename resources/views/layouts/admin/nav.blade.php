@@ -12,10 +12,12 @@
 
 				{{-- Орг.комітет --}}
 
-				@if (Auth::user()->role == 'orgComittee')
+				@if (Auth::user()->role == 'orgComittee' || Auth::user()->role == 'superAdmin')
+
+					@php $role = 'Орг.Комітет' @endphp
 
 					<li class="nav-item" title="Нові заяви">
-						<a class="nav-link" href="/admin">
+						<a class="nav-link" href="/admin/new-statements">
 							<i class="fa fa-fw fa-users"></i>
 							<span class="nav-link-text">Нові заяви</span>
 						</a>
@@ -46,7 +48,16 @@
 
 				{{-- Журі --}}
 
-				@if (Auth::user()->role == 'jury')
+				@if (Auth::user()->role == 'jury' || Auth::user()->role == 'superAdmin')
+
+					@php $role = 'Журі' @endphp
+
+					<li class="nav-item" title="Інформація">
+						<a class="nav-link" href="/admin/information">
+							<i class="fa fa-info-circle"></i>
+							<span class="nav-link-text">Інформація</span>
+						</a>
+					</li>
 
 					<li class="nav-item" title="Всі заяви">
 						<a class="nav-link" href="/admin/all-statements">
@@ -60,6 +71,8 @@
 				{{-- Супер адмін --}}
 
 				@if (Auth::user()->role == 'superAdmin')
+
+					@php $role = 'Супер Адмін' @endphp
 
 					<li class="nav-item" title="Додати журі">
 						<a class="nav-link" href="/admin/add-jury">
@@ -86,7 +99,9 @@
 
 				{{-- Адмін --}}
 
-				@if (Auth::user()->role == 'admin')
+				@if (Auth::user()->role == 'admin' || Auth::user()->role == 'superAdmin')
+
+					@php $role = 'Адміністратор' @endphp
 
 					<li class="nav-item" title="Відеогалерея">
 						<a class="nav-link" href="/admin/video-gallery">
@@ -130,7 +145,7 @@
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item ">
-					<a class="nav-link mr-lg-2" id="siteLink" href="/" title="До сайту"  >
+					<a class="nav-link mr-lg-2" id="siteLink" href="/" title="До сайту">
 						<i class="fa fa-fw fa-sign-in"></i>
 						До сайту
 					</a>	
@@ -139,7 +154,7 @@
 			<div class="user-block">
 				<div class="user-content d-none d-lg-flex">
 					<img src="{{ url('/') }}/img/user.png" alt="">
-					<div class="welcome">Ви увійшли як {{ Auth::user()->name }}</div>
+					<div class="welcome">{{ Auth::user()->name }} {{ Auth::user()->surname }} ({{ $role }})</div>
 				</div>
 				<a class="logout" data-toggle="modal" data-target="#modalLogout">
 					<i class="fa fa-fw fa-sign-out"></i>Вихід

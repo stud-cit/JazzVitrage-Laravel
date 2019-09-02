@@ -493,14 +493,13 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   padding: 1rem 0;
 }
 
-.wrapper .content-wrapper .category-menu {
+.content-wrapper .category-menu {
   margin: 0;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
-
-.wrapper .content-wrapper .category-menu .category-items {
+.content-wrapper .category-menu .category-items {
   display: block;
   -webkit-box-shadow: 3px 2px 5px 1px black;
           box-shadow: 3px 2px 5px 1px black;
@@ -514,11 +513,11 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   min-height: 166px;
 }
 
-.wrapper .content-wrapper .category-menu .category-items .category-icon {
+ .content-wrapper .category-menu .category-items .category-icon {
   margin-bottom: 10px;
 }
 
-.wrapper .content-wrapper .category-menu .category-items:hover {
+ .content-wrapper .category-menu .category-items:hover {
   background-color: #007bff;
   color: #fff;
   -webkit-box-shadow: none;

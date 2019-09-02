@@ -58,3 +58,8 @@ Breadcrumbs::register('admin.admin.fotoGallery', function($breadcrumbs) {
 Breadcrumbs::register('admin.admin.mainInformation', function($breadcrumbs) {
     $breadcrumbs->push('Загальна інформація', route('admin.admin.mainInformation'));
 });
+
+// home
+Breadcrumbs::register('admin.home', function($breadcrumbs) {
+    $breadcrumbs->push('home', route('admin.home'));
+});
