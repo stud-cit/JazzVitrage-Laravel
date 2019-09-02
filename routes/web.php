@@ -23,7 +23,7 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 
 //Админка
-// Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin', ['as' => 'admin.orgСommittee.newStatements', function () {
         return view('admin.orgСommittee.newStatements');
@@ -105,5 +105,5 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
 
-// });
-// Auth::routes();
+});
+Auth::routes();

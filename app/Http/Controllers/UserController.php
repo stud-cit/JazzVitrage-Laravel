@@ -86,7 +86,7 @@ class UserController extends Controller
     {
         $user = Users::find($id);
         if($user->photo != ''){
-            unlink(public_path($this->userStorage.$foto->file));
+            unlink(public_path($this->userStorage.$user->photo));
         }
         $user->delete();
     }
