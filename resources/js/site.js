@@ -8,7 +8,8 @@ import HeaderComponent from './components/site/HeaderComponent';
 import FooterComponent from './components/site/FooterComponent';
 import Index from './components/site/IndexComponent';
 import MembersList from './components/site/MembersListComponent';
-
+import Gallery from './components/site/GalleryComponent';
+import GalleryYear from './components/site/GalleryYearComponent';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -29,11 +30,16 @@ const router = new VueRouter({
             name: 'members',
             component: MembersList,
         },
-        // {
-        //     path: '/admin/all-statements/:id',
-        //     name: 'jury-evaluation',
-        //     component: EvaluationComponent,
-        // },
+        {
+            path: '/gallery',
+            name: 'gallery',
+            component: Gallery,
+        },
+        {
+            path: '/gallery/:id/',
+            name: 'gallery-year',
+            component: GalleryYear,
+        },
     ],
 });
 
@@ -42,8 +48,10 @@ const app = new Vue({
     components: {
         Index,
         MembersList,
+        Gallery,
+        GalleryYear,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
     },
     router
 });

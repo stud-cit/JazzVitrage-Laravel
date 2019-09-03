@@ -6,3 +6,62 @@
   padding-top: 190px;
 }
 
+.gallery .gallery-item {
+  position: relative;
+  margin: 15px 0;
+}
+
+.gallery .gallery-item .dark-bg {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: 100%;
+  max-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.gallery .gallery-item .dark-bg .caption {
+  font-family: Montserrat;
+  font-size: 60pt;
+  font-weight: 900;
+  color: #fff;
+}
+
+.gallery .gallery-item .dark-bg:hover .caption {
+  transition: all 0.3s ease;
+  font-size: 80pt;
+}
+
+.gallery .page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 18pt;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.gallery .page-nav .title {
+  font-family: Montserrat;
+  color: #fff;
+  font-weight: 600;
+}
+
+.gallery .page-nav .prev-page {
+  font-family: Montserrat;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.gallery .page-nav .prev-page .fa {
+  margin-right: 5px;
+}
+
