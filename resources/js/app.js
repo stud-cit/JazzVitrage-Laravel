@@ -28,6 +28,8 @@ import EvaluationComponent from './components/jury/EvaluationComponent';
 
 //Супер адмін
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
+import AddToOrgCommitteeComponent from './components/superAdmin/AddToOrgCommitteeComponent';
+import AddAdminOrgCommitteeComponent from './components/superAdmin/AddAdminOrgCommitteeComponent';
 
 const router = new VueRouter({
     mode: 'history',
@@ -63,7 +65,9 @@ const app = new Vue({
         FotoGalleryComponent,
         MainInformationComponent,
         AllStatementComponent,
-        AddJuryComponent
+        AddJuryComponent,
+        AddToOrgCommitteeComponent,
+        AddAdminOrgCommitteeComponent
     },
     router
 });

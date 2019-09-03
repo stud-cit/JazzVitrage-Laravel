@@ -25,6 +25,15 @@ Breadcrumbs::register('admin.superAdmin.addJury', function($breadcrumbs) {
     $breadcrumbs->push('Додати журі', route('admin.superAdmin.addJury'));
 });
 
+// Додати в орг. комітет
+Breadcrumbs::register('admin.superAdmin.addToOrgCommittee', function($breadcrumbs) {
+    $breadcrumbs->push('Додати в орг. комітет', route('admin.superAdmin.addToOrgCommittee'));
+});
+// Додати адміністратора
+Breadcrumbs::register('admin.superAdmin.addAdminOrgCommittee', function($breadcrumbs) {
+    $breadcrumbs->push('Додати адміністратора', route('admin.superAdmin.addAdminOrgCommittee'));
+});
+
 // Всі заяви
 Breadcrumbs::register('admin.jury.allStatements', function($breadcrumbs) {
     $breadcrumbs->push('Всі заяви', route('admin.jury.allStatements'));
@@ -48,4 +57,9 @@ Breadcrumbs::register('admin.admin.fotoGallery', function($breadcrumbs) {
 // Загальна інформація
 Breadcrumbs::register('admin.admin.mainInformation', function($breadcrumbs) {
     $breadcrumbs->push('Загальна інформація', route('admin.admin.mainInformation'));
+});
+
+// home
+Breadcrumbs::register('admin.home', function($breadcrumbs) {
+    $breadcrumbs->push('home', route('admin.home'));
 });

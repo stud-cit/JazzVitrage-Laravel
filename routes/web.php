@@ -2,8 +2,6 @@
 
 //Головна
 Route::get('/', 'SiteController@index')->name('site');
-
-
 Route::get('/application', 'ApplicationController@index');
 Route::post('/application', 'ApplicationController@store');
 
@@ -24,17 +22,38 @@ Route::get('/jury', 'ContactsController@jury');
 Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 
-//Админка
-// Route::group(['middleware' => 'auth'], function () {
+// Админка
 
-    Route::get('/admin', ['as' => 'admin.orgСommittee.newStatements', function () {
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin', ['as' => 'admin.home', function () {
+        return view('admin.home');
+    }]);
+});
+// Роль Адмін
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
+        return view('admin.admin.videoGallery');
+    }]);
+    Route::get('/admin/foto-gallery', ['as' => 'admin.admin.fotoGallery', function () {
+        return view('admin.admin.fotoGallery');
+    }]);
+    Route::get('/admin/main-information', ['as' => 'admin.admin.mainInformation', function () {
+        return view('admin.admin.mainInformation');
+    }]);
+    // VUE запросы
+    Route::get('get-foto', 'GalleryController@getFoto');
+    Route::post('post-foto', 'GalleryController@postFoto');
+    Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
+});
+
+// Роль Орг.Комітет
+Route::group(['middleware' => ['auth', 'role:orgComittee']], function () {
+    Route::get('/admin/new-statements', ['as' => 'admin.orgСommittee.newStatements', function () {
         return view('admin.orgСommittee.newStatements');
     }]);
-
     Route::get('/admin/removed-statements', ['as' => 'admin.orgСommittee.removedStatements', function () {
         return view('admin.orgСommittee.removedStatements');
     }]);
-
     Route::get('/admin/list-participants', ['as' => 'admin.orgСommittee.listParticipants', function () {
         return view('admin.orgСommittee.listParticipants');
     }]);
@@ -42,52 +61,45 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
     Route::get('/admin/evaluation-results', ['as' => 'admin.orgСommittee.evaluationResults', function () {
         return view('admin.orgСommittee.evaluationResults');
     }]);
+});
 
+// Роль Журі
+Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/information', ['as' => 'admin.jury.information', function () {
         return view('admin.jury.information');
     }]);
-
-    Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
-        return view('admin.admin.videoGallery');
-    }]);
-
-    Route::get('/admin/foto-gallery', ['as' => 'admin.admin.fotoGallery', function () {
-        return view('admin.admin.fotoGallery');
-    }]);
-
-    Route::get('/admin/main-information', ['as' => 'admin.admin.mainInformation', function () {
-        return view('admin.admin.mainInformation');
-    }]);
-
-    Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
-        return view('admin.superAdmin.addJury');
-    }]);
-
-// VUE базовые роуты
-
-    Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
-        return view('admin.jury.allStatements');
-    }])->where('any', '.*');
-
-    //site vue route
-
-    Route::get('/{any}', ['as' => 'site', function () {
-        return view('layouts.site.index');
-    }])->where('any', '.*');
-    //
-
     Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
         return view('admin.jury.allStatements');
     }]);
+    // Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
+    //     return view('admin.jury.allStatements');
+    // }])->where('any', '.*');
+});
+
+// Роль Супер Адмін
+Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
+    Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
+        return view('admin.superAdmin.addJury');
+    }]);
+    Route::get('/admin/add-to-org-committee', ['as' => 'admin.superAdmin.addToOrgCommittee', function () {
+        return view('admin.superAdmin.addToOrgCommittee');
+    }]);
+    Route::get('/admin/add-admin-org-committee', ['as' => 'admin.superAdmin.addAdminOrgCommittee', function () {
+        return view('admin.superAdmin.addAdminOrgCommittee');
+    }]);
+    // VUE запросы
+    Route::get('get-all-jury', 'UserController@getAllJury');
+    Route::get('get-all-org', 'UserController@getAllOrg');
+    Route::get('get-all-admin-org', 'UserController@getAllAdmin');
+    Route::post('post-all-jury', 'UserController@postJury');
+    Route::post('post-all-org', 'UserController@postOrg');
+    Route::post('post-all-admin', 'UserController@postAdmin');
+    Route::post('delete-user/{id}/', 'UserController@deleteUser');
+});
+
+Auth::routes();
 
 // VUE запросы
-
-    // Галерея
-    Route::get('get-foto', 'GalleryController@getFoto');
-    Route::post('post-foto', 'GalleryController@postFoto');
-    Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
-
-    Route::get('get-all-jury', 'ApplicationController@getAllJury');
 
     Route::get('get-members',  'ApplicationController@getMembers');
 
@@ -101,5 +113,6 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
 
-// });
-// Auth::routes();
+    Route::get('/{any}', ['as' => 'site', function () {
+        return view('layouts.site.index');
+    }])->where('any', '.*');
