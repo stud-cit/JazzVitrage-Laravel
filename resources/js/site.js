@@ -10,6 +10,7 @@ import Index from './components/site/IndexComponent';
 import MembersList from './components/site/MembersListComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
+import Gymn from './components/site/GymnComponent';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -39,6 +40,11 @@ const router = new VueRouter({
             path: '/gallery/:id/',
             name: 'gallery-year',
             component: GalleryYear,
+        },
+        {
+            path: '/gymn',
+            name: 'gymn',
+            component: Gymn,
         },
     ],
 });

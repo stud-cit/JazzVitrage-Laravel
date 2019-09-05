@@ -1,10 +1,11 @@
 body {
   line-height: 1;
   position: relative;
+  background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
+  background-attachment: fixed;
 }
 
 .sections {
-  background-color: #14042f;
   padding-top: 60px;
   padding-bottom: 270px;
 }
@@ -134,7 +135,6 @@ body {
 
 .main-section {
   padding-top: 135px;
-  background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
   background-size: cover;
 }
 
@@ -168,12 +168,12 @@ body {
 .preview::after {
   content: "";
   display: block;
-  width: 844px;
+  width: 913px;
   height: 920px;
   position: absolute;
-  background: url(/images/preview-tool.png?3d5096219f93f45bce8561696c5638b8) no-repeat;
+  background: url(/images/preview-tool.png?cfa8639d686057e0f9e9704d6102597c) no-repeat;
   background-size: cover;
-  right: -85px;
+  right: 0;
   top: 135px;
 }
 
@@ -184,7 +184,7 @@ body {
   }
 
   .preview::after {
-    right: -20%;
+    right: -14%;
   }
 }
 
@@ -502,7 +502,7 @@ body {
 
 .video-gallery {
   padding-top: 35px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .video-gallery #carousel-text {
