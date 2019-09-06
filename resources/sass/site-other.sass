@@ -51,16 +51,18 @@
 .gymn
    .wrapper-gymn
       background-color: #fff
-      border-radius: 30px 0 0 30px
+      border-radius: 40px 0 0 40px
+
       .couplets
          background-image: linear-gradient(180deg, #810caa 0%, #760b9b 50%, #410655 100%)
          border-radius: 30px
-         margin-left: -1px
+
          color: #ffffff
          font-family: Montserrat
          font-size: 16px
          font-weight: 400
          line-height: 1.5
+         padding: 40px 20px 45px 45px
          h1
             color: #ffffff
             font-family: Montserrat
@@ -74,3 +76,41 @@
             font-weight: 400
 
       .media
+         flex-direction: column
+         position: relative
+         padding-bottom: 150px
+         padding-top: 10px
+         .overflow
+            overflow: hidden
+            .scroll-img
+               max-height: 600px
+               position: relative
+               right: -15px
+               overflow: scroll
+               padding-bottom: 80px
+         .absolute-block
+            position: absolute
+            width: calc(100% - 15px)
+            min-height: 300px
+            bottom: 0
+            left: 15px
+            background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 23%, #ffffff 100%)
+            .audio
+               width: 100%
+               outline: none
+               margin: 100px 0 20px 0
+            audio::-webkit-media-controls-panel
+               background-color: #fff
+            .download
+               box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+               border-radius: 10px
+               background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+               outline: none
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 19px
+               font-weight: 900
+               letter-spacing: 1.9px
+               border: none
+               padding: 20px 30px
+               text-decoration: none

@@ -37,8 +37,23 @@
                         <p>Віват Джаз-Вітраж! Хай завджди буде ДЖАЗ!</p>
                     </div>
                     <div class="col-xl-7 media">
-                        <img src="img/gymn.png" alt="">
-                        <audio src=""></audio>
+                        <div class="overflow">
+                            <div class="scroll-img">
+                                <img src="img/gymn.png" alt="">
+                            </div>
+                        </div>
+                        <div class="absolute-block">
+                            <audio controls class="audio">
+
+                                <source src="audio/jazz.wav" type="audio/wav" >
+
+                            </audio>
+
+                            <div class="text-center">
+                                <a href="audio/jazz.wav" class="download" download="">ЗАВАНТАЖИТИ</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

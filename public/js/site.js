@@ -1898,6 +1898,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -38138,9 +38153,30 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-xl-7 media" }, [
-              _c("img", { attrs: { src: "img/gymn.png", alt: "" } }),
+              _c("div", { staticClass: "overflow" }, [
+                _c("div", { staticClass: "scroll-img" }, [
+                  _c("img", { attrs: { src: "img/gymn.png", alt: "" } })
+                ])
+              ]),
               _vm._v(" "),
-              _c("audio", { attrs: { src: "" } })
+              _c("div", { staticClass: "absolute-block" }, [
+                _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
+                  _c("source", {
+                    attrs: { src: "audio/jazz.wav", type: "audio/wav" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "download",
+                      attrs: { href: "audio/jazz.wav", download: "" }
+                    },
+                    [_vm._v("ЗАВАНТАЖИТИ")]
+                  )
+                ])
+              ])
             ])
           ])
         ])
