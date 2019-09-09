@@ -6,11 +6,24 @@
   padding-top: 190px;
 }
 
-.application-for-participation {
+.fade-enter-active {
+  transition: 0.5s all 0.5s ease;
+}
+
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  height: 0;
+}
+
+.applications .application-for-participation {
   position: relative;
   margin-top: -55px;
-  background: #8f15d5;
-  background: linear-gradient(90deg, #8f15d5 0%, #7c00d2 0%, #b326bf 49%, #c629b8 75%, white 100%);
+  background-image: linear-gradient(270deg, #ffffff 0%, #ee3fdc 26%, #722bc4 100%);
   background-size: cover;
   padding-top: 40px;
   height: 180px;
@@ -18,7 +31,7 @@
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
 }
 
-.application-for-participation .subtitle {
+.applications .subtitle {
   color: #ffffff;
   font-family: Montserrat;
   font-size: 20pt;
@@ -26,6 +39,197 @@
   letter-spacing: 1.6px;
   padding-top: 12px;
   text-align: center;
+}
+
+.applications .step-block {
+  margin-top: 40px;
+  padding: 55px 100px 30px 100px;
+  border-radius: 20px;
+  background-color: #4b1772;
+  overflow: hidden;
+}
+
+.applications .step-block .step-numbers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applications .step-block .step-numbers .number-item {
+  padding-left: 40px;
+  position: relative;
+}
+
+.applications .step-block .step-numbers .number-item .number-circle {
+  transition: all 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  background: #bdbdbd;
+  border-radius: 50%;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.applications .step-block .step-numbers .number-item .number-text {
+  transition: all 1s ease;
+  margin-left: 14px;
+  color: #bdbdbd;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.applications .step-block .step-numbers .number-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -2px;
+  width: 40px;
+  height: 3px;
+  background: #bdbdbd;
+}
+
+.applications .step-block .step-numbers .number-item:first-of-type {
+  padding-left: 0;
+}
+
+.applications .step-block .step-numbers .number-item:first-of-type::before {
+  display: none;
+}
+
+.applications .step-block .step-numbers .active .number-circle {
+  background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+  color: #410655;
+}
+
+.applications .step-block .step-numbers .active .number-text {
+  color: #ffffff;
+}
+
+.applications .step-block .step-numbers .active::before {
+  background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+}
+
+.applications .step-block .step-form {
+  margin-top: 55px;
+}
+
+.applications .step-block .step-form h3.step-title {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.applications .step-block .step-form h3.step-title .hint {
+  display: block;
+  margin-left: 7px;
+  width: 27px;
+  height: 27px;
+  background: url(/images/step-hint.png?3e03e606ca171f3b0024a37c9dc8b635) no-repeat;
+}
+
+.applications .step-block .step-form .input-group {
+  padding: 20px;
+  margin-top: 23px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.applications .step-block .step-form .input-group label {
+  position: relative;
+  padding-left: 30px;
+  min-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-group input {
+  display: none;
+}
+
+.applications .step-block .step-form .input-group input + i {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 21px;
+  background: url(/images/empty-radio.png?307471f211d0c91078b728b5adbc7cf9) no-repeat;
+}
+
+.applications .step-block .step-form .input-group input:checked + i {
+  background: url(/images/full-radio.png?dfc6676aefda6479f982a86626a85292) no-repeat;
+}
+
+.applications .step-block .step-form .select-block {
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  padding: 5px 0;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.applications .step-block .step-form .select-block .star {
+  margin: 0 20px;
+}
+
+.applications .step-block .step-form .select-block .select {
+  padding: 15px;
+  border: none;
+  border-left: 1px solid #ffffff;
+  background: transparent;
+  flex-grow: 1;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: url(/images/select-arrow.png?b306b5505d77a3f47f07c0601bd8ae64) no-repeat right 20px top 50%;
+}
+
+.applications .step-block .step-form .select-block .select option {
+  color: #000;
+}
+
+.applications .step-block .step-form .text-right {
+  margin-top: 50px;
+}
+
+.applications .step-block .step-form .next-step {
+  width: 160px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #ffa407;
+  border: none;
+  outline: none;
+  color: #410655;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .gallery .gallery-item {
@@ -87,7 +291,6 @@
   margin-right: 5px;
 }
 
-<<<<<<< HEAD
 .gymn .wrapper-gymn {
   background-color: #fff;
   border-radius: 40px 0 0 40px;
@@ -170,7 +373,8 @@
   border: none;
   padding: 20px 30px;
   text-decoration: none;
-=======
+}
+
 .carousel-inner .carousel-item-right.active {
   justify-content: center;
   transform: translateX(33.33%);
@@ -199,6 +403,5 @@
 .carousel-inner .carousel-item-left {
   transform: translateX(0);
   justify-content: center;
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
 }
 

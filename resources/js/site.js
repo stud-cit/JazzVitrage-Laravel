@@ -72,6 +72,7 @@ const app = new Vue({
         Application,
         Gallery,
         GalleryYear,
+        Gymn,
         Jury,
         HeaderComponent,
         FooterComponent,

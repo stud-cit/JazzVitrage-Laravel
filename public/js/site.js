@@ -1712,15 +1712,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      steps: [true, false, false, false, false],
+      activeStep: 0
+    };
   },
   created: function created() {
     document.title = "Заповнити заявку";
   },
   computed: {},
-  methods: {}
+  methods: {
+    changeStep: function changeStep(step) {
+      var steps = this.steps;
+      steps[step] = true;
+      this.activeStep = step;
+    }
+  }
 });
 
 /***/ }),
@@ -1970,6 +2062,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -37892,25 +37987,367 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section applications" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          { ref: "stepBlock", staticClass: "step-block" },
+          [
+            _c("div", { staticClass: "step-numbers" }, [
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[0] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 1")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[1] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("2")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 2")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[2] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("3")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 3")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[3] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("4")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 4")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[4] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("5")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 5")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 0
+                ? _c("div", { staticClass: "step-form step1" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("тип заявки "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "select-block" }, [
+                      _c("img", {
+                        staticClass: "star",
+                        attrs: { src: "img/star.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        { staticClass: "select", attrs: { name: "", id: "" } },
+                        [
+                          _c(
+                            "option",
+                            {
+                              staticClass: "d-none",
+                              attrs: { disabled: "", selected: "" }
+                            },
+                            [_vm._v("НОМІНАЦІЯ")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "next-step",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.changeStep(1)
+                            }
+                          }
+                        },
+                        [_vm._v("Далі")]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 1
+                ? _c("div", { staticClass: "step-form step1" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("тип заявки2 "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("тип заявки2 "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("тип заявки2 "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          staticClass: "app-type",
+                          attrs: { type: "radio", name: "app-type" }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ])
+                    ])
+                  ])
+                : _vm._e()
+            ])
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "sections main-section" }, [
-        _c("div", { staticClass: "application-for-participation" }, [
-          _c("h2", { staticClass: "title-section" }, [
-            _vm._v("Заявка на участь ")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "container" })
-      ])
+    return _c("div", { staticClass: "application-for-participation" }, [
+      _c("h2", { staticClass: "title-section" }, [_vm._v("Заявка на участь ")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
     ])
   }
 ]
@@ -38381,16 +38818,15 @@ var render = function() {
               _vm._m(2),
               _vm._v(" "),
               _c(
-                "button",
-                { staticClass: "add-application" },
-                [
-                  _c("router-link", { attrs: { to: "applications" } }, [
-                    _vm._v("ЗАПОВНИТИ ЗАЯВКУ")
-                  ])
-                ],
-                1
+                "router-link",
+                {
+                  staticClass: "add-application",
+                  attrs: { to: "applications" }
+                },
+                [_vm._v("ЗАПОВНИТИ ЗАЯВКУ")]
               )
-            ]
+            ],
+            1
           )
         ])
       ]),
@@ -38409,14 +38845,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
-    return _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
-      _c("div", { staticClass: "container" }, [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _c("img", { attrs: { src: "/img/logo.svg", alt: "" } })
-        ]),
-        _vm._v(" "),
-=======
     return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
       _c("img", { attrs: { src: "img/logo.svg", alt: "" } })
     ])
@@ -38444,7 +38872,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "navbar-nav" }, [
       _c("li", { staticClass: "dropdown" }, [
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
         _c(
           "a",
           {
@@ -39149,9 +39576,7 @@ var staticRenderFns = [
                     attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ІННА АНДРІЇВНА")
-                  ])
+                  _c("div", { staticClass: "items-title" })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "carousel-item jury-items" }, [
@@ -39159,9 +39584,7 @@ var staticRenderFns = [
                     attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ІВАН ПЕТРОВИЧ")
-                  ])
+                  _c("div", { staticClass: "items-title" })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "carousel-item jury-items" }, [
@@ -39169,9 +39592,7 @@ var staticRenderFns = [
                     attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ВАЛЕНТИНА МИКОЛАЇВНА")
-                  ])
+                  _c("div", { staticClass: "items-title" })
                 ])
               ]),
               _vm._v(" "),
@@ -55104,18 +55525,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/site/FooterComponent */ "./resources/js/components/site/FooterComponent.vue");
 /* harmony import */ var _components_site_IndexComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/site/IndexComponent */ "./resources/js/components/site/IndexComponent.vue");
 /* harmony import */ var _components_site_MembersListComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/site/MembersListComponent */ "./resources/js/components/site/MembersListComponent.vue");
-<<<<<<< HEAD
-/* harmony import */ var _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/site/GalleryComponent */ "./resources/js/components/site/GalleryComponent.vue");
-/* harmony import */ var _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/site/GalleryYearComponent */ "./resources/js/components/site/GalleryYearComponent.vue");
-/* harmony import */ var _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/site/GymnComponent */ "./resources/js/components/site/GymnComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-=======
 /* harmony import */ var _components_site_ApplicationComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/site/ApplicationComponent */ "./resources/js/components/site/ApplicationComponent.vue");
 /* harmony import */ var _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/site/GalleryComponent */ "./resources/js/components/site/GalleryComponent.vue");
 /* harmony import */ var _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/site/GalleryYearComponent */ "./resources/js/components/site/GalleryYearComponent.vue");
-/* harmony import */ var _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/site/JuryComponent */ "./resources/js/components/site/JuryComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
+/* harmony import */ var _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/site/GymnComponent */ "./resources/js/components/site/GymnComponent.vue");
+/* harmony import */ var _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/site/JuryComponent */ "./resources/js/components/site/JuryComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -55127,16 +55542,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-<<<<<<< HEAD
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.delimiters = ['${', '}'];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
-=======
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.delimiters = ['${', '}'];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -55153,14 +55563,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
   }, {
     path: '/gallery/:id/',
     name: 'gallery-year',
-<<<<<<< HEAD
-    component: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/gymn',
     name: 'gymn',
-    component: _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
-=======
-    component: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: '/applications',
     name: 'applications',
@@ -55168,8 +55575,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
   }, {
     path: '/juries',
     name: 'juries',
-    component: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
+    component: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -55180,7 +55586,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     Application: _components_site_ApplicationComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
     Gallery: _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
     GalleryYear: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
-    Jury: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    Gymn: _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    Jury: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
     HeaderComponent: _components_site_HeaderComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FooterComponent: _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -55196,7 +55603,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

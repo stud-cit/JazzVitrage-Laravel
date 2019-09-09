@@ -4,11 +4,10 @@
 
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container">
-<<<<<<< HEAD
-                <a class ="navbar-brand" href="#"><img src="/img/logo.svg" alt=""></a>
-=======
+
+
                 <a class ="navbar-brand" href="/"><img src="img/logo.svg" alt=""></a>
->>>>>>> 2ca9359d9f4f5f7bb674782344c29576200aac82
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,7 +30,7 @@
 
 
                     </div>
-                    <button class="add-application"><router-link :to="'applications'">ЗАПОВНИТИ ЗАЯВКУ</router-link></button>
+                    <router-link :to="'applications'" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                 </div>
             </div>
         </nav>
