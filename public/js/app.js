@@ -57502,10 +57502,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })

@@ -4,7 +4,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container">
-                <a class ="navbar-brand" href="#"><img src="img/logo.svg" alt=""></a>
+                <a class ="navbar-brand" href="/"><img src="img/logo.svg" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -13,21 +13,21 @@
                         <li class="dropdown">
                             <a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="juries">ЖУРІ</a>
                             </div>
                         </li>
 
 
-                        <li><a class="nav-item nav-link" href="#">ГАЛЕРЕЯ</a></li>
+                        <li><a class="nav-item nav-link" href="gallery">ГАЛЕРЕЯ</a></li>
                         <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
                         <li><a class="nav-item nav-link" href="#">КОНТАКТИ</a></li>
                         <li><a class="nav-item nav-link" href="#">Конфр</a></li>
 
 
                     </div>
-                    <button class="add-application">ЗАПОВНИТИ ЗАЯВКУ</button>
+                    <button class="add-application"><router-link :to="'applications'">ЗАПОВНИТИ ЗАЯВКУ</router-link></button>
                 </div>
             </div>
         </nav>

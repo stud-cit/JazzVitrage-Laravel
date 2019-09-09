@@ -6,6 +6,28 @@
   padding-top: 190px;
 }
 
+.application-for-participation {
+  position: relative;
+  margin-top: -55px;
+  background: #8f15d5;
+  background: linear-gradient(90deg, #8f15d5 0%, #7c00d2 0%, #b326bf 49%, #c629b8 75%, white 100%);
+  background-size: cover;
+  padding-top: 40px;
+  height: 180px;
+  width: 100%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.application-for-participation .subtitle {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20pt;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  padding-top: 12px;
+  text-align: center;
+}
+
 .gallery .gallery-item {
   position: relative;
   margin: 15px 0;
@@ -63,5 +85,35 @@
 
 .gallery .page-nav .prev-page .fa {
   margin-right: 5px;
+}
+
+.carousel-inner .carousel-item-right.active {
+  justify-content: center;
+  transform: translateX(33.33%);
+}
+
+.carousel-inner .carousel-item-next {
+  transform: translateX(33.33%);
+  justify-content: center;
+}
+
+.carousel-inner .carousel-item-left.active {
+  transform: translateX(-33.33%);
+  justify-content: center;
+}
+
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-33.33%);
+  justify-content: center;
+}
+
+.carousel-inner .carousel-item-right {
+  transform: translateX(0);
+  justify-content: center;
+}
+
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+  justify-content: center;
 }
 
