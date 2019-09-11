@@ -1795,11 +1795,177 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       steps: [true, false, false, false, false],
-      activeStep: 0
+      activeStep: 0,
+      birthdayFile: 'завантажити файл',
+      concertmaster: false
     };
   },
   created: function created() {
@@ -1807,10 +1973,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   methods: {
-    changeStep: function changeStep(step) {
+    nextStep: function nextStep() {
+      // $event.preventDefault();
       var steps = this.steps;
-      steps[step] = true;
-      this.activeStep = step;
+      this.activeStep++;
+      steps[this.activeStep] = true;
+    },
+    prevStep: function prevStep() {
+      // $event.preventDefault();
+      var steps = this.steps;
+      steps[this.activeStep] = false;
+      this.activeStep--;
+    },
+    getInputAttr: function getInputAttr(e) {
+      var input = e.target;
+      var image = input.value.split('\\').pop();
+      this.birthdayFile = image;
     }
   }
 });
@@ -38097,7 +38275,7 @@ var render = function() {
                           attrs: { type: "radio", name: "app-type" }
                         }),
                         _c("i"),
-                        _vm._v("СОЛІСТ")
+                        _vm._v("ДУЕТ")
                       ]),
                       _vm._v(" "),
                       _c("label", [
@@ -38106,7 +38284,7 @@ var render = function() {
                           attrs: { type: "radio", name: "app-type" }
                         }),
                         _c("i"),
-                        _vm._v("СОЛІСТ")
+                        _vm._v("АНСАМБЛЬ")
                       ]),
                       _vm._v(" "),
                       _c("label", [
@@ -38115,7 +38293,7 @@ var render = function() {
                           attrs: { type: "radio", name: "app-type" }
                         }),
                         _c("i"),
-                        _vm._v("СОЛІСТ")
+                        _vm._v("ХОР")
                       ]),
                       _vm._v(" "),
                       _c("label", [
@@ -38124,7 +38302,7 @@ var render = function() {
                           attrs: { type: "radio", name: "app-type" }
                         }),
                         _c("i"),
-                        _vm._v("СОЛІСТ")
+                        _vm._v("ОРКЕСТР")
                       ])
                     ]),
                     _vm._v(" "),
@@ -38158,11 +38336,7 @@ var render = function() {
                         {
                           staticClass: "next-step",
                           attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.changeStep(1)
-                            }
-                          }
+                          on: { click: _vm.nextStep }
                         },
                         [_vm._v("Далі")]
                       )
@@ -38173,162 +38347,509 @@ var render = function() {
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
               _vm.activeStep == 1
+                ? _c("form", { staticClass: "step-form step1" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про учасника")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ІМ'Я  " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ  " }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "text",
+                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ ",
+                            required: "",
+                            pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: {
+                            id: "birthday",
+                            type: "file",
+                            placeholder: "../birthdays.jpg "
+                          },
+                          on: { change: _vm.getInputAttr }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "birthday" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.birthdayFile))])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("ІДЕНТИФІКАЦІЙНИЙ НОМЕР: "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ІМ'Я  " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ  " }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: {
+                            id: "birthday",
+                            type: "file",
+                            placeholder: "../birthdays.jpg "
+                          },
+                          on: { change: _vm.getInputAttr }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "birthday" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.birthdayFile))])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 2
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про УЧБОВИЙ ЗАКЛАД ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-castle.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "НАЗВА" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-map.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "АДРЕСА" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ТЕЛЕФОН" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "E-MAIL " }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про ВИКЛАДАЧА  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ІМ'Я  " }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ  " }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-mail.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "E-MAIL " }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-phone.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "text",
+                            placeholder: "КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА"
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row checkbox-row" }, [
+                      _c("label", { attrs: { for: "concertmaster" } }, [
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "concertmaster", type: "checkbox" },
+                          on: {
+                            change: function($event) {
+                              _vm.concertmaster = !_vm.concertmaster
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("i"),
+                        _vm._v(
+                          "\n                                    В мене є концертмейстер\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.concertmaster
+                      ? _c("div", { staticClass: "input-row" }, [
+                          _c("div", { staticClass: "input-container" }, [
+                            _c("img", {
+                              staticClass: "input-img",
+                              attrs: { src: "img/step2-user.png", alt: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              attrs: { type: "text", placeholder: "ІМ'Я  " }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              attrs: {
+                                type: "text",
+                                placeholder: "ПО-БАТЬКОВІ  "
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 3
                 ? _c("div", { staticClass: "step-form step1" }, [
                     _c("h3", { staticClass: "step-title" }, [
-                      _vm._v("тип заявки2 "),
-                      _c("i", { staticClass: "hint" })
+                      _vm._v("Інформація про ВИСТУП")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("перший твір")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-composition.png", alt: "" }
                         }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
+                        _vm._v(" "),
                         _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
+                          attrs: { type: "text", placeholder: "НАЗВА" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-autor.png", alt: "" }
                         }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
+                        _vm._v(" "),
                         _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
+                          attrs: { type: "text", placeholder: "ТЕЛЕФОН" }
+                        })
                       ])
                     ]),
                     _vm._v(" "),
                     _c("h3", { staticClass: "step-title" }, [
-                      _vm._v("тип заявки2 "),
-                      _c("i", { staticClass: "hint" })
+                      _vm._v("Другий твір")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-composition.png", alt: "" }
                         }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
+                        _vm._v(" "),
                         _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
+                          attrs: { type: "text", placeholder: "НАЗВА" }
+                        })
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("h3", { staticClass: "step-title" }, [
-                      _vm._v("тип заявки2 "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-autor.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "text", placeholder: "ТЕЛЕФОН" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v(
+                        "ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО"
+                      ),
                       _c("i", { staticClass: "hint" })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-video.png", alt: "" }
                         }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
+                        _vm._v(" "),
                         _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
+                          staticClass: "d-none",
+                          attrs: {
+                            id: "birthday",
+                            type: "file",
+                            placeholder: "../birthdays.jpg "
+                          },
+                          on: { change: _vm.getInputAttr }
                         }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
-                      ]),
-                      _vm._v(" "),
-                      _c("label", [
-                        _c("input", {
-                          staticClass: "app-type",
-                          attrs: { type: "radio", name: "app-type" }
-                        }),
-                        _c("i"),
-                        _vm._v("СОЛІСТ")
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "birthday" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.birthdayFile))])
+                        ])
                       ])
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
                   ])
                 : _vm._e()
             ])
@@ -55561,7 +56082,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
     name: 'gallery',
     component: _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: '/gallery/:id/',
+    path: '/gallery/:id',
     name: 'gallery-year',
     component: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
