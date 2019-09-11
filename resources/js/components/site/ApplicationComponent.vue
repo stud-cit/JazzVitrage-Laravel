@@ -31,21 +31,21 @@
 
                     </div>
                     <transition name="fade" >
-                        <div class="step-form step1" v-if="activeStep == 0">
+                        <div class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
                             <div class="input-group">
-                                <label><input type="radio" name="app-type" class="app-type"><i></i>СОЛІСТ</label>
-                                <label><input type="radio" name="app-type" class="app-type"><i></i>ДУЕТ</label>
-                                <label><input type="radio" name="app-type" class="app-type"><i></i>АНСАМБЛЬ</label>
-                                <label><input type="radio" name="app-type" class="app-type"><i></i>ХОР</label>
-                                <label><input type="radio" name="app-type" class="app-type"><i></i>ОРКЕСТР</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.step1.appType" ><i></i>СОЛІСТ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="2" v-model="registration.step1.appType"><i></i>ДУЕТ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>АНСАМБЛЬ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>ХОР</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>ОРКЕСТР</label>
 
 
                             </div>
                             <div class="select-block">
                                 <img src="img/star.png" class="star" alt="">
-                                <select name="" id="" class="select" >
-                                    <option disabled selected class="d-none">НОМІНАЦІЯ</option>
+                                <select name="nomination" v-model="registration.step1.nomination" id="" class="select" >
+                                    <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
                                     <option value="1">1</option>
                                 </select>
                             </div>
@@ -55,12 +55,12 @@
                         </div>
                     </transition>
                     <transition name="fade">
-                        <form class="step-form step1" v-if="activeStep == 1">
+                        <div class="step-form" v-if="activeStep == 1">
                             <h3 class="step-title">Інформація про учасника</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ ">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.step2.memberName">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" placeholder="ІМ'Я  ">
@@ -88,7 +88,13 @@
 
                                 </div>
                             </div>
-                            <h3 class="step-title">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>УЧНЯ</label>
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>ОДНОГО З БАТЬКІВ</label>
+                                </div>
+                            </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
@@ -125,7 +131,201 @@
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
-                        </form>
+                        </div>
+
+                        <!--duet-->
+
+                        <div class="step-form" v-if="activeStep == 5">
+                            <h3 class="step-title">Перший учасник дуету</h3>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ІМ'Я  ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ  ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ " required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                </div>
+                            </div>
+                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <label for="birthday">
+                                        <span>{{birthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>УЧНЯ</label>
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>ОДНОГО З БАТЬКІВ</label>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ІМ'Я  ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ  ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ">
+                                </div>
+                            </div>
+                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <label for="birthday">
+                                        <span>{{birthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <h3 class="step-title">Другий учасник дуету</h3>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ІМ'Я  ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ  ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ " required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                </div>
+                            </div>
+                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <label for="birthday">
+                                        <span>{{birthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>УЧНЯ</label>
+                                    <label><input type="radio" name="id-code" class="app-type"><i></i>ОДНОГО З БАТЬКІВ</label>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ІМ'Я  ">
+                                </div>
+                                <div class="input-container ml-4">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ  ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ">
+                                </div>
+                            </div>
+                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <label for="birthday">
+                                        <span>{{birthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                            </div>
+                        </div>
+
+                        <!--group-->
+
+                        <div class="step-form" v-if="activeStep == 5">
+                            <h3 class="step-title">Інформація про учасника</h3>
+
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
+                                    <input type="text" placeholder="НАЗВА КОЛЕКТИВУ ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ ">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ ">
+                                </div>
+                            </div>
+                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <label for="birthday">
+                                        <span>{{birthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                            </div>
+
+                        </div>
 
                     </transition>
                     <transition name="fade" >
@@ -176,6 +376,12 @@
                             </div>
                             <div class="input-row">
                                 <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-container">
                                     <img src="img/input-phone.png" alt="" class="input-img">
                                     <input type="text" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА">
                                 </div>
@@ -206,7 +412,7 @@
                         </div>
                     </transition>
                     <transition name="fade" >
-                        <div class="step-form step1" v-if="activeStep == 3">
+                        <div class="step-form" v-if="activeStep == 3">
                             <h3 class="step-title">Інформація про ВИСТУП</h3>
                             <h3 class="step-title">перший твір</h3>
                             <div class="input-row">
@@ -268,6 +474,15 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
+                registration: {
+                    step1: {
+                        appType: 1,
+                        nomination: 0,
+                    },
+                    step2: {
+
+                    }
+                }
             };
         },
 
@@ -280,11 +495,11 @@
         },
         methods: {
             nextStep(){
-                // $event.preventDefault();
+
                 const steps = this.steps;
                 this.activeStep++;
                 steps[this.activeStep] = true;
-
+                console.log(this.registration);
 
 
 
