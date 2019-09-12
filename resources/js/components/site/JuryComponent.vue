@@ -12,41 +12,36 @@
 
 
                 </div>
-                <!-- <div class="jury-list">
-                 
-                    
-                    
-                </div> -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner jury-list">
-    <div class="carousel-item jury-items active">
-                            <img src="img/list_jury/Intersection_4.png" alt="">
-                            <div class="items-title"></div>
-
+        
+  <div class="jury-list">
+    <div class="jury-items">
+      <router-link :to="{ name: 'jury-member', params:{ id: 1}}">
+        <img src="img/list_jury/Intersection_4.png" alt="">
+        <div class="items-title"></div>
+      </router-link>
     </div>
-    <div class="carousel-item jury-items">
-                            <img src="img/list_jury/Intersection_5.png" alt="">
-                            <div class="items-title"></div>
+    <div class="jury-items">
+      <router-link :to="{ name: 'jury-member', params:{ id: 2}}">
+        <img src="img/list_jury/Intersection_5.png" alt="">
+        <div class="items-title"></div>
+      </router-link>
     </div>
-    <div class="carousel-item jury-items">
-                                 <img src="img/list_jury/Intersection_6.png" alt="">
-                            <div class="items-title"></div>
+    <div class="jury-items">
+      <router-link :to="{ name: 'jury-member', params:{ id: 3}}">
+        <img src="img/list_jury/Intersection_6.png" alt="">
+        <div class="items-title"></div>
+      </router-link>
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
-  </a>
-</div>
+  </a> -->
+<!-- </div> -->
             </div>
         </section>
     </div>

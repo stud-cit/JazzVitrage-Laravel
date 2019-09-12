@@ -1925,6 +1925,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2362,6 +2369,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    document.title = "Наше журі";
+  },
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2372,7 +2422,7 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   created: function created() {
-    document.title = "Наше журі";
+    document.title = "Представник журі";
   },
   computed: {},
   methods: {}
@@ -2494,6 +2544,110 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   created: function created() {},
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    document.title = "Організаційний комітет";
+  },
   computed: {},
   methods: {}
 });
@@ -38165,35 +38319,7 @@ var render = function() {
     "header",
     { staticClass: "header" },
     [
-      _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
-        _c("div", { staticClass: "container" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse nav-menu",
-              attrs: { id: "nav-menu" }
-            },
-            [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "add-application" },
-                [
-                  _c("router-link", { attrs: { to: "applications" } }, [
-                    _vm._v("ЗАПОВНИТИ ЗАЯВКУ")
-                  ])
-                ],
-                1
-              )
-            ]
-          )
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("marquee", { staticClass: "ticker", attrs: { scrollamount: "10" } }, [
         _vm._v(
@@ -38209,97 +38335,155 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-      _c("img", { attrs: { src: "img/logo.svg", alt: "" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#nav-menu"
-        }
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-nav" }, [
-      _c("li", { staticClass: "dropdown" }, [
+    return _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
+      _c("div", { staticClass: "container" }, [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+          _c("img", { attrs: { src: "/img/logo.svg", alt: "" } })
+        ]),
+        _vm._v(" "),
         _c(
-          "a",
+          "button",
           {
-            staticClass: "nav-item nav-link active dropdown-toggle",
+            staticClass: "navbar-toggler",
             attrs: {
-              href: "#",
-              id: "navbarDropdown",
-              role: "button",
-              "data-toggle": "dropdown"
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#nav-menu"
             }
           },
-          [_vm._v("КОНКУРС")]
+          [_c("span", { staticClass: "navbar-toggler-icon" })]
         ),
         _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "dropdown-menu",
-            attrs: { "aria-labelledby": "navbarDropdown" }
+            staticClass: "collapse navbar-collapse nav-menu",
+            attrs: { id: "nav-menu" }
           },
           [
-            _c(
-              "a",
-              { staticClass: "dropdown-item", attrs: { href: "members" } },
-              [_vm._v("СПИСОК УЧАСНИКІВ")]
-            ),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Another action")
+            _c("div", { staticClass: "navbar-nav" }, [
+              _c("li", { staticClass: "dropdown" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-item nav-link active dropdown-toggle",
+                    attrs: {
+                      href: "#",
+                      id: "navbarDropdown",
+                      role: "button",
+                      "data-toggle": "dropdown"
+                    }
+                  },
+                  [_vm._v("КОНКУРС")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "navbarDropdown" }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "/members" }
+                      },
+                      [_vm._v("СПИСОК УЧАСНИКІВ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("ГІМН")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("ЗАЯВКА ДЖАЗ-ВІТРАЖ")]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-item nav-link",
+                    attrs: { href: "/gallery" }
+                  },
+                  [_vm._v("ГАЛЕРЕЯ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("ПОЛОЖЕННЯ")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "dropdown" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-item nav-link dropdown-toggle",
+                    attrs: {
+                      href: "#",
+                      id: "navbarDropdown",
+                      role: "button",
+                      "data-toggle": "dropdown"
+                    }
+                  },
+                  [_vm._v("КОНТАКТИ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "navbarDropdown" }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "/juries" }
+                      },
+                      [_vm._v("ЖУРІ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "/organization-committee" }
+                      },
+                      [_vm._v("ОРГАНІЗАЦІЙНИЙ КОМІТЕТ")]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
+                  [_vm._v("Конфр")]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "dropdown-item", attrs: { href: "juries" } },
-              [_vm._v("ЖУРІ")]
-            )
+            _c("button", { staticClass: "add-application" }, [
+              _vm._v("ЗАПОВНИТИ ЗАЯВКУ")
+            ])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "a",
-          { staticClass: "nav-item nav-link", attrs: { href: "gallery" } },
-          [_vm._v("ГАЛЕРЕЯ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
-          _vm._v("ПОЛОЖЕННЯ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
-          _vm._v("КОНТАКТИ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
-          _vm._v("Конфр")
-        ])
       ])
     ])
   }
@@ -38880,132 +39064,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section juries" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "jury-list" }, [
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 1 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 2 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 3 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "sections main-section juries" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "title-juries" }, [
-            _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
-            _vm._v(" "),
-            _c("div", { staticClass: "text" }, [
-              _c("h2", { staticClass: "title" }, [_vm._v("НАШЕ ЖУРІ")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
-            ])
-          ]),
-          _vm._v(" "),
+    return _c("div", { staticClass: "title-juries" }, [
+      _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text" }, [
+        _c("h2", { staticClass: "title" }, [_vm._v("НАШЕ ЖУРІ")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section jury-member juries" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "page-nav" }, [
           _c(
             "div",
-            {
-              staticClass: "carousel slide",
-              attrs: {
-                id: "carouselExampleIndicators",
-                "data-ride": "carousel"
-              }
-            },
+            { staticClass: "prev-page" },
             [
-              _c("ol", { staticClass: "carousel-indicators" }, [
-                _c("li", {
-                  staticClass: "active",
-                  attrs: {
-                    "data-target": "#carouselExampleIndicators",
-                    "data-slide-to": "0"
-                  }
-                }),
-                _vm._v(" "),
-                _c("li", {
-                  attrs: {
-                    "data-target": "#carouselExampleIndicators",
-                    "data-slide-to": "1"
-                  }
-                }),
-                _vm._v(" "),
-                _c("li", {
-                  attrs: {
-                    "data-target": "#carouselExampleIndicators",
-                    "data-slide-to": "2"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "carousel-inner jury-list" }, [
-                _c("div", { staticClass: "carousel-item jury-items active" }, [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ІННА АНДРІЇВНА")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "carousel-item jury-items" }, [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ІВАН ПЕТРОВИЧ")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "carousel-item jury-items" }, [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" }, [
-                    _vm._v("ВАЛЕНТИНА МИКОЛАЇВНА")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "carousel-control-prev",
-                  attrs: {
-                    href: "#carouselExampleIndicators",
-                    role: "button",
-                    "data-slide": "prev"
-                  }
-                },
-                [
-                  _c("span", {
-                    staticClass: "carousel-control-prev-icon",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "carousel-control-next",
-                  attrs: {
-                    href: "#carouselExampleIndicators",
-                    role: "button",
-                    "data-slide": "next"
-                  }
-                },
-                [
-                  _c("span", {
-                    staticClass: "carousel-control-next-icon",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
-                ]
-              )
-            ]
+              _c("router-link", { attrs: { to: { name: "juries" } } }, [
+                _c("i", { staticClass: "fa fa-angle-left" }),
+                _vm._v("всі журі")
+              ])
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "member-jury-card" }, [
+      _c("div", { staticClass: "picture" }, [
+        _c("img", {
+          attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "description" }, [
+        _c("h3", { staticClass: "title-description" }, [
+          _vm._v("NAME SURNAME")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-description" }, [
+          _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+          _c("br"),
+          _vm._v(
+            "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-description" }, [
+          _vm._v(
+            "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
           )
         ])
       ])
@@ -39183,6 +39395,192 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "pagination" }, [
+            _c("li", { staticClass: "controls" }, [
+              _c("i", {
+                staticClass: "fa fa-long-arrow-left",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", [_vm._v("1 : 16")]),
+            _vm._v(" "),
+            _c("li", { staticClass: "controls active" }, [
+              _c("i", {
+                staticClass: "fa fa-long-arrow-right",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("section", { staticClass: "sections main-section juries" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h2", { staticClass: "title-section" }, [
+            _vm._v("Організаційний комітет")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "sortiration-block" }, [
+            _vm._v("\n                 сортувати:\n                    "),
+            _c("select", { attrs: { name: "" } }, [
+              _c("option", { attrs: { value: "", selected: "selected" } }, [
+                _vm._v("інструментальний жанр")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [
+                _vm._v("вокальний жанр")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [
+                _vm._v("вокально-інструментальний жанр")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "pagination" }, [
@@ -54742,6 +55140,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/site/JuryMemberComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JuryMemberComponent.vue?vue&type=template&id=30100798& */ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&");
+/* harmony import */ var _JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JuryMemberComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/JuryMemberComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryMemberComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryMemberComponent.vue?vue&type=template&id=30100798& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/site/MembersListComponent.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/site/MembersListComponent.vue ***!
@@ -54811,6 +55278,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& */ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&");
+/* harmony import */ var _OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrganizationCommitteeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/OrganizationCommitteeComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./OrganizationCommitteeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/site.js":
 /*!******************************!*\
   !*** ./resources/js/site.js ***!
@@ -54830,7 +55366,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/site/GalleryComponent */ "./resources/js/components/site/GalleryComponent.vue");
 /* harmony import */ var _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/site/GalleryYearComponent */ "./resources/js/components/site/GalleryYearComponent.vue");
 /* harmony import */ var _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/site/JuryComponent */ "./resources/js/components/site/JuryComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/site/JuryMemberComponent */ "./resources/js/components/site/JuryMemberComponent.vue");
+/* harmony import */ var _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/site/OrganizationCommitteeComponent */ "./resources/js/components/site/OrganizationCommitteeComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -54843,9 +55381,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]);
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_11__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.delimiters = ['${', '}'];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_11__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -54871,6 +55411,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__["default"]({
     path: '/juries',
     name: 'juries',
     component: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
+    path: '/juries/:id/',
+    name: 'jury-member',
+    component: _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }, {
+    path: '/organization-committee',
+    name: 'organization-committee',
+    component: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -54882,6 +55430,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     Gallery: _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
     GalleryYear: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
     Jury: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    JuryMember: _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
+    OrganizationCommittee: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
     HeaderComponent: _components_site_HeaderComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FooterComponent: _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },

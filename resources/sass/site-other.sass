@@ -66,28 +66,238 @@
          text-decoration: none
          .fa
             margin-right: 5px
+.juries
+   .title-juries
+      position: relative
+      display: flex
+      justify-content: center
+      margin-bottom: 15px
+      .text
+         position: absolute
+         top: 30px
+         .title
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 37px
+            font-weight: 900
+            letter-spacing: 3.7px
+         .subtitle
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 14px
+            font-weight: 500
+            letter-spacing: 1.4px
+            margin-top: 10px
+            text-align: center
+   .page-nav
+      display: flex
+      justify-content: space-between
+      align-items: center
+      font-family: Montserrat
+      font-size: 18pt
+      font-weight: 600
+      color: #fff
+      text-transform: uppercase
+      .title
+         text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 26px
+         font-weight: 900
+      .prev-page
+         width: 234px
+         text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 26px
+         font-weight: 900
+         .fa
+            margin-right: 10px
+   .sortiration-block
+         margin: 55px 0 20px 60%
+         width: 40%
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 20px
+         line-height: 40px
+         font-weight: 400
+         select
+            margin-top: -2pt
+            width: 74%
+            height: 40px
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 20px
+            font-weight: 400
+            line-height: 40px
+            border: none
+            padding: 0 10px
+            min-width: 190px
+            text-align: center
+            outline: none
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+            background: transparent
+            option
+              color: #000000 
+   .member-jury-card
+      display: flex
+      margin-top: 55px
+      .picture
+         width: 49%
+         img
+            border-radius: 100px 0 0
+      .description
+         width: 51%
+         margin: 98px 0 30px 0
+         padding: 90px 95px 120px 30px
+         background: rgba(79, 33, 96, 0.5)
+         border-radius: 0 0 20px
+         .title-description
+            color: #ffffff
+            font-family: "Segoe UI"
+            font-size: 20px
+            font-weight: 700
+            text-transform: uppercase
+            
+         .text-description
+            margin-top: 20px
+            line-height: 1.5
+            color: #ffffff
+            font-family: "Segoe UI"
+            font-size: 16px
+            font-weight: 400
+   .member-committee-card
+      display: flex
+      margin-top: 55px
+      .picture
+         width: 49%
+         img
+            border-radius: 100px 0 0
+      .description
+         width: 51%
+         margin: 98px 0 30px 0
+         padding: 90px 95px 120px 30px
+         background: rgba(79, 33, 96, 0.8)
+         border-radius: 0 0 20px
+         .title-description
+            color: #ffffff
+            font-family: "Segoe UI"
+            font-size: 20px
+            font-weight: 700
+            text-transform: uppercase
+            
+         .text-description
+            margin-top: 20px
+            line-height: 1.5
+            color: #ffffff
+            font-family: "Segoe UI"
+            font-size: 16px
+            font-weight: 400
+      &:nth-of-type(2n+1)
+         .picture
+            order: 2
+            img
+               border-radius: 0 100px 0 0
+         .description
+            order: 1
+            text-align: right
+            padding: 90px 30px 120px 95px 
+            border-radius: 20px 0 0 20px
+   .pagination
+      color: #ffffff
+      font-family: Montserrat
+      font-size: 20px
+      font-weight: 500
+      letter-spacing: -1px
+      margin-top: 40px
+      display: flex
+      justify-content: center
+
+      li
+         margin: 0 5px
+         width: 50px
+         height: 50px
+         display: flex
+         justify-content: center
+         align-items: center
+         cursor: pointer
+      .controls
+         font-size: 20px
+         &.active
+            border-radius: 25px
+            background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+            color: #14042f
+.jury-list
+      display: flex
+      justify-content: space-between
+      .jury-items
+         position: relative
+         border: 15px solid #fff
+         background-color: #ffff00
+         border-radius: 50%
+         width: 310px
+         height: 310px
+         display: flex
+         justify-content: center
+         align-items: flex-end
+         overflow: hidden
+         text-decoration: none
+         margin-bottom: 65px
+
+         img
+            position: absolute
+            display: block
+            top: 50%
+            left: 50%
+            transform: translate(-50%,-50%)
+            max-width: 280px
+            max-height: 280px
+         .items-title
+            height: 0
+            width: 0
+         &:hover
+            .items-title
+               transition: height 0.2s ease
+               background-color: rgba(0, 0, 0, 0.7)
+               height: 100px
+               width: 100%
+               padding: 20px
+               text-align: center
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 17px
+               font-weight: 900
+               letter-spacing: 1.7px
+               z-index: 5 
+.carousel-inner 
+   .carousel-item.active
+      display: flex
+   .carousel-item-next
+      display: flex
+   .carousel-item-prev
+      display: flex 
+  
+
 .carousel-inner 
    .carousel-item-right.active
-      justify-content: center
-      transform: translateX(33.33%)
-   .carousel-item-next 
-      transform: translateX(33.33%)
-      justify-content: center 
+      transform: translateX(25%)
+   .carousel-item-next
+      transform: translateX(25%)
+  
 .carousel-inner 
-   .carousel-item-left.active 
-      transform: translateX(-33.33%)
-      justify-content: center
-   .carousel-item-prev
-      transform: translateX(-33.33%)
-      justify-content: center 
+   .carousel-item-left.active
+      transform: translateX(-25%) 
+   .carousel-item-prev 
+      transform: translateX(-25%)
+
   
 .carousel-inner 
    .carousel-item-right
       transform: translateX(0)
-      justify-content: center
-
-.carousel-inner 
    .carousel-item-left
       transform: translateX(0)
-      justify-content: center 
   
+  
+            

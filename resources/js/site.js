@@ -12,6 +12,8 @@ import Application from './components/site/ApplicationComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
 import Jury from './components/site/JuryComponent';
+import JuryMember from './components/site/JuryMemberComponent';
+import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -52,6 +54,16 @@ const router = new VueRouter({
             name: 'juries',
             component: Jury,
         },
+        {
+            path: '/juries/:id/',
+            name: 'jury-member',
+            component: JuryMember,
+        },
+        {
+            path: '/organization-committee',
+            name: 'organization-committee',
+            component: OrganizationCommittee,
+        }
     ],
 });
 
@@ -64,6 +76,8 @@ const app = new Vue({
         Gallery,
         GalleryYear,
         Jury,
+        JuryMember,
+        OrganizationCommittee,
         HeaderComponent,
         FooterComponent,
     },
