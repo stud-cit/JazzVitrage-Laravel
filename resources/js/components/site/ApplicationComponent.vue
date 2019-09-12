@@ -30,21 +30,24 @@
                         </div>
 
                     </div>
+
+                    <!--step1-->
+
                     <transition name="fade" >
                         <div class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
                             <div class="input-group">
-                                <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.step1.appType" ><i></i>СОЛІСТ</label>
-                                <label><input type="radio" name="app-type" class="app-type" value="2" v-model="registration.step1.appType"><i></i>ДУЕТ</label>
-                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>АНСАМБЛЬ</label>
-                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>ХОР</label>
-                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.step1.appType"><i></i>ОРКЕСТР</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.data.appType" ><i></i>СОЛІСТ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="2" v-model="registration.data.appType"><i></i>ДУЕТ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.data.appType"><i></i>АНСАМБЛЬ</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.data.appType"><i></i>ХОР</label>
+                                <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.data.appType"><i></i>ОРКЕСТР</label>
 
 
                             </div>
                             <div class="select-block">
                                 <img src="img/star.png" class="star" alt="">
-                                <select name="nomination" v-model="registration.step1.nomination" id="" class="select" >
+                                <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
                                     <option value="1">1</option>
                                 </select>
@@ -54,25 +57,28 @@
                             </div>
                         </div>
                     </transition>
+
+                    <!--step2-->
+
                     <transition name="fade">
                         <div class="step-form" v-if="activeStep == 1">
                             <h3 class="step-title">Інформація про учасника</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.step2.memberName">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  ">
+                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  ">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronomic">
                                 </div>
                             </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ " required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
                                 </div>
                             </div>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
@@ -81,9 +87,9 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
-                                    <label for="birthday">
-                                        <span>{{birthdayFile}}</span>
+                                    <input @change="getInputFile" id="memberBirthdayFile" class="d-none" type="file" >
+                                    <label for="memberBirthdayFile">
+                                        <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
 
                                 </div>
@@ -119,9 +125,9 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
-                                    <label for="birthday">
-                                        <span>{{birthdayFile}}</span>
+                                    <input @change="getInputFile" id="parentBirthdayFile" class="d-none" type="file" >
+                                    <label for="memberBirthdayFile">
+                                        <span>{{fileTitle.parentBirthdayFile}}</span>
                                     </label>
 
                                 </div>
@@ -199,7 +205,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputAttr" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <input @change="getInputFile" id="birthday" class="d-none" type="file" placeholder="../birthdays.jpg ">
                                     <label for="birthday">
                                         <span>{{birthdayFile}}</span>
                                     </label>
@@ -328,6 +334,9 @@
                         </div>
 
                     </transition>
+
+                    <!--step3-->
+
                     <transition name="fade" >
                         <div class="step-form" v-if="activeStep == 2">
                             <h3 class="step-title">Інформація про УЧБОВИЙ ЗАКЛАД </h3>
@@ -411,6 +420,9 @@
                             </div>
                         </div>
                     </transition>
+
+                    <!--step4-->
+
                     <transition name="fade" >
                         <div class="step-form" v-if="activeStep == 3">
                             <h3 class="step-title">Інформація про ВИСТУП</h3>
@@ -474,12 +486,23 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
+                fileTitle: {
+                    memberBirthdayFile: 'завантажити файл',
+                    parentBirthdayFile: 'завантажити файл',
+                    member2BirthdayFile: 'завантажити файл',
+                    parent2BirthdayFile: 'завантажити файл',
+
+                },
                 registration: {
-                    step1: {
+                    data: {
                         appType: 1,
                         nomination: 0,
+                        memberName: '',
+                        memberSurname: '',
+                        memberPatronomic: '',
+                        memberDate: '',
                     },
-                    step2: {
+                    files: {
 
                     }
                 }
@@ -513,10 +536,11 @@
 
 
             },
-            getInputAttr(e){
-                const input = e.target;
+            getInputFile(event){
+                const input = event.target;
                 const image = input.value.split('\\').pop();
-                this.birthdayFile = image;
+                this.fileTitle[input.id] = image;
+                this.registration.files[input.id] = input.files[0];
 
             },
 

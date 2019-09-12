@@ -3,6 +3,7 @@ body {
   position: relative;
   background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
   background-attachment: fixed;
+  background-size: cover;
 }
 
 .sections {

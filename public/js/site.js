@@ -2165,6 +2165,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2172,12 +2184,22 @@ __webpack_require__.r(__webpack_exports__);
       activeStep: 0,
       birthdayFile: 'завантажити файл',
       concertmaster: false,
+      fileTitle: {
+        memberBirthdayFile: 'завантажити файл',
+        parentBirthdayFile: 'завантажити файл',
+        member2BirthdayFile: 'завантажити файл',
+        parent2BirthdayFile: 'завантажити файл'
+      },
       registration: {
-        step1: {
+        data: {
           appType: 1,
-          nomination: 0
+          nomination: 0,
+          memberName: '',
+          memberSurname: '',
+          memberPatronomic: '',
+          memberDate: ''
         },
-        step2: {}
+        files: {}
       }
     };
   },
@@ -2198,10 +2220,11 @@ __webpack_require__.r(__webpack_exports__);
       steps[this.activeStep] = false;
       this.activeStep--;
     },
-    getInputAttr: function getInputAttr(e) {
-      var input = e.target;
+    getInputFile: function getInputFile(event) {
+      var input = event.target;
       var image = input.value.split('\\').pop();
-      this.birthdayFile = image;
+      this.fileTitle[input.id] = image;
+      this.registration.files[input.id] = input.files[0];
     }
   }
 });
@@ -38479,8 +38502,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.appType,
-                              expression: "registration.step1.appType"
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
                             }
                           ],
                           staticClass: "app-type",
@@ -38490,12 +38513,12 @@ var render = function() {
                             value: "1"
                           },
                           domProps: {
-                            checked: _vm._q(_vm.registration.step1.appType, "1")
+                            checked: _vm._q(_vm.registration.data.appType, "1")
                           },
                           on: {
                             change: function($event) {
                               return _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "appType",
                                 "1"
                               )
@@ -38512,8 +38535,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.appType,
-                              expression: "registration.step1.appType"
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
                             }
                           ],
                           staticClass: "app-type",
@@ -38523,12 +38546,12 @@ var render = function() {
                             value: "2"
                           },
                           domProps: {
-                            checked: _vm._q(_vm.registration.step1.appType, "2")
+                            checked: _vm._q(_vm.registration.data.appType, "2")
                           },
                           on: {
                             change: function($event) {
                               return _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "appType",
                                 "2"
                               )
@@ -38545,8 +38568,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.appType,
-                              expression: "registration.step1.appType"
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
                             }
                           ],
                           staticClass: "app-type",
@@ -38556,12 +38579,12 @@ var render = function() {
                             value: "3"
                           },
                           domProps: {
-                            checked: _vm._q(_vm.registration.step1.appType, "3")
+                            checked: _vm._q(_vm.registration.data.appType, "3")
                           },
                           on: {
                             change: function($event) {
                               return _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "appType",
                                 "3"
                               )
@@ -38578,8 +38601,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.appType,
-                              expression: "registration.step1.appType"
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
                             }
                           ],
                           staticClass: "app-type",
@@ -38589,12 +38612,12 @@ var render = function() {
                             value: "3"
                           },
                           domProps: {
-                            checked: _vm._q(_vm.registration.step1.appType, "3")
+                            checked: _vm._q(_vm.registration.data.appType, "3")
                           },
                           on: {
                             change: function($event) {
                               return _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "appType",
                                 "3"
                               )
@@ -38611,8 +38634,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.appType,
-                              expression: "registration.step1.appType"
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
                             }
                           ],
                           staticClass: "app-type",
@@ -38622,12 +38645,12 @@ var render = function() {
                             value: "3"
                           },
                           domProps: {
-                            checked: _vm._q(_vm.registration.step1.appType, "3")
+                            checked: _vm._q(_vm.registration.data.appType, "3")
                           },
                           on: {
                             change: function($event) {
                               return _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "appType",
                                 "3"
                               )
@@ -38652,8 +38675,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step1.nomination,
-                              expression: "registration.step1.nomination"
+                              value: _vm.registration.data.nomination,
+                              expression: "registration.data.nomination"
                             }
                           ],
                           staticClass: "select",
@@ -38669,7 +38692,7 @@ var render = function() {
                                   return val
                                 })
                               _vm.$set(
-                                _vm.registration.step1,
+                                _vm.registration.data,
                                 "nomination",
                                 $event.target.multiple
                                   ? $$selectedVal
@@ -38727,13 +38750,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.step2.memberName,
-                              expression: "registration.step2.memberName"
+                              value: _vm.registration.data.memberSurname,
+                              expression: "registration.data.memberSurname"
                             }
                           ],
-                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
                           domProps: {
-                            value: _vm.registration.step2.memberName
+                            value: _vm.registration.data.memberSurname
                           },
                           on: {
                             input: function($event) {
@@ -38741,7 +38764,34 @@ var render = function() {
                                 return
                               }
                               _vm.$set(
-                                _vm.registration.step2,
+                                _vm.registration.data,
+                                "memberSurname",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberName,
+                              expression: "registration.data.memberName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ІМ'Я" },
+                          domProps: { value: _vm.registration.data.memberName },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
                                 "memberName",
                                 $event.target.value
                               )
@@ -38752,13 +38802,30 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "input-container ml-4" }, [
                         _c("input", {
-                          attrs: { type: "text", placeholder: "ІМ'Я  " }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "input-container ml-4" }, [
-                        _c("input", {
-                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ  " }
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberPatronomic,
+                              expression: "registration.data.memberPatronomic"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
+                          domProps: {
+                            value: _vm.registration.data.memberPatronomic
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberPatronomic",
+                                $event.target.value
+                              )
+                            }
+                          }
                         })
                       ])
                     ]),
@@ -38771,11 +38838,32 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberDate,
+                              expression: "registration.data.memberDate"
+                            }
+                          ],
                           attrs: {
                             type: "text",
-                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ ",
+                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ",
                             required: "",
                             pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                          },
+                          domProps: { value: _vm.registration.data.memberDate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberDate",
+                                $event.target.value
+                              )
+                            }
                           }
                         })
                       ])
@@ -38795,16 +38883,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "d-none",
-                          attrs: {
-                            id: "birthday",
-                            type: "file",
-                            placeholder: "../birthdays.jpg "
-                          },
-                          on: { change: _vm.getInputAttr }
+                          attrs: { id: "memberBirthdayFile", type: "file" },
+                          on: { change: _vm.getInputFile }
                         }),
                         _vm._v(" "),
-                        _c("label", { attrs: { for: "birthday" } }, [
-                          _c("span", [_vm._v(_vm._s(_vm.birthdayFile))])
+                        _c("label", { attrs: { for: "memberBirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.memberBirthdayFile))
+                          ])
                         ])
                       ])
                     ]),
@@ -38903,16 +38989,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("input", {
                           staticClass: "d-none",
-                          attrs: {
-                            id: "birthday",
-                            type: "file",
-                            placeholder: "../birthdays.jpg "
-                          },
-                          on: { change: _vm.getInputAttr }
+                          attrs: { id: "parentBirthdayFile", type: "file" },
+                          on: { change: _vm.getInputFile }
                         }),
                         _vm._v(" "),
-                        _c("label", { attrs: { for: "birthday" } }, [
-                          _c("span", [_vm._v(_vm._s(_vm.birthdayFile))])
+                        _c("label", { attrs: { for: "memberBirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.parentBirthdayFile))
+                          ])
                         ])
                       ])
                     ]),
@@ -39123,7 +39207,7 @@ var render = function() {
                             type: "file",
                             placeholder: "../birthdays.jpg "
                           },
-                          on: { change: _vm.getInputAttr }
+                          on: { change: _vm.getInputFile }
                         }),
                         _vm._v(" "),
                         _c("label", { attrs: { for: "birthday" } }, [
