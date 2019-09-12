@@ -71,9 +71,7 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
     //site vue route
 
-    Route::get('/{any}', ['as' => 'site', function () {
-        return view('layouts.site.index');
-    }])->where('any', '.*');
+
     //
 
     Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
@@ -103,3 +101,6 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 
 // });
 // Auth::routes();
+Route::get('/{any}', ['as' => 'site', function () {
+    return view('layouts.site.index');
+}])->where('any', '.*');

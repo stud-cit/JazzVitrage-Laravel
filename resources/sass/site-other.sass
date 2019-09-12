@@ -2,17 +2,32 @@
    padding-bottom: 60px
 .main-section
    padding-top: 190px
-.application-for-participation
-  position: relative
-  margin-top: -55px
-  background: rgb(143,21,213)
-  background: linear-gradient(90deg, rgba(143,21,213,1) 0%, rgba(124,0,210,1) 0%, rgba(179,38,191,1) 49%, rgba(198,41,184,1) 75%, rgba(255,255,255,1) 100%)
-  background-size: cover
-  padding-top: 40px
-  height: 180px
-  width: 100%
-  box-shadow: 0 10px 10px rgba(0,0,0,0.4)
-  .subtitle
+
+input, select, textarea, button
+   outline: none
+// animation
+.fade-enter-active
+   transition: 0.3s all 0.3s ease
+.fade-leave-active
+   transition: height 0.3s ease
+.fade-enter, .fade-leave-to
+   opacity: 0
+   height: 0
+
+
+
+.applications
+
+   .application-for-participation
+      position: relative
+      margin-top: -55px
+      background-image: linear-gradient(270deg, #ffffff 0%, #ee3fdc 26%, #722bc4 100%)
+      background-size: cover
+      padding-top: 40px
+      height: 180px
+      width: 100%
+      box-shadow: 0 10px 10px rgba(0,0,0,0.4)
+   .subtitle
       color: #ffffff
       font-family: Montserrat
       font-size: 20pt
@@ -20,6 +35,241 @@
       letter-spacing: 1.6px
       padding-top: 12px
       text-align: center
+   .step-block
+      margin-top: 40px
+      padding: 55px 100px 30px 100px
+      border-radius: 20px
+      background-color: #4b1772
+      overflow: hidden
+      .step-numbers
+         display: flex
+         justify-content: space-between
+         align-items: center
+         .number-item
+            padding-left: 40px
+            position: relative
+            .number-circle
+               transition: all 1s ease
+               display: flex
+               justify-content: center
+               align-items: center
+               width: 56px
+               height: 56px
+               background: #bdbdbd
+               border-radius: 50%
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 30px
+               font-weight: 700
+            .number-text
+               transition: all 1s ease
+               margin-left: 14px
+               color: #bdbdbd
+               font-family: Montserrat
+               font-size: 16px
+               font-weight: 700
+               letter-spacing: 1.6px
+            &::before
+               content: ""
+               position: absolute
+               left: 0
+               top: 50%
+               margin-top: -2px
+               width: 40px
+               height: 3px
+               background: #bdbdbd
+            &:first-of-type
+               padding-left: 0
+               &::before
+                  display: none
+
+         .active
+            .number-circle
+               background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+               color: #410655
+            .number-text
+               color: #ffffff
+            &::before
+               background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+      .step-form
+         margin-top: 55px
+         .step-title
+            display: flex
+            align-items: center
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 20px
+            font-weight: 700
+            letter-spacing: 2px
+            text-transform: uppercase
+            margin-bottom: 20px
+         .title-left
+            margin: 0
+
+            .hint
+               display: block
+               margin-left: 7px
+               width: 27px
+               height: 27px
+               background: url("../img/step-hint.png") no-repeat
+
+         .input-group
+            padding: 20px
+            margin-top: 23px
+            border-radius: 10px
+            border: 1px solid #ffffff
+            display: flex
+            justify-content: space-between
+
+            label
+               position: relative
+               padding-left: 30px
+               min-height: 21px
+               display: flex
+               align-items: center
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 400
+               letter-spacing: 2px
+            input
+               display: none
+            input+i
+               display: block
+               position: absolute
+               left: 0
+               width: 22px
+               height: 21px
+               background: url("../img/empty-radio.png") no-repeat
+            input:checked+i
+               background: url("../img/full-radio.png") no-repeat
+         .input-group-right
+            width: auto
+            min-width: 50%
+            margin: 0
+            border: none
+            padding: 0
+         .select-block
+            border-radius: 10px
+            border: 1px solid #ffffff
+            padding: 5px 0
+            margin-top: 20px
+            display: flex
+            align-items: center
+            .star
+               margin: 0 20px
+            .select
+               padding: 15px
+               border: none
+               border-left: 1px solid #ffffff
+               background: transparent
+               flex-grow: 1
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 400
+               letter-spacing: 2px
+               outline: none
+               appearance: none
+               background: url("../img/select-arrow.png") no-repeat right 20px top 50%
+               option
+                  color: #000
+         .text-right
+            margin-top: 50px
+         .next-step
+            width: 160px
+            height: 60px
+            border-radius: 10px
+            background-color: #ffa407
+            border: none
+            outline: none
+            color: #410655
+            font-family: Montserrat
+            font-size: 20px
+            font-weight: 700
+            letter-spacing: 2px
+         .prev-step
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 23px
+            font-weight: 700
+            letter-spacing: 2.3px
+            cursor: pointer
+         .input-row
+            display: flex
+            justify-content: space-between
+            margin: 20px 0
+         .input-container
+            padding: 5px 0
+
+            border-radius: 10px
+            border: 1px solid #ffffff
+            flex-grow: 1
+            display: flex
+            align-items: center
+            img
+               margin: 0 20px
+            input
+               padding: 15px 30px
+               background-color: transparent
+               border: none
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 400
+               letter-spacing: 2px
+               width: 100%
+               &::placeholder
+                  color: #ffffff
+                  font-family: Montserrat
+                  font-size: 20px
+                  font-weight: 400
+                  letter-spacing: 2px
+            &:first-of-type
+               input
+                  border-left: 1px solid #fff
+            label
+               display: flex
+               justify-content: space-between
+               border-left: 1px solid #fff
+               padding: 15px 30px
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 400
+               letter-spacing: 2px
+               width: 100%
+               text-transform: uppercase
+         .checkbox-row
+            justify-content: flex-start
+            label
+               position: relative
+               display: flex
+               align-items: center
+               padding-left: 65px
+               height: 30px
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 20px
+               font-weight: 700
+               letter-spacing: 2px
+               text-transform: uppercase
+               input+i
+                  display: block
+                  position: absolute
+                  left: 0
+                  width: 30px
+                  height: 30px
+                  background: url("../img/empty-check.png") no-repeat 0 100%
+               input:checked+i
+                  background: url("../img/full-check.png") no-repeat 100% 100%
+         h4.step-title
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 16px
+            font-weight: 700
+            letter-spacing: 1.6px
+            text-transform: uppercase
 .gallery
    .gallery-item
       position: relative
@@ -66,6 +316,75 @@
          text-decoration: none
          .fa
             margin-right: 5px
+
+
+.gymn
+   .wrapper-gymn
+      background-color: #fff
+      border-radius: 40px 0 0 40px
+
+      .couplets
+         background-image: linear-gradient(180deg, #810caa 0%, #760b9b 50%, #410655 100%)
+         border-radius: 30px
+
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 16px
+         font-weight: 400
+         line-height: 1.5
+         padding: 40px 20px 45px 45px
+         h1
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 16px
+            font-weight: 500
+            margin-bottom: 20px
+         p
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 16px
+            font-weight: 400
+
+      .media
+         flex-direction: column
+         position: relative
+         padding-bottom: 150px
+         padding-top: 10px
+         .overflow
+            overflow: hidden
+            .scroll-img
+               max-height: 600px
+               position: relative
+               right: -15px
+               overflow: scroll
+               padding-bottom: 80px
+         .absolute-block
+            position: absolute
+            width: calc(100% - 15px)
+            min-height: 300px
+            bottom: 0
+            left: 15px
+            background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 23%, #ffffff 100%)
+            .audio
+               width: 100%
+               outline: none
+               margin: 100px 0 20px 0
+            audio::-webkit-media-controls-panel
+               background-color: #fff
+            .download
+               box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
+               border-radius: 10px
+               background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+               outline: none
+               color: #ffffff
+               font-family: Montserrat
+               font-size: 19px
+               font-weight: 900
+               letter-spacing: 1.9px
+               border: none
+               padding: 20px 30px
+               text-decoration: none
+
 .juries
    .title-juries
       position: relative
@@ -298,6 +617,3 @@
       transform: translateX(0)
    .carousel-item-left
       transform: translateX(0)
-  
-  
-            

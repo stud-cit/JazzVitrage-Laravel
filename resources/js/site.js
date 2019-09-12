@@ -11,9 +11,11 @@ import MembersList from './components/site/MembersListComponent';
 import Application from './components/site/ApplicationComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
+import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
+
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
@@ -40,9 +42,15 @@ const router = new VueRouter({
             component: Gallery,
         },
         {
-            path: '/gallery/:id/',
+            path: '/gallery/:id',
             name: 'gallery-year',
             component: GalleryYear,
+        },
+        {
+
+            path: '/gymn',
+            name: 'gymn',
+            component: Gymn,
         },
         {
             path: '/applications',
@@ -53,6 +61,7 @@ const router = new VueRouter({
             path: '/juries',
             name: 'juries',
             component: Jury,
+
         },
         {
             path: '/juries/:id/',
@@ -75,6 +84,7 @@ const app = new Vue({
         Application,
         Gallery,
         GalleryYear,
+        Gymn,
         Jury,
         JuryMember,
         OrganizationCommittee,

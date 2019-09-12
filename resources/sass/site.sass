@@ -1,10 +1,12 @@
 body
    line-height: 1
    position: relative
-
+   background: url("../img/preview-bg.jpg") no-repeat
+   background-attachment: fixed
+   background-size: cover
 
 .sections
-   background-color: #14042f
+   //background-color: #14042f
    padding-top: 60px
    padding-bottom: 270px
    .title-section
@@ -95,6 +97,7 @@ body
             letter-spacing: 1.5px
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
             background-image: linear-gradient(180deg, #ff0000 0%, #ba0b0b 88%, #770707 100%)
+            text-decoration: none
    .ticker
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24)
       background-color: #810caa
@@ -107,7 +110,6 @@ body
       text-transform: uppercase
 .main-section
    padding-top: 135px
-   background: url("../img/preview-bg.jpg") no-repeat
    background-size: cover
 .preview
    padding-top: 175px
@@ -131,19 +133,19 @@ body
    &::after
       content: ""
       display: block
-      width: 844px
+      width: 913px
       height: 920px
       position: absolute
       background: url("../img/preview-tool.png") no-repeat
       background-size: cover
-      right: -85px
+      right: 0
       top: 135px
 @media (max-width: 1400px)
    .preview
       .top-layout
          clip-path: polygon(0 0, 94% 0, 70% 100%, 0% 100%)
       &::after
-         right: -20%
+         right: -14%
 
 .nominations
    padding-top: 60px
@@ -392,7 +394,7 @@ body
             color: #14042f
 .video-gallery
    padding-top: 35px
-   background-color: rgb(0, 0, 0)
+   background-color: rgb(0, 0, 0, 0.3)
    #carousel-text
       padding: 0 95px
       padding-bottom: 40px

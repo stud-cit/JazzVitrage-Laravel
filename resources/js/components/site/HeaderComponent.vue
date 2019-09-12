@@ -5,6 +5,7 @@
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container">
                 <a class ="navbar-brand" href="/"><img src="/img/logo.svg" alt=""></a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -14,7 +15,7 @@
                             <a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
-                                <a class="dropdown-item" href="#">ГІМН</a>
+                                <a class="dropdown-item" href="/gymn">ГІМН</a>
                                 <a class="dropdown-item" href="#">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
                             </div>
                         </li>
@@ -34,7 +35,7 @@
 
 
                     </div>
-                    <button class="add-application">ЗАПОВНИТИ ЗАЯВКУ</button>
+                    <router-link :to="'applications'" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                 </div>
             </div>
         </nav>
