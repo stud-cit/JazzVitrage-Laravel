@@ -1,0 +1,88 @@
+<template>
+    <div>
+
+
+        <section class="sections main-section gymn">
+            <div class="container">
+                <div class="row align-items-stretch wrapper-gymn">
+                    <div class="col-xl-5 couplets">
+                        <h1>Куплет</h1>
+
+                        <p>Якщо твоє серце постійно співає,</p>
+                        <p>Мелодія блюзу тебе надихає,</p>
+                        <p>Якщо ти сміливий і маєш кураж –</p>
+                        <p>На тебе чекає сумський «Джаз-Вітраж»!</p>
+                        <p>Бо Джаз – то є символ свободи і миру.</p>
+                        <p>Він-скарб неповторний, яскравий і щирий.</p>
+                        <p>Давайте сьогодні покажемо клас</p>
+                        <p>Анумо всі разом: «Ми любимо ДЖАЗ!»</p>
+
+                        <h1>Приспів</h1>
+
+                        <p>Джаз! Джаз! Джаз! Джаз!</p>
+                        <p>Лунає джаз.</p>
+                        <p>Єднає нас.</p>
+                        <p>Хай буде джаз!</p>
+                        <p>бо Джаз – це Джаз! ДЖАЗ!</p>
+
+                        <h1>Куплет</h1>
+
+                        <p>Вітаємо щиро цінителів Джазу</p>
+                        <p>Віват, Джаз- Вітраж!  Об'єднаймося разом!</p>
+                        <p>Щоб музику стильну усім дарувать,</p>
+                        <p>у світ її дивний без гальм поринать:</p>
+                        <p>Не варто сидіти і чогось чекати -</p>
+                        <p>Ти просто повинен себе показати!</p>
+                        <p>Вирує хай свято не день  і не час</p>
+                        <p>Віват Джаз-Вітраж! Хай завджди буде ДЖАЗ!</p>
+                    </div>
+                    <div class="col-xl-7 media">
+                        <div class="overflow">
+                            <div class="scroll-img">
+                                <img src="img/gymn.png" alt="">
+                            </div>
+                        </div>
+                        <div class="absolute-block">
+                            <audio controls class="audio">
+
+                                <source src="audio/jazz.wav" type="audio/wav" >
+
+                            </audio>
+
+                            <div class="text-center">
+                                <a href="audio/jazz.wav" class="download" download="">ЗАВАНТАЖИТИ</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+
+            };
+        },
+
+        created () {
+
+
+        },
+        computed: {
+
+        },
+        methods: {
+
+
+        },
+
+    }
+</script>

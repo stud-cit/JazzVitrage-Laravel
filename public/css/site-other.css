@@ -6,3 +6,834 @@
   padding-top: 190px;
 }
 
+input,
+select,
+textarea,
+button {
+  outline: none;
+}
+
+.fade-enter-active {
+  transition: 0.3s all 0.3s ease;
+}
+
+.fade-leave-active {
+  transition: height 0.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  height: 0;
+}
+
+.applications .application-for-participation {
+  position: relative;
+  margin-top: -55px;
+  background-image: linear-gradient(270deg, #ffffff 0%, #ee3fdc 26%, #722bc4 100%);
+  background-size: cover;
+  padding-top: 40px;
+  height: 180px;
+  width: 100%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.applications .subtitle {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20pt;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+.applications .step-block {
+  margin-top: 40px;
+  padding: 55px 100px 30px 100px;
+  border-radius: 20px;
+  background-color: #4b1772;
+  overflow: hidden;
+}
+
+.applications .step-block .step-numbers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applications .step-block .step-numbers .number-item {
+  padding-left: 40px;
+  position: relative;
+}
+
+.applications .step-block .step-numbers .number-item .number-circle {
+  transition: all 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  background: #bdbdbd;
+  border-radius: 50%;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.applications .step-block .step-numbers .number-item .number-text {
+  transition: all 1s ease;
+  margin-left: 14px;
+  color: #bdbdbd;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.applications .step-block .step-numbers .number-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -2px;
+  width: 40px;
+  height: 3px;
+  background: #bdbdbd;
+}
+
+.applications .step-block .step-numbers .number-item:first-of-type {
+  padding-left: 0;
+}
+
+.applications .step-block .step-numbers .number-item:first-of-type::before {
+  display: none;
+}
+
+.applications .step-block .step-numbers .active .number-circle {
+  background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+  color: #410655;
+}
+
+.applications .step-block .step-numbers .active .number-text {
+  color: #ffffff;
+}
+
+.applications .step-block .step-numbers .active::before {
+  background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+}
+
+.applications .step-block .step-form {
+  margin-top: 55px;
+}
+
+.applications .step-block .step-form .step-title {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.applications .step-block .step-form .title-left {
+  margin: 0;
+}
+
+.applications .step-block .step-form .title-left .hint {
+  display: block;
+  margin-left: 7px;
+  width: 27px;
+  height: 27px;
+  background: url(/images/step-hint.png?3e03e606ca171f3b0024a37c9dc8b635) no-repeat;
+}
+
+.applications .step-block .step-form .input-group {
+  padding: 20px;
+  margin-top: 23px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.applications .step-block .step-form .input-group label {
+  position: relative;
+  padding-left: 30px;
+  min-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-group input {
+  display: none;
+}
+
+.applications .step-block .step-form .input-group input + i {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 21px;
+  background: url(/images/empty-radio.png?307471f211d0c91078b728b5adbc7cf9) no-repeat;
+}
+
+.applications .step-block .step-form .input-group input:checked + i {
+  background: url(/images/full-radio.png?dfc6676aefda6479f982a86626a85292) no-repeat;
+}
+
+.applications .step-block .step-form .input-group-right {
+  width: auto;
+  min-width: 50%;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.applications .step-block .step-form .select-block {
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  padding: 5px 0;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.applications .step-block .step-form .select-block .star {
+  margin: 0 20px;
+}
+
+.applications .step-block .step-form .select-block .select {
+  padding: 15px;
+  border: none;
+  border-left: 1px solid #ffffff;
+  background: transparent;
+  flex-grow: 1;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: url(/images/select-arrow.png?b306b5505d77a3f47f07c0601bd8ae64) no-repeat right 20px top 50%;
+}
+
+.applications .step-block .step-form .select-block .select option {
+  color: #000;
+}
+
+.applications .step-block .step-form .text-right {
+  margin-top: 50px;
+}
+
+.applications .step-block .step-form .next-step {
+  width: 160px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #ffa407;
+  border: none;
+  outline: none;
+  color: #410655;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .prev-step {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 2.3px;
+  cursor: pointer;
+}
+
+.applications .step-block .step-form .input-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.applications .step-block .step-form .input-container {
+  padding: 5px 0;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.applications .step-block .step-form .input-container img {
+  margin: 0 20px;
+}
+
+.applications .step-block .step-form .input-container input {
+  padding: 15px 30px;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  width: 100%;
+}
+
+.applications .step-block .step-form .input-container input::-webkit-input-placeholder {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-container input::-moz-placeholder {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-container input:-ms-input-placeholder {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-container input::-ms-input-placeholder {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-container input::placeholder {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .input-container:first-of-type input {
+  border-left: 1px solid #fff;
+}
+
+.applications .step-block .step-form .input-container label {
+  display: flex;
+  justify-content: space-between;
+  border-left: 1px solid #fff;
+  padding: 15px 30px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.applications .step-block .step-form .checkbox-row {
+  justify-content: flex-start;
+}
+
+.applications .step-block .step-form .checkbox-row label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 65px;
+  height: 30px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.applications .step-block .step-form .checkbox-row label input + i {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background: url(/images/empty-check.png?e24fae6a9feed6ce99d8a1573de54909) no-repeat 0 100%;
+}
+
+.applications .step-block .step-form .checkbox-row label input:checked + i {
+  background: url(/images/full-check.png?bfbc00211b54935d4deeffd6bc664f9e) no-repeat 100% 100%;
+}
+
+.applications .step-block .step-form h4.step-title {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.gallery .gallery-item {
+  position: relative;
+  margin: 15px 0;
+}
+
+.gallery .gallery-item .dark-bg {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: 100%;
+  max-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.gallery .gallery-item .dark-bg .caption {
+  font-family: Montserrat;
+  font-size: 60pt;
+  font-weight: 900;
+  color: #fff;
+}
+
+.gallery .gallery-item .dark-bg:hover .caption {
+  transition: all 0.3s ease;
+  font-size: 80pt;
+}
+
+.gallery .page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 18pt;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.gallery .page-nav .title {
+  font-family: Montserrat;
+  color: #fff;
+  font-weight: 600;
+}
+
+.gallery .page-nav .prev-page {
+  font-family: Montserrat;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.gallery .page-nav .prev-page .fa {
+  margin-right: 5px;
+}
+
+.gymn .wrapper-gymn {
+  background-color: #fff;
+  border-radius: 40px 0 0 40px;
+}
+
+.gymn .wrapper-gymn .couplets {
+  background-image: linear-gradient(180deg, #810caa 0%, #760b9b 50%, #410655 100%);
+  border-radius: 30px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 40px 20px 45px 45px;
+}
+
+.gymn .wrapper-gymn .couplets h1 {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.gymn .wrapper-gymn .couplets p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.gymn .wrapper-gymn .media {
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 150px;
+  padding-top: 10px;
+}
+
+.gymn .wrapper-gymn .media .overflow {
+  overflow: hidden;
+}
+
+.gymn .wrapper-gymn .media .overflow .scroll-img {
+  max-height: 600px;
+  position: relative;
+  right: -15px;
+  overflow: scroll;
+  padding-bottom: 80px;
+}
+
+.gymn .wrapper-gymn .media .absolute-block {
+  position: absolute;
+  width: calc(100% - 15px);
+  min-height: 300px;
+  bottom: 0;
+  left: 15px;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 23%, #ffffff 100%);
+}
+
+.gymn .wrapper-gymn .media .absolute-block .audio {
+  width: 100%;
+  outline: none;
+  margin: 100px 0 20px 0;
+}
+
+.gymn .wrapper-gymn .media .absolute-block audio::-webkit-media-controls-panel {
+  background-color: #fff;
+}
+
+.gymn .wrapper-gymn .media .absolute-block .download {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+  outline: none;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 1.9px;
+  border: none;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+.juries .title-juries {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.juries .title-juries .text {
+  position: absolute;
+  top: 30px;
+}
+
+.juries .title-juries .text .title {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 37px;
+  font-weight: 900;
+  letter-spacing: 3.7px;
+}
+
+.juries .title-juries .text .subtitle {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.juries .page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 18pt;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.juries .page-nav .title {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.juries .page-nav .prev-page {
+  width: 234px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.juries .page-nav .prev-page .fa {
+  margin-right: 10px;
+}
+
+.juries .sortiration-block {
+  margin: 55px 0 20px 60%;
+  width: 40%;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.juries .sortiration-block select {
+  margin-top: -2pt;
+  width: 74%;
+  height: 40px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 40px;
+  border: none;
+  padding: 0 10px;
+  min-width: 190px;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: transparent;
+}
+
+.juries .sortiration-block select option {
+  color: #000000;
+}
+
+.juries .member-jury-card {
+  display: flex;
+  margin-top: 55px;
+}
+
+.juries .member-jury-card .picture {
+  width: 49%;
+}
+
+.juries .member-jury-card .picture img {
+  border-radius: 100px 0 0;
+}
+
+.juries .member-jury-card .description {
+  width: 51%;
+  margin: 98px 0 30px 0;
+  padding: 90px 95px 120px 30px;
+  background: rgba(79, 33, 96, 0.5);
+  border-radius: 0 0 20px;
+}
+
+.juries .member-jury-card .description .title-description {
+  color: #ffffff;
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.juries .member-jury-card .description .text-description {
+  margin-top: 20px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-family: "Segoe UI";
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.juries .member-committee-card {
+  display: flex;
+  margin-top: 55px;
+}
+
+.juries .member-committee-card .picture {
+  width: 49%;
+}
+
+.juries .member-committee-card .picture img {
+  border-radius: 100px 0 0;
+}
+
+.juries .member-committee-card .description {
+  width: 51%;
+  margin: 98px 0 30px 0;
+  padding: 90px 95px 120px 30px;
+  background: rgba(79, 33, 96, 0.8);
+  border-radius: 0 0 20px;
+}
+
+.juries .member-committee-card .description .title-description {
+  color: #ffffff;
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.juries .member-committee-card .description .text-description {
+  margin-top: 20px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-family: "Segoe UI";
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.juries .member-committee-card:nth-of-type(2n+1) .picture {
+  order: 2;
+}
+
+.juries .member-committee-card:nth-of-type(2n+1) .picture img {
+  border-radius: 0 100px 0 0;
+}
+
+.juries .member-committee-card:nth-of-type(2n+1) .description {
+  order: 1;
+  text-align: right;
+  padding: 90px 30px 120px 95px;
+  border-radius: 20px 0 0 20px;
+}
+
+.juries .pagination {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.juries .pagination li {
+  margin: 0 5px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.juries .pagination .controls {
+  font-size: 20px;
+}
+
+.juries .pagination .controls.active {
+  border-radius: 25px;
+  background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%);
+  color: #14042f;
+}
+
+.jury-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.jury-list .jury-items {
+  position: relative;
+  border: 15px solid #fff;
+  background-color: #ffff00;
+  border-radius: 50%;
+  width: 310px;
+  height: 310px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 65px;
+}
+
+.jury-list .jury-items img {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.jury-list .jury-items .items-title {
+  height: 0;
+  width: 0;
+}
+
+.jury-list .jury-items:hover .items-title {
+  transition: height 0.2s ease;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+  z-index: 5;
+}
+
+.carousel-inner .carousel-item.active {
+  display: flex;
+}
+
+.carousel-inner .carousel-item-next {
+  display: flex;
+}
+
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+.carousel-inner .carousel-item-right.active {
+  transform: translateX(25%);
+}
+
+.carousel-inner .carousel-item-next {
+  transform: translateX(25%);
+}
+
+.carousel-inner .carousel-item-left.active {
+  transform: translateX(-25%);
+}
+
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-25%);
+}
+
+.carousel-inner .carousel-item-right {
+  transform: translateX(0);
+}
+
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+}
+

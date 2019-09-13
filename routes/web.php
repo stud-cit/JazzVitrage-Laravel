@@ -83,11 +83,13 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
         return view('admin.superAdmin.addJury');
     }]);
+
     Route::get('/admin/add-to-org-committee', ['as' => 'admin.superAdmin.addToOrgCommittee', function () {
         return view('admin.superAdmin.addToOrgCommittee');
     }]);
     Route::get('/admin/add-admin-org-committee', ['as' => 'admin.superAdmin.addAdminOrgCommittee', function () {
         return view('admin.superAdmin.addAdminOrgCommittee');
+
     }]);
     // VUE запросы
     Route::get('get-all-jury', 'UserController@getAllJury');
@@ -124,6 +126,8 @@ Auth::routes();
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
 
+
     Route::get('/{any}', ['as' => 'site', function () {
         return view('layouts.site.index');
     }])->where('any', '.*');
+

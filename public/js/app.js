@@ -2092,28 +2092,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      keywords: null,
-      results: [],
       members: [],
       search: ''
     };
@@ -2126,11 +2107,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       return this.members.filter(function (members) {
-        if (!members.group) {
-          return members.solo_duet.name.toLowerCase().includes(_this.search.toLowerCase());
-        } else {
-          return members.group.name.toLowerCase().includes(_this.search.toLowerCase());
-        }
+        return members.name.toLowerCase().includes(_this.search.toLowerCase()) || members.type.toLowerCase().includes(_this.search.toLowerCase());
       });
     }
   },
@@ -2139,14 +2116,27 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-members').then(function (response) {
-        _this2.members = response.data.filter(function (app) {
-          return app.status == "archive";
-        });
-      })["catch"](function (error) {
-        swal({
-          icon: "error",
-          title: 'Помилка',
-          text: error.response.status
+        _this2.members = [];
+        response.data.forEach(function (member) {
+          if (member.solo_duet.length == 0 && member.status == "archive") {
+            _this2.members.push({
+              name: member.group.name,
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 1 && member.status == "archive") {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          } else if (member.solo_duet.length == 2 && member.status == "archive") {
+            _this2.members.push({
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              type: member.app_type.name,
+              id: member.application_id
+            });
+          }
         });
       });
     },
@@ -48764,7 +48754,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.filteredList, function(item, index) {
-          return _c("tbody", { staticClass: "card" }, [
+          return _c("tbody", { key: index, staticClass: "card" }, [
             _c("tr", [
               _c(
                 "td",
@@ -48783,47 +48773,9 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "td",
-                {
-                  attrs: {
-                    "data-toggle": "collapse",
-                    "data-target": "#collapse" + (index + 1)
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(
-                        item.solo_duet
-                          ? item.solo_duet.name +
-                              " " +
-                              item.solo_duet.surname +
-                              " " +
-                              item.solo_duet.patronomic
-                          : item.group.name
-                      ) +
-                      "\n                "
-                  )
-                ]
-              ),
+              _c("td", [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
-              _c(
-                "td",
-                {
-                  attrs: {
-                    "data-toggle": "collapse",
-                    "data-target": "#collapse" + (index + 1)
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(item.app_type.name) +
-                      "\n                "
-                  )
-                ]
-              ),
+              _c("td", [_vm._v(_vm._s(item.type))]),
               _vm._v(" "),
               _c("td", [
                 _c(
@@ -48832,7 +48784,7 @@ var render = function() {
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        return _vm.unarchiveMember(item.application_id)
+                        return _vm.unarchiveMember(item.id)
                       }
                     }
                   },
@@ -48851,7 +48803,7 @@ var render = function() {
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        return _vm.deleteMember(item.application_id)
+                        return _vm.deleteMember(item.id)
                       }
                     }
                   },
@@ -48880,11 +48832,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#")]),
+        _c("th", [_vm._v("№")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Example")]),
+        _c("th", [_vm._v("ПІБ Учасника / Назва групи")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Example")]),
+        _c("th", [_vm._v("Тип заявки")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "30px" } }),
         _vm._v(" "),
@@ -48905,7 +48857,7 @@ var staticRenderFns = [
       [
         _c("td", { staticClass: "card-body", attrs: { colspan: "5" } }, [
           _vm._v(
-            "\n                  \n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                  \n                "
+            "\n                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.\n                "
           )
         ])
       ]
@@ -68712,10 +68664,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })

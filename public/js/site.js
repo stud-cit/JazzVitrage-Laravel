@@ -1688,6 +1688,580 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      steps: [true, false, false, false, false],
+      activeStep: 0,
+      birthdayFile: 'завантажити файл',
+      concertmaster: false,
+      fileTitle: {
+        memberBirthdayFile: 'завантажити файл',
+        member2BirthdayFile: 'завантажити файл',
+        idFile: 'завантажити файл',
+        idFile2: 'завантажити файл',
+        compositionVideo: 'завантажити файл'
+      },
+      registration: {
+        data: {
+          appType: 1,
+          nomination: 0,
+          memberName: '',
+          memberSurname: '',
+          memberPatronymic: '',
+          memberDate: '',
+          idMemberType: 1,
+          parentName: '',
+          parentSurname: '',
+          parentPatronymic: '',
+          idCode: '',
+          member2Name: '',
+          member2Surname: '',
+          member2Patronymic: '',
+          member2Date: '',
+          idMember2Type: 1,
+          parent2Name: '',
+          parent2Surname: '',
+          parent2Patronymic: '',
+          idCode2: '',
+          schoolName: '',
+          schoolAddress: '',
+          schoolPhone: '',
+          schoolEmail: '',
+          teacherSurname: '',
+          teacherName: '',
+          teacherPatronymic: '',
+          teacherEmail: '',
+          teacherPhone: '',
+          concertSurname: '',
+          concertName: '',
+          concertPatronymic: '',
+          compositionName: '',
+          compositionAuthor: '',
+          compositionName2: '',
+          compositionAuthor2: ''
+        },
+        files: {}
+      }
+    };
+  },
+  created: function created() {
+    document.title = "Заповнити заявку";
+  },
+  computed: {},
+  methods: {
+    nextStep: function nextStep() {
+      var steps = this.steps;
+      this.activeStep++;
+      steps[this.activeStep] = true;
+      console.log(this.registration);
+    },
+    prevStep: function prevStep() {
+      // $event.preventDefault();
+      var steps = this.steps;
+      steps[this.activeStep] = false;
+      this.activeStep--;
+    },
+    getInputFile: function getInputFile(event) {
+      var input = event.target;
+      var image = input.value.split('\\').pop();
+      this.fileTitle[input.id] = image;
+      this.registration.files[input.id] = input.files[0];
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/FooterComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/FooterComponent.vue?vue&type=script&lang=js& ***!
@@ -1720,6 +2294,210 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/HeaderComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/HeaderComponent.vue?vue&type=script&lang=js& ***!
@@ -1729,6 +2507,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2149,6 +2935,125 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    document.title = "Наше журі";
+  },
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    document.title = "Представник журі";
+  },
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/MembersListComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/MembersListComponent.vue?vue&type=script&lang=js& ***!
@@ -2263,6 +3168,110 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   created: function created() {},
+  computed: {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    document.title = "Організаційний комітет";
+  },
   computed: {},
   methods: {}
 });
@@ -37560,6 +38569,2608 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section applications" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          { ref: "stepBlock", staticClass: "step-block" },
+          [
+            _c("div", { staticClass: "step-numbers" }, [
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[0] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("1")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 1")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[1] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("2")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 2")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[2] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("3")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 3")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[3] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("4")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 4")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: [
+                    "number-item d-flex align-items-center",
+                    { active: _vm.steps[4] }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "number-circle" }, [_vm._v("5")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "number-text" }, [_vm._v("Крок 5")])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 0
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("тип заявки "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
+                            }
+                          ],
+                          staticClass: "app-type",
+                          attrs: {
+                            type: "radio",
+                            name: "app-type",
+                            value: "1"
+                          },
+                          domProps: {
+                            checked: _vm._q(_vm.registration.data.appType, "1")
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.registration.data,
+                                "appType",
+                                "1"
+                              )
+                            }
+                          }
+                        }),
+                        _c("i"),
+                        _vm._v("СОЛІСТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
+                            }
+                          ],
+                          staticClass: "app-type",
+                          attrs: {
+                            type: "radio",
+                            name: "app-type",
+                            value: "2"
+                          },
+                          domProps: {
+                            checked: _vm._q(_vm.registration.data.appType, "2")
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.registration.data,
+                                "appType",
+                                "2"
+                              )
+                            }
+                          }
+                        }),
+                        _c("i"),
+                        _vm._v("ДУЕТ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
+                            }
+                          ],
+                          staticClass: "app-type",
+                          attrs: {
+                            type: "radio",
+                            name: "app-type",
+                            value: "3"
+                          },
+                          domProps: {
+                            checked: _vm._q(_vm.registration.data.appType, "3")
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.registration.data,
+                                "appType",
+                                "3"
+                              )
+                            }
+                          }
+                        }),
+                        _c("i"),
+                        _vm._v("АНСАМБЛЬ")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
+                            }
+                          ],
+                          staticClass: "app-type",
+                          attrs: {
+                            type: "radio",
+                            name: "app-type",
+                            value: "4"
+                          },
+                          domProps: {
+                            checked: _vm._q(_vm.registration.data.appType, "4")
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.registration.data,
+                                "appType",
+                                "4"
+                              )
+                            }
+                          }
+                        }),
+                        _c("i"),
+                        _vm._v("ХОР")
+                      ]),
+                      _vm._v(" "),
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.appType,
+                              expression: "registration.data.appType"
+                            }
+                          ],
+                          staticClass: "app-type",
+                          attrs: {
+                            type: "radio",
+                            name: "app-type",
+                            value: "5"
+                          },
+                          domProps: {
+                            checked: _vm._q(_vm.registration.data.appType, "5")
+                          },
+                          on: {
+                            change: function($event) {
+                              return _vm.$set(
+                                _vm.registration.data,
+                                "appType",
+                                "5"
+                              )
+                            }
+                          }
+                        }),
+                        _c("i"),
+                        _vm._v("ОРКЕСТР")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "select-block" }, [
+                      _c("img", {
+                        staticClass: "star",
+                        attrs: { src: "img/star.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.nomination,
+                              expression: "registration.data.nomination"
+                            }
+                          ],
+                          staticClass: "select",
+                          attrs: { name: "nomination", id: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.registration.data,
+                                "nomination",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              staticClass: "d-none",
+                              attrs: { disabled: "", selected: "", value: "0" }
+                            },
+                            [_vm._v("НОМІНАЦІЯ")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "next-step",
+                          attrs: { type: "button" },
+                          on: { click: _vm.nextStep }
+                        },
+                        [_vm._v("Далі")]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 1 && _vm.registration.data.appType == 1
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про учасника")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberSurname,
+                              expression: "registration.data.memberSurname"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
+                          domProps: {
+                            value: _vm.registration.data.memberSurname
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberSurname",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberName,
+                              expression: "registration.data.memberName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ІМ'Я" },
+                          domProps: { value: _vm.registration.data.memberName },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberPatronymic,
+                              expression: "registration.data.memberPatronymic"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
+                          domProps: {
+                            value: _vm.registration.data.memberPatronymic
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberPatronymic",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberDate,
+                              expression: "registration.data.memberDate"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ",
+                            required: "",
+                            pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                          },
+                          domProps: { value: _vm.registration.data.memberDate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberDate",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "memberBirthdayFile", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "memberBirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.memberBirthdayFile))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex align-items-center justify-content-between"
+                      },
+                      [
+                        _c("h3", { staticClass: "step-title title-left" }, [
+                          _vm._v("ІДЕНТИФІКАЦІЙНИЙ НОМЕР: "),
+                          _c("i", { staticClass: "hint" })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "input-group input-group-right" },
+                          [
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMemberType,
+                                    expression: "registration.data.idMemberType"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "0"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMemberType,
+                                    "0"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMemberType",
+                                      "0"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("УЧНЯ")
+                            ]),
+                            _vm._v(" "),
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMemberType,
+                                    expression: "registration.data.idMemberType"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "1"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMemberType,
+                                    "1"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMemberType",
+                                      "1"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("ОДНОГО З БАТЬКІВ")
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.registration.data.idMemberType == 1
+                      ? _c("div", { staticClass: "input-row" }, [
+                          _c("div", { staticClass: "input-container" }, [
+                            _c("img", {
+                              staticClass: "input-img",
+                              attrs: { src: "img/step2-user.png", alt: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentSurname,
+                                  expression: "registration.data.parentSurname"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                              domProps: {
+                                value: _vm.registration.data.parentSurname
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentSurname",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentName,
+                                  expression: "registration.data.parentName"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ІМ'Я  " },
+                              domProps: {
+                                value: _vm.registration.data.parentName
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentName",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentPatronymic,
+                                  expression:
+                                    "registration.data.parentPatronymic"
+                                }
+                              ],
+                              attrs: {
+                                type: "text",
+                                placeholder: "ПО-БАТЬКОВІ  "
+                              },
+                              domProps: {
+                                value: _vm.registration.data.parentPatronymic
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentPatronymic",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.idCode,
+                              expression: "registration.data.idCode"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              _vm.registration.data.idMemberType == 1
+                                ? "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
+                                : "ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ"
+                          },
+                          domProps: { value: _vm.registration.data.idCode },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "idCode",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "idFile", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "idFile" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.fileTitle.idFile))])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm.activeStep == 1 && _vm.registration.data.appType == 2
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Перший учасник дуету")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberSurname,
+                              expression: "registration.data.memberSurname"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
+                          domProps: {
+                            value: _vm.registration.data.memberSurname
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberSurname",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberName,
+                              expression: "registration.data.memberName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ІМ'Я" },
+                          domProps: { value: _vm.registration.data.memberName },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberPatronymic,
+                              expression: "registration.data.memberPatronymic"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
+                          domProps: {
+                            value: _vm.registration.data.memberPatronymic
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberPatronymic",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.memberDate,
+                              expression: "registration.data.memberDate"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ",
+                            required: "",
+                            pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                          },
+                          domProps: { value: _vm.registration.data.memberDate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "memberDate",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "memberBirthdayFile", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "memberBirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.memberBirthdayFile))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex align-items-center justify-content-between"
+                      },
+                      [
+                        _c("h3", { staticClass: "step-title title-left" }, [
+                          _vm._v("ІДЕНТИФІКАЦІЙНИЙ НОМЕР: "),
+                          _c("i", { staticClass: "hint" })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "input-group input-group-right" },
+                          [
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMemberType,
+                                    expression: "registration.data.idMemberType"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "0"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMemberType,
+                                    "0"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMemberType",
+                                      "0"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("УЧНЯ")
+                            ]),
+                            _vm._v(" "),
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMemberType,
+                                    expression: "registration.data.idMemberType"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "1"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMemberType,
+                                    "1"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMemberType",
+                                      "1"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("ОДНОГО З БАТЬКІВ")
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.registration.data.idMemberType == 1
+                      ? _c("div", { staticClass: "input-row" }, [
+                          _c("div", { staticClass: "input-container" }, [
+                            _c("img", {
+                              staticClass: "input-img",
+                              attrs: { src: "img/step2-user.png", alt: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentSurname,
+                                  expression: "registration.data.parentSurname"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                              domProps: {
+                                value: _vm.registration.data.parentSurname
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentSurname",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentName,
+                                  expression: "registration.data.parentName"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ІМ'Я  " },
+                              domProps: {
+                                value: _vm.registration.data.parentName
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentName",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parentPatronymic,
+                                  expression:
+                                    "registration.data.parentPatronymic"
+                                }
+                              ],
+                              attrs: {
+                                type: "text",
+                                placeholder: "ПО-БАТЬКОВІ  "
+                              },
+                              domProps: {
+                                value: _vm.registration.data.parentPatronymic
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parentPatronymic",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.idCode,
+                              expression: "registration.data.idCode"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              _vm.registration.data.idMemberType == 1
+                                ? "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
+                                : "ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ"
+                          },
+                          domProps: { value: _vm.registration.data.idCode },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "idCode",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "idFile", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "idFile" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.fileTitle.idFile))])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Другий учасник дуету")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.member2Surname,
+                              expression: "registration.data.member2Surname"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
+                          domProps: {
+                            value: _vm.registration.data.member2Surname
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "member2Surname",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.member2Name,
+                              expression: "registration.data.member2Name"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ІМ'Я" },
+                          domProps: {
+                            value: _vm.registration.data.member2Name
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "member2Name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.member2Patronymic,
+                              expression: "registration.data.member2Patronymic"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
+                          domProps: {
+                            value: _vm.registration.data.member2Patronymic
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "member2Patronymic",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.member2Date,
+                              expression: "registration.data.member2Date"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ",
+                            required: "",
+                            pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                          },
+                          domProps: {
+                            value: _vm.registration.data.member2Date
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "member2Date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "member2BirthdayFile", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "member2BirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.member2BirthdayFile))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex align-items-center justify-content-between"
+                      },
+                      [
+                        _c("h3", { staticClass: "step-title title-left" }, [
+                          _vm._v("ІДЕНТИФІКАЦІЙНИЙ НОМЕР: "),
+                          _c("i", { staticClass: "hint" })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "input-group input-group-right" },
+                          [
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMember2Type,
+                                    expression:
+                                      "registration.data.idMember2Type"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "0"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMember2Type,
+                                    "0"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMember2Type",
+                                      "0"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("УЧНЯ")
+                            ]),
+                            _vm._v(" "),
+                            _c("label", [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.registration.data.idMember2Type,
+                                    expression:
+                                      "registration.data.idMember2Type"
+                                  }
+                                ],
+                                staticClass: "app-type",
+                                attrs: {
+                                  type: "radio",
+                                  name: "id-code-type",
+                                  value: "1"
+                                },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.registration.data.idMember2Type,
+                                    "1"
+                                  )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.registration.data,
+                                      "idMember2Type",
+                                      "1"
+                                    )
+                                  }
+                                }
+                              }),
+                              _c("i"),
+                              _vm._v("ОДНОГО З БАТЬКІВ")
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.registration.data.idMemberType == 1
+                      ? _c("div", { staticClass: "input-row" }, [
+                          _c("div", { staticClass: "input-container" }, [
+                            _c("img", {
+                              staticClass: "input-img",
+                              attrs: { src: "img/step2-user.png", alt: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parent2Surname,
+                                  expression: "registration.data.parent2Surname"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                              domProps: {
+                                value: _vm.registration.data.parent2Surname
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parent2Surname",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.parent2Name,
+                                  expression: "registration.data.parent2Name"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ІМ'Я  " },
+                              domProps: {
+                                value: _vm.registration.data.parent2Name
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parent2Name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.registration.data.parent2Patronymic,
+                                  expression:
+                                    "registration.data.parent2Patronymic"
+                                }
+                              ],
+                              attrs: {
+                                type: "text",
+                                placeholder: "ПО-БАТЬКОВІ  "
+                              },
+                              domProps: {
+                                value: _vm.registration.data.parent2Patronymic
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "parent2Patronymic",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.idCode2,
+                              expression: "registration.data.idCode2"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder:
+                              _vm.registration.data.idMember2Type == 1
+                                ? "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
+                                : "ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ"
+                          },
+                          domProps: { value: _vm.registration.data.idCode2 },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "idCode2",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "idFile2", type: "file" },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "idFile2" } }, [
+                          _c("span", [_vm._v(_vm._s(_vm.fileTitle.idFile2))])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm.activeStep == 1
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про учасника")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.groupName,
+                              expression: "registration.data.groupName"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "НАЗВА КОЛЕКТИВУ "
+                          },
+                          domProps: { value: _vm.registration.data.groupName },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "groupName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.groupCount,
+                              expression: "registration.data.groupCount"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "КІЛЬКІСТЬ УЧАСНИКІВ "
+                          },
+                          domProps: { value: _vm.registration.data.groupCount },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "groupCount",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.groupAverage,
+                              expression: "registration.data.groupAverage"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "СЕРЕДНІЙ ВІК УЧАСНИКІВ "
+                          },
+                          domProps: {
+                            value: _vm.registration.data.groupAverage
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "groupAverage",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Копія документа "),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/file-image.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: {
+                            id: "groupBirthdayFile",
+                            type: "file",
+                            placeholder: "../birthdays.jpg "
+                          },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "groupBirthdayFile" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.groupBirthdayFile))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 2
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про УЧБОВИЙ ЗАКЛАД ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-castle.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.schoolName,
+                              expression: "registration.data.schoolName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "НАЗВА" },
+                          domProps: { value: _vm.registration.data.schoolName },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "schoolName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-map.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.schoolAddress,
+                              expression: "registration.data.schoolAddress"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "АДРЕСА" },
+                          domProps: {
+                            value: _vm.registration.data.schoolAddress
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "schoolAddress",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.schoolPhone,
+                              expression: "registration.data.schoolPhone"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ТЕЛЕФОН" },
+                          domProps: {
+                            value: _vm.registration.data.schoolPhone
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "schoolPhone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.schoolEmail,
+                              expression: "registration.data.schoolEmail"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "E-MAIL " },
+                          domProps: {
+                            value: _vm.registration.data.schoolEmail
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "schoolEmail",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про ВИКЛАДАЧА  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-user.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherSurname,
+                              expression: "registration.data.teacherSurname"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                          domProps: {
+                            value: _vm.registration.data.teacherSurname
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherSurname",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherName,
+                              expression: "registration.data.teacherName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ІМ'Я  " },
+                          domProps: {
+                            value: _vm.registration.data.teacherName
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-container ml-4" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherPatronymic,
+                              expression: "registration.data.teacherPatronymic"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ  " },
+                          domProps: {
+                            value: _vm.registration.data.teacherPatronymic
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherPatronymic",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-mail.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherEmail,
+                              expression: "registration.data.teacherEmail"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "E-MAIL " },
+                          domProps: {
+                            value: _vm.registration.data.teacherEmail
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherEmail",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/step2-data.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherIdCode,
+                              expression: "registration.data.teacherIdCode"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА"
+                          },
+                          domProps: {
+                            value: _vm.registration.data.teacherIdCode
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherIdCode",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-phone.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.teacherPhone,
+                              expression: "registration.data.teacherPhone"
+                            }
+                          ],
+                          attrs: {
+                            type: "text",
+                            placeholder: "КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА"
+                          },
+                          domProps: {
+                            value: _vm.registration.data.teacherPhone
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "teacherPhone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row checkbox-row" }, [
+                      _c("label", { attrs: { for: "concertmaster" } }, [
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "concertmaster", type: "checkbox" },
+                          on: {
+                            change: function($event) {
+                              _vm.concertmaster = !_vm.concertmaster
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("i"),
+                        _vm._v(
+                          "\n                                    В мене є концертмейстер\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.concertmaster
+                      ? _c("div", { staticClass: "input-row" }, [
+                          _c("div", { staticClass: "input-container" }, [
+                            _c("img", {
+                              staticClass: "input-img",
+                              attrs: { src: "img/step2-user.png", alt: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.concertSurname,
+                                  expression: "registration.data.concertSurname"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
+                              domProps: {
+                                value: _vm.registration.data.concertSurname
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "concertSurname",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.registration.data.concertName,
+                                  expression: "registration.data.concertName"
+                                }
+                              ],
+                              attrs: { type: "text", placeholder: "ІМ'Я  " },
+                              domProps: {
+                                value: _vm.registration.data.concertName
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "concertName",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-container ml-4" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.registration.data.concertPatronymic,
+                                  expression:
+                                    "registration.data.concertPatronymic"
+                                }
+                              ],
+                              attrs: {
+                                type: "text",
+                                placeholder: "ПО-БАТЬКОВІ  "
+                              },
+                              domProps: {
+                                value: _vm.registration.data.concertPatronymic
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.registration.data,
+                                    "concertPatronymic",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 3
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про ВИСТУП")
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("перший твір")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-composition.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.compositionName,
+                              expression: "registration.data.compositionName"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "НАЗВА" },
+                          domProps: {
+                            value: _vm.registration.data.compositionName
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "compositionName",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-author.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.compositionAuthor,
+                              expression: "registration.data.compositionAuthor"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "АВТОР" },
+                          domProps: {
+                            value: _vm.registration.data.compositionAuthor
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "compositionAuthor",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "step-title" }, [
+                      _vm._v("Другий твір")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-composition.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.compositionName2,
+                              expression: "registration.data.compositionName2"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "НАЗВА" },
+                          domProps: {
+                            value: _vm.registration.data.compositionName2
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "compositionName2",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-author.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.registration.data.compositionAuthor2,
+                              expression: "registration.data.compositionAuthor2"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "АВТОР" },
+                          domProps: {
+                            value: _vm.registration.data.compositionAuthor2
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.registration.data,
+                                "compositionAuthor2",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v(
+                        "ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО"
+                      ),
+                      _c("i", { staticClass: "hint" })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row" }, [
+                      _c("div", { staticClass: "input-container" }, [
+                        _c("img", {
+                          staticClass: "input-img",
+                          attrs: { src: "img/input-video.png", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: {
+                            id: "compositionVideo",
+                            type: "file",
+                            placeholder: "../birthdays.jpg "
+                          },
+                          on: { change: _vm.getInputFile }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "compositionVideo" } }, [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.fileTitle.compositionVideo))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.nextStep }
+                          },
+                          [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "application-for-participation" }, [
+      _c("h2", { staticClass: "title-section" }, [_vm._v("Заявка на участь ")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/FooterComponent.vue?vue&type=template&id=54d0ea85&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/FooterComponent.vue?vue&type=template&id=54d0ea85& ***!
@@ -37601,6 +41212,391 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [
+          _vm._v("ФЕСТИВАЛЬ ДЖАЗ-ВIтраж")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 3 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "col-xl-4 gallery-item",
+                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
+              },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "img/gallery-img.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "dark-bg" }, [
+                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                ])
+              ]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          { staticClass: "page-nav" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "prev-page", attrs: { to: { name: "gallery" } } },
+              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v("всі роки")]
+            ),
+            _vm._v(" "),
+            _c("h3", { staticClass: "title" }, [
+              _vm._v(" ФЕСТИВАЛЬ ДЖАЗ-ВIтраж 2019 рiк")
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-4" }, [
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+        _c("img", {
+          staticClass: "gallery-img",
+          attrs: { src: "/img/gallery-img.png", alt: "" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "pagination d-flex justify-content-center" },
+      [
+        _c("li", { staticClass: "controls" }, [
+          _c("i", {
+            staticClass: "fa fa-long-arrow-left",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("li", [_vm._v("1 : 16")]),
+        _vm._v(" "),
+        _c("li", { staticClass: "controls active" }, [
+          _c("i", {
+            staticClass: "fa fa-long-arrow-right",
+            attrs: { "aria-hidden": "true" }
+          })
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("section", { staticClass: "sections main-section gymn" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
+            _c("div", { staticClass: "col-xl-5 couplets" }, [
+              _c("h1", [_vm._v("Куплет")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Якщо твоє серце постійно співає,")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Мелодія блюзу тебе надихає,")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Якщо ти сміливий і маєш кураж –")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("На тебе чекає сумський «Джаз-Вітраж»!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Бо Джаз – то є символ свободи і миру.")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Він-скарб неповторний, яскравий і щирий.")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Давайте сьогодні покажемо клас")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Анумо всі разом: «Ми любимо ДЖАЗ!»")]),
+              _vm._v(" "),
+              _c("h1", [_vm._v("Приспів")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Джаз! Джаз! Джаз! Джаз!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Лунає джаз.")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Єднає нас.")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Хай буде джаз!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("бо Джаз – це Джаз! ДЖАЗ!")]),
+              _vm._v(" "),
+              _c("h1", [_vm._v("Куплет")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Вітаємо щиро цінителів Джазу")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Віват, Джаз- Вітраж!  Об'єднаймося разом!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Щоб музику стильну усім дарувать,")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("у світ її дивний без гальм поринать:")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Не варто сидіти і чогось чекати -")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Ти просто повинен себе показати!")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Вирує хай свято не день  і не час")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Віват Джаз-Вітраж! Хай завджди буде ДЖАЗ!")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-7 media" }, [
+              _c("div", { staticClass: "overflow" }, [
+                _c("div", { staticClass: "scroll-img" }, [
+                  _c("img", { attrs: { src: "img/gymn.png", alt: "" } })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "absolute-block" }, [
+                _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
+                  _c("source", {
+                    attrs: { src: "audio/jazz.wav", type: "audio/wav" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "download",
+                      attrs: { href: "audio/jazz.wav", download: "" }
+                    },
+                    [_vm._v("ЗАВАНТАЖИТИ")]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/HeaderComponent.vue?vue&type=template&id=7fea525a&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/HeaderComponent.vue?vue&type=template&id=7fea525a& ***!
@@ -37620,7 +41616,34 @@ var render = function() {
     "header",
     { staticClass: "header" },
     [
-      _vm._m(0),
+      _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse nav-menu",
+              attrs: { id: "nav-menu" }
+            },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "add-application",
+                  attrs: { to: { name: "applications" } }
+                },
+                [_vm._v("ЗАПОВНИТИ ЗАЯВКУ")]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("marquee", { staticClass: "ticker", attrs: { scrollamount: "10" } }, [
         _vm._v(
@@ -37636,114 +41659,131 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
-      _c("div", { staticClass: "container" }, [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _c("img", { attrs: { src: "img/logo.svg", alt: "" } })
-        ]),
-        _vm._v(" "),
+    return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+      _c("img", { attrs: { src: "/img/logo.svg", alt: "" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#nav-menu"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "navbar-nav" }, [
+      _c("li", { staticClass: "dropdown" }, [
         _c(
-          "button",
+          "a",
           {
-            staticClass: "navbar-toggler",
+            staticClass: "nav-item nav-link active dropdown-toggle",
             attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#nav-menu"
+              href: "#",
+              id: "navbarDropdown",
+              role: "button",
+              "data-toggle": "dropdown"
             }
           },
-          [_c("span", { staticClass: "navbar-toggler-icon" })]
+          [_vm._v("КОНКУРС")]
         ),
         _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "collapse navbar-collapse nav-menu",
-            attrs: { id: "nav-menu" }
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "navbarDropdown" }
           },
           [
-            _c("div", { staticClass: "navbar-nav" }, [
-              _c("li", { staticClass: "dropdown" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "nav-item nav-link active dropdown-toggle",
-                    attrs: {
-                      href: "#",
-                      id: "navbarDropdown",
-                      role: "button",
-                      "data-toggle": "dropdown"
-                    }
-                  },
-                  [_vm._v("КОНКУРС")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "dropdown-menu",
-                    attrs: { "aria-labelledby": "navbarDropdown" }
-                  },
-                  [
-                    _c(
-                      "a",
-                      { staticClass: "dropdown-item", attrs: { href: "#" } },
-                      [_vm._v("Action")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      { staticClass: "dropdown-item", attrs: { href: "#" } },
-                      [_vm._v("Another action")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      { staticClass: "dropdown-item", attrs: { href: "#" } },
-                      [_vm._v("Something else here")]
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                  [_vm._v("ГАЛЕРЕЯ")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                  [_vm._v("ПОЛОЖЕННЯ")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                  [_vm._v("КОНТАКТИ")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "nav-item nav-link", attrs: { href: "#" } },
-                  [_vm._v("Конфр")]
-                )
-              ])
-            ]),
+            _c(
+              "a",
+              { staticClass: "dropdown-item", attrs: { href: "/members" } },
+              [_vm._v("СПИСОК УЧАСНИКІВ")]
+            ),
             _vm._v(" "),
-            _c("button", { staticClass: "add-application" }, [
-              _vm._v("ЗАПОВНИТИ ЗАЯВКУ")
+            _c(
+              "a",
+              { staticClass: "dropdown-item", attrs: { href: "/gymn" } },
+              [_vm._v("ГІМН")]
+            ),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("ЗАЯВКА ДЖАЗ-ВІТРАЖ")
             ])
           ]
         )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c(
+          "a",
+          { staticClass: "nav-item nav-link", attrs: { href: "/gallery" } },
+          [_vm._v("ГАЛЕРЕЯ")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
+          _vm._v("ПОЛОЖЕННЯ")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "dropdown" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-item nav-link dropdown-toggle",
+            attrs: {
+              href: "#",
+              id: "navbarDropdown",
+              role: "button",
+              "data-toggle": "dropdown"
+            }
+          },
+          [_vm._v("КОНТАКТИ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "navbarDropdown" }
+          },
+          [
+            _c(
+              "a",
+              { staticClass: "dropdown-item", attrs: { href: "/juries" } },
+              [_vm._v("ЖУРІ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item",
+                attrs: { href: "/organization-committee" }
+              },
+              [_vm._v("ОРГАНІЗАЦІЙНИЙ КОМІТЕТ")]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
+          _vm._v("Конфр")
+        ])
       ])
     ])
   }
@@ -38309,6 +42349,187 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section juries" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "jury-list" }, [
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 1 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 2 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "jury-items" },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "jury-member", params: { id: 3 } } } },
+                [
+                  _c("img", {
+                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "items-title" })
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "title-juries" }, [
+      _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text" }, [
+        _c("h2", { staticClass: "title" }, [_vm._v("НАШЕ ЖУРІ")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section jury-member juries" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "page-nav" }, [
+          _c(
+            "div",
+            { staticClass: "prev-page" },
+            [
+              _c("router-link", { attrs: { to: { name: "juries" } } }, [
+                _c("i", { staticClass: "fa fa-angle-left" }),
+                _vm._v("всі журі")
+              ])
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "member-jury-card" }, [
+      _c("div", { staticClass: "picture" }, [
+        _c("img", {
+          attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "description" }, [
+        _c("h3", { staticClass: "title-description" }, [
+          _vm._v("NAME SURNAME")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-description" }, [
+          _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+          _c("br"),
+          _vm._v(
+            "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-description" }, [
+          _vm._v(
+            "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/MembersListComponent.vue?vue&type=template&id=35e0c893&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/MembersListComponent.vue?vue&type=template&id=35e0c893& ***!
@@ -38474,6 +42695,192 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "pagination" }, [
+            _c("li", { staticClass: "controls" }, [
+              _c("i", {
+                staticClass: "fa fa-long-arrow-left",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("li", [_vm._v("1 : 16")]),
+            _vm._v(" "),
+            _c("li", { staticClass: "controls active" }, [
+              _c("i", {
+                staticClass: "fa fa-long-arrow-right",
+                attrs: { "aria-hidden": "true" }
+              })
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("section", { staticClass: "sections main-section juries" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h2", { staticClass: "title-section" }, [
+            _vm._v("Організаційний комітет")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "sortiration-block" }, [
+            _vm._v("\n                 сортувати:\n                    "),
+            _c("select", { attrs: { name: "" } }, [
+              _c("option", { attrs: { value: "", selected: "selected" } }, [
+                _vm._v("інструментальний жанр")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [
+                _vm._v("вокальний жанр")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [
+                _vm._v("вокально-інструментальний жанр")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "member-committee-card" }, [
+            _c("div", { staticClass: "picture" }, [
+              _c("img", {
+                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _c("h3", { staticClass: "title-description" }, [
+                _vm._v("NAME SURNAME")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
+                _c("br"),
+                _vm._v(
+                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-description" }, [
+                _vm._v(
+                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
+                )
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "pagination" }, [
@@ -53550,6 +57957,75 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/site/ApplicationComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/site/ApplicationComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApplicationComponent.vue?vue&type=template&id=4eae793a& */ "./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a&");
+/* harmony import */ var _ApplicationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApplicationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ApplicationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/ApplicationComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApplicationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApplicationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/ApplicationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApplicationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApplicationComponent.vue?vue&type=template&id=4eae793a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/ApplicationComponent.vue?vue&type=template&id=4eae793a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApplicationComponent_vue_vue_type_template_id_4eae793a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/site/FooterComponent.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/site/FooterComponent.vue ***!
@@ -53614,6 +58090,213 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_54d0ea85___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FooterComponent_vue_vue_type_template_id_54d0ea85___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/site/GalleryComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GalleryComponent.vue?vue&type=template&id=5e6decf8& */ "./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8&");
+/* harmony import */ var _GalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GalleryComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/GalleryComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./GalleryComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./GalleryComponent.vue?vue&type=template&id=5e6decf8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryComponent.vue?vue&type=template&id=5e6decf8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryComponent_vue_vue_type_template_id_5e6decf8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryYearComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/site/GalleryYearComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GalleryYearComponent.vue?vue&type=template&id=351ff63b& */ "./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b&");
+/* harmony import */ var _GalleryYearComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GalleryYearComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GalleryYearComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/GalleryYearComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryYearComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./GalleryYearComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryYearComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryYearComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./GalleryYearComponent.vue?vue&type=template&id=351ff63b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GalleryYearComponent.vue?vue&type=template&id=351ff63b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GalleryYearComponent_vue_vue_type_template_id_351ff63b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GymnComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/site/GymnComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GymnComponent.vue?vue&type=template&id=0b15d3cd& */ "./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd&");
+/* harmony import */ var _GymnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GymnComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GymnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/GymnComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GymnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./GymnComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GymnComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GymnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./GymnComponent.vue?vue&type=template&id=0b15d3cd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/GymnComponent.vue?vue&type=template&id=0b15d3cd&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GymnComponent_vue_vue_type_template_id_0b15d3cd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -53757,6 +58440,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/site/JuryComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/site/JuryComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JuryComponent.vue?vue&type=template&id=26c69924& */ "./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924&");
+/* harmony import */ var _JuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JuryComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _JuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/JuryComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryComponent.vue?vue&type=template&id=26c69924& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryComponent.vue?vue&type=template&id=26c69924&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryComponent_vue_vue_type_template_id_26c69924___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryMemberComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JuryMemberComponent.vue?vue&type=template&id=30100798& */ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&");
+/* harmony import */ var _JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JuryMemberComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/JuryMemberComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryMemberComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./JuryMemberComponent.vue?vue&type=template&id=30100798& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/JuryMemberComponent.vue?vue&type=template&id=30100798&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_JuryMemberComponent_vue_vue_type_template_id_30100798___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/site/MembersListComponent.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/site/MembersListComponent.vue ***!
@@ -53826,6 +58647,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& */ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&");
+/* harmony import */ var _OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrganizationCommitteeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/OrganizationCommitteeComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./OrganizationCommitteeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/OrganizationCommitteeComponent.vue?vue&type=template&id=29b63a00&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrganizationCommitteeComponent_vue_vue_type_template_id_29b63a00___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/site.js":
 /*!******************************!*\
   !*** ./resources/js/site.js ***!
@@ -53841,7 +58731,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/site/FooterComponent */ "./resources/js/components/site/FooterComponent.vue");
 /* harmony import */ var _components_site_IndexComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/site/IndexComponent */ "./resources/js/components/site/IndexComponent.vue");
 /* harmony import */ var _components_site_MembersListComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/site/MembersListComponent */ "./resources/js/components/site/MembersListComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_site_ApplicationComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/site/ApplicationComponent */ "./resources/js/components/site/ApplicationComponent.vue");
+/* harmony import */ var _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/site/GalleryComponent */ "./resources/js/components/site/GalleryComponent.vue");
+/* harmony import */ var _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/site/GalleryYearComponent */ "./resources/js/components/site/GalleryYearComponent.vue");
+/* harmony import */ var _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/site/GymnComponent */ "./resources/js/components/site/GymnComponent.vue");
+/* harmony import */ var _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/site/JuryComponent */ "./resources/js/components/site/JuryComponent.vue");
+/* harmony import */ var _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/site/JuryMemberComponent */ "./resources/js/components/site/JuryMemberComponent.vue");
+/* harmony import */ var _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/site/OrganizationCommitteeComponent */ "./resources/js/components/site/OrganizationCommitteeComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -53850,9 +58747,16 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.delimiters = ['${', '}'];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -53862,6 +58766,34 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
     path: '/members',
     name: 'members',
     component: _components_site_MembersListComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
+    path: '/gallery',
+    name: 'gallery',
+    component: _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/gallery/:id/',
+    name: 'gallery-year',
+    component: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/gymn',
+    name: 'gymn',
+    component: _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
+    path: '/applications',
+    name: 'applications',
+    component: _components_site_ApplicationComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
+    path: '/juries',
+    name: 'juries',
+    component: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }, {
+    path: '/juries/:id/',
+    name: 'jury-member',
+    component: _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }, {
+    path: '/organization-committee',
+    name: 'organization-committee',
+    component: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -53869,6 +58801,13 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   components: {
     Index: _components_site_IndexComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     MembersList: _components_site_MembersListComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Application: _components_site_ApplicationComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Gallery: _components_site_GalleryComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    GalleryYear: _components_site_GalleryYearComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
+    Gymn: _components_site_GymnComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
+    Jury: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
+    JuryMember: _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
+    OrganizationCommittee: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
     HeaderComponent: _components_site_HeaderComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FooterComponent: _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
@@ -53884,7 +58823,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })
