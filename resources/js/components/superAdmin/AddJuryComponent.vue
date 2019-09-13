@@ -44,23 +44,30 @@
             <thead>
             <tr>
                 <th width="7%">№</th>
-                <th width="18%">ПІП журі</th>
-                <th width="21%">Електронна адеса</th>
-                <th width="21%">Звання члена журі</th>
-                <th width="21%">Номінація</th>
+                <th width="15%">ПІБ журі</th>
+                <th width="15%">Фото</th>
+                <th width="15%">Електронна адеса</th>
+                <th width="15%">Звання члена журі</th>
+                <th width="15%">Номінація</th>
+                <th width="15%">Членство в спілках журі</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
-            <tbody v-for="(item, index) in jurys" :key="index">
+            <tbody id="juryTableID" v-for="(item, index) in jurys" :key="index">
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
-                <td><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
+                <td id="edit-save-td">
+                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
+                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
+                </td>
+                <td id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -70,63 +77,148 @@
 	export default {
 		data() {
 			return {
-                jurys: [],
+				editBtn: true,
+				jurys: [],
 				name: '',
-                surname: '',
-                patronymic: '',
+				surname: '',
+				patronymic: '',
 				email: '',
 				rank: '',
 				additionalInfo: '',
-                options: [
-                    { value: 'Інструментальний жанр' },
-                    { value: 'Вокальний жанр' },
-                    { value: 'Композиція' }
-                ],
-                items: [
-                    { id: 1 }
-                ],
-                form: new FormData
+				options: [
+					{ value: 'Інструментальний жанр' },
+					{ value: 'Вокальний жанр' },
+					{ value: 'Композиція' }
+				],
+				items: [
+					{ id: 1 }
+				],
+				form: new FormData,
+				table_form: new FormData
 			};
 		},
 		created () {
 			this.getFullJuryList();
-        },
+		},
 		methods: {
+			edit(event){
+				this.editBtn = false;
+				event.preventDefault();
+				var pib_input = document.createElement('input');
+				var photo_input = document.createElement('input');
+				var email_input = document.createElement('input');
+				var rank_input = document.createElement('input');
+				var nomination_input = document.createElement('input');
+				var information_input = document.createElement('input');
+				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
+				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
+				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
+				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
+				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5];
+				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6];
+				pib_input.setAttribute('value', pib_td.innerHTML);
+				pib_input.setAttribute('type', 'text');
+				pib_input.setAttribute('id', 'pib_data');
+				pib_td.innerHTML = '';
+				pib_td.append(pib_input);
+
+				photo_input.setAttribute('type', 'file');
+				photo_input.setAttribute(':ref', 'juryfile');
+				photo_input.setAttribute('class', 'form-control-file');
+				photo_input.setAttribute('id', 'jury-photo');
+				photo_td.innerHTML = '';
+				photo_td.append(photo_input);
+
+				email_input.setAttribute('value', email_td.innerHTML);
+				email_input.setAttribute('type', 'text');
+				email_input.setAttribute('id', 'email_data');
+				email_td.innerHTML = '';
+				email_td.append(email_input);
+
+				rank_input.setAttribute('value', rank_td.innerHTML);
+				rank_input.setAttribute('type', 'text');
+				rank_input.setAttribute('id', 'rank_data');
+				rank_td.innerHTML = '';
+				rank_td.append(rank_input);
+
+				nomination_input.setAttribute('value', nomination_td.innerHTML);
+				nomination_input.setAttribute('type', 'text');
+				nomination_input.setAttribute('id', 'nomination_data');
+				nomination_td.innerHTML = '';
+				nomination_td.append(nomination_input);
+
+				information_input.setAttribute('value', information_td.innerHTML);
+				information_input.setAttribute('type', 'text');
+				information_input.setAttribute('id', 'nomination_data');
+				information_td.innerHTML = '';
+				information_td.append(information_input);
+			},
+			save(id, event){
+				event.preventDefault();
+				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
+				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
+				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
+				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
+				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
+				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('input').value;
+
+				var parse_pib = pib_td.split(' ');
+				var parse_photo = photo_td;
+				var parse_email = email_td;
+				var parse_rank = rank_td;
+				var parse_nomination = nomination_td;
+				var parse_information = information_td;
+
+				this.table_form.append('name', parse_pib[0]);
+				this.table_form.append('surname', parse_pib[1]);
+				this.table_form.append('patronymic', parse_pib[2]);
+				this.table_form.append('email', parse_email);
+				this.table_form.append('rank', parse_rank);
+				this.table_form.append('photo', parse_photo.files[0]);
+				this.table_form.append('nominations', parse_nomination);
+				this.table_form.append('informations', parse_information);
+                
+				axios.post('/update-jury/'+id, this.table_form)
+					.then((response) => {
+						this.jurys = [];
+						this.getFullJuryList();
+					})
+			},
 			addNomination(){
-                this.items.push({
-                    id: this.items[this.items.length - 1].id+1
-                });
-            },
+				this.items.push({
+					id: this.items[this.items.length - 1].id+1
+				});
+			},
 			deleteNomination(index) {
-                this.items.splice(index, 1);
+				this.items.splice(index, 1);
 			},
 			getFullJuryList() {
 				axios.get('/get-all-jury')
 					.then((response) => {
-                        this.jurys.push(...response.data)
+						this.jurys.push(...response.data)
 					})
 			},
 			postAllJury(){
-                const selects = document.querySelectorAll('select');
-                const valOptions = [];
-                for (let index = 0; index < selects.length; index++) {
-                    valOptions.push(selects[index].value);
-                }
-                this.form.append('name', this.name);
-                this.form.append('surname', this.surname);
-                this.form.append('patronymic', this.patronymic);
-                this.form.append('email', this.email);
+				const selects = document.querySelectorAll('select');
+				const valOptions = [];
+				for (let index = 0; index < selects.length; index++) {
+					valOptions.push(selects[index].value);
+				}
+				this.form.append('name', this.name);
+				this.form.append('surname', this.surname);
+				this.form.append('patronymic', this.patronymic);
+				this.form.append('email', this.email);
 				this.form.append('rank', this.rank);
-                this.form.append('photo', this.$refs.juryfile.files[0]);
+				this.form.append('photo', this.$refs.juryfile.files[0]);
 				this.form.append('nominations', valOptions);
-                this.form.append('informations', this.additionalInfo);
-            
+				this.form.append('informations', this.additionalInfo);
+
 				axios.post('/post-all-jury', this.form)
-                    .then(() => {
-                        this.jurys = [];
-                    	this.getFullJuryList();
-                    })
-            },
+					.then(() => {
+						this.jurys = [];
+						this.getFullJuryList();
+					})
+			},
 			deleteJury(id, index){
 				axios.post('/delete-user/'+id)
 					.then((response) => {
@@ -145,6 +237,6 @@
 						});
 					});
 			}
-        }
+		}
 	}
 </script>

@@ -109,6 +109,10 @@
 .load-enter, .load-leave-to {
     opacity: 0;
 }
+.edit-td {
+    position: relative;
+    padding: 0;
+}
 .form-signin {
     width: 100%;
     max-width: 330px;
@@ -138,3 +142,6 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+  .custom-file-control:before {
+    content: "Вибрати";
+}

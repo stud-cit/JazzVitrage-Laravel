@@ -1,22 +1,17 @@
 <?php
-
 //Головна
 Route::get('/', 'SiteController@index')->name('site');
 Route::get('/application', 'ApplicationController@index');
 Route::post('/application', 'ApplicationController@store');
-
 //Конкурс
 Route::get('/list-participants', 'СompetitionController@listParticipants');
 Route::get('/hymn', 'СompetitionController@hymn');
-
 //Галерея
 Route::get('/video-gallery', 'GalleryController@videoGallery');
 Route::get('/festival', 'GalleryController@festival');
 Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
-
 //Положення
 Route::get('/position', 'PositionController@position');
-
 //Контакти
 Route::get('/jury', 'ContactsController@jury');
 Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
@@ -41,9 +36,16 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         return view('admin.admin.mainInformation');
     }]);
     // VUE запросы
-    Route::get('get-foto', 'GalleryController@getFoto');
     Route::post('post-foto', 'GalleryController@postFoto');
     Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
+
+    Route::post('post-video', 'GalleryController@postVideo');
+    Route::post('delete-video/{id}/', 'GalleryController@deleteVideo');
+
+    Route::post('post-info', 'InfoController@postInfo');
+    Route::post('post-info-file', 'InfoController@postInfoFile');
+    Route::post('post-contact', 'InfoController@postContact');
+    Route::post('delete-contact/{id}/', 'InfoController@deleteContact');
 });
 
 // Роль Орг.Комітет
@@ -94,12 +96,21 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('post-all-jury', 'UserController@postJury');
     Route::post('post-all-org', 'UserController@postOrg');
     Route::post('post-all-admin', 'UserController@postAdmin');
+    Route::post('update-jury/{id}/', 'UserController@updateJury');
+    Route::post('update-org/{id}/', 'UserController@updateOrg');
+    Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
 });
-
+// Загальна інформація
+Route::post('post-all-info', 'InfoController@postAllInfo');
 Auth::routes();
 
 // VUE запросы
+
+    Route::get('get-all-info', 'InfoController@getAllInfo');
+
+    Route::get('get-foto', 'GalleryController@getFoto');
+    Route::get('get-video', 'GalleryController@getVideo');
 
     Route::get('get-members',  'ApplicationController@getMembers');
 

@@ -19,6 +19,15 @@ class DatabaseSeeder extends Seeder
             PreparationTableSeeder::class,
             PresentationTableSeeder::class,
             SoloDuetTableSeeder::class,
+            ContactSectionSeeder::class,
+            ContactItemsSeeder::class,
+            HymnSectionSeeder::class,
+            LogoSectionSeeder::class,
+            PositionSectionSeeder::class,
+            VideoGallerySectionSeeder::class,
+            FotoGalleryTableSeeder::class,
+            UsersTableSeeder::class,
+            QuotesTableSeeder::class,
         ]);
     }
 }

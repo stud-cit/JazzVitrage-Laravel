@@ -1,56 +1,20 @@
 <template>
-    
+
     <div>
 
         <div class="row">
             <div class="col-5">
-                <label for="typeEvent">Тип заходу</label>
-                <select class="form-control" id="typeEvent">
-                    <option>Джаз-Вітраж</option>
-                    <option>хз хз</option>
-                    <option>хз хз хз</option>
-                </select>
-                <label for="yearCompetition">Рік проведення конкурсу</label>
-                <select class="form-control" id="yearCompetition">
-                    <option>2019</option>
-                    <option>2018</option>
-                    <option>2017</option>
-                </select>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-5">
-                <label for="foto">Відео</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="foto">
-                    <label class="custom-file-label"></label>
-                </div>
-                <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5">Додати</button>
+                <label for="video" class="brtop">Посилання на відео (YouTube)</label>
+                <input type="text" v-model="video" class="form-control" id="video">
+                <button type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4" v-for="(item, index) in urls" :key="item.video_id">
                 <div class="border fotoGallery">
-                    <i class="fa fa-calendar"> 04.05.08</i>
-                    <i class="fa fa-search"></i>
-                    <i class="fa fa-share"></i>
-                    <i class="fa fa-download"></i>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="border fotoGallery">
-                    <i class="fa fa-calendar"> 04.05.08</i>
-                    <i class="fa fa-search"></i>
-                    <i class="fa fa-share"></i>
-                    <i class="fa fa-download"></i>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="border fotoGallery">
-                    <i class="fa fa-calendar"> 04.05.08</i>
-                    <i class="fa fa-search"></i>
-                    <i class="fa fa-share"></i>
-                    <i class="fa fa-download"></i>
+                    <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
+                    <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.split('=')[1]" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -63,11 +27,47 @@
 export default {
     data() {
         return {
-
+            video: '',
+            urls: [],
         }
     },
+    created() {
+        this.getVideo();
+    },
     methods: {
-
+        getVideo() {
+            axios.get('/get-video')
+            .then((response) => {
+                this.urls = response.data;
+            })
+        },
+        postVideo() {
+            axios.post('/post-video', {url: this.video})
+                .then(() => {
+                    this.urls = [];
+                    this.getVideo();
+                })
+        },
+        delVideo(id, index) {
+            swal({
+                title: "Бажаєте видалити?",
+                text: "Після видалення ви не зможете відновити цей файл!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.post('/delete-video/'+id)
+                    .then(() => {
+                        this.urls.splice(index, 1);
+                        swal("Файл успішно видалено", {
+                            icon: "success",
+                        });
+                    });
+                }
+            });
+        }
     }
 }
 </script>

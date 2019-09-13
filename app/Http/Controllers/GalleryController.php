@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FotoGallery;
+use App\Models\VideoGallery;
 
 class GalleryController extends Controller
 {
@@ -40,5 +41,22 @@ class GalleryController extends Controller
         if($foto->delete()){
             unlink(public_path($this->publicStorage.$foto->file));
         }
+    }
+
+    public function getVideo()
+    {
+        $data = VideoGallery::orderBy('created_at', 'asc')->get();
+        return response()->json($data);
+    }
+    public function postVideo(Request $request)
+    {
+        $video = new VideoGallery;
+        $video->url = $request->url;
+        $video->save();
+    }
+    public function deleteVideo($id)
+    {
+        $video = VideoGallery::find($id);
+        $video->delete();
     }
 }

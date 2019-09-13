@@ -1,7 +1,5 @@
 <?php
-
 use Illuminate\Database\Seeder;
-
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -9,7 +7,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-        public function run()
+    public function run()
     {
         DB::table('users')->insert([
             'role' => 'jury',
