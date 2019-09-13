@@ -73,9 +73,9 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
         return view('admin.jury.allStatements');
     }]);
-    // Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.allStatements', function () {
-    //     return view('admin.jury.allStatements');
-    // }])->where('any', '.*');
+     Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.statement', function () {
+         return view('admin.jury.allStatements');
+     }])->where('any', '.*');
 });
 
 // Роль Супер Адмін

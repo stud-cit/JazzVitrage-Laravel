@@ -22,7 +22,7 @@
 		<div class="content-wrapper">
 			<div class="container">
 
-			{!! Breadcrumbs::render() !!}
+			{{--{!! Breadcrumbs::render() !!}--}}
 
 			@yield('content')
 
