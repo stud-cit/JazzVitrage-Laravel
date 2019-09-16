@@ -47,6 +47,10 @@ Breadcrumbs::register('admin.admin.fotoGallery', function($breadcrumbs) {
 Breadcrumbs::register('admin.admin.mainInformation', function($breadcrumbs) {
     $breadcrumbs->push('Загальна інформація', route('admin.admin.mainInformation'));
 });
+// Питання користувачів
+Breadcrumbs::register('admin.admin.question', function($breadcrumbs) {
+    $breadcrumbs->push('Питання користувачів', route('admin.admin.question'));
+});
 
 // home
 Breadcrumbs::register('admin.home', function($breadcrumbs) {

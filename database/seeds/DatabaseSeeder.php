@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             FotoGalleryTableSeeder::class,
             UsersTableSeeder::class,
             QuotesTableSeeder::class,
+            QuestionsTableSeeder::class,
         ]);
     }
 }

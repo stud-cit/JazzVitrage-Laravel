@@ -2914,11 +2914,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      name: '',
+      email: '',
+      questionText: '',
+      form: new FormData()
+    };
   },
   created: function created() {},
   computed: {},
   methods: {
+    postQuestion: function postQuestion() {
+      this.form.append('name', this.name);
+      this.form.append('email', this.email);
+      this.form.append('question_text', this.questionText);
+      axios.post('/post-question', this.form).then(function (response) {
+        if (response.status == 200) {
+          swal("Питання буде розглядено в найближчий термін", {
+            icon: "success"
+          });
+        }
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
+      });
+    },
     nextSlide: function nextSlide(event) {
       // const container = document.getElementById('carousel-video');
       console.log(event); // const activeEl = container.querySelector('.active');
@@ -41809,537 +41832,638 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _c("section", { staticClass: "sections contacts" }, [
+      _vm._m(6),
+      _vm._v(" "),
+      _c("div", { staticClass: "right-layer" }, [
+        _c("h2", { staticClass: "contacts-title" }, [
+          _vm._v("У ВАС Є ПИТАННЯ?")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "subtitle" }, [_vm._v("ЗАПОВНІТЬ ФОРМУ НИЖЧЕ")]),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "contacts-form",
+            attrs: { enctype: "multipart/form-data" }
+          },
+          [
+            _c("div", { staticClass: "form-row" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                attrs: { type: "text", id: "name", placeholder: "ВАШЕ ІМ'Я" },
+                domProps: { value: _vm.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.email,
+                    expression: "email"
+                  }
+                ],
+                attrs: { type: "email", id: "email", placeholder: "ПОШТА" },
+                domProps: { value: _vm.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.email = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.questionText,
+                    expression: "questionText"
+                  }
+                ],
+                attrs: { name: "", id: "question", cols: "30", rows: "6" },
+                domProps: { value: _vm.questionText },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.questionText = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "submit",
+                  attrs: { type: "button" },
+                  on: { click: _vm.postQuestion }
+                },
+                [_vm._v("НАДІСЛАТИ")]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "main-section preview" }, [
-        _c("div", { staticClass: "top-layout" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-7" }, [
-                _c("img", {
-                  staticClass: "preview-logo",
-                  attrs: { src: "img/preview-logo.svg", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "preview-text" }, [
-                  _vm._v(
-                    "Протягом березня-квітня 2016 року в місті Суми\n                            проходив Другий обласний дитячий фестиваль-\n                            конкурс джазової музики «Джаз Вітраж». Головна\n                            мета цього нового творчого проекту -\n                            популяризація класичного та сучасного\n                            джазового мистецтва серед дітей та молоді сумського краю"
-                  )
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections nominations" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "title-nominations" }, [
-            _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
-            _vm._v(" "),
-            _c("div", { staticClass: "text" }, [
-              _c("h2", { staticClass: "title" }, [_vm._v("НОМІНАЦІЇ")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "nominations-list" }, [
-            _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "img/piano.png", alt: "" } }),
-              _vm._v(" "),
-              _c("div", { staticClass: "items-title" }, [
-                _vm._v("Вокальний жанр")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "img/microphone.png", alt: "" } }),
-              _vm._v(" "),
-              _c("div", { staticClass: "items-title" }, [
-                _vm._v("Вокальний жанр")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "img/nots.png", alt: "" } }),
-              _vm._v(" "),
-              _c("div", { staticClass: "items-title" }, [
-                _vm._v("Вокальний жанр")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections position" }, [
+    return _c("section", { staticClass: "main-section preview" }, [
+      _c("div", { staticClass: "top-layout" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xl-7" }, [
-              _c("iframe", {
-                attrs: {
-                  width: "100%",
-                  height: "100%",
-                  src: "https://www.youtube.com/embed/xFa2_PVMeDQ",
-                  frameborder: "0",
-                  allowfullscreen: ""
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-5" }, [
-              _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [_vm._v("КОНКУРСУ")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text" }, [
-                _vm._v(
-                  "Протягом березня-квітня 2016 року в місті\n                        Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»..."
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "btn-group" }, [
-                _c("button", { staticClass: "btn btn-read" }, [
-                  _vm._v("ЧИТАТИ ПОВНІСТЮ")
-                ]),
-                _vm._v(" "),
-                _c("button", { staticClass: "btn btn-download" }, [
-                  _vm._v("ЗАВАНТАЖИТИ")
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections gallery" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("div", { staticClass: "col-7" }, [
               _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-              _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-              _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-              _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-              _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-              _c("img", {
-                staticClass: "gallery-img",
-                attrs: { src: "img/gallery-img.png", alt: "" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-center" }, [
-            _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections members" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("h2", { staticClass: "title-section" }, [
-            _vm._v("СПИСКИ УЧАСНИКІВ")
-          ]),
-          _vm._v(" "),
-          _c("table", { staticClass: "table-members" }, [
-            _c("tr", { staticClass: "table-title" }, [
-              _c("th", [_vm._v("N")]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v("П.І.Б. /"),
-                _c("br"),
-                _vm._v("\n                        НАЗВА КОЛЕКТИВУ ")
-              ]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Місто")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("НАЗВА ЗАКЛАДУ")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("ВИКЛАДАЧ")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("5")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "search-block" }, [
-            _c("input", { attrs: { type: "text", placeholder: "ПОШУК" } }),
-            _vm._v(" "),
-            _c("select", { staticClass: "nomination", attrs: { name: "" } }, [
-              _c("option", { attrs: { value: "", selected: "selected" } }, [
-                _vm._v("номінація")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
-            ]),
-            _vm._v(" "),
-            _c("select", { staticClass: "category", attrs: { name: "" } }, [
-              _c("option", { attrs: { value: "", selected: "selected" } }, [
-                _vm._v("вік.категорія")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [
-                _vm._v("вік.категорія1")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "pagination" }, [
-            _c("li", { staticClass: "controls" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-left",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", [_vm._v("1 : 16")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "controls active" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-right",
-                attrs: { "aria-hidden": "true" }
-              })
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections video-gallery" }, [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass: "carousel slide",
-              attrs: { id: "carousel-text", "data-ride": "carousel" }
-            },
-            [
-              _c("img", {
-                staticClass: "carousel-img",
-                attrs: { src: "img/carousel-img.png", alt: "" }
+                staticClass: "preview-logo",
+                attrs: { src: "img/preview-logo.svg", alt: "" }
               }),
               _vm._v(" "),
-              _c("ol", { staticClass: "carousel-indicators" }, [
-                _c("li", {
-                  staticClass: "active",
-                  attrs: {
-                    "data-target": "#carousel-text",
-                    "data-slide-to": "0"
-                  }
-                }),
-                _vm._v(" "),
-                _c("li", {
-                  attrs: {
-                    "data-target": "#carousel-text",
-                    "data-slide-to": "1"
-                  }
-                }),
-                _vm._v(" "),
-                _c("li", {
-                  attrs: {
-                    "data-target": "#carousel-text",
-                    "data-slide-to": "2"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "carousel-inner" }, [
-                _c("div", { staticClass: "carousel-item active" }, [
-                  _vm._v(
-                    "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "carousel-item" }, [
-                  _vm._v(
-                    "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "carousel-item" }, [
-                  _vm._v(
-                    "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                  )
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "gallery-content" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-xl-3" }, [
-                _c("h3", { staticClass: "title-video" }, [
-                  _vm._v("ВІДЕОГАЛЕРЕЯ")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "pagination" }, [
-                  _c("li", { staticClass: "controls" }, [
-                    _c("i", {
-                      staticClass: "fa fa-long-arrow-left",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("1 : 16")]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "controls active" }, [
-                    _c("i", {
-                      staticClass: "fa fa-long-arrow-right",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xl-5 d-flex align-items-end" }, [
-                _c(
-                  "video",
-                  {
-                    staticClass: "video active-video",
-                    attrs: {
-                      width: "440",
-                      height: "302",
-                      poster: "img/video-bg.png",
-                      controls: ""
-                    }
-                  },
-                  [
-                    _c("source", {
-                      attrs: { src: "video/mult1.mp4", type: "video/mp4" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-                _c(
-                  "video",
-                  {
-                    staticClass: "video",
-                    attrs: { controls: "", poster: "img/video-bg.png" }
-                  },
-                  [
-                    _c("source", {
-                      attrs: { src: "video/mult1.mp4", type: "video/mp4" }
-                    })
-                  ]
+              _c("p", { staticClass: "preview-text" }, [
+                _vm._v(
+                  "Протягом березня-квітня 2016 року в місті Суми\n                            проходив Другий обласний дитячий фестиваль-\n                            конкурс джазової музики «Джаз Вітраж». Головна\n                            мета цього нового творчого проекту -\n                            популяризація класичного та сучасного\n                            джазового мистецтва серед дітей та молоді сумського краю"
                 )
               ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "sections contacts" }, [
-        _c("div", { staticClass: "left-layer" }, [
-          _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-layer" }, [
-            _c("div", { staticClass: "text-row" }, [
-              _c("p", { staticClass: "title-field" }, [_vm._v("Адреса: ")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-field" }, [
-                _vm._v("Суми, Сумська область,\n                        40000")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-row" }, [
-              _c("p", { staticClass: "title-field" }, [_vm._v("Телефон: ")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-field" }, [
-                _vm._v("+38 (050) 123 4568")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-row" }, [
-              _c("p", { staticClass: "title-field" }, [
-                _vm._v("Соц. мережі: ")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-field" }, [_vm._v("Facebok")])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "right-layer" }, [
-          _c("h2", { staticClass: "contacts-title" }, [
-            _vm._v("У ВАС Є ПИТАННЯ?")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "subtitle" }, [
-            _vm._v("ЗАПОВНІТЬ ФОРМУ НИЖЧЕ")
-          ]),
-          _vm._v(" "),
-          _c("form", { staticClass: "contacts-form", attrs: { action: "" } }, [
-            _c("div", { staticClass: "form-row" }, [
-              _c("span", [
-                _c("i", {
-                  staticClass: "fa fa-2x fa-user",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "text", placeholder: "ВАШЕ ІМ'Я" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("span", [
-                _c("i", {
-                  staticClass: "fa fa-2x fa-envelope",
-                  attrs: { "aria-hidden": "true" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "email", placeholder: "ПОШТА" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("textarea", {
-                attrs: { name: "", id: "", cols: "30", rows: "6" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center" }, [
-              _c("button", { staticClass: "submit" }, [_vm._v("НАДІСЛАТИ")])
             ])
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections nominations" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "title-nominations" }, [
+          _c("img", { attrs: { src: "img/ribbon.png", alt: "" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "text" }, [
+            _c("h2", { staticClass: "title" }, [_vm._v("НОМІНАЦІЇ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle" }, [_vm._v("У КОНКУРСІ")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "nominations-list" }, [
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
+            _c("img", { attrs: { src: "img/piano.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
+            _c("img", { attrs: { src: "img/microphone.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "nominations-items", attrs: { href: "" } }, [
+            _c("img", { attrs: { src: "img/nots.png", alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "items-title" }, [
+              _vm._v("Вокальний жанр")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections position" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-7" }, [
+            _c("iframe", {
+              attrs: {
+                width: "100%",
+                height: "100%",
+                src: "https://www.youtube.com/embed/xFa2_PVMeDQ",
+                frameborder: "0",
+                allowfullscreen: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-5" }, [
+            _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle" }, [_vm._v("КОНКУРСУ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text" }, [
+              _vm._v(
+                "Протягом березня-квітня 2016 року в місті\n                        Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»..."
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group" }, [
+              _c("button", { staticClass: "btn btn-read" }, [
+                _vm._v("ЧИТАТИ ПОВНІСТЮ")
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn btn-download" }, [
+                _vm._v("ЗАВАНТАЖИТИ")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+            _c("img", {
+              staticClass: "gallery-img",
+              attrs: { src: "img/gallery-img.png", alt: "" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center" }, [
+          _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections members" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [
+          _vm._v("СПИСКИ УЧАСНИКІВ")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table-members" }, [
+          _c("tr", { staticClass: "table-title" }, [
+            _c("th", [_vm._v("N")]),
+            _vm._v(" "),
+            _c("th", [
+              _vm._v("П.І.Б. /"),
+              _c("br"),
+              _vm._v("\n                        НАЗВА КОЛЕКТИВУ ")
+            ]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Місто")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("НАЗВА ЗАКЛАДУ")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("ВИКЛАДАЧ")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("4")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("5")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "search-block" }, [
+          _c("input", { attrs: { type: "text", placeholder: "ПОШУК" } }),
+          _vm._v(" "),
+          _c("select", { staticClass: "nomination", attrs: { name: "" } }, [
+            _c("option", { attrs: { value: "", selected: "selected" } }, [
+              _vm._v("номінація")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+          ]),
+          _vm._v(" "),
+          _c("select", { staticClass: "category", attrs: { name: "" } }, [
+            _c("option", { attrs: { value: "", selected: "selected" } }, [
+              _vm._v("вік.категорія")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("вік.категорія1")])
+          ]),
+          _vm._v(" "),
+          _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "pagination" }, [
+          _c("li", { staticClass: "controls" }, [
+            _c("i", {
+              staticClass: "fa fa-long-arrow-left",
+              attrs: { "aria-hidden": "true" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("li", [_vm._v("1 : 16")]),
+          _vm._v(" "),
+          _c("li", { staticClass: "controls active" }, [
+            _c("i", {
+              staticClass: "fa fa-long-arrow-right",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "sections video-gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass: "carousel slide",
+            attrs: { id: "carousel-text", "data-ride": "carousel" }
+          },
+          [
+            _c("img", {
+              staticClass: "carousel-img",
+              attrs: { src: "img/carousel-img.png", alt: "" }
+            }),
+            _vm._v(" "),
+            _c("ol", { staticClass: "carousel-indicators" }, [
+              _c("li", {
+                staticClass: "active",
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "0" }
+              }),
+              _vm._v(" "),
+              _c("li", {
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "1" }
+              }),
+              _vm._v(" "),
+              _c("li", {
+                attrs: { "data-target": "#carousel-text", "data-slide-to": "2" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "carousel-inner" }, [
+              _c("div", { staticClass: "carousel-item active" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "carousel-item" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "carousel-item" }, [
+                _vm._v(
+                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
+                )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "gallery-content" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-xl-3" }, [
+              _c("h3", { staticClass: "title-video" }, [
+                _vm._v("ВІДЕОГАЛЕРЕЯ")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "pagination" }, [
+                _c("li", { staticClass: "controls" }, [
+                  _c("i", {
+                    staticClass: "fa fa-long-arrow-left",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("li", [_vm._v("1 : 16")]),
+                _vm._v(" "),
+                _c("li", { staticClass: "controls active" }, [
+                  _c("i", {
+                    staticClass: "fa fa-long-arrow-right",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-5 d-flex align-items-end" }, [
+              _c(
+                "video",
+                {
+                  staticClass: "video active-video",
+                  attrs: {
+                    width: "440",
+                    height: "302",
+                    poster: "img/video-bg.png",
+                    controls: ""
+                  }
+                },
+                [
+                  _c("source", {
+                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
+              _c(
+                "video",
+                {
+                  staticClass: "video",
+                  attrs: { controls: "", poster: "img/video-bg.png" }
+                },
+                [
+                  _c("source", {
+                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
+                  })
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "left-layer" }, [
+      _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-layer" }, [
+        _c("div", { staticClass: "text-row" }, [
+          _c("p", { staticClass: "title-field" }, [_vm._v("Адреса: ")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-field" }, [
+            _vm._v("Суми, Сумська область,\n                        40000")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-row" }, [
+          _c("p", { staticClass: "title-field" }, [_vm._v("Телефон: ")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-field" }, [_vm._v("+38 (050) 123 4568")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-row" }, [
+          _c("p", { staticClass: "title-field" }, [_vm._v("Соц. мережі: ")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-field" }, [_vm._v("Facebok")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", {
+        staticClass: "fa fa-2x fa-user",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", {
+        staticClass: "fa fa-2x fa-envelope",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   }
 ]
@@ -58823,7 +58947,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

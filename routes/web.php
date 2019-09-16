@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/admin/main-information', function () {
         return view('admin.admin.mainInformation');
     });
+    Route::get('/admin/question', function () {
+        return view('admin.admin.question');
+    });
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');
     Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
@@ -42,6 +45,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('post-video', 'GalleryController@postVideo');
     Route::post('delete-video/{id}/', 'GalleryController@deleteVideo');
 
+    Route::get('get-question', 'QuestionController@getQuestion');
+    Route::post('post-question', 'QuestionController@postQuestion');
+    Route::post('delete-question/{id}/', 'QuestionController@deleteQuestion');
     Route::post('post-info', 'InfoController@postInfo');
     Route::post('post-info-file', 'InfoController@postInfoFile');
     Route::post('post-contact', 'InfoController@postContact');

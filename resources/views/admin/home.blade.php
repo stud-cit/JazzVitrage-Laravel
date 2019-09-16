@@ -88,6 +88,11 @@
                 Загальна інформація
             </a>
 
+            <a href="/admin/question" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-question-circle fa-3x"></i></div>
+                Питання користувачів
+            </a>
+
         @endif
 
     </div>

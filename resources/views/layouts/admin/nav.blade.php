@@ -95,6 +95,13 @@
 						</a>
 					</li>
 
+					<li class="nav-item" title="Питання користувачів">
+						<a class="nav-link" href="/admin/question">
+							<i class="fa fa-question-circle"></i>
+							<span class="nav-link-text">Питання користувачів</span>
+						</a>
+					</li>
+
 				@endif
 
 				{{-- Супер адмін --}}
