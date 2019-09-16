@@ -88,11 +88,6 @@
                 Загальна інформація
             </a>
 
-            <a href="#" class="col-8 col-sm-5 col-md-3  category-items">
-                <div class="category-icon"><i class="fa fa-fw  fa-pencil-square-o fa-3x"></i></div>
-                Положення
-            </a>
-
         @endif
 
     </div>

@@ -20,21 +20,21 @@ Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
 // Админка
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin', ['as' => 'admin.home', function () {
+    Route::get('/admin', function () {
         return view('admin.home');
-    }]);
+    });
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::get('/admin/video-gallery', ['as' => 'admin.admin.videoGallery', function () {
+    Route::get('/admin/video-gallery', function () {
         return view('admin.admin.videoGallery');
-    }]);
-    Route::get('/admin/foto-gallery', ['as' => 'admin.admin.fotoGallery', function () {
+    });
+    Route::get('/admin/foto-gallery', function () {
         return view('admin.admin.fotoGallery');
-    }]);
-    Route::get('/admin/main-information', ['as' => 'admin.admin.mainInformation', function () {
+    });
+    Route::get('/admin/main-information', function () {
         return view('admin.admin.mainInformation');
-    }]);
+    });
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');
     Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
@@ -50,47 +50,44 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
 // Роль Орг.Комітет
 Route::group(['middleware' => ['auth', 'role:orgComittee']], function () {
-    Route::get('/admin/new-statements', ['as' => 'admin.orgСommittee.newStatements', function () {
+    Route::get('/admin/new-statements', function () {
         return view('admin.orgСommittee.newStatements');
-    }]);
-    Route::get('/admin/removed-statements', ['as' => 'admin.orgСommittee.removedStatements', function () {
+    });
+    Route::get('/admin/removed-statements', function () {
         return view('admin.orgСommittee.removedStatements');
-    }]);
-    Route::get('/admin/list-participants', ['as' => 'admin.orgСommittee.listParticipants', function () {
+    });
+    Route::get('/admin/list-participants', function () {
         return view('admin.orgСommittee.listParticipants');
-    }]);
-
-    Route::get('/admin/evaluation-results', ['as' => 'admin.orgСommittee.evaluationResults', function () {
+    });
+    Route::get('/admin/evaluation-results', function () {
         return view('admin.orgСommittee.evaluationResults');
-    }]);
+    });
 });
 
 // Роль Журі
 Route::group(['middleware' => ['auth', 'role:jury']], function () {
-    Route::get('/admin/information', ['as' => 'admin.jury.information', function () {
+    Route::get('/admin/information', function () {
         return view('admin.jury.information');
-    }]);
-    Route::get('/admin/all-statements', ['as' => 'admin.jury.allStatements', function () {
+    });
+    Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
-    }]);
-     Route::get('/admin/all-statements/{any}', ['as' => 'admin.jury.statement', function () {
+    });
+     Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
-     }])->where('any', '.*');
+     })->where('any', '[0-9]');
 });
 
 // Роль Супер Адмін
 Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
-    Route::get('/admin/add-jury', ['as' => 'admin.superAdmin.addJury', function () {
+    Route::get('/admin/add-jury', function () {
         return view('admin.superAdmin.addJury');
-    }]);
-
-    Route::get('/admin/add-to-org-committee', ['as' => 'admin.superAdmin.addToOrgCommittee', function () {
+    });
+    Route::get('/admin/add-to-org-committee', function () {
         return view('admin.superAdmin.addToOrgCommittee');
-    }]);
-    Route::get('/admin/add-admin-org-committee', ['as' => 'admin.superAdmin.addAdminOrgCommittee', function () {
+    });
+    Route::get('/admin/add-admin-org-committee', function () {
         return view('admin.superAdmin.addAdminOrgCommittee');
-
-    }]);
+    });
     // VUE запросы
     Route::get('get-all-jury', 'UserController@getAllJury');
     Route::get('get-all-org', 'UserController@getAllOrg');
