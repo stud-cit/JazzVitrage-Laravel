@@ -11,17 +11,42 @@
         <div class="col-4">
             <form>
                 <label for="stylisticMatching">Стилістична та жанрова відповідність творів.</label>
-                <input type="number" class="form-control" id="stylisticMatching">
+                <input 
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="score.stylisticMatching" 
+                    class="form-control" 
+                    id="stylisticMatching" >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
-                <input type="number" class="form-control" id="artisticValue">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="score.artisticValue"
+                    class="form-control"
+                    id="artisticValue" >
 
                 <label for="artistry">Артистизм.</label>
-                <input type="number" class="form-control" id="artistry">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="score.artistry"
+                    class="form-control"
+                    id="artistry" >
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
-                <input type="number" class="form-control" id="originality">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="score.originality"
+                    class="form-control"
+                    id="originality">
             </form>
+            <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
         </div>
     </div>
     <br>
@@ -71,7 +96,7 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-secondary btn-block">Зберегти</button>
+                <button type="button" @click="saveEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
             </div>
         </div>
@@ -88,7 +113,18 @@
                 school: '',
                 program: '',
                 group: null,
-                count: 0
+                count: 0,
+                // оцінки
+                score: {
+                    stylisticMatching: 0,
+                    artisticValue: 0,
+                    artistry: 0,
+                    originality: 0,
+                    evaluation: 0
+                },
+                // мінімальна максимальна оцінка
+                minEvaluation: 0,
+                maxEvaluation: 25,
             }
         },
         created() {
@@ -98,9 +134,22 @@
         computed: {
             nextButtonShow() {
                 return this.$route.params.id == this.count ? false : true;
+            },
+            evaluation: {
+                get: function(){
+                    const {stylisticMatching, artisticValue, artistry, originality} = this.score;
+                    return stylisticMatching + artisticValue + artistry + originality;
+                },
+                set: function (total) {
+                    this.score.evaluation = total;
+                }
             }
         },
         methods: {
+            saveEvaluation() {
+                this.evaluation = this.evaluation;
+                alert(`Ваша оцінка ${this.score.evaluation} із можливих 100`);
+            },
             getMember() {
                 axios.get('/get-member/'+this.$route.params.id)
                 .then((response) => {
@@ -124,3 +173,7 @@
         }
     }
 </script>
+<style lang="sass" scoped>
+.evaluation
+    font-size: 1.5rem
+</style>
