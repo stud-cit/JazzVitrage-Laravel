@@ -2509,27 +2509,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      editingPhone: {},
-      editingSocial: {},
-      logo: '',
-      descriptionText: '',
-      tickerText: '',
-      provisionsCompetition: '',
-      youtubeVideo: '',
-      hymnText: '',
-      noteImg: '',
-      address: [],
-      phones: [],
-      socials: [],
+      editing: {},
+      info: {
+        logo: '',
+        description: '',
+        ticker: '',
+        provisions_text: '',
+        video: '',
+        audio: '',
+        file: '',
+        hymn_text: '',
+        note_image: ''
+      },
+      contact: {
+        emails: [],
+        address: [],
+        phones: [],
+        socials: []
+      },
+      quotes: [],
       form: new FormData(),
       showButton: true
     };
   },
   created: function created() {
     this.getAllInfo();
+    this.getQuotes();
   },
   methods: {
     previewFiles: function previewFiles(event, el) {
@@ -2541,7 +2571,7 @@ __webpack_require__.r(__webpack_exports__);
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          _this[el] = e.target.result;
+          _this.info[el] = e.target.result;
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -2554,74 +2584,42 @@ __webpack_require__.r(__webpack_exports__);
       textElementLink.removeAttribute('disabled');
       textElementTitle.removeAttribute('disabled');
       textElementLink.focus();
-      this.editingSocial = social;
+      this.editing = social;
     },
-    saveSocial: function saveSocial(social, el, index) {
+    saveSocial: function saveSocial(el, index) {
       var textElementLink = document.querySelectorAll('#' + el + "Link")[index];
       var textElementTitle = document.querySelectorAll('#' + el + "Title")[index];
       textElementLink.setAttribute('disabled', 'disabled');
       textElementTitle.setAttribute('disabled', 'disabled');
-      this.editingSocial = {};
-      this.socials[index].disabled = true;
+      this.editing = {};
+      this.contact.socials[index].disabled = true;
       axios.post('/post-contact', {
-        id: this.socials[index].contact_items_id,
-        contact: this.socials[index].contact,
-        contact_title: this.socials[index].contact_title,
+        id: this.contact.socials[index].contact_items_id,
+        contact: this.contact.socials[index].contact,
+        contact_title: this.contact.socials[index].contact_title,
         contact_section_id: 3
       });
     },
-    editPhone: function editPhone(phone, el, index) {
+    editContact: function editContact(phone, el, index) {
       var textElement = document.querySelectorAll('#' + el)[index];
       textElement.removeAttribute('disabled');
       textElement.focus();
-      this.editingPhone = phone;
+      this.editing = phone;
     },
-    savePhone: function savePhone(phone, el, index) {
-      var textElement = document.querySelectorAll('#' + el)[index];
-      textElement.setAttribute('disabled', 'disabled');
-      this.editingPhone = {};
-      this.phones[index].disabled = true;
+    saveContact: function saveContact(el, index) {
+      this.selectElement(el, this.contact[el][index], index);
       axios.post('/post-contact', {
-        id: this.phones[index].contact_items_id,
-        contact: this.phones[index].contact,
-        contact_section_id: 2
+        id: this.contact[el][index].contact_items_id,
+        contact: this.contact[el][index].contact,
+        contact_section_id: this.contact[el][index].contact_section_id
       });
     },
-    saveAddress: function saveAddress(phone, el, index) {
-      var textElement = document.querySelectorAll('#' + el)[index];
-      textElement.setAttribute('disabled', 'disabled');
-      this.editingPhone = {};
-      this.address[index].disabled = true;
-      axios.post('/post-contact', {
-        id: this.address[index].contact_items_id,
-        contact: this.address[index].contact,
-        contact_section_id: 1
-      }).then(function (res) {
-        console.log(res);
-      });
-    },
-    editFile: function editFile(table, row) {
-      if (row == 'logo') {
-        this.form.append('file', this.$refs.logo.files[0]);
-      }
-
-      if (row == 'file') {
-        this.form.append('file', this.$refs.documentFile.files[0]);
-      }
-
-      if (row == 'audio') {
-        this.form.append('file', this.$refs.audioFile.files[0]);
-      }
-
-      if (row == 'note_image') {
-        this.form.append('file', this.$refs.noteFile.files[0]);
-      }
-
+    editFile: function editFile(table, row, type) {
+      this.form.append('type', type);
       this.form.append('table', table);
       this.form.append('row', row);
-      axios.post('/post-info-file', this.form).then(function (response) {
-        console.log(response);
-      });
+      this.form.append('file', this.$refs[row].files[0]);
+      axios.post('/post-info-file', this.form);
     },
     edit: function edit(event, table, el) {
       var textElement = document.getElementById(el);
@@ -2646,43 +2644,67 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/get-all-info').then(function (response) {
-        _this2.logo = '/img/' + response.data.info[0].logo;
-        _this2.descriptionText = response.data.info[0].description;
-        _this2.tickerText = response.data.info[0].ticker;
-        _this2.provisionsCompetition = response.data.info[0].provisions_text;
-        _this2.hymnText = response.data.info[0].hymn_text;
-        _this2.noteImg = '/img/' + response.data.info[0].note_image;
-        _this2.youtubeVideo = response.data.info[0].video;
-        _this2.address = response.data.contact[0].contacts_items;
-        _this2.phones = response.data.contact[1].contacts_items;
-        _this2.socials = response.data.contact[2].contacts_items;
+        response.data.info.map(function (item) {
+          Object.assign(_this2.info, item);
+        }), response.data.contact.map(function (item) {
+          Object.assign(_this2.contact[item.caption], item.contacts_items);
+        });
       });
     },
-    addSocial: function addSocial() {
-      this.socials.push({
+    // Quotes
+    getQuotes: function getQuotes() {
+      var _this3 = this;
+
+      axios.get('/get-quotes').then(function (response) {
+        _this3.quotes = response.data;
+      });
+    },
+    addQuotes: function addQuotes() {
+      this.quotes.push({
+        text: '',
+        disabled: false
+      });
+    },
+    delQuotes: function delQuotes(index, id) {
+      if (id) {
+        axios.post('/delete-quote/' + id);
+      }
+
+      this.quotes.splice(index, 1);
+    },
+    saveQuotes: function saveQuotes(quote, el, index) {
+      this.selectElement(el, this.quotes[index], index);
+
+      if (quote.quote_id) {
+        axios.post('/put-quote', {
+          id: this.quotes[index].quote_id,
+          text: this.quotes[index].text
+        });
+      } else {
+        axios.post('/post-quote', {
+          text: this.quotes[index].text
+        });
+      }
+    },
+    // End Quotes
+    add: function add(arr) {
+      this.contact[arr].push({
         contact: '',
         disabled: false
       });
     },
-    addPhones: function addPhones() {
-      this.phones.push({
-        contact: '',
-        disabled: false
-      });
-    },
-    delPhones: function delPhones(index, id) {
+    del: function del(index, id, arr) {
       if (id) {
         axios.post('/delete-contact/' + id);
       }
 
-      this.phones.splice(index, 1);
+      this.contact[arr].splice(index, 1);
     },
-    delSocial: function delSocial(index, id) {
-      if (id) {
-        axios.post('/delete-contact/' + id);
-      }
-
-      this.socials.splice(index, 1);
+    selectElement: function selectElement(el, elArray, index) {
+      var textElement = document.querySelectorAll('#' + el)[index];
+      textElement.setAttribute('disabled', 'disabled');
+      this.editing = {};
+      elArray.disabled = true;
     }
   }
 });
@@ -49214,319 +49236,465 @@ var render = function() {
   return _c("div", [
     _c("form", { attrs: { enctype: "multipart/form-data" } }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-5" }, [
-          _c("h3", [_vm._v("Загальні налаштування")]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "brtop", attrs: { for: "logo" } }, [
-            _vm._v("Логотип")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-9" }, [
-              _c("label", { staticClass: "custom-file w-100" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: "image",
-                      expression: "'image'"
-                    }
-                  ],
-                  ref: "logo",
-                  staticClass: "custom-file-input",
-                  attrs: {
-                    type: "file",
-                    id: "logo",
-                    name: "logo",
-                    accept: "image/*"
-                  },
-                  on: {
-                    change: function($event) {
-                      return _vm.previewFiles($event, "logo")
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "custom-file-control" }, [
-                  _vm._v("Файл не обрано")
-                ])
-              ])
+        _c(
+          "div",
+          { staticClass: "col-5" },
+          [
+            _c("h3", [_vm._v("Загальні налаштування")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "logo" } }, [
+              _vm._v("Логотип")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-3" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-secondary edit w-100",
-                  attrs: { type: "button", disabled: _vm.errors.has("logo") },
-                  on: {
-                    click: function($event) {
-                      return _vm.editFile("logo_section", "logo")
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-9" }, [
+                _c("label", { staticClass: "custom-file w-100" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "image",
+                        expression: "'image'"
+                      }
+                    ],
+                    ref: "logo",
+                    staticClass: "custom-file-input",
+                    attrs: {
+                      type: "file",
+                      id: "logo",
+                      name: "logo",
+                      accept: "image/*"
+                    },
+                    on: {
+                      change: function($event) {
+                        return _vm.previewFiles($event, "logo")
+                      }
                     }
-                  }
-                },
-                [_vm._v("Зберегти")]
-              )
-            ]),
-            _vm._v(" "),
-            _vm.errors.has("logo")
-              ? _c("p", { staticClass: "text-danger col-9" }, [
-                  _vm._v(_vm._s(_vm.errors.first("logo")))
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "custom-file-control" }, [
+                    _vm._v("Файл не обрано")
+                  ])
                 ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          !_vm.errors.has("logo")
-            ? _c("img", { staticClass: "mt-3 w-50", attrs: { src: _vm.logo } })
-            : _vm._e(),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "brtop", attrs: { for: "description" } }, [
-            _vm._v("Опис сайту")
-          ]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.descriptionText,
-                expression: "descriptionText"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "description", rows: "4", disabled: "" },
-            domProps: { value: _vm.descriptionText },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.descriptionText = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "btn btn-outline-secondary my-2 px-5 float-right edit",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.edit($event, "logo_section", "description")
-                }
-              }
-            },
-            [_vm._v("Редагувати")]
-          ),
-          _c("br"),
-          _c("br"),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "brtop", attrs: { for: "ticker" } }, [
-            _vm._v("Рухомий рядок")
-          ]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.tickerText,
-                expression: "tickerText"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "ticker", rows: "4", disabled: "" },
-            domProps: { value: _vm.tickerText },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.tickerText = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "btn btn-outline-secondary my-2 px-5 float-right edit",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.edit($event, "logo_section", "ticker")
-                }
-              }
-            },
-            [_vm._v("Редагувати")]
-          ),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Положення")]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c(
-            "label",
-            { staticClass: "brtop", attrs: { for: "provisions_text" } },
-            [_vm._v("Короткий опис положення")]
-          ),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.provisionsCompetition,
-                expression: "provisionsCompetition"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "provisions_text", rows: "4", disabled: "" },
-            domProps: { value: _vm.provisionsCompetition },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.provisionsCompetition = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "btn btn-outline-secondary my-2 px-5 float-right edit",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.edit($event, "position_section", "provisions_text")
-                }
-              }
-            },
-            [_vm._v("Редагувати")]
-          ),
-          _c("br"),
-          _c("br"),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "brtop", attrs: { for: "file" } }, [
-            _vm._v("Файл документу про положення")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-9" }, [
-              _c("label", { staticClass: "custom-file w-100" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "validate",
-                      rawName: "v-validate",
-                      value: { ext: ["pdf", "doc", "txt", "docx"] },
-                      expression: "{ 'ext':['pdf', 'doc', 'txt', 'docx'] }"
-                    }
-                  ],
-                  ref: "documentFile",
-                  staticClass: "custom-file-input",
-                  attrs: { type: "file", name: "document", id: "file" },
-                  on: { change: _vm.previewFiles }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "custom-file-control" }, [
-                  _vm._v("Файл не обрано")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-3" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-secondary edit w-100",
-                  attrs: {
-                    type: "button",
-                    disabled: _vm.errors.has("document")
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.editFile("position_section", "file")
-                    }
-                  }
-                },
-                [_vm._v("Зберегти")]
-              )
-            ]),
-            _vm._v(" "),
-            _vm.errors.has("document")
-              ? _c("p", { staticClass: "text-danger col-9" }, [
-                  _vm._v(_vm._s(_vm.errors.first("document")))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("label", { staticClass: "brtop", attrs: { for: "video" } }, [
-            _vm._v("Відео для положення конкурсу(з YouTube)")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-9" }, [
-              _c("input", {
-                directives: [
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [
+                _c(
+                  "button",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.youtubeVideo,
-                    expression: "youtubeVideo"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "video", disabled: "" },
-                domProps: { value: _vm.youtubeVideo },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                    staticClass: "btn btn-outline-secondary edit w-100",
+                    attrs: { type: "button", disabled: _vm.errors.has("logo") },
+                    on: {
+                      click: function($event) {
+                        return _vm.editFile("logo_section", "logo", "img")
+                      }
                     }
-                    _vm.youtubeVideo = $event.target.value
-                  }
-                }
-              })
+                  },
+                  [_vm._v("Зберегти")]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.errors.has("logo")
+                ? _c("p", { staticClass: "text-danger col-9" }, [
+                    _vm._v(_vm._s(_vm.errors.first("logo")))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-3" }, [
-              _c(
-                "button",
+            !_vm.errors.has("logo")
+              ? _c("img", {
+                  staticClass: "mt-3 w-50",
+                  attrs: { src: _vm.info.logo }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "brtop", attrs: { for: "description" } },
+              [_vm._v("Опис сайту")]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
                 {
-                  staticClass: "btn btn-outline-secondary edit",
-                  attrs: { type: "button" },
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.info.description,
+                  expression: "info.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "description", rows: "4", disabled: "" },
+              domProps: { value: _vm.info.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.info, "description", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-outline-secondary my-2 px-5 float-right edit",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.edit($event, "logo_section", "description")
+                  }
+                }
+              },
+              [_vm._v("Редагувати")]
+            ),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "ticker" } }, [
+              _vm._v("Рухомий рядок")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.info.ticker,
+                  expression: "info.ticker"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "ticker", rows: "4", disabled: "" },
+              domProps: { value: _vm.info.ticker },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.info, "ticker", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-outline-secondary my-2 px-5 float-right edit",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.edit($event, "logo_section", "ticker")
+                  }
+                }
+              },
+              [_vm._v("Редагувати")]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Положення")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "brtop", attrs: { for: "provisions_text" } },
+              [_vm._v("Короткий опис положення")]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.info.provisions_text,
+                  expression: "info.provisions_text"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "provisions_text", rows: "4", disabled: "" },
+              domProps: { value: _vm.info.provisions_text },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.info, "provisions_text", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-outline-secondary my-2 px-5 float-right edit",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.edit(
+                      $event,
+                      "position_section",
+                      "provisions_text"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Редагувати")]
+            ),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "file" } }, [
+              _vm._v("Файл документу про положення")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-9" }, [
+                _c("label", { staticClass: "custom-file w-100" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: { ext: ["pdf", "doc", "txt", "docx"] },
+                        expression: "{ 'ext':['pdf', 'doc', 'txt', 'docx'] }"
+                      }
+                    ],
+                    ref: "file",
+                    staticClass: "custom-file-input",
+                    attrs: { type: "file", name: "document", id: "file" },
+                    on: { change: _vm.previewFiles }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "custom-file-control" }, [
+                    _vm._v(_vm._s(_vm.info.file.split("/")[2]))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-secondary edit w-100",
+                    attrs: {
+                      type: "button",
+                      disabled: _vm.errors.has("document")
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.editFile("position_section", "file", "file")
+                      }
+                    }
+                  },
+                  [_vm._v("Зберегти")]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.errors.has("document")
+                ? _c("p", { staticClass: "text-danger col-9" }, [
+                    _vm._v(_vm._s(_vm.errors.first("document")))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "video" } }, [
+              _vm._v("Відео для положення конкурсу (YouTube)")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-9" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.info.video,
+                      expression: "info.video"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "video", disabled: "" },
+                  domProps: { value: _vm.info.video },
                   on: {
-                    click: function($event) {
-                      return _vm.edit($event, "position_section", "video")
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.info, "video", $event.target.value)
                     }
                   }
-                },
-                [_vm._v("Редагувати")]
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-secondary edit",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.edit($event, "position_section", "video")
+                      }
+                    }
+                  },
+                  [_vm._v("Редагувати")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("iframe", {
+              staticClass: "mt-3",
+              attrs: {
+                width: "100%",
+                height: "300",
+                src:
+                  "https://www.youtube.com/embed/" +
+                  _vm.info.video.slice(
+                    _vm.info.video.length - 11,
+                    _vm.info.video.length
+                  ),
+                frameborder: "0",
+                allowfullscreen: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "quote" } }, [
+              _vm._v("Цитати")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.quotes, function(quote, index) {
+              return _c(
+                "div",
+                { key: "quote" + index, staticClass: "row mt-2" },
+                [
+                  _c("div", { staticClass: "col-9" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: quote.text,
+                          expression: "quote.text"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        name: "quote",
+                        id: "quote",
+                        cols: "30",
+                        rows: "3",
+                        disabled: quote.disabled == "" ? quote.disabled : true
+                      },
+                      domProps: { value: quote.text },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(quote, "text", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-3" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-outline-secondary float-right ml-2",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.delQuotes(index, quote.quote_id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-trash",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    quote !== _vm.editing && quote.disabled != false
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-secondary float-right",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.edit(quote, "quote", index)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-pencil-square-o",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      : _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-secondary float-right",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.saveQuotes(quote, "quote", index)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-floppy-o",
+                              attrs: { "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                  ])
+                ]
               )
-            ])
-          ])
-        ]),
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-secondary btn-block mt-2",
+                attrs: { type: "button" },
+                on: { click: _vm.addQuotes }
+              },
+              [_vm._v("+")]
+            )
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "col-2" }),
         _vm._v(" "),
@@ -49547,19 +49715,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.hymnText,
-                  expression: "hymnText"
+                  value: _vm.info.hymn_text,
+                  expression: "info.hymn_text"
                 }
               ],
               staticClass: "form-control",
-              attrs: { id: "hymn_text", rows: "4", disabled: "" },
-              domProps: { value: _vm.hymnText },
+              attrs: { id: "hymn_text", rows: "10", disabled: "" },
+              domProps: { value: _vm.info.hymn_text },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.hymnText = $event.target.value
+                  _vm.$set(_vm.info, "hymn_text", $event.target.value)
                 }
               }
             }),
@@ -49603,21 +49771,22 @@ var render = function() {
                             "ac3",
                             "amr",
                             "aud",
-                            "iff"
+                            "iff",
+                            "wav"
                           ]
                         },
                         expression:
-                          "{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff'] }"
+                          "{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff', 'wav'] }"
                       }
                     ],
-                    ref: "audioFile",
+                    ref: "audio",
                     staticClass: "custom-file-input",
                     attrs: { type: "file", name: "audio", id: "audio" },
                     on: { change: _vm.previewFiles }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "custom-file-control" }, [
-                    _vm._v("Файл не обрано")
+                    _vm._v(_vm._s(_vm.info.audio.split("/")[2]))
                   ])
                 ])
               ]),
@@ -49633,7 +49802,7 @@ var render = function() {
                     },
                     on: {
                       click: function($event) {
-                        return _vm.editFile("hymn_section", "audio")
+                        return _vm.editFile("hymn_section", "audio", "audio")
                       }
                     }
                   },
@@ -49668,12 +49837,12 @@ var render = function() {
                         expression: "'image'"
                       }
                     ],
-                    ref: "noteFile",
+                    ref: "note_image",
                     staticClass: "custom-file-input",
                     attrs: { type: "file", name: "note", id: "note_image" },
                     on: {
                       change: function($event) {
-                        return _vm.previewFiles($event, "noteImg")
+                        return _vm.previewFiles($event, "note_image")
                       }
                     }
                   }),
@@ -49692,7 +49861,7 @@ var render = function() {
                     attrs: { type: "button", disabled: _vm.errors.has("note") },
                     on: {
                       click: function($event) {
-                        return _vm.editFile("hymn_section", "note_image")
+                        return _vm.editFile("hymn_section", "note_image", "img")
                       }
                     }
                   },
@@ -49710,13 +49879,92 @@ var render = function() {
             !_vm.errors.has("note")
               ? _c("img", {
                   staticClass: "mt-3 w-50",
-                  attrs: { src: _vm.noteImg }
+                  attrs: { src: _vm.info.note_image }
                 })
               : _vm._e(),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),
-            _c("h3", [_vm._v("Контакти")]),
+            _c("h3", { staticClass: "mt-3" }, [_vm._v("Контакти")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("label", { staticClass: "brtop", attrs: { for: "emails" } }, [
+              _vm._v("Email")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.contact.emails, function(emailItem, index) {
+              return _c("div", { key: "email" + index, staticClass: "row" }, [
+                _c("div", { staticClass: "col-10" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: emailItem.contact,
+                        expression: "emailItem.contact"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "emails",
+                      disabled:
+                        emailItem.disabled == "" ? emailItem.disabled : true
+                    },
+                    domProps: { value: emailItem.contact },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(emailItem, "contact", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-2" }, [
+                  emailItem !== _vm.editing
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary float-right",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.editContact(emailItem, "emails", index)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-pencil-square-o",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary float-right",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.saveContact("emails", index)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-floppy-o",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                ])
+              ])
+            }),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
@@ -49724,7 +49972,7 @@ var render = function() {
               _vm._v("Адреса")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.address, function(addressItem, index) {
+            _vm._l(_vm.contact.address, function(addressItem, index) {
               return _c("div", { key: "address" + index, staticClass: "row" }, [
                 _c("div", { staticClass: "col-10" }, [
                   _c("input", {
@@ -49756,7 +50004,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-2" }, [
-                  addressItem !== _vm.editingPhone
+                  addressItem !== _vm.editing
                     ? _c(
                         "button",
                         {
@@ -49764,7 +50012,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
-                              return _vm.editPhone(
+                              return _vm.editContact(
                                 addressItem,
                                 "address",
                                 index
@@ -49786,11 +50034,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
-                              return _vm.saveAddress(
-                                addressItem,
-                                "address",
-                                index
-                              )
+                              return _vm.saveContact("address", index)
                             }
                           }
                         },
@@ -49807,11 +50051,11 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
-            _c("label", { staticClass: "brtop", attrs: { for: "phone" } }, [
+            _c("label", { staticClass: "brtop", attrs: { for: "phones" } }, [
               _vm._v("Телефон")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.phones, function(phone, index) {
+            _vm._l(_vm.contact.phones, function(phone, index) {
               return _c(
                 "div",
                 { key: "phone" + index, staticClass: "row mt-2" },
@@ -49819,13 +50063,6 @@ var render = function() {
                   _c("div", { staticClass: "col-9" }, [
                     _c("input", {
                       directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: { regex: /^\+380\d{3}\d{2}\d{2}\d{2}$/ },
-                          expression:
-                            "{ regex:/^\\+380\\d{3}\\d{2}\\d{2}\\d{2}$/ }"
-                        },
                         {
                           name: "model",
                           rawName: "v-model",
@@ -49836,8 +50073,7 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        name: "phone",
-                        id: "phone",
+                        id: "phones",
                         disabled: phone.disabled == "" ? phone.disabled : true
                       },
                       domProps: { value: phone.contact },
@@ -49861,7 +50097,11 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.delPhones(index, phone.contact_items_id)
+                            return _vm.del(
+                              index,
+                              phone.contact_items_id,
+                              "phones"
+                            )
                           }
                         }
                       },
@@ -49873,7 +50113,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    phone !== _vm.editingPhone && phone.disabled != false
+                    phone !== _vm.editing && phone.disabled != false
                       ? _c(
                           "button",
                           {
@@ -49882,7 +50122,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.editPhone(phone, "phone", index)
+                                return _vm.editContact(phone, "phones", index)
                               }
                             }
                           },
@@ -49904,7 +50144,7 @@ var render = function() {
                             },
                             on: {
                               click: function($event) {
-                                return _vm.savePhone(phone, "phone", index)
+                                return _vm.saveContact("phones", index)
                               }
                             }
                           },
@@ -49915,13 +50155,7 @@ var render = function() {
                             })
                           ]
                         )
-                  ]),
-                  _vm._v(" "),
-                  _vm.errors.has("phone")
-                    ? _c("p", { staticClass: "text-danger col-9" }, [
-                        _vm._v(_vm._s(_vm.errors.first("phone")))
-                      ])
-                    : _vm._e()
+                  ])
                 ]
               )
             }),
@@ -49931,7 +50165,11 @@ var render = function() {
               {
                 staticClass: "btn btn-outline-secondary btn-block mt-2",
                 attrs: { type: "button" },
-                on: { click: _vm.addPhones }
+                on: {
+                  click: function($event) {
+                    return _vm.add("phones")
+                  }
+                }
               },
               [_vm._v("+")]
             ),
@@ -49942,7 +50180,7 @@ var render = function() {
               _vm._v("Соціальні мережі")
             ]),
             _vm._v(" "),
-            _vm._l(_vm.socials, function(social, index) {
+            _vm._l(_vm.contact.socials, function(social, index) {
               return _c(
                 "div",
                 { key: "social" + index, staticClass: "row mt-2" },
@@ -50012,7 +50250,11 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.delSocial(index, social.contact_items_id)
+                            return _vm.del(
+                              index,
+                              social.contact_items_id,
+                              "socials"
+                            )
                           }
                         }
                       },
@@ -50024,7 +50266,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    social !== _vm.editingSocial && social.disabled != false
+                    social !== _vm.editing && social.disabled != false
                       ? _c(
                           "button",
                           {
@@ -50052,7 +50294,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.saveSocial(social, "social", index)
+                                return _vm.saveSocial("social", index)
                               }
                             }
                           },
@@ -50073,7 +50315,11 @@ var render = function() {
               {
                 staticClass: "btn btn-outline-secondary btn-block mt-2",
                 attrs: { type: "button" },
-                on: { click: _vm.addSocial }
+                on: {
+                  click: function($event) {
+                    return _vm.add("socials")
+                  }
+                }
               },
               [_vm._v("+")]
             )
@@ -50298,7 +50544,9 @@ var render = function() {
               attrs: {
                 width: "100%",
                 height: "100%",
-                src: "https://www.youtube.com/embed/" + item.url.split("=")[1],
+                src:
+                  "https://www.youtube.com/embed/" +
+                  item.url.slice(item.url.length - 11, item.url.length),
                 frameborder: "0",
                 allowfullscreen: ""
               }

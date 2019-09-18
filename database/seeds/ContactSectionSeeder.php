@@ -13,15 +13,19 @@ class ContactSectionSeeder extends Seeder
     {
         DB::table('contact_section')->insert([
             'contact_section_id' => 1,
-            'caption' => 'Адреса',
+            'caption' => 'address',
         ]);
         DB::table('contact_section')->insert([
             'contact_section_id' => 2,
-            'caption' => 'Телефон',
+            'caption' => 'phones',
         ]);
         DB::table('contact_section')->insert([
             'contact_section_id' => 3,
-            'caption' => 'Соц.мережі',
+            'caption' => 'socials',
+        ]);
+        DB::table('contact_section')->insert([
+            'contact_section_id' => 4,
+            'caption' => 'emails',
         ]);
     }
 }

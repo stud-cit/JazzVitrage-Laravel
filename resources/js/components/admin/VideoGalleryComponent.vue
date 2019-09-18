@@ -14,7 +14,7 @@
             <div class="col-4" v-for="(item, index) in urls" :key="item.video_id">
                 <div class="border fotoGallery">
                     <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
-                    <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.split('=')[1]" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

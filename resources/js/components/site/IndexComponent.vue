@@ -1,55 +1,12 @@
 <template>
     <div>
-
-        <!--<header class="header">-->
-
-            <!--<nav class="navbar navbar-expand-lg navbar-light ">-->
-                <!--<div class="container">-->
-                    <!--<a class ="navbar-brand" href="#"><img src="img/logo.svg" alt=""></a>-->
-                    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >-->
-                        <!--<span class="navbar-toggler-icon"></span>-->
-                    <!--</button>-->
-                    <!--<div class="collapse navbar-collapse nav-menu" id="nav-menu">-->
-                        <!--<div class="navbar-nav">-->
-                            <!--<li class="dropdown">-->
-                                <!--<a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>-->
-                                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                                    <!--<a class="dropdown-item" href="#">Action</a>-->
-                                    <!--<a class="dropdown-item" href="#">Another action</a>-->
-                                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                                <!--</div>-->
-                            <!--</li>-->
-
-
-                            <!--<li><a class="nav-item nav-link" href="#">ГАЛЕРЕЯ</a></li>-->
-                            <!--<li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>-->
-                            <!--<li><a class="nav-item nav-link" href="#">КОНТАКТИ</a></li>-->
-                            <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
-
-
-                        <!--</div>-->
-                        <!--<button class="add-application">ЗАПОВНИТИ ЗАЯВКУ</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</nav>-->
-
-            <!--<marquee class="ticker" scrollamount="10">-->
-                <!--Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс-->
-            <!--</marquee>-->
-            <!--<router-link :to="{ name: 'members'}">members</router-link>-->
-        <!--</header>-->
         <section class="main-section preview">
             <div class="top-layout">
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                            <img src="img/preview-logo.svg" alt="" class="preview-logo">
-                            <p class="preview-text">Протягом березня-квітня 2016 року в місті Суми
-                                проходив Другий обласний дитячий фестиваль-
-                                конкурс джазової музики «Джаз Вітраж». Головна
-                                мета цього нового творчого проекту -
-                                популяризація класичного та сучасного
-                                джазового мистецтва серед дітей та молоді сумського краю</p>
+                            <img :src="info.logo" width="70%" class="preview-logo">
+                            <p class="preview-text">{{ info.description }}</p>
                         </div>
                     </div>
                 </div>
@@ -93,16 +50,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-7">
-                        <!--<video controls>-->
-                            <!--<source src="video/position.mp4" type="video/mp4" >-->
-                        <!--</video>-->
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xFa2_PVMeDQ" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="col-xl-5">
                         <h2 class="title-section">Положення</h2>
                         <p class="subtitle">КОНКУРСУ</p>
-                        <p class="text">Протягом березня-квітня 2016 року в місті
-                            Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»...</p>
+                        <p class="text">{{ info.provisions_text }}</p>
                         <div class="btn-group">
                             <button class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</button>
                             <button class="btn btn-download">ЗАВАНТАЖИТИ</button>
@@ -114,13 +67,8 @@
         <section class="sections gallery">
             <div class="container">
                 <h2 class="title-section">ГАЛЕРЕЯ</h2>
-                <div class="row">
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
-                    <div class="col-xl-4 gallery-item"><img src="img/gallery-img.png" alt="" class="gallery-img"></div>
+                <div class="row" v-for="item in foto" :key="item.foto_id">
+                    <div class="col-xl-4 gallery-item"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
                 </div>
                 <div class="text-center">
                     <button class="archive">АРХІВ</button>
@@ -223,19 +171,11 @@
                 <div id="carousel-text" class="carousel slide" data-ride="carousel">
                     <img src="img/carousel-img.png" alt="" class="carousel-img">
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-text" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-text" data-slide-to="1"></li>
-                        <li data-target="#carousel-text" data-slide-to="2"></li>
+                        <li v-for="(item, index) in quotes" :key="'slide'+index" data-target="#carousel-text" :data-slide-to="index" :class="index == 0 ? 'active' : ''"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
-                        </div>
-                        <div class="carousel-item">
-                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
-                        </div>
-                        <div class="carousel-item">
-                            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю
+                        <div v-for="(item, index) in quotes" :key="item.quote_id" :class="index == 0 ? 'carousel-item active' : 'carousel-item'">
+                            {{ item.text }}
                         </div>
                     </div>
 
@@ -247,44 +187,13 @@
                             <p class="subtitle">КРАЩИХ РОБІТ</p>
                             <ul class="pagination">
                                 <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
-                                <li>1 : 16</li>
+                                <li>1 : {{ videos.length }}</li>
                                 <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
                             </ul>
                             <button class="archive">АРХІВ</button>
                         </div>
-                        <div class="col-xl-5 d-flex align-items-end">
-                            <!--<div id="carousel-video"  class="carousel slide" data-ride="carousel">-->
-
-
-                                <!--<div class="carousel-inner">-->
-                                    <!--<div  class="carousel-item active" >-->
-                                        <!--<video  class="video" controls>-->
-                                            <!--<source src="video/position.mp4" type="video/mp4">-->
-                                        <!--</video>-->
-                                    <!--</div>-->
-                                    <!--<div  class="carousel-item" >-->
-                                        <!--<video  class="video" controls>-->
-                                            <!--<source src="video/mult1.mp4" type="video/mp4">-->
-                                        <!--</video>-->
-                                    <!--</div>-->
-                                    <!--<div  class="carousel-item" >-->
-                                        <!--<video  class="video" controls>-->
-                                            <!--&lt;!&ndash;<source src="video/position.mp4" type="video/mp4">&ndash;&gt;-->
-                                        <!--</video>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!---->
-
-                            <!--</div>-->
-                            <video width="440" height="302" poster="img/video-bg.png" class="video active-video" controls>
-                                <source src="video/mult1.mp4" type="video/mp4">
-                            </video>
-
-                        </div>
-                        <div class="col-xl-4 d-flex align-items-end">
-                            <video  class="video" controls poster="img/video-bg.png">
-                                <source src="video/mult1.mp4" type="video/mp4">
-                            </video>
+                        <div class="col-xl-5 d-flex align-items-end" v-for="(video, index) in videos" :key="index">
+                            <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+video.url.slice(video.url.length - 11, video.url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -296,16 +205,15 @@
                 <div class="text-layer">
                     <div class="text-row">
                         <p class="title-field">Адреса: </p>
-                        <p class="text-field">Суми, Сумська область,
-                            40000</p>
+                        <p class="text-field" v-for="item in contact.address" :key="item.contact_items_id">{{ item.contact }}</p>
                     </div>
                     <div class="text-row">
                         <p class="title-field">Телефон: </p>
-                        <p class="text-field">+38 (050) 123 4568</p>
+                        <p class="text-field" v-for="item in contact.phones" :key="item.contact_items_id">{{ item.contact }}</p>
                     </div>
                     <div class="text-row">
                         <p class="title-field">Соц. мережі: </p>
-                        <p class="text-field">Facebok</p>
+                        <p class="text-field text-light" v-for="item in contact.socials" :key="item.contact_items_id"><a :href="item.contact">{{ item.contact_title }}</a></p>
                     </div>
                 </div>
             </div>
@@ -339,6 +247,21 @@
     export default {
         data() {
             return {
+                info: {
+                    logo: '',
+                    description: '',
+                    provisions_text: '',
+                    video: ''
+                },
+                contact: {
+                    emails: [],
+                    address: [],
+                    phones: [],
+                    socials: []
+                },
+                foto: [],
+                videos: [],
+                quotes: [],
                 name: '',
                 email: '',
 	            questionText: '',
@@ -347,13 +270,44 @@
         },
 
         created () {
-
-
+            this.getInfo();
+            this.getFoto();
+            this.getVideo();
+            this.getQuotes();
         },
         computed: {
 
         },
         methods: {
+            getInfo() {
+                axios.get('/get-all-info')
+                    .then((response) => {
+                        response.data.info.map(item => {
+                            Object.assign(this.info, item);
+                        });
+                        response.data.contact.map(item => {
+                            Object.assign(this.contact[item.caption], item.contacts_items);
+                        });
+                    })
+            },
+            getFoto() {
+                axios.get('/get-foto')
+                .then((response) => {
+                    this.foto = response.data;
+                })
+            },
+            getVideo() {
+                axios.get('/get-video')
+                .then((response) => {
+                    this.videos = response.data;
+                })
+            },
+            getQuotes() {
+                axios.get('/get-quotes')
+                .then((response) => {
+                    this.quotes = response.data;
+                })
+            },
 	        postQuestion() {
 		        this.form.append('name', this.name);
 		        this.form.append('email', this.email);

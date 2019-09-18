@@ -46,12 +46,17 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('delete-video/{id}/', 'GalleryController@deleteVideo');
 
     Route::get('get-question', 'QuestionController@getQuestion');
-    Route::post('post-question', 'QuestionController@postQuestion');
     Route::post('delete-question/{id}/', 'QuestionController@deleteQuestion');
-    Route::post('post-info', 'InfoController@postInfo');
-    Route::post('post-info-file', 'InfoController@postInfoFile');
+
     Route::post('post-contact', 'InfoController@postContact');
     Route::post('delete-contact/{id}/', 'InfoController@deleteContact');
+
+    Route::post('post-info', 'InfoController@postInfo');
+    Route::post('post-info-file', 'InfoController@postInfoFile');
+
+    Route::post('post-quote', 'InfoController@postQuote');
+    Route::post('put-quote', 'InfoController@putQuote');
+    Route::post('delete-quote/{id}/', 'InfoController@deleteQuote');
 });
 
 // Роль Орг.Комітет
@@ -116,6 +121,7 @@ Auth::routes();
 
     Route::get('get-foto', 'GalleryController@getFoto');
     Route::get('get-video', 'GalleryController@getVideo');
+    Route::get('get-quotes', 'InfoController@getQuotes');
 
     Route::get('get-members',  'ApplicationController@getMembers');
 
@@ -128,7 +134,7 @@ Auth::routes();
     Route::post('unarchive-members/{id}/',  'ApplicationController@unarchiveMembers');
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
-
+    Route::post('post-question', 'QuestionController@postQuestion');
 
     Route::get('/{any}', ['as' => 'site', function () {
         return view('layouts.site.index');
