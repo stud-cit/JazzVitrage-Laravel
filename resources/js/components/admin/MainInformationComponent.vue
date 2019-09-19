@@ -12,14 +12,14 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="'image'" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept="image/*">
+                                <input type="file" v-validate="'image'" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" @input="$v.info.logo.$touch()">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100" @click='editFile("logo_section", "logo", "img")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('logo')">{{ errors.first('logo') }}</p>
+                        <p class="text-danger col-9">{{ $v.info.logo.$error }}</p>
                     </div>
                     <img v-if="!errors.has('logo')" class="mt-3 w-50" :src="info.logo">
                     <hr>
@@ -182,6 +182,7 @@
 </template>
 
 <script>
+import { imgValid } from "../../mixins/validation";
 export default {
     data() {
         return {
@@ -211,7 +212,12 @@ export default {
 	created () {
         this.getAllInfo();
         this.getQuotes();
-	},
+    },
+    validations: {
+        info: {
+            logo: { imgValid },
+        }
+    },
     methods: {
         previewFiles(event, el) {
             var input = event.target;
@@ -350,3 +356,8 @@ export default {
     }
 }
 </script>
+<style scope>
+    .hasError {
+        color: red;
+    }
+</style>

@@ -7,12 +7,16 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 import VueRouter from 'vue-router'
 import VueSilentbox from 'vue-silentbox';
-import VeeValidate, { Validator } from 'vee-validate'
-import ruLocale from 'vee-validate/dist/locale/ru'
+import VeeValidate, { Validator } from 'vee-validate';
+import ruLocale from 'vee-validate/dist/locale/ru';
+import Vuelidate from 'vuelidate';
+
+Vue.config.productionTip = false;
 
 Validator.localize('ru', ruLocale)
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 Vue.use(VueSilentbox);
 Vue.use(VeeValidate, {
     locale: 'ru'
