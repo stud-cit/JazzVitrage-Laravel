@@ -8,8 +8,7 @@
                     <label for="typeEvent">Тип заходу</label>
                     <select class="form-control" v-model="typeEvent" id="typeEvent">
                         <option>Джаз-Вітраж</option>
-                        <option>хз хз</option>
-                        <option>хз хз хз</option>
+                        <option>Мастер клас</option>
                     </select>
 
                     <label for="yearCompetition">Рік проведення конкурсу</label>
@@ -20,21 +19,17 @@
                 <div class="col-2"></div>
                 <div class="col-5">
                     <label for="foto">Фото в оригінальній якості</label>
-                    <div class="custom-file">
-
+                    <label class="custom-file w-100">
                         <input type="file" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" multiple>
-                        <label class="custom-file-label">{{ `Кількість обраних файлів: ${file.length}` }}</label>
-
-                        <div v-for="(item, index) in file" :key="index">
-                            <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1" @click="delFile(index)"></i></div>
-                        </div>
-
-                        <!-- Временное решение -->
-                        <transition name="load">
-                            <div v-if="load" style="text-align:center">Завантаження</div>
-                        </transition>
-                        
+                        <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
+                    </label>
+                    <div v-for="(item, index) in file" :key="index">
+                        <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
                     </div>
+                    <!-- Временное решение -->
+                    <transition name="load">
+                        <div v-if="load" style="text-align:center">Завантаження</div>
+                    </transition>
                     <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" :disabled="file.length == 0" @click="uploadFile">Додати</button>
                 </div>
             </div>
@@ -116,10 +111,24 @@ export default {
             this.file.splice(index, 1);
         },
         delFoto(id, index) {
-            axios.post('/delete-foto/'+id)
-            .then(() => {
-                this.foto.splice(index, 1);
+            swal({
+                title: "Бажаєте видалити?",
+                text: "Після видалення ви не зможете відновити цей файл!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
             })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.post('/delete-foto/'+id)
+                    .then(() => {
+                        this.foto.splice(index, 1);
+                        swal("Файл успішно видалено", {
+                            icon: "success",
+                        });
+                    });
+                }
+            });
         }
     }
 }

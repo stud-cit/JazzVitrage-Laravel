@@ -312,20 +312,20 @@
             <div class="right-layer">
                 <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
                 <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
-                <form action="" class="contacts-form">
+                <form enctype="multipart/form-data" class="contacts-form">
                     <div class="form-row">
                         <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
-                        <input type="text" placeholder="ВАШЕ ІМ'Я">
+                        <input type="text" v-model="name" id="name" placeholder="ВАШЕ ІМ'Я">
                     </div>
                     <div class="form-row">
                         <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
-                        <input type="email" placeholder="ПОШТА">
+                        <input type="email" v-model="email" id="email" placeholder="ПОШТА">
                     </div>
                     <div class="form-row">
-                        <textarea name="" id="" cols="30" rows="6"></textarea>
+                        <textarea name="" v-model="questionText" id="question" cols="30" rows="6"></textarea>
                     </div>
                     <div class="text-center">
-                        <button class="submit">НАДІСЛАТИ</button>
+                        <button type="button" class="submit" @click="postQuestion">НАДІСЛАТИ</button>
                     </div>
                 </form>
             </div>
@@ -339,7 +339,10 @@
     export default {
         data() {
             return {
-
+                name: '',
+                email: '',
+	            questionText: '',
+	            form: new FormData
             };
         },
 
@@ -351,6 +354,27 @@
 
         },
         methods: {
+	        postQuestion() {
+		        this.form.append('name', this.name);
+		        this.form.append('email', this.email);
+		        this.form.append('question_text', this.questionText);
+
+		        axios.post('/post-question', this.form)
+			        .then((response) => {
+				        if(response.status == 200) {
+					        swal("Питання буде розглядено в найближчий термін", {
+						        icon: "success",
+					        });
+				        }
+			        })
+			        .catch((error) => {
+				        swal({
+					        icon: "error",
+					        title: 'Помилка',
+					        text: 'Не вдалося'
+				        });
+			        });
+            },
             nextSlide(event){
 
                 // const container = document.getElementById('carousel-video');

@@ -533,29 +533,6 @@ button {
   text-decoration: none;
 }
 
-.juries .slider {
-  width: 50%;
-  margin: 100px auto;
-}
-
-.juries .slick-slide {
-  margin: 10px 20px;
-}
-
-.juries .slick-slide img {
-  width: 100%;
-  transform: scale(0.9);
-}
-
-.juries .slick-prev:before,
-.juries .slick-next:before {
-  color: black;
-}
-
-.juries .slick-dotted .slick-current img {
-  transform: scale(1.1);
-}
-
 .juries .title-juries {
   position: relative;
   display: flex;

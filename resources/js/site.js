@@ -42,7 +42,7 @@ const router = new VueRouter({
             component: Gallery,
         },
         {
-            path: '/gallery/:id',
+            path: '/gallery/:id/',
             name: 'gallery-year',
             component: GalleryYear,
         },

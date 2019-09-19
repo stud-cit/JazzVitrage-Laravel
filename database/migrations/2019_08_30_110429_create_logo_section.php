@@ -4,21 +4,27 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFotoGalletyTable extends Migration
+class CreateLogoSection extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
+    public function down()
+    {
+        Schema::dropIfExists('logo_section');
+    }
     public function up()
     {
-        Schema::create('foto_gallery', function (Blueprint $table) {
+        Schema::dropIfExists('logo_section');
+
+        Schema::create('logo_section', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('foto_id');
-            $table->string('file', 100);
-            $table->string('type', 50);
-            $table->string('year', 4);
+            $table->increments('id');
+            $table->string('logo', 100);
+            $table->text('description');
+            $table->text('ticker');
             $table->timestamps();
         });
     }
@@ -28,8 +34,4 @@ class CreateFotoGalletyTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('foto_gallery');
-    }
 }

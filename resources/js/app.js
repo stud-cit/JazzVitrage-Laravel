@@ -7,9 +7,16 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 import VueRouter from 'vue-router'
 import VueSilentbox from 'vue-silentbox';
+import VeeValidate, { Validator } from 'vee-validate'
+import ruLocale from 'vee-validate/dist/locale/ru'
+
+Validator.localize('ru', ruLocale)
 
 Vue.use(VueRouter);
 Vue.use(VueSilentbox);
+Vue.use(VeeValidate, {
+    locale: 'ru'
+})
 
 import NewStatementComponent from './components/NewStatementComponent';
 import RemovedStatementComponent from './components/RemovedStatementComponent';
@@ -21,13 +28,15 @@ import EvaluationResultsComponent from './components/EvaluationResultsComponent'
 import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import FotoGalleryComponent from './components/admin/FotoGalleryComponent';
 import MainInformationComponent from './components/admin/MainInformationComponent';
-
+import QuestionComponent from './components/admin/QuestionComponent';
 //Журі
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
 
 //Супер адмін
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
+import AddToOrgCommitteeComponent from './components/superAdmin/AddToOrgCommitteeComponent';
+import AddAdminOrgCommitteeComponent from './components/superAdmin/AddAdminOrgCommitteeComponent';
 
 const router = new VueRouter({
     mode: 'history',
@@ -63,7 +72,10 @@ const app = new Vue({
         FotoGalleryComponent,
         MainInformationComponent,
         AllStatementComponent,
-        AddJuryComponent
+        AddJuryComponent,
+        AddToOrgCommitteeComponent,
+        AddAdminOrgCommitteeComponent,
+        QuestionComponent
     },
     router
 });
