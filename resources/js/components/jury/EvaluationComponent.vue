@@ -125,6 +125,7 @@
                 // мінімальна максимальна оцінка
                 minEvaluation: 0,
                 maxEvaluation: 25,
+                hasError: false
             }
         },
         created() {
@@ -133,6 +134,7 @@
         },
         computed: {
             nextButtonShow() {
+                this.setDefaultEvaluate();
                 return this.$route.params.id == this.count ? false : true;
             },
             evaluation: {
@@ -145,10 +147,18 @@
                 }
             }
         },
+
         methods: {
             saveEvaluation() {
-                this.evaluation = this.evaluation;
+                this.score.evaluation = this.score.stylisticMatching + this.score.artisticValue + this.score.artistry + this.score.originality;
                 alert(`Ваша оцінка ${this.score.evaluation} із можливих 100`);
+            },
+            setDefaultEvaluate() {
+                this.score.stylisticMatching = 0;
+                this.score.artisticValue = 0;
+                this.score.artistry = 0;
+                this.score.originality = 0;
+                this.score.evaluation = 0;
             },
             getMember() {
                 axios.get('/get-member/'+this.$route.params.id)
@@ -167,6 +177,7 @@
                 });
             },
             nextMember() {
+                //this.score.stylisticMatching = 0;
                 this.$router.push({ name: 'jury-evaluation', params: {id: ++this.$route.params.id} });
                 this.getMember();
             }
