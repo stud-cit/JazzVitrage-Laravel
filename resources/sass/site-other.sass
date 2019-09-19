@@ -386,6 +386,21 @@ input, select, textarea, button
                text-decoration: none
 
 .juries
+   .slider 
+      width: 50%
+      margin: 100px auto
+   .slick-slide 
+      margin: 10px 20px
+      img 
+         width: 100%
+         transform: scale(0.9)
+   .slick-prev:before,
+   .slick-next:before 
+      color: black
+   .slick-dotted 
+      .slick-current 
+         img 
+            transform: scale(1.1)
    .title-juries
       position: relative
       display: flex
@@ -420,31 +435,29 @@ input, select, textarea, button
       color: #fff
       text-transform: uppercase
       .title
-         text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
-         color: #ffffff
          font-family: Montserrat
-         font-size: 26px
-         font-weight: 900
+         color: #fff
+         font-weight: 600
       .prev-page
-         width: 234px
-         text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
-         color: #ffffff
          font-family: Montserrat
-         font-size: 26px
-         font-weight: 900
+         color: #fff
+         font-weight: 600
+         text-decoration: none
          .fa
             margin-right: 10px
    .sortiration-block
-         margin: 55px 0 20px 60%
-         width: 40%
+         margin: 55px 0 20px auto
+         width: 41%
          color: #ffffff
          font-family: Montserrat
          font-size: 20px
          line-height: 40px
          font-weight: 400
          select
+            appearance: none
             margin-top: -2pt
-            width: 74%
+            margin-left: 5px
+            width: 73%
             height: 40px
             color: #ffffff
             font-family: Montserrat
@@ -452,12 +465,12 @@ input, select, textarea, button
             font-weight: 400
             line-height: 40px
             border: none
-            padding: 0 10px
+            padding: 0 20px
             min-width: 190px
             text-align: center
             outline: none
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1)
-            background: transparent
+            background: transparent url('../img/mini-arrow.png') left top 50%  no-repeat
             option
               color: #000000 
    .member-jury-card
@@ -548,6 +561,7 @@ input, select, textarea, button
             border-radius: 25px
             background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
             color: #14042f
+   
 .jury-list
       display: flex
       justify-content: space-between
@@ -589,31 +603,10 @@ input, select, textarea, button
                font-size: 17px
                font-weight: 900
                letter-spacing: 1.7px
-               z-index: 5 
-.carousel-inner 
-   .carousel-item.active
-      display: flex
-   .carousel-item-next
-      display: flex
-   .carousel-item-prev
-      display: flex 
+               z-index: 5
   
 
-.carousel-inner 
-   .carousel-item-right.active
-      transform: translateX(25%)
-   .carousel-item-next
-      transform: translateX(25%)
-  
-.carousel-inner 
-   .carousel-item-left.active
-      transform: translateX(-25%) 
-   .carousel-item-prev 
-      transform: translateX(-25%)
 
-  
-.carousel-inner 
-   .carousel-item-right
-      transform: translateX(0)
-   .carousel-item-left
-      transform: translateX(0)
+
+
+

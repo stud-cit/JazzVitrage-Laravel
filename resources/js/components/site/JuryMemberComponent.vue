@@ -3,8 +3,8 @@
         <section class="sections main-section jury-member juries">
             <div class="container">
                 <div class="page-nav">
-                   <div class="prev-page"><router-link :to="{ name: 'juries'}"><i class="fa fa-angle-left"></i>всі журі</router-link></div>
-                </div>
+                   <router-link :to="{ name: 'juries'}" class="prev-page"><i class="fa fa-angle-left"></i>всі журі</router-link>
+                </div>      
                 <div class="member-jury-card">
                     <div class="picture">
                        <img src="/img/list_jury/Intersection_3.png" alt="">
@@ -34,7 +34,6 @@
 
         created () {
             document.title = "Представник журі"; 
-
         },
         computed: {
             

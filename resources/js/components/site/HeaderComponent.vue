@@ -35,7 +35,7 @@
 
 
                     </div>
-                    <router-link :to="'applications'" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="'/applications'" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                 </div>
             </div>
         </nav>
