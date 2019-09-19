@@ -18,8 +18,6 @@
     <footer-component></footer-component>
 </div>
 
-
-
 @include('layouts.site.scripts')
 
 </body>

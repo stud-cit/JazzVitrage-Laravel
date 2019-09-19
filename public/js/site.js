@@ -3073,19 +3073,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -3276,6 +3263,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -42881,19 +42871,18 @@ var render = function() {
   return _c("div", [
     _c("section", { staticClass: "sections main-section jury-member juries" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "page-nav" }, [
-          _c(
-            "div",
-            { staticClass: "prev-page" },
-            [
-              _c("router-link", { attrs: { to: { name: "juries" } } }, [
-                _c("i", { staticClass: "fa fa-angle-left" }),
-                _vm._v("всі журі")
-              ])
-            ],
-            1
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "page-nav" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "prev-page", attrs: { to: { name: "juries" } } },
+              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v("всі журі")]
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
         _vm._m(0)
       ])
@@ -43165,7 +43154,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "sortiration-block" }, [
-            _vm._v("\n                 сортувати:\n                    "),
+            _vm._v("\n                 сортувати:\n    \n                    "),
             _c("select", { attrs: { name: "" } }, [
               _c("option", { attrs: { value: "", selected: "selected" } }, [
                 _vm._v("інструментальний жанр")
