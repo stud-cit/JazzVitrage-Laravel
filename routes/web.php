@@ -120,6 +120,7 @@ Auth::routes();
     Route::get('get-all-info', 'InfoController@getAllInfo');
 
     Route::get('get-foto', 'GalleryController@getFoto');
+    Route::get('get-foto/{year}/', 'GalleryController@getFotoYear');
     Route::get('get-video', 'GalleryController@getVideo');
     Route::get('get-quotes', 'InfoController@getQuotes');
 
