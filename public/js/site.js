@@ -2177,6 +2177,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2184,6 +2256,8 @@ __webpack_require__.r(__webpack_exports__);
       activeStep: 0,
       birthdayFile: 'завантажити файл',
       concertmaster: false,
+      appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
+      nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
       fileTitle: {
         memberBirthdayFile: 'завантажити файл',
         member2BirthdayFile: 'завантажити файл',
@@ -2256,7 +2330,8 @@ __webpack_require__.r(__webpack_exports__);
       var image = input.value.split('\\').pop();
       this.fileTitle[input.id] = image;
       this.registration.files[input.id] = input.files[0];
-    }
+    },
+    sendApp: function sendApp() {}
   }
 });
 
@@ -38903,7 +38978,17 @@ var render = function() {
                             [_vm._v("НОМІНАЦІЯ")]
                           ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Інструментальний  жанр")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Вокальний  жанр")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("Композиція")
+                          ])
                         ]
                       )
                     ]),
@@ -39347,7 +39432,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -40218,7 +40303,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -40395,7 +40480,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -40907,7 +40992,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -41129,7 +41214,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -41149,6 +41234,366 @@ var render = function() {
                             on: { click: _vm.nextStep }
                           },
                           [_vm._v("Далі")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 4
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v(
+                          "Тип заявки: " +
+                            _vm._s(_vm.appTypes[_vm.registration.data.appType])
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v(
+                          "Номінація: " +
+                            _vm._s(
+                              _vm.nominations[_vm.registration.data.nomination]
+                            )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Вікова категорія:")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про першого учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про другого учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.member2Name +
+                                  " " +
+                                  _vm.registration.data.member2Surname +
+                                  " " +
+                                  _vm.registration.data.member2Patronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.member2Date)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.member2Name)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode2)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про мистецький заклад ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва: " + _vm._s(_vm.registration.data.schoolName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Телефон: " +
+                              _vm._s(_vm.registration.data.schoolPhone)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Адреса: " +
+                              _vm._s(_vm.registration.data.schoolAddress)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електронна адреса: " +
+                              _vm._s(_vm.registration.data.schoolEmail)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про викладача  ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.registration.data
+                                  .teacherSurname +
+                                  " " +
+                                  _vm.registration.data.teacherName +
+                                  " " +
+                                  _vm.registration.data.teacherPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Контактний телефон: " +
+                              _vm._s(_vm.registration.data.teacherPhone)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v(
+                          "Прізвище, ім'я, по-батькові концертмейстера:  " +
+                            _vm._s(
+                              _vm.registration.data.registration.data
+                                .concertSurname +
+                                " " +
+                                _vm.registration.data.concertName +
+                                " " +
+                                _vm.registration.data.concertPatronymic
+                            )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про виступ ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва та автор першого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва та автор другого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName2 +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor2
+                              )
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row  file-row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _c("span", [_vm._v("1")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _c("span", [_vm._v("2")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _c("span", [_vm._v("3")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "input-row checkbox-row result-checkbox" },
+                      [
+                        _c("label", { attrs: { for: "concertmaster" } }, [
+                          _c("input", {
+                            staticClass: "d-none",
+                            attrs: { id: "concertmaster", type: "checkbox" },
+                            on: {
+                              change: function($event) {
+                                _vm.concertmaster = !_vm.concertmaster
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i"),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v("Даю згоду на збір "),
+                            _c("a", { attrs: { href: "" } }, [
+                              _vm._v(
+                                "персональних даних та права на використання"
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center mt-5"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.sendApp }
+                          },
+                          [_vm._v("Зареєструватися")]
                         )
                       ]
                     )

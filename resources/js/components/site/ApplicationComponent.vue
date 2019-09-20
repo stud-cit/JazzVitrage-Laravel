@@ -49,7 +49,9 @@
                                 <img src="img/star.png" class="star" alt="">
                                 <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
-                                    <option value="1">1</option>
+                                    <option value="1">Інструментальний  жанр</option>
+                                    <option value="2">Вокальний  жанр</option>
+                                    <option value="3">Композиція</option>
                                 </select>
                             </div>
                             <div class="text-right">
@@ -132,7 +134,7 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -283,7 +285,7 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -326,7 +328,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -414,7 +416,7 @@
                                     <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.concertPatronymic">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -465,9 +467,79 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
+                            </div>
+                        </div>
+                    </transition>
+
+                    <!--step5-->
+
+                    <transition name="fade" >
+                        <div class="step-form" v-if="activeStep == 4">
+
+                            <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.member2Name + ' ' + registration.data.member2Surname + ' ' + registration.data.member2Patronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.member2Date}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.member2Name}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
+                            <ul class="info-list">
+
+                                <li class="info-item">Назва: {{registration.data.schoolName}}</li>
+                                <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
+                                <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
+                                <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
+                                <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
+
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
+
+                            </ul></div>
+                            <div class="result-row  file-row">
+
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>1</span></div>
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>2</span></div>
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>
+                            </div>
+                            <div class="input-row checkbox-row result-checkbox">
+                                <label for="concertmaster" >
+                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <i></i>
+                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-5">
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </div>
                     </transition>
@@ -486,6 +558,9 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
+                appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
+                nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
+
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
                     member2BirthdayFile: 'завантажити файл',
@@ -574,6 +649,10 @@
                 const image = input.value.split('\\').pop();
                 this.fileTitle[input.id] = image;
                 this.registration.files[input.id] = input.files[0];
+
+            },
+
+            sendApp(){
 
             },
 
