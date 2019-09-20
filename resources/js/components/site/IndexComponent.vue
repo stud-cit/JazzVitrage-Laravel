@@ -305,7 +305,9 @@
                     </div>
                     <div class="text-row">
                         <p class="title-field">Соц. мережі: </p>
-                        <p class="text-field">Facebok</p>
+                        <a href="https://www.facebook.com/" class="text-field">Facebook</a>
+                        <a href="https://www.twitter.com/" class="text-field">Twitter</a>
+                        <a href="https://www.google.com/" class="text-field">Google</a>
                     </div>
                 </div>
             </div>

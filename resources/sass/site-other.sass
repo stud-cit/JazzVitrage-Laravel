@@ -547,47 +547,47 @@ input, select, textarea, button
             color: #14042f
    
 .jury-list
+   display: flex
+   justify-content: space-between
+   .jury-items
+      position: relative
+      border: 15px solid #fff
+      background-color: #ffff00
+      border-radius: 50%
+      width: 310px
+      height: 310px
       display: flex
-      justify-content: space-between
-      .jury-items
-         position: relative
-         border: 15px solid #fff
-         background-color: #ffff00
-         border-radius: 50%
-         width: 310px
-         height: 310px
-         display: flex
-         justify-content: center
-         align-items: flex-end
-         overflow: hidden
-         text-decoration: none
-         margin-bottom: 65px
+      justify-content: center
+      align-items: flex-end
+      overflow: hidden
+      text-decoration: none
+      margin-bottom: 65px
 
-         img
-            position: absolute
-            display: block
-            top: 50%
-            left: 50%
-            transform: translate(-50%,-50%)
-            max-width: 280px
-            max-height: 280px
+      img
+         position: absolute
+         display: block
+         top: 50%
+         left: 50%
+         transform: translate(-50%,-50%)
+         max-width: 280px
+         max-height: 280px
+      .items-title
+         height: 0
+         width: 0
+      &:hover
          .items-title
-            height: 0
-            width: 0
-         &:hover
-            .items-title
-               transition: height 0.2s ease
-               background-color: rgba(0, 0, 0, 0.7)
-               height: 100px
-               width: 100%
-               padding: 20px
-               text-align: center
-               color: #ffffff
-               font-family: Montserrat
-               font-size: 17px
-               font-weight: 900
-               letter-spacing: 1.7px
-               z-index: 5
+            transition: height 0.2s ease
+            background-color: rgba(0, 0, 0, 0.7)
+            height: 100px
+            width: 100%
+            padding: 20px
+            text-align: center
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 17px
+            font-weight: 900
+            letter-spacing: 1.7px
+            z-index: 5
   
 
 

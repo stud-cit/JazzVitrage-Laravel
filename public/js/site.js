@@ -2912,6 +2912,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2967,12 +2969,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -42429,7 +42425,32 @@ var staticRenderFns = [
         _c("div", { staticClass: "text-row" }, [
           _c("p", { staticClass: "title-field" }, [_vm._v("Соц. мережі: ")]),
           _vm._v(" "),
-          _c("p", { staticClass: "text-field" }, [_vm._v("Facebok")])
+          _c(
+            "a",
+            {
+              staticClass: "text-field",
+              attrs: { href: "https://www.facebook.com/" }
+            },
+            [_vm._v("Facebook")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "text-field",
+              attrs: { href: "https://www.twitter.com/" }
+            },
+            [_vm._v("Twitter")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "text-field",
+              attrs: { href: "https://www.google.com/" }
+            },
+            [_vm._v("Google")]
+          )
         ])
       ])
     ])
@@ -42483,64 +42504,57 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "jury-list" }, [
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 1 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 2 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 3 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          )
-        ])
+        _c(
+          "div",
+          { staticClass: "jury-list" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 1 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 2 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 3 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            )
+          ],
+          1
+        )
       ])
     ])
   ])
