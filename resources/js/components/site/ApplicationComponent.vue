@@ -471,6 +471,75 @@
                             </div>
                         </div>
                     </transition>
+
+                    <!--step5-->
+
+                    <transition name="fade" >
+                        <div class="step-form" v-if="activeStep == 0">
+
+                            <h4 class="step-title">Тип заявки:</h4>
+                            <h4 class="step-title">Тип заявки:</h4>
+                            <h4 class="step-title">Вікова категорія:</h4>
+                            <h4 class="step-title">Інформація про учасника </h4>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
+                                <li class="info-item">Число, місяці, рік народження: </li>
+                                <li class="info-item">Електрона адреса: </li>
+                                <li class="info-item">Ідентифікаційний номер: </li>
+                            </ul>
+                            <h4 class="step-title">Інформація про першого учасника </h4>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
+                                <li class="info-item">Число, місяці, рік народження: </li>
+                                <li class="info-item">Електрона адреса: </li>
+                                <li class="info-item">Ідентифікаційний номер: </li>
+                            </ul>
+                            <h4 class="step-title">Інформація про другого учасника </h4>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
+                                <li class="info-item">Число, місяці, рік народження: </li>
+                                <li class="info-item">Електрона адреса: </li>
+                                <li class="info-item">Ідентифікаційний номер: </li>
+                            </ul>
+                            <h4 class="step-title">Інформація про мистецький заклад </h4>
+                            <ul class="info-list">
+                                <li class="info-item">Назва: </li>
+                                <li class="info-item">Телефон: </li>
+                                <li class="info-item">Адреса: </li>
+                                <li class="info-item">Електронна адреса: </li>
+                            </ul>
+                            <h4 class="step-title">Інформація про викладача  </h4>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
+                                <li class="info-item">Контактний телефон: </li>
+
+                            </ul>
+                            <h4 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  </h4>
+                            <h4 class="step-title">Інформація про виступ </h4>
+                            <ul class="info-list">
+                                <li class="info-item">1</li>
+                                <li class="info-item">2</li>
+
+                            </ul>
+                            <div class="d-flex file-row">
+
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">1</div>
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">2</div>
+                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">3</div>
+                            </div>
+                            <div class="input-row checkbox-row">
+                                <label for="concertmaster" >
+                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <i></i>
+                                    Даю згоду на збір персональних даних та права на використання
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                            </div>
+                        </div>
+                    </transition>
                 </div>
             </div>
 
@@ -574,6 +643,10 @@
                 const image = input.value.split('\\').pop();
                 this.fileTitle[input.id] = image;
                 this.registration.files[input.id] = input.files[0];
+
+            },
+
+            sendApp(){
 
             },
 

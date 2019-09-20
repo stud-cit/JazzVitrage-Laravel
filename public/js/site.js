@@ -2177,6 +2177,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2256,7 +2325,8 @@ __webpack_require__.r(__webpack_exports__);
       var image = input.value.split('\\').pop();
       this.fileTitle[input.id] = image;
       this.registration.files[input.id] = input.files[0];
-    }
+    },
+    sendApp: function sendApp() {}
   }
 });
 
@@ -2995,19 +3065,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -3198,6 +3255,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -41160,6 +41220,222 @@ var render = function() {
                     )
                   ])
                 : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade" } }, [
+              _vm.activeStep == 0
+                ? _c("div", { staticClass: "step-form" }, [
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Тип заявки:")
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Тип заявки:")
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Вікова категорія:")
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про учасника ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Прізвище, ім'я, по-батькові: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Число, місяці, рік народження: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Електрона адреса: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Ідентифікаційний номер: ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про першого учасника ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Прізвище, ім'я, по-батькові: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Число, місяці, рік народження: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Електрона адреса: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Ідентифікаційний номер: ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про другого учасника ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Прізвище, ім'я, по-батькові: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Число, місяці, рік народження: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Електрона адреса: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Ідентифікаційний номер: ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про мистецький заклад ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Назва: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Телефон: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Адреса: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Електронна адреса: ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про викладача  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Прізвище, ім'я, по-батькові: ")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [
+                        _vm._v("Контактний телефон: ")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Прізвище, ім'я, по-батькові концертмейстера:  ")
+                    ]),
+                    _vm._v(" "),
+                    _c("h4", { staticClass: "step-title" }, [
+                      _vm._v("Інформація про виступ ")
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "info-list" }, [
+                      _c("li", { staticClass: "info-item" }, [_vm._v("1")]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "info-item" }, [_vm._v("2")])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "d-flex file-row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _vm._v("1")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _vm._v("2")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-column file-item" },
+                        [
+                          _c("img", {
+                            attrs: { src: "img/file.png", alt: "" }
+                          }),
+                          _vm._v("3")
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-row checkbox-row" }, [
+                      _c("label", { attrs: { for: "concertmaster" } }, [
+                        _c("input", {
+                          staticClass: "d-none",
+                          attrs: { id: "concertmaster", type: "checkbox" },
+                          on: {
+                            change: function($event) {
+                              _vm.concertmaster = !_vm.concertmaster
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("i"),
+                        _vm._v(
+                          "\n                                Даю згоду на збір персональних даних та права на використання\n                            "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "prev-step",
+                            on: { click: _vm.prevStep }
+                          },
+                          [_vm._v("Назад")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "next-step",
+                            attrs: { type: "button" },
+                            on: { click: _vm.sendApp }
+                          },
+                          [_vm._v("Зареєструватися")]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e()
             ])
           ],
           1
@@ -42592,19 +42868,18 @@ var render = function() {
   return _c("div", [
     _c("section", { staticClass: "sections main-section jury-member juries" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "page-nav" }, [
-          _c(
-            "div",
-            { staticClass: "prev-page" },
-            [
-              _c("router-link", { attrs: { to: { name: "juries" } } }, [
-                _c("i", { staticClass: "fa fa-angle-left" }),
-                _vm._v("всі журі")
-              ])
-            ],
-            1
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "page-nav" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "prev-page", attrs: { to: { name: "juries" } } },
+              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v("всі журі")]
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
         _vm._m(0)
       ])
@@ -42876,7 +43151,7 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "sortiration-block" }, [
-            _vm._v("\n                 сортувати:\n                    "),
+            _vm._v("\n                 сортувати:\n    \n                    "),
             _c("select", { attrs: { name: "" } }, [
               _c("option", { attrs: { value: "", selected: "selected" } }, [
                 _vm._v("інструментальний жанр")
@@ -58944,7 +59219,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

@@ -5,12 +5,15 @@
                 <h2 class="title-section">Організаційний комітет</h2>
                 <div class="sortiration-block">
                      сортувати:
-                        <select name="" >
+        
+                        <select name="">
                             <option value="" selected="selected" >інструментальний жанр</option>
                             <option value="1">вокальний жанр</option>
                             <option value="2">вокально-інструментальний жанр</option>
                         </select>
+
                 </div>
+                
                 <div class="member-committee-card">
                     <div class="picture">
                        <img src="/img/list_jury/Intersection_3.png" alt="">
