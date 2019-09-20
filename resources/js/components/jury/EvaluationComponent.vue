@@ -149,8 +149,25 @@
         },
 
         methods: {
+            // need make validation 
             saveEvaluation() {
-                this.score.evaluation = this.score.stylisticMatching + this.score.artisticValue + this.score.artistry + this.score.originality;
+                // call setter
+                this.evaluation = this.evaluation;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this.score;
+
+                axios.post(`/to-rate/${this.$route.params.id}`, {
+                    evaluation,
+                    stylistic_matching: stylisticMatching,
+                    artistic_value: artisticValue,
+                    artistry,
+                    originality
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
                 alert(`Ваша оцінка ${this.score.evaluation} із можливих 100`);
             },
             setDefaultEvaluate() {
