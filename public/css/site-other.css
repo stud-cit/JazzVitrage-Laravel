@@ -460,6 +460,12 @@ button {
   margin: 15px 0;
 }
 
+.gallery .gallery-item img {
+  max-height: 350px;
+  height: 100%;
+  width: 100%;
+}
+
 .gallery .gallery-item .dark-bg {
   position: absolute;
   top: 0;

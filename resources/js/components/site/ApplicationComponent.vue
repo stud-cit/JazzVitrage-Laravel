@@ -477,50 +477,51 @@
                     <!--step5-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 0">
+                        <div class="step-form" v-if="activeStep == 4">
 
-                            <div class="result-row"><h5 class="step-title">Тип заявки: {{ appTypes[registration.data.appType] }}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{ appTypes[registration.data.nomination] }}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.member2Name + ' ' + registration.data.member2Surname + ' ' + registration.data.member2Patronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.member2Date}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.member2Name}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                             <ul class="info-list">
-                                <li class="info-item">Назва: </li>
-                                <li class="info-item">Телефон: </li>
-                                <li class="info-item">Адреса: </li>
-                                <li class="info-item">Електронна адреса: </li>
+
+                                <li class="info-item">Назва: {{registration.data.schoolName}}</li>
+                                <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
+                                <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
+                                <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Контактний телефон: </li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
+                                <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                             </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  </h5></div>
+                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
-                                <li class="info-item">Назва та автор першого твору: </li>
-                                <li class="info-item">Назва та автор другого твору: </li>
+                                <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
 
                             </ul></div>
                             <div class="result-row  file-row">

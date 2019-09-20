@@ -2248,6 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -41245,7 +41246,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
-              _vm.activeStep == 0
+              _vm.activeStep == 4
                 ? _c("div", { staticClass: "step-form" }, [
                     _c("div", { staticClass: "result-row" }, [
                       _c("h5", { staticClass: "step-title" }, [
@@ -41261,7 +41262,7 @@ var render = function() {
                         _vm._v(
                           "Номінація: " +
                             _vm._s(
-                              _vm.appTypes[_vm.registration.data.nomination]
+                              _vm.nominations[_vm.registration.data.nomination]
                             )
                         )
                       ])
@@ -41280,19 +41281,37 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Прізвище, ім'я, по-батькові: ")
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Число, місяці, рік народження: ")
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Електрона адреса: ")
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Ідентифікаційний номер: ")
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
                         ])
                       ])
                     ]),
@@ -41304,19 +41323,37 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Прізвище, ім'я, по-батькові: ")
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Число, місяці, рік народження: ")
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Електрона адреса: ")
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Ідентифікаційний номер: ")
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
                         ])
                       ])
                     ]),
@@ -41328,19 +41365,37 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Прізвище, ім'я, по-батькові: ")
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.member2Name +
+                                  " " +
+                                  _vm.registration.data.member2Surname +
+                                  " " +
+                                  _vm.registration.data.member2Patronymic
+                              )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Число, місяці, рік народження: ")
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.member2Date)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Електрона адреса: ")
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.member2Name)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Ідентифікаційний номер: ")
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode2)
+                          )
                         ])
                       ])
                     ]),
@@ -41352,19 +41407,30 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Назва: ")
+                          _vm._v(
+                            "Назва: " + _vm._s(_vm.registration.data.schoolName)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Телефон: ")
+                          _vm._v(
+                            "Телефон: " +
+                              _vm._s(_vm.registration.data.schoolPhone)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Адреса: ")
+                          _vm._v(
+                            "Адреса: " +
+                              _vm._s(_vm.registration.data.schoolAddress)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Електронна адреса: ")
+                          _vm._v(
+                            "Електронна адреса: " +
+                              _vm._s(_vm.registration.data.schoolEmail)
+                          )
                         ])
                       ])
                     ]),
@@ -41376,18 +41442,41 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Прізвище, ім'я, по-батькові: ")
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.registration.data
+                                  .teacherSurname +
+                                  " " +
+                                  _vm.registration.data.teacherName +
+                                  " " +
+                                  _vm.registration.data.teacherPatronymic
+                              )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Контактний телефон: ")
+                          _vm._v(
+                            "Контактний телефон: " +
+                              _vm._s(_vm.registration.data.teacherPhone)
+                          )
                         ])
                       ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "result-row" }, [
                       _c("h5", { staticClass: "step-title" }, [
-                        _vm._v("Прізвище, ім'я, по-батькові концертмейстера:  ")
+                        _vm._v(
+                          "Прізвище, ім'я, по-батькові концертмейстера:  " +
+                            _vm._s(
+                              _vm.registration.data.registration.data
+                                .concertSurname +
+                                " " +
+                                _vm.registration.data.concertName +
+                                " " +
+                                _vm.registration.data.concertPatronymic
+                            )
+                        )
                       ])
                     ]),
                     _vm._v(" "),
@@ -41398,11 +41487,25 @@ var render = function() {
                       _vm._v(" "),
                       _c("ul", { staticClass: "info-list" }, [
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Назва та автор першого твору: ")
+                          _vm._v(
+                            "Назва та автор першого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor
+                              )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
-                          _vm._v("Назва та автор другого твору: ")
+                          _vm._v(
+                            "Назва та автор другого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName2 +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor2
+                              )
+                          )
                         ])
                       ])
                     ]),
