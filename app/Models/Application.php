@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     protected $table = 'application';
-    protected $primaryKey = 'application_id';
+	protected $primaryKey = 'application_id';
+	protected $fillable = [
+		'artistic_value',
+		'artistry', 
+		'created_at', 
+		'evaluation', 
+		'originality', 
+		'stylistic_matching',
+	];
+	
 
     public function appType()
 	{
