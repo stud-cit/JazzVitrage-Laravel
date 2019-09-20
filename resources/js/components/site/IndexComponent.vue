@@ -67,8 +67,8 @@
         <section class="sections gallery">
             <div class="container">
                 <h2 class="title-section">ГАЛЕРЕЯ</h2>
-                <div class="row" v-for="item in foto" :key="item.foto_id">
-                    <div class="col-xl-4 gallery-item"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
+                <div class="row">
+                    <div class="col-xl-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
                 </div>
                 <div class="text-center">
                     <button class="archive">АРХІВ</button>
