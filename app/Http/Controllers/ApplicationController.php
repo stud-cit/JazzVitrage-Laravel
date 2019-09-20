@@ -70,4 +70,30 @@ class ApplicationController extends Controller
         }
 
     }
+    /** 
+     * To rate
+     * 
+     * App\Models\Application $id
+     * Illuminate\Http\Request $request 
+     **/
+    public function toRate(Request $request, $id) {
+
+        $model = Application::find($id);
+        
+        // minor evaluation
+        $min = 0;
+        $max = 25;
+        $validatedData = $request->validate([
+            'artistic_value' => "required|numeric|min:$min|max:$max",
+            'artistry' => "required|numeric|min:$min|max:$max",
+            'evaluation' => "required|numeric|min:$min|max:100", // total rate 100
+            'originality' => "required|numeric|min:$min|max:$max",
+            'stylistic_matching' => "required|numeric|min:$min|max:$max"
+        ]);
+
+        $data = $request->all();
+        $model->update($data);
+
+        return response('ok', 200);
+    }
 }
