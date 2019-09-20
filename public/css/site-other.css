@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 .sections {
   padding-bottom: 60px;
 }
@@ -50,7 +54,7 @@ button {
 
 .applications .step-block {
   margin-top: 40px;
-  padding: 55px 100px 30px 100px;
+  padding: 55px 90px 30px 90px;
   border-radius: 20px;
   background-color: #4b1772;
   overflow: hidden;
@@ -239,7 +243,7 @@ button {
 }
 
 .applications .step-block .step-form .next-step {
-  width: 160px;
+  min-width: 160px;
   height: 60px;
   border-radius: 10px;
   background-color: #ffa407;
@@ -250,6 +254,7 @@ button {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 2px;
+  padding: 0 10px;
 }
 
 .applications .step-block .step-form .prev-step {
@@ -388,6 +393,66 @@ button {
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
+}
+
+.applications .step-block .step-form .result-row {
+  margin-top: 20px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.applications .step-block .step-form .result-row h5.step-title {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.applications .step-block .step-form .result-row .info-list {
+  margin-left: 95px;
+  margin-top: 10px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.applications .step-block .step-form .file-row {
+  display: flex;
+}
+
+.applications .step-block .step-form .file-row .file-item {
+  margin-right: 35px;
+}
+
+.applications .step-block .step-form .file-row .file-item span {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.applications .step-block .step-form .result-checkbox label {
+  line-height: 1.5;
+}
+
+.applications .step-block .step-form .result-checkbox label p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 17.5px;
+  font-weight: 500;
+}
+
+.applications .step-block .step-form .result-checkbox label p a {
+  display: inline;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #fff;
 }
 
 .gallery .gallery-item {
