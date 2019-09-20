@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('update-org/{id}/', 'UserController@updateOrg');
     Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
+    Route::post('to-rate/{id}/', 'ApplicationController@toRate')->name('to-rate');
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');
