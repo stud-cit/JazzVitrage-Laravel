@@ -2411,34 +2411,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      foto: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getFoto();
+  },
+  methods: {
+    getFoto: function getFoto() {
+      var _this = this;
+
+      axios.get('/get-foto').then(function (response) {
+        _this.foto = response.data.filter(function (item) {
+          return item.year; // this.foto.filter((o, item) => {
+          //     item.year != o.year
+          // })
+        }); // response.data.map(item => {
+        //     if (!this.foto.includes(item.year)) {
+        //         this.foto.push({year: item.year, file: item.file})
+        //     }
+        // })
+      }).then(function () {
+        console.log(_this.foto);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2534,50 +2534,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      info: {
+        hymn_text: '',
+        note_image: '',
+        audio: ''
+      }
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getInfo();
+  },
+  methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        response.data.info.map(function (item) {
+          Object.assign(_this.info, item);
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3255,50 +3235,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -3342,13 +3286,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      committees: []
+    };
   },
   created: function created() {
     document.title = "Організаційний комітет";
+    this.getOrgCommitteeList();
   },
   computed: {},
-  methods: {}
+  methods: {
+    getOrgCommitteeList: function getOrgCommitteeList() {
+      var _this = this;
+
+      axios.get('/get-org-view').then(function (response) {
+        var _this$committees;
+
+        (_this$committees = _this.committees).push.apply(_this$committees, _toConsumableArray(response.data));
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -41536,115 +41493,28 @@ var render = function() {
         _c(
           "div",
           { staticClass: "row" },
-          [
-            _c(
+          _vm._l(_vm.foto, function(item) {
+            return _c(
               "router-link",
               {
+                key: item.foto_id,
                 staticClass: "col-xl-4 gallery-item",
                 attrs: { to: { name: "gallery-year", params: { id: 2 } } }
               },
               [
                 _c("img", {
                   staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
+                  attrs: { src: "img/uploads/" + item.file, alt: "" }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 3 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                  _c("p", { staticClass: "caption" }, [
+                    _vm._v(_vm._s(item.year))
+                  ])
                 ])
               ]
             )
-          ],
+          }),
           1
         )
       ])
@@ -41797,99 +41667,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "sections main-section gymn" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
-            _c("div", { staticClass: "col-xl-5 couplets" }, [
-              _c("h1", [_vm._v("Куплет")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Якщо твоє серце постійно співає,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Мелодія блюзу тебе надихає,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Якщо ти сміливий і маєш кураж –")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("На тебе чекає сумський «Джаз-Вітраж»!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Бо Джаз – то є символ свободи і миру.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Він-скарб неповторний, яскравий і щирий.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Давайте сьогодні покажемо клас")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Анумо всі разом: «Ми любимо ДЖАЗ!»")]),
-              _vm._v(" "),
-              _c("h1", [_vm._v("Приспів")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Джаз! Джаз! Джаз! Джаз!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Лунає джаз.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Єднає нас.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Хай буде джаз!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("бо Джаз – це Джаз! ДЖАЗ!")]),
-              _vm._v(" "),
-              _c("h1", [_vm._v("Куплет")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Вітаємо щиро цінителів Джазу")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Віват, Джаз- Вітраж!  Об'єднаймося разом!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Щоб музику стильну усім дарувать,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("у світ її дивний без гальм поринать:")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Не варто сидіти і чогось чекати -")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Ти просто повинен себе показати!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Вирує хай свято не день  і не час")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Віват Джаз-Вітраж! Хай завджди буде ДЖАЗ!")])
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section gymn" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
+          _c("div", { staticClass: "col-xl-5" }, [
+            _c("pre", { staticClass: "couplets" }, [
+              _vm._v(_vm._s(_vm.info.hymn_text))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-7 media" }, [
+            _c("div", { staticClass: "overflow" }, [
+              _c("div", { staticClass: "scroll-img" }, [
+                _c("img", { attrs: { src: _vm.info.note_image, alt: "" } })
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-xl-7 media" }, [
-              _c("div", { staticClass: "overflow" }, [
-                _c("div", { staticClass: "scroll-img" }, [
-                  _c("img", { attrs: { src: "img/gymn.png", alt: "" } })
-                ])
+            _c("div", { staticClass: "absolute-block" }, [
+              _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
+                _c("source", {
+                  attrs: { src: _vm.info.audio, type: "audio/wav" }
+                })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "absolute-block" }, [
-                _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
-                  _c("source", {
-                    attrs: { src: "audio/jazz.wav", type: "audio/wav" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "download",
-                      attrs: { href: "audio/jazz.wav", download: "" }
-                    },
-                    [_vm._v("ЗАВАНТАЖИТИ")]
-                  )
-                ])
+              _c("div", { staticClass: "text-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "download",
+                    attrs: { href: _vm.info.audio, download: "" }
+                  },
+                  [_vm._v("ЗАВАНТАЖИТИ")]
+                )
               ])
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -43136,167 +42955,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section juries" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h2", { staticClass: "title-section" }, [
+            _vm._v("Організаційний комітет")
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.committees, function(item, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "member-committee-card" },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "picture",
+                    attrs: { "data-target": "#collapse" + (index + 1) }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "../img/user-photo/" + item.photo, alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "description",
+                    attrs: { "data-target": "#collapse" + (index + 1) }
+                  },
+                  [
+                    _c("h3", { staticClass: "title-description" }, [
+                      _vm._v(_vm._s(item.name + " " + item.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-description" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(item.informations) +
+                          "\n                    "
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm._m(1)
+        ],
+        2
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "sections main-section juries" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("h2", { staticClass: "title-section" }, [
-            _vm._v("Організаційний комітет")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sortiration-block" }, [
-            _vm._v("\n                 сортувати:\n    \n                    "),
-            _c("select", { attrs: { name: "" } }, [
-              _c("option", { attrs: { value: "", selected: "selected" } }, [
-                _vm._v("інструментальний жанр")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [
-                _vm._v("вокальний жанр")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [
-                _vm._v("вокально-інструментальний жанр")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "pagination" }, [
-            _c("li", { staticClass: "controls" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-left",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", [_vm._v("1 : 16")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "controls active" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-right",
-                attrs: { "aria-hidden": "true" }
-              })
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "sortiration-block" }, [
+      _vm._v("\n                 сортувати:\n    \n                    "),
+      _c("select", { attrs: { name: "" } }, [
+        _c("option", { attrs: { value: "", selected: "selected" } }, [
+          _vm._v("Інструментальний жанр")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Вокальний жанр")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("Композиція")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "pagination" }, [
+      _c("li", { staticClass: "controls" }, [
+        _c("i", {
+          staticClass: "fa fa-long-arrow-left",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("li", [_vm._v("1 : 16")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "controls active" }, [
+        _c("i", {
+          staticClass: "fa fa-long-arrow-right",
+          attrs: { "aria-hidden": "true" }
+        })
       ])
     ])
   }
@@ -59219,7 +58975,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

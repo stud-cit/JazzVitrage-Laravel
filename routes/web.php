@@ -13,8 +13,8 @@ Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
 //Положення
 Route::get('/position', 'PositionController@position');
 //Контакти
-Route::get('/jury', 'ContactsController@jury');
-Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
+Route::get('get-jury-view', 'ContactsController@jury');
+Route::get('get-org-view', 'ContactsController@organizingCommittee');
 
 
 // Админка
