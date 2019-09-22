@@ -2387,8 +2387,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -2425,17 +2431,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/get-foto').then(function (response) {
-        _this.foto = response.data.filter(function (item) {
-          return item.year; // this.foto.filter((o, item) => {
-          //     item.year != o.year
-          // })
-        }); // response.data.map(item => {
-        //     if (!this.foto.includes(item.year)) {
-        //         this.foto.push({year: item.year, file: item.file})
-        //     }
-        // })
-      }).then(function () {
-        console.log(_this.foto);
+        var years = _toConsumableArray(new Set(response.data.map(function (item) {
+          return item.year;
+        })));
+
+        years.map(function (year) {
+          _this.foto.push({
+            year: year,
+            file: response.data.filter(function (item) {
+              return year == item.year;
+            })[0]
+          });
+        });
       });
     }
   }
@@ -2475,23 +2482,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      foto: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getFoto();
+  },
+  methods: {
+    getFoto: function getFoto() {
+      var _this = this;
+
+      axios.get('/get-foto/' + this.$route.params.id).then(function (response) {
+        _this.foto = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3281,20 +3289,36 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      pageNumber: 0,
       committees: []
     };
+  },
+  props: {
+    size: {
+      type: Number,
+      required: false,
+      "default": 4
+    }
   },
   created: function created() {
     document.title = "Організаційний комітет";
     this.getOrgCommitteeList();
   },
-  computed: {},
+  computed: {
+    paginatedData: function paginatedData() {
+      var start = this.pageNumber * this.size,
+          end = start + this.size;
+      return this.committees.slice(start, end);
+    },
+    pageCount: function pageCount() {
+      var l = this.committees.length,
+          s = this.size;
+      return Math.ceil(l / s);
+    }
+  },
   methods: {
     getOrgCommitteeList: function getOrgCommitteeList() {
       var _this = this;
@@ -3304,6 +3328,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         (_this$committees = _this.committees).push.apply(_this$committees, _toConsumableArray(response.data));
       });
+    },
+    nextPage: function nextPage() {
+      this.pageNumber++;
+    },
+    prevPage: function prevPage() {
+      this.pageNumber--;
     }
   }
 });
@@ -41499,12 +41529,14 @@ var render = function() {
               {
                 key: item.foto_id,
                 staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
+                attrs: {
+                  to: { name: "gallery-year", params: { id: item.year } }
+                }
               },
               [
                 _c("img", {
                   staticClass: "gallery-img",
-                  attrs: { src: "img/uploads/" + item.file, alt: "" }
+                  attrs: { src: "img/uploads/" + item.file.file }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "dark-bg" }, [
@@ -41557,15 +41589,41 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("h3", { staticClass: "title" }, [
-              _vm._v(" ФЕСТИВАЛЬ ДЖАЗ-ВIтраж 2019 рiк")
+              _vm._v(
+                " ФЕСТИВАЛЬ ДЖАЗ-ВIтраж " +
+                  _vm._s(this.$route.params.id) +
+                  " рiк"
+              )
             ])
           ],
           1
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "row mt-4" },
+          _vm._l(_vm.foto, function(item) {
+            return _c(
+              "div",
+              { key: item.foto_id, staticClass: "col-xl-4 gallery-item" },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "/img/uploads/" + item.file }
+                })
+              ]
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
-        _vm._m(1)
+        _c("ul", { staticClass: "pagination d-flex justify-content-center" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("li", [_vm._v("1 : " + _vm._s(_vm.foto.length))]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
       ])
     ])
   ])
@@ -41575,75 +41633,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4" }, [
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ])
+    return _c("li", { staticClass: "controls" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-left",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "pagination d-flex justify-content-center" },
-      [
-        _c("li", { staticClass: "controls" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-left",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("li", [_vm._v("1 : 16")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "controls active" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-right",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "controls active" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-right",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -41977,27 +41983,29 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("section", { staticClass: "sections gallery" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        [
-          _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
-          _vm._v(" "),
-          _vm._l(_vm.foto, function(item) {
-            return _c("div", { key: item.foto_id, staticClass: "row" }, [
-              _c("div", { staticClass: "col-xl-4 gallery-item" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.foto.slice(0, 6), function(item) {
+            return _c(
+              "div",
+              { key: item.foto_id, staticClass: "col-xl-4 gallery-item" },
+              [
                 _c("img", {
                   staticClass: "gallery-img",
                   attrs: { src: "/img/uploads/" + item.file, alt: "" }
                 })
-              ])
-            ])
+              ]
+            )
           }),
-          _vm._v(" "),
-          _vm._m(2)
-        ],
-        2
-      )
+          0
+        ),
+        _vm._v(" "),
+        _vm._m(2)
+      ])
     ]),
     _vm._v(" "),
     _vm._m(3),
@@ -42967,7 +42975,7 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._l(_vm.committees, function(item, index) {
+          _vm._l(_vm.paginatedData, function(item, index) {
             return _c(
               "div",
               { key: index, staticClass: "member-committee-card" },
@@ -43009,7 +43017,40 @@ var render = function() {
             )
           }),
           _vm._v(" "),
-          _vm._m(1)
+          _c("ul", { staticClass: "pagination" }, [
+            _vm.pageNumber !== 0
+              ? _c(
+                  "li",
+                  { staticClass: "controls", on: { click: _vm.prevPage } },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-long-arrow-left",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(_vm._s(_vm.pageNumber + 1) + " : " + _vm._s(_vm.pageCount))
+            ]),
+            _vm._v(" "),
+            _vm.pageNumber <= _vm.pageCount - 2
+              ? _c(
+                  "li",
+                  {
+                    staticClass: "controls active",
+                    on: { click: _vm.nextPage }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-long-arrow-right",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              : _vm._e()
+          ])
         ],
         2
       )
@@ -43031,28 +43072,6 @@ var staticRenderFns = [
         _c("option", { attrs: { value: "1" } }, [_vm._v("Вокальний жанр")]),
         _vm._v(" "),
         _c("option", { attrs: { value: "2" } }, [_vm._v("Композиція")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "pagination" }, [
-      _c("li", { staticClass: "controls" }, [
-        _c("i", {
-          staticClass: "fa fa-long-arrow-left",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("li", [_vm._v("1 : 16")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "controls active" }, [
-        _c("i", {
-          staticClass: "fa fa-long-arrow-right",
-          attrs: { "aria-hidden": "true" }
-        })
       ])
     ])
   }
@@ -58975,7 +58994,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

@@ -13,8 +13,8 @@
                         </select>
 
                 </div>
-                
-                <div class="member-committee-card" v-for="(item, index) in committees" :key="index">
+
+                <div class="member-committee-card" v-for="(item, index) in paginatedData" :key="index">
                     <div class="picture" :data-target="'#collapse'+(index+1)">
                        <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
                     </div>
@@ -27,15 +27,12 @@
                 </div>
 
                 <ul class="pagination">
-                    <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
-                    <li>1 : 16</li>
-                    <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                    <li class="controls" v-if="pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
+                    <li>{{ pageNumber + 1 }} : {{ pageCount }}</li>
+                    <li class="controls active" v-if="pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
                 </ul>
             </div>
         </section>
-
-
-
     </div>
 </template>
 
@@ -43,16 +40,33 @@
     export default {
         data() {
             return {
+                pageNumber: 0,
 	            committees: [],
             };
         },
-
+        props:{
+            size:{
+                type:Number,
+                required:false,
+                default: 4
+            }
+        },
         created () {
             document.title = "Організаційний комітет";
             this.getOrgCommitteeList();
         },
         computed: {
+            paginatedData(){
+                const start = this.pageNumber * this.size,
+                    end = start + this.size;
+                return this.committees.slice(start, end);
+            },
+            pageCount(){
+                let l = this.committees.length,
+                    s = this.size;
 
+                return Math.ceil(l/s);
+            },
         },
         methods: {
 	        getOrgCommitteeList() {
@@ -61,6 +75,12 @@
 				        this.committees.push(...response.data)
 			        })
 	        },
+            nextPage(){
+                this.pageNumber++;
+            },
+            prevPage(){
+                this.pageNumber--;
+            },
         },
 
     }

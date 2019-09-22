@@ -70250,10 +70250,10 @@ function imgValid(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })
