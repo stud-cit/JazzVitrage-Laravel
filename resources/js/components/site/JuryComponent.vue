@@ -10,24 +10,20 @@
                     </div>
                 </div>     
                 <div class="jury-list">
-                    <div class="jury-items">
-                    <router-link :to="{ name: 'jury-member', params:{ id: 1}}">
+
+                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 1}}">
                         <img src="img/list_jury/Intersection_4.png" alt="">
                         <div class="items-title"></div>
-                    </router-link>
-                    </div>
-                    <div class="jury-items">
-                    <router-link :to="{ name: 'jury-member', params:{ id: 2}}">
+                    </router-link>           
+                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 2}}">
                         <img src="img/list_jury/Intersection_5.png" alt="">
                         <div class="items-title"></div>
                     </router-link>
-                    </div>
-                    <div class="jury-items">
-                    <router-link :to="{ name: 'jury-member', params:{ id: 3}}">
+                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 3}}">
                         <img src="img/list_jury/Intersection_6.png" alt="">
                         <div class="items-title"></div>
-                    </router-link>
-                    </div>
+                    </router-link>      
+
                 </div>
             </div>
         </section>

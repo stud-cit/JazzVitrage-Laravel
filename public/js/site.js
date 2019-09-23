@@ -2246,6 +2246,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2253,6 +2258,8 @@ __webpack_require__.r(__webpack_exports__);
       activeStep: 0,
       birthdayFile: 'завантажити файл',
       concertmaster: false,
+      appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
+      nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
       fileTitle: {
         memberBirthdayFile: 'завантажити файл',
         member2BirthdayFile: 'завантажити файл',
@@ -2273,14 +2280,14 @@ __webpack_require__.r(__webpack_exports__);
           parentSurname: '',
           parentPatronymic: '',
           idCode: '',
-          member2Name: '',
-          member2Surname: '',
-          member2Patronymic: '',
-          member2Date: '',
-          idMember2Type: 1,
-          parent2Name: '',
-          parent2Surname: '',
-          parent2Patronymic: '',
+          memberName2: '',
+          memberSurname2: '',
+          memberPatronymic2: '',
+          memberDate2: '',
+          idMemberType2: 1,
+          parentName2: '',
+          parentSurname2: '',
+          parentPatronymic2: '',
           idCode2: '',
           schoolName: '',
           schoolAddress: '',
@@ -2326,7 +2333,25 @@ __webpack_require__.r(__webpack_exports__);
       this.fileTitle[input.id] = image;
       this.registration.files[input.id] = input.files[0];
     },
-    sendApp: function sendApp() {}
+    sendApp: function sendApp() {
+      var _this = this;
+
+      axios.post('/send-app', {
+        data: this.registration
+      }).then(function (response) {
+        if (response.status == 200) {
+          _this.$router.push({
+            name: "index"
+          });
+        }
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: error.response.status
+        });
+      });
+    }
   }
 });
 
@@ -2909,6 +2934,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3017,10 +3043,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -3251,6 +3273,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+//
 //
 //
 //
@@ -39004,7 +39027,17 @@ var render = function() {
                             [_vm._v("НОМІНАЦІЯ")]
                           ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Інструментальний  жанр")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Вокальний  жанр")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("Композиція")
+                          ])
                         ]
                       )
                     ]),
@@ -39448,7 +39481,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -39907,13 +39940,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Surname,
-                              expression: "registration.data.member2Surname"
+                              value: _vm.registration.data.memberSurname2,
+                              expression: "registration.data.memberSurname2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
                           domProps: {
-                            value: _vm.registration.data.member2Surname
+                            value: _vm.registration.data.memberSurname2
                           },
                           on: {
                             input: function($event) {
@@ -39922,7 +39955,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Surname",
+                                "memberSurname2",
                                 $event.target.value
                               )
                             }
@@ -39936,13 +39969,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Name,
-                              expression: "registration.data.member2Name"
+                              value: _vm.registration.data.memberName2,
+                              expression: "registration.data.memberName2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ІМ'Я" },
                           domProps: {
-                            value: _vm.registration.data.member2Name
+                            value: _vm.registration.data.memberName2
                           },
                           on: {
                             input: function($event) {
@@ -39951,7 +39984,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Name",
+                                "memberName2",
                                 $event.target.value
                               )
                             }
@@ -39965,13 +39998,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Patronymic,
-                              expression: "registration.data.member2Patronymic"
+                              value: _vm.registration.data.memberPatronymic2,
+                              expression: "registration.data.memberPatronymic2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
                           domProps: {
-                            value: _vm.registration.data.member2Patronymic
+                            value: _vm.registration.data.memberPatronymic2
                           },
                           on: {
                             input: function($event) {
@@ -39980,7 +40013,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Patronymic",
+                                "memberPatronymic2",
                                 $event.target.value
                               )
                             }
@@ -40001,8 +40034,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Date,
-                              expression: "registration.data.member2Date"
+                              value: _vm.registration.data.memberDate2,
+                              expression: "registration.data.memberDate2"
                             }
                           ],
                           attrs: {
@@ -40012,7 +40045,7 @@ var render = function() {
                             pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
                           },
                           domProps: {
-                            value: _vm.registration.data.member2Date
+                            value: _vm.registration.data.memberDate2
                           },
                           on: {
                             input: function($event) {
@@ -40021,7 +40054,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Date",
+                                "memberDate2",
                                 $event.target.value
                               )
                             }
@@ -40078,9 +40111,9 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.registration.data.idMember2Type,
+                                    value: _vm.registration.data.idMemberType2,
                                     expression:
-                                      "registration.data.idMember2Type"
+                                      "registration.data.idMemberType2"
                                   }
                                 ],
                                 staticClass: "app-type",
@@ -40091,7 +40124,7 @@ var render = function() {
                                 },
                                 domProps: {
                                   checked: _vm._q(
-                                    _vm.registration.data.idMember2Type,
+                                    _vm.registration.data.idMemberType2,
                                     "0"
                                   )
                                 },
@@ -40099,7 +40132,7 @@ var render = function() {
                                   change: function($event) {
                                     return _vm.$set(
                                       _vm.registration.data,
-                                      "idMember2Type",
+                                      "idMemberType2",
                                       "0"
                                     )
                                   }
@@ -40115,9 +40148,9 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.registration.data.idMember2Type,
+                                    value: _vm.registration.data.idMemberType2,
                                     expression:
-                                      "registration.data.idMember2Type"
+                                      "registration.data.idMemberType2"
                                   }
                                 ],
                                 staticClass: "app-type",
@@ -40128,7 +40161,7 @@ var render = function() {
                                 },
                                 domProps: {
                                   checked: _vm._q(
-                                    _vm.registration.data.idMember2Type,
+                                    _vm.registration.data.idMemberType2,
                                     "1"
                                   )
                                 },
@@ -40136,7 +40169,7 @@ var render = function() {
                                   change: function($event) {
                                     return _vm.$set(
                                       _vm.registration.data,
-                                      "idMember2Type",
+                                      "idMemberType2",
                                       "1"
                                     )
                                   }
@@ -40163,13 +40196,13 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.registration.data.parent2Surname,
-                                  expression: "registration.data.parent2Surname"
+                                  value: _vm.registration.data.parentSurname2,
+                                  expression: "registration.data.parentSurname2"
                                 }
                               ],
                               attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
                               domProps: {
-                                value: _vm.registration.data.parent2Surname
+                                value: _vm.registration.data.parentSurname2
                               },
                               on: {
                                 input: function($event) {
@@ -40178,7 +40211,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Surname",
+                                    "parentSurname2",
                                     $event.target.value
                                   )
                                 }
@@ -40192,13 +40225,13 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.registration.data.parent2Name,
-                                  expression: "registration.data.parent2Name"
+                                  value: _vm.registration.data.parentName2,
+                                  expression: "registration.data.parentName2"
                                 }
                               ],
                               attrs: { type: "text", placeholder: "ІМ'Я  " },
                               domProps: {
-                                value: _vm.registration.data.parent2Name
+                                value: _vm.registration.data.parentName2
                               },
                               on: {
                                 input: function($event) {
@@ -40207,7 +40240,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Name",
+                                    "parentName2",
                                     $event.target.value
                                   )
                                 }
@@ -40222,9 +40255,9 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value:
-                                    _vm.registration.data.parent2Patronymic,
+                                    _vm.registration.data.parentPatronymic2,
                                   expression:
-                                    "registration.data.parent2Patronymic"
+                                    "registration.data.parentPatronymic2"
                                 }
                               ],
                               attrs: {
@@ -40232,7 +40265,7 @@ var render = function() {
                                 placeholder: "ПО-БАТЬКОВІ  "
                               },
                               domProps: {
-                                value: _vm.registration.data.parent2Patronymic
+                                value: _vm.registration.data.parentPatronymic2
                               },
                               on: {
                                 input: function($event) {
@@ -40241,7 +40274,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Patronymic",
+                                    "parentPatronymic2",
                                     $event.target.value
                                   )
                                 }
@@ -40270,7 +40303,7 @@ var render = function() {
                           attrs: {
                             type: "text",
                             placeholder:
-                              _vm.registration.data.idMember2Type == 1
+                              _vm.registration.data.idMemberType2 == 1
                                 ? "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
                                 : "ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ"
                           },
@@ -40319,7 +40352,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -40496,7 +40529,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -41008,7 +41041,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -41230,7 +41263,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -41258,195 +41291,323 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("transition", { attrs: { name: "fade" } }, [
-              _vm.activeStep == 0
+              _vm.activeStep == 4
                 ? _c("div", { staticClass: "step-form" }, [
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Тип заявки:")
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Тип заявки:")
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Вікова категорія:")
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про учасника ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Прізвище, ім'я, по-батькові: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Число, місяці, рік народження: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Електрона адреса: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Ідентифікаційний номер: ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про першого учасника ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Прізвище, ім'я, по-батькові: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Число, місяці, рік народження: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Електрона адреса: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Ідентифікаційний номер: ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про другого учасника ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Прізвище, ім'я, по-батькові: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Число, місяці, рік народження: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Електрона адреса: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Ідентифікаційний номер: ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про мистецький заклад ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Назва: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Телефон: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Адреса: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Електронна адреса: ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про викладача  ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Прізвище, ім'я, по-батькові: ")
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [
-                        _vm._v("Контактний телефон: ")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Прізвище, ім'я, по-батькові концертмейстера:  ")
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "step-title" }, [
-                      _vm._v("Інформація про виступ ")
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "info-list" }, [
-                      _c("li", { staticClass: "info-item" }, [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "info-item" }, [_vm._v("2")])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "d-flex file-row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _vm._v("1")
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _vm._v("2")
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _vm._v("3")
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-row checkbox-row" }, [
-                      _c("label", { attrs: { for: "concertmaster" } }, [
-                        _c("input", {
-                          staticClass: "d-none",
-                          attrs: { id: "concertmaster", type: "checkbox" },
-                          on: {
-                            change: function($event) {
-                              _vm.concertmaster = !_vm.concertmaster
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("i"),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
                         _vm._v(
-                          "\n                                Даю згоду на збір персональних даних та права на використання\n                            "
+                          "Тип заявки: " +
+                            _vm._s(_vm.appTypes[_vm.registration.data.appType])
                         )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v(
+                          "Номінація: " +
+                            _vm._s(
+                              _vm.nominations[_vm.registration.data.nomination]
+                            )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Вікова категорія:")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про першого учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName +
+                                  " " +
+                                  _vm.registration.data.memberSurname +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про другого учасника ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.memberName2 +
+                                  " " +
+                                  _vm.registration.data.memberSurname2 +
+                                  " " +
+                                  _vm.registration.data.memberPatronymic2
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Число, місяці, рік народження: " +
+                              _vm._s(_vm.registration.data.memberDate2)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електрона адреса: " +
+                              _vm._s(_vm.registration.data.memberName2)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Ідентифікаційний номер: " +
+                              _vm._s(_vm.registration.data.idCode2)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про мистецький заклад ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва: " + _vm._s(_vm.registration.data.schoolName)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Телефон: " +
+                              _vm._s(_vm.registration.data.schoolPhone)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Адреса: " +
+                              _vm._s(_vm.registration.data.schoolAddress)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Електронна адреса: " +
+                              _vm._s(_vm.registration.data.schoolEmail)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про викладача  ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Прізвище, ім'я, по-батькові: " +
+                              _vm._s(
+                                _vm.registration.data.teacherSurname +
+                                  " " +
+                                  _vm.registration.data.teacherName +
+                                  " " +
+                                  _vm.registration.data.teacherPatronymic
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Контактний телефон: " +
+                              _vm._s(_vm.registration.data.teacherPhone)
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v(
+                          "Прізвище, ім'я, по-батькові концертмейстера:  " +
+                            _vm._s(
+                              _vm.registration.data.concertSurname +
+                                " " +
+                                _vm.registration.data.concertName +
+                                " " +
+                                _vm.registration.data.concertPatronymic
+                            )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "result-row" }, [
+                      _c("h5", { staticClass: "step-title" }, [
+                        _vm._v("Інформація про виступ ")
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "info-list" }, [
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва та автор першого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "info-item" }, [
+                          _vm._v(
+                            "Назва та автор другого твору: " +
+                              _vm._s(
+                                _vm.registration.data.compositionName2 +
+                                  " " +
+                                  _vm.registration.data.compositionAuthor2
+                              )
+                          )
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
                     _c(
                       "div",
+                      { staticClass: "result-row  file-row" },
+                      _vm._l(_vm.registration.files, function(file) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex flex-column align-items-center file-item"
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: "img/file.png", alt: "" }
+                            }),
+                            _c("span", [_vm._v(_vm._s(file.name))])
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "input-row checkbox-row result-checkbox" },
+                      [
+                        _c("label", { attrs: { for: "concertmaster" } }, [
+                          _c("input", {
+                            staticClass: "d-none",
+                            attrs: { id: "concertmaster", type: "checkbox" },
+                            on: {
+                              change: function($event) {
+                                _vm.concertmaster = !_vm.concertmaster
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i"),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v("Даю згоду на збір "),
+                            _c("a", { attrs: { href: "" } }, [
+                              _vm._v(
+                                "персональних даних та права на використання"
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
                       {
                         staticClass:
-                          "d-flex justify-content-between align-items-center"
+                          "d-flex justify-content-between align-items-center mt-5"
                       },
                       [
                         _c(
@@ -42643,64 +42804,57 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "jury-list" }, [
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 1 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 2 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "jury-items" },
-            [
-              _c(
-                "router-link",
-                { attrs: { to: { name: "jury-member", params: { id: 3 } } } },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              )
-            ],
-            1
-          )
-        ])
+        _c(
+          "div",
+          { staticClass: "jury-list" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 1 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 2 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "jury-items",
+                attrs: { to: { name: "jury-member", params: { id: 3 } } }
+              },
+              [
+                _c("img", {
+                  attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "items-title" })
+              ]
+            )
+          ],
+          1
+        )
       ])
     ])
   ])
@@ -59159,7 +59313,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

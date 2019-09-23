@@ -17,6 +17,7 @@
                 <div class="member-committee-card" v-for="(item, index) in paginatedData" :key="index">
                     <div class="picture" :data-target="'#collapse'+(index+1)">
                        <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
+
                     </div>
                     <div class="description" :data-target="'#collapse'+(index+1)">
                         <h3 class="title-description">{{ `${item.name} ${item.surname}` }}</h3>

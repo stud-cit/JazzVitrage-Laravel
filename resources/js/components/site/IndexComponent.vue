@@ -214,6 +214,7 @@
                     <div class="text-row">
                         <p class="title-field">Соц. мережі: </p>
                         <p class="text-field text-light" v-for="item in contact.socials" :key="item.contact_items_id"><a :href="item.contact">{{ item.contact_title }}</a></p>
+
                     </div>
                 </div>
             </div>
