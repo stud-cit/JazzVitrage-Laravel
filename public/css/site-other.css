@@ -577,20 +577,16 @@ button {
 }
 
 .juries .page-nav .title {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
   font-family: Montserrat;
-  font-size: 26px;
-  font-weight: 900;
+  color: #fff;
+  font-weight: 600;
 }
 
 .juries .page-nav .prev-page {
-  width: 234px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
   font-family: Montserrat;
-  font-size: 26px;
-  font-weight: 900;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .juries .page-nav .prev-page .fa {
@@ -598,8 +594,8 @@ button {
 }
 
 .juries .sortiration-block {
-  margin: 55px 0 20px 60%;
-  width: 40%;
+  margin: 55px 0 20px auto;
+  width: 41%;
   color: #ffffff;
   font-family: Montserrat;
   font-size: 20px;
@@ -608,8 +604,12 @@ button {
 }
 
 .juries .sortiration-block select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   margin-top: -2pt;
-  width: 74%;
+  margin-left: 5px;
+  width: 73%;
   height: 40px;
   color: #ffffff;
   font-family: Montserrat;
@@ -617,12 +617,12 @@ button {
   font-weight: 400;
   line-height: 40px;
   border: none;
-  padding: 0 10px;
+  padding: 0 20px;
   min-width: 190px;
   text-align: center;
   outline: none;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  background: transparent;
+  background: transparent url(/images/mini-arrow.png?a379aef45bfa8d4a4ba21dcc0d50dde7) left top 50% no-repeat;
 }
 
 .juries .sortiration-block select option {
@@ -799,41 +799,5 @@ button {
   font-weight: 900;
   letter-spacing: 1.7px;
   z-index: 5;
-}
-
-.carousel-inner .carousel-item.active {
-  display: flex;
-}
-
-.carousel-inner .carousel-item-next {
-  display: flex;
-}
-
-.carousel-inner .carousel-item-prev {
-  display: flex;
-}
-
-.carousel-inner .carousel-item-right.active {
-  transform: translateX(25%);
-}
-
-.carousel-inner .carousel-item-next {
-  transform: translateX(25%);
-}
-
-.carousel-inner .carousel-item-left.active {
-  transform: translateX(-25%);
-}
-
-.carousel-inner .carousel-item-prev {
-  transform: translateX(-25%);
-}
-
-.carousel-inner .carousel-item-right {
-  transform: translateX(0);
-}
-
-.carousel-inner .carousel-item-left {
-  transform: translateX(0);
 }
 

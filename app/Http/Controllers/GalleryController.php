@@ -15,6 +15,11 @@ class GalleryController extends Controller
         $data = FotoGallery::orderBy('created_at', 'asc')->get();
         return response()->json($data);
     }
+    public function getFotoYear($year)
+    {
+        $data = FotoGallery::orderBy('created_at', 'asc')->where('year', '=', $year)->get();
+        return response()->json($data);
+    }
     public function postFoto(Request $request)
     {
         $this->validate($request, [
