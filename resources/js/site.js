@@ -15,6 +15,7 @@ import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
+import PositionComponent from './components/site/PositionComponent';
 
 import VueRouter from 'vue-router';
 
@@ -72,6 +73,11 @@ const router = new VueRouter({
             path: '/organization-committee',
             name: 'organization-committee',
             component: OrganizationCommittee,
+        },
+        {
+            path: '/position',
+            name: 'position',
+            component: PositionComponent,
         }
     ],
 });
@@ -88,8 +94,9 @@ const app = new Vue({
         Jury,
         JuryMember,
         OrganizationCommittee,
+        PositionComponent,
         HeaderComponent,
-        FooterComponent,
+        FooterComponent
     },
     router
 });
