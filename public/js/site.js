@@ -2278,14 +2278,14 @@ __webpack_require__.r(__webpack_exports__);
           parentSurname: '',
           parentPatronymic: '',
           idCode: '',
-          member2Name: '',
-          member2Surname: '',
-          member2Patronymic: '',
-          member2Date: '',
-          idMember2Type: 1,
-          parent2Name: '',
-          parent2Surname: '',
-          parent2Patronymic: '',
+          memberName2: '',
+          memberSurname2: '',
+          memberPatronymic2: '',
+          memberDate2: '',
+          idMemberType2: 1,
+          parentName2: '',
+          parentSurname2: '',
+          parentPatronymic2: '',
           idCode2: '',
           schoolName: '',
           schoolAddress: '',
@@ -2331,7 +2331,25 @@ __webpack_require__.r(__webpack_exports__);
       this.fileTitle[input.id] = image;
       this.registration.files[input.id] = input.files[0];
     },
-    sendApp: function sendApp() {}
+    sendApp: function sendApp() {
+      var _this = this;
+
+      axios.post('/get-members', {
+        data: this.registration
+      }).then(function (response) {
+        if (response.status == 200) {
+          _this.$router.push({
+            name: "index"
+          });
+        }
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: error.response.status
+        });
+      });
+    }
   }
 });
 
@@ -39891,13 +39909,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Surname,
-                              expression: "registration.data.member2Surname"
+                              value: _vm.registration.data.memberSurname2,
+                              expression: "registration.data.memberSurname2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ПРІЗВИЩЕ" },
                           domProps: {
-                            value: _vm.registration.data.member2Surname
+                            value: _vm.registration.data.memberSurname2
                           },
                           on: {
                             input: function($event) {
@@ -39906,7 +39924,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Surname",
+                                "memberSurname2",
                                 $event.target.value
                               )
                             }
@@ -39920,13 +39938,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Name,
-                              expression: "registration.data.member2Name"
+                              value: _vm.registration.data.memberName2,
+                              expression: "registration.data.memberName2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ІМ'Я" },
                           domProps: {
-                            value: _vm.registration.data.member2Name
+                            value: _vm.registration.data.memberName2
                           },
                           on: {
                             input: function($event) {
@@ -39935,7 +39953,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Name",
+                                "memberName2",
                                 $event.target.value
                               )
                             }
@@ -39949,13 +39967,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Patronymic,
-                              expression: "registration.data.member2Patronymic"
+                              value: _vm.registration.data.memberPatronymic2,
+                              expression: "registration.data.memberPatronymic2"
                             }
                           ],
                           attrs: { type: "text", placeholder: "ПО-БАТЬКОВІ" },
                           domProps: {
-                            value: _vm.registration.data.member2Patronymic
+                            value: _vm.registration.data.memberPatronymic2
                           },
                           on: {
                             input: function($event) {
@@ -39964,7 +39982,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Patronymic",
+                                "memberPatronymic2",
                                 $event.target.value
                               )
                             }
@@ -39985,8 +40003,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.registration.data.member2Date,
-                              expression: "registration.data.member2Date"
+                              value: _vm.registration.data.memberDate2,
+                              expression: "registration.data.memberDate2"
                             }
                           ],
                           attrs: {
@@ -39996,7 +40014,7 @@ var render = function() {
                             pattern: "[0-9]{2}.[0-9]{2}.[0-9]{4}"
                           },
                           domProps: {
-                            value: _vm.registration.data.member2Date
+                            value: _vm.registration.data.memberDate2
                           },
                           on: {
                             input: function($event) {
@@ -40005,7 +40023,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.registration.data,
-                                "member2Date",
+                                "memberDate2",
                                 $event.target.value
                               )
                             }
@@ -40062,9 +40080,9 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.registration.data.idMember2Type,
+                                    value: _vm.registration.data.idMemberType2,
                                     expression:
-                                      "registration.data.idMember2Type"
+                                      "registration.data.idMemberType2"
                                   }
                                 ],
                                 staticClass: "app-type",
@@ -40075,7 +40093,7 @@ var render = function() {
                                 },
                                 domProps: {
                                   checked: _vm._q(
-                                    _vm.registration.data.idMember2Type,
+                                    _vm.registration.data.idMemberType2,
                                     "0"
                                   )
                                 },
@@ -40083,7 +40101,7 @@ var render = function() {
                                   change: function($event) {
                                     return _vm.$set(
                                       _vm.registration.data,
-                                      "idMember2Type",
+                                      "idMemberType2",
                                       "0"
                                     )
                                   }
@@ -40099,9 +40117,9 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.registration.data.idMember2Type,
+                                    value: _vm.registration.data.idMemberType2,
                                     expression:
-                                      "registration.data.idMember2Type"
+                                      "registration.data.idMemberType2"
                                   }
                                 ],
                                 staticClass: "app-type",
@@ -40112,7 +40130,7 @@ var render = function() {
                                 },
                                 domProps: {
                                   checked: _vm._q(
-                                    _vm.registration.data.idMember2Type,
+                                    _vm.registration.data.idMemberType2,
                                     "1"
                                   )
                                 },
@@ -40120,7 +40138,7 @@ var render = function() {
                                   change: function($event) {
                                     return _vm.$set(
                                       _vm.registration.data,
-                                      "idMember2Type",
+                                      "idMemberType2",
                                       "1"
                                     )
                                   }
@@ -40147,13 +40165,13 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.registration.data.parent2Surname,
-                                  expression: "registration.data.parent2Surname"
+                                  value: _vm.registration.data.parentSurname2,
+                                  expression: "registration.data.parentSurname2"
                                 }
                               ],
                               attrs: { type: "text", placeholder: "ПРІЗВИЩЕ " },
                               domProps: {
-                                value: _vm.registration.data.parent2Surname
+                                value: _vm.registration.data.parentSurname2
                               },
                               on: {
                                 input: function($event) {
@@ -40162,7 +40180,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Surname",
+                                    "parentSurname2",
                                     $event.target.value
                                   )
                                 }
@@ -40176,13 +40194,13 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.registration.data.parent2Name,
-                                  expression: "registration.data.parent2Name"
+                                  value: _vm.registration.data.parentName2,
+                                  expression: "registration.data.parentName2"
                                 }
                               ],
                               attrs: { type: "text", placeholder: "ІМ'Я  " },
                               domProps: {
-                                value: _vm.registration.data.parent2Name
+                                value: _vm.registration.data.parentName2
                               },
                               on: {
                                 input: function($event) {
@@ -40191,7 +40209,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Name",
+                                    "parentName2",
                                     $event.target.value
                                   )
                                 }
@@ -40206,9 +40224,9 @@ var render = function() {
                                   name: "model",
                                   rawName: "v-model",
                                   value:
-                                    _vm.registration.data.parent2Patronymic,
+                                    _vm.registration.data.parentPatronymic2,
                                   expression:
-                                    "registration.data.parent2Patronymic"
+                                    "registration.data.parentPatronymic2"
                                 }
                               ],
                               attrs: {
@@ -40216,7 +40234,7 @@ var render = function() {
                                 placeholder: "ПО-БАТЬКОВІ  "
                               },
                               domProps: {
-                                value: _vm.registration.data.parent2Patronymic
+                                value: _vm.registration.data.parentPatronymic2
                               },
                               on: {
                                 input: function($event) {
@@ -40225,7 +40243,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.registration.data,
-                                    "parent2Patronymic",
+                                    "parentPatronymic2",
                                     $event.target.value
                                   )
                                 }
@@ -40254,7 +40272,7 @@ var render = function() {
                           attrs: {
                             type: "text",
                             placeholder:
-                              _vm.registration.data.idMember2Type == 1
+                              _vm.registration.data.idMemberType2 == 1
                                 ? "ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ"
                                 : "ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ"
                           },
@@ -41364,11 +41382,11 @@ var render = function() {
                           _vm._v(
                             "Прізвище, ім'я, по-батькові: " +
                               _vm._s(
-                                _vm.registration.data.member2Name +
+                                _vm.registration.data.memberName2 +
                                   " " +
-                                  _vm.registration.data.member2Surname +
+                                  _vm.registration.data.memberSurname2 +
                                   " " +
-                                  _vm.registration.data.member2Patronymic
+                                  _vm.registration.data.memberPatronymic2
                               )
                           )
                         ]),
@@ -41376,14 +41394,14 @@ var render = function() {
                         _c("li", { staticClass: "info-item" }, [
                           _vm._v(
                             "Число, місяці, рік народження: " +
-                              _vm._s(_vm.registration.data.member2Date)
+                              _vm._s(_vm.registration.data.memberDate2)
                           )
                         ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "info-item" }, [
                           _vm._v(
                             "Електрона адреса: " +
-                              _vm._s(_vm.registration.data.member2Name)
+                              _vm._s(_vm.registration.data.memberName2)
                           )
                         ]),
                         _vm._v(" "),
@@ -41441,8 +41459,7 @@ var render = function() {
                           _vm._v(
                             "Прізвище, ім'я, по-батькові: " +
                               _vm._s(
-                                _vm.registration.data.registration.data
-                                  .teacherSurname +
+                                _vm.registration.data.teacherSurname +
                                   " " +
                                   _vm.registration.data.teacherName +
                                   " " +
@@ -41465,8 +41482,7 @@ var render = function() {
                         _vm._v(
                           "Прізвище, ім'я, по-батькові концертмейстера:  " +
                             _vm._s(
-                              _vm.registration.data.registration.data
-                                .concertSurname +
+                              _vm.registration.data.concertSurname +
                                 " " +
                                 _vm.registration.data.concertName +
                                 " " +
@@ -41506,40 +41522,26 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "result-row  file-row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _c("span", [_vm._v("1")])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _c("span", [_vm._v("2")])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "d-flex flex-column file-item" },
-                        [
-                          _c("img", {
-                            attrs: { src: "img/file.png", alt: "" }
-                          }),
-                          _c("span", [_vm._v("3")])
-                        ]
-                      )
-                    ]),
+                    _c(
+                      "div",
+                      { staticClass: "result-row  file-row" },
+                      _vm._l(_vm.registration.files, function(file) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex flex-column align-items-center file-item"
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: "img/file.png", alt: "" }
+                            }),
+                            _c("span", [_vm._v(_vm._s(file.name))])
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -59395,7 +59397,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

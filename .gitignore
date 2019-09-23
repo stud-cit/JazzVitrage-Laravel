@@ -1,5 +1,7 @@
 .idea
 /node_modules
+/public/css/*
+/public/js/*
 /public/hot
 /public/img/uploads
 /public/img/user-photo
