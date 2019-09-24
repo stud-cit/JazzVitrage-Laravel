@@ -28,7 +28,7 @@ class CreateTasksTableGroupPeople extends Migration
             $table->string('name', 50);
             $table->integer('count_people');
             $table->integer('average_age');
-            $table->integer('file');
+            $table->string('file', 50);
             $table->timestamps();
         });
         

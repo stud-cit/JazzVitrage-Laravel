@@ -569,8 +569,6 @@
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
-
-
                 },
                 registration: {
                     data: {
@@ -580,6 +578,9 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
+                        groupName: '',
+                        groupCount: '',
+                        groupAverage: '',
                         idMemberType: 1,
                         parentName: '',
                         parentSurname: '',
@@ -597,6 +598,7 @@
                         schoolName: '',
                         schoolAddress: '',
                         schoolPhone: '',
+                        teacherIdCode: '',
                         schoolEmail: '',
                         teacherSurname: '',
                         teacherName: '',
@@ -610,7 +612,6 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
-
                     },
                     files: {
 
@@ -656,8 +657,17 @@
 
             sendApp(){
 
-                axios.post('/send-app', {
-                        data: this.registration,
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(this.registration.data));
+
+                for (let key in this.registration.files) {
+                    formData.append('files['+key+']', this.registration.files[key])
+                }
+
+                axios.post('/send-app', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
                     })
                     .then((response) => {
                         if(response.status == 200 ) {
@@ -671,7 +681,6 @@
                             text: error.response.status
                         });
                     });
-
             },
 
 
