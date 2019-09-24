@@ -22,7 +22,7 @@
 
 
                         <li><a class="nav-item nav-link" href="/gallery">ГАЛЕРЕЯ</a></li>
-                        <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
+                        <li><a class="nav-item nav-link" href="/position">ПОЛОЖЕННЯ</a></li>
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНТАКТИ</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

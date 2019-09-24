@@ -49322,13 +49322,15 @@ var render = function() {
                     ],
                     ref: "logo",
                     staticClass: "custom-file-input",
-                    attrs: { type: "file", id: "logo", name: "logo" },
+                    attrs: {
+                      type: "file",
+                      id: "logo",
+                      name: "logo",
+                      accept: "image/*"
+                    },
                     on: {
                       change: function($event) {
                         return _vm.previewFiles($event, "logo")
-                      },
-                      input: function($event) {
-                        return _vm.$v.info.logo.$touch()
                       }
                     }
                   }),
@@ -49355,9 +49357,11 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-danger col-9" }, [
-                _vm._v(_vm._s(_vm.$v.info.logo.$error))
-              ])
+              _vm.errors.has("logo")
+                ? _c("p", { staticClass: "text-danger col-9" }, [
+                    _vm._v(_vm._s(_vm.errors.first("logo")))
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             !_vm.errors.has("logo")

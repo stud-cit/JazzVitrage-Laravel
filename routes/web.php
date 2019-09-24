@@ -10,8 +10,6 @@ Route::get('/hymn', 'СompetitionController@hymn');
 Route::get('/video-gallery', 'GalleryController@videoGallery');
 Route::get('/festival', 'GalleryController@festival');
 Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
-//Положення
-Route::get('/position', 'PositionController@position');
 //Контакти
 Route::get('get-jury-view', 'ContactsController@jury');
 Route::get('get-org-view', 'ContactsController@organizingCommittee');
