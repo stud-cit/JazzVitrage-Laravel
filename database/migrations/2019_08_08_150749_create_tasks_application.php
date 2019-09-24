@@ -21,11 +21,6 @@ class CreateTasksApplication extends Migration
             $table->integer('nomination_id')->unsigned();
             $table->integer('application_type_id')->unsigned();
             $table->string('status', 20);
-            $table->tinyInteger('stylistic_matching')->nullable();
-            $table->tinyInteger('artistic_value')->nullable();
-            $table->tinyInteger('artistry')->nullable();
-            $table->tinyInteger('originality')->nullable();
-            $table->tinyInteger('evaluation')->nullable();
             $table->timestamps();
         });
 
