@@ -78,7 +78,8 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
     });
-     Route::get('/admin/all-statements/{any}', function () {
+    // Route::post('to-rate/{id}/', 'ApplicationController@toRate')->name('to-rate');
+    Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
      })->where('any', '[0-9]');
 });
@@ -105,7 +106,7 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('update-org/{id}/', 'UserController@updateOrg');
     Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
-    Route::post('to-rate/{id}/', 'ApplicationController@toRate')->name('to-rate');
+    //->name('to-rate');
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');

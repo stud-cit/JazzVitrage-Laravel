@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Application;
+use App\Models\Evaluation;
 use App\Models\GroupPeople;
 use App\Models\ApplicationType;
 use App\Models\Preparation;
@@ -78,22 +79,27 @@ class ApplicationController extends Controller
      **/
     public function toRate(Request $request, $id) {
 
-        $model = Application::find($id);
-        
+        ///$model = Application::find($id)->evaluations;
+        //$ev = Evaluation::find(1);
+    
+        return ($ev);
+       // $data = $model->evaluations;
+        //return $model;
+
         // minor evaluation
-        $min = 0;
-        $max = 25;
-        $validatedData = $request->validate([
-            'artistic_value' => "required|numeric|min:$min|max:$max",
-            'artistry' => "required|numeric|min:$min|max:$max",
-            'evaluation' => "required|numeric|min:$min|max:100", // total rate 100
-            'originality' => "required|numeric|min:$min|max:$max",
-            'stylistic_matching' => "required|numeric|min:$min|max:$max"
-        ]);
+        // $min = 0;
+        // $max = 25;
+        // $validatedData = $request->validate([
+        //     'artistic_value' => "required|numeric|min:$min|max:$max",
+        //     'artistry' => "required|numeric|min:$min|max:$max",
+        //     'evaluation' => "required|numeric|min:$min|max:100", // total rate 100
+        //     'originality' => "required|numeric|min:$min|max:$max",
+        //     'stylistic_matching' => "required|numeric|min:$min|max:$max"
+        // ]);
 
-        $data = $request->all();
-        $model->update($data);
+        // $data = $request->all();
+        // $model->update($data);
 
-        return response('ok', 200);
+        // return response('ok', 200);
     }
 }
