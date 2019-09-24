@@ -42552,9 +42552,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "btn-group" }, [
-      _c("button", { staticClass: "btn btn-read" }, [
-        _vm._v("ЧИТАТИ ПОВНІСТЮ")
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-read",
+          attrs: { href: "file/file.pdf", target: "_blank" }
+        },
+        [_vm._v("ЧИТАТИ ПОВНІСТЮ")]
+      ),
       _vm._v(" "),
       _c("button", { staticClass: "btn btn-download" }, [_vm._v("ЗАВАНТАЖИТИ")])
     ])
