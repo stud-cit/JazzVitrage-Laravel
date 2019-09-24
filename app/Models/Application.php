@@ -1,22 +1,12 @@
 <?php
 
 namespace App\Models;
-// use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
     protected $table = 'application';
 	protected $primaryKey = 'application_id';
-	protected $fillable = [
-		'artistic_value',
-		'artistry', 
-		'created_at', 
-		'evaluation', 
-		'originality', 
-		'stylistic_matching',
-	];
-	
 
     public function appType()
 	{
@@ -37,5 +27,13 @@ class Application extends Model
 	public function presentation()
 	{
 		return $this->hasOne('App\Models\Presentation', 'application_id');
+	}
+
+	/**
+	 *  Get the evaluations for application
+	 */
+	public function evaluations()
+	{
+		return $this->hasMany('App\Models\Evaluation', 'application_id');
 	}
 }
