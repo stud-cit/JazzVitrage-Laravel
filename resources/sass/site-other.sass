@@ -15,7 +15,8 @@ input, select, textarea, button
    opacity: 0
    height: 0
 
-
+.owl-carousel .owl-item img
+   width: auto !important
 
 .applications
 
@@ -601,6 +602,20 @@ input, select, textarea, button
 .jury-list
    display: flex
    justify-content: space-between
+   position: relative
+   .owl-item
+      display: flex
+      justify-content: center
+   .prev
+      position: absolute
+      color: #fff
+      left: -40px
+      top: 130px
+   .next
+      position: absolute
+      color: #fff
+      right: -40px
+      top: 130px
    .jury-items
       position: relative
       border: 15px solid #fff

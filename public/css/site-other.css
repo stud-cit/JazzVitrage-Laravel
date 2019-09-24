@@ -31,6 +31,10 @@ button {
   height: 0;
 }
 
+.owl-carousel .owl-item img {
+  width: auto !important;
+}
+
 .applications .application-for-participation {
   position: relative;
   margin-top: -55px;
@@ -825,6 +829,26 @@ button {
 .jury-list {
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+
+.jury-list .owl-item {
+  display: flex;
+  justify-content: center;
+}
+
+.jury-list .prev {
+  position: absolute;
+  color: #fff;
+  left: -40px;
+  top: 130px;
+}
+
+.jury-list .next {
+  position: absolute;
+  color: #fff;
+  right: -40px;
+  top: 130px;
 }
 
 .jury-list .jury-items {
