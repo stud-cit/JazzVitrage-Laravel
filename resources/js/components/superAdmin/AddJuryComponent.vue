@@ -105,7 +105,7 @@
 				this.editBtn = false;
 				event.preventDefault();
 				var pib_input = document.createElement('input');
-				var photo_input = document.createElement('input');
+				var photo_input = document.createElement('div');
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
 				var nomination_input = document.createElement('input');
@@ -122,34 +122,42 @@
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
 
-				photo_input.setAttribute('type', 'file');
-				photo_input.setAttribute(':ref', 'juryfile');
-				photo_input.setAttribute('class', 'form-control-file');
-				photo_input.setAttribute('id', 'jury-photo');
+				photo_input.setAttribute('class', 'edit-photo');
+				photo_input.innerHTML = `<div class="form-group">
+                <label class="label">
+                    <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span class="title">Додати файл</span>
+                    <input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
+                </label>
+                </div>`;
 				photo_td.innerHTML = '';
 				photo_td.append(photo_input);
 
 				email_input.setAttribute('value', email_td.innerHTML);
 				email_input.setAttribute('type', 'text');
 				email_input.setAttribute('id', 'email_data');
+				email_input.setAttribute('class','input-edit-correct');
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
 				rank_input.setAttribute('value', rank_td.innerHTML);
 				rank_input.setAttribute('type', 'text');
 				rank_input.setAttribute('id', 'rank_data');
+				rank_input.setAttribute('class','input-edit-correct');
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
 				nomination_input.setAttribute('value', nomination_td.innerHTML);
 				nomination_input.setAttribute('type', 'text');
 				nomination_input.setAttribute('id', 'nomination_data');
+				nomination_input.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
 				nomination_td.append(nomination_input);
 
 				information_input.setAttribute('value', information_td.innerHTML);
 				information_input.setAttribute('type', 'text');
 				information_input.setAttribute('id', 'nomination_data');
+				information_input.setAttribute('class','input-edit-correct');
 				information_td.innerHTML = '';
 				information_td.append(information_input);
 			},

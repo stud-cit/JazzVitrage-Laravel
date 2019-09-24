@@ -3289,6 +3289,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3329,6 +3331,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         (_this$committees = _this.committees).push.apply(_this$committees, _toConsumableArray(response.data));
       });
     },
+
+    /* возможна сортировка
+    getOrgCommitteeList() {
+    axios.get('/get-org-view')
+    .then((response) => {
+    const instrumentals = [...new Set(response.data.map(inst => inst.nominations))]
+    instrumentals.map(instrumental => {
+     this.committees.push({instrumental, ...response.data.filter(inst => instrumental == inst.nominations)[0]})
+    })
+    })
+    },
+    */
     nextPage: function nextPage() {
       this.pageNumber++;
     },
@@ -42973,8 +42987,6 @@ var render = function() {
             _vm._v("Організаційний комітет")
           ]),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
           _vm._l(_vm.paginatedData, function(item, index) {
             return _c(
               "div",
@@ -43057,25 +43069,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sortiration-block" }, [
-      _vm._v("\n                 сортувати:\n    \n                    "),
-      _c("select", { attrs: { name: "" } }, [
-        _c("option", { attrs: { value: "", selected: "selected" } }, [
-          _vm._v("Інструментальний жанр")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("Вокальний жанр")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2" } }, [_vm._v("Композиція")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -58994,7 +58988,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! G:\tipoDENVER\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })
