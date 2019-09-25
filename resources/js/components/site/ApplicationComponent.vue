@@ -49,7 +49,9 @@
                                 <img src="img/star.png" class="star" alt="">
                                 <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
-                                    <option value="1">1</option>
+                                    <option value="1">Інструментальний  жанр</option>
+                                    <option value="2">Вокальний  жанр</option>
+                                    <option value="3">Композиція</option>
                                 </select>
                             </div>
                             <div class="text-right">
@@ -132,7 +134,7 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -217,19 +219,19 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.member2Surname">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname2">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.member2Name">
+                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName2">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.member2Patronymic">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic2">
                                 </div>
                             </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.member2Date" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
                                 </div>
                             </div>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
@@ -248,26 +250,26 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
                                 <div class="input-group input-group-right">
-                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMember2Type" value="0"><i></i>УЧНЯ</label>
-                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMember2Type" value="1"><i></i>ОДНОГО З БАТЬКІВ</label>
+                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMemberType2" value="0"><i></i>УЧНЯ</label>
+                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMemberType2" value="1"><i></i>ОДНОГО З БАТЬКІВ</label>
                                 </div>
                             </div>
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parent2Surname">
+                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname2">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.parent2Name">
+                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.parentName2">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parent2Patronymic">
+                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic2">
                                 </div>
                             </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" :placeholder="registration.data.idMember2Type == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2">
+                                    <input type="text" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2">
                                 </div>
                             </div>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
@@ -283,7 +285,7 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -326,7 +328,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -414,7 +416,7 @@
                                     <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.concertPatronymic">
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -465,7 +467,7 @@
 
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
@@ -475,66 +477,69 @@
                     <!--step5-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 0">
 
-                            <h4 class="step-title">Тип заявки:</h4>
-                            <h4 class="step-title">Тип заявки:</h4>
-                            <h4 class="step-title">Вікова категорія:</h4>
-                            <h4 class="step-title">Інформація про учасника </h4>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
-                            </ul>
-                            <h4 class="step-title">Інформація про першого учасника </h4>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
-                            </ul>
-                            <h4 class="step-title">Інформація про другого учасника </h4>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Число, місяці, рік народження: </li>
-                                <li class="info-item">Електрона адреса: </li>
-                                <li class="info-item">Ідентифікаційний номер: </li>
-                            </ul>
-                            <h4 class="step-title">Інформація про мистецький заклад </h4>
-                            <ul class="info-list">
-                                <li class="info-item">Назва: </li>
-                                <li class="info-item">Телефон: </li>
-                                <li class="info-item">Адреса: </li>
-                                <li class="info-item">Електронна адреса: </li>
-                            </ul>
-                            <h4 class="step-title">Інформація про викладача  </h4>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: </li>
-                                <li class="info-item">Контактний телефон: </li>
+                        <div class="step-form" v-if="activeStep == 4">
 
-                            </ul>
-                            <h4 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  </h4>
-                            <h4 class="step-title">Інформація про виступ </h4>
+                            <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">1</li>
-                                <li class="info-item">2</li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
+                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberName2}}</li>
+                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
+                            <ul class="info-list">
 
-                            </ul>
-                            <div class="d-flex file-row">
+                                <li class="info-item">Назва: {{registration.data.schoolName}}</li>
+                                <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
+                                <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
+                                <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
+                                <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
-                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">1</div>
-                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">2</div>
-                                <div class="d-flex flex-column file-item"><img src="img/file.png" alt="">3</div>
+                            </ul></div>
+                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
+                            <ul class="info-list">
+                                <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
+
+                            </ul></div>
+                            <div class="result-row  file-row" >
+
+                                <div class="d-flex flex-column align-items-center file-item" v-for="file in registration.files"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>2</span></div>-->
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
                             </div>
-                            <div class="input-row checkbox-row">
+                            <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
                                     <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
                                     <i></i>
-                                    Даю згоду на збір персональних даних та права на використання
+                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-5">
+
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
@@ -555,14 +560,15 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
+                appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
+                nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
+
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
                     member2BirthdayFile: 'завантажити файл',
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
-
-
                 },
                 registration: {
                     data: {
@@ -572,23 +578,27 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
+                        groupName: '',
+                        groupCount: '',
+                        groupAverage: '',
                         idMemberType: 1,
                         parentName: '',
                         parentSurname: '',
                         parentPatronymic: '',
                         idCode: '',
-                        member2Name: '',
-                        member2Surname: '',
-                        member2Patronymic: '',
-                        member2Date: '',
-                        idMember2Type: 1,
-                        parent2Name: '',
-                        parent2Surname: '',
-                        parent2Patronymic: '',
+                        memberName2: '',
+                        memberSurname2: '',
+                        memberPatronymic2: '',
+                        memberDate2: '',
+                        idMemberType2: 1,
+                        parentName2: '',
+                        parentSurname2: '',
+                        parentPatronymic2: '',
                         idCode2: '',
                         schoolName: '',
                         schoolAddress: '',
                         schoolPhone: '',
+                        teacherIdCode: '',
                         schoolEmail: '',
                         teacherSurname: '',
                         teacherName: '',
@@ -602,7 +612,6 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
-
                     },
                     files: {
 
@@ -648,6 +657,30 @@
 
             sendApp(){
 
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(this.registration.data));
+
+                for (let key in this.registration.files) {
+                    formData.append('files['+key+']', this.registration.files[key])
+                }
+
+                axios.post('/send-app', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response) => {
+                        if(response.status == 200 ) {
+                            this.$router.push({name: "index"});
+                        }
+                    })
+                    .catch((error) => {
+                        swal({
+                            icon: "error",
+                            title: 'Помилка',
+                            text: error.response.status
+                        });
+                    });
             },
 
 

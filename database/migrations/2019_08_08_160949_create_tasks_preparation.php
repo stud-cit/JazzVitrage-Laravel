@@ -25,6 +25,7 @@ class CreateTasksPreparation extends Migration
             $table->string('teacher_patronomic', 50);
             $table->string('teacher_in', 50);
             $table->string('teacher_email', 50);
+            $table->string('teacher_phone', 50);
             $table->integer('is_concertmaster');
             $table->string('concertmaster_name', 50);
             $table->string('concertmaster_surname', 50);

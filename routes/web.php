@@ -130,6 +130,7 @@ Auth::routes();
 
     Route::post('archive-members/{id}/',  'ApplicationController@archiveMembers');
 
+    Route::post('send-app',  'ApplicationController@postApp');
     Route::post('unarchive-members/{id}/',  'ApplicationController@unarchiveMembers');
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
