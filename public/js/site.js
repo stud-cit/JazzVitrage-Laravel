@@ -3057,27 +3057,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-owl-carousel */ "./node_modules/vue-owl-carousel/dist/vue-owl-carousel.js");
 /* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -3111,13 +3098,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      juryList: []
+    };
   },
   created: function created() {
     document.title = "Наше журі";
+    this.getJuryList();
   },
   computed: {},
-  methods: {},
+  methods: {
+    getJuryList: function getJuryList() {
+      var _this = this;
+
+      axios.get('/get-jurys-view').then(function (response) {
+        var _this$juryList;
+
+        (_this$juryList = _this.juryList).push.apply(_this$juryList, _toConsumableArray(response.data));
+      });
+    }
+  },
   components: {
     carousel: vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0___default.a
   }
@@ -3134,6 +3134,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -3162,13 +3170,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      juryMember: []
+    };
   },
   created: function created() {
     document.title = "Представник журі";
+    this.getJuryList();
   },
   computed: {},
-  methods: {}
+  methods: {
+    getJuryList: function getJuryList() {
+      var _this = this;
+
+      axios.get('/get-jury-view/' + this.$route.params.id).then(function (response) {
+        var _this$juryMember;
+
+        (_this$juryMember = _this.juryMember).push.apply(_this$juryMember, _toConsumableArray(response.data));
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42875,95 +42896,27 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 1 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 2 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 3 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 1 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_4.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 2 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_5.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "jury-items",
-                  attrs: { to: { name: "jury-member", params: { id: 3 } } }
-                },
-                [
-                  _c("img", {
-                    attrs: { src: "img/list_jury/Intersection_6.png", alt: "" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "items-title" })
-                ]
-              ),
+              _vm._l(_vm.juryList, function(item, index) {
+                return _c(
+                  "router-link",
+                  {
+                    key: index,
+                    staticClass: "jury-items",
+                    attrs: {
+                      to: { name: "jury-member", params: { id: item.user_id } }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "../img/user-photo/" + item.photo, alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "items-title" }, [
+                      _vm._v(_vm._s(item.name + " " + item.surname))
+                    ])
+                  ]
+                )
+              }),
               _vm._v(" "),
               _c("template", { staticClass: "asdasd", slot: "next" }, [
                 _c("span", { staticClass: "next" }, [
@@ -43021,59 +42974,66 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("section", { staticClass: "sections main-section jury-member juries" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          { staticClass: "page-nav" },
-          [
-            _c(
-              "router-link",
-              { staticClass: "prev-page", attrs: { to: { name: "juries" } } },
-              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v("всі журі")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm._m(0)
-      ])
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c(
+            "div",
+            { staticClass: "page-nav" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "prev-page", attrs: { to: { name: "juries" } } },
+                [
+                  _c("i", { staticClass: "fa fa-angle-left" }),
+                  _vm._v("всі журі")
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.juryMember, function(item, index) {
+            return _c("div", { key: index, staticClass: "member-jury-card" }, [
+              _c("div", { staticClass: "picture" }, [
+                _c("img", {
+                  attrs: { src: "../img/user-photo/" + item.photo, alt: "" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "description" }, [
+                _c("h3", { staticClass: "title-description" }, [
+                  _vm._v(_vm._s(item.name + " " + item.surname))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-description" }, [
+                  _vm._v(_vm._s(item.rank)),
+                  _c("br"),
+                  _vm._v(
+                    "\n                       " +
+                      _vm._s(item.nominations) +
+                      "\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-description" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(item.informations) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          })
+        ],
+        2
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "member-jury-card" }, [
-      _c("div", { staticClass: "picture" }, [
-        _c("img", {
-          attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "description" }, [
-        _c("h3", { staticClass: "title-description" }, [
-          _vm._v("NAME SURNAME")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-description" }, [
-          _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-          _c("br"),
-          _vm._v(
-            "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-description" }, [
-          _vm._v(
-            "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -59453,7 +59413,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })

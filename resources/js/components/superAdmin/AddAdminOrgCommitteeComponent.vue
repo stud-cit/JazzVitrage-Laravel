@@ -25,7 +25,7 @@
                 <th width="7%">№</th>
                 <th width="27%">Прізвище</th>
                 <th width="27%">Ім’я</th>
-                <th width="27%">Електронна адеса</th>
+                <th width="27%">Електронна адреса</th>
                 <th></th>
                 <th></th>
             </tr>

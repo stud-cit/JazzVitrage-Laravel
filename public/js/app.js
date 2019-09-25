@@ -53790,7 +53790,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "27%" } }, [_vm._v("Ім’я")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "27%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th"),
         _vm._v(" "),
@@ -54221,7 +54221,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Фото")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Звання члена журі")]),
         _vm._v(" "),
@@ -54551,7 +54551,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "20%" } }, [_vm._v("ПІБ комітету")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "20%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "20%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "20%" } }, [_vm._v("Фото")]),
         _vm._v(" "),
@@ -72658,10 +72658,10 @@ function imgValid(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })
