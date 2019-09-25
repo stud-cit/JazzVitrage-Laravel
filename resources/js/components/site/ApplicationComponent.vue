@@ -477,6 +477,7 @@
                     <!--step5-->
 
                     <transition name="fade" >
+
                         <div class="step-form" v-if="activeStep == 4">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
@@ -538,6 +539,7 @@
                                 </label>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
+
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
@@ -567,8 +569,6 @@
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
-
-
                 },
                 registration: {
                     data: {
@@ -578,6 +578,9 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
+                        groupName: '',
+                        groupCount: '',
+                        groupAverage: '',
                         idMemberType: 1,
                         parentName: '',
                         parentSurname: '',
@@ -595,6 +598,7 @@
                         schoolName: '',
                         schoolAddress: '',
                         schoolPhone: '',
+                        teacherIdCode: '',
                         schoolEmail: '',
                         teacherSurname: '',
                         teacherName: '',
@@ -608,7 +612,6 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
-
                     },
                     files: {
 
@@ -653,8 +656,18 @@
             },
 
             sendApp(){
-                axios.post('/get-members', {
-                        data: this.registration,
+
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(this.registration.data));
+
+                for (let key in this.registration.files) {
+                    formData.append('files['+key+']', this.registration.files[key])
+                }
+
+                axios.post('/send-app', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
                     })
                     .then((response) => {
                         if(response.status == 200 ) {

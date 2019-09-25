@@ -4,7 +4,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container">
-                <a class ="navbar-brand" href="/"><img src="/img/logo.svg" alt=""></a>
+                <a class ="navbar-brand" href="/"><img :src="info.logo" alt=""></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                     <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
 
 
                         <li><a class="nav-item nav-link" href="/gallery">ГАЛЕРЕЯ</a></li>
-                        <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
+                        <li><a class="nav-item nav-link" href="/position">ПОЛОЖЕННЯ</a></li>
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНТАКТИ</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -41,7 +41,7 @@
         </nav>
 
         <marquee class="ticker" scrollamount="10">
-            Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс
+            {{ info.ticker }}
         </marquee>
     </header>
 
@@ -51,20 +51,28 @@
     export default {
         data() {
             return {
-
+                info: {
+                    logo: '',
+                    ticker: ''
+                }
             };
         },
 
         created () {
-
-
+            this.getInfo();
         },
         computed: {
 
         },
         methods: {
-
-
+            getInfo() {
+                axios.get('/get-all-info')
+                    .then((response) => {
+                        response.data.info.map(item => {
+                            Object.assign(this.info, item);
+                        })
+                    })
+            }
         },
 
     }

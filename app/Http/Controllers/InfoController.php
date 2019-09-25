@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Quotes;
 use App\Models\Contacts;
 use App\Models\ContactsItems;
 
 class InfoController extends Controller
 {
-    protected $InfoStorage = '/img';
-
     public function getAllInfo()
     {
         $info = DB::select('select logo_section.*, position_section.*, hymn_section.* from logo_section, position_section, hymn_section');
@@ -41,7 +40,33 @@ class InfoController extends Controller
     public function postInfoFile(Request $request)
     {
         $name = $request->file->getClientOriginalName();
-        $request->file->move(public_path().$this->InfoStorage, $name);
-        $res = DB::update('update '.$request->table.' set '.$request->row.' = "'.$name.'" where id = 1');
+        $directorty = '/'.$request->type;
+        $request->file->move(public_path().$directorty, $name);
+        $res = DB::update('update '.$request->table.' set '.$request->row.' = "'.$directorty.'/'.$name.'" where id = 1');
+    }
+
+    // CRUD Цитати
+    public function getQuotes()
+    {
+        $quotes = new Quotes;
+        $data = Quotes::get();
+        return response()->json($data);
+    }
+    public function postQuote(Request $request)
+    {
+        $quotes = new Quotes;
+        $quotes->text = $request->text;
+        $quotes->save();
+    }
+    public function putQuote(Request $request)
+    {
+        $quotes = Quotes::find($request->id);
+        $quotes->text = $request->text;
+        $quotes->save();
+    }
+    public function deleteQuote($id)
+    {
+        $quotes = Quotes::find($id);
+        $quotes->delete();
     }
 }

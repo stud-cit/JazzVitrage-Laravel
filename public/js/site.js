@@ -2249,6 +2249,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2334,7 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
     sendApp: function sendApp() {
       var _this = this;
 
-      axios.post('/get-members', {
+      axios.post('/send-app', {
         data: this.registration
       }).then(function (response) {
         if (response.status == 200) {
@@ -2378,11 +2380,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      emails: [],
+      phones: []
+    };
   },
-  created: function created() {},
+  created: function created() {
+    this.getInfo();
+  },
   computed: {},
-  methods: {}
+  methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        _this.phones = response.data.contact[1].contacts_items;
+        _this.emails = response.data.contact[3].contacts_items;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2396,29 +2412,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -2443,11 +2444,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      foto: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getFoto();
+  },
+  methods: {
+    getFoto: function getFoto() {
+      var _this = this;
+
+      axios.get('/get-foto').then(function (response) {
+        var years = _toConsumableArray(new Set(response.data.map(function (item) {
+          return item.year;
+        })));
+
+        years.map(function (year) {
+          _this.foto.push({
+            year: year,
+            file: response.data.filter(function (item) {
+              return year == item.year;
+            })[0]
+          });
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2484,23 +2507,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      foto: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getFoto();
+  },
+  methods: {
+    getFoto: function getFoto() {
+      var _this = this;
+
+      axios.get('/get-foto/' + this.$route.params.id).then(function (response) {
+        _this.foto = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2543,50 +2567,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      info: {
+        hymn_text: '',
+        note_image: '',
+        audio: ''
+      }
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getInfo();
+  },
+  methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        response.data.info.map(function (item) {
+          Object.assign(_this.info, item);
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2651,11 +2655,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      info: {
+        logo: '',
+        ticker: ''
+      }
+    };
   },
-  created: function created() {},
+  created: function created() {
+    this.getInfo();
+  },
   computed: {},
-  methods: {}
+  methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        response.data.info.map(function (item) {
+          Object.assign(_this.info, item);
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2914,111 +2935,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      info: {
+        logo: '',
+        description: '',
+        provisions_text: '',
+        video: ''
+      },
+      contact: {
+        emails: [],
+        address: [],
+        phones: [],
+        socials: []
+      },
+      foto: [],
+      videos: [],
+      quotes: [],
       name: '',
       email: '',
       questionText: '',
       form: new FormData()
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.getInfo();
+    this.getFoto();
+    this.getVideo();
+    this.getQuotes();
+  },
   computed: {},
   methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        response.data.info.map(function (item) {
+          Object.assign(_this.info, item);
+        });
+        response.data.contact.map(function (item) {
+          Object.assign(_this.contact[item.caption], item.contacts_items);
+        });
+      });
+    },
+    getFoto: function getFoto() {
+      var _this2 = this;
+
+      axios.get('/get-foto').then(function (response) {
+        _this2.foto = response.data;
+      });
+    },
+    getVideo: function getVideo() {
+      var _this3 = this;
+
+      axios.get('/get-video').then(function (response) {
+        _this3.videos = response.data;
+      });
+    },
+    getQuotes: function getQuotes() {
+      var _this4 = this;
+
+      axios.get('/get-quotes').then(function (response) {
+        _this4.quotes = response.data;
+      });
+    },
     postQuestion: function postQuestion() {
       this.form.append('name', this.name);
       this.form.append('email', this.email);
@@ -3064,6 +3045,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-owl-carousel */ "./node_modules/vue-owl-carousel/dist/vue-owl-carousel.js");
 /* harmony import */ var vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_owl_carousel__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
 //
 //
 //
@@ -3306,52 +3290,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -3393,13 +3339,99 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      pageNumber: 0,
+      committees: []
+    };
+  },
+  props: {
+    size: {
+      type: Number,
+      required: false,
+      "default": 4
+    }
   },
   created: function created() {
     document.title = "Організаційний комітет";
+    this.getOrgCommitteeList();
   },
-  computed: {},
-  methods: {}
+  computed: {
+    paginatedData: function paginatedData() {
+      var start = this.pageNumber * this.size,
+          end = start + this.size;
+      return this.committees.slice(start, end);
+    },
+    pageCount: function pageCount() {
+      var l = this.committees.length,
+          s = this.size;
+      return Math.ceil(l / s);
+    }
+  },
+  methods: {
+    getOrgCommitteeList: function getOrgCommitteeList() {
+      var _this = this;
+
+      axios.get('/get-org-view').then(function (response) {
+        var _this$committees;
+
+        (_this$committees = _this.committees).push.apply(_this$committees, _toConsumableArray(response.data));
+      });
+    },
+    nextPage: function nextPage() {
+      this.pageNumber++;
+    },
+    prevPage: function prevPage() {
+      this.pageNumber--;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      info: {
+        file: ''
+      }
+    };
+  },
+  created: function created() {
+    this.getInfo();
+  },
+  methods: {
+    getInfo: function getInfo() {
+      var _this = this;
+
+      axios.get('/get-all-info').then(function (response) {
+        response.data.info.map(function (item) {
+          Object.assign(_this.info, item);
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -41666,26 +41698,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "footer" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("p", { staticClass: "text-block" }, [
-          _vm._v("music-concurs@email.com")
-        ]),
+  return _c("footer", { staticClass: "footer" }, [
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _vm._l(_vm.emails, function(item) {
+          return _c(
+            "p",
+            { key: item.contact_items_id, staticClass: "text-block" },
+            [_vm._v(_vm._s(item.contact))]
+          )
+        }),
         _vm._v(" "),
-        _c("p", { staticClass: "text-block" }, [_vm._v("+38 (050) 123 4568")]),
+        _vm._l(_vm.phones, function(item) {
+          return _c(
+            "p",
+            { key: item.contact_items_id, staticClass: "text-block" },
+            [_vm._v(_vm._s(item.contact))]
+          )
+        }),
         _vm._v(" "),
         _c("p", { staticClass: "text-block" }, [_vm._v("Created by studCIT")])
-      ])
-    ])
-  }
-]
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41717,115 +41757,30 @@ var render = function() {
         _c(
           "div",
           { staticClass: "row" },
-          [
-            _c(
+          _vm._l(_vm.foto, function(item) {
+            return _c(
               "router-link",
               {
+                key: item.foto_id,
                 staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
+                attrs: {
+                  to: { name: "gallery-year", params: { id: item.year } }
+                }
               },
               [
                 _c("img", {
                   staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
+                  attrs: { src: "img/uploads/" + item.file.file }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 2 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 3 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 gallery-item",
-                attrs: { to: { name: "gallery-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/gallery-img.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
+                  _c("p", { staticClass: "caption" }, [
+                    _vm._v(_vm._s(item.year))
+                  ])
                 ])
               ]
             )
-          ],
+          }),
           1
         )
       ])
@@ -41868,15 +41823,41 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("h3", { staticClass: "title" }, [
-              _vm._v(" ФЕСТИВАЛЬ ДЖАЗ-ВIтраж 2019 рiк")
+              _vm._v(
+                " ФЕСТИВАЛЬ ДЖАЗ-ВIтраж " +
+                  _vm._s(this.$route.params.id) +
+                  " рiк"
+              )
             ])
           ],
           1
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "row mt-4" },
+          _vm._l(_vm.foto, function(item) {
+            return _c(
+              "div",
+              { key: item.foto_id, staticClass: "col-xl-4 gallery-item" },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "/img/uploads/" + item.file }
+                })
+              ]
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
-        _vm._m(1)
+        _c("ul", { staticClass: "pagination d-flex justify-content-center" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("li", [_vm._v("1 : " + _vm._s(_vm.foto.length))]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
       ])
     ])
   ])
@@ -41886,75 +41867,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4" }, [
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-        _c("img", {
-          staticClass: "gallery-img",
-          attrs: { src: "/img/gallery-img.png", alt: "" }
-        })
-      ])
+    return _c("li", { staticClass: "controls" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-left",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "pagination d-flex justify-content-center" },
-      [
-        _c("li", { staticClass: "controls" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-left",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("li", [_vm._v("1 : 16")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "controls active" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-right",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "controls active" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-right",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -41978,99 +41907,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "sections main-section gymn" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
-            _c("div", { staticClass: "col-xl-5 couplets" }, [
-              _c("h1", [_vm._v("Куплет")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Якщо твоє серце постійно співає,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Мелодія блюзу тебе надихає,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Якщо ти сміливий і маєш кураж –")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("На тебе чекає сумський «Джаз-Вітраж»!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Бо Джаз – то є символ свободи і миру.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Він-скарб неповторний, яскравий і щирий.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Давайте сьогодні покажемо клас")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Анумо всі разом: «Ми любимо ДЖАЗ!»")]),
-              _vm._v(" "),
-              _c("h1", [_vm._v("Приспів")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Джаз! Джаз! Джаз! Джаз!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Лунає джаз.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Єднає нас.")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Хай буде джаз!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("бо Джаз – це Джаз! ДЖАЗ!")]),
-              _vm._v(" "),
-              _c("h1", [_vm._v("Куплет")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Вітаємо щиро цінителів Джазу")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Віват, Джаз- Вітраж!  Об'єднаймося разом!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Щоб музику стильну усім дарувать,")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("у світ її дивний без гальм поринать:")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Не варто сидіти і чогось чекати -")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Ти просто повинен себе показати!")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Вирує хай свято не день  і не час")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Віват Джаз-Вітраж! Хай завджди буде ДЖАЗ!")])
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section gymn" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
+          _c("div", { staticClass: "col-xl-5" }, [
+            _c("pre", { staticClass: "couplets" }, [
+              _vm._v(_vm._s(_vm.info.hymn_text))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-7 media" }, [
+            _c("div", { staticClass: "overflow" }, [
+              _c("div", { staticClass: "scroll-img" }, [
+                _c("img", { attrs: { src: _vm.info.note_image, alt: "" } })
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-xl-7 media" }, [
-              _c("div", { staticClass: "overflow" }, [
-                _c("div", { staticClass: "scroll-img" }, [
-                  _c("img", { attrs: { src: "img/gymn.png", alt: "" } })
-                ])
+            _c("div", { staticClass: "absolute-block" }, [
+              _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
+                _c("source", {
+                  attrs: { src: _vm.info.audio, type: "audio/wav" }
+                })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "absolute-block" }, [
-                _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
-                  _c("source", {
-                    attrs: { src: "audio/jazz.wav", type: "audio/wav" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "download",
-                      attrs: { href: "audio/jazz.wav", download: "" }
-                    },
-                    [_vm._v("ЗАВАНТАЖИТИ")]
-                  )
-                ])
+              _c("div", { staticClass: "text-center" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "download",
+                    attrs: { href: _vm.info.audio, download: "" }
+                  },
+                  [_vm._v("ЗАВАНТАЖИТИ")]
+                )
               ])
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42098,9 +41976,11 @@ var render = function() {
     [
       _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light " }, [
         _c("div", { staticClass: "container" }, [
-          _vm._m(0),
+          _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
+            _c("img", { attrs: { src: _vm.info.logo, alt: "" } })
+          ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "div",
@@ -42109,7 +41989,7 @@ var render = function() {
               attrs: { id: "nav-menu" }
             },
             [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "router-link",
@@ -42126,23 +42006,13 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("marquee", { staticClass: "ticker", attrs: { scrollamount: "10" } }, [
-        _vm._v(
-          "\n        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс\n    "
-        )
+        _vm._v("\n        " + _vm._s(_vm.info.ticker) + "\n    ")
       ])
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
-      _c("img", { attrs: { src: "/img/logo.svg", alt: "" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -42215,9 +42085,11 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { staticClass: "nav-item nav-link", attrs: { href: "#" } }, [
-          _vm._v("ПОЛОЖЕННЯ")
-        ])
+        _c(
+          "a",
+          { staticClass: "nav-item nav-link", attrs: { href: "/position" } },
+          [_vm._v("ПОЛОЖЕННЯ")]
+        )
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "dropdown" }, [
@@ -42290,20 +42162,266 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("section", { staticClass: "main-section preview" }, [
+      _c("div", { staticClass: "top-layout" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-7" }, [
+              _c("img", {
+                staticClass: "preview-logo",
+                attrs: { src: _vm.info.logo, width: "70%" }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "preview-text" }, [
+                _vm._v(_vm._s(_vm.info.description))
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _vm._m(1),
+    _c("section", { staticClass: "sections position" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-7" }, [
+            _c("iframe", {
+              attrs: {
+                width: "100%",
+                height: "100%",
+                src:
+                  "https://www.youtube.com/embed/" +
+                  _vm.info.video.slice(
+                    _vm.info.video.length - 11,
+                    _vm.info.video.length
+                  ),
+                frameborder: "0",
+                allowfullscreen: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-5" }, [
+            _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle" }, [_vm._v("КОНКУРСУ")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text" }, [
+              _vm._v(_vm._s(_vm.info.provisions_text))
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
-    _vm._m(2),
+    _c("section", { staticClass: "sections gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.foto.slice(0, 6), function(item) {
+            return _c(
+              "div",
+              { key: item.foto_id, staticClass: "col-xl-4 gallery-item" },
+              [
+                _c("img", {
+                  staticClass: "gallery-img",
+                  attrs: { src: "/img/uploads/" + item.file, alt: "" }
+                })
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm._m(2)
+      ])
+    ]),
     _vm._v(" "),
     _vm._m(3),
     _vm._v(" "),
-    _vm._m(4),
-    _vm._v(" "),
-    _vm._m(5),
+    _c("section", { staticClass: "sections video-gallery" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass: "carousel slide",
+            attrs: { id: "carousel-text", "data-ride": "carousel" }
+          },
+          [
+            _c("img", {
+              staticClass: "carousel-img",
+              attrs: { src: "img/carousel-img.png", alt: "" }
+            }),
+            _vm._v(" "),
+            _c(
+              "ol",
+              { staticClass: "carousel-indicators" },
+              _vm._l(_vm.quotes, function(item, index) {
+                return _c("li", {
+                  key: "slide" + index,
+                  class: index == 0 ? "active" : "",
+                  attrs: {
+                    "data-target": "#carousel-text",
+                    "data-slide-to": index
+                  }
+                })
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "carousel-inner" },
+              _vm._l(_vm.quotes, function(item, index) {
+                return _c(
+                  "div",
+                  {
+                    key: item.quote_id,
+                    class: index == 0 ? "carousel-item active" : "carousel-item"
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.text) +
+                        "\n                    "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "gallery-content" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c("div", { staticClass: "col-xl-3" }, [
+                _c("h3", { staticClass: "title-video" }, [
+                  _vm._v("ВІДЕОГАЛЕРЕЯ")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "pagination" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("li", [_vm._v("1 : " + _vm._s(_vm.videos.length))]),
+                  _vm._v(" "),
+                  _vm._m(5)
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.videos, function(video, index) {
+                return _c(
+                  "div",
+                  {
+                    key: index,
+                    staticClass: "col-xl-5 d-flex align-items-end"
+                  },
+                  [
+                    _c("iframe", {
+                      staticClass: "video active-video",
+                      attrs: {
+                        width: "440",
+                        height: "302",
+                        src:
+                          "https://www.youtube.com/embed/" +
+                          video.url.slice(
+                            video.url.length - 11,
+                            video.url.length
+                          ),
+                        frameborder: "0",
+                        allowfullscreen: ""
+                      }
+                    })
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("section", { staticClass: "sections contacts" }, [
-      _vm._m(6),
+      _c("div", { staticClass: "left-layer" }, [
+        _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-layer" }, [
+          _c(
+            "div",
+            { staticClass: "text-row" },
+            [
+              _c("p", { staticClass: "title-field" }, [_vm._v("Адреса: ")]),
+              _vm._v(" "),
+              _vm._l(_vm.contact.address, function(item) {
+                return _c(
+                  "p",
+                  { key: item.contact_items_id, staticClass: "text-field" },
+                  [_vm._v(_vm._s(item.contact))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-row" },
+            [
+              _c("p", { staticClass: "title-field" }, [_vm._v("Телефон: ")]),
+              _vm._v(" "),
+              _vm._l(_vm.contact.phones, function(item) {
+                return _c(
+                  "p",
+                  { key: item.contact_items_id, staticClass: "text-field" },
+                  [_vm._v(_vm._s(item.contact))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-row" },
+            [
+              _c("p", { staticClass: "title-field" }, [
+                _vm._v("Соц. мережі: ")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.contact.socials, function(item) {
+                return _c(
+                  "p",
+                  {
+                    key: item.contact_items_id,
+                    staticClass: "text-field text-light"
+                  },
+                  [
+                    _c("a", { attrs: { href: item.contact } }, [
+                      _vm._v(_vm._s(item.contact_title))
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "right-layer" }, [
         _c("h2", { staticClass: "contacts-title" }, [
@@ -42320,7 +42438,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(7),
+              _vm._m(6),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42345,7 +42463,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(8),
+              _vm._m(7),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42414,31 +42532,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "main-section preview" }, [
-      _c("div", { staticClass: "top-layout" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-7" }, [
-              _c("img", {
-                staticClass: "preview-logo",
-                attrs: { src: "img/preview-logo.svg", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "preview-text" }, [
-                _vm._v(
-                  "Протягом березня-квітня 2016 року в місті Суми\n                            проходив Другий обласний дитячий фестиваль-\n                            конкурс джазової музики «Джаз Вітраж». Головна\n                            мета цього нового творчого проекту -\n                            популяризація класичного та сучасного\n                            джазового мистецтва серед дітей та молоді сумського краю"
-                )
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("section", { staticClass: "sections nominations" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "title-nominations" }, [
@@ -42483,102 +42576,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "sections position" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-xl-7" }, [
-            _c("iframe", {
-              attrs: {
-                width: "100%",
-                height: "100%",
-                src: "https://www.youtube.com/embed/xFa2_PVMeDQ",
-                frameborder: "0",
-                allowfullscreen: ""
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-5" }, [
-            _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "subtitle" }, [_vm._v("КОНКУРСУ")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text" }, [
-              _vm._v(
-                "Протягом березня-квітня 2016 року в місті\n                        Суми проходив Протягом березня-квітня 2016 року в місті Суми проходив  Другий  обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж»..."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "btn-group" }, [
-              _c("button", { staticClass: "btn btn-read" }, [
-                _vm._v("ЧИТАТИ ПОВНІСТЮ")
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-download" }, [
-                _vm._v("ЗАВАНТАЖИТИ")
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "btn-group" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-read",
+          attrs: { href: "file/file.pdf", target: "_blank" }
+        },
+        [_vm._v("ЧИТАТИ ПОВНІСТЮ")]
+      ),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-download" }, [_vm._v("ЗАВАНТАЖИТИ")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "sections gallery" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "title-section" }, [_vm._v("ГАЛЕРЕЯ")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-xl-4 gallery-item" }, [
-            _c("img", {
-              staticClass: "gallery-img",
-              attrs: { src: "img/gallery-img.png", alt: "" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-center" }, [
-          _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
-        ])
-      ])
+    return _c("div", { staticClass: "text-center" }, [
+      _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
     ])
   },
   function() {
@@ -42751,179 +42767,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "sections video-gallery" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          {
-            staticClass: "carousel slide",
-            attrs: { id: "carousel-text", "data-ride": "carousel" }
-          },
-          [
-            _c("img", {
-              staticClass: "carousel-img",
-              attrs: { src: "img/carousel-img.png", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("ol", { staticClass: "carousel-indicators" }, [
-              _c("li", {
-                staticClass: "active",
-                attrs: { "data-target": "#carousel-text", "data-slide-to": "0" }
-              }),
-              _vm._v(" "),
-              _c("li", {
-                attrs: { "data-target": "#carousel-text", "data-slide-to": "1" }
-              }),
-              _vm._v(" "),
-              _c("li", {
-                attrs: { "data-target": "#carousel-text", "data-slide-to": "2" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "carousel-inner" }, [
-              _c("div", { staticClass: "carousel-item active" }, [
-                _vm._v(
-                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "carousel-item" }, [
-                _vm._v(
-                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "carousel-item" }, [
-                _vm._v(
-                  "\n                        Протягом березня-квітня 2016 року в місті Суми проходив Другий обласний дитячий фестиваль-конкурс джазової музики «Джаз Вітраж». Головна мета цього нового творчого проекту - популяризація класичного та сучасного джазового мистецтва серед дітей та молоді сумського краю\n                    "
-                )
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "gallery-content" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xl-3" }, [
-              _c("h3", { staticClass: "title-video" }, [
-                _vm._v("ВІДЕОГАЛЕРЕЯ")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
-              _vm._v(" "),
-              _c("ul", { staticClass: "pagination" }, [
-                _c("li", { staticClass: "controls" }, [
-                  _c("i", {
-                    staticClass: "fa fa-long-arrow-left",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("li", [_vm._v("1 : 16")]),
-                _vm._v(" "),
-                _c("li", { staticClass: "controls active" }, [
-                  _c("i", {
-                    staticClass: "fa fa-long-arrow-right",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-5 d-flex align-items-end" }, [
-              _c(
-                "video",
-                {
-                  staticClass: "video active-video",
-                  attrs: {
-                    width: "440",
-                    height: "302",
-                    poster: "img/video-bg.png",
-                    controls: ""
-                  }
-                },
-                [
-                  _c("source", {
-                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-              _c(
-                "video",
-                {
-                  staticClass: "video",
-                  attrs: { controls: "", poster: "img/video-bg.png" }
-                },
-                [
-                  _c("source", {
-                    attrs: { src: "video/mult1.mp4", type: "video/mp4" }
-                  })
-                ]
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("li", { staticClass: "controls" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-left",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "left-layer" }, [
-      _c("img", { attrs: { src: "img/contacts-layer.png", alt: "" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-layer" }, [
-        _c("div", { staticClass: "text-row" }, [
-          _c("p", { staticClass: "title-field" }, [_vm._v("Адреса: ")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-field" }, [
-            _vm._v("Суми, Сумська область,\n                        40000")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-row" }, [
-          _c("p", { staticClass: "title-field" }, [_vm._v("Телефон: ")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-field" }, [_vm._v("+38 (050) 123 4568")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-row" }, [
-          _c("p", { staticClass: "title-field" }, [_vm._v("Соц. мережі: ")]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "text-field",
-              attrs: { href: "https://www.facebook.com/" }
-            },
-            [_vm._v("Facebook")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "text-field",
-              attrs: { href: "https://www.twitter.com/" }
-            },
-            [_vm._v("Twitter")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "text-field",
-              attrs: { href: "https://www.google.com/" }
-            },
-            [_vm._v("Google")]
-          )
-        ])
-      ])
+    return _c("li", { staticClass: "controls active" }, [
+      _c("i", {
+        staticClass: "fa fa-long-arrow-right",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {
@@ -43406,6 +43265,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("section", { staticClass: "sections main-section juries" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h2", { staticClass: "title-section" }, [
+            _vm._v("Організаційний комітет")
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.paginatedData, function(item, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "member-committee-card" },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "picture",
+                    attrs: { "data-target": "#collapse" + (index + 1) }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "../img/user-photo/" + item.photo, alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "description",
+                    attrs: { "data-target": "#collapse" + (index + 1) }
+                  },
+                  [
+                    _c("h3", { staticClass: "title-description" }, [
+                      _vm._v(_vm._s(item.name + " " + item.surname))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-description" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(item.informations) +
+                          "\n                    "
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c("ul", { staticClass: "pagination" }, [
+            _vm.pageNumber !== 0
+              ? _c(
+                  "li",
+                  { staticClass: "controls", on: { click: _vm.prevPage } },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-long-arrow-left",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(_vm._s(_vm.pageNumber + 1) + " : " + _vm._s(_vm.pageCount))
+            ]),
+            _vm._v(" "),
+            _vm.pageNumber <= _vm.pageCount - 2
+              ? _c(
+                  "li",
+                  {
+                    staticClass: "controls active",
+                    on: { click: _vm.nextPage }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-long-arrow-right",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              : _vm._e()
+          ])
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sortiration-block" }, [
+      _vm._v("\n                 сортувати:\n    \n                    "),
+      _c("select", { attrs: { name: "" } }, [
+        _c("option", { attrs: { value: "", selected: "selected" } }, [
+          _vm._v("Інструментальний жанр")
+        ]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Вокальний жанр")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("Композиція")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
@@ -43414,158 +43407,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("section", { staticClass: "sections main-section juries" }, [
+      _c("section", { staticClass: "sections main-section gallery" }, [
         _c("div", { staticClass: "container" }, [
-          _c("h2", { staticClass: "title-section" }, [
-            _vm._v("Організаційний комітет")
-          ]),
+          _c("h2", { staticClass: "title-section" }, [_vm._v("Положення")]),
           _vm._v(" "),
-          _c("div", { staticClass: "sortiration-block" }, [
-            _vm._v("\n                 сортувати:\n    \n                    "),
-            _c("select", { attrs: { name: "" } }, [
-              _c("option", { attrs: { value: "", selected: "selected" } }, [
-                _vm._v("інструментальний жанр")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "1" } }, [
-                _vm._v("вокальний жанр")
-              ]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "2" } }, [
-                _vm._v("вокально-інструментальний жанр")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "member-committee-card" }, [
-            _c("div", { staticClass: "picture" }, [
-              _c("img", {
-                attrs: { src: "/img/list_jury/Intersection_3.png", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "description" }, [
-              _c("h3", { staticClass: "title-description" }, [
-                _vm._v("NAME SURNAME")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v("Duis aute irure:  ipsum dolor sit amet"),
-                _c("br"),
-                _vm._v(
-                  "\n                       Duis aute irure:  ipsum dolor sit amet\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-description" }, [
-                _vm._v(
-                  "\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                    "
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "pagination" }, [
-            _c("li", { staticClass: "controls" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-left",
-                attrs: { "aria-hidden": "true" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("li", [_vm._v("1 : 16")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "controls active" }, [
-              _c("i", {
-                staticClass: "fa fa-long-arrow-right",
-                attrs: { "aria-hidden": "true" }
-              })
-            ])
-          ])
+          _c("div", { staticClass: "row" })
         ])
       ])
     ])
@@ -59419,6 +59265,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/site/PositionComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/site/PositionComponent.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PositionComponent.vue?vue&type=template&id=93e7d212& */ "./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212&");
+/* harmony import */ var _PositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PositionComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/site/PositionComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PositionComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/PositionComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PositionComponent.vue?vue&type=template&id=93e7d212& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/site/PositionComponent.vue?vue&type=template&id=93e7d212&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PositionComponent_vue_vue_type_template_id_93e7d212___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/site.js":
 /*!******************************!*\
   !*** ./resources/js/site.js ***!
@@ -59441,7 +59356,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/site/JuryComponent */ "./resources/js/components/site/JuryComponent.vue");
 /* harmony import */ var _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/site/JuryMemberComponent */ "./resources/js/components/site/JuryMemberComponent.vue");
 /* harmony import */ var _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/site/OrganizationCommitteeComponent */ "./resources/js/components/site/OrganizationCommitteeComponent.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_site_PositionComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/site/PositionComponent */ "./resources/js/components/site/PositionComponent.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -59457,9 +59373,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.delimiters = ['${', '}'];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -59497,6 +59414,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]({
     path: '/organization-committee',
     name: 'organization-committee',
     component: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }, {
+    path: '/position',
+    name: 'position',
+    component: _components_site_PositionComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -59511,6 +59432,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     Jury: _components_site_JuryComponent__WEBPACK_IMPORTED_MODULE_9__["default"],
     JuryMember: _components_site_JuryMemberComponent__WEBPACK_IMPORTED_MODULE_10__["default"],
     OrganizationCommittee: _components_site_OrganizationCommitteeComponent__WEBPACK_IMPORTED_MODULE_11__["default"],
+    PositionComponent: _components_site_PositionComponent__WEBPACK_IMPORTED_MODULE_12__["default"],
     HeaderComponent: _components_site_HeaderComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
     FooterComponent: _components_site_FooterComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   },

@@ -2,8 +2,8 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="text-block">music-concurs@email.com</p>
-            <p class="text-block">+38 (050) 123 4568</p>
+            <p class="text-block" v-for="item in emails" :key="item.contact_items_id">{{ item.contact }}</p>
+            <p class="text-block" v-for="item in phones" :key="item.contact_items_id">{{ item.contact }}</p>
             <p class="text-block">Created by studCIT</p>
         </div>
     </footer>
@@ -14,20 +14,25 @@
     export default {
         data() {
             return {
-
+                emails: [],
+                phones: [],
             };
         },
 
         created () {
-
-
+            this.getInfo();
         },
         computed: {
 
         },
         methods: {
-
-
+            getInfo() {
+                axios.get('/get-all-info')
+                    .then((response) => {
+                        this.phones = response.data.contact[1].contacts_items;
+                        this.emails = response.data.contact[3].contacts_items;
+                    })
+            },
         },
 
     }
