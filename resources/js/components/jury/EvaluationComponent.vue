@@ -15,7 +15,7 @@
                     type="number"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="score.stylisticMatching" 
+                    v-model.number="stylisticMatching" 
                     class="form-control" 
                     id="stylisticMatching" >
 
@@ -24,7 +24,7 @@
                     type="number"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="score.artisticValue"
+                    v-model.number="artisticValue"
                     class="form-control"
                     id="artisticValue" >
 
@@ -33,7 +33,7 @@
                     type="number"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="score.artistry"
+                    v-model.number="artistry"
                     class="form-control"
                     id="artistry" >
 
@@ -42,7 +42,7 @@
                     type="number"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="score.originality"
+                    v-model.number="originality"
                     class="form-control"
                     id="originality">
             </form>
@@ -96,7 +96,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" @click="saveEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
+                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
+                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
             </div>
         </div>
@@ -115,47 +116,107 @@
                 group: null,
                 count: 0,
                 // оцінки
-                score: {
+                // score: {
                     stylisticMatching: 0,
                     artisticValue: 0,
                     artistry: 0,
                     originality: 0,
-                    evaluation: 0
-                },
+                    evaluation: 0,
+                // },
                 // мінімальна максимальна оцінка
                 minEvaluation: 0,
                 maxEvaluation: 25,
-                hasError: false
+                hasError: false,
+                hasRecord: false
+            }
+        },
+        watch: {
+            stylisticMatching: function (val) {
+                this.evaluation += val;
+            },
+            artisticValue: function (val) {
+                this.evaluation += val;
+            },
+            artistry: function (val) {
+                this.evaluation += val;
+            },
+            originality: function (val) {
+               this.evaluation += val;
+            },
+            evaluation: function () {
+                this.evaluation = this.stylisticMatching + this.artisticValue + this.artistry + this.originality;
             }
         },
         created() {
             this.getMember();
             this.getAllMembers();
+            this.getEvaluation();
         },
         computed: {
             nextButtonShow() {
-                this.setDefaultEvaluate();
                 return this.$route.params.id == this.count ? false : true;
             },
-            evaluation: {
-                get: function(){
-                    const {stylisticMatching, artisticValue, artistry, originality} = this.score;
-                    return stylisticMatching + artisticValue + artistry + originality;
-                },
-                set: function (total) {
-                    this.score.evaluation = total;
-                }
-            }
+            // evaluation: {
+            //     get: function(){
+            //         const {stylisticMatching, artisticValue, artistry, originality} = this.score;
+            //         return stylisticMatching + artisticValue + artistry + originality;
+            //     },
+            //     set: function (total) {
+            //         this.score.evaluation = total;
+            //     }
+            // }
         },
 
         methods: {
+            getEvaluation() {
+                axios.get(`/has-record/${this.$route.params.id}/`)
+                    .then( (response)  => {
+                        this.hasRecord = this.isRecord(response.data);
+                        const {stylistic_matching, artistic_value, artistry, originality, evaluation } = response.data;
+                       
+                        if(this.hasRecord) {
+                            this.stylisticMatching = stylistic_matching;
+                            this.artisticValue = artistic_value;
+                            this.artistry = artistry;
+                            this.originality = originality;
+                            this.evaluation = evaluation;
+                        } else {
+                            this.setDefaultEvaluate();
+                        } 
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
             // need make validation 
-            saveEvaluation() {
+            createEvaluation() {
                 // call setter
-                this.evaluation = this.evaluation;
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this.score;
+                //this.evaluation = this.evaluation;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
 
-                axios.post(`/to-rate/${this.$route.params.id}`, {
+                axios.post('/to-rate/', {
+                    application_id: this.program.application_id,
+                    evaluation,
+                    stylistic_matching: stylisticMatching,
+                    artistic_value: artisticValue,
+                    artistry,
+                    originality
+                })
+                .then( (response)  => {
+                    console.log(response.data);
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+                alert(`create Ваша оцінка ${this.evaluation} із можливих 100`);
+            },
+            updateEvaluation() {
+                // call setter
+                //this.evaluation = this.evaluation;
+                
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
+
+                axios.post(`/to-rate-update/${this.$route.params.id}`, {
                     evaluation,
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
@@ -163,19 +224,27 @@
                     originality
                 })
                 .then(function (response) {
-                    console.log(response);
+                    console.log(response.data);
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-                alert(`Ваша оцінка ${this.score.evaluation} із можливих 100`);
+                alert(`Update Ваша оцінка ${this.score.evaluation} із можливих 100`);
             },
+
             setDefaultEvaluate() {
-                this.score.stylisticMatching = 0;
-                this.score.artisticValue = 0;
-                this.score.artistry = 0;
-                this.score.originality = 0;
-                this.score.evaluation = 0;
+                this.stylisticMatching = 0;
+                this.artisticValue = 0;
+                this.artistry = 0;
+                this.originality = 0;
+                this.evaluation = 0;
+            },
+            isRecord(obj) {
+                for (let key in obj) {
+                    // если тело цикла начнет выполняться - значит в объекте есть свойства
+                    return true;
+                }
+                return false;
             },
             getMember() {
                 axios.get('/get-member/'+this.$route.params.id)
@@ -194,9 +263,9 @@
                 });
             },
             nextMember() {
-                //this.score.stylisticMatching = 0;
                 this.$router.push({ name: 'jury-evaluation', params: {id: ++this.$route.params.id} });
                 this.getMember();
+                this.getEvaluation();
             }
         }
     }

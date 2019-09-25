@@ -78,7 +78,9 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
     });
-    // Route::post('to-rate/{id}/', 'ApplicationController@toRate')->name('to-rate');
+    Route::post('to-rate', 'EvaluationController@toRate')->name('to-rate');
+    Route::get('has-record/{application_id}', 'EvaluationController@hasRecord')->name('has-record');
+    Route::post('to-rate-update/{evaluation_id}', 'EvaluationController@toRateUpdate')->name('to-rate-update');
     Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
      })->where('any', '[0-9]');

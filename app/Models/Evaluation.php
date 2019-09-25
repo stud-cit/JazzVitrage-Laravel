@@ -10,6 +10,29 @@ class Evaluation extends Model
     protected $primaryKey = 'evaluations_id';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'application_id',
+        'user_id',
+        'evaluation',
+        'stylistic_matching',
+        'artistic_value',
+        'artistry',
+        'originality'
+    ];
+
+    /**
+     * min and max for minor evaluation
+     * @var $min
+     * @var $max
+     */
+    public const MIN = 0;
+    public const MAX = 25;
+
+    /**
      * Get the application that owns the evaluation
      */
     public function app()
