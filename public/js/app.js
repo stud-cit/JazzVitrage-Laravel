@@ -3392,7 +3392,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullJuryList();
   },
   methods: {
-    test: function test(event) {
+    getFileName: function getFileName(event) {
       event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
     },
     edit: function edit(id, event) {
@@ -3417,7 +3417,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t\t<span id=\"file\"></span>\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
       email_input.setAttribute('value', email_td.innerHTML);
@@ -3619,7 +3619,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      editBtn: true,
+      editBtn: 0,
       committees: [],
       name: '',
       surname: '',
@@ -3634,13 +3634,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullOrgCommitteeList();
   },
   methods: {
-    edit: function edit(event) {
-      this.editBtn = false;
+    getFileName: function getFileName(event) {
+      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    },
+    edit: function edit(id, event) {
+      this.editBtn = id;
       event.preventDefault();
       var pib_input = document.createElement('input');
       var email_input = document.createElement('input');
-      var photo_input = document.createElement('input');
-      var biography_input = document.createElement('input');
+      var photo_input = document.createElement('div');
+      var biography_input = document.createElement('textarea');
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -3655,27 +3658,26 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       email_input.setAttribute('id', 'email_data');
       email_td.innerHTML = '';
       email_td.append(email_input);
-      photo_input.setAttribute('type', 'file');
-      photo_input.setAttribute(':ref', 'file');
-      photo_input.setAttribute('class', 'form-control-file');
-      photo_input.setAttribute('id', 'org-photo');
+      photo_input.setAttribute('class', 'edit-photo');
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t\t<span id=\"file\"></span>\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
-      biography_input.setAttribute('value', biography_td.innerHTML);
-      biography_input.setAttribute('type', 'text');
+      biography_input.value += biography_td.innerHTML;
       biography_input.setAttribute('id', 'biography_data');
+      biography_input.setAttribute('rows', '6');
+      biography_input.setAttribute('class', 'text-area-width');
       biography_td.innerHTML = '';
       biography_td.append(biography_input);
     },
     save: function save(id, event) {
       var _this = this;
 
-      this.editBtn = true;
+      this.editBtn = 0;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input');
-      var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
+      var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('textarea').value;
       var parse_pib = pib_td.split(' ');
       var parse_email = email_td;
       var parse_photo = photo_td;
@@ -54117,7 +54119,7 @@ var render = function() {
                   },
                   on: {
                     change: function($event) {
-                      return _vm.test($event)
+                      return _vm.getFileName($event)
                     }
                   }
                 },
@@ -54510,6 +54512,11 @@ var render = function() {
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.getFileName($event)
+                    }
                   }
                 },
                 [
@@ -54535,13 +54542,13 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn
+                _vm.editBtn !== item.user_id
                   ? _c("i", {
                       staticClass:
                         "fa fa-2x fa-pencil-square btn btn-default p-0",
                       on: {
                         click: function($event) {
-                          return _vm.edit($event)
+                          return _vm.edit(item.user_id, $event)
                         }
                       }
                     })
@@ -72692,10 +72699,10 @@ function imgValid(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })

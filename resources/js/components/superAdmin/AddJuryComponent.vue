@@ -58,7 +58,7 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="test($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
@@ -101,7 +101,7 @@
 			this.getFullJuryList();
 		},
 		methods: {
-			test(event) {
+			getFileName(event) {
 				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
 			},
 			edit(id, event){
@@ -130,9 +130,9 @@
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-					<span id="file"></span>
 				</label>
                 </div>`;
 				photo_td.innerHTML = '';

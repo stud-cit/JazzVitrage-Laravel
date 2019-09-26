@@ -44,10 +44,10 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
                 <td id="edit-save-td">
-                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
+                    <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
                 <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
@@ -60,7 +60,7 @@
 	export default {
 		data() {
 			return {
-				editBtn: true,
+				editBtn: 0,
 				committees: [],
 				name: '',
 				surname: '',
@@ -75,13 +75,16 @@
 			this.getFullOrgCommitteeList();
 		},
 		methods: {
-			edit(event){
-				this.editBtn = false;
+			getFileName(event) {
+				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			},
+			edit(id, event){
+				this.editBtn = id;
 				event.preventDefault();
 				var pib_input = document.createElement('input');
 				var email_input = document.createElement('input');
-				var photo_input = document.createElement('input');
-				var biography_input = document.createElement('input');
+				var photo_input = document.createElement('div');
+				var biography_input = document.createElement('textarea');
 
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -100,27 +103,33 @@
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
-				photo_input.setAttribute('type', 'file');
-				photo_input.setAttribute(':ref', 'file');
-				photo_input.setAttribute('class', 'form-control-file');
-				photo_input.setAttribute('id', 'org-photo');
+				photo_input.setAttribute('class', 'edit-photo');
+				photo_input.innerHTML = `<div class="form-group">
+                <label class="label">
+                    <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span class="title">Додати файл</span>
+					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
+					<span id="file"></span>
+				</label>
+                </div>`;
 				photo_td.innerHTML = '';
 				photo_td.append(photo_input);
 
-				biography_input.setAttribute('value', biography_td.innerHTML);
-				biography_input.setAttribute('type', 'text');
+				biography_input.value += biography_td.innerHTML;
 				biography_input.setAttribute('id', 'biography_data');
+				biography_input.setAttribute('rows', '6');
+				biography_input.setAttribute('class', 'text-area-width');
 				biography_td.innerHTML = '';
 				biography_td.append(biography_input);
 			},
 
 			save(id, event){
-				this.editBtn = true;
+				this.editBtn = 0;
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input');
-				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
+				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
 				var parse_email = email_td;

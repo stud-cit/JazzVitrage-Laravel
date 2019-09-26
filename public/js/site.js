@@ -2907,6 +2907,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      pagination: {
+        pageNumber: 0,
+        size: 4
+      },
       members: [],
       nominations: [],
       searchMember: '',
@@ -2947,9 +2951,23 @@ __webpack_require__.r(__webpack_exports__);
       return this.members.filter(function (members) {
         return (members.name.toLowerCase().includes(_this.searchMember.toLowerCase()) || members.schoolAddress.toLowerCase().includes(_this.searchMember.toLowerCase()) || members.schoolName.toLowerCase().includes(_this.searchMember.toLowerCase())) && members.nomination.includes(_this.searchNomination);
       });
+    },
+    paginatedData: function paginatedData() {
+      var start = this.pagination.pageNumber * this.pagination.size;
+      var end = start + this.pagination.size;
+      return this.filteredList.slice(start, end);
+    },
+    pageCount: function pageCount() {
+      return Math.ceil(this.filteredList.length / this.pagination.size);
     }
   },
   methods: {
+    nextPage: function nextPage() {
+      this.pagination.pageNumber++;
+    },
+    prevPage: function prevPage() {
+      this.pagination.pageNumber--;
+    },
     getInfo: function getInfo() {
       var _this2 = this;
 
@@ -42322,7 +42340,7 @@ var render = function() {
           [
             _vm._m(3),
             _vm._v(" "),
-            _vm._l(_vm.filteredList, function(item) {
+            _vm._l(_vm.paginatedData, function(item) {
               return _c("tr", { key: item.index }, [
                 _c("td", [_vm._v(_vm._s(item.index + 1))]),
                 _vm._v(" "),
@@ -42412,7 +42430,35 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(5)
+        _c("ul", { staticClass: "pagination" }, [
+          _c("li", { staticClass: "controls" }, [
+            _vm.pagination.pageNumber !== 0
+              ? _c("i", {
+                  staticClass: "fa fa-long-arrow-left",
+                  attrs: { "aria-hidden": "true" },
+                  on: { click: _vm.prevPage }
+                })
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              _vm._s(_vm.pagination.pageNumber + 1) +
+                " : " +
+                _vm._s(_vm.pageCount)
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "controls active" }, [
+            _vm.pagination.pageNumber <= _vm.pageCount - 2
+              ? _c("i", {
+                  staticClass: "fa fa-long-arrow-right",
+                  attrs: { "aria-hidden": "true" },
+                  on: { click: _vm.nextPage }
+                })
+              : _vm._e()
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -42483,11 +42529,11 @@ var render = function() {
                 _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "pagination" }, [
-                  _vm._m(6),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("li", [_vm._v("1 : " + _vm._s(_vm.videos.length))]),
                   _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(6)
                 ]),
                 _vm._v(" "),
                 _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
@@ -42608,7 +42654,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(8),
+              _vm._m(7),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42633,7 +42679,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(9),
+              _vm._m(8),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42797,28 +42843,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("option", { attrs: { value: "1" } }, [_vm._v("вік.категорія1")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "pagination" }, [
-      _c("li", { staticClass: "controls" }, [
-        _c("i", {
-          staticClass: "fa fa-long-arrow-left",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("li", [_vm._v("1 : 16")]),
-      _vm._v(" "),
-      _c("li", { staticClass: "controls active" }, [
-        _c("i", {
-          staticClass: "fa fa-long-arrow-right",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
     ])
   },
   function() {
@@ -59437,7 +59461,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })
