@@ -88,7 +88,7 @@
                         <th>НАЗВА ЗАКЛАДУ</th>
                         <th>ВИКЛАДАЧ</th>
                     </tr>
-                    <tr v-for="item in filteredList" :key="item.index">
+                    <tr v-for="item in paginatedData" :key="item.index">
                         <td>{{ item.index+1 }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.schoolAddress }}</td>
@@ -110,9 +110,9 @@
 
                 </div>
                 <ul class="pagination">
-                    <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
-                    <li>1 : 16</li>
-                    <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                    <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0" @click="prevPage"></i></li>
+                    <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
+                    <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"></i></li>
                 </ul>
             </div>
 
@@ -198,6 +198,10 @@
     export default {
         data() {
             return {
+                pagination : {
+                    pageNumber: 0,
+                    size: 4
+                },
                 members: [],
                 nominations: [],
                 searchMember: '',
@@ -240,9 +244,23 @@
                     members.schoolName.toLowerCase().includes(this.searchMember.toLowerCase())) &&
                     members.nomination.includes(this.searchNomination)
                 })
-            }
+            },
+            paginatedData(){
+                const start = this.pagination.pageNumber * this.pagination.size;
+                const end = start + this.pagination.size;
+                return this.filteredList.slice(start, end);
+            },
+            pageCount(){
+                return Math.ceil(this.filteredList.length / this.pagination.size);
+            },
         },
         methods: {
+            nextPage(){
+                this.pagination.pageNumber++;
+            },
+            prevPage(){
+                this.pagination.pageNumber--;
+            },
             getInfo() {
                 axios.get('/get-all-info')
                     .then((response) => {
