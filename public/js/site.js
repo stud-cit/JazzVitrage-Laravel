@@ -2275,6 +2275,9 @@ __webpack_require__.r(__webpack_exports__);
           memberSurname: '',
           memberPatronymic: '',
           memberDate: '',
+          groupName: '',
+          groupCount: '',
+          groupAverage: '',
           idMemberType: 1,
           parentName: '',
           parentSurname: '',
@@ -2292,6 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
           schoolName: '',
           schoolAddress: '',
           schoolPhone: '',
+          teacherIdCode: '',
           schoolEmail: '',
           teacherSurname: '',
           teacherName: '',
@@ -2336,8 +2340,17 @@ __webpack_require__.r(__webpack_exports__);
     sendApp: function sendApp() {
       var _this = this;
 
-      axios.post('/send-app', {
-        data: this.registration
+      var formData = new FormData();
+      formData.append('data', JSON.stringify(this.registration.data));
+
+      for (var key in this.registration.files) {
+        formData.append('files[' + key + ']', this.registration.files[key]);
+      }
+
+      axios.post('/send-app', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       }).then(function (response) {
         if (response.status == 200) {
           _this.$router.push({
@@ -41911,10 +41924,8 @@ var render = function() {
     _c("section", { staticClass: "sections main-section gymn" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row align-items-stretch wrapper-gymn" }, [
-          _c("div", { staticClass: "col-xl-5" }, [
-            _c("pre", { staticClass: "couplets" }, [
-              _vm._v(_vm._s(_vm.info.hymn_text))
-            ])
+          _c("pre", { staticClass: "col-xl-5 couplets" }, [
+            _vm._v(_vm._s(_vm.info.hymn_text))
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-xl-7 media" }, [

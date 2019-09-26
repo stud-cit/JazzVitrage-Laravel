@@ -3,9 +3,9 @@
         <section class="sections main-section gymn">
             <div class="container">
                 <div class="row align-items-stretch wrapper-gymn">
-                    <div class="col-xl-5">
-                        <pre class="couplets">{{ info.hymn_text }}</pre>
-                    </div>
+
+                    <pre class="col-xl-5 couplets">{{ info.hymn_text }}</pre>
+
                     <div class="col-xl-7 media">
                         <div class="overflow">
                             <div class="scroll-img">
