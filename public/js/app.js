@@ -3366,7 +3366,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      editBtn: true,
+      editBtn: 0,
       jurys: [],
       name: '',
       surname: '',
@@ -3392,8 +3392,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullJuryList();
   },
   methods: {
-    edit: function edit(event) {
-      this.editBtn = false;
+    test: function test(event) {
+      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    },
+    edit: function edit(id, event) {
+      this.editBtn = id;
       event.preventDefault();
       var pib_input = document.createElement('input');
       var photo_input = document.createElement('div');
@@ -3414,7 +3417,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n                    <input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n                </label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t\t<span id=\"file\"></span>\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
       email_input.setAttribute('value', email_td.innerHTML);
@@ -3445,7 +3448,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     save: function save(id, event) {
       var _this = this;
 
-      this.editBtn = true;
+      this.editBtn = 0;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
@@ -54111,6 +54114,11 @@ var render = function() {
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.test($event)
+                    }
                   }
                 },
                 [
@@ -54183,13 +54191,13 @@ var render = function() {
                   }
                 },
                 [
-                  _vm.editBtn
+                  _vm.editBtn !== item.user_id
                     ? _c("i", {
                         staticClass:
                           "fa fa-2x fa-pencil-square btn btn-default p-0",
                         on: {
                           click: function($event) {
-                            return _vm.edit($event)
+                            return _vm.edit(item.user_id, $event)
                           }
                         }
                       })
@@ -72684,10 +72692,10 @@ function imgValid(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! D:\ospanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })

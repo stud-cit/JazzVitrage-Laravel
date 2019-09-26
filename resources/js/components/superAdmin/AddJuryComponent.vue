@@ -58,13 +58,13 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="test($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
-                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
+                    <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
@@ -77,7 +77,7 @@
 	export default {
 		data() {
 			return {
-				editBtn: true,
+				editBtn: 0,
 				jurys: [],
 				name: '',
 				surname: '',
@@ -101,8 +101,11 @@
 			this.getFullJuryList();
 		},
 		methods: {
-			edit(event){
-				this.editBtn = false;
+			test(event) {
+				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			},
+			edit(id, event){
+				this.editBtn = id;
 				event.preventDefault();
 				var pib_input = document.createElement('input');
 				var photo_input = document.createElement('div');
@@ -128,8 +131,9 @@
                 <label class="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
                     <span class="title">Додати файл</span>
-                    <input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-                </label>
+					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
+					<span id="file"></span>
+				</label>
                 </div>`;
 				photo_td.innerHTML = '';
 				photo_td.append(photo_input);
@@ -163,7 +167,7 @@
 				information_td.append(information_input);
 			},
 			save(id, event){
-				this.editBtn = true;
+				this.editBtn = 0;
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
