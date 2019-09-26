@@ -583,6 +583,10 @@ body {
   letter-spacing: 1.6px;
 }
 
+.video-gallery .pagination {
+  margin-top: 40px;
+}
+
 .contacts {
   padding: 0 0 0 0;
   position: relative;

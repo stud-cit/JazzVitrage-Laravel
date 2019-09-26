@@ -12,6 +12,7 @@ import Application from './components/site/ApplicationComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
 import VideoGallery from './components/site/VideoGalleryComponent';
+import VideoGalleryYear from './components/site/VideoGalleryYearComponent';
 import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
@@ -53,6 +54,11 @@ const router = new VueRouter({
             component: VideoGallery,
         },
         {
+            path: '/gallery-video/:id/',
+            name: 'gallery-video-year',
+            component: VideoGalleryYear,
+        },
+        {
 
             path: '/gymn',
             name: 'gymn',
@@ -91,6 +97,7 @@ const app = new Vue({
         Gallery,
         GalleryYear,
         VideoGallery,
+        VideoGalleryYear,
         Gymn,
         Jury,
         JuryMember,
