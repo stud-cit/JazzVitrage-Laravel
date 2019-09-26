@@ -2249,8 +2249,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2259,7 +2257,7 @@ __webpack_require__.r(__webpack_exports__);
       birthdayFile: 'завантажити файл',
       concertmaster: false,
       appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
-      nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
+      nominations: [],
       fileTitle: {
         memberBirthdayFile: 'завантажити файл',
         member2BirthdayFile: 'завантажити файл',
@@ -2316,9 +2314,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     document.title = "Заповнити заявку";
+    this.getNominations();
   },
   computed: {},
   methods: {
+    getNominations: function getNominations() {
+      var _this = this;
+
+      axios.get('/get-nominations').then(function (response) {
+        _this.nominations = response.data;
+      });
+    },
     nextStep: function nextStep() {
       var steps = this.steps;
       this.activeStep++;
@@ -2338,7 +2344,7 @@ __webpack_require__.r(__webpack_exports__);
       this.registration.files[input.id] = input.files[0];
     },
     sendApp: function sendApp() {
-      var _this = this;
+      var _this2 = this;
 
       var formData = new FormData();
       formData.append('data', JSON.stringify(this.registration.data));
@@ -2353,7 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         if (response.status == 200) {
-          _this.$router.push({
+          _this2.$router.push({
             name: "index"
           });
         }
@@ -2898,58 +2904,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      members: [],
+      nominations: [],
+      searchMember: '',
+      searchNomination: '',
       info: {
         logo: '',
         description: '',
@@ -2976,41 +2937,97 @@ __webpack_require__.r(__webpack_exports__);
     this.getFoto();
     this.getVideo();
     this.getQuotes();
+    this.getNominations();
+    this.getMembers();
   },
-  computed: {},
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.members.filter(function (members) {
+        return (members.name.toLowerCase().includes(_this.searchMember.toLowerCase()) || members.schoolAddress.toLowerCase().includes(_this.searchMember.toLowerCase()) || members.schoolName.toLowerCase().includes(_this.searchMember.toLowerCase())) && members.nomination.includes(_this.searchNomination);
+      });
+    }
+  },
   methods: {
     getInfo: function getInfo() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/get-all-info').then(function (response) {
         response.data.info.map(function (item) {
-          Object.assign(_this.info, item);
+          Object.assign(_this2.info, item);
         });
         response.data.contact.map(function (item) {
-          Object.assign(_this.contact[item.caption], item.contacts_items);
+          Object.assign(_this2.contact[item.caption], item.contacts_items);
         });
       });
     },
     getFoto: function getFoto() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/get-foto').then(function (response) {
-        _this2.foto = response.data;
+        _this3.foto = response.data;
       });
     },
     getVideo: function getVideo() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/get-video').then(function (response) {
-        _this3.videos = response.data;
+        _this4.videos = response.data;
       });
     },
     getQuotes: function getQuotes() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/get-quotes').then(function (response) {
-        _this4.quotes = response.data;
+        _this5.quotes = response.data;
       });
+    },
+    getNominations: function getNominations() {
+      var _this6 = this;
+
+      axios.get('/get-nominations').then(function (response) {
+        _this6.nominations = response.data;
+      });
+    },
+    getMembers: function getMembers() {
+      var _this7 = this;
+
+      axios.get('/get-members').then(function (response) {
+        response.data.forEach(function (member, index) {
+          if (member.solo_duet.length == 0) {
+            _this7.members.push({
+              index: index,
+              name: member.group.name,
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          } else if (member.solo_duet.length == 1) {
+            _this7.members.push({
+              index: index,
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          } else if (member.solo_duet.length == 2) {
+            _this7.members.push({
+              index: index,
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          }
+        });
+      });
+    },
+    clean: function clean() {
+      this.searchMember = '', this.searchNomination = '';
     },
     postQuestion: function postQuestion() {
       this.form.append('name', this.name);
@@ -39100,18 +39117,18 @@ var render = function() {
                             [_vm._v("НОМІНАЦІЯ")]
                           ),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "1" } }, [
-                            _vm._v("Інструментальний  жанр")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "2" } }, [
-                            _vm._v("Вокальний  жанр")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "3" } }, [
-                            _vm._v("Композиція")
-                          ])
-                        ]
+                          _vm._l(_vm.nominations, function(value, index) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: { value: value.nomination_id }
+                              },
+                              [_vm._v(_vm._s(value.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ]),
                     _vm._v(" "),
@@ -41629,10 +41646,11 @@ var render = function() {
                     _c(
                       "div",
                       { staticClass: "result-row  file-row" },
-                      _vm._l(_vm.registration.files, function(file) {
+                      _vm._l(_vm.registration.files, function(file, index) {
                         return _c(
                           "div",
                           {
+                            key: index,
                             staticClass:
                               "d-flex flex-column align-items-center file-item"
                           },
@@ -42292,7 +42310,111 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _c("section", { staticClass: "sections members" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "title-section" }, [
+          _vm._v("СПИСКИ УЧАСНИКІВ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "table",
+          { staticClass: "table-members" },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._l(_vm.filteredList, function(item) {
+              return _c("tr", { key: item.index }, [
+                _c("td", [_vm._v(_vm._s(item.index + 1))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.schoolAddress))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.schoolName))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.teacher))])
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "search-block" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchMember,
+                expression: "searchMember"
+              }
+            ],
+            attrs: { type: "text", placeholder: "ПОШУК" },
+            domProps: { value: _vm.searchMember },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searchMember = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchNomination,
+                  expression: "searchNomination"
+                }
+              ],
+              staticClass: "nomination",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.searchNomination = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "", selected: "selected" } }, [
+                _vm._v("номінація")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.nominations, function(value, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: value.name } },
+                  [_vm._v(_vm._s(value.name))]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("button", { staticClass: "clean", on: { click: _vm.clean } }, [
+            _vm._v("Очистити")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(5)
+      ])
+    ]),
     _vm._v(" "),
     _c("section", { staticClass: "sections video-gallery" }, [
       _c("div", { staticClass: "container" }, [
@@ -42361,11 +42483,11 @@ var render = function() {
                 _c("p", { staticClass: "subtitle" }, [_vm._v("КРАЩИХ РОБІТ")]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "pagination" }, [
-                  _vm._m(4),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("li", [_vm._v("1 : " + _vm._s(_vm.videos.length))]),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _vm._m(7)
                 ]),
                 _vm._v(" "),
                 _c("button", { staticClass: "archive" }, [_vm._v("АРХІВ")])
@@ -42486,7 +42608,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(6),
+              _vm._m(8),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42511,7 +42633,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-row" }, [
-              _vm._m(7),
+              _vm._m(9),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -42649,165 +42771,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "sections members" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "title-section" }, [
-          _vm._v("СПИСКИ УЧАСНИКІВ")
-        ]),
-        _vm._v(" "),
-        _c("table", { staticClass: "table-members" }, [
-          _c("tr", { staticClass: "table-title" }, [
-            _c("th", [_vm._v("N")]),
-            _vm._v(" "),
-            _c("th", [
-              _vm._v("П.І.Б. /"),
-              _c("br"),
-              _vm._v("\n                        НАЗВА КОЛЕКТИВУ ")
-            ]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Місто")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("НАЗВА ЗАКЛАДУ")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("ВИКЛАДАЧ")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("4")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("5")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "search-block" }, [
-          _c("input", { attrs: { type: "text", placeholder: "ПОШУК" } }),
-          _vm._v(" "),
-          _c("select", { staticClass: "nomination", attrs: { name: "" } }, [
-            _c("option", { attrs: { value: "", selected: "selected" } }, [
-              _vm._v("номінація")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "1" } }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("select", { staticClass: "category", attrs: { name: "" } }, [
-            _c("option", { attrs: { value: "", selected: "selected" } }, [
-              _vm._v("вік.категорія")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "1" } }, [_vm._v("вік.категорія1")])
-          ]),
-          _vm._v(" "),
-          _c("button", { staticClass: "clean" }, [_vm._v("Очистити")])
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "pagination" }, [
-          _c("li", { staticClass: "controls" }, [
-            _c("i", {
-              staticClass: "fa fa-long-arrow-left",
-              attrs: { "aria-hidden": "true" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [_vm._v("1 : 16")]),
-          _vm._v(" "),
-          _c("li", { staticClass: "controls active" }, [
-            _c("i", {
-              staticClass: "fa fa-long-arrow-right",
-              attrs: { "aria-hidden": "true" }
-            })
-          ])
-        ])
+    return _c("tr", { staticClass: "table-title" }, [
+      _c("th", [_vm._v("N")]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v("П.І.Б. /"),
+        _c("br"),
+        _vm._v("\n                        НАЗВА КОЛЕКТИВУ ")
+      ]),
+      _vm._v(" "),
+      _c("th", [_vm._v("АДРЕСА")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("НАЗВА ЗАКЛАДУ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("ВИКЛАДАЧ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("select", { staticClass: "category", attrs: { name: "" } }, [
+      _c("option", { attrs: { value: "", selected: "selected" } }, [
+        _vm._v("вік.категорія")
+      ]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "1" } }, [_vm._v("вік.категорія1")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "pagination" }, [
+      _c("li", { staticClass: "controls" }, [
+        _c("i", {
+          staticClass: "fa fa-long-arrow-left",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("li", [_vm._v("1 : 16")]),
+      _vm._v(" "),
+      _c("li", { staticClass: "controls active" }, [
+        _c("i", {
+          staticClass: "fa fa-long-arrow-right",
+          attrs: { "aria-hidden": "true" }
+        })
       ])
     ])
   },

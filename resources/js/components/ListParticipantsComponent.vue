@@ -13,7 +13,7 @@
                 <th  width="30px"></th>
             </tr>
       </thead>
-      <tbody v-for="(item, index) in filteredList">
+      <tbody v-for="(item, index) in filteredList" :key="index">
             <tr>
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>

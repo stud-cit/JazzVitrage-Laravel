@@ -13,8 +13,6 @@ class CreateTasksApplication extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('application');
-
         Schema::create('application', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('application_id');
@@ -39,6 +37,8 @@ class CreateTasksApplication extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::drop('application');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

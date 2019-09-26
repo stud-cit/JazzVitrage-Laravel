@@ -51041,7 +51041,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.filteredList, function(item, index) {
-          return _c("tbody", [
+          return _c("tbody", { key: index }, [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
@@ -53054,7 +53054,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.members, function(item, index) {
-          return _c("tbody", [
+          return _c("tbody", { key: index }, [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
