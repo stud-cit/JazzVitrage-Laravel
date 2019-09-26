@@ -15,13 +15,19 @@
                             <a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
-                                <a class="dropdown-item" href="/gymn">ГІМН</a>
+                                <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
                                 <a class="dropdown-item" href="#">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
                             </div>
                         </li>
 
 
-                        <li><a class="nav-item nav-link" href="/gallery">ГАЛЕРЕЯ</a></li>
+                        <li class="dropdown">
+                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >ГАЛЕРЕЯ</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/gallery-video">ВІДЕО-ГАЛЕРЕЯ</a>
+                                <a class="dropdown-item" href="/gallery">ФЕСТИВАЛЬ</a>           
+                            </div>
+                        </li>
                         <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНТАКТИ</a>

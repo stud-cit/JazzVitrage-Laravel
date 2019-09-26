@@ -11,6 +11,7 @@ import MembersList from './components/site/MembersListComponent';
 import Application from './components/site/ApplicationComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
+import VideoGallery from './components/site/VideoGalleryComponent';
 import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
@@ -45,6 +46,11 @@ const router = new VueRouter({
             path: '/gallery/:id/',
             name: 'gallery-year',
             component: GalleryYear,
+        },
+        {
+            path: '/gallery-video',
+            name: 'gallery-video',
+            component: VideoGallery,
         },
         {
 
@@ -84,6 +90,7 @@ const app = new Vue({
         Application,
         Gallery,
         GalleryYear,
+        VideoGallery,
         Gymn,
         Jury,
         JuryMember,
