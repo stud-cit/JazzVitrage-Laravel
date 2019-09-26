@@ -9,6 +9,7 @@ use App\Models\ApplicationType;
 use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
+use App\Models\Nomination;
 
 class ApplicationController extends Controller
 {
@@ -26,7 +27,7 @@ class ApplicationController extends Controller
 
      public function getMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'nomination')->get();
          return response()->json($data);
      }
      
@@ -40,6 +41,12 @@ class ApplicationController extends Controller
      {
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('application_id', '=', $id)->get();
          return response()->json($data);
+     }
+
+     public function getNominations()
+     {
+        $data = Nomination::orderBy('created_at', 'asc')->get();
+        return response()->json($data);
      }
 
      public function postApp(Request $request) {

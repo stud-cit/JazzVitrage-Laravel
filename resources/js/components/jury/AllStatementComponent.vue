@@ -8,7 +8,7 @@
                 <th>Тип заявки</th>
             </tr>
       </thead>
-      <tbody v-for="(item, index) in members">
+      <tbody v-for="(item, index) in members" :key="index">
             <tr>
 
                 <td>{{ index + 1 }}</td>
