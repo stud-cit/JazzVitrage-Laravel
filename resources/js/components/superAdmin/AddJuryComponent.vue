@@ -63,11 +63,11 @@
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td id="edit-save-td">
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
                     <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -109,7 +109,7 @@
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
 				var nomination_input = document.createElement('input');
-				var information_input = document.createElement('input');
+				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -119,6 +119,7 @@
 				pib_input.setAttribute('value', pib_td.innerHTML);
 				pib_input.setAttribute('type', 'text');
 				pib_input.setAttribute('id', 'pib_data');
+				pib_input.setAttribute('class','input-edit-correct');
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
 
@@ -154,10 +155,10 @@
 				nomination_td.innerHTML = '';
 				nomination_td.append(nomination_input);
 
-				information_input.setAttribute('value', information_td.innerHTML);
-				information_input.setAttribute('type', 'text');
-				information_input.setAttribute('id', 'nomination_data');
-				information_input.setAttribute('class','input-edit-correct');
+				information_input.value += information_td.innerHTML;
+				information_input.setAttribute('id', 'information_data');
+				information_input.setAttribute('rows', '6');
+				information_input.setAttribute('class', 'text-area-width');
 				information_td.innerHTML = '';
 				information_td.append(information_input);
 			},
@@ -169,7 +170,7 @@
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
-				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('input').value;
+				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
 				var parse_photo = photo_td;

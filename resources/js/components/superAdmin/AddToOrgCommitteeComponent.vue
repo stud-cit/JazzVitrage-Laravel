@@ -115,6 +115,7 @@
 			},
 
 			save(id, event){
+				this.editBtn = true;
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;

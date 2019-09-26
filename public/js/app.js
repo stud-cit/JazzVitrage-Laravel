@@ -3209,6 +3209,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = true;
       event.preventDefault();
       var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
@@ -3399,7 +3400,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var email_input = document.createElement('input');
       var rank_input = document.createElement('input');
       var nomination_input = document.createElement('input');
-      var information_input = document.createElement('input');
+      var information_input = document.createElement('textarea');
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -3409,6 +3410,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_input.setAttribute('value', pib_td.innerHTML);
       pib_input.setAttribute('type', 'text');
       pib_input.setAttribute('id', 'pib_data');
+      pib_input.setAttribute('class', 'input-edit-correct');
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-photo');
@@ -3433,10 +3435,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       nomination_input.setAttribute('class', 'input-edit-correct');
       nomination_td.innerHTML = '';
       nomination_td.append(nomination_input);
-      information_input.setAttribute('value', information_td.innerHTML);
-      information_input.setAttribute('type', 'text');
-      information_input.setAttribute('id', 'nomination_data');
-      information_input.setAttribute('class', 'input-edit-correct');
+      information_input.value += information_td.innerHTML;
+      information_input.setAttribute('id', 'information_data');
+      information_input.setAttribute('rows', '6');
+      information_input.setAttribute('class', 'text-area-width');
       information_td.innerHTML = '';
       information_td.append(information_input);
     },
@@ -3450,7 +3452,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
       var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
       var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
-      var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('input').value;
+      var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
       var parse_pib = pib_td.split(' ');
       var parse_photo = photo_td;
       var parse_email = email_td;
@@ -3665,6 +3667,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = true;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
@@ -54169,38 +54172,60 @@ var render = function() {
                 [_vm._v(_vm._s(item.informations))]
               ),
               _vm._v(" "),
-              _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn
-                  ? _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-pencil-square btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit($event)
-                        }
-                      }
-                    })
-                  : _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-check-circle btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.save(item.user_id, $event)
-                        }
-                      }
-                    })
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "del-td" } }, [
-                _c("i", {
-                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteJury(item.user_id, index)
-                    }
+              _c(
+                "td",
+                {
+                  staticClass: "editing-td",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1),
+                    id: "edit-save-td"
                   }
-                })
-              ])
+                },
+                [
+                  _vm.editBtn
+                    ? _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-pencil-square btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.edit($event)
+                          }
+                        }
+                      })
+                    : _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-check-circle btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.save(item.user_id, $event)
+                          }
+                        }
+                      })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "editing-td",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1),
+                    id: "del-td"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteJury(item.user_id, index)
+                      }
+                    }
+                  })
+                ]
+              )
             ])
           ])
         })

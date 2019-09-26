@@ -33,7 +33,11 @@
 .edit-photo .label:hover i,.edit-photo .label:hover .title{color:#000}
 
 .input-edit-correct {
-    width: 170px;
+    width: 135px;
+}
+
+.text-area-width {
+    width:320px;
 }
 
 .fotoGallery {
