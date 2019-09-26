@@ -3095,6 +3095,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -42877,61 +42879,73 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("section", { staticClass: "sections main-section juries" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "carousel",
-            { staticClass: "jury-list", attrs: { dots: false, nav: false } },
-            [
-              _c("template", { slot: "prev" }, [
-                _c("span", { staticClass: "prev" }, [
-                  _c("i", {
-                    staticClass: "fa arrows fa-arrow-circle-left fa-3x",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.juryList, function(item, index) {
-                return _c(
-                  "router-link",
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm.juryList.length > 0
+          ? _c(
+              "div",
+              [
+                _c(
+                  "carousel",
                   {
-                    key: index,
-                    staticClass: "jury-items",
-                    attrs: {
-                      to: { name: "jury-member", params: { id: item.user_id } }
-                    }
+                    staticClass: "jury-list",
+                    attrs: { dots: false, nav: false }
                   },
                   [
-                    _c("img", {
-                      attrs: { src: "../img/user-photo/" + item.photo, alt: "" }
+                    _c("template", { slot: "prev" }, [
+                      _c("span", { staticClass: "prev" }, [
+                        _c("i", {
+                          staticClass: "fa arrows fa-arrow-circle-left fa-3x",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.juryList, function(item, index) {
+                      return _c(
+                        "router-link",
+                        {
+                          key: index,
+                          staticClass: "jury-items",
+                          attrs: {
+                            to: {
+                              name: "jury-member",
+                              params: { id: item.user_id }
+                            }
+                          }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "../img/user-photo/" + item.photo,
+                              alt: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "items-title" }, [
+                            _vm._v(_vm._s(item.name + " " + item.surname))
+                          ])
+                        ]
+                      )
                     }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "items-title" }, [
-                      _vm._v(_vm._s(item.name + " " + item.surname))
+                    _c("template", { staticClass: "asdasd", slot: "next" }, [
+                      _c("span", { staticClass: "next" }, [
+                        _c("i", {
+                          staticClass: "fa arrows fa-arrow-circle-right fa-3x",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ])
                     ])
-                  ]
+                  ],
+                  2
                 )
-              }),
-              _vm._v(" "),
-              _c("template", { staticClass: "asdasd", slot: "next" }, [
-                _c("span", { staticClass: "next" }, [
-                  _c("i", {
-                    staticClass: "fa arrows fa-arrow-circle-right fa-3x",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ])
-              ])
-            ],
-            2
-          )
-        ],
-        1
-      )
+              ],
+              1
+            )
+          : _vm._e()
+      ])
     ])
   ])
 }

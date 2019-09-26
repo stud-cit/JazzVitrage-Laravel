@@ -3443,6 +3443,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = true;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');

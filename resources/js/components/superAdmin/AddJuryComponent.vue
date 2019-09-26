@@ -162,6 +162,7 @@
 				information_td.append(information_input);
 			},
 			save(id, event){
+				this.editBtn = true;
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');

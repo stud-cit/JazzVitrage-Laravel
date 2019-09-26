@@ -10,6 +10,7 @@
                     </div>
 
                 </div>
+                <div v-if="juryList.length > 0">
                 <carousel :dots="false" :nav="false" class="jury-list">
                     <template slot="prev"><span class="prev"><i class="fa arrows fa-arrow-circle-left fa-3x" aria-hidden="true"></i></span></template>
                     <router-link class="jury-items" v-for="(item, index) in juryList" :key="index" :to="{ name: 'jury-member', params:{ id: item.user_id}}">
@@ -19,6 +20,7 @@
                     <template slot="next" class="asdasd"><span class="next"><i class="fa arrows fa-arrow-circle-right fa-3x" aria-hidden="true"></i></span></template>
 
                 </carousel>
+                </div>
                 <!--<div class="jury-list">-->
 
                 <!--</div>-->
