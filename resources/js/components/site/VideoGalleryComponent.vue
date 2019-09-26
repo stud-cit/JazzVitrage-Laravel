@@ -1,3 +1,4 @@
+npm run build
 <template>
     <div>
         <section class="sections main-section gallery">

@@ -17,18 +17,18 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100" @click='editFile("logo_section", "logo")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100" @click='editFile("logo_section", "logo", "img")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('logo')">{{ errors.first('logo') }}</p>
                     </div>
-                    <img v-if="!errors.has('logo')" class="mt-3 w-50" :src="logo">
+                    <img v-if="!errors.has('logo')" class="mt-3 w-50" :src="info.logo">
                     <hr>
                     <label for="description" class="brtop">Опис сайту</label>
-                    <textarea class="form-control" v-model="descriptionText" id="description" rows="4" disabled></textarea>
+                    <textarea class="form-control" v-model="info.description" id="description" rows="4" disabled></textarea>
                     <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "logo_section", "description")'>Редагувати</button><br><br>
                     <hr>
                     <label for="ticker" class="brtop">Рухомий рядок</label>
-                    <textarea class="form-control" v-model="tickerText" id="ticker" rows="4" disabled></textarea>
+                    <textarea class="form-control" v-model="info.ticker" id="ticker" rows="4" disabled></textarea>
                     <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "logo_section", "ticker")'>Редагувати</button><br>
 
                     <!-- Положення -->
@@ -36,33 +36,47 @@
                     <h3>Положення</h3>
                     <hr>
                     <label for="provisions_text" class="brtop">Короткий опис положення</label>
-                    <textarea class="form-control" v-model="provisionsCompetition" id="provisions_text" rows="4" disabled></textarea>
+                    <textarea class="form-control" v-model="info.provisions_text" id="provisions_text" rows="4" disabled></textarea>
                     <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "position_section", "provisions_text")'>Редагувати</button><br><br>
                     <hr>
                     <label for="file" class="brtop">Файл документу про положення</label>
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="document" id="file" ref="documentFile" @change="previewFiles">
-                                <span class="custom-file-control">Файл не обрано</span>
+                                <input type="file" class="custom-file-input" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="document" id="file" ref="file" @change="previewFiles">
+                                <span class="custom-file-control">{{ info.file.split('/')[2] }}</span>
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "file")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "file", "file")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('document')">{{ errors.first('document') }}</p>
                     </div>
                     <hr>
-                    <label for="video" class="brtop">Відео для положення конкурсу(з YouTube)</label>
+                    <label for="video" class="brtop">Відео для положення конкурсу (YouTube)</label>
                     <div class="row">
                         <div class="col-9">
-                            <input type="text" class="form-control" v-model="youtubeVideo" id="video" disabled>
+                            <input type="text" class="form-control" v-model="info.video" id="video" disabled>
                         </div>
                         <div class="col-3">
                             <button type="button" class="btn btn-outline-secondary edit" @click='edit($event, "position_section", "video")'>Редагувати</button>
                         </div>
                     </div>
-
+                    <iframe class="mt-3" width="100%" height="300" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
+                    <hr>
+                    <!-- Цитати -->
+                    <label for="quote" class="brtop">Цитати</label>
+                    <div class="row mt-2" v-for="(quote, index) in quotes" :key="'quote'+index">
+                        <div class="col-9">
+                            <textarea name="quote" class="form-control" id="quote" cols="30" rows="3" v-model="quote.text" :disabled="quote.disabled == '' ? quote.disabled : true"></textarea>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes(index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="quote !== editing && quote.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='edit(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addQuotes">+</button>
 
                 </div>
                 <div class="col-2"></div>
@@ -72,7 +86,7 @@
                     <h3>Гімн</h3>
                     <hr>
                     <label for="hymn_text" class="brtop">Текст гімну</label>
-                    <textarea class="form-control" v-model="hymnText" id="hymn_text" rows="4" disabled></textarea>
+                    <textarea class="form-control" v-model="info.hymn_text" id="hymn_text" rows="10" disabled></textarea>
                     <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "hymn_section", "hymn_text")'>Редагувати</button><br><br>
                     <hr>
                     <label for="audio" class="brtop">Аудіоматеріал</label>
@@ -80,12 +94,12 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff'] }" name="audio" class="custom-file-input" id="audio" ref="audioFile" @change="previewFiles">
-                                <span class="custom-file-control">Файл не обрано</span>
+                                <input type="file" v-validate="{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff', 'wav'] }" name="audio" class="custom-file-input" id="audio" ref="audio" @change="previewFiles">
+                                <span class="custom-file-control">{{ info.audio.split('/')[2] }}</span>
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('audio')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "audio")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('audio')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "audio", "audio")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('audio')">{{ errors.first('audio') }}</p>
                     </div>
@@ -95,51 +109,59 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="'image'" name="note" class="custom-file-input" id="note_image" ref="noteFile" @change="previewFiles($event, 'noteImg')">
+                                <input type="file" v-validate="'image'" name="note" class="custom-file-input" id="note_image" ref="note_image" @change="previewFiles($event, 'note_image')">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('note')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "note_image")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('note')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "note_image", "img")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('note')">{{ errors.first('note') }}</p>
                     </div>
-                    <img v-if="!errors.has('note')" class="mt-3 w-50" :src="noteImg">
+                    <img v-if="!errors.has('note')" class="mt-3 w-50" :src="info.note_image">
                     <!-- Контакти -->
                     <br>
-                    <h3>Контакти</h3>
+                    <h3 class="mt-3">Контакти</h3>
+                    <hr>
+                    <label for="emails" class="brtop">Email</label>
+                    <div class="row" v-for="(emailItem, index) in contact.emails" :key="'email'+index">
+                        <div class="col-10">
+                            <input type="text" class="form-control" v-model="emailItem.contact" id="emails" :disabled="emailItem.disabled == '' ? emailItem.disabled : true">
+                        </div>
+                        <div class="col-2">
+                            <button v-if="emailItem !== editing" type="button" class="btn btn-outline-secondary float-right" @click='editContact(emailItem, "emails", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("emails", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
                     <hr>
                     <label for="address" class="brtop">Адреса</label>
-
-
-                    <div class="row" v-for="(addressItem, index) in address" :key="'address'+index">
+                    <div class="row" v-for="(addressItem, index) in contact.address" :key="'address'+index">
                         <div class="col-10">
                             <input type="text" class="form-control" v-model="addressItem.contact" id="address" :disabled="addressItem.disabled == '' ? addressItem.disabled : true">
                         </div>
                         <div class="col-2">
-                            <button v-if="addressItem !== editingPhone" type="button" class="btn btn-outline-secondary float-right" @click='editPhone(addressItem, "address", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveAddress(addressItem, "address", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                            <button v-if="addressItem !== editing" type="button" class="btn btn-outline-secondary float-right" @click='editContact(addressItem, "address", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("address", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <hr>
-                    <label for="phone" class="brtop">Телефон</label>
-                    <div class="row mt-2" v-for="(phone, index) in phones" :key="'phone'+index">
+                    <label for="phones" class="brtop">Телефон</label>
+                    <div class="row mt-2" v-for="(phone, index) in contact.phones" :key="'phone'+index">
                         <div class="col-9">
-                            <input type="text" v-validate="{ regex:/^\+380\d{3}\d{2}\d{2}\d{2}$/ }" class="form-control" v-model="phone.contact" name="phone" id="phone" :disabled="phone.disabled == '' ? phone.disabled : true">
+                            <input type="text" class="form-control" v-model="phone.contact" id="phones" :disabled="phone.disabled == '' ? phone.disabled : true">
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delPhones(index, phone.contact_items_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="phone !== editingPhone && phone.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editPhone(phone, "phone", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button :disabled="errors.has('phone')" v-else type="button" class="btn btn-outline-secondary float-right" @click='savePhone(phone, "phone", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, phone.contact_items_id, 'phones')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="phone !== editing && phone.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editContact(phone, "phones", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button :disabled="errors.has('phone')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("phones", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('phone')">{{ errors.first('phone') }}</p>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addPhones">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('phones')">+</button>
 
                     <!-- Соціальні мережі -->
                     <hr>
                     <label for="social" class="brtop">Соціальні мережі</label>
-                    <div class="row mt-2" v-for="(social, index) in socials" :key="'social'+index">
+                    <div class="row mt-2" v-for="(social, index) in contact.socials" :key="'social'+index">
                         <div class="col-5">
                             <input type="text" class="form-control" v-model="social.contact" id="socialLink" :disabled="social.disabled == '' ? social.disabled : true">
                         </div>
@@ -147,12 +169,12 @@
                             <input type="text" class="form-control" v-model="social.contact_title" id="socialTitle" :disabled="social.disabled == '' ? social.disabled : true">
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delSocial(index, social.contact_items_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="social !== editingSocial && social.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editSocial(social, "social", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial(social, "social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, social.contact_items_id, 'socials')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="social !== editing && social.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editSocial(social, "social", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addSocial">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">+</button>
                 </div>
             </div>
         </form>
@@ -160,35 +182,49 @@
 </template>
 
 <script>
+import { imgValid } from "../../mixins/validation";
 export default {
     data() {
         return {
-            editingPhone: {},
-            editingSocial: {},
-            logo: '',
-	        descriptionText: '',
-	        tickerText: '',
-	        provisionsCompetition: '',
-            youtubeVideo: '',
-            hymnText: '',
-            noteImg: '',
-            address: [],
-            phones: [],
-            socials: [],
+            editing: {},
+            info: {
+                logo: '',
+                description: '',
+                ticker: '',
+                provisions_text: '',
+                video: '',
+                audio: '',
+                file: '',
+                hymn_text: '',
+                note_image: ''
+            },
+            contact: {
+                emails: [],
+                address: [],
+                phones: [],
+                socials: []
+            },
+            quotes: [],
             form: new FormData,
             showButton: true
         };
     },
 	created () {
         this.getAllInfo();
-	},
+        this.getQuotes();
+    },
+    validations: {
+        info: {
+            logo: { imgValid },
+        }
+    },
     methods: {
         previewFiles(event, el) {
             var input = event.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = (e) => {
-                    this[el] = e.target.result;
+                    this.info[el] = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
                 input.parentNode.querySelector('span').innerHTML = input.files[0].name;
@@ -200,72 +236,43 @@ export default {
             textElementLink.removeAttribute('disabled');
             textElementTitle.removeAttribute('disabled');
             textElementLink.focus();
-            this.editingSocial = social;
+            this.editing = social;
         },
-        saveSocial(social, el, index) {
+        saveSocial(el, index) {
             const textElementLink = document.querySelectorAll('#'+el+"Link")[index];
             const textElementTitle = document.querySelectorAll('#'+el+"Title")[index];
             textElementLink.setAttribute('disabled', 'disabled');
             textElementTitle.setAttribute('disabled', 'disabled');
-            this.editingSocial = {};
-            this.socials[index].disabled = true;
+            this.editing = {};
+            this.contact.socials[index].disabled = true;
             axios.post('/post-contact', {
-                id: this.socials[index].contact_items_id,
-                contact: this.socials[index].contact,
-                contact_title: this.socials[index].contact_title,
+                id: this.contact.socials[index].contact_items_id,
+                contact: this.contact.socials[index].contact,
+                contact_title: this.contact.socials[index].contact_title,
                 contact_section_id: 3
             })
         },
-        editPhone(phone, el, index) {
+        editContact(phone, el, index) {
             const textElement = document.querySelectorAll('#'+el)[index];
             textElement.removeAttribute('disabled');
             textElement.focus();
-            this.editingPhone = phone;
+            this.editing = phone;
         },
-        savePhone(phone, el, index) {
-            const textElement = document.querySelectorAll('#'+el)[index];
-            textElement.setAttribute('disabled', 'disabled');
-            this.editingPhone = {};
-            this.phones[index].disabled = true;
+        saveContact(el, index) {
+            this.selectElement(el, this.contact[el][index], index);
             axios.post('/post-contact', {
-                id: this.phones[index].contact_items_id,
-                contact: this.phones[index].contact,
-                contact_section_id: 2
+                id: this.contact[el][index].contact_items_id,
+                contact: this.contact[el][index].contact,
+                contact_section_id: this.contact[el][index].contact_section_id
             })
         },
 
-        saveAddress(phone, el, index) {
-            const textElement = document.querySelectorAll('#'+el)[index];
-            textElement.setAttribute('disabled', 'disabled');
-            this.editingPhone = {};
-            this.address[index].disabled = true;
-            axios.post('/post-contact', {
-                id: this.address[index].contact_items_id,
-                contact: this.address[index].contact,
-                contact_section_id: 1
-            }).then((res) => {
-                console.log(res)
-            })
-        },
-
-        editFile(table, row) {
-            if(row == 'logo') {
-                this.form.append('file', this.$refs.logo.files[0]);
-            }
-            if(row == 'file') {
-                this.form.append('file', this.$refs.documentFile.files[0]);
-            }
-            if(row == 'audio') {
-                this.form.append('file', this.$refs.audioFile.files[0]);
-            }
-            if(row == 'note_image') {
-                this.form.append('file', this.$refs.noteFile.files[0]);
-            }
+        editFile(table, row, type) {
+            this.form.append('type', type);
             this.form.append('table', table);
             this.form.append('row', row);
-            axios.post('/post-info-file', this.form).then((response) => {
-                console.log(response)
-            })
+            this.form.append('file', this.$refs[row].files[0]);
+            axios.post('/post-info-file', this.form);
         },
 
         edit(event, table, el) {
@@ -290,36 +297,67 @@ export default {
 	    getAllInfo() {
 		    axios.get('/get-all-info')
 			    .then((response) => {
-                    this.logo = '/img/'+response.data.info[0].logo;
-                    this.descriptionText = response.data.info[0].description;
-                    this.tickerText = response.data.info[0].ticker;
-                    this.provisionsCompetition = response.data.info[0].provisions_text;
-                    this.hymnText = response.data.info[0].hymn_text;
-                    this.noteImg = '/img/'+response.data.info[0].note_image;
-                    this.youtubeVideo = response.data.info[0].video;
-                    this.address = response.data.contact[0].contacts_items;
-                    this.phones = response.data.contact[1].contacts_items;
-                    this.socials = response.data.contact[2].contacts_items;
+                    response.data.info.map(item => {
+                        Object.assign(this.info, item);
+                    }),
+                    response.data.contact.map(item => {
+                        Object.assign(this.contact[item.caption], item.contacts_items);
+                    })
 			    })
         },
-        addSocial() {
-	        this.socials.push({contact: '', disabled: false});
+
+        // Quotes
+        getQuotes() {
+            axios.get('/get-quotes')
+            .then((response) => {
+                this.quotes = response.data;
+            })
         },
-        addPhones() {
-            this.phones.push({contact: '', disabled: false});
+        addQuotes() {
+	        this.quotes.push({text: '', disabled: false});
         },
-        delPhones(index, id) {
+        delQuotes(index, id) {
+            if(id) {
+                axios.post('/delete-quote/'+id);
+            }
+            this.quotes.splice(index, 1);
+        },
+        saveQuotes(quote, el, index) {
+            this.selectElement(el, this.quotes[index], index);
+            if(quote.quote_id) {
+                axios.post('/put-quote', {
+                    id: this.quotes[index].quote_id,
+                    text: this.quotes[index].text,
+                })
+            } else {
+                axios.post('/post-quote', {
+                    text: this.quotes[index].text,
+                })
+            }
+        },
+        // End Quotes
+
+        add(arr) {
+	        this.contact[arr].push({contact: '', disabled: false});
+        },
+        del(index, id, arr) {
             if(id) {
                 axios.post('/delete-contact/'+id);
             }
-            this.phones.splice(index, 1);
+            this.contact[arr].splice(index, 1);
         },
-        delSocial(index, id) {
-            if(id) {
-                axios.post('/delete-contact/'+id);
-            }
-            this.socials.splice(index, 1);
-        }
+
+        selectElement(el, elArray, index) {
+            const textElement = document.querySelectorAll('#'+el)[index];
+            textElement.setAttribute('disabled', 'disabled');
+            this.editing = {};
+            elArray.disabled = true;
+        },
     }
 }
 </script>
+<style scope>
+    .hasError {
+        color: red;
+    }
+</style>
