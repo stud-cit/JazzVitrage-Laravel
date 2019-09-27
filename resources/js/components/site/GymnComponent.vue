@@ -13,8 +13,8 @@
                             </div>
                         </div>
                         <div class="absolute-block">
-                            <audio controls class="audio">
-                                <source :src="info.audio" type="audio/wav" >
+                            <audio controls ref="player" class="audio">
+                                <source :src="info.audio" type="audio/wav">
                             </audio>
                             <div class="text-center">
                                 <a :href="info.audio" class="download" download="">ЗАВАНТАЖИТИ</a>
@@ -40,6 +40,11 @@
         },
         created () {
             this.getInfo();
+        },
+        mounted () {
+            this.$watch('info.audio', () => {
+                this.$refs.player.load()
+            })
         },
         methods: {
             getInfo() {
