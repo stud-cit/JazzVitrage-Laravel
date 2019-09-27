@@ -25,7 +25,7 @@
                 <th width="7%">№</th>
                 <th width="27%">Прізвище</th>
                 <th width="27%">Ім’я</th>
-                <th width="27%">Електронна адеса</th>
+                <th width="27%">Електронна адреса</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -94,6 +94,7 @@
 			},
 
 			save(id, event){
+				this.editBtn = true;
 				event.preventDefault();
 				var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;

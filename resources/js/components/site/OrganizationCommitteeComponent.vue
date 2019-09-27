@@ -3,6 +3,7 @@
         <section class="sections main-section juries">
             <div class="container">
                 <h2 class="title-section">Організаційний комітет</h2>
+                <!--
                 <div class="sortiration-block">
                      сортувати:
         
@@ -13,11 +14,11 @@
                         </select>
 
                 </div>
-
+                возможная сортировка членов орг комитета
+                -->
                 <div class="member-committee-card" v-for="(item, index) in paginatedData" :key="index">
                     <div class="picture" :data-target="'#collapse'+(index+1)">
                        <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
-
                     </div>
                     <div class="description" :data-target="'#collapse'+(index+1)">
                         <h3 class="title-description">{{ `${item.name} ${item.surname}` }}</h3>
@@ -76,6 +77,17 @@
 				        this.committees.push(...response.data)
 			        })
 	        },
+            /* возможна сортировка
+	        getOrgCommitteeList() {
+		        axios.get('/get-org-view')
+			        .then((response) => {
+				        const instrumentals = [...new Set(response.data.map(inst => inst.nominations))]
+				        instrumentals.map(instrumental => {
+					        this.committees.push({instrumental, ...response.data.filter(inst => instrumental == inst.nominations)[0]})
+				        })
+			        })
+	        },
+	        */
             nextPage(){
                 this.pageNumber++;
             },

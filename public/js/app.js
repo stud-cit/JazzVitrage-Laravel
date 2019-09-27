@@ -3209,6 +3209,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = true;
       event.preventDefault();
       var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
@@ -3365,7 +3366,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      editBtn: true,
+      editBtn: 0,
       jurys: [],
       name: '',
       surname: '',
@@ -3391,15 +3392,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullJuryList();
   },
   methods: {
-    edit: function edit(event) {
-      this.editBtn = false;
+    getFileName: function getFileName(event) {
+      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    },
+    edit: function edit(id, event) {
+      this.editBtn = id;
       event.preventDefault();
       var pib_input = document.createElement('input');
-      var photo_input = document.createElement('input');
+      var photo_input = document.createElement('div');
       var email_input = document.createElement('input');
       var rank_input = document.createElement('input');
       var nomination_input = document.createElement('input');
-      var information_input = document.createElement('input');
+      var information_input = document.createElement('textarea');
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -3409,45 +3413,49 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_input.setAttribute('value', pib_td.innerHTML);
       pib_input.setAttribute('type', 'text');
       pib_input.setAttribute('id', 'pib_data');
+      pib_input.setAttribute('class', 'input-edit-correct');
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
-      photo_input.setAttribute('type', 'file');
-      photo_input.setAttribute(':ref', 'juryfile');
-      photo_input.setAttribute('class', 'form-control-file');
-      photo_input.setAttribute('id', 'jury-photo');
+      photo_input.setAttribute('class', 'edit-photo');
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
       email_input.setAttribute('value', email_td.innerHTML);
       email_input.setAttribute('type', 'text');
       email_input.setAttribute('id', 'email_data');
+      email_input.setAttribute('class', 'input-edit-correct');
       email_td.innerHTML = '';
       email_td.append(email_input);
       rank_input.setAttribute('value', rank_td.innerHTML);
       rank_input.setAttribute('type', 'text');
       rank_input.setAttribute('id', 'rank_data');
+      rank_input.setAttribute('class', 'input-edit-correct');
       rank_td.innerHTML = '';
       rank_td.append(rank_input);
       nomination_input.setAttribute('value', nomination_td.innerHTML);
       nomination_input.setAttribute('type', 'text');
       nomination_input.setAttribute('id', 'nomination_data');
+      nomination_input.setAttribute('class', 'input-edit-correct');
       nomination_td.innerHTML = '';
       nomination_td.append(nomination_input);
-      information_input.setAttribute('value', information_td.innerHTML);
-      information_input.setAttribute('type', 'text');
-      information_input.setAttribute('id', 'nomination_data');
+      information_input.value += information_td.innerHTML;
+      information_input.setAttribute('id', 'information_data');
+      information_input.setAttribute('rows', '6');
+      information_input.setAttribute('class', 'text-area-width');
       information_td.innerHTML = '';
       information_td.append(information_input);
     },
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = 0;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
       var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
       var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
-      var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('input').value;
+      var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
       var parse_pib = pib_td.split(' ');
       var parse_photo = photo_td;
       var parse_email = email_td;
@@ -3611,7 +3619,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      editBtn: true,
+      editBtn: 0,
       committees: [],
       name: '',
       surname: '',
@@ -3626,13 +3634,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullOrgCommitteeList();
   },
   methods: {
-    edit: function edit(event) {
-      this.editBtn = false;
+    getFileName: function getFileName(event) {
+      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    },
+    edit: function edit(id, event) {
+      this.editBtn = id;
       event.preventDefault();
       var pib_input = document.createElement('input');
       var email_input = document.createElement('input');
-      var photo_input = document.createElement('input');
-      var biography_input = document.createElement('input');
+      var photo_input = document.createElement('div');
+      var biography_input = document.createElement('textarea');
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -3647,26 +3658,26 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       email_input.setAttribute('id', 'email_data');
       email_td.innerHTML = '';
       email_td.append(email_input);
-      photo_input.setAttribute('type', 'file');
-      photo_input.setAttribute(':ref', 'file');
-      photo_input.setAttribute('class', 'form-control-file');
-      photo_input.setAttribute('id', 'org-photo');
+      photo_input.setAttribute('class', 'edit-photo');
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t\t<span id=\"file\"></span>\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
-      biography_input.setAttribute('value', biography_td.innerHTML);
-      biography_input.setAttribute('type', 'text');
+      biography_input.value += biography_td.innerHTML;
       biography_input.setAttribute('id', 'biography_data');
+      biography_input.setAttribute('rows', '6');
+      biography_input.setAttribute('class', 'text-area-width');
       biography_td.innerHTML = '';
       biography_td.append(biography_input);
     },
     save: function save(id, event) {
       var _this = this;
 
+      this.editBtn = 0;
       event.preventDefault();
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input');
-      var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
+      var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('textarea').value;
       var parse_pib = pib_td.split(' ');
       var parse_email = email_td;
       var parse_photo = photo_td;
@@ -51035,7 +51046,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.filteredList, function(item, index) {
-          return _c("tbody", [
+          return _c("tbody", { key: index }, [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
@@ -53048,7 +53059,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.members, function(item, index) {
-          return _c("tbody", [
+          return _c("tbody", { key: index }, [
             _c("tr", [
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
@@ -53788,7 +53799,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "27%" } }, [_vm._v("Ім’я")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "27%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "27%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th"),
         _vm._v(" "),
@@ -54105,6 +54116,11 @@ var render = function() {
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.getFileName($event)
+                    }
                   }
                 },
                 [
@@ -54166,38 +54182,60 @@ var render = function() {
                 [_vm._v(_vm._s(item.informations))]
               ),
               _vm._v(" "),
-              _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn
-                  ? _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-pencil-square btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit($event)
-                        }
-                      }
-                    })
-                  : _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-check-circle btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.save(item.user_id, $event)
-                        }
-                      }
-                    })
-              ]),
-              _vm._v(" "),
-              _c("td", { attrs: { id: "del-td" } }, [
-                _c("i", {
-                  staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteJury(item.user_id, index)
-                    }
+              _c(
+                "td",
+                {
+                  staticClass: "editing-td",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1),
+                    id: "edit-save-td"
                   }
-                })
-              ])
+                },
+                [
+                  _vm.editBtn !== item.user_id
+                    ? _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-pencil-square btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.edit(item.user_id, $event)
+                          }
+                        }
+                      })
+                    : _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-check-circle btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.save(item.user_id, $event)
+                          }
+                        }
+                      })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticClass: "editing-td",
+                  attrs: {
+                    "data-toggle": "collapse",
+                    "data-target": "#collapse" + (index + 1),
+                    id: "del-td"
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteJury(item.user_id, index)
+                      }
+                    }
+                  })
+                ]
+              )
             ])
           ])
         })
@@ -54219,7 +54257,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Фото")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Звання члена журі")]),
         _vm._v(" "),
@@ -54474,6 +54512,11 @@ var render = function() {
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.getFileName($event)
+                    }
                   }
                 },
                 [
@@ -54499,13 +54542,13 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn
+                _vm.editBtn !== item.user_id
                   ? _c("i", {
                       staticClass:
                         "fa fa-2x fa-pencil-square btn btn-default p-0",
                       on: {
                         click: function($event) {
-                          return _vm.edit($event)
+                          return _vm.edit(item.user_id, $event)
                         }
                       }
                     })
@@ -54549,7 +54592,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "20%" } }, [_vm._v("ПІБ комітету")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "20%" } }, [_vm._v("Електронна адеса")]),
+        _c("th", { attrs: { width: "20%" } }, [_vm._v("Електронна адреса")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "20%" } }, [_vm._v("Фото")]),
         _vm._v(" "),
@@ -72656,10 +72699,10 @@ function imgValid(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
-__webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\admin.sass */"./resources/sass/admin.sass");
+__webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site.sass */"./resources/sass/site.sass");
+module.exports = __webpack_require__(/*! C:\php\OSPanel\domains\JazzVitrage-Laravel\resources\sass\site-other.sass */"./resources/sass/site-other.sass");
 
 
 /***/ })

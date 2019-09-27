@@ -11,7 +11,8 @@ Route::get('/video-gallery', 'GalleryController@videoGallery');
 Route::get('/festival', 'GalleryController@festival');
 Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
 //Контакти
-Route::get('get-jury-view', 'ContactsController@jury');
+Route::get('get-jurys-view', 'ContactsController@getJurys');
+Route::get('get-jury-view/{id}/', 'ContactsController@jury');
 Route::get('get-org-view', 'ContactsController@organizingCommittee');
 
 
@@ -123,6 +124,7 @@ Auth::routes();
     Route::get('get-quotes', 'InfoController@getQuotes');
 
     Route::get('get-members',  'ApplicationController@getMembers');
+    Route::get('get-nominations',  'ApplicationController@getNominations');
 
     Route::get('get-all-members',  'ApplicationController@getAllMembers');
 

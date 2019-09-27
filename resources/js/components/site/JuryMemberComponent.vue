@@ -5,17 +5,17 @@
                 <div class="page-nav">
                    <router-link :to="{ name: 'juries'}" class="prev-page"><i class="fa fa-angle-left"></i>всі журі</router-link>
                 </div>      
-                <div class="member-jury-card">
+                <div class="member-jury-card" v-for="(item, index) in juryMember" :key="index">
                     <div class="picture">
-                       <img src="/img/list_jury/Intersection_3.png" alt="">
+                       <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
                     </div>
                     <div class="description">
-                        <h3 class="title-description">NAME SURNAME</h3>
-                        <div class="text-description">Duis aute irure:  ipsum dolor sit amet<br>
-                           Duis aute irure:  ipsum dolor sit amet
+                        <h3 class="title-description">{{ `${item.name} ${item.surname}` }}</h3>
+                        <div class="text-description">{{ item.rank }}<br>
+                           {{ item.nominations }}
                         </div>
                         <div class="text-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {{ item.informations }}
                         </div>
                    </div>
                 </div>
@@ -28,20 +28,25 @@
     export default {
         data() {
             return {
-
+                juryMember: [],
             };
         },
 
         created () {
-            document.title = "Представник журі"; 
+            document.title = "Представник журі";
+	        this.getJuryList();
         },
         computed: {
             
         },
-        methods: {
-
-
-        },
+	    methods: {
+		    getJuryList() {
+			    axios.get('/get-jury-view/'+this.$route.params.id)
+				    .then((response) => {
+					    this.juryMember.push(...response.data)
+				    })
+		    },
+	    },
 
     }
 </script>
