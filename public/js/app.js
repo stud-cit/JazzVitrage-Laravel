@@ -2840,15 +2840,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       video: '',
-      urls: []
+      urls: [],
+      yearCompetition: new Date().getFullYear()
     };
   },
   created: function created() {
     this.getVideo();
+  },
+  computed: {
+    years: function years() {
+      var year = new Date().getFullYear();
+      return Array.from({
+        length: year - 2000
+      }, function (value, index) {
+        return 2001 + index;
+      });
+    }
   },
   methods: {
     getVideo: function getVideo() {
@@ -2862,7 +2879,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post('/post-video', {
-        url: this.video
+        url: this.video,
+        year: this.yearCompetition
       }).then(function () {
         _this2.urls = [];
 
@@ -52955,7 +52973,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-5" }, [
+      _c("div", { staticClass: "col-6" }, [
         _c("label", { staticClass: "brtop", attrs: { for: "video" } }, [
           _vm._v("Посилання на відео (YouTube)")
         ]),
@@ -52990,6 +53008,51 @@ var render = function() {
             on: { click: _vm.postVideo }
           },
           [_vm._v("Додати")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c(
+          "label",
+          { staticClass: "brtop", attrs: { for: "yearCompetition" } },
+          [_vm._v("Рік проведення конкурсу")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.yearCompetition,
+                expression: "yearCompetition"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "yearCompetition" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.yearCompetition = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.years, function(year, index) {
+            return _c("option", { key: index, domProps: { value: year } }, [
+              _vm._v(_vm._s(year))
+            ])
+          }),
+          0
         )
       ])
     ]),

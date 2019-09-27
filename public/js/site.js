@@ -3543,22 +3543,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -3582,11 +3574,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      video: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  created: function created() {
+    this.getVideo();
+  },
+  methods: {
+    getVideo: function getVideo() {
+      var _this = this;
+
+      axios.get('/get-video').then(function (response) {
+        var years = _toConsumableArray(new Set(response.data.map(function (item) {
+          return item.year;
+        })));
+
+        years.map(function (year) {
+          _this.video.push({
+            year: year,
+            file: response.data.filter(function (item) {
+              return year == item.year;
+            })[0]
+          });
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3625,40 +3639,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      pagination: {
+        pageNumber: 0,
+        size: 6
+      },
+      video: []
+    };
   },
-  created: function created() {},
-  computed: {},
-  methods: {}
+  computed: {
+    paginatedData: function paginatedData() {
+      var start = this.pagination.pageNumber * this.pagination.size;
+      var end = start + this.pagination.size;
+      return this.video.slice(start, end);
+    },
+    pageCount: function pageCount() {
+      return Math.ceil(this.video.length / this.pagination.size);
+    }
+  },
+  created: function created() {
+    this.getVideo();
+  },
+  methods: {
+    nextPage: function nextPage() {
+      this.pagination.pageNumber++;
+    },
+    prevPage: function prevPage() {
+      this.pagination.pageNumber--;
+    },
+    getVideo: function getVideo() {
+      var _this = this;
+
+      axios.get('/get-video/' + this.$route.params.id).then(function (response) {
+        _this.video = response.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -43639,115 +43657,38 @@ var render = function() {
         _c(
           "div",
           { staticClass: "row" },
-          [
-            _c(
+          _vm._l(_vm.video, function(item) {
+            return _c(
               "router-link",
               {
+                key: item.video_id,
                 staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 1 } } }
+                attrs: {
+                  to: { name: "gallery-video-year", params: { id: item.year } }
+                }
               },
               [
                 _c("img", {
                   staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
+                  attrs: {
+                    src:
+                      "//img.youtube.com/vi/" +
+                      item.file.url.slice(
+                        item.file.url.length - 11,
+                        item.file.url.length
+                      ) +
+                      "/sddefault.jpg"
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2019")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 2 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2018")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 3 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2017")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 1 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2016")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 2 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2015")])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "col-xl-4 video-gallery-item",
-                attrs: { to: { name: "gallery-video-year", params: { id: 3 } } }
-              },
-              [
-                _c("img", {
-                  staticClass: "gallery-img",
-                  attrs: { src: "img/video-bg.png", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "dark-bg" }, [
-                  _c("p", { staticClass: "caption" }, [_vm._v("2014")])
+                  _c("p", { staticClass: "caption" }, [
+                    _vm._v(_vm._s(item.year))
+                  ])
                 ])
               ]
             )
-          ],
+          }),
           1
         )
       ])
@@ -43799,146 +43740,82 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("h3", { staticClass: "title" }, [
-                _vm._v(" Відео-галерея 2019 рiк")
+                _vm._v(
+                  " Відео-галерея " + _vm._s(this.$route.params.id) + " рiк"
+                )
               ])
             ],
             1
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "gallery-content" }, [
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.paginatedData, function(item) {
+                return _c(
+                  "div",
+                  {
+                    key: item.video_id,
+                    staticClass: "col-xl-4 d-flex align-items-end my-2"
+                  },
+                  [
+                    _c("iframe", {
+                      attrs: {
+                        width: "100%",
+                        src:
+                          "https://www.youtube.com/embed/" +
+                          item.url.slice(item.url.length - 11, item.url.length),
+                        frameborder: "0",
+                        allowfullscreen: ""
+                      }
+                    })
+                  ]
+                )
+              }),
+              0
+            )
+          ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c(
+            "ul",
+            { staticClass: "pagination d-flex justify-content-center" },
+            [
+              _c("li", { staticClass: "controls" }, [
+                _vm.pagination.pageNumber !== 0
+                  ? _c("i", {
+                      staticClass: "fa fa-long-arrow-left",
+                      attrs: { "aria-hidden": "true" },
+                      on: { click: _vm.prevPage }
+                    })
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._v(
+                  _vm._s(_vm.pagination.pageNumber + 1) +
+                    " : " +
+                    _vm._s(_vm.pageCount)
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "controls active" }, [
+                _vm.pagination.pageNumber <= _vm.pageCount - 2
+                  ? _c("i", {
+                      staticClass: "fa fa-long-arrow-right",
+                      attrs: { "aria-hidden": "true" },
+                      on: { click: _vm.nextPage }
+                    })
+                  : _vm._e()
+              ])
+            ]
+          )
         ])
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "gallery-content" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-4 d-flex align-items-end" }, [
-          _c(
-            "video",
-            {
-              staticClass: "video",
-              attrs: { controls: "", poster: "/img/video-bg.png" }
-            },
-            [
-              _c("source", {
-                attrs: { src: "/video/mult1.mp4", type: "video/mp4" }
-              })
-            ]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "pagination d-flex justify-content-center" },
-      [
-        _c("li", { staticClass: "controls" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-left",
-            attrs: { "aria-hidden": "true" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("li", [_vm._v("1 : 16")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "controls active" }, [
-          _c("i", {
-            staticClass: "fa fa-long-arrow-right",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

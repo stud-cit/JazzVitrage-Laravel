@@ -5,29 +5,13 @@ npm run build
             <div class="container">
                 <h2 class="title-section">Відео-галерея</h2>
                 <div class="row">
-                    <router-link :to="{ name: 'gallery-video-year', params:{ id: 1}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2019</p></div>
-                    </router-link>
-                    <router-link :to="{ name: 'gallery-video-year', params:{ id: 2}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2018</p></div>
-                    </router-link>
-                    <router-link :to="{ name: 'gallery-video-year', params: { id: 3}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2017</p></div>
-                    </router-link>
-                    <router-link :to="{ name: 'gallery-video-year', params: { id: 1}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2016</p></div>
-                    </router-link>
-                    <router-link :to="{ name: 'gallery-video-year', params: { id: 2}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2015</p></div>
-                    </router-link>
-                    <router-link :to="{ name: 'gallery-video-year', params: { id: 3}}" class="col-xl-4 video-gallery-item">
-                        <img src="img/video-bg.png" alt="" class="gallery-img">
-                        <div class="dark-bg"><p class="caption">2014</p></div>
+                    <router-link 
+                        class="col-xl-4 video-gallery-item"
+                        :to="{ name: 'gallery-video-year', params: { id: item.year } }" 
+                        v-for="item in video" :key="item.video_id"
+                    >
+                        <img :src="'//img.youtube.com/vi/'+item.file.url.slice(item.file.url.length - 11, item.file.url.length)+'/sddefault.jpg'" class="gallery-img">
+                        <div class="dark-bg"><p class="caption">{{ item.year }}</p></div>
                     </router-link>
                 </div>
             </div>
@@ -39,20 +23,25 @@ npm run build
     export default {
         data() {
             return {
-
+                video: []
             };
         },
 
         created () {
-
-
-        },
-        computed: {
-
+            this.getVideo();
         },
         methods: {
-
-
+            getVideo() {
+                axios.get('/get-video')
+                .then((response) => {
+                    const years = [...new Set(response.data.map(item => item.year))];
+                    years.map(year => {
+                        this.video.push({
+                            year, 
+                            file: response.data.filter(item => year == item.year)[0]})
+                    })
+                })
+            },
         },
 
     }

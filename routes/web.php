@@ -121,6 +121,7 @@ Auth::routes();
     Route::get('get-foto', 'GalleryController@getFoto');
     Route::get('get-foto/{year}/', 'GalleryController@getFotoYear');
     Route::get('get-video', 'GalleryController@getVideo');
+    Route::get('get-video/{year}/', 'GalleryController@getVideoYear');
     Route::get('get-quotes', 'InfoController@getQuotes');
 
     Route::get('get-members',  'ApplicationController@getMembers');

@@ -12,7 +12,8 @@ class VideoGallerySectionSeeder extends Seeder
     public function run()
     {
         DB::table('video_gallery')->insert([
-            'url' => 'https://www.youtube.com/watch?v=fMKZMI8ByTs'
+            'url' => 'https://www.youtube.com/watch?v=fMKZMI8ByTs',
+            'year' => 2019
         ]);
     }
 }
