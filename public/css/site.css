@@ -4,6 +4,8 @@ body {
   background: url(/images/preview-bg.jpg?49a7961621e9a6563222f2fb19b519f1) no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  padding-bottom: 96px;
+  min-height: 100vh;
 }
 
 .sections {
@@ -149,8 +151,9 @@ body {
 
 .preview .top-layout {
   background-image: linear-gradient(109deg, rgba(255, 255, 255, 0.48) 0%, #7d0ca5 100%);
-  -webkit-clip-path: polygon(0 0, 86% 0, 70% 100%, 0% 100%);
-          clip-path: polygon(0 0, 86% 0, 70% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0 0, 87% 0, 70% 100%, 0% 100%);
+          clip-path: polygon(0 0, 87% 0, 70% 100%, 0% 100%);
+  min-height: 668px;
 }
 
 .preview .top-layout .preview-logo {
@@ -540,7 +543,7 @@ body {
 }
 
 .video-gallery .gallery-content {
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .video-gallery .gallery-content .video {
@@ -581,6 +584,10 @@ body {
   font-size: 16px;
   font-weight: 900;
   letter-spacing: 1.6px;
+}
+
+.video-gallery .pagination {
+  margin-top: 40px;
 }
 
 .contacts {
@@ -822,6 +829,10 @@ body {
 .footer {
   padding: 40px 0;
   background-color: #393939;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .footer .container {
