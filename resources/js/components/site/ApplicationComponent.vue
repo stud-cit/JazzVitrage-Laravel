@@ -34,7 +34,7 @@
                     <!--step1-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 0">
+                        <form @submit.prevent="nextStep"  class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
                             <div class="input-group">
                                 <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.data.appType" ><i></i>СОЛІСТ</label>
@@ -47,23 +47,38 @@
                             </div>
                             <div class="select-block">
                                 <img src="img/star.png" class="star" alt="">
-                                <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
+                                <select name="nomination" v-model="registration.data.nomination"
+                                                 v-validate="{ required: true, regex: /^[1-9]$/ }"
+                                                 data-vv-as="серия и номер паспорта"
+                                                 id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
                                     <option value="1">Інструментальний  жанр</option>
                                     <option value="2">Вокальний  жанр</option>
                                     <option value="3">Композиція</option>
                                 </select>
                             </div>
+
+                            <span v-if="errors.has('nomination')">
+                                {{ errors.first('nomination') }}
+                            </span>
                             <div class="text-right">
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <button type="submit"  class="next-step">Далі</button>
                             </div>
-                        </div>
+                        </form>
                     </transition>
 
                     <!--step2-->
 
                     <transition name="fade">
-                        <div class="step-form" v-if="activeStep == 1 && registration.data.appType == 1">
+                        <!--<div class="step-form" v-if="activeStep == 1 && registration.data.appType == 1">-->
+                        <form class="step-form" v-if="activeStep == 1" >
+
+                            <!--<input type="text" name="nomination2" v-model="registration.data.nomination2"-->
+                            <!--v-validate="{ required: true, regex: /^[1-9]$/ }"-->
+                            <!--data-vv-as="серия и номер паспорта">-->
+                            <!--<span v-if="errors.has('nomination2')">-->
+                                <!--{{ errors.first('nomination2') }}-->
+                            <!--</span>-->
                             <h3 class="step-title">Інформація про учасника</h3>
                             <div class="input-row">
                                 <div class="input-container">
@@ -139,7 +154,7 @@
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
-                        </div>
+                        </form>
 
                         <!--duet-->
 
@@ -570,10 +585,17 @@
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
                 },
+                steps: [
+                    {
+                        appType: 1,
+                        nomination: 0,
+                    }
+                ],
                 registration: {
                     data: {
                         appType: 1,
                         nomination: 0,
+                        nomination2: '',
                         memberName: '',
                         memberSurname: '',
                         memberPatronymic: '',
@@ -631,9 +653,21 @@
             nextStep(){
 
                 const steps = this.steps;
-                this.activeStep++;
-                steps[this.activeStep] = true;
-                console.log(this.registration);
+                this.$validator.validateAll().then((result) => {
+                    if (!result) {
+                        alert('form');
+                        return
+                    }
+                    this.activeStep++;
+                    steps[this.activeStep] = true;
+                    console.log(this.registration);
+
+
+                }).catch(() => {
+                    console.log(2);
+
+                });
+
 
 
 

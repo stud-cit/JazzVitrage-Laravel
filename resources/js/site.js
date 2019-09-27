@@ -22,6 +22,13 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import VeeValidate, { Validator } from 'vee-validate';
+import uk from 'vee-validate/dist/locale/uk';
+
+Validator.localize('uk', uk);
+Vue.use(VeeValidate, {
+    locale: 'uk',
+});
 
 Vue.config.delimiters = ['${', '}'];
 
