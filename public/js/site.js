@@ -2599,13 +2599,20 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getInfo();
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$watch('info.audio', function () {
+      _this.$refs.player.load();
+    });
+  },
   methods: {
     getInfo: function getInfo() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/get-all-info').then(function (response) {
         response.data.info.map(function (item) {
-          Object.assign(_this.info, item);
+          Object.assign(_this2.info, item);
         });
       });
     }
@@ -42009,11 +42016,19 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "absolute-block" }, [
-              _c("audio", { staticClass: "audio", attrs: { controls: "" } }, [
-                _c("source", {
-                  attrs: { src: _vm.info.audio, type: "audio/wav" }
-                })
-              ]),
+              _c(
+                "audio",
+                {
+                  ref: "player",
+                  staticClass: "audio",
+                  attrs: { controls: "" }
+                },
+                [
+                  _c("source", {
+                    attrs: { src: _vm.info.audio, type: "audio/wav" }
+                  })
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "text-center" }, [
                 _c(

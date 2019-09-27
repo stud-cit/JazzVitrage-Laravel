@@ -103,13 +103,13 @@
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
-				photo_input.setAttribute('class', 'edit-photo');
+				photo_input.setAttribute('class', 'edit-org-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span class="name-title" id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-					<span id="file"></span>
 				</label>
                 </div>`;
 				photo_td.innerHTML = '';

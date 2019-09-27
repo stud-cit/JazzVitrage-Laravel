@@ -3416,8 +3416,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_input.setAttribute('class', 'input-edit-correct');
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
-      photo_input.setAttribute('class', 'edit-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.setAttribute('class', 'edit-jury-photo');
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
       email_input.setAttribute('value', email_td.innerHTML);
@@ -3658,8 +3658,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       email_input.setAttribute('id', 'email_data');
       email_td.innerHTML = '';
       email_td.append(email_input);
-      photo_input.setAttribute('class', 'edit-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t\t<span id=\"file\"></span>\n\t\t\t\t</label>\n                </div>";
+      photo_input.setAttribute('class', 'edit-org-photo');
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       photo_td.innerHTML = '';
       photo_td.append(photo_input);
       biography_input.value += biography_td.innerHTML;
