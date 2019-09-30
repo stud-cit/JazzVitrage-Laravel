@@ -114,7 +114,7 @@
 				var nomination_input = document.createElement('input');
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
+				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5];
@@ -128,14 +128,20 @@
 
 				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
-                <label class="label">
+                <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
                     <span class="name-title" id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
-				photo_td.innerHTML = '';
+				var photo_label = photo_td.querySelector('img');
+
+				photo_label.setAttribute('id', 'photo_value_jury');
+				photo_label.removeAttribute('class');
+				document.getElementById('photo_value_jury').style.opacity = "0.5";
+
+				photo_input.prepend(photo_label);
 				photo_td.append(photo_input);
 
 				email_input.setAttribute('value', email_td.innerHTML);

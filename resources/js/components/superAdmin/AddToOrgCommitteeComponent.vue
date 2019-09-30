@@ -105,14 +105,20 @@
 
 				photo_input.setAttribute('class', 'edit-org-photo');
 				photo_input.innerHTML = `<div class="form-group">
-                <label class="label">
+                <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
                     <span class="name-title" id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
-				photo_td.innerHTML = '';
+				var photo_label = photo_td.querySelector('img');
+
+				photo_label.setAttribute('id', 'photo_value_org');
+				photo_label.removeAttribute('class');
+				document.getElementById('photo_value_org').style.opacity = "0.5";
+
+				photo_input.prepend(photo_label);
 				photo_td.append(photo_input);
 
 				biography_input.value += biography_td.innerHTML;
