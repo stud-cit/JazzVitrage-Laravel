@@ -500,6 +500,42 @@ button {
   font-size: 80pt;
 }
 
+.gallery .video-gallery-item {
+  position: relative;
+  margin: 15px 0;
+}
+
+.gallery .video-gallery-item img {
+  max-height: 350px;
+  height: 100%;
+  width: 100%;
+}
+
+.gallery .video-gallery-item .dark-bg {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 25px);
+  max-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.gallery .video-gallery-item .dark-bg .caption {
+  font-family: Montserrat;
+  font-size: 60pt;
+  font-weight: 900;
+  color: #fff;
+}
+
+.gallery .video-gallery-item .dark-bg:hover .caption {
+  transition: all 0.3s ease;
+  font-size: 80pt;
+}
+
 .gallery .page-nav {
   display: flex;
   justify-content: space-between;

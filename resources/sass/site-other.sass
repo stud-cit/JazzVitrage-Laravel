@@ -348,6 +348,34 @@ input, select, textarea, button
             .caption
                transition: all 0.3s ease
                font-size: 80pt
+   .video-gallery-item
+      position: relative
+      margin: 15px 0
+      img
+         max-height: 350px
+         height: 100%
+         width: 100%
+      .dark-bg
+         position: absolute
+         top: 0
+         left: 15px
+         width: calc(100% - 30px)
+         height: calc(100% - 25px)
+         max-height: 350px
+         display: flex
+         justify-content: center
+         align-items: center
+         cursor: pointer
+         .caption
+            font-family: Montserrat
+            font-size: 60pt
+            font-weight: 900
+            color: #fff
+
+         &:hover
+            .caption
+               transition: all 0.3s ease
+               font-size: 80pt
    .page-nav
       display: flex
       justify-content: space-between
