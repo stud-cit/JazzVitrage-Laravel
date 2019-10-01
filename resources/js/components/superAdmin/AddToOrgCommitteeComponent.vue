@@ -46,11 +46,11 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td id="edit-save-td">
+                <td class="text-center" id="edit-save-td">
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
+                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -154,7 +154,17 @@
 					.then((response) => {
 						this.committees = [];
 						this.getFullOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			getFullOrgCommitteeList() {
 				axios.get('/get-all-org')
@@ -173,7 +183,17 @@
 					.then((response) => {
 						this.committees = [];
 						this.getFullOrgCommitteeList();
+						swal("Член орг. комітету був успішно доданий", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			deleteOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

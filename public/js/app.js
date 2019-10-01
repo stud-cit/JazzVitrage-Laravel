@@ -3224,6 +3224,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.admin = [];
 
         _this.getFullAdminOrgCommitteeList();
+
+        swal("Інформація оновлена", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     getFullAdminOrgCommitteeList: function getFullAdminOrgCommitteeList() {
@@ -3245,6 +3255,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this3.admin = [];
 
         _this3.getFullAdminOrgCommitteeList();
+
+        swal("Адміністратор успішно доданий", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     deleteAdminOrgCommittee: function deleteAdminOrgCommittee(id, index) {
@@ -3478,6 +3498,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.jurys = [];
 
         _this.getFullJuryList();
+
+        swal("Інформація оновлена", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     addNomination: function addNomination() {
@@ -3515,10 +3545,20 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.form.append('photo', this.$refs.juryfile.files[0]);
       this.form.append('nominations', valOptions);
       this.form.append('informations', this.additionalInfo);
-      axios.post('/post-all-jury', this.form).then(function () {
+      axios.post('/post-all-jury', this.form).then(function (response) {
         _this3.jurys = [];
 
         _this3.getFullJuryList();
+
+        swal("Журі було успішно додано", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     deleteJury: function deleteJury(id, index) {
@@ -3700,6 +3740,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.committees = [];
 
         _this.getFullOrgCommitteeList();
+
+        swal("Інформація оновлена", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     getFullOrgCommitteeList: function getFullOrgCommitteeList() {
@@ -3724,6 +3774,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this3.committees = [];
 
         _this3.getFullOrgCommitteeList();
+
+        swal("Член орг. комітету був успішно доданий", {
+          icon: "success"
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Не вдалося'
+        });
       });
     },
     deleteOrgCommittee: function deleteOrgCommittee(id, index) {
@@ -53754,29 +53814,33 @@ var render = function() {
                 [_vm._v(_vm._s(item.email))]
               ),
               _vm._v(" "),
-              _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn
-                  ? _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-pencil-square btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit($event)
+              _c(
+                "td",
+                { staticClass: "text-center", attrs: { id: "edit-save-td" } },
+                [
+                  _vm.editBtn
+                    ? _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-pencil-square btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.edit($event)
+                          }
                         }
-                      }
-                    })
-                  : _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-check-circle btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.save(item.user_id, $event)
+                      })
+                    : _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-check-circle btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.save(item.user_id, $event)
+                          }
                         }
-                      }
-                    })
-              ]),
+                      })
+                ]
+              ),
               _vm._v(" "),
-              _c("td", [
+              _c("td", { staticClass: "text-center" }, [
                 _c("i", {
                   staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
                   on: {
@@ -54193,7 +54257,7 @@ var render = function() {
               _c(
                 "td",
                 {
-                  staticClass: "editing-td",
+                  staticClass: "editing-td text-center",
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1),
@@ -54226,7 +54290,7 @@ var render = function() {
               _c(
                 "td",
                 {
-                  staticClass: "editing-td",
+                  staticClass: "editing-td text-center",
                   attrs: {
                     "data-toggle": "collapse",
                     "data-target": "#collapse" + (index + 1),
@@ -54549,29 +54613,33 @@ var render = function() {
                 [_vm._v(_vm._s(item.informations))]
               ),
               _vm._v(" "),
-              _c("td", { attrs: { id: "edit-save-td" } }, [
-                _vm.editBtn !== item.user_id
-                  ? _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-pencil-square btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit(item.user_id, $event)
+              _c(
+                "td",
+                { staticClass: "text-center", attrs: { id: "edit-save-td" } },
+                [
+                  _vm.editBtn !== item.user_id
+                    ? _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-pencil-square btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.edit(item.user_id, $event)
+                          }
                         }
-                      }
-                    })
-                  : _c("i", {
-                      staticClass:
-                        "fa fa-2x fa-check-circle btn btn-default p-0",
-                      on: {
-                        click: function($event) {
-                          return _vm.save(item.user_id, $event)
+                      })
+                    : _c("i", {
+                        staticClass:
+                          "fa fa-2x fa-check-circle btn btn-default p-0",
+                        on: {
+                          click: function($event) {
+                            return _vm.save(item.user_id, $event)
+                          }
                         }
-                      }
-                    })
-              ]),
+                      })
+                ]
+              ),
               _vm._v(" "),
-              _c("td", [
+              _c("td", { staticClass: "text-center" }, [
                 _c("i", {
                   staticClass: "fa fa-2x fa-times-circle btn btn-default p-0",
                   on: {

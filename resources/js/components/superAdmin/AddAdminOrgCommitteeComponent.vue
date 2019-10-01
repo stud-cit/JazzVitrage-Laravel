@@ -36,11 +36,11 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.surname }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td id="edit-save-td">
+                <td class="text-center" id="edit-save-td">
                     <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
+                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -112,7 +112,17 @@
 					.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')
@@ -128,7 +138,17 @@
 					.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
+						swal("Адміністратор успішно доданий", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			deleteAdminOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

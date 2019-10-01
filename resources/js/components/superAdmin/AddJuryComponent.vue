@@ -63,11 +63,11 @@
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
+                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -202,7 +202,17 @@
 					.then((response) => {
 						this.jurys = [];
 						this.getFullJuryList();
+						swal("Інформація оновлена", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			addNomination(){
 				this.items.push({
@@ -234,10 +244,20 @@
 				this.form.append('informations', this.additionalInfo);
 
 				axios.post('/post-all-jury', this.form)
-					.then(() => {
+					.then((response) => {
 						this.jurys = [];
 						this.getFullJuryList();
+						swal("Журі було успішно додано", {
+							icon: "success",
+						});
 					})
+					.catch((error) => {
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Не вдалося'
+						});
+					});
 			},
 			deleteJury(id, index){
 				axios.post('/delete-user/'+id)
