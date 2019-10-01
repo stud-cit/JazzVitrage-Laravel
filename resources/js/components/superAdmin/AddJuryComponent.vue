@@ -207,6 +207,8 @@
 						});
 					})
 					.catch((error) => {
+						this.jurys = [];
+						this.getFullJuryList();
 						swal({
 							icon: "error",
 							title: 'Помилка',

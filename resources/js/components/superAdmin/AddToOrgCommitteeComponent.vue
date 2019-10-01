@@ -159,6 +159,8 @@
 						});
 					})
 					.catch((error) => {
+						this.committees = [];
+						this.getFullOrgCommitteeList();
 						swal({
 							icon: "error",
 							title: 'Помилка',

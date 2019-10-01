@@ -3229,6 +3229,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           icon: "success"
         });
       })["catch"](function (error) {
+        _this.admin = [];
+
+        _this.getFullAdminOrgCommitteeList();
+
         swal({
           icon: "error",
           title: 'Помилка',
@@ -3503,6 +3507,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           icon: "success"
         });
       })["catch"](function (error) {
+        _this.jurys = [];
+
+        _this.getFullJuryList();
+
         swal({
           icon: "error",
           title: 'Помилка',
@@ -3745,6 +3753,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           icon: "success"
         });
       })["catch"](function (error) {
+        _this.committees = [];
+
+        _this.getFullOrgCommitteeList();
+
         swal({
           icon: "error",
           title: 'Помилка',
