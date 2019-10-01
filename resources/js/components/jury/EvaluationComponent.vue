@@ -98,7 +98,8 @@
             <div class="col-3">
                 <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
                 <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
-                <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" @click="nextMember" v-if="$route.params.id < count" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
         </div>
     </div>
@@ -109,12 +110,14 @@
     export default {
         data() {
             return {
+                allMembers: null,
                 member: '',
                 type: '',
                 school: '',
                 program: '',
                 group: null,
                 count: 0,
+                lastIndex: 0,
                 // оцінки
                 // score: {
                     stylisticMatching: 0,
@@ -151,11 +154,15 @@
             this.getMember();
             this.getAllMembers();
             this.getEvaluation();
+            this.setlastindex();
         },
         computed: {
             nextButtonShow() {
                 return this.$route.params.id == this.count ? false : true;
             },
+            prevButtonShow() {
+                return this.$route.params.id > 1 || this.$route.params.id == this.count ? true : false;
+            }
             // evaluation: {
             //     get: function(){
             //         const {stylisticMatching, artisticValue, artistry, originality} = this.score;
@@ -248,26 +255,59 @@
             },
             getMember() {
                 axios.get('/get-member/'+this.$route.params.id)
-                .then((response) => {
-                    this.member = response.data[0].solo_duet;
-                    this.group = response.data[0].group;
-                    this.type = response.data[0].app_type;
-                    this.school = response.data[0].preparation;
-                    this.program = response.data[0].presentation;
-                });
+                    .then((response) => {
+                        this.member = response.data[0].solo_duet;
+                        this.group = response.data[0].group;
+                        this.type = response.data[0].app_type;
+                        this.school = response.data[0].preparation;
+                        this.program = response.data[0].presentation;
+                    });
             },
             getAllMembers() {
                 axios.get('/get-all-members')
-                .then((response) => {
-                    this.count = response.data.length;
-                });
+                    .then((response) => {
+                        this.count = response.data.length;
+                        this.allMembers = response.data.map( (row) => row.application_id);
+                    });
+                
+            },
+            nextItem () {
+                let next;
+                let index = this.allMembers.indexOf(this.$route.params.id);
+                if(index >= 0 && index < this.allMembers.length){
+                    next = this.allMembers[index + 1]
+                    return next;
+                }
+            },
+            prevItem () {
+                let prev;
+                let index = this.allMembers.indexOf(this.$route.params.id);
+                if(index >= 0){
+                    prev = this.allMembers[index - 1];
+                    if (prev => 0) {
+                        return  prev;
+                    }
+
+                }
             },
             nextMember() {
-                this.$router.push({ name: 'jury-evaluation', params: {id: ++this.$route.params.id} });
+                const next = this.nextItem();
+
+                this.$router.push({ name: 'jury-evaluation', params: {id: next} });
                 this.getMember();
                 this.getEvaluation();
+            },
+            prevMember() {
+                const prev = this.prevItem();
+                
+                this.$router.push({name: 'jury-evaluation', params: { id: prev } });
+                this.getMember();
+                this.getEvaluation();
+            },
+            setlastindex () {
+                this.lastIndex = this.allMembers.indexOf(this.count);
             }
-        }
+        },
     }
 </script>
 <style lang="sass" scoped>
