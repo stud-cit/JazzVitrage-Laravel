@@ -52,9 +52,7 @@
                                                  data-vv-as="серия и номер паспорта"
                                                  id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
-                                    <option value="1">Інструментальний  жанр</option>
-                                    <option value="2">Вокальний  жанр</option>
-                                    <option value="3">Композиція</option>
+                                    <option v-for="(value, index) in nominations" :value="value.nomination_id" :key="index">{{ value.name }}</option>
                                 </select>
                             </div>
 
@@ -542,7 +540,7 @@
                             </ul></div>
                             <div class="result-row  file-row" >
 
-                                <div class="d-flex flex-column align-items-center file-item" v-for="file in registration.files"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
+                                <div class="d-flex flex-column align-items-center file-item" v-for="(file, index) in registration.files" :key="index"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
                                 <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>2</span></div>-->
                                 <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
                             </div>
@@ -576,7 +574,7 @@
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
-                nominations: ['', 'Інструментальний  жанр', 'Вокальний  жанр', 'Композиція'],
+                nominations: [],
 
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
@@ -644,12 +642,18 @@
 
         created () {
             document.title = "Заповнити заявку";
-
+            this.getNominations();
         },
         computed: {
 
         },
         methods: {
+            getNominations() {
+                axios.get('/get-nominations')
+                .then((response) => {
+                    this.nominations = response.data;
+                })
+            },
             nextStep(){
 
                 const steps = this.steps;

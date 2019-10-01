@@ -10,36 +10,17 @@
                     </div>
 
                 </div>
-                <carousel   :dots="false"  :nav="false" class="jury-list">
+                <div v-if="juryList.length > 0">
+                <carousel :dots="false" :nav="false" class="jury-list">
                     <template slot="prev"><span class="prev"><i class="fa arrows fa-arrow-circle-left fa-3x" aria-hidden="true"></i></span></template>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 1}}">
-                        <img src="img/list_jury/Intersection_4.png" alt="">
-                        <div class="items-title"></div>
-                    </router-link>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 2}}">
-                        <img src="img/list_jury/Intersection_5.png" alt="">
-                        <div class="items-title"></div>
-                    </router-link>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 3}}">
-                        <img src="img/list_jury/Intersection_6.png" alt="">
-                        <div class="items-title"></div>
-
-                    </router-link>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 1}}">
-                        <img src="img/list_jury/Intersection_4.png" alt="">
-                        <div class="items-title"></div>
-                    </router-link>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 2}}">
-                        <img src="img/list_jury/Intersection_5.png" alt="">
-                        <div class="items-title"></div>
-                    </router-link>
-                    <router-link class="jury-items" :to="{ name: 'jury-member', params:{ id: 3}}">
-                        <img src="img/list_jury/Intersection_6.png" alt="">
-                        <div class="items-title"></div>
+                    <router-link class="jury-items" v-for="(item, index) in juryList" :key="index" :to="{ name: 'jury-member', params:{ id: item.user_id}}">
+                        <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
+                        <div class="items-title">{{ `${item.name} ${item.surname}` }}</div>
                     </router-link>
                     <template slot="next" class="asdasd"><span class="next"><i class="fa arrows fa-arrow-circle-right fa-3x" aria-hidden="true"></i></span></template>
 
                 </carousel>
+                </div>
                 <!--<div class="jury-list">-->
 
                 <!--</div>-->
@@ -50,27 +31,31 @@
 </template>
 
 <script>
-    import carousel from 'vue-owl-carousel';
+	import carousel from 'vue-owl-carousel';
 
-    export default {
-         data() {
-            return {
-                
-            };
-        },
+	export default {
+		data() {
+			return {
+				juryList: [],
+			};
+		},
 
-        created () {
-             document.title = "Наше журі";
-    
-        },
-        computed: {
+		created () {
+			document.title = "Наше журі";
+			this.getJuryList();
+		},
+		computed: {
 
-        },
-        methods: {
+		},
+		methods: {
+			getJuryList() {
+				axios.get('/get-jurys-view')
+					.then((response) => {
+						this.juryList.push(...response.data)
+					})
+			},
+		},
+		components: { carousel },
 
-
-        },
-        components: { carousel },
-
-    }
+	}
 </script>

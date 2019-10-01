@@ -3,10 +3,16 @@
     <div>
 
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
                 <label for="video" class="brtop">Посилання на відео (YouTube)</label>
                 <input type="text" v-model="video" class="form-control" id="video">
                 <button type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
+            </div>
+            <div class="col-6">
+                <label for="yearCompetition" class="brtop">Рік проведення конкурсу</label>
+                <select class="form-control" v-model="yearCompetition" id="yearCompetition">
+                    <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
+                </select>
             </div>
         </div>
         <br>
@@ -29,10 +35,17 @@ export default {
         return {
             video: '',
             urls: [],
+            yearCompetition: new Date().getFullYear()
         }
     },
     created() {
         this.getVideo();
+    },
+    computed: {
+        years() {
+            const year = new Date().getFullYear();
+            return Array.from({length: year - 2000}, (value, index) => 2001 + index);
+        }
     },
     methods: {
         getVideo() {
@@ -42,8 +55,10 @@ export default {
             })
         },
         postVideo() {
-            axios.post('/post-video', {url: this.video})
-                .then(() => {
+            axios.post('/post-video', {
+                    url: this.video,
+                    year: this.yearCompetition
+                }).then(() => {
                     this.urls = [];
                     this.getVideo();
                 })

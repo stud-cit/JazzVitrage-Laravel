@@ -46,7 +46,7 @@
                 <th width="7%">№</th>
                 <th width="15%">ПІБ журі</th>
                 <th width="15%">Фото</th>
-                <th width="15%">Електронна адеса</th>
+                <th width="15%">Електронна адреса</th>
                 <th width="15%">Звання члена журі</th>
                 <th width="15%">Номінація</th>
                 <th width="15%">Членство в спілках журі</th>
@@ -58,16 +58,16 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td id="edit-save-td">
-                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
+                    <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -77,7 +77,7 @@
 	export default {
 		data() {
 			return {
-				editBtn: true,
+				editBtn: 0,
 				jurys: [],
 				name: '',
 				surname: '',
@@ -101,15 +101,18 @@
 			this.getFullJuryList();
 		},
 		methods: {
-			edit(event){
-				this.editBtn = false;
+			getFileName(event) {
+				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			},
+			edit(id, event){
+				this.editBtn = id;
 				event.preventDefault();
 				var pib_input = document.createElement('input');
-				var photo_input = document.createElement('input');
+				var photo_input = document.createElement('div');
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
 				var nomination_input = document.createElement('input');
-				var information_input = document.createElement('input');
+				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
@@ -119,48 +122,59 @@
 				pib_input.setAttribute('value', pib_td.innerHTML);
 				pib_input.setAttribute('type', 'text');
 				pib_input.setAttribute('id', 'pib_data');
+				pib_input.setAttribute('class','input-edit-correct');
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
 
-				photo_input.setAttribute('type', 'file');
-				photo_input.setAttribute(':ref', 'juryfile');
-				photo_input.setAttribute('class', 'form-control-file');
-				photo_input.setAttribute('id', 'jury-photo');
+				photo_input.setAttribute('class', 'edit-photo');
+				photo_input.innerHTML = `<div class="form-group">
+                <label class="label">
+                    <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span id="file"></span>
+                    <span class="title">Додати файл</span>
+					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
+				</label>
+                </div>`;
 				photo_td.innerHTML = '';
 				photo_td.append(photo_input);
 
 				email_input.setAttribute('value', email_td.innerHTML);
 				email_input.setAttribute('type', 'text');
 				email_input.setAttribute('id', 'email_data');
+				email_input.setAttribute('class','input-edit-correct');
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
 				rank_input.setAttribute('value', rank_td.innerHTML);
 				rank_input.setAttribute('type', 'text');
 				rank_input.setAttribute('id', 'rank_data');
+				rank_input.setAttribute('class','input-edit-correct');
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
 				nomination_input.setAttribute('value', nomination_td.innerHTML);
 				nomination_input.setAttribute('type', 'text');
 				nomination_input.setAttribute('id', 'nomination_data');
+				nomination_input.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
 				nomination_td.append(nomination_input);
 
-				information_input.setAttribute('value', information_td.innerHTML);
-				information_input.setAttribute('type', 'text');
-				information_input.setAttribute('id', 'nomination_data');
+				information_input.value += information_td.innerHTML;
+				information_input.setAttribute('id', 'information_data');
+				information_input.setAttribute('rows', '6');
+				information_input.setAttribute('class', 'text-area-width');
 				information_td.innerHTML = '';
 				information_td.append(information_input);
 			},
 			save(id, event){
+				this.editBtn = 0;
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
-				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('input').value;
+				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
 				var parse_photo = photo_td;

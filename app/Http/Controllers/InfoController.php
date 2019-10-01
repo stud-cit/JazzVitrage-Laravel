@@ -20,10 +20,11 @@ class InfoController extends Controller
     {
         if($request->id) {
             $contacts = ContactsItems::find($request->id);
+            $contacts->contact_section_id = $request->contact_section_id;
         } else {
             $contacts = new ContactsItems;
+            $contacts->contact_section_id = 2;
         }
-        $contacts->contact_section_id = $request->contact_section_id;
         $contacts->contact_title = $request->contact_title;
         $contacts->contact = $request->contact;
         $contacts->save();

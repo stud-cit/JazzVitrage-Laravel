@@ -29,4 +29,8 @@ class Application extends Model
 	{
 		return $this->hasOne('App\Models\Presentation', 'application_id');
 	}
+	public function nomination()
+	{
+		return $this->belongsTo('App\Models\Nomination', 'nomination_id');
+	}
 }

@@ -53,10 +53,16 @@ class GalleryController extends Controller
         $data = VideoGallery::orderBy('created_at', 'asc')->get();
         return response()->json($data);
     }
+    public function getVideoYear($year)
+    {
+        $data = VideoGallery::orderBy('created_at', 'asc')->where('year', '=', $year)->get();
+        return response()->json($data);
+    }
     public function postVideo(Request $request)
     {
         $video = new VideoGallery;
         $video->url = $request->url;
+        $video->year = $request->year;
         $video->save();
     }
     public function deleteVideo($id)

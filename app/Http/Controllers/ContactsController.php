@@ -12,9 +12,14 @@ class ContactsController extends Controller
         $data = Users::where('role', 'orgComittee')->get();
         return response()->json($data);
     }
-    public function jury()
+    public function getJurys()
     {
         $data = Users::where('role', 'jury')->get();
+        return response()->json($data);
+    }
+    public function jury($id)
+    {
+        $data = Users::where('user_id', '=', $id)->get();
         return response()->json($data);
     }
 }
