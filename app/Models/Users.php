@@ -36,4 +36,12 @@ class Users extends Authenticatable
     ];
 
     protected $guarded = ['user_id'];
+
+    /**
+	 *  Get the evaluations for user
+	 */
+    public function evaluation()
+    {
+        return $this->hasMany('App\Models\Evaluation', 'user_id');
+    }
 }

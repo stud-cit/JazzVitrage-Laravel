@@ -11,17 +11,42 @@
         <div class="col-4">
             <form>
                 <label for="stylisticMatching">Стилістична та жанрова відповідність творів.</label>
-                <input type="number" class="form-control" id="stylisticMatching">
+                <input 
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="stylisticMatching" 
+                    class="form-control" 
+                    id="stylisticMatching" >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
-                <input type="number" class="form-control" id="artisticValue">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="artisticValue"
+                    class="form-control"
+                    id="artisticValue" >
 
                 <label for="artistry">Артистизм.</label>
-                <input type="number" class="form-control" id="artistry">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="artistry"
+                    class="form-control"
+                    id="artistry" >
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
-                <input type="number" class="form-control" id="originality">
+                <input
+                    type="number"
+                    v-bind:min="minEvaluation"
+                    v-bind:max="maxEvaluation"
+                    v-model.number="originality"
+                    class="form-control"
+                    id="originality">
             </form>
+            <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
         </div>
     </div>
     <br>
@@ -71,8 +96,10 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-secondary btn-block">Зберегти</button>
-                <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
+                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
+                <button type="button" @click="nextMember" v-if="$route.params.id < count" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
         </div>
     </div>
@@ -83,44 +110,207 @@
     export default {
         data() {
             return {
+                allMembers: null,
                 member: '',
                 type: '',
                 school: '',
                 program: '',
                 group: null,
-                count: 0
+                count: 0,
+                lastIndex: 0,
+                // оцінки
+                // score: {
+                    stylisticMatching: 0,
+                    artisticValue: 0,
+                    artistry: 0,
+                    originality: 0,
+                    evaluation: 0,
+                // },
+                // мінімальна максимальна оцінка
+                minEvaluation: 0,
+                maxEvaluation: 25,
+                hasError: false,
+                hasRecord: false
+            }
+        },
+        watch: {
+            stylisticMatching: function (val) {
+                this.evaluation += val;
+            },
+            artisticValue: function (val) {
+                this.evaluation += val;
+            },
+            artistry: function (val) {
+                this.evaluation += val;
+            },
+            originality: function (val) {
+               this.evaluation += val;
+            },
+            evaluation: function () {
+                this.evaluation = this.stylisticMatching + this.artisticValue + this.artistry + this.originality;
             }
         },
         created() {
             this.getMember();
             this.getAllMembers();
+            this.getEvaluation();
+            this.setlastindex();
         },
         computed: {
             nextButtonShow() {
                 return this.$route.params.id == this.count ? false : true;
+            },
+            prevButtonShow() {
+                return this.$route.params.id > 1 || this.$route.params.id == this.count ? true : false;
             }
+            // evaluation: {
+            //     get: function(){
+            //         const {stylisticMatching, artisticValue, artistry, originality} = this.score;
+            //         return stylisticMatching + artisticValue + artistry + originality;
+            //     },
+            //     set: function (total) {
+            //         this.score.evaluation = total;
+            //     }
+            // }
         },
+
         methods: {
+            getEvaluation() {
+                axios.get(`/has-record/${this.$route.params.id}/`)
+                    .then( (response)  => {
+                        this.hasRecord = this.isRecord(response.data);
+                        const {stylistic_matching, artistic_value, artistry, originality, evaluation } = response.data;
+                       
+                        if(this.hasRecord) {
+                            this.stylisticMatching = stylistic_matching;
+                            this.artisticValue = artistic_value;
+                            this.artistry = artistry;
+                            this.originality = originality;
+                            this.evaluation = evaluation;
+                        } else {
+                            this.setDefaultEvaluate();
+                        } 
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            // need make validation 
+            createEvaluation() {
+                // call setter
+                //this.evaluation = this.evaluation;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
+
+                axios.post('/to-rate/', {
+                    application_id: this.program.application_id,
+                    evaluation,
+                    stylistic_matching: stylisticMatching,
+                    artistic_value: artisticValue,
+                    artistry,
+                    originality
+                })
+                .then( (response)  => {
+                    console.log(response.data);
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+                alert(`create Ваша оцінка ${this.evaluation} із можливих 100`);
+            },
+            updateEvaluation() {
+                // call setter
+                //this.evaluation = this.evaluation;
+                
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
+
+                axios.post(`/to-rate-update/${this.$route.params.id}`, {
+                    evaluation,
+                    stylistic_matching: stylisticMatching,
+                    artistic_value: artisticValue,
+                    artistry,
+                    originality
+                })
+                .then(function (response) {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+                alert(`Update Ваша оцінка ${this.score.evaluation} із можливих 100`);
+            },
+
+            setDefaultEvaluate() {
+                this.stylisticMatching = 0;
+                this.artisticValue = 0;
+                this.artistry = 0;
+                this.originality = 0;
+                this.evaluation = 0;
+            },
+            isRecord(obj) {
+                for (let key in obj) {
+                    // если тело цикла начнет выполняться - значит в объекте есть свойства
+                    return true;
+                }
+                return false;
+            },
             getMember() {
                 axios.get('/get-member/'+this.$route.params.id)
-                .then((response) => {
-                    this.member = response.data[0].solo_duet;
-                    this.group = response.data[0].group;
-                    this.type = response.data[0].app_type;
-                    this.school = response.data[0].preparation;
-                    this.program = response.data[0].presentation;
-                });
+                    .then((response) => {
+                        this.member = response.data[0].solo_duet;
+                        this.group = response.data[0].group;
+                        this.type = response.data[0].app_type;
+                        this.school = response.data[0].preparation;
+                        this.program = response.data[0].presentation;
+                    });
             },
             getAllMembers() {
                 axios.get('/get-all-members')
-                .then((response) => {
-                    this.count = response.data.length;
-                });
+                    .then((response) => {
+                        this.count = response.data.length;
+                        this.allMembers = response.data.map( (row) => row.application_id);
+                    });
+                
+            },
+            nextItem () {
+                let next;
+                let index = this.allMembers.indexOf(this.$route.params.id);
+                if(index >= 0 && index < this.allMembers.length){
+                    next = this.allMembers[index + 1]
+                    return next;
+                }
+            },
+            prevItem () {
+                let prev;
+                let index = this.allMembers.indexOf(this.$route.params.id);
+                if(index >= 0){
+                    prev = this.allMembers[index - 1];
+                    if (prev => 0) {
+                        return  prev;
+                    }
+
+                }
             },
             nextMember() {
-                this.$router.push({ name: 'jury-evaluation', params: {id: ++this.$route.params.id} });
+                const next = this.nextItem();
+
+                this.$router.push({ name: 'jury-evaluation', params: {id: next} });
                 this.getMember();
+                this.getEvaluation();
+            },
+            prevMember() {
+                const prev = this.prevItem();
+                
+                this.$router.push({name: 'jury-evaluation', params: { id: prev } });
+                this.getMember();
+                this.getEvaluation();
+            },
+            setlastindex () {
+                this.lastIndex = this.allMembers.indexOf(this.count);
             }
-        }
+        },
     }
 </script>
+<style lang="sass" scoped>
+.evaluation
+    font-size: 1.5rem
+</style>
