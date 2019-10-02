@@ -114,6 +114,8 @@
 						this.getFullAdminOrgCommitteeList();
 						swal("Інформація оновлена", {
 							icon: "success",
+							timer: 1000,
+							showConfirmButton: false
 						});
 					})
 					.catch((error) => {
@@ -122,7 +124,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Не вдалося'
+							text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
 						});
 					});
 			},
@@ -148,7 +150,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Не вдалося'
+							text: 'Усі поля повинні бути заповнені'
 						});
 					});
 			},

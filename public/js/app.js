@@ -3226,7 +3226,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.getFullAdminOrgCommitteeList();
 
         swal("Інформація оновлена", {
-          icon: "success"
+          icon: "success",
+          timer: 1000,
+          showConfirmButton: false
         });
       })["catch"](function (error) {
         _this.admin = [];
@@ -3236,7 +3238,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
         });
       });
     },
@@ -3267,7 +3269,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Усі поля повинні бути заповнені'
         });
       });
     },
@@ -3504,7 +3506,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.getFullJuryList();
 
         swal("Інформація оновлена", {
-          icon: "success"
+          icon: "success",
+          timer: 1000,
+          showConfirmButton: false
         });
       })["catch"](function (error) {
         _this.jurys = [];
@@ -3514,7 +3518,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
         });
       });
     },
@@ -3565,7 +3569,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Усі поля повинні бути заповнені'
         });
       });
     },
@@ -3750,7 +3754,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         _this.getFullOrgCommitteeList();
 
         swal("Інформація оновлена", {
-          icon: "success"
+          icon: "success",
+          timer: 1000,
+          showConfirmButton: false
         });
       })["catch"](function (error) {
         _this.committees = [];
@@ -3760,7 +3766,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
         });
       });
     },
@@ -3794,7 +3800,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Не вдалося'
+          text: 'Усі поля повинні бути заповнені'
         });
       });
     },
