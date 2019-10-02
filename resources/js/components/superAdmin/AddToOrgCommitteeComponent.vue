@@ -157,7 +157,7 @@
 						swal("Інформація оновлена", {
 							icon: "success",
 							timer: 1000,
-							showConfirmButton: false
+							button: false
 						});
 					})
 					.catch((error) => {

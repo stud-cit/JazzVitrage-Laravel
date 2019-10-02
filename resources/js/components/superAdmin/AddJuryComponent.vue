@@ -191,13 +191,18 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				this.table_form.append('patronymic', parse_pib[2]);
+				if (typeof(parse_pib[2]) == 'undefined') {
+					this.table_form.append('patronymic', '&nbsp;');
+				}
+				else {
+					this.table_form.append('patronymic', parse_pib[2]);
+				}
 				this.table_form.append('email', parse_email);
 				this.table_form.append('rank', parse_rank);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('nominations', parse_nomination);
 				this.table_form.append('informations', parse_information);
-                
+
 				axios.post('/update-jury/'+id, this.table_form)
 					.then((response) => {
 						this.jurys = [];
@@ -205,7 +210,7 @@
 						swal("Інформація оновлена", {
 							icon: "success",
 							timer: 1000,
-							showConfirmButton: false
+							button: false
 						});
 					})
 					.catch((error) => {

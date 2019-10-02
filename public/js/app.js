@@ -3228,7 +3228,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal("Інформація оновлена", {
           icon: "success",
           timer: 1000,
-          showConfirmButton: false
+          button: false
         });
       })["catch"](function (error) {
         _this.admin = [];
@@ -3494,7 +3494,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var parse_information = information_td;
       this.table_form.append('name', parse_pib[0]);
       this.table_form.append('surname', parse_pib[1]);
-      this.table_form.append('patronymic', parse_pib[2]);
+
+      if (typeof parse_pib[2] == 'undefined') {
+        this.table_form.append('patronymic', '&nbsp;');
+      } else {
+        this.table_form.append('patronymic', parse_pib[2]);
+      }
+
       this.table_form.append('email', parse_email);
       this.table_form.append('rank', parse_rank);
       this.table_form.append('photo', parse_photo.files[0]);
@@ -3508,7 +3514,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal("Інформація оновлена", {
           icon: "success",
           timer: 1000,
-          showConfirmButton: false
+          button: false
         });
       })["catch"](function (error) {
         _this.jurys = [];
@@ -3756,7 +3762,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal("Інформація оновлена", {
           icon: "success",
           timer: 1000,
-          showConfirmButton: false
+          button: false
         });
       })["catch"](function (error) {
         _this.committees = [];
