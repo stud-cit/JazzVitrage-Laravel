@@ -820,15 +820,15 @@ button {
   font-weight: 400;
 }
 
-.juries .member-committee-card:nth-of-type(2n+1) .picture {
+.juries .member-committee-card:nth-of-type(2n) .picture {
   order: 2;
 }
 
-.juries .member-committee-card:nth-of-type(2n+1) .picture img {
+.juries .member-committee-card:nth-of-type(2n) .picture img {
   border-radius: 0 100px 0 0;
 }
 
-.juries .member-committee-card:nth-of-type(2n+1) .description {
+.juries .member-committee-card:nth-of-type(2n) .description {
   order: 1;
   text-align: right;
   padding: 90px 30px 120px 95px;

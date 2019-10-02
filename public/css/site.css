@@ -642,6 +642,10 @@ body {
   height: 20px;
 }
 
+.contacts .left-layer .text-layer .text-row .text-field a {
+  color: #ffffff;
+}
+
 .contacts .right-layer {
   width: 100%;
   background: #ffffff url(/images/contacts-microphone.png?020cd38d303bf985624f80584989594f) no-repeat right 60px bottom;

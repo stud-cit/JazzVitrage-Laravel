@@ -3054,6 +3054,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/get-nominations').then(function (response) {
         _this6.nominations = response.data;
+<<<<<<< HEAD
       });
     },
     getMembers: function getMembers() {
@@ -3092,6 +3093,46 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+=======
+      });
+    },
+    getMembers: function getMembers() {
+      var _this7 = this;
+
+      axios.get('/get-members').then(function (response) {
+        response.data.forEach(function (member, index) {
+          if (member.solo_duet.length == 0) {
+            _this7.members.push({
+              index: index,
+              name: member.group.name,
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          } else if (member.solo_duet.length == 1) {
+            _this7.members.push({
+              index: index,
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic),
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          } else if (member.solo_duet.length == 2) {
+            _this7.members.push({
+              index: index,
+              name: "".concat(member.solo_duet[0].name, " ").concat(member.solo_duet[0].surname, " ").concat(member.solo_duet[0].patronomic, ", ").concat(member.solo_duet[1].name, " ").concat(member.solo_duet[1].surname, " ").concat(member.solo_duet[1].patronomic),
+              schoolAddress: member.preparation.school_address,
+              schoolName: member.preparation.school_one,
+              teacher: "".concat(member.preparation.teacher_name, " ").concat(member.preparation.teacher_surname, " ").concat(member.preparation.teacher_patronomic),
+              nomination: member.nomination.name
+            });
+          }
+        });
+      });
+    },
+>>>>>>> 0ea9c1695e0a3beb0bffa99483d2f4d323fc0c7a
     clean: function clean() {
       this.searchMember = '', this.searchNomination = '';
     },
@@ -3584,6 +3625,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+<<<<<<< HEAD
 //
 //
 //
@@ -3610,6 +3652,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+=======
+>>>>>>> 0ea9c1695e0a3beb0bffa99483d2f4d323fc0c7a
 //
 //
 //
@@ -3634,6 +3678,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+<<<<<<< HEAD
       // <<<<<<< HEAD
       //
       // =======
@@ -3653,6 +3698,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     //
     //
     // =======
+=======
+      video: []
+    };
+  },
+  created: function created() {
+>>>>>>> 0ea9c1695e0a3beb0bffa99483d2f4d323fc0c7a
     this.getVideo();
   },
   methods: {
@@ -3713,6 +3764,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -3774,6 +3826,11 @@ __webpack_require__.r(__webpack_exports__);
       //
       //
       // =======
+=======
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+>>>>>>> 0ea9c1695e0a3beb0bffa99483d2f4d323fc0c7a
       pagination: {
         pageNumber: 0,
         size: 6
@@ -71318,7 +71375,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
+module.exports = __webpack_require__(/*! C:\Users\PC-19\Downloads\OSPanel\domains\JazzVitrage-Laravel\resources\js\site.js */"./resources/js/site.js");
 
 
 /***/ })
