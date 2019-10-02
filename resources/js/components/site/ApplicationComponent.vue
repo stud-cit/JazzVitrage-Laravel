@@ -49,7 +49,7 @@
                                 <img src="img/star.png" class="star" alt="">
                                 <select name="nomination" v-model="registration.data.nomination"
                                                  v-validate="{ required: true, regex: /^[1-9]$/ }"
-                                                 data-vv-as="серия и номер паспорта"
+                                                 data-vv-as="номінація"
                                                  id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
                                     <option v-for="(value, index) in nominations" :value="value.nomination_id" :key="index">{{ value.name }}</option>
