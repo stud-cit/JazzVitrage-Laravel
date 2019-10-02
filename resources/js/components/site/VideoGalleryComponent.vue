@@ -66,6 +66,9 @@ npm run build
 
             this.getVideo();
         },
+        computed:{
+            
+        },
         methods: {
             getVideo() {
                 axios.get('/get-video')
