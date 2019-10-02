@@ -835,6 +835,7 @@
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
                     member2BirthdayFile: 'завантажити файл',
+                    groupBirthdayFile: 'завантажити файл',
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
