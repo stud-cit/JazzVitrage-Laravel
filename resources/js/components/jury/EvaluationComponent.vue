@@ -98,8 +98,8 @@
             <div class="col-3">
                 <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
                 <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
-                <button type="button" @click="nextMember" v-if="$route.params.id < count" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
-                <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
+                <button type="button" @click="nextMember()" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" @click="prevMember()" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
         </div>
     </div>
@@ -158,10 +158,12 @@
         },
         computed: {
             nextButtonShow() {
-                return this.$route.params.id == this.count ? false : true;
+                return true;
+                //return this.$route.params.id == this.count ? false : true;
             },
             prevButtonShow() {
-                return this.$route.params.id > 1 || this.$route.params.id == this.count ? true : false;
+                return true;
+                //return this.$route.params.id > 1 || this.$route.params.id == this.count ? true : false;
             }
             // evaluation: {
             //     get: function(){
@@ -230,10 +232,10 @@
                     artistry,
                     originality
                 })
-                .then(function (response) {
+                .then( (response) => {
                     console.log(response.data);
                 })
-                .catch(function (error) {
+                .catch( (error) => {
                     console.log(error);
                 });
                 alert(`Update Ваша оцінка ${this.score.evaluation} із можливих 100`);
@@ -254,19 +256,21 @@
                 return false;
             },
             getMember() {
-                axios.get('/get-member/'+this.$route.params.id)
+                axios.get(`/get-member/${this.$route.params.id}`)
                     .then((response) => {
+                        console.log(response.data);
                         this.member = response.data[0].solo_duet;
                         this.group = response.data[0].group;
                         this.type = response.data[0].app_type;
                         this.school = response.data[0].preparation;
                         this.program = response.data[0].presentation;
-                    });
+                    })
+                    .catch( error => console.log(error) );
             },
             getAllMembers() {
                 axios.get('/get-all-members')
-                    .then((response) => {
-                        this.count = response.data.length;
+                    .then( ( response ) => {
+                        this.count = response.data.length - 1;
                         this.allMembers = response.data.map( (row) => row.application_id);
                     });
                 
@@ -274,38 +278,37 @@
             nextItem () {
                 let next;
                 let index = this.allMembers.indexOf(this.$route.params.id);
-                if(index >= 0 && index < this.allMembers.length){
-                    next = this.allMembers[index + 1]
+                if(index >= 0 && index < this.cout){
+                    next = this.allMembers[index + 1];
                     return next;
                 }
             },
             prevItem () {
+                // need debug
                 let prev;
                 let index = this.allMembers.indexOf(this.$route.params.id);
-                if(index >= 0){
+                if(index > 0) {
                     prev = this.allMembers[index - 1];
-                    if (prev => 0) {
-                        return  prev;
-                    }
-
+                    return  prev;
                 }
             },
             nextMember() {
                 const next = this.nextItem();
-
-                this.$router.push({ name: 'jury-evaluation', params: {id: next} });
+                console.log('next value', next);
+                debugger;
+                this.$router.push({ name: 'jury-evaluation', params: {id: next } });
                 this.getMember();
                 this.getEvaluation();
             },
             prevMember() {
                 const prev = this.prevItem();
-                
+                console.log('prev value', prev);
                 this.$router.push({name: 'jury-evaluation', params: { id: prev } });
                 this.getMember();
                 this.getEvaluation();
             },
             setlastindex () {
-                this.lastIndex = this.allMembers.indexOf(this.count);
+                //this.lastIndex = this.allMembers.indexOf(this.count);
             }
         },
     }
