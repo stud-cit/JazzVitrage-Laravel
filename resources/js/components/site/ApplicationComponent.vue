@@ -81,15 +81,22 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname">
+                                    <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname"
+                                           v-validate="{ required: true }"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                 </div>
+
                                 <div class="input-container ml-4">
                                     <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic">
                                 </div>
+
                             </div>
+                            <span v-if="errors.has('memberSurname')">
+                                    {{ errors.first('memberSurname') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
@@ -102,13 +109,19 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="memberBirthdayFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                           v-validate="{ required: true}"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span v-if="errors.has('memberBirthdayFile')">
+                                    {{ errors.first('memberBirthdayFile') }}
+                            </span>
+
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
                                 <div class="input-group input-group-right">
@@ -659,7 +672,7 @@
                 const steps = this.steps;
                 this.$validator.validateAll().then((result) => {
                     if (!result) {
-                        alert('form');
+
                         return
                     }
                     this.activeStep++;
