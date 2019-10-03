@@ -145,7 +145,11 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				this.table_form.append('patronymic', parse_pib[2]);
+				if (typeof parse_pib[2] == 'undefined') {
+
+				} else {
+					this.table_form.append('patronymic', parse_pib[2]);
+				}
 				this.table_form.append('email', parse_email);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('informations', parse_biography);
@@ -166,7 +170,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
+							text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
 						});
 					});
 			},
@@ -195,7 +199,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Усі поля повинні бути заповнені'
+							text: 'Поля: "прізвище, ім’я, по батькові, електронна адреса, фото" повинні бути заповнені'
 						});
 					});
 			},

@@ -36,14 +36,16 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'name' => 'Петров',
-            'surname' => 'Несторович'
+            'surname' => 'Несторович',
+            'patronymic' => 'default'
         ]);
         DB::table('users')->insert([
             'role' => 'superAdmin',
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make('password'),
             'name' => 'Андрей',
-            'surname' => 'Новичков'
+            'surname' => 'Новичков',
+            'patronymic' => 'default'
         ]);
     }
 }

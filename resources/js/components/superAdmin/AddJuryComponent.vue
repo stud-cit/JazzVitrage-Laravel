@@ -191,10 +191,9 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				if (typeof(parse_pib[2]) == 'undefined') {
-					this.table_form.append('patronymic', '&nbsp;');
-				}
-				else {
+				if (typeof parse_pib[2] == 'undefined') {
+
+				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
 				this.table_form.append('email', parse_email);
@@ -219,7 +218,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
+							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
 						});
 					});
 			},
@@ -264,7 +263,7 @@
 						swal({
 							icon: "error",
 							title: 'Помилка',
-							text: 'Усі поля повинні бути заповнені'
+							text: 'Поля: "прізвище, ім’я, по батькові, фото, електронна адреса" повинні бути заповнені'
 						});
 					});
 			},

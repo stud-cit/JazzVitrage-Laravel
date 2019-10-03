@@ -2252,7 +2252,6 @@ __webpack_require__.r(__webpack_exports__);
       foto: [],
       yearCompetition: new Date().getFullYear(),
       typeEvent: 'Джаз-Вітраж',
-      form: new FormData(),
       load: false
     };
   },
@@ -2293,17 +2292,18 @@ __webpack_require__.r(__webpack_exports__);
     uploadFile: function uploadFile() {
       var _this2 = this;
 
+      var form = new FormData();
       this.load = true;
 
       for (var i = 0; i < this.file.length; i++) {
         if (this.file[i].valid) {
-          this.form.append('pics[]', this.file[i]);
+          form.append('pics[]', this.file[i]);
         }
       }
 
-      this.form.append('type', this.typeEvent);
-      this.form.append('year', this.yearCompetition);
-      axios.post('/post-foto', this.form).then(function (res) {
+      form.append('type', this.typeEvent);
+      form.append('year', this.yearCompetition);
+      axios.post('/post-foto', form).then(function (res) {
         _this2.file = [];
         _this2.load = false;
 
@@ -3173,6 +3173,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       name: '',
       surname: '',
       email: '',
+      defaultPatronymic: 'default',
       form: new FormData(),
       table_form: new FormData()
     };
@@ -3257,6 +3258,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.form.append('name', this.name);
       this.form.append('surname', this.surname);
       this.form.append('email', this.email);
+      this.form.append('patronymic', this.defaultPatronymic);
       axios.post('/post-all-admin', this.form).then(function (response) {
         _this3.admin = [];
 
@@ -3269,7 +3271,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Усі поля повинні бути заповнені'
+          text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
         });
       });
     },
@@ -3495,9 +3497,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.table_form.append('name', parse_pib[0]);
       this.table_form.append('surname', parse_pib[1]);
 
-      if (typeof parse_pib[2] == 'undefined') {
-        this.table_form.append('patronymic', '&nbsp;');
-      } else {
+      if (typeof parse_pib[2] == 'undefined') {} else {
         this.table_form.append('patronymic', parse_pib[2]);
       }
 
@@ -3524,7 +3524,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
+          text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
         });
       });
     },
@@ -3575,7 +3575,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Усі поля повинні бути заповнені'
+          text: 'Поля: "прізвище, ім’я, по батькові, фото, електронна адреса" повинні бути заповнені'
         });
       });
     },
@@ -3750,7 +3750,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var parse_biography = biography_td;
       this.table_form.append('name', parse_pib[0]);
       this.table_form.append('surname', parse_pib[1]);
-      this.table_form.append('patronymic', parse_pib[2]);
+
+      if (typeof parse_pib[2] == 'undefined') {} else {
+        this.table_form.append('patronymic', parse_pib[2]);
+      }
+
       this.table_form.append('email', parse_email);
       this.table_form.append('photo', parse_photo.files[0]);
       this.table_form.append('informations', parse_biography);
@@ -3772,7 +3776,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Поля: "прізвище, ім’я, електронна адреса, фото" повинні бути заповнені'
+          text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
         });
       });
     },
@@ -3806,7 +3810,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         swal({
           icon: "error",
           title: 'Помилка',
-          text: 'Усі поля повинні бути заповнені'
+          text: 'Поля: "прізвище, ім’я, по батькові, електронна адреса, фото" повинні бути заповнені'
         });
       });
     },
