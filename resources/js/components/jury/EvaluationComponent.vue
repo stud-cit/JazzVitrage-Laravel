@@ -98,8 +98,8 @@
             <div class="col-3">
                 <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
                 <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
-                <button type="button" @click="nextMember()" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
-                <button type="button" @click="prevMember()" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
+                <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
+                <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
         </div>
     </div>
@@ -130,7 +130,9 @@
                 minEvaluation: 0,
                 maxEvaluation: 25,
                 hasError: false,
-                hasRecord: false
+                hasRecord: false,
+                next: null,
+                prev: null
             }
         },
         watch: {
@@ -157,6 +159,7 @@
             this.setlastindex();
         },
         computed: {
+
             nextButtonShow() {
                 return true;
                 //return this.$route.params.id == this.count ? false : true;
@@ -275,33 +278,34 @@
                     });
                 
             },
-            nextItem () {
+            nextItem() {
                 let next;
-                let index = this.allMembers.indexOf(this.$route.params.id);
-                if(index >= 0 && index < this.cout){
+                let index = this.allMembers.indexOf(Number(this.$route.params.id) );
+                
+                if(index >= 0 && index < this.cout) {
                     next = this.allMembers[index + 1];
                     return next;
                 }
             },
-            prevItem () {
+            prevItem() {
                 // need debug
                 let prev;
-                let index = this.allMembers.indexOf(this.$route.params.id);
+                let index = this.allMembers.indexOf(Number(this.$route.params.id) );
                 if(index > 0) {
                     prev = this.allMembers[index - 1];
                     return  prev;
                 }
             },
-            nextMember() {
-                const next = this.nextItem();
-                console.log('next value', next);
+            nextMember () {
+                let next = this.nextItem(); // undefined next
+                console.log('next value', next); 
                 debugger;
                 this.$router.push({ name: 'jury-evaluation', params: {id: next } });
                 this.getMember();
                 this.getEvaluation();
             },
             prevMember() {
-                const prev = this.prevItem();
+                const prev = this.prevItem(); //undefuned
                 console.log('prev value', prev);
                 this.$router.push({name: 'jury-evaluation', params: { id: prev } });
                 this.getMember();
