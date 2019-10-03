@@ -2,7 +2,7 @@
     <div>
         <section class="sections main-section applications">
             <div class="application-for-participation">
-                <h2 class="title-section">Заявка на участь 222 </h2>
+                <h2 class="title-section">Заявка на участь</h2>
                 <p class="subtitle">У КОНКУРСІ</p>
             </div>
             <div class="container">
@@ -481,7 +481,7 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ 1" v-model="registration.data.groupAverage"
+                                    <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ" v-model="registration.data.groupAverage"
                                         v-validate="{ required: true, regex: /^[0-9]{1,2}(?:[.,][0-9]{1,})?\r?$/ }"
                                            data-vv-as="СЕРЕДНІЙ ВІК УЧАСНИКІВ">
                                 </div>
