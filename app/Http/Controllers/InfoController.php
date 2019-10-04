@@ -29,6 +29,14 @@ class InfoController extends Controller
         $contacts->contact = $request->contact;
         $contacts->save();
     }
+    public function postSocial(Request $request)
+    {
+        $contacts = new ContactsItems;
+        $contacts->contact_section_id = 3;
+        $contacts->contact_title = $request->contact_title;
+        $contacts->contact = $request->contact;
+        $contacts->save();
+    }
     public function deleteContact($id)
     {
         $contacts = ContactsItems::find($id);

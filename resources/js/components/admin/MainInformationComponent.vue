@@ -188,7 +188,6 @@ export default {
                 note_image: ''
             },
             contact: {
-                emails: [],
                 address: [],
                 phones: [],
                 socials: []
@@ -234,7 +233,7 @@ export default {
             textElementTitle.setAttribute('disabled', 'disabled');
             this.editing = {};
             this.contact.socials[index].disabled = true;
-            axios.post('/post-contact', {
+            axios.post('/post-social', {
                 id: this.contact.socials[index].contact_items_id,
                 contact: this.contact.socials[index].contact,
                 contact_title: this.contact.socials[index].contact_title,

@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('delete-question/{id}/', 'QuestionController@deleteQuestion');
 
     Route::post('post-contact', 'InfoController@postContact');
+    Route::post('post-social', 'InfoController@postSocial');
     Route::post('delete-contact/{id}/', 'InfoController@deleteContact');
 
     Route::post('post-info', 'InfoController@postInfo');
