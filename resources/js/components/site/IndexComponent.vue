@@ -117,74 +117,72 @@
             </div>
 
         </section>
-        <section class="sections video-gallery">
-            <div class="container">
-                <div id="carousel-text" class="carousel slide" data-ride="carousel">
-                    <img src="img/carousel-img.png" alt="" class="carousel-img">
-                    <ol class="carousel-indicators">
-                        <li v-for="(item, index) in quotes" :key="'slide'+index" data-target="#carousel-text" :data-slide-to="index" :class="index == 0 ? 'active' : ''"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div v-for="(item, index) in quotes" :key="item.quote_id" :class="index == 0 ? 'carousel-item active' : 'carousel-item'">
-                            {{ item.text }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="gallery-content">
-                    <div class="row">
-                        <!--<div class="col-xl-5 d-flex align-items-end" v-for="(video, index) in videos" :key="index">-->
-                            <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+video.url.slice(video.url.length - 11, video.url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+        <!--<section class="sections video-gallery">-->
+            <!--<div class="container">-->
+                <!--<div id="carousel-text" class="carousel slide" data-ride="carousel">-->
+                    <!--<img src="img/carousel-img.png" alt="" class="carousel-img">-->
+                    <!--<ol class="carousel-indicators">-->
+                        <!--<li v-for="(item, index) in quotes" :key="'slide'+index" data-target="#carousel-text" :data-slide-to="index" :class="index == 0 ? 'active' : ''"></li>-->
+                    <!--</ol>-->
+                    <!--<div class="carousel-inner">-->
+                        <!--<div v-for="(item, index) in quotes" :key="item.quote_id" :class="index == 0 ? 'carousel-item active' : 'carousel-item'">-->
+                            <!--{{ item.text }}-->
                         <!--</div>-->
-                        <div id="carouselVideo" class="carousel slide col-xl-12" data-ride="carousel">
-                            <h3 class="title-video">ВІДЕОГАЛЕРЕЯ</h3>
-                            <p class="subtitle">КРАЩИХ РОБІТ</p>
-                            <div class="carousel-inner">
-                                <div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">
-                                    <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">
-                                    <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <!--for the last element-->
-                                <div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">
-                                    <div class="d-flex w-100">
+                    <!--</div>-->
 
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselVideo" role="button" data-slide="prev">
-                                <div class="control-bg">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </div>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselVideo" role="button" data-slide="next">
-                                <div class="control-bg">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </div>
-                            </a>
-                            <div class="text-center"><button class="archive">АРХІВ</button></div>
+                <!--</div>-->
+                <!--<div class="gallery-content">-->
+                    <!--<div class="row">-->
+
+                        <!--<div id="carouselVideo" class="carousel slide col-xl-12" data-ride="carousel">-->
+                            <!--<h3 class="title-video">ВІДЕОГАЛЕРЕЯ</h3>-->
+                            <!--<p class="subtitle">КРАЩИХ РОБІТ</p>-->
+                            <!--<div class="carousel-inner">-->
+                                <!--<div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">-->
+                                    <!--<div class="d-flex w-100">-->
+                                        <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>-->
+                                        <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">-->
+                                    <!--<div class="d-flex w-100">-->
+                                        <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                        <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;for the last element&ndash;&gt;-->
+                                <!--<div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">-->
+                                    <!--<div class="d-flex w-100">-->
+
+                                        <!--<iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<a class="carousel-control-prev" href="#carouselVideo" role="button" data-slide="prev">-->
+                                <!--<div class="control-bg">-->
+                                    <!--<span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+                                    <!--<span class="sr-only">Previous</span>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                            <!--<a class="carousel-control-next" href="#carouselVideo" role="button" data-slide="next">-->
+                                <!--<div class="control-bg">-->
+                                    <!--<span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+                                    <!--<span class="sr-only">Next</span>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                            <!--<div class="text-center"><button class="archive">АРХІВ</button></div>-->
 
 
 
 
 
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
 
-                </div>
-            </div>
-        </section>
+                <!--</div>-->
+            <!--</div>-->
+        <!--</section>-->
         <section class="sections contacts">
             <div class="left-layer">
                 <img src="img/contacts-layer.png" alt="">
