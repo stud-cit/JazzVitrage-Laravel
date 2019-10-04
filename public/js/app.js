@@ -2280,7 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
       var changeFile = this.$refs.file.files;
 
       for (var i = 0; i < changeFile.length; i++) {
-        if (changeFile[i].type == 'image/jpeg') {
+        if (changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
           changeFile[i].valid = true;
         } else {
           changeFile[i].valid = false;
@@ -2349,17 +2349,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_validation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/validation */ "./resources/js/mixins/validation.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2628,7 +2617,19 @@ __webpack_require__.r(__webpack_exports__);
       this.form.append('table', table);
       this.form.append('row', row);
       this.form.append('file', this.$refs[row].files[0]);
-      axios.post('/post-info-file', this.form);
+      axios.post('/post-info-file', this.form).then(function (response) {
+        swal("Інформація оновлена", {
+          icon: "success",
+          timer: 1000,
+          button: false
+        });
+      })["catch"](function (error) {
+        swal({
+          icon: "error",
+          title: 'Помилка',
+          text: 'Файл не обрано'
+        });
+      });
     },
     edit: function edit(event, table, el) {
       var textElement = document.getElementById(el);
@@ -51866,7 +51867,7 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.has("logo")
                 ? _c("p", { staticClass: "text-danger col-9" }, [
-                    _vm._v(_vm._s(_vm.errors.first("logo")))
+                    _vm._v("Файл повинен бути зображенням")
                   ])
                 : _vm._e()
             ]),
@@ -52075,7 +52076,9 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.has("document")
                 ? _c("p", { staticClass: "text-danger col-9" }, [
-                    _vm._v(_vm._s(_vm.errors.first("document")))
+                    _vm._v(
+                      "Файл повинен відповідати формату: pdf, doc, txt, docx"
+                    )
                   ])
                 : _vm._e()
             ]),
@@ -52257,7 +52260,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: { click: _vm.addQuotes }
               },
-              [_vm._v("+")]
+              [_vm._v("Додати цитату")]
             )
           ],
           2
@@ -52379,7 +52382,7 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.has("audio")
                 ? _c("p", { staticClass: "text-danger col-9" }, [
-                    _vm._v(_vm._s(_vm.errors.first("audio")))
+                    _vm._v("Файл не відповідає музичному формату")
                   ])
                 : _vm._e()
             ]),
@@ -52438,7 +52441,7 @@ var render = function() {
               _vm._v(" "),
               _vm.errors.has("note")
                 ? _c("p", { staticClass: "text-danger col-9" }, [
-                    _vm._v(_vm._s(_vm.errors.first("note")))
+                    _vm._v("Файл повинен бути зображенням")
                   ])
                 : _vm._e()
             ]),
@@ -52453,85 +52456,6 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("h3", { staticClass: "mt-3" }, [_vm._v("Контакти")]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("label", { staticClass: "brtop", attrs: { for: "emails" } }, [
-              _vm._v("Email")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.contact.emails, function(emailItem, index) {
-              return _c("div", { key: "email" + index, staticClass: "row" }, [
-                _c("div", { staticClass: "col-10" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: emailItem.contact,
-                        expression: "emailItem.contact"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "emails",
-                      disabled:
-                        emailItem.disabled == "" ? emailItem.disabled : true
-                    },
-                    domProps: { value: emailItem.contact },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(emailItem, "contact", $event.target.value)
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-2" }, [
-                  emailItem !== _vm.editing
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-outline-secondary float-right",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.editContact(emailItem, "emails", index)
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fa fa-pencil-square-o",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ]
-                      )
-                    : _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-outline-secondary float-right",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.saveContact("emails", index)
-                            }
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fa fa-floppy-o",
-                            attrs: { "aria-hidden": "true" }
-                          })
-                        ]
-                      )
-                ])
-              ])
-            }),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
@@ -52738,7 +52662,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("+")]
+              [_vm._v("Додати телефон")]
             ),
             _vm._v(" "),
             _c("hr"),

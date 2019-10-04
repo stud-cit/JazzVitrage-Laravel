@@ -2399,25 +2399,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      emails: [],
-      phones: []
-    };
+    return {};
   },
-  created: function created() {
-    this.getInfo();
-  },
+  created: function created() {},
   computed: {},
-  methods: {
-    getInfo: function getInfo() {
-      var _this = this;
-
-      axios.get('/get-all-info').then(function (response) {
-        _this.phones = response.data.contact[1].contacts_items;
-        _this.emails = response.data.contact[3].contacts_items;
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -41789,34 +41775,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", { staticClass: "footer" }, [
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
-        _vm._l(_vm.emails, function(item) {
-          return _c(
-            "p",
-            { key: item.contact_items_id, staticClass: "text-block" },
-            [_vm._v(_vm._s(item.contact))]
-          )
-        }),
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "footer" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("p", { staticClass: "text-block" }, [
+          _vm._v("music-concurs@email.com")
+        ]),
         _vm._v(" "),
-        _vm._l(_vm.phones, function(item) {
-          return _c(
-            "p",
-            { key: item.contact_items_id, staticClass: "text-block" },
-            [_vm._v(_vm._s(item.contact))]
-          )
-        }),
+        _c("p", { staticClass: "text-block" }, [_vm._v("0542 330 032")]),
         _vm._v(" "),
         _c("p", { staticClass: "text-block" }, [_vm._v("Created by studCIT")])
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = []
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

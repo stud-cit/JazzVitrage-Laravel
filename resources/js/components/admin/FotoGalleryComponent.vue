@@ -82,7 +82,7 @@ export default {
         fieldChange(){
             let changeFile = this.$refs.file.files;
             for(let i = 0; i < changeFile.length; i++) {
-                if(changeFile[i].type == 'image/jpeg') {
+                if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
                     changeFile[i].valid = true;
                 } else {
                     changeFile[i].valid = false;
