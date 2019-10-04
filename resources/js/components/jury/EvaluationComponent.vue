@@ -110,7 +110,9 @@
     export default {
         data() {
             return {
-                allMembers: null,
+                memberIds: [],
+                memberIndex: 0,
+                memberId: 0,
                 member: '',
                 type: '',
                 school: '',
@@ -131,8 +133,6 @@
                 maxEvaluation: 25,
                 hasError: false,
                 hasRecord: false,
-                next: null,
-                prev: null
             }
         },
         watch: {
@@ -161,12 +161,10 @@
         computed: {
 
             nextButtonShow() {
-                return true;
-                //return this.$route.params.id == this.count ? false : true;
+                return this.memberIndex == this.count ? false : true;
             },
             prevButtonShow() {
-                return true;
-                //return this.$route.params.id > 1 || this.$route.params.id == this.count ? true : false;
+                return this.memberIndex >= 1 ? true : false;
             }
             // evaluation: {
             //     get: function(){
@@ -274,46 +272,41 @@
                 axios.get('/get-all-members')
                     .then( ( response ) => {
                         this.count = response.data.length - 1;
-                        this.allMembers = response.data.map( (row) => row.application_id);
+                        this.memberIds = response.data.map( (row) => row.application_id);
+                        this.memberId = Number (this.$route.params.id);
+                        this.memberIndex = this.memberIds.indexOf( this.memberId );
                     });
                 
             },
             nextItem() {
-                let next;
-                let index = this.allMembers.indexOf(Number(this.$route.params.id) );
-                
-                if(index >= 0 && index < this.cout) {
-                    next = this.allMembers[index + 1];
-                    return next;
+        
+                this.memberIndex = this.memberIds.indexOf( Number( this.$route.params.id ) );
+                if(this.memberIndex >= 0 && this.memberIndex < this.count) {
+                    this.memberIndex += 1;
+                    this.memberId = this.memberIds[this.memberIndex];
                 }
             },
             prevItem() {
-                // need debug
-                let prev;
-                let index = this.allMembers.indexOf(Number(this.$route.params.id) );
-                if(index > 0) {
-                    prev = this.allMembers[index - 1];
-                    return  prev;
+                
+                this.memberIndex = this.memberIds.indexOf( Number(this.$route.params.id) );
+                if(this.memberIndex > 0) {
+                    this.memberIndex -= 1;
+                    this.memberId = this.memberIds[this.memberIndex];
                 }
             },
             nextMember () {
-                let next = this.nextItem(); // undefined next
-                console.log('next value', next); 
-                debugger;
-                this.$router.push({ name: 'jury-evaluation', params: {id: next } });
+                this.nextItem();
+                
+                this.$router.push({ name: 'jury-evaluation', params: {id: this.memberId } });
                 this.getMember();
                 this.getEvaluation();
             },
             prevMember() {
-                const prev = this.prevItem(); //undefuned
-                console.log('prev value', prev);
-                this.$router.push({name: 'jury-evaluation', params: { id: prev } });
+                this.prevItem();
+                this.$router.push({name: 'jury-evaluation', params: { id: this.memberId } });
                 this.getMember();
                 this.getEvaluation();
             },
-            setlastindex () {
-                //this.lastIndex = this.allMembers.indexOf(this.count);
-            }
         },
     }
 </script>
