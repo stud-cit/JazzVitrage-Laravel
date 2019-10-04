@@ -76,7 +76,7 @@
                             <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addQuotes">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addQuotes">Додати цитату</button>
 
                 </div>
                 <div class="col-2"></div>
@@ -156,7 +156,7 @@
                             <button :disabled="errors.has('phone')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("phones", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('phones')">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('phones')">Додати телефон</button>
 
                     <!-- Соціальні мережі -->
                     <hr>
@@ -174,7 +174,7 @@
                             <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">Додати соціальну мережу</button>
                 </div>
             </div>
         </form>
