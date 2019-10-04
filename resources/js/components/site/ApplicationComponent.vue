@@ -2,7 +2,7 @@
     <div>
         <section class="sections main-section applications">
             <div class="application-for-participation">
-                <h2 class="title-section">Заявка на участь </h2>
+                <h2 class="title-section">Заявка на участь</h2>
                 <p class="subtitle">У КОНКУРСІ</p>
             </div>
             <div class="container">
@@ -34,7 +34,7 @@
                     <!--step1-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 0">
+                        <form @submit.prevent="nextStep"  class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
                             <div class="input-group">
                                 <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.data.appType" ><i></i>СОЛІСТ</label>
@@ -47,53 +47,91 @@
                             </div>
                             <div class="select-block">
                                 <img src="img/star.png" class="star" alt="">
-                                <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
+                                <select name="nomination" v-model="registration.data.nomination"
+                                                 v-validate="{ required: true, regex: /^[1-9]$/ }"
+                                                 data-vv-as="номінація"
+                                                 id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
                                     <option v-for="(value, index) in nominations" :value="value.nomination_id" :key="index">{{ value.name }}</option>
                                 </select>
                             </div>
+
+                            <span class="errors" v-if="errors.has('nomination')">
+                                {{ errors.first('nomination') }}
+                            </span>
                             <div class="text-right">
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <button type="submit"  class="next-step">Далі</button>
                             </div>
-                        </div>
+                        </form>
                     </transition>
 
                     <!--step2-->
 
                     <transition name="fade">
-                        <div class="step-form" v-if="activeStep == 1 && registration.data.appType == 1">
-                            <h3 class="step-title">Інформація про учасника</h3>
+                        <form class="step-form" v-if="activeStep == 1 && registration.data.appType == 1">
+                        <!--<form class="step-form" v-if="activeStep == 1" >-->
+
+
+                            <h3 class="step-title">Інформація про учасника 222</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname">
+                                    <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ПРІЗВИЩЕ">
+                                </div>
+
+                                <div class="input-container ml-4">
+                                    <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName">
+                                    <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                           data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
-                                <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic">
-                                </div>
+
                             </div>
+                            <span class="errors" v-if="errors.has('memberSurname')">
+                                    {{ errors.first('memberSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberName')">
+                                    {{ errors.first('memberName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberPatronymic')">
+                                    {{ errors.first('memberPatronymic') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                    <input type="text" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                           v-validate="{ required: true, regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                           data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberDate')">
+                                    {{ errors.first('memberDate') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="memberBirthdayFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                           v-validate="{ required: true}"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberBirthdayFile')">
+                                    {{ errors.first('memberBirthdayFile') }}
+                            </span>
+
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
                                 <div class="input-group input-group-right">
@@ -104,76 +142,126 @@
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname">
+                                    <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.parentName">
+                                    <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic">
+                                    <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                           data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('parentSurname')">
+                                    {{ errors.first('parentSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentName')">
+                                    {{ errors.first('parentName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentPatronymic')">
+                                    {{ errors.first('parentPatronymic') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode">
+                                    <input type="text" name="idCode" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode"
+                                           v-validate="{ required: true, regex: /[0-9]{10}/ }"
+                                           data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('idCode')">
+                                    {{ errors.first('idCode') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="idFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
+                                           v-validate="{ required: true}"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('idFile')">
+                                    {{ errors.first('idFile') }}
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
-                        </div>
+                        </form>
 
                         <!--duet-->
 
-                        <div class="step-form" v-else-if="activeStep == 1 && registration.data.appType == 2">
-                            <h3 class="step-title">Перший учасник дуету</h3>
+                        <form class="step-form" v-else-if="activeStep == 1 && registration.data.appType == 2">
+                            <h3 class="step-title">Перший учасник дуету 22222</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname">
+                                    <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName">
+                                    <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic">
+                                    <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberSurname')">
+                                    {{ errors.first('memberSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberName')">
+                                    {{ errors.first('memberName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberPatronymic')">
+                                    {{ errors.first('memberPatronymic') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                    <input type="text" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                        v-validate="{ required: true, regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                           data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberDate')">
+                                    {{ errors.first('memberDate') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="memberBirthdayFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file" 
+                                         v-validate="{ required: true }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberBirthdayFile')">
+                                    {{ errors.first('memberBirthdayFile') }}
+                            </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
                                 <div class="input-group input-group-right">
@@ -184,217 +272,360 @@
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname">
+                                    <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.parentName">
+                                    <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic">
+                                    <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                           data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('parentSurname')">
+                                    {{ errors.first('parentSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentName')">
+                                    {{ errors.first('parentName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentPatronymic')">
+                                    {{ errors.first('parentPatronymic') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode">
+                                    <input type="text" name="idCode" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode"
+                                        v-validate="{ required: true, regex: /[0-9]{10}/ }"
+                                            data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('idCode')">
+                                    {{ errors.first('idCode') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="idFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" 
+                                        v-validate="{ required: true }"
+                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
-
+                            <span class="errors" v-if="errors.has('idFile')">
+                                    {{ errors.first('idFile') }}
+                            </span>
                             <h3 class="step-title">Другий учасник дуету</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname2">
+                                    <input type="text" name="memberSurname2" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname2"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я" v-model="registration.data.memberName2">
+                                    <input type="text" name="memberName2" placeholder="ІМ'Я" v-model="registration.data.memberName2"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic2">
+                                    <input type="text" name="memberPatronymic2" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic2"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberSurname2')">
+                                    {{ errors.first('memberSurname2') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberName2')">
+                                    {{ errors.first('memberName2') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('memberPatronymic2')">
+                                    {{ errors.first('memberPatronymic2') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}">
+                                    <input type="text" name="memberDate2" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                        v-validate="{ required: true, regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                           data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('memberDate2')">
+                                    {{ errors.first('memberDate2') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="member2BirthdayFile" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file" 
+                                        v-validate="{ required: true }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('member2BirthdayFile')">
+                                    {{ errors.first('member2BirthdayFile') }}
+                            </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
                                 <div class="input-group input-group-right">
-                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMemberType2" value="0"><i></i>УЧНЯ</label>
-                                    <label><input type="radio" name="id-code-type" class="app-type" v-model="registration.data.idMemberType2" value="1"><i></i>ОДНОГО З БАТЬКІВ</label>
+                                    <label><input type="radio" name="id-code-type2" class="app-type" v-model="registration.data.idMemberType2" value="0"><i></i>УЧНЯ</label>
+                                    <label><input type="radio" name="id-code-type2" class="app-type" v-model="registration.data.idMemberType2" value="1"><i></i>ОДНОГО З БАТЬКІВ</label>
                                 </div>
                             </div>
-                            <div class="input-row" v-if="registration.data.idMemberType == 1">
+                            <div class="input-row" v-if="registration.data.idMemberType2 == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname2">
+                                    <input type="text" name="parentSurname2" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname2"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.parentName2">
+                                    <input type="text" name="parentName2" placeholder="ІМ'Я  " v-model="registration.data.parentName2"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic2">
+                                    <input type="text" name="parentPatronymic2" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic2"
+                                           v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                           data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('parentSurname2')">
+                                    {{ errors.first('parentSurname2') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentName2')">
+                                    {{ errors.first('parentName2') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('parentPatronymic2')">
+                                    {{ errors.first('parentPatronymic2') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2">
+                                    <input type="text" name="idCode2" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2"
+                                        v-validate="{ required: true, regex: /[0-9]{10}/ }"
+                                           data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('idCode2')">
+                                    {{ errors.first('idCode2') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="idFile2" class="d-none" type="file" >
+                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file" 
+                                        v-validate="{ required: true }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('idFile2')">
+                                    {{ errors.first('idFile2') }}
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
-                        </div>
+                        </form>
 
                         <!--group-->
 
-                        <div class="step-form" v-else-if="activeStep == 1">
+                        <form class="step-form" v-else-if="activeStep == 1">
                             <h3 class="step-title">Інформація про учасника</h3>
 
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="НАЗВА КОЛЕКТИВУ " v-model="registration.data.groupName">
+                                    <input type="text" name="groupName" placeholder="НАЗВА КОЛЕКТИВУ" v-model="registration.data.groupName"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="НАЗВА КОЛЕКТИВУ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('groupName')">
+                                    {{ errors.first('groupName') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ " v-model="registration.data.groupCount">
+                                    <input type="text" name="groupCount" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ" v-model="registration.data.groupCount"
+                                        v-validate="{ required: true, regex: /^[0-9]+$/ }"
+                                           data-vv-as="КІЛЬКІСТЬ УЧАСНИКІВ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('groupCount')">
+                                    {{ errors.first('groupCount') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ " v-model="registration.data.groupAverage">
+                                    <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ" v-model="registration.data.groupAverage"
+                                        v-validate="{ required: true, regex: /^[0-9]{1,2}(?:[.,][0-9]{1,})?\r?$/ }"
+                                           data-vv-as="СЕРЕДНІЙ ВІК УЧАСНИКІВ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('groupAverage')">
+                                    {{ errors.first('groupAverage') }}
+                            </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                        v-validate="{ required: true }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
 
                                 </div>
                             </div>
-
+                            <span class="errors" v-if="errors.has('groupBirthdayFile')">
+                                    {{ errors.first('groupBirthdayFile') }}
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
-                        </div>
+                        </form>
 
                     </transition>
 
                     <!--step3-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 2">
+                        <form class="step-form" v-if="activeStep == 2">
                             <h3 class="step-title">Інформація про УЧБОВИЙ ЗАКЛАД </h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-castle.png" alt="" class="input-img" >
-                                    <input type="text" placeholder="НАЗВА" v-model="registration.data.schoolName">
+                                    <input name="schoolName" type="text" placeholder="НАЗВА" v-model="registration.data.schoolName"
+                                        v-validate="{ required: true }"
+                                            data-vv-as="НАЗВА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('schoolName')">
+                                    {{ errors.first('schoolName') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-map.png" alt="" class="input-img">
-                                    <input type="text" placeholder="АДРЕСА" v-model="registration.data.schoolAddress">
+                                    <input name="schoolAddress" type="text" placeholder="АДРЕСА" v-model="registration.data.schoolAddress"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="АДРЕСА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('schoolAddress')">
+                                    {{ errors.first('schoolAddress') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone">
+                                    <input type="text" name="schoolPhone" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
+                                        v-validate="{ required: true, regex: /^(?:[+])?[0-9]+$/ }"
+                                           data-vv-as="ТЕЛЕФОН">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('schoolPhone')">
+                                    {{ errors.first('schoolPhone') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="E-MAIL " v-model="registration.data.schoolEmail">
+                                    <input type="text" name="schoolEmail" placeholder="E-MAIL" v-model="registration.data.schoolEmail"
+                                        v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="E-MAIL">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('schoolEmail')">
+                                    {{ errors.first('schoolEmail') }}
+                            </span>
                             <h3 class="step-title">Інформація про ВИКЛАДАЧА  </h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.teacherSurname">
+                                    <input name="teacherSurname" type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.teacherSurname"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.teacherName">
+                                    <input name="teacherName" type="text" placeholder="ІМ'Я" v-model="registration.data.teacherName"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                            data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.teacherPatronymic">
+                                    <input name="teacherPatronymic" type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.teacherPatronymic"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('teacherSurname')">
+                                    {{ errors.first('teacherSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('teacherName')">
+                                    {{ errors.first('teacherName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('teacherPatronymic')">
+                                    {{ errors.first('teacherPatronymic') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" placeholder="E-MAIL " v-model="registration.data.teacherEmail">
+                                    <input name="teacherEmail" type="text" placeholder="E-MAIL" v-model="registration.data.teacherEmail" 
+                                        v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="E-MAIL">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('teacherEmail')">
+                                    {{ errors.first('teacherEmail') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА" v-model="registration.data.teacherIdCode">
+                                    <input name="teacherIdCode" type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА" v-model="registration.data.teacherIdCode"
+                                        v-validate="{ required: true, regex: /[0-9]{10}/ }"
+                                           data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('teacherIdCode')">
+                                    {{ errors.first('teacherIdCode') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-phone.png" alt="" class="input-img">
-                                    <input type="text" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone">
+                                    <input type="text" name="teacherPhone" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
+                                        v-validate="{ required: true, regex: /^(?:[+])?[0-9]+$/ }"
+                                           data-vv-as="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('teacherPhone')">
+                                    {{ errors.first('teacherPhone') }}
+                            </span>
                             <div class="input-row checkbox-row">
                                     <label for="concertmaster" >
                                         <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
@@ -405,78 +636,118 @@
                             <div class="input-row" v-if="concertmaster">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" placeholder="ПРІЗВИЩЕ " v-model="registration.data.concertSurname">
+                                    <input type="text" name="concertSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.concertSurname"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ПРІЗВИЩЕ">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ІМ'Я  " v-model="registration.data.concertName">
+                                    <input type="text" name="concertName" placeholder="ІМ'Я" v-model="registration.data.concertName"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                                           data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.concertPatronymic">
+                                    <input type="text" name="concertPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.concertPatronymic"
+                                        v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+                                           data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('concertSurname')">
+                                    {{ errors.first('concertSurname') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('concertName')">
+                                    {{ errors.first('concertName') }}
+                            </span>
+                            <span class="errors" v-if="errors.has('concertPatronymic')">
+                                    {{ errors.first('concertPatronymic') }}
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
-                        </div>
+                        </form>
                     </transition>
 
                     <!--step4-->
 
                     <transition name="fade" >
-                        <div class="step-form" v-if="activeStep == 3">
+                        <form class="step-form" v-if="activeStep == 3">
                             <h3 class="step-title">Інформація про ВИСТУП</h3>
                             <h3 class="step-title">перший твір</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" placeholder="НАЗВА" v-model="registration.data.compositionName">
+                                    <input type="text" name="compositionName" placeholder="НАЗВА" v-model="registration.data.compositionName"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="НАЗВА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('compositionName')">
+                                    {{ errors.first('compositionName') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-author.png" alt="" class="input-img">
-                                    <input type="text" placeholder="АВТОР" v-model="registration.data.compositionAuthor">
+                                    <input type="text" name="compositionAuthor" placeholder="АВТОР" v-model="registration.data.compositionAuthor"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="АВТОР">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('compositionAuthor')">
+                                    {{ errors.first('compositionAuthor') }}
+                            </span>
                             <h3 class="step-title">Другий твір</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" placeholder="НАЗВА" v-model="registration.data.compositionName2">
+                                    <input type="text" name="compositionName2" placeholder="НАЗВА" v-model="registration.data.compositionName2"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="НАЗВА">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('compositionName2')">
+                                    {{ errors.first('compositionName2') }}
+                            </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-author.png" alt="" class="input-img">
-                                    <input type="text" placeholder="АВТОР" v-model="registration.data.compositionAuthor2">
+                                    <input type="text" name="compositionAuthor2" placeholder="АВТОР" v-model="registration.data.compositionAuthor2"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="АВТОР">
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('compositionAuthor2')">
+                                    {{ errors.first('compositionAuthor2') }}
+                            </span>
                             <h4 class="step-title">ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО<i class="hint"></i></h4>
                             <div class="input-row">
                                 <div class="input-container">
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg ">
+                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
                                     </label>
 
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('compositionVideo')">
+                                    {{ errors.first('compositionVideo') }}
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
-                        </div>
+                        </form>
                     </transition>
 
                     <!--step5-->
 
                     <transition name="fade" >
 
-                        <div class="step-form" v-if="activeStep == 4">
+                        <form class="step-form" v-if="activeStep == 4">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination]}}</h5></div>
@@ -541,7 +812,7 @@
                                 <span class="prev-step" @click="prevStep">Назад</span>
                                 <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
-                        </div>
+                        </form>
                     </transition>
                 </div>
             </div>
@@ -564,14 +835,22 @@
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
                     member2BirthdayFile: 'завантажити файл',
+                    groupBirthdayFile: 'завантажити файл',
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
                 },
+                steps: [
+                    {
+                        appType: 1,
+                        nomination: 0,
+                    }
+                ],
                 registration: {
                     data: {
                         appType: 1,
                         nomination: 0,
+                        nomination2: '',
                         memberName: '',
                         memberSurname: '',
                         memberPatronymic: '',
@@ -635,9 +914,21 @@
             nextStep(){
 
                 const steps = this.steps;
-                this.activeStep++;
-                steps[this.activeStep] = true;
-                console.log(this.registration);
+                this.$validator.validateAll().then((result) => {
+                    if (!result) {
+
+                        return
+                    }
+                    this.activeStep++;
+                    steps[this.activeStep] = true;
+                    console.log(this.registration);
+
+
+                }).catch(() => {
+                    console.log(2);
+
+                });
+
 
 
 

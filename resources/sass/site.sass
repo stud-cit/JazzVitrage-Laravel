@@ -422,7 +422,8 @@ body
    .gallery-content
       margin-top: 50px
       .video
-         width: 100%
+         width: calc(50% - 20px)
+         margin: 0 10px
          height: 300px
          //max-height: 305px
          outline: none
@@ -432,14 +433,16 @@ body
          font-size: 26px
          font-weight: 900
          letter-spacing: 2.6px
+         text-align: center
       .subtitle
          color: #ffffff
          font-family: Montserrat
          font-size: 16px
          font-weight: 500
          letter-spacing: 1.6px
-         margin-bottom: 80px
+         margin-bottom: 40px
          margin-top: 5px
+         text-align: center
       .archive
          margin-top: 30px
          width: 255px
@@ -454,6 +457,21 @@ body
          font-size: 16px
          font-weight: 900
          letter-spacing: 1.6px
+   #carouselVideo
+      padding: 0 50px
+      .control-bg
+         background: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
+         padding: 5px
+         border-radius: 50%
+      .carousel-control-next, .carousel-control-prev
+         width: 50px
+         .carousel-control-prev-icon
+            margin-right: 2px
+         .carousel-control-next-icon
+            margin-left: 2px
+      .carousel-inner
+         .carousel-item.active
+            display: flex
    .pagination
       margin-top: 40px
 
@@ -466,12 +484,13 @@ body
    .left-layer
       position: absolute
       width: 42%
-      line-height: 0
+      line-height: 1.2
       left: -10px
       top: 0
       z-index: 5
       img
          height: 100%
+         width: 100%
       .text-layer
          position: absolute
          right: 150px
@@ -498,6 +517,8 @@ body
                font-weight: 400
                margin-bottom: 10px
                height: 20px
+               a
+                  color: #ffffff
 
 
 
@@ -543,6 +564,7 @@ body
                font-size: 20px
                font-weight: 700
                letter-spacing: 2px
+               margin-right: 1px
                &::placeholder
                   color: #bebebe
                   font-family: Montserrat
