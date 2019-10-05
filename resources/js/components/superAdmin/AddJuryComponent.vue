@@ -58,7 +58,9 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+					<img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+				</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
@@ -101,8 +103,16 @@
 			this.getFullJuryList();
 		},
 		methods: {
-			getFileName(event) {
-				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			getFileName(evt, index) {
+				var tr = document.querySelectorAll('tr')[index + 1]
+				var file = evt.target.files;
+				var reader = new FileReader();
+				reader.onload = (function(theFile) {
+					return function(e) {
+						tr.querySelector('#photo_value_jury').setAttribute('src', e.target.result);
+					};
+				})(file[0]);
+				reader.readAsDataURL(file[0]);
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -130,7 +140,6 @@
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
-                    <span class="name-title" id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
@@ -191,36 +200,18 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				if (typeof parse_pib[2] == 'undefined') {
-
-				} else {
-					this.table_form.append('patronymic', parse_pib[2]);
-				}
+				this.table_form.append('patronymic', parse_pib[2]);
 				this.table_form.append('email', parse_email);
 				this.table_form.append('rank', parse_rank);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('nominations', parse_nomination);
 				this.table_form.append('informations', parse_information);
-
+                
 				axios.post('/update-jury/'+id, this.table_form)
 					.then((response) => {
 						this.jurys = [];
 						this.getFullJuryList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
 					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
-						});
-					});
 			},
 			addNomination(){
 				this.items.push({
@@ -252,20 +243,10 @@
 				this.form.append('informations', this.additionalInfo);
 
 				axios.post('/post-all-jury', this.form)
-					.then((response) => {
+					.then(() => {
 						this.jurys = [];
 						this.getFullJuryList();
-						swal("Журі було успішно додано", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, по батькові, фото, електронна адреса" повинні бути заповнені'
-						});
-					});
 			},
 			deleteJury(id, index){
 				axios.post('/delete-user/'+id)
