@@ -3425,6 +3425,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       reader.readAsDataURL(file[0]);
       evt.target.parentNode.querySelector('#span_id').innerHTML = "<br>";
+      evt.target.parentNode.querySelector('#up_icon').innerHTML = "<br>";
     },
     edit: function edit(id, event) {
       this.editBtn = id;
@@ -3448,7 +3449,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-jury-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\" id=\"up_icon\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       var photo_label = photo_td.querySelector('img');
       photo_label.setAttribute('id', 'photo_value_jury');
       photo_label.removeAttribute('class');
@@ -3711,6 +3712,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
       reader.readAsDataURL(file[0]);
       evt.target.parentNode.querySelector('#span_id').innerHTML = "<br>";
+      evt.target.parentNode.querySelector('#up_icon').innerHTML = "<br>";
     },
     edit: function edit(id, event) {
       this.editBtn = id;
@@ -3734,7 +3736,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       email_td.innerHTML = '';
       email_td.append(email_input);
       photo_input.setAttribute('class', 'edit-org-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\" id=\"up_icon\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       var photo_label = photo_td.querySelector('img');
       photo_label.setAttribute('id', 'photo_value_org');
       photo_label.removeAttribute('class');

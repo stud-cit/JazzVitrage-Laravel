@@ -114,6 +114,7 @@
 				})(file[0]);
 				reader.readAsDataURL(file[0]);
 				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
+				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -141,7 +142,7 @@
 				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
-                    <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
                     <span class="title" id="span_id">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
