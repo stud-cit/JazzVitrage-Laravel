@@ -59,7 +59,7 @@ class ApplicationController extends Controller
 
         $app->nomination_id = $data->nomination;
         $app->application_type_id = $data->appType;
-        $app->status = 'created';
+        $app->status = Application::CREATED;
         $app->save();
 
         if($data->appType == 1) {
@@ -198,7 +198,7 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        $model->status = 'archive';
+        $model->status = Application::ARCHIVE;
 
         if($model->save()){
             return 'ok';
@@ -209,7 +209,7 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        $model->status = 'created';
+        $model->status = Application::CREATED;
 
         if($model->save()){
             return ;
