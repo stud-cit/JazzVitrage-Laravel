@@ -188,20 +188,10 @@
 				this.form.append('photo', this.$refs.file.files[0]);
 				this.form.append('informations', this.informations);
 				axios.post('/post-all-org', this.form)
-					.then((response) => {
+					.then(() => {
 						this.committees = [];
 						this.getFullOrgCommitteeList();
-						swal("Член орг. комітету був успішно доданий", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, по батькові, електронна адреса, фото" повинні бути заповнені'
-						});
-					});
 			},
 			deleteOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

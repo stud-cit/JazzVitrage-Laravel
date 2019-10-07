@@ -3259,20 +3259,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.form.append('surname', this.surname);
       this.form.append('email', this.email);
       this.form.append('patronymic', this.defaultPatronymic);
-      axios.post('/post-all-admin', this.form).then(function (response) {
+      axios.post('/post-all-admin', this.form).then(function () {
         _this3.admin = [];
 
         _this3.getFullAdminOrgCommitteeList();
-
-        swal("Адміністратор успішно доданий", {
-          icon: "success"
-        });
-      })["catch"](function (error) {
-        swal({
-          icon: "error",
-          title: 'Помилка',
-          text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
-        });
       });
     },
     deleteAdminOrgCommittee: function deleteAdminOrgCommittee(id, index) {
@@ -3391,6 +3381,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3420,8 +3412,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullJuryList();
   },
   methods: {
-    getFileName: function getFileName(event) {
-      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    getFileName: function getFileName(evt, index) {
+      var tr = document.querySelectorAll('tr')[index + 1];
+      var file = evt.target.files;
+      var reader = new FileReader();
+
+      reader.onload = function (theFile) {
+        return function (e) {
+          tr.querySelector('#photo_value_jury').setAttribute('src', e.target.result);
+        };
+      }(file[0]);
+
+      reader.readAsDataURL(file[0]);
     },
     edit: function edit(id, event) {
       this.editBtn = id;
@@ -3445,7 +3447,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-jury-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       var photo_label = photo_td.querySelector('img');
       photo_label.setAttribute('id', 'photo_value_jury');
       photo_label.removeAttribute('class');
@@ -3563,20 +3565,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.form.append('photo', this.$refs.juryfile.files[0]);
       this.form.append('nominations', valOptions);
       this.form.append('informations', this.additionalInfo);
-      axios.post('/post-all-jury', this.form).then(function (response) {
+      axios.post('/post-all-jury', this.form).then(function () {
         _this3.jurys = [];
 
         _this3.getFullJuryList();
-
-        swal("Журі було успішно додано", {
-          icon: "success"
-        });
-      })["catch"](function (error) {
-        swal({
-          icon: "error",
-          title: 'Помилка',
-          text: 'Поля: "прізвище, ім’я, по батькові, фото, електронна адреса" повинні бути заповнені'
-        });
       });
     },
     deleteJury: function deleteJury(id, index) {
@@ -3798,20 +3790,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.form.append('email', this.email);
       this.form.append('photo', this.$refs.file.files[0]);
       this.form.append('informations', this.informations);
-      axios.post('/post-all-org', this.form).then(function (response) {
+      axios.post('/post-all-org', this.form).then(function () {
         _this3.committees = [];
 
         _this3.getFullOrgCommitteeList();
-
-        swal("Член орг. комітету був успішно доданий", {
-          icon: "success"
-        });
-      })["catch"](function (error) {
-        swal({
-          icon: "error",
-          title: 'Помилка',
-          text: 'Поля: "прізвище, ім’я, по батькові, електронна адреса, фото" повинні бути заповнені'
-        });
       });
     },
     deleteOrgCommittee: function deleteOrgCommittee(id, index) {
@@ -54016,9 +53998,9 @@ var render = function() {
                   _vm._l(_vm.options, function(option, index) {
                     return _c("option", { key: index }, [
                       _vm._v(
-                        "\n                            " +
+                        "\n                                " +
                           _vm._s(option.value) +
-                          "\n                        "
+                          "\n                            "
                       )
                     ])
                   }),
@@ -54142,7 +54124,7 @@ var render = function() {
                   },
                   on: {
                     change: function($event) {
-                      return _vm.getFileName($event)
+                      return _vm.getFileName($event, index)
                     }
                   }
                 },

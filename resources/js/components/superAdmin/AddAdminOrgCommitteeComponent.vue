@@ -141,20 +141,10 @@
 				this.form.append('email', this.email);
 				this.form.append('patronymic', this.defaultPatronymic);
 				axios.post('/post-all-admin', this.form)
-					.then((response) => {
+					.then(() => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
-						swal("Адміністратор успішно доданий", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
-						});
-					});
 			},
 			deleteAdminOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

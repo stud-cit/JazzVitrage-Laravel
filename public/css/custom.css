@@ -41,7 +41,6 @@
 .edit-jury-photo .label{width:130px;margin-top:-135px;position:relative;z-index: 2;border:2px dashed grey;border-radius:5px;display:block;padding:0;transition:border 300ms ease;cursor:pointer;text-align:center}
 .edit-jury-photo .label i{display:block;font-size:42px;padding-top:16px}
 .edit-jury-photo .label i,.edit-jury-photo .label .title{color:grey;transition:200ms color}
-.edit-jury-photo .label span,.name-title{text-align:center;color:green;}
 .edit-jury-photo .label:hover{border:2px solid #000}
 .edit-jury-photo .label:hover i,.edit-jury-photo .label:hover .title{color:#000}
 
@@ -51,7 +50,6 @@
 .edit-org-photo .label{width:235px;margin-top:-135px;position:relative;z-index: 2;border:2px dashed grey;border-radius:5px;display:block;padding:0;transition:border 300ms ease;cursor:pointer;text-align:center}
 .edit-org-photo .label i{display:block;font-size:42px;padding-top:16px}
 .edit-org-photo .label i,.edit-org-photo .label .title{color:grey;transition:200ms color}
-.edit-org-photo .label span,.name-title{text-align:center;color:green;}
 .edit-org-photo .label:hover{border:2px solid #000}
 .edit-org-photo .label:hover i,.edit-org-photo .label:hover .title{color:#000}
 .input-edit-correct {

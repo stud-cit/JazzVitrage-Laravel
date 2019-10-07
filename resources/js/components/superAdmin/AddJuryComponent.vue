@@ -200,18 +200,35 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				this.table_form.append('patronymic', parse_pib[2]);
+				if (typeof parse_pib[2] == 'undefined') {
+				} else {
+					this.table_form.append('patronymic', parse_pib[2]);
+				}
 				this.table_form.append('email', parse_email);
 				this.table_form.append('rank', parse_rank);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('nominations', parse_nomination);
 				this.table_form.append('informations', parse_information);
-                
+
 				axios.post('/update-jury/'+id, this.table_form)
 					.then((response) => {
 						this.jurys = [];
 						this.getFullJuryList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
+					.catch((error) => {
+						this.jurys = [];
+						this.getFullJuryList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
+						});
+					});
 			},
 			addNomination(){
 				this.items.push({
