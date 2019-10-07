@@ -110,9 +110,9 @@
 
                 </div>
                 <ul class="pagination">
-                    <li class="controls"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0" @click="prevPage"></i></li>
+                    <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
                     <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
-                    <li class="controls active"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"></i></li>
+                    <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
                 </ul>
             </div>
 
