@@ -50,7 +50,7 @@ class Application extends Model
 	 * @param \Illuminate\Database\Eloquent\Builder $query
 	 * @return \Illuminate\Dtabase\Eloquent\Builder
 	 */
-	public function ScopeCreated($query) {
+	public function scopeCreated($query) {
 		return $query->where('status', self::CREATED);
 	}
 
