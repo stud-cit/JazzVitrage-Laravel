@@ -31,8 +31,13 @@ class InfoController extends Controller
     }
     public function postSocial(Request $request)
     {
-        $contacts = new ContactsItems;
-        $contacts->contact_section_id = 3;
+        if($request->id) {
+            $contacts = ContactsItems::find($request->id);
+            $contacts->contact_section_id = $request->contact_section_id;
+        } else {
+            $contacts = new ContactsItems;
+            $contacts->contact_section_id = 3;
+        }
         $contacts->contact_title = $request->contact_title;
         $contacts->contact = $request->contact;
         $contacts->save();

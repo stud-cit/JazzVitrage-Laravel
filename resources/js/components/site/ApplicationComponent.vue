@@ -49,7 +49,7 @@
                                 <img src="img/star.png" class="star" alt="">
                                 <select name="nomination" v-model="registration.data.nomination" id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
-                                    <option v-for="(value, index) in nominations" :value="value.nomination_id" :key="index">{{ value.name }}</option>
+                                    <option v-for="(value, index) in nominations" :value="index" :key="index">{{ value.name }}</option>
                                 </select>
                             </div>
                             <div class="text-right">
@@ -479,7 +479,7 @@
                         <div class="step-form" v-if="activeStep == 4">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination.value]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
@@ -629,6 +629,7 @@
             getNominations() {
                 axios.get('/get-nominations')
                 .then((response) => {
+                    console.log(response.data)
                     this.nominations = response.data;
                 })
             },
