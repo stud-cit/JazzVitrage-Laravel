@@ -23,9 +23,5 @@ class ContactSectionSeeder extends Seeder
             'contact_section_id' => 3,
             'caption' => 'socials',
         ]);
-        DB::table('contact_section')->insert([
-            'contact_section_id' => 4,
-            'caption' => 'emails',
-        ]);
     }
 }

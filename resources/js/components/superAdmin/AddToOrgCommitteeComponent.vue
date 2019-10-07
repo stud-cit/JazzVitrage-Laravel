@@ -46,11 +46,13 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td id="edit-save-td">
+
+                <td class="text-center" id="edit-save-td">
+
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
+                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -103,16 +105,24 @@
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
-				photo_input.setAttribute('class', 'edit-photo');
+
+				photo_input.setAttribute('class', 'edit-org-photo');
 				photo_input.innerHTML = `<div class="form-group">
-                <label class="label">
+                <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <span class="name-title" id="file"></span>
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-					<span id="file"></span>
 				</label>
                 </div>`;
-				photo_td.innerHTML = '';
+				var photo_label = photo_td.querySelector('img');
+
+				photo_label.setAttribute('id', 'photo_value_org');
+				photo_label.removeAttribute('class');
+				document.getElementById('photo_value_org').style.opacity = "0.5";
+
+				photo_input.prepend(photo_label);
+
 				photo_td.append(photo_input);
 
 				biography_input.value += biography_td.innerHTML;
@@ -139,7 +149,11 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				this.table_form.append('patronymic', parse_pib[2]);
+				if (typeof parse_pib[2] == 'undefined') {
+
+				} else {
+					this.table_form.append('patronymic', parse_pib[2]);
+				}
 				this.table_form.append('email', parse_email);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('informations', parse_biography);
@@ -148,7 +162,21 @@
 					.then((response) => {
 						this.committees = [];
 						this.getFullOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
+					.catch((error) => {
+						this.committees = [];
+						this.getFullOrgCommitteeList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
+						});
+					});
 			},
 			getFullOrgCommitteeList() {
 				axios.get('/get-all-org')
@@ -164,7 +192,7 @@
 				this.form.append('photo', this.$refs.file.files[0]);
 				this.form.append('informations', this.informations);
 				axios.post('/post-all-org', this.form)
-					.then((response) => {
+					.then(() => {
 						this.committees = [];
 						this.getFullOrgCommitteeList();
 					})

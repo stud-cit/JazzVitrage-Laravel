@@ -57,8 +57,8 @@
                         <p class="subtitle">КОНКУРСУ</p>
                         <p class="text">{{ info.provisions_text }}</p>
                         <div class="btn-group">
-                            <a href="file/file.pdf" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>
-                            <button class="btn btn-download">ЗАВАНТАЖИТИ</button>
+                            <a :href="info.file" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>
+                            <a :href="info.file" class="btn btn-download" download="">ЗАВАНТАЖИТИ</a>
                         </div>
                     </div>
                 </div>

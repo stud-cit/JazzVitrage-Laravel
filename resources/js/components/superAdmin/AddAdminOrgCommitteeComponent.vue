@@ -36,11 +36,11 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.surname }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td id="edit-save-td">
+                <td class="text-center" id="edit-save-td">
                     <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
+                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -55,6 +55,7 @@
 				name: '',
 				surname: '',
 				email: '',
+				defaultPatronymic: 'default',
 				form: new FormData,
 				table_form: new FormData
 			};
@@ -112,7 +113,21 @@
 					.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
+					.catch((error) => {
+						this.admin = [];
+						this.getFullAdminOrgCommitteeList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
+						});
+					});
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')
@@ -124,8 +139,9 @@
 				this.form.append('name', this.name);
 				this.form.append('surname', this.surname);
 				this.form.append('email', this.email);
+				this.form.append('patronymic', this.defaultPatronymic);
 				axios.post('/post-all-admin', this.form)
-					.then((response) => {
+					.then(() => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
 					})

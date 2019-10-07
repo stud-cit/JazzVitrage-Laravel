@@ -33,6 +33,7 @@ class Application extends Model
 		return $this->belongsTo('App\Models\Nomination', 'nomination_id');
 	}
 
+
 	/**
 	 *  Get the evaluations for application
 	 */
@@ -40,4 +41,5 @@ class Application extends Model
 	{
 		return $this->hasMany('App\Models\Evaluation', 'application_id');
 	}
+
 }

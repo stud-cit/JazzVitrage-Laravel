@@ -101,6 +101,7 @@ class UserController extends Controller
         $admin_data->surname = $request->surname;
         $admin_data->password = Hash::make('password');
         $admin_data->email = $request->email;
+        $admin_data->patronymic = $request->patronymic;
         $admin_data->save();
     }
 
