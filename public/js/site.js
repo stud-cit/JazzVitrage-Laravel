@@ -41408,7 +41408,9 @@ var render = function() {
                         _vm._v(
                           "Номінація: " +
                             _vm._s(
-                              _vm.nominations[_vm.registration.data.nomination]
+                              _vm.nominations[
+                                _vm.registration.data.nomination.value
+                              ]
                             )
                         )
                       ])

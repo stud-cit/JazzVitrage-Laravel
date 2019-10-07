@@ -44,7 +44,9 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+                    <img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+                </td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
                 <td class="text-center" id="edit-save-td">
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
@@ -75,8 +77,17 @@
 			this.getFullOrgCommitteeList();
 		},
 		methods: {
-			getFileName(event) {
-				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			getFileName(evt, index) {
+				var tr = document.querySelectorAll('tr')[index + 1]
+				var file = evt.target.files;
+				var reader = new FileReader();
+				reader.onload = (function(theFile) {
+					return function(e) {
+						tr.querySelector('#photo_value_org').setAttribute('src', e.target.result);
+					};
+				})(file[0]);
+				reader.readAsDataURL(file[0]);
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -108,7 +119,7 @@
                 <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
                     <span class="name-title" id="file"></span>
-                    <span class="title">Додати файл</span>
+                    <span class="title" id="span_id">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;

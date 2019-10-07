@@ -3424,6 +3424,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       }(file[0]);
 
       reader.readAsDataURL(file[0]);
+      evt.target.parentNode.querySelector('#span_id').innerHTML = "<br>";
     },
     edit: function edit(id, event) {
       this.editBtn = id;
@@ -3432,7 +3433,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var photo_input = document.createElement('div');
       var email_input = document.createElement('input');
       var rank_input = document.createElement('input');
-      var nomination_input = document.createElement('input');
+      var nomination_select = document.createElement('select');
       var information_input = document.createElement('textarea');
       var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -3447,7 +3448,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       pib_td.innerHTML = '';
       pib_td.append(pib_input);
       photo_input.setAttribute('class', 'edit-jury-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       var photo_label = photo_td.querySelector('img');
       photo_label.setAttribute('id', 'photo_value_jury');
       photo_label.removeAttribute('class');
@@ -3466,12 +3467,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       rank_input.setAttribute('class', 'input-edit-correct');
       rank_td.innerHTML = '';
       rank_td.append(rank_input);
-      nomination_input.setAttribute('value', nomination_td.innerHTML);
-      nomination_input.setAttribute('type', 'text');
-      nomination_input.setAttribute('id', 'nomination_data');
-      nomination_input.setAttribute('class', 'input-edit-correct');
+      nomination_select.setAttribute('id', 'table_select');
+      nomination_select.setAttribute('class', 'input-edit-correct');
       nomination_td.innerHTML = '';
-      nomination_td.append(nomination_input);
+      var min = 1,
+          max = 3;
+
+      for (var i = min; i <= max; i++) {
+        var nomination_option = document.createElement('option');
+        nomination_option.innerHTML = 'Інструментальний жанр';
+        nomination_select.append(nomination_option);
+      }
+
+      nomination_td.append(nomination_select);
       information_input.value += information_td.innerHTML;
       information_input.setAttribute('id', 'information_data');
       information_input.setAttribute('rows', '6');
@@ -3488,7 +3496,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
       var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
       var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-      var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
+      var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
       var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
       var parse_pib = pib_td.split(' ');
       var parse_photo = photo_td;
@@ -3550,7 +3558,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     postAllJury: function postAllJury() {
       var _this3 = this;
 
-      var selects = document.querySelectorAll('select');
+      var selects = document.querySelectorAll('table_select');
       var valOptions = [];
 
       for (var index = 0; index < selects.length; index++) {
@@ -3670,6 +3678,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3688,8 +3698,19 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.getFullOrgCommitteeList();
   },
   methods: {
-    getFileName: function getFileName(event) {
-      event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+    getFileName: function getFileName(evt, index) {
+      var tr = document.querySelectorAll('tr')[index + 1];
+      var file = evt.target.files;
+      var reader = new FileReader();
+
+      reader.onload = function (theFile) {
+        return function (e) {
+          tr.querySelector('#photo_value_org').setAttribute('src', e.target.result);
+        };
+      }(file[0]);
+
+      reader.readAsDataURL(file[0]);
+      evt.target.parentNode.querySelector('#span_id').innerHTML = "<br>";
     },
     edit: function edit(id, event) {
       this.editBtn = id;
@@ -3713,7 +3734,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       email_td.innerHTML = '';
       email_td.append(email_input);
       photo_input.setAttribute('class', 'edit-org-photo');
-      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
+      photo_input.innerHTML = "<div class=\"form-group\">\n                <label class=\"label\" id=\"label\">\n                    <i class=\"material-icons\"><img src=\"../img/upload-img.png\"></i>\n                    <span class=\"name-title\" id=\"file\"></span>\n                    <span class=\"title\" id=\"span_id\">\u0414\u043E\u0434\u0430\u0442\u0438 \u0444\u0430\u0439\u043B</span>\n\t\t\t\t\t<input type=\"file\" ref=\"juryfile\" class=\"form-control-file\" id=\"jury-photo\">\n\t\t\t\t</label>\n                </div>";
       var photo_label = photo_td.querySelector('img');
       photo_label.setAttribute('id', 'photo_value_org');
       photo_label.removeAttribute('class');
@@ -54520,7 +54541,7 @@ var render = function() {
                   },
                   on: {
                     change: function($event) {
-                      return _vm.getFileName($event)
+                      return _vm.getFileName($event, index)
                     }
                   }
                 },

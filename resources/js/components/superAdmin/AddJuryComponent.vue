@@ -113,6 +113,7 @@
 					};
 				})(file[0]);
 				reader.readAsDataURL(file[0]);
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -121,7 +122,8 @@
 				var photo_input = document.createElement('div');
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
-				var nomination_input = document.createElement('input');
+				var nomination_select = document.createElement('select');
+
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -140,7 +142,7 @@
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
-                    <span class="title">Додати файл</span>
+                    <span class="title" id="span_id">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
@@ -167,12 +169,16 @@
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
-				nomination_input.setAttribute('value', nomination_td.innerHTML);
-				nomination_input.setAttribute('type', 'text');
-				nomination_input.setAttribute('id', 'nomination_data');
-				nomination_input.setAttribute('class','input-edit-correct');
+				nomination_select.setAttribute('id', 'table_select');
+				nomination_select.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
-				nomination_td.append(nomination_input);
+				var min = 1, max = 3;
+				for (var i = min; i <= max; i++){
+					var nomination_option = document.createElement('option');
+					nomination_option.innerHTML = 'Інструментальний жанр';
+					nomination_select.append(nomination_option);
+				}
+				nomination_td.append(nomination_select);
 
 				information_input.value += information_td.innerHTML;
 				information_input.setAttribute('id', 'information_data');
@@ -188,7 +194,7 @@
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
+				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
 				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
@@ -245,7 +251,7 @@
 					})
 			},
 			postAllJury(){
-				const selects = document.querySelectorAll('select');
+				const selects = document.querySelectorAll('table_select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
 					valOptions.push(selects[index].value);

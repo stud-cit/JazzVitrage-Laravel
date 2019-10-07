@@ -479,7 +479,7 @@
                         <div class="step-form" v-if="activeStep == 4">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination.value]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
