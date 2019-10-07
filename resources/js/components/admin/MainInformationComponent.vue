@@ -163,7 +163,7 @@
                             <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">+</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">Додати соціальну мережу</button>
                 </div>
             </div>
         </form>
