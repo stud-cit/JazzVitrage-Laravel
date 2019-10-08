@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('post-quote', 'InfoController@postQuote');
     Route::post('put-quote', 'InfoController@putQuote');
     Route::post('delete-quote/{id}/', 'InfoController@deleteQuote');
+    Route::get('get-rating', 'ApplicationController@getRating')->name('rating');
 });
 
 // Роль Орг.Комітет
