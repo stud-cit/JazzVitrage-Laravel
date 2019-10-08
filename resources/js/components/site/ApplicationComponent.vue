@@ -966,6 +966,10 @@
                     })
                     .then((response) => {
                         if(response.status == 200 ) {
+                            swal({
+                                icon: "success",
+                                text: "заявка успішно надіслана"
+                            });
                             this.$router.push({name: "index"});
                         }
                     })
