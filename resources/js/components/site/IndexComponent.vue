@@ -24,24 +24,24 @@
 
                 </div>
                 <div class="nominations-list">
-                    <a href="" class="nominations-items">
+                    <div  class="nominations-items">
 
                             <img src="img/piano.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
+                            <div class="items-title">Інструментальний жанр</div>
 
-                    </a>
-                    <a href="" class="nominations-items">
+                    </div>
+                    <div  class="nominations-items">
 
                             <img src="img/microphone.png" alt="">
                             <div class="items-title">Вокальний жанр</div>
 
-                    </a>
-                    <a href="" class="nominations-items">
+                    </div>
+                    <div class="nominations-items">
 
                             <img src="img/nots.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
+                            <div class="items-title">Композиція</div>
 
-                    </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -140,21 +140,21 @@
                             <div class="carousel-inner">
                                 <div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">
                                     <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                                 <div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">
                                     <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                                 <!--for the last element-->
                                 <div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">
                                     <div class="d-flex w-100">
 
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
