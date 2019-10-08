@@ -246,31 +246,39 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				this.table_form.append('email', parse_email);
-				this.table_form.append('rank', parse_rank);
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('nominations', parse_nomination);
-				this.table_form.append('informations', parse_information);
 
-				axios.post('/update-jury/'+id, this.table_form)
-					.then((response) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
-						});
-					});
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						this.table_form.append('email', parse_email);
+						this.table_form.append('rank', parse_rank);
+						this.table_form.append('photo', parse_photo.files[0]);
+						this.table_form.append('nominations', parse_nomination);
+						this.table_form.append('informations', parse_information);
+
+						axios.post('/update-jury/'+id, this.table_form)
+							.then((response) => {
+								this.jurys = [];
+								this.getFullJuryList();
+								swal("Інформація оновлена", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
+							})
+							.catch((error) => {
+								this.jurys = [];
+								this.getFullJuryList();
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
+								});
+							});
+					}
+				});
 			},
 			addNomination(){
 				this.items.push({

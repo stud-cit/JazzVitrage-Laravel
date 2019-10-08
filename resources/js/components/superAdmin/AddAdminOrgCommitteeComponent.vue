@@ -124,12 +124,18 @@
 				this.table_form.append('surname', parse_surname);
 				this.table_form.append('name', parse_name);
 				this.table_form.append('email', parse_email);
-
-				axios.post('/update-admin/'+id, this.table_form)
-					.then((response) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-					})
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						axios.post('/update-admin/'+id, this.table_form)
+							.then((response) => {
+								this.admin = [];
+								this.getFullAdminOrgCommitteeList();
+							})
+					}
+				});
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')

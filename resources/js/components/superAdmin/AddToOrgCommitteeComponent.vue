@@ -192,29 +192,36 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				this.table_form.append('email', parse_email);
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('informations', parse_biography);
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						this.table_form.append('email', parse_email);
+						this.table_form.append('photo', parse_photo.files[0]);
+						this.table_form.append('informations', parse_biography);
 
-				axios.post('/update-org/'+id, this.table_form)
-					.then((response) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
-						});
-					});
+						axios.post('/update-org/'+id, this.table_form)
+							.then((response) => {
+								this.committees = [];
+								this.getFullOrgCommitteeList();
+								swal("Інформація оновлена", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
+							})
+							.catch((error) => {
+								this.committees = [];
+								this.getFullOrgCommitteeList();
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
+								});
+							});
+					}
+				});
 			},
 			getFullOrgCommitteeList() {
 				axios.get('/get-all-org')
