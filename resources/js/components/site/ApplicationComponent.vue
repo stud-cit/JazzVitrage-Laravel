@@ -48,7 +48,7 @@
                             <div class="select-block">
                                 <img src="img/star.png" class="star" alt="">
                                 <select name="nomination" v-model="registration.data.nomination"
-                                                 v-validate="{ required: true, regex: /^[1-9]$/ }"
+                                                 v-validate="{ required: true, regex: /^[0-9]$/ }"
                                                  data-vv-as="номінація"
                                                  id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
@@ -113,7 +113,18 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     {{ errors.first('memberDate') }}
                             </span>
-                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-mail.png" alt="" class="input-img">
+                                    <input type="text" name="memberEmail" placeholder="Електронна пошта" v-model="registration.data.memberEmail" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                        v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                        data-vv-as="Електронна пошта">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberEmail')">
+                                    {{ errors.first('memberEmail') }}
+                            </span>
+                            <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
@@ -121,7 +132,7 @@
 
                                     <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: true}"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -244,7 +255,7 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     {{ errors.first('memberDate') }}
                             </span>
-                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
@@ -252,7 +263,7 @@
 
                                     <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file" 
                                          v-validate="{ required: true }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -364,7 +375,7 @@
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     {{ errors.first('memberDate2') }}
                             </span>
-                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
@@ -372,7 +383,7 @@
 
                                     <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file" 
                                         v-validate="{ required: true }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -453,8 +464,8 @@
 
                         <!--group-->
 
-                        <form class="step-form" v-else-if="activeStep == 1">
-                            <h3 class="step-title">Інформація про учасника</h3>
+                        <form class="step-form" v-else-if="activeStep == 1 && registration.data.appType > 2">
+                            <h3 class="step-title">Інформація про колектив</h3>
 
                             <div class="input-row">
                                 <div class="input-container">
@@ -489,7 +500,7 @@
                             <span class="errors" v-if="errors.has('groupAverage')">
                                     {{ errors.first('groupAverage') }}
                             </span>
-                            <h3 class="step-title">Копія документа <i class="hint"></i></h3>
+                            <h3 class="step-title">Документ с датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
 
@@ -497,7 +508,7 @@
 
                                     <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
                                         v-validate="{ required: true }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                           data-vv-as="Документ с датами народження учасників">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -695,6 +706,17 @@
                             <span class="errors" v-if="errors.has('compositionAuthor')">
                                     {{ errors.first('compositionAuthor') }}
                             </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-composition.png" alt="" class="input-img">
+                                    <input type="text" name="timing1" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing1"
+                                        v-validate="{ required: true }"
+                                            data-vv-as="ХРОНОМЕТРАЖ">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('timing1')">
+                                    {{ errors.first('timing1') }}
+                            </span>
                             <h3 class="step-title">Другий твір</h3>
                             <div class="input-row">
                                 <div class="input-container">
@@ -717,6 +739,17 @@
                             </div>
                             <span class="errors" v-if="errors.has('compositionAuthor2')">
                                     {{ errors.first('compositionAuthor2') }}
+                            </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-composition.png" alt="" class="input-img">
+                                    <input type="text" name="timing2" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing2"
+                                           v-validate="{ required: true }"
+                                           data-vv-as="ХРОНОМЕТРАЖ">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('timing2')">
+                                    {{ errors.first('timing2') }}
                             </span>
                             <h4 class="step-title">ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО<i class="hint"></i></h4>
                             <div class="input-row">
@@ -747,7 +780,7 @@
 
                     <transition name="fade" >
 
-                        <form class="step-form" v-if="activeStep == 4">
+                        <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 1">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
@@ -758,20 +791,6 @@
                                 <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
                                 <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
-                            </ul></div>
-                            <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
-                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
-                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
-                            </ul></div>
-                            <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
-                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
-                                <li class="info-item">Електрона адреса: {{registration.data.memberName2}}</li>
-                                <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                             <ul class="info-list">
@@ -791,9 +810,124 @@
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                <li class="info-item">Хронометраж першого твору: </li>
                                 <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
-
+                                <li class="info-item">Хронометраж другого твору: </li>
                             </ul></div>
+                            <div class="result-row  file-row" >
+
+                                <div class="d-flex flex-column align-items-center file-item" v-for="(file, index) in registration.files" :key="index"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>2</span></div>-->
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
+                            </div>
+                            <div class="input-row checkbox-row result-checkbox">
+                                <label for="concertmaster" >
+                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <i></i>
+                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                            </div>
+                        </form>
+
+                        <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 2">
+
+                            <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                    <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
+                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberName2}}</li>
+                                    <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
+                                <ul class="info-list">
+
+                                    <li class="info-item">Назва: {{registration.data.schoolName}}</li>
+                                    <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
+                                    <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
+                                    <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
+                                    <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
+
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                    <li class="info-item">Хронометраж першого твору: </li>
+                                    <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
+                                    <li class="info-item">Хронометраж другого твору: </li>
+                                </ul></div>
+                            <div class="result-row  file-row" >
+
+                                <div class="d-flex flex-column align-items-center file-item" v-for="(file, index) in registration.files" :key="index"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>2</span></div>-->
+                                <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
+                            </div>
+                            <div class="input-row checkbox-row result-checkbox">
+                                <label for="concertmaster" >
+                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <i></i>
+                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-5">
+
+                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                            </div>
+                        </form>
+
+                        <form class="step-form" v-if="activeStep == 4 && registration.data.appType > 2">
+
+                            <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про колектив</h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Назва колективу та кількість учасників:</li>
+                                    <li class="info-item">Середній вік учасників: {{registration.data.memberDate}}</li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про керівника</h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові керівника: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
+                                    <li class="info-item">Контактний телефон керівника: {{registration.data.teacherPhone}}</li>
+                                    <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.idCode}}</li>
+                                    <li class="info-item">Електронна пошта керівника: </li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
+                                <ul class="info-list">
+
+                                    <li class="info-item">Назва: {{registration.data.schoolName}}</li>
+                                    <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
+                                    <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
+                                    <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                                </ul></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
+                                <ul class="info-list">
+                                    <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
+                                    <li class="info-item">Хронометраж першого твору:</li>
+                                    <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
+                                    <li class="info-item">Хронометраж другого твору:</li>
+                                </ul></div>
                             <div class="result-row  file-row" >
 
                                 <div class="d-flex flex-column align-items-center file-item" v-for="(file, index) in registration.files" :key="index"><img src="img/file.png" alt=""><span>{{file.name}}</span></div>
@@ -908,7 +1042,6 @@
             getNominations() {
                 axios.get('/get-nominations')
                 .then((response) => {
-                    console.log(response.data)
                     this.nominations = response.data;
                 })
             },
