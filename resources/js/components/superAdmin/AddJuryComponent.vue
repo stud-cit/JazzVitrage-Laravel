@@ -182,16 +182,21 @@
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
-				nomination_select.setAttribute('id', 'table_select');
+				nomination_select.setAttribute('id', 'parse_table_select');
 				nomination_select.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
-				var min = 1, max = 3;
-				for (var i = min; i <= max; i++){
-					var nomination_option = document.createElement('option');
-					nomination_option.innerHTML = 'Інструментальний жанр';
-					nomination_select.append(nomination_option);
-				}
 				nomination_td.append(nomination_select);
+				var sel = document.getElementById('parse_table_select');
+				var opt1 = document.createElement('option');
+				var opt2 = document.createElement('option');
+				var opt3 = document.createElement('option');
+				opt1.appendChild( document.createTextNode('Інструментальний жанр') );
+				opt2.appendChild( document.createTextNode('Вокальний жанр') );
+				opt3.appendChild( document.createTextNode('Композиція') );
+				sel.appendChild(opt1);
+				sel.appendChild(opt2);
+				sel.appendChild(opt3);
+
 
 				information_input.value += information_td.innerHTML;
 				information_input.setAttribute('id', 'information_data');
