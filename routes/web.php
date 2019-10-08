@@ -4,8 +4,8 @@ Route::get('/', 'SiteController@index')->name('site');
 Route::get('/application', 'ApplicationController@index');
 Route::post('/application', 'ApplicationController@store');
 //Конкурс
-Route::get('/list-participants', 'СompetitionController@listParticipants');
-Route::get('/hymn', 'СompetitionController@hymn');
+// Route::get('/list-participants', 'СompetitionController@listParticipants');
+// Route::get('/hymn', 'СompetitionController@hymn');
 //Галерея
 Route::get('/video-gallery', 'GalleryController@videoGallery');
 Route::get('/festival', 'GalleryController@festival');
@@ -14,6 +14,12 @@ Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
 Route::get('get-jurys-view', 'ContactsController@getJurys');
 Route::get('get-jury-view/{id}/', 'ContactsController@jury');
 Route::get('get-org-view', 'ContactsController@organizingCommittee');
+//Положення
+// Route::get('/position', 'PositionController@position');
+//Контакти
+// Route::get('/jury', 'ContactsController@jury');
+// Route::get('/organizing-committee', 'ContactsController@organizingCommittee');
+
 
 
 // Админка
@@ -48,6 +54,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('delete-question/{id}/', 'QuestionController@deleteQuestion');
 
     Route::post('post-contact', 'InfoController@postContact');
+    Route::post('post-social', 'InfoController@postSocial');
     Route::post('delete-contact/{id}/', 'InfoController@deleteContact');
 
     Route::post('post-info', 'InfoController@postInfo');
@@ -56,6 +63,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('post-quote', 'InfoController@postQuote');
     Route::post('put-quote', 'InfoController@putQuote');
     Route::post('delete-quote/{id}/', 'InfoController@deleteQuote');
+    Route::get('get-rating', 'ApplicationController@getRating')->name('rating');
 });
 
 // Роль Орг.Комітет
@@ -82,7 +90,10 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
     });
-     Route::get('/admin/all-statements/{any}', function () {
+    Route::post('to-rate', 'EvaluationController@toRate')->name('to-rate');
+    Route::get('has-record/{application_id}', 'EvaluationController@hasRecord')->name('has-record');
+    Route::post('to-rate-update/{evaluation_id}', 'EvaluationController@toRateUpdate')->name('to-rate-update');
+    Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
      })->where('any', '[0-9]');
 });
@@ -109,6 +120,7 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('update-org/{id}/', 'UserController@updateOrg');
     Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
+    //->name('to-rate');
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');

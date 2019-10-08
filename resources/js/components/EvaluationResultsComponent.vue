@@ -34,13 +34,15 @@
                     <th width="30px">№</th>
                     <th>ПІБ Учасника / Назва групи</th>
                     <th>Тип заявки</th>
+                    <th class="text-center">Оцінка</th>
                 </tr>
             </thead>
-            <tbody v-for="(item, index) in filteredList">
+            <tbody v-for="(item, index) in filteredList" v-bind:key="item.id">
                 <tr>
                     <td>{{ index + 1 }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.type }}</td>
+                    <td class="text-center">{{ item.evaluation }}</td>
                 </tr>
             </tbody>
         </table>
@@ -67,25 +69,30 @@ export default {
     },
     methods: {
         getFullList() {
-            axios.get('/get-all-members')
+            axios.get('/get-rating')
             .then((response) => {
                 response.data.forEach(member => {
+                   console.log(member); 
                     if(member.solo_duet.length == 0) {
                         this.members.push({
+                            id: member.application_id,
                             name: member.group.name, 
-                            type: member.app_type.name
+                            type: member.app_type.name,
+                            evaluation: member.evaluation
                         })
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
                             name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
-                            type: member.app_type.name
+                            type: member.app_type.name,
+                            evaluation: member.evaluation
                         })
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
                             name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
-                            type: member.app_type.name
+                            type: member.app_type.name,
+                            evaluation: member.evaluation
                         })
                     }
                 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Application;
+use App\Models\Evaluation;
 use App\Models\GroupPeople;
 use App\Models\ApplicationType;
 use App\Models\SoloDuet;
@@ -58,7 +59,7 @@ class ApplicationController extends Controller
 
         $app->nomination_id = $data->nomination;
         $app->application_type_id = $data->appType;
-        $app->status = 'created';
+        $app->status = Application::CREATED;
         $app->save();
 
         if($data->appType == 1) {
@@ -197,7 +198,7 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        $model->status = 'archive';
+        $model->status = Application::ARCHIVE;
 
         if($model->save()){
             return 'ok';
@@ -208,7 +209,7 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        $model->status = 'created';
+        $model->status = Application::CREATED;
 
         if($model->save()){
             return ;
@@ -223,5 +224,28 @@ class ApplicationController extends Controller
             return ;
         }
 
+    }
+
+    /**
+     * Return all application end calculate rating
+     * Return json
+     */
+    public function getRating() {
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->where('status', '!=', 'archive')->get()->toArray();
+        //$data2;
+        //var_dump($data);
+        // $users = Application::all();
+        // $users = $users->evaluations()->avg('evaluation');
+        //$users = $users->fresh('evaluations')-avg('evaluation');
+        // var_dump( $users);
+        $data2 = array_map( function ($row) {
+            return $row['evaluations'];
+        } , $data);
+        // foreach ($data->flatMap->evaluations as $eval) {
+        //     $data2[] = $eval->evaluation;
+        // }
+        // var_dump($data2);
+
+        return response()->json($data);
     }
 }

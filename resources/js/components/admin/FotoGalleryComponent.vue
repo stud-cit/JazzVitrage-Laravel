@@ -60,7 +60,6 @@ export default {
             foto: [],
             yearCompetition: new Date().getFullYear(),
             typeEvent: 'Джаз-Вітраж',
-            form: new FormData,
             load: false
         }
     },
@@ -83,7 +82,7 @@ export default {
         fieldChange(){
             let changeFile = this.$refs.file.files;
             for(let i = 0; i < changeFile.length; i++) {
-                if(changeFile[i].type == 'image/jpeg') {
+                if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
                     changeFile[i].valid = true;
                 } else {
                     changeFile[i].valid = false;
@@ -92,15 +91,16 @@ export default {
             }
         },
         uploadFile(){
+            var form = new FormData;
             this.load = true;
             for(let i = 0; i < this.file.length; i++){
                 if(this.file[i].valid) {
-                    this.form.append('pics[]', this.file[i]);
+                    form.append('pics[]', this.file[i]);
                 }
             }
-            this.form.append('type', this.typeEvent);
-            this.form.append('year', this.yearCompetition);
-            axios.post('/post-foto', this.form)
+            form.append('type', this.typeEvent);
+            form.append('year', this.yearCompetition);
+            axios.post('/post-foto', form)
             .then((res) => {
                 this.file = [];
                 this.load = false;

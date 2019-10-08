@@ -138,12 +138,9 @@
 					})
 			},
 			postAdmin(){
-				
-				
 				this.$validator.validateAll().then((result) => {
-                    if (!result) {
-						
-					return;
+                    if (!result) {	
+						return;
 					}
 					else{
 						this.form.append('name', this.name);
@@ -153,7 +150,7 @@
 						.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
-					})
+						})
 					}
 
                 }).catch(() => {

@@ -90,16 +90,22 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+					<img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+				</td>
+
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
+
+                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+
             </tr>
             </tbody>
         </table>
@@ -133,8 +139,18 @@
 			this.getFullJuryList();
 		},
 		methods: {
-			getFileName(event) {
-				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+
+			getFileName(evt, index) {
+				var tr = document.querySelectorAll('tr')[index + 1]
+				var file = evt.target.files;
+				var reader = new FileReader();
+				reader.onload = (function(theFile) {
+					return function(e) {
+						tr.querySelector('#photo_value_jury').setAttribute('src', e.target.result);
+					};
+				})(file[0]);
+				reader.readAsDataURL(file[0]);
+
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -146,7 +162,7 @@
 				var nomination_input = document.createElement('input');
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
+				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5];
@@ -158,16 +174,25 @@
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
 
-				photo_input.setAttribute('class', 'edit-photo');
+
+				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
-                <label class="label">
+                <label class="label" id="label">
                     <i class="material-icons"><img src="../img/upload-img.png"></i>
-                    <span id="file"></span>
+
                     <span class="title">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
-				photo_td.innerHTML = '';
+
+				var photo_label = photo_td.querySelector('img');
+
+				photo_label.setAttribute('id', 'photo_value_jury');
+				photo_label.removeAttribute('class');
+				document.getElementById('photo_value_jury').style.opacity = "0.5";
+
+				photo_input.prepend(photo_label);
+
 				photo_td.append(photo_input);
 
 				email_input.setAttribute('value', email_td.innerHTML);
@@ -217,18 +242,35 @@
 
 				this.table_form.append('name', parse_pib[0]);
 				this.table_form.append('surname', parse_pib[1]);
-				this.table_form.append('patronymic', parse_pib[2]);
+				if (typeof parse_pib[2] == 'undefined') {
+				} else {
+					this.table_form.append('patronymic', parse_pib[2]);
+				}
 				this.table_form.append('email', parse_email);
 				this.table_form.append('rank', parse_rank);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('nominations', parse_nomination);
 				this.table_form.append('informations', parse_information);
-                
+
 				axios.post('/update-jury/'+id, this.table_form)
 					.then((response) => {
 						this.jurys = [];
 						this.getFullJuryList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
+					.catch((error) => {
+						this.jurys = [];
+						this.getFullJuryList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
+						});
+					});
 			},
 			addNomination(){
 				this.items.push({

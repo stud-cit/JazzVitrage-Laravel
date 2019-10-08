@@ -19,7 +19,7 @@
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100" @click='editFile("logo_section", "logo", "img")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('logo')">{{ errors.first('logo') }}</p>
+                        <p class="text-danger col-9" v-if="errors.has('logo')">Файл повинен бути зображенням</p>
                     </div>
                     <img v-if="!errors.has('logo')" class="mt-3 w-50" :src="info.logo">
                     <hr>
@@ -50,7 +50,7 @@
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "file", "file")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('document')">{{ errors.first('document') }}</p>
+                        <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати формату: pdf, doc, txt, docx</p>
                     </div>
                     <hr>
                     <label for="video" class="brtop">Відео для положення конкурсу (YouTube)</label>
@@ -101,7 +101,7 @@
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('audio')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "audio", "audio")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('audio')">{{ errors.first('audio') }}</p>
+                        <p class="text-danger col-9" v-if="errors.has('audio')">Файл не відповідає музичному формату</p>
                     </div>
                     <hr>
                     <label for="note_image" class="brtop">Зображення для нот</label>
@@ -116,13 +116,14 @@
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('note')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "note_image", "img")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('note')">{{ errors.first('note') }}</p>
+                        <p class="text-danger col-9" v-if="errors.has('note')">Файл повинен бути зображенням</p>
                     </div>
                     <img v-if="!errors.has('note')" class="mt-3 w-50" :src="info.note_image">
                     <!-- Контакти -->
                     <br>
                     <h3 class="mt-3">Контакти</h3>
                     <hr>
+<<<<<<< HEAD
                     <label for="emails" class="brtop">Email</label>
                     <div class="row" v-for="(emailItem, index) in contact.emails" :key="'email'+index">
                         <div class="col-10">
@@ -139,6 +140,8 @@
                         </div>
                     </div>
                     <hr>
+=======
+>>>>>>> 0f0be489950eb790269efb0bbe924558936b4318
                     <label for="address" class="brtop">Адреса</label>
                     <div class="row" v-for="(addressItem, index) in contact.address" :key="'address'+index">
                         <div class="col-10">
@@ -224,7 +227,6 @@ export default {
                 note_image: ''
             },
             contact: {
-                emails: [],
                 address: [],
                 phones: [],
                 socials: []
@@ -270,7 +272,7 @@ export default {
             textElementTitle.setAttribute('disabled', 'disabled');
             this.editing = {};
             this.contact.socials[index].disabled = true;
-            axios.post('/post-contact', {
+            axios.post('/post-social', {
                 id: this.contact.socials[index].contact_items_id,
                 contact: this.contact.socials[index].contact,
                 contact_title: this.contact.socials[index].contact_title,
@@ -297,7 +299,21 @@ export default {
             this.form.append('table', table);
             this.form.append('row', row);
             this.form.append('file', this.$refs[row].files[0]);
-            axios.post('/post-info-file', this.form);
+            axios.post('/post-info-file', this.form)
+	            .then((response) => {
+		            swal("Інформація оновлена", {
+			            icon: "success",
+			            timer: 1000,
+			            button: false
+		            });
+	            })
+	            .catch((error) => {
+		            swal({
+			            icon: "error",
+			            title: 'Помилка',
+			            text: 'Файл не обрано'
+		            });
+	            });
         },
 
         edit(event, table, el) {

@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Models;
-// use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
     protected $table = 'application';
-    protected $primaryKey = 'application_id';
+	protected $primaryKey = 'application_id';
+	public const CREATED = 'created';
+	public const ARCHIVE = 'archive';
 
     public function appType()
 	{
@@ -33,4 +34,24 @@ class Application extends Model
 	{
 		return $this->belongsTo('App\Models\Nomination', 'nomination_id');
 	}
+
+
+	/**
+	 *  Get the evaluations for application
+	 */
+	public function evaluations()
+	{
+		return $this->hasMany('App\Models\Evaluation', 'application_id');
+	}
+
+	/**
+	 * Scope a query to only created application.
+	 * 
+	 * @param \Illuminate\Database\Eloquent\Builder $query
+	 * @return \Illuminate\Dtabase\Eloquent\Builder
+	 */
+	public function scopeCreated($query) {
+		return $query->where('status', self::CREATED);
+	}
+
 }

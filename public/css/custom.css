@@ -23,6 +23,42 @@
     padding-left: 40px;
     margin-bottom: 25px;
 }
+#photo_value_jury {
+    position:relative;
+    z-index: 1;
+    height: 135px;
+    width: 130px;
+}
+#photo_value_org {
+    position:relative;
+    z-index: 1;
+    height: 135px;
+    width: 235px;
+}
+.edit-jury-photo{overflow:hidden}
+.edit-jury-photo .form-group{padding:0;margin:0}
+.edit-jury-photo input[type=file]{outline:0;opacity:0;pointer-events:none;user-select:none}
+.edit-jury-photo .label{width:130px;margin-top:-135px;position:relative;z-index: 2;border:2px dashed grey;border-radius:5px;display:block;padding:0;transition:border 300ms ease;cursor:pointer;text-align:center}
+.edit-jury-photo .label i{display:block;font-size:42px;padding-top:16px}
+.edit-jury-photo .label i,.edit-jury-photo .label .title{color:grey;transition:200ms color}
+.edit-jury-photo .label:hover{border:2px solid #000}
+.edit-jury-photo .label:hover i,.edit-jury-photo .label:hover .title{color:#000}
+
+.edit-org-photo{overflow:hidden}
+.edit-org-photo .form-group{padding:0;margin:0}
+.edit-org-photo input[type=file]{outline:0;opacity:0;pointer-events:none;user-select:none}
+.edit-org-photo .label{width:235px;margin-top:-135px;position:relative;z-index: 2;border:2px dashed grey;border-radius:5px;display:block;padding:0;transition:border 300ms ease;cursor:pointer;text-align:center}
+.edit-org-photo .label i{display:block;font-size:42px;padding-top:16px}
+.edit-org-photo .label i,.edit-org-photo .label .title{color:grey;transition:200ms color}
+.edit-org-photo .label:hover{border:2px solid #000}
+.edit-org-photo .label:hover i,.edit-org-photo .label:hover .title{color:#000}
+.input-edit-correct {
+    width: 135px;
+}
+
+.text-area-width {
+    width:320px;
+}
 
 .edit-photo .form-group{padding:0;margin:0}
 .edit-photo input[type=file]{outline:0;opacity:0;pointer-events:none;user-select:none}
