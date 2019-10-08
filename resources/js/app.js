@@ -8,19 +8,20 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import VueSilentbox from 'vue-silentbox';
 import VeeValidate, { Validator } from 'vee-validate';
-import ruLocale from 'vee-validate/dist/locale/ru';
+import uk from 'vee-validate/dist/locale/uk';
 import Vuelidate from 'vuelidate';
 
 Vue.config.productionTip = false;
 
-Validator.localize('ru', ruLocale)
+Validator.localize('uk', uk);
+
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(VueSilentbox);
 Vue.use(VeeValidate, {
-    locale: 'ru'
-})
+    locale: 'uk',
+});
 
 import NewStatementComponent from './components/NewStatementComponent';
 import RemovedStatementComponent from './components/RemovedStatementComponent';

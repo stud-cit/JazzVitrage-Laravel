@@ -3,25 +3,63 @@
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
-                    <label for="name" class="brtop">Прізвище</label>
-                    <input type="text" v-model="name" class="form-control" id="name">
-
-                    <label for="surname" class="brtop">Ім'я</label>
-                    <input type="text" v-model="surname" class="form-control" id="surname">
-
-                    <label for="patronymic" class="brtop">По батькові</label>
-                    <input type="text" v-model="patronymic" class="form-control" id="patronymic">
-
-                    <label for="email" class="brtop">Електронна адреса</label>
-                    <input type="email" v-model="email" class="form-control" id="email">
+                    <div>
+						<label for="surname" class="brtop">Прізвище</label>
+						<input type="text" name="surname" v-model="surname" class="form-control" id="surname"
+						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Прізвище">
+						<span class="errors text-danger" v-if="errors.has('surname')">
+								{{ errors.first('surname') }}
+						</span>
+					</div>
+					<div>
+						<label for="name" class="brtop">Ім'я</label>
+						<input type="text" name="name" v-model="name" class="form-control" id="name"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Ім'я">
+						<span class="errors text-danger" v-if="errors.has('name')">
+								{{ errors.first('name') }}
+						</span>
+					</div>
+					<div>
+						<label for="patronymic" class="brtop">По батькові</label>
+						<input type="text" name="patronymic" v-model="patronymic" class="form-control" id="patronymic"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+								data-vv-as="По батькові">
+						<span class="errors text-danger" v-if="errors.has('patronymic')">
+								{{ errors.first('patronymic') }}
+						</span>
+					</div>
+                    <div>
+						<label for="email" class="brtop">Електронна адреса</label>
+						<input type="email" name="email" v-model="email" class="form-control" id="email"
+							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+								data-vv-as="Електронна адреса">
+						<span class="errors text-danger" v-if="errors.has('email')">
+								{{ errors.first('email') }}
+						</span>
+					</div>	
                 </div>
                 <div class="col-2"></div>
                 <div class="col-5">
-                    <label for="jury-photo" class="brtop">Фото</label>
-                    <input type="file" ref="file" class="form-control-file" id="jury-photo">
-
-                    <label for="info" class="brtop">Біографія</label>
-                    <textarea class="form-control" v-model="informations" id="info" rows="3"></textarea>
+					<div>
+						<label for="jury-photo" class="brtop">Фото</label>
+						<input type="file" name="jury-photo" ref="file" class="form-control-file" id="jury-photo"
+							v-validate="{ required: true}"
+								data-vv-as="Фото">
+						<span class="errors text-danger" v-if="errors.has('jury-photo')">
+								{{ errors.first('jury-photo') }}
+						</span>
+					</div>
+                    <div>
+						<label for="info" class="brtop">Біографія</label>
+						<textarea class="form-control" name="informations" v-model="informations" id="info" rows="3" 
+							v-validate="{ required: true}"
+								data-vv-as="Електронна адреса"></textarea>
+						<span class="errors text-danger" v-if="errors.has('informations')">
+								{{ errors.first('informations') }}
+						</span>
+                    </div>
                     <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" @click="postAllOrg">Додати</button>
                 </div>
             </div>
@@ -154,29 +192,36 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				this.table_form.append('email', parse_email);
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('informations', parse_biography);
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						this.table_form.append('email', parse_email);
+						this.table_form.append('photo', parse_photo.files[0]);
+						this.table_form.append('informations', parse_biography);
 
-				axios.post('/update-org/'+id, this.table_form)
-					.then((response) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
-						});
-					});
+						axios.post('/update-org/'+id, this.table_form)
+							.then((response) => {
+								this.committees = [];
+								this.getFullOrgCommitteeList();
+								swal("Інформація оновлена", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
+							})
+							.catch((error) => {
+								this.committees = [];
+								this.getFullOrgCommitteeList();
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Поля: "ПІБ комітету, електронна адреса, фото" повинні бути заповнені'
+								});
+							});
+					}
+				});
 			},
 			getFullOrgCommitteeList() {
 				axios.get('/get-all-org')
@@ -185,17 +230,27 @@
 					})
 			},
 			postAllOrg(){
-				this.form.append('name', this.name);
-				this.form.append('surname', this.surname);
-				this.form.append('patronymic', this.patronymic);
-				this.form.append('email', this.email);
-				this.form.append('photo', this.$refs.file.files[0]);
-				this.form.append('informations', this.informations);
-				axios.post('/post-all-org', this.form)
-					.then(() => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-					})
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						this.form.append('name', this.name);
+						this.form.append('surname', this.surname);
+						this.form.append('patronymic', this.patronymic);
+						this.form.append('email', this.email);
+						this.form.append('photo', this.$refs.file.files[0]);
+						this.form.append('informations', this.informations);
+						axios.post('/post-all-org', this.form)
+							.then((response) => {
+								this.committees = [];
+								this.getFullOrgCommitteeList();
+							})
+					}
+				}).catch(() => {
+                    console.log(2);
+
+                });
 			},
 			deleteOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

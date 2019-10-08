@@ -3,19 +3,36 @@
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
-                    <label for="name" class="brtop">Прізвище</label>
-                    <input type="text" v-model="name" class="form-control" id="name">
-
-                    <label for="surname" class="brtop">Ім'я</label>
-                    <input type="text" v-model="surname" class="form-control" id="surname">
+                    <div>
+					<label for="surname" class="brtop">Прізвище</label>
+                    <input type="text" name="surname" v-model="surname" class="form-control" id="surname"
+						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                            data-vv-as="Прізвище">
+					<span class="errors text-danger" v-if="errors.has('surname')">
+							{{ errors.first('surname') }}
+                    </span>
+					</div>
+                    <label for="name" class="brtop">Ім'я</label>
+                    <input type="text" name="name" v-model="name" class="form-control" id="name"
+						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+                            data-vv-as="Ім'я">
+					<span class="errors text-danger" v-if="errors.has('name')">
+							{{ errors.first('name') }}
+                    </span>
                 </div>
+				
                 <div class="col-2"></div>
                 <div class="col-5">
                     <label for="email" class="brtop">Електронна адреса</label>
-                    <input type="email" v-model="email" class="form-control" id="email">
-
+                    <input type="email" name="email" v-model="email" class="form-control" id="email"
+						v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                            data-vv-as="Електронна адреса">
+					<span class="errors text-danger" v-if="errors.has('email')">
+							{{ errors.first('email') }}
+                	</span>
                     <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" @click="postAdmin">Додати</button>
                 </div>
+				
             </div>
         </form>
         <br>
@@ -36,11 +53,11 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.surname }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td class="text-center" id="edit-save-td">
+                <td id="edit-save-td">
                     <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
-                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
+                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
             </tr>
             </tbody>
         </table>
@@ -55,7 +72,6 @@
 				name: '',
 				surname: '',
 				email: '',
-				defaultPatronymic: 'default',
 				form: new FormData,
 				table_form: new FormData
 			};
@@ -108,26 +124,18 @@
 				this.table_form.append('surname', parse_surname);
 				this.table_form.append('name', parse_name);
 				this.table_form.append('email', parse_email);
-
-				axios.post('/update-admin/'+id, this.table_form)
-					.then((response) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "прізвище, ім’я, електронна адреса" повинні бути заповнені'
-						});
-					});
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						axios.post('/update-admin/'+id, this.table_form)
+							.then((response) => {
+								this.admin = [];
+								this.getFullAdminOrgCommitteeList();
+							})
+					}
+				});
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')
@@ -136,15 +144,25 @@
 					})
 			},
 			postAdmin(){
-				this.form.append('name', this.name);
-				this.form.append('surname', this.surname);
-				this.form.append('email', this.email);
-				this.form.append('patronymic', this.defaultPatronymic);
-				axios.post('/post-all-admin', this.form)
-					.then(() => {
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else{
+						this.form.append('name', this.name);
+						this.form.append('surname', this.surname);
+						this.form.append('email', this.email);
+                      	axios.post('/post-all-admin', this.form)
+						.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
-					})
+						})
+					}
+
+                }).catch(() => {
+                    console.log(2);
+
+                });
 			},
 			deleteAdminOrgCommittee(id, index){
 				axios.post('/delete-user/'+id)

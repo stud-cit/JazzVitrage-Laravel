@@ -205,7 +205,7 @@
                         <!--duet-->
 
                         <form class="step-form" v-else-if="activeStep == 1 && registration.data.appType == 2">
-                            <h3 class="step-title">Перший учасник дуету 22222</h3>
+                            <h3 class="step-title">Перший учасник дуету</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
@@ -547,7 +547,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="schoolPhone" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
-                                        v-validate="{ required: true, regex: /^(?:[+])?[0-9]+$/ }"
+                                        v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ }"
                                            data-vv-as="ТЕЛЕФОН">
                                 </div>
                             </div>
@@ -619,7 +619,7 @@
                                 <div class="input-container">
                                     <img src="img/input-phone.png" alt="" class="input-img">
                                     <input type="text" name="teacherPhone" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
-                                        v-validate="{ required: true, regex: /^(?:[+])?[0-9]+$/ }"
+                                        v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ }"
                                            data-vv-as="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА">
                                 </div>
                             </div>
