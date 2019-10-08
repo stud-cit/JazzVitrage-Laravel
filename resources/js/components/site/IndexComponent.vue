@@ -71,7 +71,7 @@
                     <div class="col-xl-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
                 </div>
                 <div class="text-center">
-                    <button class="archive">АРХІВ</button>
+                    <router-link :to="{name: 'gallery'}"><button class="archive">АРХІВ</button></router-link>
                 </div>
             </div>
         </section>
@@ -170,7 +170,7 @@
                                     <span class="sr-only">Next</span>
                                 </div>
                             </a>
-                            <div class="text-center"><button class="archive">АРХІВ</button></div>
+                            <div class="text-center"><router-link :to="{name: 'gallery-video'}"><button class="archive">АРХІВ</button></router-link></div>
 
 
 
