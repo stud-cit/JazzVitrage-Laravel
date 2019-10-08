@@ -146,23 +146,34 @@
 						this.getFullAdminOrgCommitteeList();
 					})
 			},
-			deleteAdminOrgCommittee(id, index){
-				axios.post('/delete-user/'+id)
-					.then((response) => {
-						if(response.status == 200) {
-							this.admin.splice(index, 1);
+			deleteAdminOrgCommittee(id, index) {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити даний запис",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							axios.post('/delete-user/' + id)
+								.then((response) => {
+									if (response.status == 200) {
+										this.admin.splice(index, 1);
+									}
+									swal("Адміністратор був успішно видалений", {
+										icon: "success",
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+										text: 'Не вдалося'
+									});
+								});
 						}
-						swal("Адміністратор був успішно видалений", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Не вдалося'
-						});
-					});
 			}
 		}
 	}
