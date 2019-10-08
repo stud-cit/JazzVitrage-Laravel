@@ -11,6 +11,8 @@ import MembersList from './components/site/MembersListComponent';
 import Application from './components/site/ApplicationComponent';
 import Gallery from './components/site/GalleryComponent';
 import GalleryYear from './components/site/GalleryYearComponent';
+import VideoGallery from './components/site/VideoGalleryComponent';
+import VideoGalleryYear from './components/site/VideoGalleryYearComponent';
 import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
@@ -21,6 +23,15 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+
+import VeeValidate, { Validator } from 'vee-validate';
+
+import uk from 'vee-validate/dist/locale/uk';
+
+Validator.localize('uk', uk);
+Vue.use(VeeValidate, {
+    locale: 'uk',
+});
 
 Vue.config.delimiters = ['${', '}'];
 
@@ -46,6 +57,16 @@ const router = new VueRouter({
             path: '/gallery/:id/',
             name: 'gallery-year',
             component: GalleryYear,
+        },
+        {
+            path: '/gallery-video',
+            name: 'gallery-video',
+            component: VideoGallery,
+        },
+        {
+            path: '/gallery-video/:id/',
+            name: 'gallery-video-year',
+            component: VideoGalleryYear,
         },
         {
 
@@ -90,6 +111,8 @@ const app = new Vue({
         Application,
         Gallery,
         GalleryYear,
+        VideoGallery,
+        VideoGalleryYear,
         Gymn,
         Jury,
         JuryMember,

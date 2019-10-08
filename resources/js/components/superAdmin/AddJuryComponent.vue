@@ -58,18 +58,22 @@
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
+
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
 					<img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
 				</td>
+
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
+
                 <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
                 <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+
             </tr>
             </tbody>
         </table>
@@ -103,6 +107,7 @@
 			this.getFullJuryList();
 		},
 		methods: {
+
 			getFileName(evt, index) {
 				var tr = document.querySelectorAll('tr')[index + 1]
 				var file = evt.target.files;
@@ -113,8 +118,10 @@
 					};
 				})(file[0]);
 				reader.readAsDataURL(file[0]);
+
 				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
 				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
+
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -139,14 +146,18 @@
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
 
+
 				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
+
                     <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
                     <span class="title" id="span_id">Додати файл</span>
+
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
+
 				var photo_label = photo_td.querySelector('img');
 
 				photo_label.setAttribute('id', 'photo_value_jury');
@@ -154,6 +165,7 @@
 				document.getElementById('photo_value_jury').style.opacity = "0.5";
 
 				photo_input.prepend(photo_label);
+
 				photo_td.append(photo_input);
 
 				email_input.setAttribute('value', email_td.innerHTML);

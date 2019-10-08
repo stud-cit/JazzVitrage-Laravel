@@ -17,9 +17,15 @@ input, select, textarea, button
 
 .owl-carousel .owl-item img
    width: auto !important
-
+.errors
+   display: block
+   color: orange
+   line-height: 1.5
+   font-family: Montserrat
+   font-size: 16px
+   margin: 10px 0
 .applications
-
+   padding-top: 170px
    .application-for-participation
       position: relative
       margin-top: -55px
@@ -33,7 +39,7 @@ input, select, textarea, button
       color: #ffffff
       font-family: Montserrat
       font-size: 20pt
-      font-weight: 500
+      font-weight: 500git
       letter-spacing: 1.6px
       padding-top: 12px
       text-align: center
@@ -228,6 +234,7 @@ input, select, textarea, button
                   font-size: 20px
                   font-weight: 400
                   letter-spacing: 2px
+                  text-transform: uppercase
             &:first-of-type
                input
                   border-left: 1px solid #fff
@@ -337,6 +344,34 @@ input, select, textarea, button
          justify-content: center
          align-items: center
          background-color: rgba(0,0,0,0.3)
+         cursor: pointer
+         .caption
+            font-family: Montserrat
+            font-size: 60px
+            font-weight: 900
+            color: #fff
+
+         &:hover
+            .caption
+               transition: all 0.2s ease
+               font-size: 80px
+   .video-gallery-item
+      position: relative
+      margin: 15px 0
+      img
+         max-height: 350px
+         height: 100%
+         width: 100%
+      .dark-bg
+         position: absolute
+         top: 0
+         left: 15px
+         width: calc(100% - 30px)
+         height: calc(100% - 25px)
+         max-height: 350px
+         display: flex
+         justify-content: center
+         align-items: center
          cursor: pointer
          .caption
             font-family: Montserrat
@@ -564,7 +599,7 @@ input, select, textarea, button
             font-family: "Segoe UI"
             font-size: 16px
             font-weight: 400
-      &:nth-of-type(2n+1)
+      &:nth-of-type(2n)
          .picture
             order: 2
             img

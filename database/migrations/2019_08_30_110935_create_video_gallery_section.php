@@ -19,6 +19,7 @@ class CreateVideoGallerySection extends Migration
             $table->engine = 'InnoDB';
             $table->increments('video_id');
             $table->string('url', 100);
+            $table->string('year', 4);
             $table->timestamps();
         });
     }

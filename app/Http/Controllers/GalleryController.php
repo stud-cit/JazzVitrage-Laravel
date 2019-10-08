@@ -12,7 +12,7 @@ class GalleryController extends Controller
 
     public function getFoto()
     {
-        $data = FotoGallery::orderBy('created_at', 'asc')->get();
+        $data = FotoGallery::orderBy('year', 'desc')->get();
         return response()->json($data);
     }
     public function getFotoYear($year)
@@ -50,13 +50,19 @@ class GalleryController extends Controller
 
     public function getVideo()
     {
-        $data = VideoGallery::orderBy('created_at', 'asc')->get();
+        $data = VideoGallery::orderBy('year', 'desc')->get();
+        return response()->json($data);
+    }
+    public function getVideoYear($year)
+    {
+        $data = VideoGallery::orderBy('created_at', 'asc')->where('year', '=', $year)->get();
         return response()->json($data);
     }
     public function postVideo(Request $request)
     {
         $video = new VideoGallery;
         $video->url = $request->url;
+        $video->year = $request->year;
         $video->save();
     }
     public function deleteVideo($id)

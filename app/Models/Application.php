@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Models;
-// use App\Models\ApplicationType;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
     protected $table = 'application';
-    protected $primaryKey = 'application_id';
+	protected $primaryKey = 'application_id';
 
     public function appType()
 	{
@@ -33,4 +32,14 @@ class Application extends Model
 	{
 		return $this->belongsTo('App\Models\Nomination', 'nomination_id');
 	}
+
+
+	/**
+	 *  Get the evaluations for application
+	 */
+	public function evaluations()
+	{
+		return $this->hasMany('App\Models\Evaluation', 'application_id');
+	}
+
 }

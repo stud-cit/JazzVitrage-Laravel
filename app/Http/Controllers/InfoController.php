@@ -25,6 +25,7 @@ class InfoController extends Controller
             $contacts = new ContactsItems;
             $contacts->contact_section_id = 2;
         }
+
         $contacts->contact_title = $request->contact_title;
         $contacts->contact = $request->contact;
         $contacts->save();

@@ -48,7 +48,9 @@
                     <img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
                 </td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
+
                 <td class="text-center" id="edit-save-td">
+
                     <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
                     <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
                 </td>
@@ -115,6 +117,7 @@
 				email_td.innerHTML = '';
 				email_td.append(email_input);
 
+
 				photo_input.setAttribute('class', 'edit-org-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
@@ -131,6 +134,7 @@
 				document.getElementById('photo_value_org').style.opacity = "0.5";
 
 				photo_input.prepend(photo_label);
+
 				photo_td.append(photo_input);
 
 				biography_input.value += biography_td.innerHTML;
