@@ -126,7 +126,12 @@
                     <label for="emails" class="brtop">Email</label>
                     <div class="row" v-for="(emailItem, index) in contact.emails" :key="'email'+index">
                         <div class="col-10">
-                            <input type="text" class="form-control" v-model="emailItem.contact" id="emails" :disabled="emailItem.disabled == '' ? emailItem.disabled : true">
+                            <input type="text" name="email" class="form-control" v-model="emailItem.contact" id="emails" :disabled="emailItem.disabled == '' ? emailItem.disabled : true"
+                                v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+								    data-vv-as="Email">
+                            <span class="errors text-danger" v-if="errors.has('email')">
+                                {{ errors.first('email') }}
+                            </span>
                         </div>
                         <div class="col-2">
                             <button v-if="emailItem !== editing" type="button" class="btn btn-outline-secondary float-right" @click='editContact(emailItem, "emails", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -137,7 +142,12 @@
                     <label for="address" class="brtop">Адреса</label>
                     <div class="row" v-for="(addressItem, index) in contact.address" :key="'address'+index">
                         <div class="col-10">
-                            <input type="text" class="form-control" v-model="addressItem.contact" id="address" :disabled="addressItem.disabled == '' ? addressItem.disabled : true">
+                            <input type="text" name="address" class="form-control" v-model="addressItem.contact" id="address" :disabled="addressItem.disabled == '' ? addressItem.disabled : true"
+                                v-validate="{ required: true}" 
+                                    data-vv-as="Адреса">
+                            <span class="errors text-danger" v-if="errors.has('address')">
+								{{ errors.first('address') }}
+						    </span>
                         </div>
                         <div class="col-2">
                             <button v-if="addressItem !== editing" type="button" class="btn btn-outline-secondary float-right" @click='editContact(addressItem, "address", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -145,10 +155,12 @@
                         </div>
                     </div>
                     <hr>
-                    <label for="phones" class="brtop">Телефон</label>
+                    <label for="phones" class="brtop">Телефон 1</label>
                     <div class="row mt-2" v-for="(phone, index) in contact.phones" :key="'phone'+index">
                         <div class="col-9">
-                            <input type="text" class="form-control" v-model="phone.contact" id="phones" :disabled="phone.disabled == '' ? phone.disabled : true">
+                            <input type="text" name="phones" class="form-control" v-model="phone.contact" id="phones" :disabled="phone.disabled == '' ? phone.disabled : true"
+                                v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ }"
+                                    data-vv-as="Телефон">
                         </div>
                         <div class="col-3">
                             <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, phone.contact_items_id, 'phones')"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -156,6 +168,9 @@
                             <button :disabled="errors.has('phone')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("phones", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
+                            <span class="errors text-danger" v-if="errors.has('phones')">
+								{{ errors.first('phones') }}
+						    </span>
                     <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('phones')">Додати телефон</button>
 
                     <!-- Соціальні мережі -->
@@ -163,10 +178,20 @@
                     <label for="social" class="brtop">Соціальні мережі</label>
                     <div class="row mt-2" v-for="(social, index) in contact.socials" :key="'social'+index">
                         <div class="col-5">
-                            <input type="text" class="form-control" v-model="social.contact" id="socialLink" :disabled="social.disabled == '' ? social.disabled : true">
+                            <input type="text" name="socialLink" class="form-control" v-model="social.contact" id="socialLink" :disabled="social.disabled == '' ? social.disabled : true"
+                                v-validate="{ required: true}" 
+                                    data-vv-as="Соціальні мережі">
+                            <span class="errors text-danger" v-if="errors.has('socialLink')">
+								{{ errors.first('socialLink') }}
+						    </span>
                         </div>
                         <div class="col-4">
-                            <input type="text" class="form-control" v-model="social.contact_title" id="socialTitle" :disabled="social.disabled == '' ? social.disabled : true">
+                            <input type="text" name="socialTitle" class="form-control" v-model="social.contact_title" id="socialTitle" :disabled="social.disabled == '' ? social.disabled : true"
+                                v-validate="{ required: true}" 
+                                    data-vv-as="Соціальні мережі">
+                            <span class="errors text-danger" v-if="errors.has('socialTitle')">
+								{{ errors.first('socialTitle') }}
+						    </span>
                         </div>
                         <div class="col-3">
                             <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, social.contact_items_id, 'socials')"><i class="fa fa-trash" aria-hidden="true"></i></button>

@@ -3,23 +3,55 @@
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
-                    <label for="name" class="brtop">Прізвище</label>
-                    <input type="text" v-model="name" class="form-control" id="name">
-
-                    <label for="surname" class="brtop">Ім'я</label>
-                    <input type="text" v-model="surname" class="form-control" id="surname">
-
-                    <label for="patronymic" class="brtop">По батькові</label>
-                    <input type="text" v-model="patronymic" class="form-control" id="patronymic">
-
-                    <label for="jury-photo" class="brtop">Фото</label>
-                    <input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-
-                    <label for="email" class="brtop">Електронна адреса</label>
-                    <input type="email" v-model="email" class="form-control" id="email">
-
-                    <label for="rank" class="brtop">Звання члена журі</label>
-                    <input type="text" v-model="rank" class="form-control" id="rank">
+					<div>
+						<label for="surname" class="brtop">Прізвище</label>
+						<input type="text" name="surname" v-model="surname" class="form-control" id="surname"
+						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Прізвище">
+						<span class="errors text-danger" v-if="errors.has('surname')">
+								{{ errors.first('surname') }}
+						</span>
+					</div>
+					<div>
+						<label for="name" class="brtop">Ім'я</label>
+						<input type="text" name="name" v-model="name" class="form-control" id="name"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Ім'я">
+						<span class="errors text-danger" v-if="errors.has('name')">
+								{{ errors.first('name') }}
+						</span>
+					</div>
+					<div>
+						<label for="patronymic" class="brtop">По батькові</label>
+						<input type="text" name="patronymic" v-model="patronymic" class="form-control" id="patronymic"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+								data-vv-as="По батькові">
+						<span class="errors text-danger" v-if="errors.has('patronymic')">
+								{{ errors.first('patronymic') }}
+						</span>
+					</div>
+					<div>
+						<label for="jury-photo" class="brtop">Фото</label>
+						<input type="file" name="jury-photo" ref="juryfile" class="form-control-file" id="jury-photo"
+							v-validate="{ required: true}"
+								data-vv-as="Фото">
+						<span class="errors text-danger" v-if="errors.has('jury-photo')">
+								{{ errors.first('jury-photo') }}
+						</span>
+					</div>
+					<div>
+						<label for="email" class="brtop">Електронна адреса</label>
+						<input type="email" name="email" v-model="email" class="form-control" id="email"
+							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+								data-vv-as="Електронна адреса">
+						<span class="errors text-danger" v-if="errors.has('email')">
+								{{ errors.first('email') }}
+						</span>
+					</div>	
+					<div>
+						<label for="rank" class="brtop">Звання члена журі</label>
+						<input type="text" name="rank" v-model="rank" class="form-control" id="rank">
+					</div>
                 </div>
                 <div class="col-2"></div>
                 <div class="col-5">
@@ -226,12 +258,18 @@
 				this.form.append('photo', this.$refs.juryfile.files[0]);
 				this.form.append('nominations', valOptions);
 				this.form.append('informations', this.additionalInfo);
-
-				axios.post('/post-all-jury', this.form)
-					.then(() => {
-						this.jurys = [];
-						this.getFullJuryList();
-					})
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						axios.post('/post-all-jury', this.form)
+							.then(() => {
+								this.jurys = [];
+								this.getFullJuryList();
+							})
+					}
+				});
 			},
 			deleteJury(id, index){
 				axios.post('/delete-user/'+id)

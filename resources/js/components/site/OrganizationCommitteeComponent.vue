@@ -29,7 +29,7 @@
                 </div>
 
                 <ul class="pagination">
-                    <li class="controls" v-if="pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
+                    <li class="controls active" v-if="pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
                     <li>{{ pageNumber + 1 }} : {{ pageCount }}</li>
                     <li class="controls active" v-if="pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
                 </ul>
