@@ -234,12 +234,18 @@
                             <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <span class="errors text-danger" v-if="errors.has('socialLink')">
-							{{ errors.first('socialLink') }}
-					</span>
-                    <span class="errors text-danger" v-if="errors.has('socialTitle')">
-							{{ errors.first('socialTitle') }}
-					</span>
+                    <div class="row mt-2">
+                        <div class="col-5">
+                            <span class="errors text-danger" v-if="errors.has('socialLink')">
+                                    {{ errors.first('socialLink') }}
+                            </span>
+                            </div>
+                            <div class="col-5">
+                            <span class="errors text-danger" v-if="errors.has('socialTitle')">
+                                    {{ errors.first('socialTitle') }}
+                            </span>
+                        </div>
+                    </div>
                     <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">Додати соціальну мережу</button>
                 </div>
             </div>
