@@ -11,6 +11,8 @@ use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
+use App\Mail\MemberEmail;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
