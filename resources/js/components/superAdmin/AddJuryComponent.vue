@@ -131,7 +131,6 @@
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
 				var nomination_select = document.createElement('select');
-
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -269,7 +268,7 @@
 					})
 			},
 			postAllJury(){
-				const selects = document.querySelectorAll('table_select');
+				const selects = document.querySelectorAll('select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
 					valOptions.push(selects[index].value);

@@ -94,13 +94,13 @@
 
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -169,13 +169,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -236,13 +236,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -299,13 +299,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -356,13 +356,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberName2')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -419,13 +419,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
-                                    Поле "прізвище" повинно бути повнене
+                                    Поле "прізвище" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentName2')">
-                                    Поле "ім’я" повинно бути повнене
+                                    Поле "ім’я" повинно бути заповнене
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
-                                    Поле "по-батькові" повинно бути повнене
+                                    Поле "по-батькові" повинно бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
