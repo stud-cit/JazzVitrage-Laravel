@@ -30,7 +30,7 @@ class MemberEmail extends Mailable
     public function build()
     {
         return $this->from('jazzvitraj@gmail.com')
-            ->view('layouts.mail.index')
+            ->view('layouts.mail.information')
             ->with(
                 [
                     'message' => 'вапвапвапва',

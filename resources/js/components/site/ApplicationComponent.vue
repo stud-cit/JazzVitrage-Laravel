@@ -1111,32 +1111,7 @@
                             text: error.response.status
                         });
                     });
-                if(this.registration.data.appType == 1) {
-	                this.axios.post('/send-app', {
-		                email: this.memberEmail,
-		                memberSurname: this.memberSurname,
-		                memberName: this.memberName,
-		                memberPatronymic: this.memberPatronymic
-	                })
-		                .then((response) => {
-			                swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
-				                icon: "success",
-				                timer: 1000,
-				                button: false
-			                });
-		                })
-		                .catch((error) => {
-			                swal({
-				                icon: "error",
-				                title: 'Помилка',
-				                text: 'Не корректні дані'
-			                });
-		                });
-                }
             },
-
-
         },
-
     }
 </script>

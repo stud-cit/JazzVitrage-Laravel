@@ -69,13 +69,13 @@ class ApplicationController extends Controller
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
-            $soloDuet->patronomic = $data->memberPatronymic;
+            $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->data_birthday = $data->memberDate;
-            $soloDuet->memberEmail = $data->memberEmail;
+            $soloDuet->member_email = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
-            $soloDuet->parent_patronomic = $data->parentPatronymic;
+            $soloDuet->parent_patronymic = $data->parentPatronymic;
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 0;
             $soloDuet->application_id = $app->application_id;
@@ -93,32 +93,18 @@ class ApplicationController extends Controller
             }
 
             $soloDuet->save();
-
-            $postSoloDuet = new SoloDuet;
-            $name = $postSoloDuet->name = $data->memberName;
-            $surname = $postSoloDuet->surname = $data->memberSurname;
-            $patronymic = $postSoloDuet->patronymic = $data->memberPatronymic;
-            $email = $postSoloDuet->memberEmail = $data->memberEmail;
-            $objDemo = new \stdClass();
-            $objDemo->name = $name;
-            $objDemo->surname = $surname;
-            $objDemo->patronymic = $patronymic;
-            $objDemo->email = $email;
-            Mail::to("doratoles@gmail.com")->send(new MemberEmail($objDemo));
-
-            return response()->json(['email'=>$email,'name'=>$name,'surname'=>$surname,'patronymic'=>$patronymic]);
         }
 
         if($data->appType == 2) {
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
-            $soloDuet->patronomic = $data->memberPatronymic;
+            $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->data_birthday = $data->memberDate;
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
-            $soloDuet->parent_patronomic = $data->parentPatronymic;
+            $soloDuet->parent_patronymic = $data->parentPatronymic;
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
@@ -139,12 +125,12 @@ class ApplicationController extends Controller
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
-            $soloDuet->patronomic = $data->memberPatronymic2;
+            $soloDuet->patronymic = $data->memberPatronymic2;
             $soloDuet->data_birthday = $data->memberDate2;
 
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
-            $soloDuet->parent_patronomic = $data->parentPatronymic2;
+            $soloDuet->parent_patronymic = $data->parentPatronymic2;
             $soloDuet->in = $data->idCode2;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
@@ -186,7 +172,7 @@ class ApplicationController extends Controller
 
         $school->teacher_name = $data->teacherName;
         $school->teacher_surname = $data->teacherSurname;
-        $school->teacher_patronomic = $data->teacherPatronymic;
+        $school->teacher_patronymic = $data->teacherPatronymic;
         $school->teacher_in = $data->teacherIdCode;
         $school->teacher_email = $data->teacherEmail;
         $school->teacher_phone = $data->teacherPhone;
@@ -194,7 +180,7 @@ class ApplicationController extends Controller
         $school->is_concertmaster = ($data->concertName == '') ? 1 : 0;
         $school->concertmaster_name = $data->concertSurname;
         $school->concertmaster_surname = $data->concertName;
-        $school->concertmaster_patronomic = $data->concertPatronymic;
+        $school->concertmaster_patronymic = $data->concertPatronymic;
         $school->application_id = $app->application_id;
         $school->save();
 
