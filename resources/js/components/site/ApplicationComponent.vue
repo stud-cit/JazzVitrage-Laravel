@@ -793,7 +793,7 @@
                             <ul class="info-list">
                                 <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
                                 <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -847,7 +847,7 @@
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
@@ -914,7 +914,7 @@
                                     <li class="info-item">Прізвище, ім'я, по-батькові керівника: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
                                     <li class="info-item">Контактний телефон керівника: {{registration.data.teacherPhone}}</li>
                                     <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.idCode}}</li>
-                                    <li class="info-item">Електронна пошта керівника: </li>
+                                    <li class="info-item">Електронна пошта керівника: {{registration.data.teacherEmail}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -993,6 +993,7 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
+	                    memberEmail: '',
                         groupName: '',
                         groupCount: '',
                         groupAverage: '',
@@ -1119,9 +1120,6 @@
                         });
                     });
             },
-
-
         },
-
     }
 </script>
