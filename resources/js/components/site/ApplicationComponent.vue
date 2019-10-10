@@ -255,6 +255,17 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
                             </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-mail.png" alt="" class="input-img">
+                                    <input type="text" name="memberEmail1" placeholder="Електронна пошта" v-model="registration.data.memberEmail1" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="Електронна пошта">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberEmail1')">
+                                    Введіть дані у форматі name@email.com
+                            </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
@@ -374,6 +385,17 @@
                             </div>
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
+                            </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-mail.png" alt="" class="input-img">
+                                    <input type="text" name="memberEmail2" placeholder="Електронна пошта" v-model="registration.data.memberEmail2" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="Електронна пошта">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberEmail2')">
+                                    Введіть дані у форматі name@email.com
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -843,14 +865,14 @@
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail1}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberName2}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail2}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -990,6 +1012,8 @@
                         memberPatronymic: '',
                         memberDate: '',
 	                    memberEmail: '',
+	                    memberEmail1: '',
+	                    memberEmail2: '',
                         groupName: '',
                         groupCount: '',
                         groupAverage: '',
@@ -1103,6 +1127,9 @@
                         if(response.status == 200 ) {
                             this.$router.push({name: "index"});
                         }
+	                    swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
+		                    icon: "success",
+	                    });
                     })
                     .catch((error) => {
                         swal({
