@@ -10,15 +10,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class MemberEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $demo;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $demo )
     {
-        //
+        $this->demo = $demo;
     }
 
     /**
@@ -28,7 +29,11 @@ class MemberEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('doratoles@gmail.com')
-            ->view('layouts.mail.index');
+        return $this->from('jazzvitraj@gmail.com')
+            ->view('layouts.mail.index')
+            ->with(
+                [
+                    'message' => 'вапвапвапва',
+                ]);
     }
 }

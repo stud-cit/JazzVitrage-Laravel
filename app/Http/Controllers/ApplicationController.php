@@ -11,6 +11,7 @@ use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
+use Illuminate\Support\Facades\Session;
 use App\Mail\MemberEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -90,6 +91,7 @@ class ApplicationController extends Controller
                 $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
             }
 
+            $soloDuet->
             $soloDuet->save();
         }
 
