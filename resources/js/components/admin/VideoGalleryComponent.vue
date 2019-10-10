@@ -4,8 +4,17 @@
 
         <div class="row">
             <div class="col-6">
+                
                 <label for="video" class="brtop">Посилання на відео (YouTube)</label>
-                <input type="text" v-model="video" class="form-control" id="video">
+                <input type="text" name="video" v-model="video" class="form-control" id="video"
+                    v-validate="{ required: true}"
+						data-vv-as="Посилання на відео (YouTube)">
+               
+                <div>
+                <span class="errors text-danger" v-if="errors.has('video')">
+								{{ errors.first('video') }}
+						</span>
+                 </div>     
                 <button type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
             </div>
             <div class="col-6">
@@ -55,13 +64,20 @@ export default {
             })
         },
         postVideo() {
-            axios.post('/post-video', {
-                    url: this.video,
-                    year: this.yearCompetition
-                }).then(() => {
-                    this.urls = [];
-                    this.getVideo();
-                })
+            this.$validator.validateAll().then((result) => {
+                if (!result) {	
+                    return;
+                }
+                else {
+                    axios.post('/post-video', {
+                            url: this.video,
+                            year: this.yearCompetition
+                        }).then(() => {
+                            this.urls = [];
+                            this.getVideo();
+                        })
+                }
+            });
         },
         delVideo(id, index) {
             swal({
