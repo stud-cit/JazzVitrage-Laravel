@@ -71,6 +71,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronomic = $data->memberPatronymic;
             $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->memberEmail = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
@@ -91,8 +92,21 @@ class ApplicationController extends Controller
                 $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
             }
 
-            $soloDuet->
             $soloDuet->save();
+
+            $postSoloDuet = new SoloDuet;
+            $name = $postSoloDuet->name = $data->memberName;
+            $surname = $postSoloDuet->surname = $data->memberSurname;
+            $patronymic = $postSoloDuet->patronymic = $data->memberPatronymic;
+            $email = $postSoloDuet->memberEmail = $data->memberEmail;
+            $objDemo = new \stdClass();
+            $objDemo->name = $name;
+            $objDemo->surname = $surname;
+            $objDemo->patronymic = $patronymic;
+            $objDemo->email = $email;
+            Mail::to("doratoles@gmail.com")->send(new MemberEmail($objDemo));
+
+            return response()->json(['email'=>$email,'name'=>$name,'surname'=>$surname,'patronymic'=>$patronymic]);
         }
 
         if($data->appType == 2) {

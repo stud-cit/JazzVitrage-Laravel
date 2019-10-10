@@ -789,7 +789,7 @@
                             <ul class="info-list">
                                 <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
                                 <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                <li class="info-item">Електрона адреса: {{registration.data.memberName}}</li>
+                                <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
