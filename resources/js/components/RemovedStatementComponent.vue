@@ -59,73 +59,81 @@
             }
         },
         methods: {
-            getFullList(){
-                axios.get('/get-members')
-                .then((response) => {
-                    this.members = [];
-                    response.data.forEach(member => {
-                        if(member.solo_duet.length == 0 && member.status == "archive") {
-                            this.members.push({
-                                name: member.group.name, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                        else if(member.solo_duet.length == 1 && member.status == "archive") {
-                            this.members.push({
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                        else if(member.solo_duet.length == 2 && member.status == "archive") {
-                            this.members.push({
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                    });
-                })
-            },
-            unarchiveMember(id){
-                axios.post('/unarchive-members/'+id)
-                    .then((response) => {
-                        if(response.status == 200 ) {
-                            this.getFullList();
-                        }
-                        swal("Учасник був успішно повернений", {
-                            icon: "success",
-                        });
+	        getFullList() {
+		        axios.get('/get-members')
+			        .then((response) => {
+				        this.members = [];
+				        response.data.forEach(member => {
+					        if (member.solo_duet.length == 0 && member.status == "archive") {
+						        this.members.push({
+							        name: member.group.name,
+							        type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        } else if (member.solo_duet.length == 1 && member.status == "archive") {
+						        this.members.push({
+							        name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
+							        type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        } else if (member.solo_duet.length == 2 && member.status == "archive") {
+						        this.members.push({
+							        name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
+							        type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        }
+				        });
+			        })
+	        },
+	        unarchiveMember(id) {
+		        axios.post('/unarchive-members/' + id)
+			        .then((response) => {
+				        if (response.status == 200) {
+					        this.getFullList();
+				        }
+				        swal("Учасник був успішно повернений", {
+					        icon: "success",
+				        });
 
-                    })
-                    .catch((error) => {
-                        swal({
-                            icon: "error",
-                            title: 'Помилка',
-                            text: 'Не вдалося '
-                        });
-                    });
-            },
-            deleteMember(id){
-                axios.post('/delete-members/'+id)
-                    .then((response) => {
-                        if(response.status == 200 ) {
-                            this.getFullList();
-                        }
-                        swal("Учасник був успішно видалений", {
-                            icon: "success",
-                        });
-
-                    })
-                    .catch((error) => {
-                        swal({
-                            icon: "error",
-                            title: 'Помилка',
-                            text: 'Не вдалося'
-                        });
-                    });
-            }
+			        })
+			        .catch((error) => {
+				        swal({
+					        icon: "error",
+					        title: 'Помилка',
+					        text: 'Не вдалося '
+				        });
+			        });
+	        },
+	        deleteMember(id) {
+		        swal({
+			        title: "Бажаєте видалити?",
+			        text: "Після видалення ви не зможете відновити дану заяву",
+			        icon: "warning",
+			        buttons: true,
+			        dangerMode: true,
+		        })
+			        .then((willDelete) => {
+				        if (willDelete) {
+					        axios.post('/delete-members/' + id)
+						        .then((response) => {
+							        if (response.status == 200) {
+								        this.getFullList();
+							        }
+							        swal("Учасник був успішно видалений", {
+								        icon: "success",
+							        });
+						        })
+						        .catch((error) => {
+							        swal({
+								        icon: "error",
+								        title: 'Помилка',
+								        text: 'Не вдалося'
+							        });
+						        });
+				        }
+			        })
+	        }
         }
     }
 </script>

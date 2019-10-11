@@ -95,14 +95,14 @@ export default {
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
                             id: member.application_id
                         })
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
                             type: member.app_type.name,
                             id: member.application_id
                         })

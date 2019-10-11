@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SoloDuet extends Model
 {
 	protected $table = 'solo_duet';
-    protected $primaryKey = 'solo_duet_id';
+    protected $primaryKey = 'solo_id';
 
     public function app()
 	{

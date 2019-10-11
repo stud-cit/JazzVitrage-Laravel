@@ -3,23 +3,55 @@
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
-                    <label for="name" class="brtop">Прізвище</label>
-                    <input type="text" v-model="name" class="form-control" id="name">
-
-                    <label for="surname" class="brtop">Ім'я</label>
-                    <input type="text" v-model="surname" class="form-control" id="surname">
-
-                    <label for="patronymic" class="brtop">По батькові</label>
-                    <input type="text" v-model="patronymic" class="form-control" id="patronymic">
-
-                    <label for="jury-photo" class="brtop">Фото</label>
-                    <input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
-
-                    <label for="email" class="brtop">Електронна адреса</label>
-                    <input type="email" v-model="email" class="form-control" id="email">
-
-                    <label for="rank" class="brtop">Звання члена журі</label>
-                    <input type="text" v-model="rank" class="form-control" id="rank">
+					<div>
+						<label for="surname" class="brtop">Прізвище</label>
+						<input type="text" name="surname" v-model="surname" class="form-control" id="surname"
+						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Прізвище">
+						<span class="errors text-danger" v-if="errors.has('surname')">
+								{{ errors.first('surname') }}
+						</span>
+					</div>
+					<div>
+						<label for="name" class="brtop">Ім'я</label>
+						<input type="text" name="name" v-model="name" class="form-control" id="name"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+								data-vv-as="Ім'я">
+						<span class="errors text-danger" v-if="errors.has('name')">
+								{{ errors.first('name') }}
+						</span>
+					</div>
+					<div>
+						<label for="patronymic" class="brtop">По батькові</label>
+						<input type="text" name="patronymic" v-model="patronymic" class="form-control" id="patronymic"
+							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+								data-vv-as="По батькові">
+						<span class="errors text-danger" v-if="errors.has('patronymic')">
+								{{ errors.first('patronymic') }}
+						</span>
+					</div>
+					<div>
+						<label for="jury-photo" class="brtop">Фото</label>
+						<input type="file" name="jury-photo" ref="juryfile" class="form-control-file" id="jury-photo"
+							v-validate="{ required: true}"
+								data-vv-as="Фото">
+						<span class="errors text-danger" v-if="errors.has('jury-photo')">
+								{{ errors.first('jury-photo') }}
+						</span>
+					</div>
+					<div>
+						<label for="email" class="brtop">Електронна адреса</label>
+						<input type="email" name="email" v-model="email" class="form-control" id="email"
+							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+								data-vv-as="Електронна адреса">
+						<span class="errors text-danger" v-if="errors.has('email')">
+								{{ errors.first('email') }}
+						</span>
+					</div>	
+					<div>
+						<label for="rank" class="brtop">Звання члена журі</label>
+						<input type="text" name="rank" v-model="rank" class="form-control" id="rank">
+					</div>
                 </div>
                 <div class="col-2"></div>
                 <div class="col-5">
@@ -119,6 +151,9 @@
 				})(file[0]);
 				reader.readAsDataURL(file[0]);
 
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
+				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
+
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -127,7 +162,7 @@
 				var photo_input = document.createElement('div');
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
-				var nomination_input = document.createElement('input');
+				var nomination_select = document.createElement('select');
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -146,9 +181,10 @@
 				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
-                    <i class="material-icons"><img src="../img/upload-img.png"></i>
 
-                    <span class="title">Додати файл</span>
+                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
+                    <span class="title" id="span_id">Додати файл</span>
+
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
@@ -177,12 +213,21 @@
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
-				nomination_input.setAttribute('value', nomination_td.innerHTML);
-				nomination_input.setAttribute('type', 'text');
-				nomination_input.setAttribute('id', 'nomination_data');
-				nomination_input.setAttribute('class','input-edit-correct');
+				nomination_select.setAttribute('id', 'parse_table_select');
+				nomination_select.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
-				nomination_td.append(nomination_input);
+				nomination_td.append(nomination_select);
+				var sel = document.getElementById('parse_table_select');
+				var opt1 = document.createElement('option');
+				var opt2 = document.createElement('option');
+				var opt3 = document.createElement('option');
+				opt1.appendChild( document.createTextNode('Інструментальний жанр') );
+				opt2.appendChild( document.createTextNode('Вокальний жанр') );
+				opt3.appendChild( document.createTextNode('Композиція') );
+				sel.appendChild(opt1);
+				sel.appendChild(opt2);
+				sel.appendChild(opt3);
+
 
 				information_input.value += information_td.innerHTML;
 				information_input.setAttribute('id', 'information_data');
@@ -198,7 +243,7 @@
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
+				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
 				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
@@ -214,31 +259,39 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				this.table_form.append('email', parse_email);
-				this.table_form.append('rank', parse_rank);
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('nominations', parse_nomination);
-				this.table_form.append('informations', parse_information);
 
-				axios.post('/update-jury/'+id, this.table_form)
-					.then((response) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
-						});
-					});
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						this.table_form.append('email', parse_email);
+						this.table_form.append('rank', parse_rank);
+						this.table_form.append('photo', parse_photo.files[0]);
+						this.table_form.append('nominations', parse_nomination);
+						this.table_form.append('informations', parse_information);
+
+						axios.post('/update-jury/'+id, this.table_form)
+							.then((response) => {
+								this.jurys = [];
+								this.getFullJuryList();
+								swal("Інформація оновлена", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
+							})
+							.catch((error) => {
+								this.jurys = [];
+								this.getFullJuryList();
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Поля: "ПІБ журі, фото, електронна адреса" повинні бути заповнені'
+								});
+							});
+					}
+				});
 			},
 			addNomination(){
 				this.items.push({
@@ -268,30 +321,47 @@
 				this.form.append('photo', this.$refs.juryfile.files[0]);
 				this.form.append('nominations', valOptions);
 				this.form.append('informations', this.additionalInfo);
-
-				axios.post('/post-all-jury', this.form)
-					.then(() => {
-						this.jurys = [];
-						this.getFullJuryList();
-					})
+				this.$validator.validateAll().then((result) => {
+                    if (!result) {	
+						return;
+					}
+					else {
+						axios.post('/post-all-jury', this.form)
+							.then(() => {
+								this.jurys = [];
+								this.getFullJuryList();
+							})
+					}
+				});
 			},
-			deleteJury(id, index){
-				axios.post('/delete-user/'+id)
-					.then((response) => {
-						if(response.status == 200) {
-							this.jurys.splice(index, 1);
+			deleteJury(id, index) {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити даний запис",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							axios.post('/delete-user/' + id)
+								.then((response) => {
+									if (response.status == 200) {
+										this.jurys.splice(index, 1);
+									}
+									swal("Журі був успішно видалений", {
+										icon: "success",
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+										text: 'Не вдалося'
+									});
+								});
 						}
-						swal("Журі був успішно видалений", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Не вдалося'
-						});
-					});
 			}
 		}
 	}
