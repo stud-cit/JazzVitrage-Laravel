@@ -117,27 +117,27 @@
                                 name: member.group.name, 
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             })
                         }
                         else if(member.solo_duet.length == 1) {
                             this.members.push({
                                 index,
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             })
                         }
                         else if(member.solo_duet.length == 2) {
                             this.members.push({
                                 index,
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`,
+                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             });
                         }
