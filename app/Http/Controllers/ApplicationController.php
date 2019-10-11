@@ -70,7 +70,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
             $soloDuet->member_email = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
@@ -100,7 +100,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
@@ -126,7 +126,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
-            $soloDuet->data_birthday = $data->memberDate2;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
 
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
@@ -186,8 +186,10 @@ class ApplicationController extends Controller
 
         $presentation->composition_one = $data->compositionName;
         $presentation->author_one = $data->compositionAuthor;
+        $presentation->time_one = $data->timing1;
         $presentation->composition_two = $data->compositionName2;
         $presentation->author_two = $data->compositionAuthor2;
+        $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
         foreach($request->files as $k => $val) {
             $val["compositionVideo"]
