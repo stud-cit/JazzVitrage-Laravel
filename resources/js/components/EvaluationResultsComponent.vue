@@ -23,12 +23,12 @@
             </div>
             <div class="col-sm align-self-center">
                 <div class="row justify-content-center">
-                    <button type="button" class="btn btn-outline-secondary">Згенерувати документ</button>
+                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
                 </div>
             </div>
         </div>
         <br>
-        <table class="table table-bordered">
+        <table class="table table-bordered" ref="printTable">
             <thead>
                 <tr>
                     <th width="30px">№</th>
@@ -46,6 +46,7 @@
                 </tr>
             </tbody>
         </table>
+        
     </div>
 </template>
 <script>
@@ -97,7 +98,22 @@ export default {
                     }
                 });
             })
-        }
+        },
+
+        printData()
+        {
+            var mywindow = window.open('', 'new div');
+            mywindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" />');
+            mywindow.document.write(this.$refs.printTable.outerHTML);
+            mywindow.document.close();
+            mywindow.focus();
+                setTimeout(
+                    function(){
+                        mywindow.print();
+                    },10
+                );
+            return true;
+        },
     },
 }
 </script>
