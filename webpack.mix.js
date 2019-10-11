@@ -16,4 +16,4 @@ mix.js('resources/js/app.js', 'public/js').js('resources/js/site.js', 'public/js
     .sass('resources/sass/site.sass', 'public/css')
     .sass('resources/sass/adaptive.sass', 'public/css')
     .sass('resources/sass/site-other.sass', 'public/css')
-    .sass('resources/sass/adaptive.sass', 'public/css');
+    .sass('resources/sass/adaptive1.sass', 'public/css');
