@@ -5,25 +5,25 @@
                 <input v-model="search" type="text" class="form-control">
         </form>
         <div class="row">
-            <div class="col-sm">
+            <!-- <div class="col-sm">
                 <label for="documentType">Тип документу</label>
                 <select class="form-control" id="documentType">
                     <option>хз</option>
                     <option>хз хз</option>
                     <option>хз хз хз</option>
                 </select>
-            </div>
+            </div> -->
             <div class="col-sm">
                     <label for="member">Учасник (тип)</label>
-                    <select class="form-control" id="member">
+                    <select class="form-control w-50" id="member">
                         <option>Соліст</option>
                         <option>Дует</option>
                         <option>Група</option>
                     </select>
             </div>
             <div class="col-sm align-self-center">
-                <div class="row justify-content-center">
-                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
+                <div class="row float-right mr-4">
+                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати список</button>
                 </div>
             </div>
         </div>
