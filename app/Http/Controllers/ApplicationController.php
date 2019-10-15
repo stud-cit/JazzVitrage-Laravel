@@ -37,7 +37,7 @@ class ApplicationController extends Controller
      
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '!=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
 
