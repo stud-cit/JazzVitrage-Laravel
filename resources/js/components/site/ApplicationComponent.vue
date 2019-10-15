@@ -126,12 +126,24 @@
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="memberBirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: true}"
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <label for="memberBirthdayFile">
+                                        <span>{{fileTitle.memberBirthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="memberBirthdayFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                           v-validate="{ required: false}"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -272,7 +284,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file" 
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
                                          v-validate="{ required: true }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
