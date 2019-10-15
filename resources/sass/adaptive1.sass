@@ -1,6 +1,36 @@
+.juries
+    .member-jury-card
+        .description
+            max-width: 50%
+            margin: 0
+        .picture
+            max-width: 50%
+            position: relative
+            img
+                position: absolute
+                right: 0
+
 @media (max-width: 768px)
     .gallery
         .gallery-item
             width: 50%
+            flex-grow: 0
+    .footer
+        padding: 0 0 10px
+        .container
+            display: flex
+            flex-direction: column
+            text-align: center
+            p
+                margin-top: 20px
 
+@media (max-width: 414px)
+    .gallery
+        .gallery-item
+            width: 100%
+            flex-grow: 0
 
+@media (max-width: 1200px)
+    .container
+        width: 100%
+        max-width: 1140px
