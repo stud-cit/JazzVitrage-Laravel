@@ -27,6 +27,7 @@
             <div class="col-sm align-self-end">
                 <div class="row justify-content-end mr-2">
                     <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
+
                 </div>
             </div>
         </div>
