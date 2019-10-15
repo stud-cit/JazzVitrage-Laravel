@@ -237,20 +237,7 @@ class ApplicationController extends Controller
      * Return json
      */
     public function getRating() {
-        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->where('status', '!=', 'archive')->get()->toArray();
-        //$data2;
-        //var_dump($data);
-        // $users = Application::all();
-        // $users = $users->evaluations()->avg('evaluation');
-        //$users = $users->fresh('evaluations')-avg('evaluation');
-        // var_dump( $users);
-        $data2 = array_map( function ($row) {
-            return $row['evaluations'];
-        } , $data);
-        // foreach ($data->flatMap->evaluations as $eval) {
-        //     $data2[] = $eval->evaluation;
-        // }
-        // var_dump($data2);
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
 
         return response()->json($data);
     }

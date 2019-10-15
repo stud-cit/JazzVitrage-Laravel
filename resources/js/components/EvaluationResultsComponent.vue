@@ -1,28 +1,31 @@
 <template>
     <div>
-        <form role="form" class="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input v-model="search" type="text" class="form-control">
-        </form>
-        <div class="row">
+        <h1 v-if="hasError" class='text-center'>Ой лишенько... виникли проблеми</h1>
+        <template v-else>
+            <form role="form" class="search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input v-model="search" type="text" class="form-control">
+            </form>
+            <div class="row justify-content-between">
+                <!--<div class="col-sm">-->
+                    <!--<label for="documentType">Тип документу</label>-->
+                    <!--<select class="form-control" id="documentType">-->
+                        <!--<option>хз</option>-->
+                        <!--<option>хз хз</option>-->
+                        <!--<option>хз хз хз</option>-->
+                    <!--</select>-->
+
+            <!--</div>-->
             <div class="col-sm">
-                <label for="documentType">Тип документу</label>
-                <select class="form-control" id="documentType">
-                    <option>хз</option>
-                    <option>хз хз</option>
-                    <option>хз хз хз</option>
+                <label for="member">Учасник (тип)</label>
+                <select class="form-control" id="member">
+                    <option>Соліст</option>
+                    <option>Дует</option>
+                    <option>Група</option>
                 </select>
             </div>
-            <div class="col-sm">
-                    <label for="member">Учасник (тип)</label>
-                    <select class="form-control" id="member">
-                        <option>Соліст</option>
-                        <option>Дует</option>
-                        <option>Група</option>
-                    </select>
-            </div>
-            <div class="col-sm align-self-center">
-                <div class="row justify-content-center">
+            <div class="col-sm align-self-end">
+                <div class="row justify-content-end mr-2">
                     <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
                 </div>
             </div>
@@ -47,6 +50,9 @@
             </tbody>
         </table>
         
+
+        </template>
+
     </div>
 </template>
 <script>
@@ -56,6 +62,7 @@ export default {
         return {
             members: [],
             search: '',
+            hasError: false
         }
     },
     created() {
@@ -97,7 +104,10 @@ export default {
                         })
                     }
                 });
+            }).catch( error => {
+                this.hasError = true;
             })
+
         },
 
         printData()
@@ -114,6 +124,7 @@ export default {
                 );
             return true;
         },
+
     },
 }
 </script>
