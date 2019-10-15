@@ -5,4 +5,5 @@
 <link href="{{ asset('css/site.css') }} " rel="stylesheet">
 <link href="{{ asset('css/site-other.css') }} " rel="stylesheet">
 <link href="{{ asset('css/adaptive.css') }} " rel="stylesheet">
+<link href="{{ asset('css/adaptive1.css') }} " rel="stylesheet">
 
