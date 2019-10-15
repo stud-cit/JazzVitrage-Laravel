@@ -5,10 +5,7 @@
             margin: 0
         .picture
             max-width: 50%
-            position: relative
-            img
-                position: absolute
-                right: 0
+
 
 @media (max-width: 768px)
     .gallery
@@ -23,6 +20,33 @@
             text-align: center
             p
                 margin-top: 20px
+
+    .step-block
+        margin: 30px 80px 55px
+        .step-numbers
+           .number-item
+               .number-text
+                    display: none
+               .number-circle
+                    font-size: 23px!important
+                    font-weight: 800!important
+                    width: 41px!important
+                    height: 41px!important
+               &::before
+                   left: -8px!important
+                   width: 48px!important
+
+
+        .step-form
+            margin-top: 2px!important
+            .step-title
+                margin: 22px 0
+            .input-group
+                flex-direction: column
+            label
+                padding-bottom: 10px
+            label:last-child
+                padding-bottom: 0
 
 @media (max-width: 414px)
     .gallery

@@ -26,7 +26,7 @@
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >ГАЛЕРЕЯ</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/gallery-video">ВІДЕО-ГАЛЕРЕЯ</a>
-                                <a class="dropdown-item" href="/gallery">ФЕСТИВАЛЬ</a>           
+                                <a class="dropdown-item" href="/gallery">ФЕСТИВАЛЬ</a>
                             </div>
                         </li>
                         <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
@@ -38,7 +38,7 @@
                                 <a class="dropdown-item" href="/organization-committee">ОРГАНІЗАЦІЙНИЙ КОМІТЕТ</a>
                             </div>
                         </li>
-                            
+
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
 
 
