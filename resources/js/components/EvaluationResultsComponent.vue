@@ -1,29 +1,34 @@
 <template>
     <div>
-        <form role="form" class="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input v-model="search" type="text" class="form-control">
-        </form>
-        <div class="row">
-            <!-- <div class="col-sm">
-                <label for="documentType">Тип документу</label>
-                <select class="form-control" id="documentType">
-                    <option>хз</option>
-                    <option>хз хз</option>
-                    <option>хз хз хз</option>
-                </select>
-            </div> -->
+
+        <h1 v-if="hasError" class='text-center'>Ой лишенько... виникли проблеми</h1>
+        <template v-else>
+            <form role="form" class="search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input v-model="search" type="text" class="form-control">
+            </form>
+            <div class="row justify-content-between">
+                <!--<div class="col-sm">-->
+                    <!--<label for="documentType">Тип документу</label>-->
+                    <!--<select class="form-control" id="documentType">-->
+                        <!--<option>хз</option>-->
+                        <!--<option>хз хз</option>-->
+                        <!--<option>хз хз хз</option>-->
+                    <!--</select>-->
+
+            <!--</div>-->
             <div class="col-sm">
-                    <label for="member">Учасник (тип)</label>
-                    <select class="form-control w-50" id="member">
-                        <option>Соліст</option>
-                        <option>Дует</option>
-                        <option>Група</option>
-                    </select>
+                <label for="member">Учасник (тип)</label>
+                <select class="form-control" id="member">
+                    <option>Соліст</option>
+                    <option>Дует</option>
+                    <option>Група</option>
+                </select>
             </div>
-            <div class="col-sm align-self-center">
-                <div class="row float-right mr-4">
-                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати список</button>
+            <div class="col-sm align-self-end">
+                <div class="row justify-content-end mr-2">
+                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
+
                 </div>
             </div>
         </div>
@@ -47,6 +52,9 @@
             </tbody>
         </table>
         
+
+        </template>
+
     </div>
 </template>
 <script>
@@ -56,6 +64,7 @@ export default {
         return {
             members: [],
             search: '',
+            hasError: false
         }
     },
     created() {
@@ -84,20 +93,23 @@ export default {
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
                             evaluation: member.evaluation
                         })
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
+                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
                             type: member.app_type.name,
                             evaluation: member.evaluation
                         })
                     }
                 });
+            }).catch( error => {
+                this.hasError = true;
             })
+
         },
 
         printData()
@@ -114,6 +126,7 @@ export default {
                 );
             return true;
         },
+
     },
 }
 </script>

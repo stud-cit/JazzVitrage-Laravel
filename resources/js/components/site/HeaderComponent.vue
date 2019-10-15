@@ -39,7 +39,7 @@
                             </div>
                         </li>
                             
-                        <li><a class="nav-item nav-link" href="#">Конфр</a></li>
+                        <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
 
 
                     </div>

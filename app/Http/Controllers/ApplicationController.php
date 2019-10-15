@@ -11,6 +11,9 @@ use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
+use Illuminate\Support\Facades\Session;
+use App\Mail\MemberEmail;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -66,12 +69,13 @@ class ApplicationController extends Controller
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
-            $soloDuet->patronomic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
+            $soloDuet->member_email = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
-            $soloDuet->parent_patronomic = $data->parentPatronymic;
+            $soloDuet->parent_patronymic = $data->parentPatronymic;
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 0;
             $soloDuet->application_id = $app->application_id;
@@ -95,12 +99,12 @@ class ApplicationController extends Controller
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
-            $soloDuet->patronomic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
-            $soloDuet->parent_patronomic = $data->parentPatronymic;
+            $soloDuet->parent_patronymic = $data->parentPatronymic;
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
@@ -121,12 +125,12 @@ class ApplicationController extends Controller
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
-            $soloDuet->patronomic = $data->memberPatronymic2;
-            $soloDuet->data_birthday = $data->memberDate2;
+            $soloDuet->patronymic = $data->memberPatronymic2;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
 
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
-            $soloDuet->parent_patronomic = $data->parentPatronymic2;
+            $soloDuet->parent_patronymic = $data->parentPatronymic2;
             $soloDuet->in = $data->idCode2;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
@@ -168,7 +172,7 @@ class ApplicationController extends Controller
 
         $school->teacher_name = $data->teacherName;
         $school->teacher_surname = $data->teacherSurname;
-        $school->teacher_patronomic = $data->teacherPatronymic;
+        $school->teacher_patronymic = $data->teacherPatronymic;
         $school->teacher_in = $data->teacherIdCode;
         $school->teacher_email = $data->teacherEmail;
         $school->teacher_phone = $data->teacherPhone;
@@ -176,14 +180,16 @@ class ApplicationController extends Controller
         $school->is_concertmaster = ($data->concertName == '') ? 1 : 0;
         $school->concertmaster_name = $data->concertSurname;
         $school->concertmaster_surname = $data->concertName;
-        $school->concertmaster_patronomic = $data->concertPatronymic;
+        $school->concertmaster_patronymic = $data->concertPatronymic;
         $school->application_id = $app->application_id;
         $school->save();
 
         $presentation->composition_one = $data->compositionName;
         $presentation->author_one = $data->compositionAuthor;
+        $presentation->time_one = $data->timing1;
         $presentation->composition_two = $data->compositionName2;
         $presentation->author_two = $data->compositionAuthor2;
+        $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
         foreach($request->files as $k => $val) {
             $val["compositionVideo"]
@@ -231,20 +237,7 @@ class ApplicationController extends Controller
      * Return json
      */
     public function getRating() {
-        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->where('status', '!=', 'archive')->get()->toArray();
-        //$data2;
-        //var_dump($data);
-        // $users = Application::all();
-        // $users = $users->evaluations()->avg('evaluation');
-        //$users = $users->fresh('evaluations')-avg('evaluation');
-        // var_dump( $users);
-        $data2 = array_map( function ($row) {
-            return $row['evaluations'];
-        } , $data);
-        // foreach ($data->flatMap->evaluations as $eval) {
-        //     $data2[] = $eval->evaluation;
-        // }
-        // var_dump($data2);
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
 
         return response()->json($data);
     }

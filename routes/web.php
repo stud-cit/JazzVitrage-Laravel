@@ -138,6 +138,7 @@ Auth::routes();
 
     Route::get('get-members',  'ApplicationController@getMembers');
     Route::get('get-nominations',  'ApplicationController@getNominations');
+    Route::get('get-apptype', 'ApplicationController@getAppType');
 
     Route::get('get-all-members',  'ApplicationController@getAllMembers');
 

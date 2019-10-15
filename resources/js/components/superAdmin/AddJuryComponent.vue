@@ -151,6 +151,9 @@
 				})(file[0]);
 				reader.readAsDataURL(file[0]);
 
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
+				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
+
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -159,7 +162,7 @@
 				var photo_input = document.createElement('div');
 				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
-				var nomination_input = document.createElement('input');
+				var nomination_select = document.createElement('select');
 				var information_input = document.createElement('textarea');
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
@@ -178,9 +181,10 @@
 				photo_input.setAttribute('class', 'edit-jury-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
-                    <i class="material-icons"><img src="../img/upload-img.png"></i>
 
-                    <span class="title">Додати файл</span>
+                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
+                    <span class="title" id="span_id">Додати файл</span>
+
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
@@ -209,12 +213,21 @@
 				rank_td.innerHTML = '';
 				rank_td.append(rank_input);
 
-				nomination_input.setAttribute('value', nomination_td.innerHTML);
-				nomination_input.setAttribute('type', 'text');
-				nomination_input.setAttribute('id', 'nomination_data');
-				nomination_input.setAttribute('class','input-edit-correct');
+				nomination_select.setAttribute('id', 'parse_table_select');
+				nomination_select.setAttribute('class','input-edit-correct');
 				nomination_td.innerHTML = '';
-				nomination_td.append(nomination_input);
+				nomination_td.append(nomination_select);
+				var sel = document.getElementById('parse_table_select');
+				var opt1 = document.createElement('option');
+				var opt2 = document.createElement('option');
+				var opt3 = document.createElement('option');
+				opt1.appendChild( document.createTextNode('Інструментальний жанр') );
+				opt2.appendChild( document.createTextNode('Вокальний жанр') );
+				opt3.appendChild( document.createTextNode('Композиція') );
+				sel.appendChild(opt1);
+				sel.appendChild(opt2);
+				sel.appendChild(opt3);
+
 
 				information_input.value += information_td.innerHTML;
 				information_input.setAttribute('id', 'information_data');
@@ -230,7 +243,7 @@
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('input').value;
+				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
 				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
@@ -312,23 +325,34 @@
 					}
 				});
 			},
-			deleteJury(id, index){
-				axios.post('/delete-user/'+id)
-					.then((response) => {
-						if(response.status == 200) {
-							this.jurys.splice(index, 1);
+			deleteJury(id, index) {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити даний запис",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							axios.post('/delete-user/' + id)
+								.then((response) => {
+									if (response.status == 200) {
+										this.jurys.splice(index, 1);
+									}
+									swal("Журі був успішно видалений", {
+										icon: "success",
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+										text: 'Не вдалося'
+									});
+								});
 						}
-						swal("Журі був успішно видалений", {
-							icon: "success",
-						});
 					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Не вдалося'
-						});
-					});
 			}
 		}
 	}

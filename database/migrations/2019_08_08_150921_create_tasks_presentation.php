@@ -18,8 +18,10 @@ class CreateTasksPresentation extends Migration
             $table->increments('presentation_id');
             $table->string('composition_one', 50);
             $table->string('author_one', 50);
+            $table->string('time_one', 50);
             $table->string('composition_two', 50);
             $table->string('author_two', 50);
+            $table->string('time_two', 50);
             $table->string('video', 100);
             $table->integer('application_id')->unsigned();
             $table->timestamps();
