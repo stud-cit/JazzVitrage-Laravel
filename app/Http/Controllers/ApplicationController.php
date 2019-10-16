@@ -37,7 +37,7 @@ class ApplicationController extends Controller
      
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '!=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
 
@@ -70,7 +70,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
             $soloDuet->member_email = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
@@ -100,7 +100,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
-            $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
 
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
@@ -126,7 +126,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
-            $soloDuet->data_birthday = $data->memberDate2;
+            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
 
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
@@ -186,8 +186,10 @@ class ApplicationController extends Controller
 
         $presentation->composition_one = $data->compositionName;
         $presentation->author_one = $data->compositionAuthor;
+        $presentation->time_one = $data->timing1;
         $presentation->composition_two = $data->compositionName2;
         $presentation->author_two = $data->compositionAuthor2;
+        $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
         foreach($request->files as $k => $val) {
             $val["compositionVideo"]
@@ -235,20 +237,7 @@ class ApplicationController extends Controller
      * Return json
      */
     public function getRating() {
-        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->where('status', '!=', 'archive')->get()->toArray();
-        //$data2;
-        //var_dump($data);
-        // $users = Application::all();
-        // $users = $users->evaluations()->avg('evaluation');
-        //$users = $users->fresh('evaluations')-avg('evaluation');
-        // var_dump( $users);
-        $data2 = array_map( function ($row) {
-            return $row['evaluations'];
-        } , $data);
-        // foreach ($data->flatMap->evaluations as $eval) {
-        //     $data2[] = $eval->evaluation;
-        // }
-        // var_dump($data2);
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
 
         return response()->json($data);
     }

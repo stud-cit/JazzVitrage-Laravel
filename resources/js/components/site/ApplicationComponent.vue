@@ -52,7 +52,7 @@
                                                  data-vv-as="номінація"
                                                  id="" class="select" >
                                     <option disabled selected class="d-none" value="0">НОМІНАЦІЯ</option>
-                                    <option v-for="(value, index) in nominations" :value="index" :key="index">{{ value.name }}</option>
+                                    <option v-for="(value, index) in nominations" :value="index + 1" :key="index">{{ value.name }}</option>
                                 </select>
                             </div>
 
@@ -255,6 +255,17 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
                             </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-mail.png" alt="" class="input-img">
+                                    <input type="text" name="memberEmail1" placeholder="Електронна пошта" v-model="registration.data.memberEmail1" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="Електронна пошта">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberEmail1')">
+                                    Введіть дані у форматі name@email.com
+                            </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container">
@@ -374,6 +385,17 @@
                             </div>
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
+                            </span>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-mail.png" alt="" class="input-img">
+                                    <input type="text" name="memberEmail2" placeholder="Електронна пошта" v-model="registration.data.memberEmail2" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                           data-vv-as="Електронна пошта">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberEmail2')">
+                                    Введіть дані у форматі name@email.com
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -788,7 +810,13 @@
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row">
+                                <h5 class="step-title">Вікова категорія: 
+                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                </h5>
+                            </div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
                                 <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
@@ -814,9 +842,9 @@
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
-                                <li class="info-item">Хронометраж першого твору: </li>
+                                <li class="info-item">Хронометраж першого твору: {{ registration.data.timing1 }}</li>
                                 <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
-                                <li class="info-item">Хронометраж другого твору: </li>
+                                <li class="info-item">Хронометраж другого твору: {{ registration.data.timing2 }}</li>
                             </ul></div>
                             <div class="result-row  file-row" >
 
@@ -842,19 +870,25 @@
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row">
+                                <h5 class="step-title">Вікова категорія: 
+                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                </h5>
+                            </div>
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail1}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberName2}}</li>
+                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail2}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -875,9 +909,9 @@
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
-                                    <li class="info-item">Хронометраж першого твору: </li>
+                                    <li class="info-item">Хронометраж першого твору: {{ registration.data.timing1 }}</li>
                                     <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
-                                    <li class="info-item">Хронометраж другого твору: </li>
+                                    <li class="info-item">Хронометраж другого твору: {{ registration.data.timing2 }}</li>
                                 </ul></div>
                             <div class="result-row  file-row" >
 
@@ -903,7 +937,13 @@
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Вікова категорія:</h5></div>
+                            <div class="result-row">
+                                <h5 class="step-title">Вікова категорія: 
+                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                </h5>
+                            </div>
                             <div class="result-row"><h5 class="step-title">Інформація про колектив</h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва колективу та кількість учасників:</li>
@@ -928,9 +968,9 @@
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
-                                    <li class="info-item">Хронометраж першого твору:</li>
+                                    <li class="info-item">Хронометраж першого твору: {{ registration.data.timing1 }}</li>
                                     <li class="info-item">Назва та автор другого твору: {{registration.data.compositionName2 + ' ' + registration.data.compositionAuthor2}}</li>
-                                    <li class="info-item">Хронометраж другого твору:</li>
+                                    <li class="info-item">Хронометраж другого твору: {{ registration.data.timing2 }}</li>
                                 </ul></div>
                             <div class="result-row  file-row" >
 
@@ -994,6 +1034,8 @@
                         memberPatronymic: '',
                         memberDate: '',
 	                    memberEmail: '',
+	                    memberEmail1: '',
+	                    memberEmail2: '',
                         groupName: '',
                         groupCount: '',
                         groupAverage: '',
@@ -1028,6 +1070,7 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
+                        ageCategory: 0
                     },
                     files: {
 
@@ -1060,18 +1103,32 @@
                     }
                     this.activeStep++;
                     steps[this.activeStep] = true;
-                    console.log(this.registration);
-
-
-                }).catch(() => {
-                    console.log(2);
-
+                    if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 == '') {
+                        this.registration.data.ageCategory = this.getAge(this.registration.data.memberDate);
+                    }
+                    else if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 != '') {
+                        this.registration.data.ageCategory = (this.getAge(this.registration.data.memberDate) + this.getAge(this.registration.data.memberDate2)) / 2;
+                    }
+                    else if(this.registration.data.memberDate == '' && this.registration.data.memberDate2 == '') {
+                        this.registration.data.ageCategory = this.registration.data.groupAverage;
+                    }
+                }).catch((err) => {
+                    console.log(err);
                 });
 
-
-
-
             },
+
+            getAge(dateString) {
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            },
+
             prevStep(){
                 // $event.preventDefault();
                 const steps = this.steps;
@@ -1111,6 +1168,9 @@
                             });
                             this.$router.push({name: "index"});
                         }
+	                    swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
+		                    icon: "success",
+	                    });
                     })
                     .catch((error) => {
                         swal({
