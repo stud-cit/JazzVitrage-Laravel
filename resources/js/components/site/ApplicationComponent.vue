@@ -126,7 +126,7 @@
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container" v-if="memberBirthdayFile == null">
+                                <div class="input-container" v-if="fileTitle.memberBirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
@@ -138,7 +138,7 @@
                                     </label>
 
                                 </div>
-                                <div class="input-container" v-if="memberBirthdayFile !== null">
+                                <div class="input-container" v-if="fileTitle.memberBirthdayFile !== null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
@@ -202,12 +202,24 @@
                             </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.idFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
                                            v-validate="{ required: true}"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <label for="idFile">
+                                        <span>{{fileTitle.idFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.idFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
+                                           v-validate="{ required: false}"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
@@ -280,12 +292,24 @@
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.memberBirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
                                          v-validate="{ required: true }"
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <label for="memberBirthdayFile">
+                                        <span>{{fileTitle.memberBirthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.memberBirthdayFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                           v-validate="{ required: false }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -343,13 +367,25 @@
                             </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.idFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" 
                                         v-validate="{ required: true }"
                                             data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <label for="idFile">
+                                        <span>{{fileTitle.idFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.idFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
+                                           v-validate="{ required: false }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -411,12 +447,24 @@
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.member2BirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file" 
                                         v-validate="{ required: true }"
+                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <label for="member2BirthdayFile">
+                                        <span>{{fileTitle.member2BirthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.member2BirthdayFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file"
+                                           v-validate="{ required: false }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
@@ -474,12 +522,24 @@
                             </span>
                             <h3 class="step-title">Копія документа <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.idFile2 == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file" 
                                         v-validate="{ required: true }"
+                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <label for="idFile2">
+                                        <span>{{fileTitle.idFile2}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.idFile2 !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file"
+                                           v-validate="{ required: false }"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
@@ -536,12 +596,24 @@
                             </span>
                             <h3 class="step-title">Документ с датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.groupBirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
                                         v-validate="{ required: true }"
+                                           data-vv-as="Документ с датами народження учасників">
+                                    <label for="groupBirthdayFile">
+                                        <span>{{fileTitle.groupBirthdayFile}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.groupBirthdayFile !== null">
+
+                                    <img src="img/file-image.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                           v-validate="{ required: false }"
                                            data-vv-as="Документ с датами народження учасників">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
@@ -787,12 +859,24 @@
                             </span>
                             <h4 class="step-title">ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО<i class="hint"></i></h4>
                             <div class="input-row">
-                                <div class="input-container">
+                                <div class="input-container" v-if="fileTitle.compositionVideo == null">
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
                                         v-validate="{ required: true }"
+                                           data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
+                                    <label for="compositionVideo">
+                                        <span>{{fileTitle.compositionVideo}}</span>
+                                    </label>
+
+                                </div>
+                                <div class="input-container" v-if="fileTitle.compositionVideo !== null">
+
+                                    <img src="img/input-video.png" alt="" class="input-img">
+
+                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                           v-validate="{ required: false }"
                                            data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
@@ -812,7 +896,7 @@
 
                     <!--step5-->
 
-                    <transition name="fade" >
+                    <transition name="fade">
 
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 1">
 

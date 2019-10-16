@@ -71,8 +71,11 @@
                             <label for="teacherPhone" class="brtop">Контактний телефон викладача</label>
                             <p id="teacherPhone">{{ item.teacherPhone }}</p>
 
+                            <div v-if="item.concertSurname == '' || item.concertName == '' || item.concertPatronymic == ''"> </div>
+                            <div v-else>
                             <label for="concertDate" class="brtop">ПІП концертмейстра</label>
                             <p id="concertDate">{{ `${item.concertSurname} ${item.concertName} ${item.concertPatronymic}` }}</p>
+                            </div>
 
                             <label class="brtop mb-3">Програма та хронометраж кожного твору</label>
                             <p>Перший твір:</p>
@@ -150,7 +153,7 @@ export default {
                             name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
 
-	                        memberDate: member.solo_duet[0].data_birthday,
+	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
@@ -178,7 +181,7 @@ export default {
                             name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
 	                        type: member.app_type.name,
 
-	                        memberDate: member.solo_duet[0].data_birthday,
+	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
