@@ -946,7 +946,7 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
@@ -954,7 +954,7 @@
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
-                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                                <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
 
@@ -1013,7 +1013,7 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
@@ -1021,7 +1021,7 @@
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
-                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                                <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
 
@@ -1072,7 +1072,7 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck" class="d-none" type="checkbox" >
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
@@ -1080,7 +1080,7 @@
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
-                                <button type="button" @click="sendApp" class="next-step">Зареєструватися</button>
+                                <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
                     </transition>
@@ -1099,6 +1099,7 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
+	            checked : false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
 
@@ -1162,7 +1163,7 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
-                        ageCategory: 0
+                        ageCategory: 0,
                     },
                     files: {
 
