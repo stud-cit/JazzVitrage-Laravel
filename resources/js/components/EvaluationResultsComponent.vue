@@ -18,12 +18,14 @@
 
             <!--</div>-->
             <div class="col-sm">
-                <label for="member">Учасник (тип)</label>
-                <select class="form-control" id="member">
-                    <option>Соліст</option>
-                    <option>Дует</option>
-                    <option>Група</option>
-                </select>
+
+                    <label for="member">Учасник (тип)</label>
+                    <select class="form-control w-50" id="member">
+                        <option value="1">Соліст</option>
+                        <option value="2">Дует</option>
+                        <option value="3">Група</option>
+                    </select>
+
             </div>
             <div class="col-sm align-self-end">
                 <div class="row justify-content-end mr-2">
@@ -42,8 +44,8 @@
                     <th class="text-center">Оцінка</th>
                 </tr>
             </thead>
-            <tbody v-for="(item, index) in filteredList" v-bind:key="item.id">
-                <tr>
+            <tbody>
+                <tr v-for="(item, index) in filteredList" v-bind:key="item.id">
                     <td>{{ index + 1 }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.type }}</td>
