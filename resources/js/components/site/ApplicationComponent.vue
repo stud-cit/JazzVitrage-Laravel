@@ -72,7 +72,7 @@
                         <!--<form class="step-form" v-if="activeStep == 1" >-->
 
 
-                            <h3 class="step-title">Інформація про учасника 222</h3>
+                            <h3 class="step-title">Інформація про учасника</h3>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
@@ -958,8 +958,8 @@
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про колектив</h5>
                                 <ul class="info-list">
-                                    <li class="info-item">Назва колективу та кількість учасників:</li>
-                                    <li class="info-item">Середній вік учасників: {{registration.data.memberDate}}</li>
+                                    <li class="info-item">Назва колективу та кількість учасників: {{registration.data.groupName + ' ' + registration.data.groupCount}}</li>
+                                    <li class="info-item">Середній вік учасників: {{registration.data.groupAverage}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про керівника</h5>
                                 <ul class="info-list">
