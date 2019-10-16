@@ -15,10 +15,11 @@
             </div> -->
             <div class="col-sm">
                     <label for="member">Учасник (тип)</label>
-                    <select class="form-control w-50" id="member">
-                        <option value="1">Соліст</option>
-                        <option value="2">Дует</option>
-                        <option value="3">Група</option>
+                    <select class="form-control w-50" id="member" @change="searchMembers" v-model="leaveType">
+                        <option value="" selected="selected">всі учасники</option>
+                        <option value="Соліст">Соліст</option>
+                        <option value="Дует">Дует</option>
+                        <option value="Група">Група</option>
                     </select>
             </div>
             <div class="col-sm align-self-center">
@@ -28,7 +29,7 @@
             </div>
         </div>
         <br>
-        <table class="table table-bordered" ref="printTable">
+        <table class="table table-bordered" ref="printTable" id="allMembers">
             <thead>
                 <tr>
                     <th width="30px">№</th>
@@ -55,7 +56,8 @@ export default {
     data() {
         return {
             members: [],
-            search: '',
+            leaveType: '',
+            search: ''
         }
     },
     created() {
@@ -64,7 +66,7 @@ export default {
     computed: {
         filteredList() {
             return this.members.filter(members => {
-                return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
+                return members.name.toLowerCase().includes(this.search.toLowerCase()) 
             })
         }
     },
@@ -73,7 +75,6 @@ export default {
             axios.get('/get-rating')
             .then((response) => {
                 response.data.forEach(member => {
-                   console.log(member); 
                     if(member.solo_duet.length == 0) {
                         this.members.push({
                             id: member.application_id,
@@ -84,20 +85,44 @@ export default {
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                            id: member.application_id,
+                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}`, 
                             type: member.app_type.name,
                             evaluation: member.evaluation
                         })
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`, 
+                            id: member.application_id,
+                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronomic}`, 
                             type: member.app_type.name,
                             evaluation: member.evaluation
                         })
                     }
                 });
             })
+        },
+
+        searchMembers(){
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("member");
+            filter = input.value.toLowerCase();
+            table = document.getElementById("allMembers");
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                }
+                else {
+                    if (filter=="група" && td.innerText!="соліст" && td.innerText!="дует"){
+                        tr[i].style.display = "";
+                    } 
+                    else{
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
         },
 
         printData()
