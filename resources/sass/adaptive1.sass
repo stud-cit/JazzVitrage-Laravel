@@ -1,6 +1,60 @@
+.juries
+    .member-jury-card
+        .description
+            max-width: 50%
+            margin: 0
+        .picture
+            max-width: 50%
+
+
 @media (max-width: 768px)
     .gallery
         .gallery-item
             width: 50%
+            flex-grow: 0
+    .footer
+        padding: 0 0 10px
+        .container
+            display: flex
+            flex-direction: column
+            text-align: center
+            p
+                margin-top: 20px
 
+    .step-block
+        margin: 30px 80px 55px
+        .step-numbers
+           .number-item
+               padding-left: 48px!important
+               .number-text
+                    display: none
+               .number-circle
+                    font-size: 23px!important
+                    font-weight: 800!important
+                    width: 41px!important
+                    height: 41px!important
+               &::before
+                   width: 48px!important
+               &:first-child
+                   padding-left: 0!important
+        .step-form
+            margin-top: 2px!important
+            .step-title
+                margin: 22px 0
+            .input-group
+                flex-direction: column
+            label
+                padding-bottom: 10px
+            label:last-child
+                padding-bottom: 0
 
+@media (max-width: 414px)
+    .gallery
+        .gallery-item
+            width: 100%
+            flex-grow: 0
+
+@media (max-width: 1200px)
+    .container
+        width: 100%
+        max-width: 1140px
