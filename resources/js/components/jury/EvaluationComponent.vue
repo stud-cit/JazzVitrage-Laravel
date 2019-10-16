@@ -62,35 +62,55 @@
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
+<<<<<<< HEAD
                         <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name} ${school.teacher_patronomic}` }}
+=======
+                        <b>ПІП викладача:</b> {{ `${school.teacher_name}  ${school.teacher_surname} ${school.teacher_patronymic}` }}
+>>>>>>> cc7134947da36119459fa83461509825cc3f4cf9
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
             </div>
            <div class="col-9" v-if="member.length == 1">
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronomic}` }}</div>
+=======
+                    <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].name} ${member[0].surname} ${member[0].patronymic}` }}</div>
+>>>>>>> cc7134947da36119459fa83461509825cc3f4cf9
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
                         <b class="mt-3">Дата народження:</b> {{ member.data_birthday }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
+<<<<<<< HEAD
                         <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name} ${school.teacher_patronomic}` }}
+=======
+                        <b>ПІП викладача:</b> {{ `${school.teacher_name}  ${school.teacher_surname} ${school.teacher_patronymic}` }}
+>>>>>>> cc7134947da36119459fa83461509825cc3f4cf9
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
             </div>
             <div class="col-9" v-if="member.length == 2">
                 <div class="row">
+<<<<<<< HEAD
                     <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronomic}` }}, {{ `${member[1].surname} ${member[1].name} ${member[1].patronomic}` }}</div>
+=======
+                    <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].name} ${member[0].surname} ${member[0].patronymic}` }}, {{ `${member[1].name}  ${member[1].surname} ${member[1].patronymic}` }}</div>
+>>>>>>> cc7134947da36119459fa83461509825cc3f4cf9
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
                         <b class="mt-3">Дата народження:</b> {{ `${member[0].data_birthday}, ${member[1].data_birthday}` }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
+<<<<<<< HEAD
                         <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name}  ${school.teacher_patronomic}` }}
+=======
+                        <b>ПІП викладача:</b> {{ `${school.teacher_name}  ${school.teacher_surname} ${school.teacher_patronymic}` }}
+>>>>>>> cc7134947da36119459fa83461509825cc3f4cf9
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
@@ -119,7 +139,6 @@
                 program: '',
                 group: null,
                 count: 0,
-                lastIndex: 0,
                 // оцінки
                 // score: {
                     stylisticMatching: 0,
@@ -131,6 +150,7 @@
                 // мінімальна максимальна оцінка
                 minEvaluation: 0,
                 maxEvaluation: 25,
+                maxRating: 100,
                 hasError: false,
                 hasRecord: false,
             }
@@ -156,7 +176,6 @@
             this.getMember();
             this.getAllMembers();
             this.getEvaluation();
-            this.setlastindex();
         },
         computed: {
 
@@ -166,15 +185,6 @@
             prevButtonShow() {
                 return this.memberIndex >= 1 ? true : false;
             }
-            // evaluation: {
-            //     get: function(){
-            //         const {stylisticMatching, artisticValue, artistry, originality} = this.score;
-            //         return stylisticMatching + artisticValue + artistry + originality;
-            //     },
-            //     set: function (total) {
-            //         this.score.evaluation = total;
-            //     }
-            // }
         },
 
         methods: {
@@ -195,7 +205,7 @@
                         } 
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.error(error);
                     });
             },
             // need make validation 
@@ -212,13 +222,14 @@
                     artistry,
                     originality
                 })
-                .then( (response)  => {
-                    console.log(response.data);
-                })
+                .then( (response)  => { 
+                    swal( `Ваша оцінка ${this.evaluation} із можливих ${this.maxRating}`, {
+                        icon: 'success',
+                    });
+                 })
                 .catch( (error) => {
-                    console.log(error);
+                    console.error(error);
                 });
-                alert(`create Ваша оцінка ${this.evaluation} із можливих 100`);
             },
             updateEvaluation() {
                 // call setter
@@ -234,12 +245,15 @@
                     originality
                 })
                 .then( (response) => {
-                    console.log(response.data);
+                    swal(`Оцінку успішно змінено`, {
+                        icon: 'success'
+                    });
                 })
                 .catch( (error) => {
-                    console.log(error);
+                    swal('Щось пішло не так, зверніться до адміністратора', {
+                        icon: 'error'
+                    });
                 });
-                alert(`Update Ваша оцінка ${this.score.evaluation} із можливих 100`);
             },
 
             setDefaultEvaluate() {
@@ -259,14 +273,13 @@
             getMember() {
                 axios.get(`/get-member/${this.$route.params.id}`)
                     .then((response) => {
-                        console.log(response.data);
                         this.member = response.data[0].solo_duet;
                         this.group = response.data[0].group;
                         this.type = response.data[0].app_type;
                         this.school = response.data[0].preparation;
                         this.program = response.data[0].presentation;
                     })
-                    .catch( error => console.log(error) );
+                    .catch( error => console.error(error) );
             },
             getAllMembers() {
                 axios.get('/get-all-members')

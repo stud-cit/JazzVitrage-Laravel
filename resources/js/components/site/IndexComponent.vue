@@ -24,24 +24,24 @@
 
                 </div>
                 <div class="nominations-list">
-                    <a href="" class="nominations-items">
+                    <div  class="nominations-items">
 
                             <img src="img/piano.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
+                            <div class="items-title">Інструментальний жанр</div>
 
-                    </a>
-                    <a href="" class="nominations-items">
+                    </div>
+                    <div  class="nominations-items">
 
                             <img src="img/microphone.png" alt="">
                             <div class="items-title">Вокальний жанр</div>
 
-                    </a>
-                    <a href="" class="nominations-items">
+                    </div>
+                    <div class="nominations-items">
 
                             <img src="img/nots.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
+                            <div class="items-title">Композиція</div>
 
-                    </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -102,9 +102,11 @@
                         <option value="" selected="selected">номінація</option>
                         <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
                     </select>
-                    <select name=""  class="category">
+                    <select v-model="ageCategory" class="category">
                         <option value="" selected="selected" >вік.категорія</option>
-                        <option value="1">вік.категорія1</option>
+                        <option value="8-10">Від 8 до 10 років</option>
+                        <option value="11-13">Від 11 до 13 років</option>
+                        <option value="14-17">Від 14 до 17 років</option>
                     </select>
                     <button class="clean" @click="clean">Очистити</button>
 
@@ -138,25 +140,31 @@
                             <h3 class="title-video">ВІДЕОГАЛЕРЕЯ</h3>
                             <p class="subtitle">КРАЩИХ РОБІТ</p>
                             <div class="carousel-inner">
-                                <div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">
+                                <div :class="{'carousel-item': true, active: index < 1 } " v-for="(video, index) in videos" :key="index" >
                                     <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">
-                                    <div class="d-flex w-100">
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <!--for the last element-->
-                                <div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">
-                                    <div class="d-flex w-100">
+                                        <iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>
 
-                                        <iframe width="440" height="302" :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
+                                <!--<div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">-->
+                                    <!--<div class="d-flex w-100">-->
+                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>-->
+                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">-->
+                                    <!--<div class="d-flex w-100">-->
+                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;for the last element&ndash;&gt;-->
+                                <!--<div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">-->
+                                    <!--<div class="d-flex w-100">-->
+
+                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                             <a class="carousel-control-prev" href="#carouselVideo" role="button" data-slide="prev">
                                 <div class="control-bg">
@@ -235,6 +243,7 @@
                     pageNumber: 0,
                     size: 4
                 },
+                ageCategory: '',
                 members: [],
                 nominations: [],
                 searchMember: '',
@@ -272,10 +281,12 @@
         computed: {
             filteredList() {
                 return this.members.filter(members => {
-                    return (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) || 
+                    return (
+                    (this.ageCategory == '' || members.age >= this.ageCategory.split('-')[0] && members.age <= this.ageCategory.split('-')[1]) &&
+                    (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) || 
                     members.schoolAddress.toLowerCase().includes(this.searchMember.toLowerCase()) ||
                     members.schoolName.toLowerCase().includes(this.searchMember.toLowerCase())) &&
-                    members.nomination.includes(this.searchNomination)
+                    members.nomination.includes(this.searchNomination))
                 })
             },
             paginatedData(){
@@ -336,36 +347,51 @@
                         if(member.solo_duet.length == 0) {
                             this.members.push({
                                 index,
+                                age: member.group.average_age,
                                 name: member.group.name, 
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             })
                         }
                         else if(member.solo_duet.length == 1) {
                             this.members.push({
                                 index,
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}`, 
+                                age: this.getAge(member.solo_duet[0].data_birthday),
+                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             })
                         }
                         else if(member.solo_duet.length == 2) {
                             this.members.push({
                                 index,
-                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronomic}`,
+                                age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,
+                                name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronomic}`,
+                                teacher: `${member.preparation.teacher_name} ${member.preparation.teacher_surname} ${member.preparation.teacher_patronymic}`,
                                 nomination: member.nomination.name
                             });
                         }
                     });
                 });
             },
+
+            getAge(dateString) {
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            },
+
             clean() {
                 this.searchMember = '',
                 this.searchNomination = ''

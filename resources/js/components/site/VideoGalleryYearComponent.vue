@@ -9,7 +9,7 @@
                 <div class="gallery-content">
                     <div class="row mt-5 mb-5">                
                         <div class="col-4 mt-4"  v-for="item in paginatedData" :key="item.video_id">
-                            <iframe height="200px" width="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
+                            <iframe height="300px" width="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>

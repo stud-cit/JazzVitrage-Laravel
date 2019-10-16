@@ -1,30 +1,37 @@
 <template>
     <div>
-        <form role="form" class="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input v-model="search" type="text" class="form-control">
-        </form>
-        <div class="row">
-            <!-- <div class="col-sm">
-                <label for="documentType">Тип документу</label>
-                <select class="form-control" id="documentType">
-                    <option>хз</option>
-                    <option>хз хз</option>
-                    <option>хз хз хз</option>
-                </select>
-            </div> -->
+
+        <h1 v-if="hasError" class='text-center'>Ой лишенько... виникли проблеми</h1>
+        <template v-else>
+            <form role="form" class="search">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input v-model="search" type="text" class="form-control">
+            </form>
+            <div class="row justify-content-between">
+                <!--<div class="col-sm">-->
+                    <!--<label for="documentType">Тип документу</label>-->
+                    <!--<select class="form-control" id="documentType">-->
+                        <!--<option>хз</option>-->
+                        <!--<option>хз хз</option>-->
+                        <!--<option>хз хз хз</option>-->
+                    <!--</select>-->
+
+            <!--</div>-->
             <div class="col-sm">
+
                     <label for="member">Учасник (тип)</label>
-                    <select class="form-control w-50" id="member" @change="searchMembers" v-model="leaveType">
+                    <select class="form-control w-50" id="member" @change="searchMembers">
                         <option value="" selected="selected">всі учасники</option>
                         <option value="Соліст">Соліст</option>
                         <option value="Дует">Дует</option>
                         <option value="Група">Група</option>
                     </select>
+
             </div>
-            <div class="col-sm align-self-center">
-                <div class="row float-right mr-4">
-                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати список</button>
+            <div class="col-sm align-self-end">
+                <div class="row justify-content-end mr-2">
+                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
+
                 </div>
             </div>
         </div>
@@ -48,6 +55,9 @@
             </tbody>
         </table>
         
+
+        </template>
+
     </div>
 </template>
 <script>
@@ -56,8 +66,9 @@ export default {
     data() {
         return {
             members: [],
-            leaveType: '',
-            search: ''
+            search: '',
+            hasError: false
+
         }
     },
     created() {
@@ -66,7 +77,7 @@ export default {
     computed: {
         filteredList() {
             return this.members.filter(members => {
-                return members.name.toLowerCase().includes(this.search.toLowerCase()) 
+                return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
             })
         }
     },
@@ -100,7 +111,10 @@ export default {
                         })
                     }
                 });
+            }).catch( error => {
+                this.hasError = true;
             })
+
         },
 
         searchMembers(){
@@ -139,6 +153,7 @@ export default {
                 );
             return true;
         },
+
     },
 }
 </script>

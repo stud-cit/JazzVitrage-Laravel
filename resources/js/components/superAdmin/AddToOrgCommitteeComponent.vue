@@ -82,7 +82,9 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event)"><img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid"></td>
+                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
+                    <img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+                </td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
 
                 <td class="text-center" id="edit-save-td">
@@ -115,8 +117,18 @@
 			this.getFullOrgCommitteeList();
 		},
 		methods: {
-			getFileName(event) {
-				event.target.parentNode.querySelector('#file').innerHTML = event.target.files[0].name;
+			getFileName(evt, index) {
+				var tr = document.querySelectorAll('tr')[index + 1]
+				var file = evt.target.files;
+				var reader = new FileReader();
+				reader.onload = (function(theFile) {
+					return function(e) {
+						tr.querySelector('#photo_value_org').setAttribute('src', e.target.result);
+					};
+				})(file[0]);
+				reader.readAsDataURL(file[0]);
+				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
+				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
 			},
 			edit(id, event){
 				this.editBtn = id;
@@ -147,9 +159,9 @@
 				photo_input.setAttribute('class', 'edit-org-photo');
 				photo_input.innerHTML = `<div class="form-group">
                 <label class="label" id="label">
-                    <i class="material-icons"><img src="../img/upload-img.png"></i>
+                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
                     <span class="name-title" id="file"></span>
-                    <span class="title">Додати файл</span>
+                    <span class="title" id="span_id">Додати файл</span>
 					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
@@ -247,22 +259,33 @@
 
                 });
 			},
-			deleteOrgCommittee(id, index){
-				axios.post('/delete-user/'+id)
-					.then((response) => {
-						if(response.status == 200) {
-							this.committees.splice(index, 1);
+			deleteOrgCommittee(id, index) {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити даний запис",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							axios.post('/delete-user/' + id)
+								.then((response) => {
+									if (response.status == 200) {
+										this.committees.splice(index, 1);
+									}
+									swal("Член орг. комітету був успішно видалений", {
+										icon: "success",
+									});
+								})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+										text: 'Не вдалося'
+									});
+								});
 						}
-						swal("Член орг. комітету був успішно видалений", {
-							icon: "success",
-						});
-					})
-					.catch((error) => {
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Не вдалося'
-						});
 					});
 			}
 		}

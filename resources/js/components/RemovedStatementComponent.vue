@@ -116,16 +116,44 @@
                         swal("Учасник був успішно видалений", {
                             icon: "success",
                         });
-
-                    })
-                    .catch((error) => {
-                        swal({
-                            icon: "error",
-                            title: 'Помилка',
-                            text: 'Не вдалося'
-                        });
-                    });
-            }
+			        })
+			        .catch((error) => {
+				        swal({
+					        icon: "error",
+					        title: 'Помилка',
+					        text: 'Не вдалося '
+				        });
+			        });
+	        },
+	        deleteMember(id) {
+		        swal({
+			        title: "Бажаєте видалити?",
+			        text: "Після видалення ви не зможете відновити дану заяву",
+			        icon: "warning",
+			        buttons: true,
+			        dangerMode: true,
+		        })
+			        .then((willDelete) => {
+				        if (willDelete) {
+					        axios.post('/delete-members/' + id)
+						        .then((response) => {
+							        if (response.status == 200) {
+								        this.getFullList();
+							        }
+							        swal("Учасник був успішно видалений", {
+								        icon: "success",
+							        });
+						        })
+						        .catch((error) => {
+							        swal({
+								        icon: "error",
+								        title: 'Помилка',
+								        text: 'Не вдалося'
+							        });
+						        });
+				        }
+			        })
+	        }
         }
     }
 </script>

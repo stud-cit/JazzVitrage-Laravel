@@ -7,7 +7,7 @@
                    <h3 class="title"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
                 </div>
                 <div class="gallery-content">
-                    <div class="row mt-4">
+                    <div class="row align-content-stretch mt-4">
                         <div class="col-xl-4 gallery-item" v-for="item in paginatedData" :key="item.foto_id">
                             <img :src="'/img/uploads/'+item.file" class="gallery-img">
                         </div>

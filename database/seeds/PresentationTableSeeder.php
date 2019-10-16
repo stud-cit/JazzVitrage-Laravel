@@ -14,8 +14,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=UAxNcJprLA0',
             'application_id' => 1,
         ]);
@@ -23,8 +25,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=NNdTljRzPqE',
             'application_id' => 2,
         ]);
@@ -32,8 +36,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=Wx_r_wap-Jg',
             'application_id' => 3,
         ]);
@@ -41,8 +47,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=Wx_r_wap-Jg',
             'application_id' => 4,
         ]);
@@ -50,8 +58,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=Wx_r_wap-Jg',
             'application_id' => 5,
         ]);
@@ -59,8 +69,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=Wx_r_wap-Jg',
             'application_id' => 6,
         ]);
@@ -68,8 +80,10 @@ class PresentationTableSeeder extends Seeder
         DB::table('presentation')->insert([
             'composition_one' => 'Назва твору 1',
             'author_one' => 'Автор твору 1',
+            'time_one' => '4',
             'composition_two' => 'Назва твору 2',
             'author_two' => 'Автор твору 2',
+            'time_two' => '5',
             'video' => 'https://www.youtube.com/watch?v=Wx_r_wap-Jg',
             'application_id' => 7,
         ]);
