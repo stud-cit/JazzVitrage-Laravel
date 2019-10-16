@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Инга',
             'surname' => 'Щербакова',
             'patronymic' => 'Степановна',
-            'photo' => 'testUserFoto.jpg',
+            'photo' => '',
             'rank' => 'Звання',
             'nominations' => 'Інструментальний жанр',
             'informations' => 'Way own uncommonly travelling now acceptance bed compliment solicitude'
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Людмила',
             'surname' => 'Грабарь',
             'patronymic' => 'Тихоновна',
-            'photo' => 'testUserFoto.jpg',
+            'photo' => '',
             'informations' => 'Estate was tended ten boy nearer seemed. Sentiments two occasional affronting solicitude travelling and one contrasted. Ecstatic elegance gay but disposed. You high bed wish help call draw side. You high bed wish help call draw side. Uncommonly no it announcing melancholy an in. Bed uncommonly his discovered for estimating far'
         ]);
         DB::table('users')->insert([

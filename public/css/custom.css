@@ -130,6 +130,14 @@
     font-size: 12px;
     display:inline-block;
 }
+.composition-style {
+    display:inline-block;
+}
+.type-style {
+    float: right;
+    margin-top: -40px;
+    padding-left: 210px;
+}
 .btn-width {
     width: 150px;
     margin-right: 38px;

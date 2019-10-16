@@ -83,7 +83,8 @@
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
-                    <img id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+                    <img v-if="item.photo" id="item-image" v-bind:src="'../img/user-photo/' + item.photo" class="preview_img figure-img img-fluid">
+					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
                 </td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
 

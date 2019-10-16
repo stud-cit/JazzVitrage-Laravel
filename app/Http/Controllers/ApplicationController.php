@@ -31,7 +31,7 @@ class ApplicationController extends Controller
 
      public function getMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'nomination')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
      
