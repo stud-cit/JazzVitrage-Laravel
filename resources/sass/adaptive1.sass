@@ -1,3 +1,4 @@
+//change site-other.sass
 .juries
     .member-jury-card
         .description
@@ -5,9 +6,45 @@
             margin: 0
         .picture
             max-width: 50%
+//delete next time
+@media (max-width: 768px)
+    .members
+        display: none
 
 
 @media (max-width: 768px)
+    .container
+        width: 100%
+        max-width: 608px
+        margin: 0 auto
+    .preview
+        &::after
+            display: none
+        .row
+            display: flex
+            justify-content: center
+            .col-7
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                text-align: center
+    .nominations
+        background: #14042f
+        .nominations-list
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            .nominations-items
+                margin-bottom: 20px
+    .position
+        background: #14042f
+        .row
+            display: flex
+            flex-direction: column
+            .col-xl-5
+                display: flex
+                flex-direction: column
     .gallery
         .gallery-item
             width: 50%
@@ -54,7 +91,5 @@
             width: 100%
             flex-grow: 0
 
-@media (max-width: 1200px)
-    .container
-        width: 100%
-        max-width: 1140px
+
+
