@@ -147,7 +147,7 @@ export default {
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
+                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}`, 
                             type: member.app_type.name,
 
 	                        memberDate: member.solo_duet[0].data_birthday,
@@ -175,9 +175,9 @@ export default {
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
-                            name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
-	                        type: member.app_type.name,
 
+                        name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronomic}`,
+                            type: member.app_type.name,
 	                        memberDate: member.solo_duet[0].data_birthday,
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
@@ -197,7 +197,6 @@ export default {
 	                        compositionName2: member.presentation.composition_two,
 	                        compositionAuthor2: member.presentation.author_two,
 	                        compositionTiming2: member.presentation.time_two,
-
                             id: member.application_id
                         })
                     }
