@@ -47,14 +47,26 @@
                         </div>
                         <div class="mt-2"></div>
                         <div class="col-5">
-                            <label for="memberDate" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Дата народження</label>
-                            <p id="memberDate" v-if="item.type == 'соліст' || item.type == 'дует'">{{ item.memberDate }}</p>
+                            <label for="memberDate" class="brtop" v-if="item.type == 'соліст'">Дата народження</label>
+                            <p id="memberDate" v-if="item.type == 'соліст'">{{ item.memberDate }}</p>
+
+                            <label for="memberDate1" class="brtop" v-if="item.type == 'дует'">Дата народження першого учасника</label>
+                            <p id="memberDate1" v-if="item.type == 'дует'">{{ item.memberDate1 }}</p>
+
+                            <label for="memberDate2" class="brtop" v-if="item.type == 'дует'">Дата народження другого учасника</label>
+                            <p id="memberDate2" v-if="item.type == 'дует'">{{ item.memberDate2 }}</p>
 
                             <label for="memberAverage" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Середній вік учасників</label>
                             <p id="memberAverage" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.memberAverage }}</p>
 
-                            <label for="memberIdCode" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Ідентифікаційний номер учня</label>
-                            <p id="memberIdCode" v-if="item.type == 'соліст' || item.type == 'дует'">{{ item.idCode }}</p>
+                            <label for="memberIdCode" class="brtop" v-if="item.type == 'соліст'">Ідентифікаційний номер учня</label>
+                            <p id="memberIdCode" v-if="item.type == 'соліст'">{{ item.idCode }}</p>
+
+                            <label for="memberIdCode1" class="brtop" v-if="item.type == 'дует'">Ідентифікаційний номер першого учасника</label>
+                            <p id="memberIdCode1" v-if="item.type == 'дует'">{{ item.idCode1 }}</p>
+
+                            <label for="memberIdCode2" class="brtop" v-if="item.type == 'дует'">Ідентифікаційний номер другого учасника</label>
+                            <p id="memberIdCode2" v-if="item.type == 'дует'">{{ item.idCode2 }}</p>
 
                             <label for="teacherIdCode" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Ідентифікаційний номер викладача</label>
                             <p id="teacherIdCode" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.teacherIdCode }}</p>
@@ -71,8 +83,11 @@
                             <label for="teacherPhone" class="brtop">Контактний телефон викладача</label>
                             <p id="teacherPhone">{{ item.teacherPhone }}</p>
 
+                            <div v-if="item.concertSurname == '' || item.concertName == '' || item.concertPatronymic == ''"> </div>
+                            <div v-else>
                             <label for="concertDate" class="brtop">ПІП концертмейстра</label>
                             <p id="concertDate">{{ `${item.concertSurname} ${item.concertName} ${item.concertPatronymic}` }}</p>
+                            </div>
 
                             <label class="brtop mb-3">Програма та хронометраж кожного твору</label>
                             <p>Перший твір:</p>
@@ -150,7 +165,7 @@ export default {
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}`, 
                             type: member.app_type.name,
 
-	                        memberDate: member.solo_duet[0].data_birthday,
+	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
@@ -176,10 +191,12 @@ export default {
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
 
-                        name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronomic}`,
+                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronomic}`,
                             type: member.app_type.name,
-	                        memberDate: member.solo_duet[0].data_birthday,
-	                        idCode: member.solo_duet[0].in,
+	                        memberDate1: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
+	                        memberDate2: member.solo_duet[1].data_birthday.split('-').reverse().join('-'),
+	                        idCode1: member.solo_duet[0].in,
+	                        idCode2: member.solo_duet[1].in,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
 	                        schoolPhone: member.preparation.school_phone,
