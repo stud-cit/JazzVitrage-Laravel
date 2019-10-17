@@ -46,7 +46,7 @@ class UserController extends Controller
         $update_jury->name = $request->name;
         $update_jury->surname = $request->surname;
         $update_jury->patronymic = $request->patronymic;
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
@@ -85,8 +85,7 @@ class UserController extends Controller
         $update_org->surname = $request->surname;
         $update_org->patronymic = $request->patronymic;
         $update_org->password = Hash::make('password');
-
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
