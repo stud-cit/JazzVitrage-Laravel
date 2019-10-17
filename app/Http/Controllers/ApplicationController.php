@@ -238,6 +238,30 @@ class ApplicationController extends Controller
      */
     public function getRating() {
         $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
+        // dd($data->modelKeys() );
+        $res = []; 
+
+        foreach ($data->modelKeys() as $key => $value) {
+            
+            $arrEval = Evaluation::where('application_id', $value)->get()->toArray();
+            $colEval = array_column($arrEval, 'evaluation');
+            $leng = count($colEval);
+            
+            if ($leng > 0) {
+                $sum =  array_sum($colEval);
+                $resultRate = $sum /  $leng;       
+                array_push($res, number_format($resultRate, 2, ',', ' '));   
+            } else {
+                array_push($res, NULL);  
+            }  
+        }
+        $convertedData = $data->toArray();
+        $newArry = [];
+        foreach($convertedData as $row) {
+            $newArry = $row['eval'] = 1;
+        }
+
+        dd($result);
 
         return response()->json($data);
     }
