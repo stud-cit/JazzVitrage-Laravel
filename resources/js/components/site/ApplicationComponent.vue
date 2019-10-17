@@ -901,7 +901,7 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 1">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
@@ -930,7 +930,7 @@
                                 <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                             </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -946,11 +946,14 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck1" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="errors.has('groupCheck1')">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -961,7 +964,7 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 2">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
@@ -997,7 +1000,7 @@
                                     <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                                 </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1013,11 +1016,14 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck2" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="errors.has('groupCheck2')">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -1028,7 +1034,7 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType > 2">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
@@ -1048,7 +1054,7 @@
                                     <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.teacherIdCode}}</li>
                                     <li class="info-item">Електронна пошта керівника: {{registration.data.teacherEmail}}</li>
                                 </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                                 <ul class="info-list">
 
@@ -1072,11 +1078,14 @@
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
                                 <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck" class="d-none" type="checkbox" >
+                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck3" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="errors.has('groupCheck3')">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -1099,7 +1108,7 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
-	            checked : false,
+	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
 
