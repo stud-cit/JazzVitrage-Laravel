@@ -202,10 +202,11 @@
                     artistry,
                     originality
                 })
-                .then( (response)  => { 
+                .then( (response)  => {
                     swal( `Ваша оцінка ${this.evaluation} із можливих ${this.maxRating}`, {
                         icon: 'success',
                     });
+                    this.hasRecord = true;
                  })
                 .catch( (error) => {
                     console.error(error);
