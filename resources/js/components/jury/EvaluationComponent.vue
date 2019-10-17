@@ -209,7 +209,16 @@
                     this.hasRecord = true;
                  })
                 .catch( (error) => {
-                    console.error(error);
+                    if (error.response.status === 422) {
+                        swal(`Оцінка за окрему категорію повинна бути
+                        в межах від ${this.minEvaluation} до ${this.maxEvaluation}`, {
+                            icon: 'error'
+                        });
+                    } else {
+                        swal('Щось пішло не так, зверніться до адміністратора', {
+                            icon: 'error'
+                        });
+                    }
                 });
             },
             updateEvaluation() {
@@ -231,9 +240,17 @@
                     });
                 })
                 .catch( (error) => {
-                    swal('Щось пішло не так, зверніться до адміністратора', {
-                        icon: 'error'
-                    });
+                    if (error.response.status === 422) {
+                        swal(`Оцінка за окрему категорію повинна бути
+                            в межах від ${this.minEvaluation} до ${this.maxEvaluation}`, {
+                            icon: 'error'
+                        });
+                    } else {
+                        swal('Щось пішло не так, зверніться до адміністратора', {
+                            icon: 'error'
+                        });
+                    }
+                    
                 });
             },
 
