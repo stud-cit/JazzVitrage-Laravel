@@ -140,6 +140,7 @@ Auth::routes();
     Route::get('get-apptype', 'ApplicationController@getAppType');
 
     Route::get('get-all-members',  'ApplicationController@getAllMembers');
+    Route::get('get-archive-members', 'ApplicationController@getArciveMembers');
 
     Route::get('get-member/{id}/',  'ApplicationController@getMember');
 

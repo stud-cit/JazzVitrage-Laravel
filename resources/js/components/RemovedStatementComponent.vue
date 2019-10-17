@@ -60,7 +60,7 @@
         },
         methods: {
 	        getFullList() {
-		        axios.get('/get-members')
+		        axios.get('/get-archive-members')
 			        .then((response) => {
 				        this.members = [];
 				        response.data.forEach(member => {
