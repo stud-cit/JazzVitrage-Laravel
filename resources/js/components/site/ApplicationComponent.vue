@@ -930,7 +930,7 @@
                                 <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                             </ul></div>
-                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1000,7 +1000,7 @@
                                     <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                                 </ul></div>
-                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1054,7 +1054,7 @@
                                     <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.teacherIdCode}}</li>
                                     <li class="info-item">Електронна пошта керівника: {{registration.data.teacherEmail}}</li>
                                 </ul></div>
-                            <div class="result-row" :disabled="!concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                                 <ul class="info-list">
 
