@@ -17,20 +17,42 @@
         width: 100%
         max-width: 608px
         margin: 0 auto
+        box-sizing: border-box
     .preview
+        padding-bottom: 0
         &::after
             display: none
+        .top-layout
+            background-image: none
+            clip-path: none
         .row
             display: flex
             justify-content: center
             .col-7
+                max-width: 100%
+                width: 608px
                 display: flex
                 flex-direction: column
                 justify-content: center
                 align-items: center
                 text-align: center
+                .preview-text
+                    width: 608px
+                .preview-logo
+                    width: 100%
+                    max-width: 608px
+                    height: 280px
     .nominations
         background: #14042f
+        .title-nominations
+            .title
+                margin-top: -10px
+                font-size: 30px
+                font-weight: 900
+            .subtitle
+                margin-top: 0!important
+                font-size: 11px
+                font-weight: 500
         .nominations-list
             flex-direction: column
             justify-content: center
@@ -42,9 +64,27 @@
         .row
             display: flex
             flex-direction: column
+            .col-xl-7
+                iframe
+                    height: 365px
             .col-xl-5
                 display: flex
                 flex-direction: column
+                .title-section
+                    margin-top: 10px
+                .subtitle
+                    margin-top: 0
+                .text
+                    margin-top: 15px
+                .btn-group
+                    margin-top: 25px
+                    display: flex
+                    justify-content: space-around
+                    .btn-read
+                        width: 255px
+                        display: flex
+                        justify-content: center
+                        align-items: center
     .gallery
         .gallery-item
             width: 50%
