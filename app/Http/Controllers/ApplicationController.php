@@ -43,7 +43,7 @@ class ApplicationController extends Controller
      
      public function getArciveMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation')->where('status', '=', 'archive')->get();
          return response()->json($data);
      }
 
@@ -234,10 +234,16 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        if($model->passport_photo != '' || $model->in_file != '' || $model->file != '' || $model->video != ''){
+        if($model->passport_photo != ''){
             unlink(public_path($this->publicStorage.$model->passport_photo));
+        }
+        else if($model->in_file != ''){
             unlink(public_path($this->publicStorage.$model->in_file));
+        }
+        else if($model->file != ''){
             unlink(public_path($this->publicStorage.$model->file));
+        }
+        else if($model->video != ''){
             unlink(public_path($this->publicStorage.$model->video));
         }
         if($model->delete()){
