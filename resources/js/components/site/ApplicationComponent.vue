@@ -94,18 +94,18 @@
 
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                    <input type="text" name="memberDate" @change="dobValidate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
                                            v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
@@ -169,13 +169,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -236,13 +236,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -310,13 +310,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -367,13 +367,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName2')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -441,13 +441,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName2')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" повинне бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" повинне бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
