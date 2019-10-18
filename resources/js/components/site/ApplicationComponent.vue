@@ -504,7 +504,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupCount" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ" v-model="registration.data.groupCount" required
-                                        v-validate="{ regex: /^[0-9]+$/ }"
+                                        v-validate="{ regex: /^[0-9]{1,2}}$/ }"
                                            data-vv-as="КІЛЬКІСТЬ УЧАСНИКІВ">
                                 </div>
                             </div>
@@ -515,7 +515,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ" v-model="registration.data.groupAverage" required
-                                        v-validate="{ regex: /^[0-9]{1,2}(?:[.,][0-9]{1,})?\r?$/ }"
+                                        v-validate="{ regex: /^(([8-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }"
                                            data-vv-as="СЕРЕДНІЙ ВІК УЧАСНИКІВ">
                                 </div>
                             </div>
