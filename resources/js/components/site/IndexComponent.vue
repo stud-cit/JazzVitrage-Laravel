@@ -344,7 +344,8 @@
                 axios.get('/get-members')
                 .then((response) => {
                     response.data.forEach((member, index) => {
-                        if(member.solo_duet.length == 0) {
+                        console.log(member);
+                        if(member.group) {
                             this.members.push({
                                 index,
                                 age: member.group.average_age,
