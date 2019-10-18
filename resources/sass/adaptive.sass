@@ -123,7 +123,105 @@
                     margin: 4px 0
 
                     .gallery-img
-                        height: auto
+                        width: 296px
+                        height: 292px
 
             .text-center
                 margin-top: 35px
+                .archive
+                    width: 296px
+                    height: 65px
+
+    .video-gallery
+        .carousel-text  
+        .gallery-content
+            #carouselVideo
+                display: flex
+                flex-flow: column
+
+                .title-video,
+                .subtitle
+                    order: 0
+                    text-align: left
+                .carousel-inner
+                    order: 1
+
+                    .carousel-item
+                        .d-flex
+                            .video
+                                margin: 0
+                                width: 100%
+                                height: 300px
+
+                .carousel-control-prev
+                    order: 2
+                    justify-content: flex-end
+                    margin-top: 400px
+                    align-self: flex-start
+                    height: 50px
+                    width: 50%
+
+                .carousel-control-next
+                    order: 2
+                    justify-content: flex-start
+                    margin-top: 400px
+                    align-self: flex-end
+                    height: 50px 
+                    width: 50% 
+
+                .text-center
+                    order: 3  
+
+                    .archive
+                        margin-top: 45px
+    
+    .contacts
+        display: flex
+        flex-flow: column
+        padding-bottom: 0
+
+        .left-layer
+            background: url('../../public/img/contacts-layer-768px.png') no-repeat
+            width: 100%
+            height: 390px
+            left: 0
+            right: 0
+            z-index: 1
+            position: static
+
+            img
+                display: none
+
+            .text-layer
+                top: 60px
+                left: 158px
+                right: 0
+                height: auto
+
+        .right-layer
+            padding: 0
+            margin: 0
+
+            .contacts-title
+                width: 608px
+                margin: 60px auto 0 
+
+            .subtitle
+                width: 608px
+                margin: 0 auto
+
+            .contacts-form
+                width: 608px
+                margin: 0 auto
+
+                .text-center
+                    .submit
+                        width: 296px
+                        height: 65px
+
+
+
+
+
+
+            
