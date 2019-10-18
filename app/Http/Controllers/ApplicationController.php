@@ -40,6 +40,12 @@ class ApplicationController extends Controller
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
+     
+     public function getArciveMembers()
+     {
+         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'archive')->get();
+         return response()->json($data);
+     }
 
      public function getMember($id)
      {

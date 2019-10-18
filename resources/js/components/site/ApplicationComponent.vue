@@ -371,7 +371,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" 
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                             data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
@@ -451,7 +451,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file" 
+                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="member2BirthdayFile">
@@ -526,7 +526,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file" 
+                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile2">
@@ -905,9 +905,9 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 1">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
+                                <h5 class="step-title">Вікова категорія:
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -934,7 +934,7 @@
                                 <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                             </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -949,12 +949,15 @@
                                 <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
-                                <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
+                                <label for="groupCheck1" >
+                                    <input @change="checked = !checked" name="groupCheck1" id="groupCheck1" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="!checked">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -965,9 +968,9 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType == 2">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
+                                <h5 class="step-title">Вікова категорія:
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -1001,7 +1004,7 @@
                                     <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
 
                                 </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1016,12 +1019,15 @@
                                 <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
-                                <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" class="d-none" type="checkbox" >
+                                <label for="groupCheck2" >
+                                    <input @change="checked = !checked" name="groupCheck2" id="groupCheck2" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="!checked">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -1032,9 +1038,9 @@
                         <form class="step-form" v-if="activeStep == 4 && registration.data.appType > 2">
 
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
-                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination].name}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
+                                <h5 class="step-title">Вікова категорія:
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -1053,7 +1059,7 @@
                                     <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.teacherIdCode}}</li>
                                     <li class="info-item">Електронна пошта керівника: {{registration.data.teacherEmail}}</li>
                                 </ul></div>
-                            <div class="result-row"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                                 <ul class="info-list">
 
@@ -1076,12 +1082,15 @@
                                 <!--<div class="d-flex flex-column file-item"><img src="img/file.png" alt=""><span>3</span></div>-->
                             </div>
                             <div class="input-row checkbox-row result-checkbox">
-                                <label for="concertmaster" >
-                                    <input @change="checked = !checked" id="concertmaster" name="groupCheck" class="d-none" type="checkbox" >
+                                <label for="groupCheck3" >
+                                    <input @change="checked = !checked" name="groupCheck3" id="groupCheck3" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
                                     <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
+                            <span class="errors" v-if="!checked">
+                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                            </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep">Назад</span>
@@ -1104,7 +1113,7 @@
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
                 concertmaster: false,
-	            checked : false,
+	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
 
@@ -1245,7 +1254,6 @@
             },
 
             sendApp(){
-
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(this.registration.data));
 
