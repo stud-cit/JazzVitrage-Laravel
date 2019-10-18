@@ -248,10 +248,15 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
+        if($model->passport_photo != '' || $model->in_file != '' || $model->file != '' || $model->video != ''){
+            unlink(public_path($this->publicStorage.$model->passport_photo));
+            unlink(public_path($this->publicStorage.$model->in_file));
+            unlink(public_path($this->publicStorage.$model->file));
+            unlink(public_path($this->publicStorage.$model->video));
+        }
         if($model->delete()){
             return ;
         }
-
     }
 
     /**
