@@ -133,7 +133,6 @@
                     height: 65px
 
     .video-gallery
-        .carousel-text  
         .gallery-content
             #carouselVideo
                 display: flex
@@ -220,6 +219,110 @@
                         height: 65px
 
 
+// mobile
+@media (max-width: 414px) 
+
+    // main page
+    body
+        width: 100%
+        background: #14042f
+
+        .sections
+            background: #14042f
+
+            .container
+                max-width: 338px
+
+        .gallery
+            .container
+                .row
+                    .gallery-item
+                        margin: 10px 0
+
+                        .gallery-img
+                            width: 100%
+                            height: auto
+
+                .text-center
+                    .archive
+                        width: 280px
+                        height: 50px
+
+        .video-gallery
+            .carousel
+                display: none
+
+            .gallery-content
+                margin: 0 auto
+
+                #carouselVideo
+                    margin: 0 auto
+                    padding: 0
+
+                    .title-video,
+                    .subtitle
+                        width: 338px
+                        margin: 0 auto 10px
+
+                    .subtitle
+                        margin-bottom: 25px
+
+                    .carousel-inner
+                        .carousel-item
+                            .d-flex
+                                .video
+                                    margin: 0 auto
+                                    width: 338px
+                                    height: 228px
+
+                    .carousel-control-prev,
+                    .carousel-control-next
+                        margin-top: 325px
+
+                    .text-center
+                        .archive
+                            margin-top: 45px
+                            width: 280px
+        
+        .contacts
+
+            .left-layer
+                background: url('../../public/img/contacts-layer-414px.png') no-repeat
+                width: 100%
+                height: 385px
+
+                .text-layer
+                    left: 15%
+
+            .right-layer
+                padding-bottom: 96px
+                margin: 0
+                background: #ffffff
+
+                .contacts-title
+                    width: 100%
+                    text-align: center
+                    margin-top: 60px
+                    font-size: 20px
+
+                .subtitle
+                    width: 100%
+                    text-align: center
+                    font-size: 10px
+
+                .contacts-form
+                    width: 338px
+                    padding: 0
+
+                    .form-row
+                        input
+                            font-size: 15px
+
+                    .text-center
+                        
+                        .submit
+                            width: 338px
+                            height: 65px
 
 
 
