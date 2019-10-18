@@ -106,6 +106,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
 
             $soloDuet->parent_name = $data->parentName;
@@ -132,6 +133,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
+            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
 
             $soloDuet->parent_name = $data->parentName2;
@@ -232,9 +234,14 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
+        if($model->passport_photo != '' || $model->in_file != '' || $model->file != '' || $model->video != ''){
+            unlink(public_path($this->publicStorage.$model->passport_photo));
+            unlink(public_path($this->publicStorage.$model->in_file));
+            unlink(public_path($this->publicStorage.$model->file));
+            unlink(public_path($this->publicStorage.$model->video));
+        }
         if($model->delete()){
             return ;
         }
-
     }
 }
