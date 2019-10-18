@@ -92,6 +92,11 @@ class ApplicationController extends Controller
                 $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
             }
 
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
+
             $soloDuet->save();
         }
 
@@ -101,7 +106,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
-
+            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
             $soloDuet->parent_patronymic = $data->parentPatronymic;
@@ -120,6 +125,12 @@ class ApplicationController extends Controller
                     ->publicStorage, time().'-'.$val["idFile"]->getClientOriginalName());
                 $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
             }
+
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
+
             $soloDuet->save();
 
             $soloDuet = new SoloDuet;
@@ -127,7 +138,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
-
+            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
             $soloDuet->parent_patronymic = $data->parentPatronymic2;
@@ -146,6 +157,11 @@ class ApplicationController extends Controller
                     ->publicStorage, time().'-'.$val["idFile2"]->getClientOriginalName());
                 $soloDuet->in_file = $val["idFile2"]->getClientOriginalName();
             }
+
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
 
             $soloDuet->save();
         }
