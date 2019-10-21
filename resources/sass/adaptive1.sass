@@ -31,8 +31,8 @@
             display: flex
             justify-content: center
             .col-7
-                max-width: 100%
-                width: 608px
+                max-width: 608px
+                width: 100%
                 display: flex
                 flex-direction: column
                 justify-content: center
@@ -129,10 +129,44 @@
                 padding-bottom: 0
 
 @media (max-width: 414px)
+    .container
+        width: 100%
+        max-width: 338px
+        margin: 0 auto
+        box-sizing: border-box
     .gallery
         .gallery-item
             width: 100%
             flex-grow: 0
-
-
-
+    .preview
+        &::after
+            display: none
+        .row
+            .col-7
+                flex: 0 0 0
+                width: 100%
+                max-width: 338px
+                .preview-logo
+                    margin: 0
+                .preview-text
+                    width: 338px
+                    margin: 0 0 105px
+    .nominations
+        .title-nominations
+            .title
+                margin-top: -15px
+                font-size: 21px!important
+            .subtitle
+                font-size: 7px!important
+    .position
+        text-align: center
+        .col-xl-7
+            iframe
+                height: 203px!important
+        .title-section
+            font-size: 41px!important
+        .btn-group
+            flex-direction: column
+            align-items: center
+            .btn-read
+                margin-bottom: 10px
