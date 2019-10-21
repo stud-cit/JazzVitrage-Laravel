@@ -43,7 +43,7 @@ class ApplicationController extends Controller
      
      public function getArciveMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group')->where('status', '=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation')->where('status', '=', 'archive')->get();
          return response()->json($data);
      }
 
@@ -111,6 +111,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
             $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->parent_name = $data->parentName;
@@ -143,6 +144,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
+            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
             $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->parent_name = $data->parentName2;
@@ -246,18 +248,20 @@ class ApplicationController extends Controller
     }
     public function deleteMembers($id)
     {
-        $model = Application::find($id);
 
-        if($model->passport_photo != '' || $model->in_file != '' || $model->file != '' || $model->video != ''){
-            unlink(public_path($this->publicStorage.$model->passport_photo));
-            unlink(public_path($this->publicStorage.$model->in_file));
-            unlink(public_path($this->publicStorage.$model->file));
-            unlink(public_path($this->publicStorage.$model->video));
+        $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
+        if(!$model->group){
+            for($i = 0; $i < count($model->soloDuet); $i++) {
+                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["passport_photo"]));
+                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["in_file"]));
+            }
+        } else {
+            unlink(public_path($this->publicStorage.$model->group["file"]));
         }
-        if($model->delete()){
-            return ;
-        }
+        unlink(public_path($this->publicStorage.$model->presentation["video"]));
+        $model->delete();
     }
+
 
     /**
      * Return all application end calculate rating
@@ -266,21 +270,21 @@ class ApplicationController extends Controller
     public function getRating() {
         $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
         // dd($data->modelKeys() );
-        $res = []; 
+        $res = [];
 
         foreach ($data->modelKeys() as $key => $value) {
-            
+
             $arrEval = Evaluation::where('application_id', $value)->get()->toArray();
             $colEval = array_column($arrEval, 'evaluation');
             $leng = count($colEval);
-            
+
             if ($leng > 0) {
                 $sum =  array_sum($colEval);
-                $resultRate = $sum /  $leng;       
-                array_push($res, number_format($resultRate, 2, ',', ' '));   
+                $resultRate = $sum /  $leng;
+                array_push($res, number_format($resultRate, 2, ',', ' '));
             } else {
-                array_push($res, NULL);  
-            }  
+                array_push($res, NULL);
+            }
         }
         $convertedData = $data->toArray();
         $newArry = [];
@@ -291,5 +295,6 @@ class ApplicationController extends Controller
         dd($result);
 
         return response()->json($data);
+
     }
 }
