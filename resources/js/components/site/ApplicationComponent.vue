@@ -231,7 +231,7 @@
                                     Файл не обрано
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
@@ -551,7 +551,7 @@
                                     Файл не обрано
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
                         </form>
@@ -625,7 +625,7 @@
                                     Файл не обрано
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
 
@@ -778,7 +778,7 @@
                                     Введіть корректні дані
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
                         </form>
@@ -888,7 +888,7 @@
                                     Файл не обрано
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі</button>
                             </div>
                         </form>
@@ -956,7 +956,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
@@ -1026,7 +1026,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
@@ -1088,7 +1088,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)">Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
@@ -1231,8 +1231,9 @@
                 return age;
             },
 
-            prevStep(){
-                // $event.preventDefault();
+            prevStep(event){
+                event.preventDefault();
+                this.checked = false;
                 const steps = this.steps;
                 steps[this.activeStep] = false;
                 this.activeStep--;
