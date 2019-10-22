@@ -228,8 +228,9 @@
     body
         width: 100%
 
-        .container
-            width: 338px
+        .sections
+            .container
+                width: 338px
 
         .gallery
             background: #14042f
@@ -327,7 +328,7 @@
                             width: 338px
                             height: 65px
 
-// regstr
+        // regstr
         .applications
             .application-for-participation
                 height: 90px
@@ -368,12 +369,14 @@
 
                         .input-group
                             label
-                                font-size: 16px
+                                font-size: 12px
 
                         .input-row
                             .input-container
-                                input, label
-                                    font-size: 16px
+                                overflow-x: hidden
+
+                                input, label, span
+                                    font-size: 12px
 
                         .result-row
                             .step-title,
@@ -384,6 +387,7 @@
 
                             .file-item
                                 margin-right: 0px
+                                overflow-x: hidden
 
                                 img
                                     width: 15%
@@ -415,5 +419,50 @@
                             background: none
 
 
+        .juries
+            .title-section
+                font-size: 26px
+
+            .member-committee-card
+                flex-flow: column
+                line-height: 0
+
+                .picture
+                    width: 100%
+
+                .description
+                    padding: 20px 30px 20px 30px
+
+                    .title-description
+                        font-size: 20px
+
+                    .text-description
+                        font-size: 18px
+
+                    width: 100%
+                
+                &:nth-of-type(2n) 
+                    .description
+                        padding: 20px 30px 20px 30px
+                        order: 2
+                        flex-flow: column
+                        line-height: 0 
+
+                    .picture
+                        order: 1  
+
+        .gymn
+            padding-top: 100px
+
+            .wrapper-gymn
+                max-width: 338px
+
+                .couplets
+                    padding: 25px 20px    
+
+                .media
+                    .absolute-block
+                        .audio
+                            margin: 50px 0 20px 0
 
             
