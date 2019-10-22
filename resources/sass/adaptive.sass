@@ -1,0 +1,419 @@
+@media (max-width: 768px) 
+    .header 
+        .navbar
+            height: 65px
+
+
+    .sections 
+        .application-for-participation
+            height: 150px
+
+            .title-section 
+                font-size: 26px
+    
+
+    /* org.comitet */
+
+    .juries 
+        .member-committee-card
+            .picture
+                width: 41%
+                
+                img
+                    width: 100%
+                    height: 100%
+                    top: 50%
+                    left: 50%
+                    object-fit: cover
+
+            .description
+                .title-description
+                    font-size: 24px
+
+                .text-description
+                    font-size: 19px
+
+                margin: 0
+                padding: 60px 35px 60px 15px
+                border-radius: 0
+                width: 41%
+            
+            justify-content: center
+     
+        .member-committee-card:nth-of-type(2n) 
+            .description
+                padding: 60px 15px 60px 35px
+                border-radius: 0
+
+
+    /* anthem */
+    .gymn
+        .wrapper-gymn
+            width: 608px
+            margin: 0 auto
+            border-radius: 40px 40px 40px 40px
+
+            .couplets
+                border-radius: 40px 40px 0 0
+
+            .media
+                top: 0
+
+                .overflow
+                    .scroll-img
+                        right: 0
+
+                .absolute-block
+                    width: 100%
+                    min-height: 250px
+                    left: 0
+                    border-radius: 0 0 40px 40px
+
+    /* заява на участие */
+
+    .step-block
+        .step-form
+            .input-row
+                margin: 15px 0
+                flex-flow: column
+
+                .input-container
+                    padding: 0
+
+                .ml-4
+                    margin: 20px 0 0 0 !important
+
+            .step-title.title-left
+                flex-flow: row wrap
+                font-size: 20px
+                letter-spacing: 1px
+                margin-bottom: 25px
+
+                .hint
+                    margin-left: 20px
+                    width: 35px
+                    height: 35px
+
+            .d-flex
+                flex-flow: column !important
+
+            .justify-content-between
+                align-items: flex-start !important
+                padding-bottom: 15px
+
+            .mt-5
+                flex-flow: row wrap !important
+                align-items: center !important
+            
+            .result-row.file-row
+                flex-flow: column
+                margin-bottom: 60px
+                
+
+    /**/
+
+    .sections
+        .container
+            max-width: 608px
+            box-sizing: border-box
+            padding: 0
+
+            .title-section
+                font-size: 50px
+
+            .row
+                .gallery-item
+                    margin: 4px 0
+
+                    .gallery-img
+                        width: 296px
+                        height: 292px
+
+            .text-center
+                margin-top: 35px
+                .archive
+                    width: 296px
+                    height: 65px
+
+    .video-gallery
+        .gallery-content
+            #carouselVideo
+                display: flex
+                flex-flow: column
+
+                .title-video,
+                .subtitle
+                    order: 0
+                    text-align: left
+                .carousel-inner
+                    order: 1
+
+                    .carousel-item
+                        .d-flex
+                            .video
+                                margin: 0
+                                width: 100%
+                                height: 300px
+
+                .carousel-control-prev
+                    order: 2
+                    justify-content: flex-end
+                    margin-top: 400px
+                    align-self: flex-start
+                    height: 50px
+                    width: 50%
+
+                .carousel-control-next
+                    order: 2
+                    justify-content: flex-start
+                    margin-top: 400px
+                    align-self: flex-end
+                    height: 50px 
+                    width: 50% 
+
+                .text-center
+                    order: 3  
+
+                    .archive
+                        margin-top: 45px
+    
+    .contacts
+        display: flex
+        flex-flow: column
+        padding-bottom: 0
+
+        .left-layer
+            background: url('../../public/img/contacts-layer-768px.png') no-repeat
+            width: 100%
+            height: 390px
+            left: 0
+            right: 0
+            z-index: 1
+            position: static
+
+            img
+                display: none
+
+            .text-layer
+                top: 60px
+                left: 158px
+                right: 0
+                height: auto
+
+        .right-layer
+            padding: 0
+            margin: 0
+
+            .contacts-title
+                width: 608px
+                margin: 60px auto 0 
+
+            .subtitle
+                width: 608px
+                margin: 0 auto
+
+            .contacts-form
+                width: 608px
+                margin: 0 auto
+
+                .text-center
+                    .submit
+                        width: 296px
+                        height: 65px
+
+
+// mobile
+@media (max-width: 414px) 
+    // main page
+    body
+        width: 100%
+
+        .container
+            width: 338px
+
+        .gallery
+            background: #14042f
+
+            .container
+                .row
+                    .gallery-item
+                        margin: 10px 0
+
+                        .gallery-img
+                            width: 100%
+                            height: auto
+
+                .text-center
+                    .archive
+                        width: 280px
+                        height: 50px
+
+        .video-gallery
+            background: #14042f
+
+
+            .carousel
+                display: none
+
+            .gallery-content
+                margin: 0 auto
+
+                #carouselVideo
+                    margin: 0 auto
+                    padding: 0
+
+                    .title-video,
+                    .subtitle
+                        width: 338px
+                        margin: 0 auto 10px
+
+                    .subtitle
+                        margin-bottom: 25px
+
+                    .carousel-inner
+                        .carousel-item
+                            .d-flex
+                                .video
+                                    margin: 0 auto
+                                    width: 338px
+                                    height: 228px
+
+                    .carousel-control-prev,
+                    .carousel-control-next
+                        margin-top: 325px
+
+                    .text-center
+                        .archive
+                            margin-top: 45px
+                            width: 280px
+        
+        .contacts
+
+            .left-layer
+                background: url('../../public/img/contacts-layer-414px.png') no-repeat
+                width: 100%
+                height: 385px
+
+                .text-layer
+                    left: 15%
+
+            .right-layer
+                padding-bottom: 96px
+                margin: 0
+                background: #ffffff
+
+                .contacts-title
+                    width: 100%
+                    text-align: center
+                    margin-top: 60px
+                    font-size: 20px
+
+                .subtitle
+                    width: 100%
+                    text-align: center
+                    font-size: 10px
+
+                .contacts-form
+                    width: 338px
+                    padding: 0
+
+                    .form-row
+                        input
+                            font-size: 15px
+
+                    .text-center
+                        
+                        .submit
+                            width: 338px
+                            height: 65px
+
+// regstr
+        .applications
+            .application-for-participation
+                height: 90px
+                padding-top: 20px
+                margin-top: -105px
+
+                .title-section
+                    font-size: 20px
+
+                .subtitle
+                    font-size: 13px
+
+
+            .container
+                .step-block
+                    max-width: 338px
+                    padding: 0
+                    margin: 20px 0 0 0
+
+                    .step-numbers
+                        margin: 0
+                        padding: 0
+                        
+                        .number-item
+                            &::before 
+                                display: none
+
+                            .number-circle
+                                background: none
+                                display: none
+
+
+                    .step-form
+                        padding: 20px 29px
+
+                        .step-title
+                            font-size: 12px
+
+                        .input-group
+                            label
+                                font-size: 16px
+
+                        .input-row
+                            .input-container
+                                input, label
+                                    font-size: 16px
+
+                        .result-row
+                            .step-title,
+                            .info-list
+                                font-size: 12px
+
+                        .file-row
+
+                            .file-item
+                                margin-right: 0px
+
+                                img
+                                    width: 15%
+
+                                span
+                                    font-size: 12px
+
+                        .checkbox-row
+                            p
+                                font-size: 12px
+
+                        .mt-5
+                            flex-flow: column !important
+
+                            .next-step
+                                order: 1
+                                width: 280px
+                                margin-bottom: 20px
+
+                            .prev-step
+                                order: 2
+                                width: 75px
+
+
+                    .select-block
+                        .select
+                            max-width: 80%
+                            font-size: 16px
+                            background: none
+
+
+
+            
