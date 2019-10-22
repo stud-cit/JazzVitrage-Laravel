@@ -238,6 +238,17 @@ class ApplicationController extends Controller
         }
 
     }
+    public function addApproved($id)
+    {
+        $model = Application::find($id);
+
+        $model->status = 'approved';
+
+        if($model->save()){
+            return ;
+        }
+
+    }
     public function deleteMembers($id)
     {
         $model = Application::with('soloDuet', 'group', 'presentation')->find($id);

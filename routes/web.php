@@ -148,6 +148,7 @@ Auth::routes();
 
     Route::post('send-app',  'ApplicationController@postApp');
     Route::post('unarchive-members/{id}/',  'ApplicationController@unarchiveMembers');
+    Route::post('add-approved/{id}/', 'ApplicationController@addApproved');
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
     Route::post('post-question', 'QuestionController@postQuestion');

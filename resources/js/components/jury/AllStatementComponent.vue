@@ -9,7 +9,7 @@
             </tr>
       </thead>
       <tbody v-for="(item, index) in members" :key="index">
-            <tr>
+            <tr v-if="item.status == 'approved'">
 
                 <td>{{ index + 1 }}</td>
                 <td v-if="item.solo_duet.length == 0">
