@@ -344,8 +344,9 @@
                 axios.get('/get-members')
                 .then((response) => {
                     response.data.forEach((member, index) => {
-                        console.log(member);
-                        if(member.group) {
+
+                        if(member.solo_duet.length == 0 && member.status == "approved") {
+
                             this.members.push({
                                 index,
                                 age: member.group.average_age,
@@ -356,7 +357,7 @@
                                 nomination: member.nomination.name
                             })
                         }
-                        else if(member.solo_duet.length == 1) {
+                        else if(member.solo_duet.length == 1 && member.status == "approved") {
                             this.members.push({
                                 index,
                                 age: this.getAge(member.solo_duet[0].data_birthday),
@@ -367,7 +368,7 @@
                                 nomination: member.nomination.name
                             })
                         }
-                        else if(member.solo_duet.length == 2) {
+                        else if(member.solo_duet.length == 2 && member.status == "approved") {
                             this.members.push({
                                 index,
                                 age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,

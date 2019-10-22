@@ -29,7 +29,7 @@
                        {{ item.type }}
                     </td>
                     <td>
-                        <i class="fa fa-2x fa-check-circle btn btn-default p-0"></i>
+                        <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id)"></i>
                                            
                     <td>
 
@@ -130,7 +130,7 @@ export default {
             .then((response) => {
                 this.members = [];
                 response.data.filter( app => {
-                    return app.status =="created";
+                    return app.status == "created" || app.status == "approved";
                 }).forEach(member => {
                     if(member.solo_duet.length == 0) {
                         this.members.push({
@@ -226,6 +226,24 @@ export default {
                     text: error.response.status
                 });
             });
+        },
+	    addApproved(id){
+            axios.post('/add-approved/'+id)
+                .then((response) => {
+	                if(response.status == 200 ) {
+		                this.getFullList();
+	                }
+	                swal("Учаснику присвоєно статус: Схвалений", {
+		                icon: "success",
+	                });
+                })
+	            .catch((error) => {
+		            swal({
+			            icon: "error",
+			            title: 'Помилка',
+			            text: 'Не вдалося'
+		            });
+	            });
         },
         archiveMember(id){
             axios.post('/archive-members/'+id)
