@@ -130,7 +130,7 @@ export default {
             .then((response) => {
                 this.members = [];
                 response.data.filter( app => {
-                    return app.status == "created" || app.status == "approved";
+                    return app.status == "created";
                 }).forEach(member => {
                     if(member.solo_duet.length == 0) {
                         this.members.push({
