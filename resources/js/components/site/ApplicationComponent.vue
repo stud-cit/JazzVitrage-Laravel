@@ -94,18 +94,18 @@
 
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                    <input type="text" ref="memberDate" v-on:keyup="ValidateDOB()" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
                                            v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
@@ -113,6 +113,7 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
                             </span>
+                            <span class="errors" id="lblError"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -181,13 +182,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -260,18 +261,18 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                    <input type="text" ref="memberDate1" name="memberDate" v-on:keyup="ValidateDOB1()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
                                         v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
@@ -279,6 +280,7 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
                             </span>
+                            <span class="errors" id="lblError1"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -346,13 +348,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -415,18 +417,18 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberName2')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="memberDate2" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                    <input type="text" ref="memberDate2" name="memberDate2" v-on:keyup="ValidateDOB2()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
                                         v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
@@ -434,6 +436,7 @@
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Введіть дані у форматі ХХ-ХХ-ХХХХ
                             </span>
+                            <span class="errors" id="lblError2"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -501,13 +504,13 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
-                                    Поле "прізвище" повинно бути заповнене
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentName2')">
-                                    Поле "ім’я" повинно бути заповнене
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
-                                    Поле "по-батькові" повинно бути заповнене
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -576,7 +579,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupCount" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ" v-model="registration.data.groupCount" required
-                                        v-validate="{ regex: /^[0-9]+$/ }"
+                                        v-validate="{ regex: /^[0-9]{1,2}$/ }"
                                            data-vv-as="КІЛЬКІСТЬ УЧАСНИКІВ">
                                 </div>
                             </div>
@@ -587,7 +590,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ" v-model="registration.data.groupAverage" required
-                                        v-validate="{ regex: /^[0-9]{1,2}(?:[.,][0-9]{1,})?\r?$/ }"
+                                        v-validate="{ regex: /^(([8-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }"
                                            data-vv-as="СЕРЕДНІЙ ВІК УЧАСНИКІВ">
                                 </div>
                             </div>
@@ -1234,6 +1237,148 @@
                     age--;
                 }
                 return age;
+            },
+
+
+            ValidateDOB() {
+                const lblError = document.getElementById("lblError");
+                const dateString = this.$refs.memberDate.value;
+                const parts = dateString.split("-");
+                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
+                const dtCurrent = new Date();             
+                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
+                    return false;
+                }
+
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                            return false;
+                        }
+                    }
+                } 
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                            return false;
+                        }
+                    }
+                }
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                    return false;
+                }
+                
+                lblError.innerHTML = "";
+                return true;
+                
+            },
+
+            ValidateDOB1() {
+                const lblError = document.getElementById("lblError1");
+                const dateString = this.$refs.memberDate1.value;
+                const parts = dateString.split("-");
+                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
+                const dtCurrent = new Date();             
+                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
+                    return false;
+                }
+
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                            return false;
+                        }
+                    }
+                } 
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                            return false;
+                        }
+                    }
+                }
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                    return false;
+                }
+                
+                lblError.innerHTML = "";
+                return true;
+                
+            },
+
+            ValidateDOB2() {
+                const lblError = document.getElementById("lblError2");
+                const dateString = this.$refs.memberDate2.value;
+                const parts = dateString.split("-");
+                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
+                const dtCurrent = new Date();             
+                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
+                    return false;
+                }
+
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                            return false;
+                        }
+                    }
+                } 
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                            return false;
+                        }
+                    }
+                }
+                
+                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                    return false;
+                }
+                
+                lblError.innerHTML = "";
+                return true;
+                
             },
 
             prevStep(event){
