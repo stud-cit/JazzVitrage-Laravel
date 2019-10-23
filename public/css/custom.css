@@ -76,6 +76,29 @@
     width:320px;
 }
 
+.statementPhotoDoc {
+    background-size: cover;
+    margin-bottom: 10px;
+    height: 100px;
+    color: #fff;
+}
+
+.statementPhotoDoc .fa-search {
+    background: #fff;
+    position: absolute;
+    padding: 15px;
+    border: 1px solid silver;
+    border-radius: 50px;
+    left: 37%;
+    top: 25%;
+    color: #000;
+    opacity: 0.3;
+    transition: 0.5s;
+}
+.statementPhotoDoc .fa-search:hover {
+    opacity: 0.9;
+}
+
 .fotoGallery {
     background-size: cover;
     margin-bottom: 10px;
