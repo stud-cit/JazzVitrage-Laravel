@@ -54,8 +54,11 @@ body
       justify-content: space-between
       background-image: linear-gradient(180deg, #ffffff 0%, #d9d9d9 100%)
       padding: 0
+      .navbar-order
+         order: 1
       .nav-menu
          flex-grow: 0
+
          .dropdown-menu
             padding: 0
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5)
@@ -85,19 +88,20 @@ body
              text-transform: uppercase
          .active
             color: #ffa407
-         .add-application
-            padding: 30px
-            margin-left: 22px
-            border: none
-            outline: none
-            color: #ffffff
-            font-family: Montserrat
-            font-size: 15px
-            font-weight: 700
-            letter-spacing: 1.5px
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
-            background-image: linear-gradient(180deg, #ff0000 0%, #ba0b0b 88%, #770707 100%)
-            text-decoration: none
+      .add-application
+         padding: 30px
+         margin-left: 22px
+         border: none
+         outline: none
+         color: #ffffff
+         font-family: Montserrat
+         font-size: 15px
+         font-weight: 700
+         letter-spacing: 1.5px
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
+         background-image: linear-gradient(180deg, #ff0000 0%, #ba0b0b 88%, #770707 100%)
+         text-decoration: none
+         order: 1
    .ticker
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24)
       background-color: #810caa

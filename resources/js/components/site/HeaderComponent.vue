@@ -6,9 +6,15 @@
             <div class="container">
                 <a class ="navbar-brand" href="/"><img :src="info.logo" alt=""></a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <div class="d-xl-flex navbar-order">
+
+                    <router-link :to="{name: 'applications'}" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
                 <div class="collapse navbar-collapse nav-menu" id="nav-menu">
                     <div class="navbar-nav">
                         <li class="dropdown">
@@ -43,7 +49,7 @@
 
 
                     </div>
-                    <router-link :to="{name: 'applications'}" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+
                 </div>
             </div>
         </nav>
