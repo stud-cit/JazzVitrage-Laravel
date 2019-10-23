@@ -40,6 +40,12 @@ class ApplicationController extends Controller
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
+     
+     public function getArciveMembers()
+     {
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation')->where('status', '=', 'archive')->get();
+         return response()->json($data);
+     }
 
      public function getMember($id)
      {
@@ -81,16 +87,23 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
+                $member_birthday_file = time().'-'.$val["memberBirthdayFile"]->getClientOriginalName();
                 $val["memberBirthdayFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["memberBirthdayFile"]->getClientOriginalName());
-                $soloDuet->passport_photo = $val["memberBirthdayFile"]->getClientOriginalName();
+                    ->publicStorage, $member_birthday_file);
+                $soloDuet->passport_photo = $member_birthday_file;
 
+                $id_file = time().'-'.$val["idFile"]->getClientOriginalName();
                 $val["idFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["idFile"]->getClientOriginalName());
-                $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
+                    ->publicStorage, $id_file);
+                $soloDuet->in_file = $id_file;
             }
+
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
 
             $soloDuet->save();
         }
@@ -100,8 +113,9 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
-
+            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
             $soloDuet->parent_patronymic = $data->parentPatronymic;
@@ -110,24 +124,33 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
+                $member_birthday_file = time().'-'.$val["memberBirthdayFile"]->getClientOriginalName();
                 $val["memberBirthdayFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["memberBirthdayFile"]->getClientOriginalName());
-                $soloDuet->passport_photo = $val["memberBirthdayFile"]->getClientOriginalName();
+                    ->publicStorage, $member_birthday_file);
+                $soloDuet->passport_photo = $member_birthday_file;
 
+                $id_file = time().'-'.$val["idFile"]->getClientOriginalName();
                 $val["idFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["idFile"]->getClientOriginalName());
-                $soloDuet->in_file = $val["idFile"]->getClientOriginalName();
+                    ->publicStorage, $id_file);
+                $soloDuet->in_file = $id_file;
             }
+
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
+
             $soloDuet->save();
 
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
+            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
-
+            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
             $soloDuet->parent_patronymic = $data->parentPatronymic2;
@@ -136,16 +159,23 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
+                $member2_birthday_file = time().'-'.$val["member2BirthdayFile"]->getClientOriginalName();
                 $val["member2BirthdayFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["member2BirthdayFile"]->getClientOriginalName());
-                $soloDuet->passport_photo = $val["member2BirthdayFile"]->getClientOriginalName();
+                    ->publicStorage, $member2_birthday_file);
+                $soloDuet->passport_photo = $member2_birthday_file;
 
+                $id_file2 = time().'-'.$val["idFile2"]->getClientOriginalName();
                 $val["idFile2"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["idFile2"]->getClientOriginalName());
-                $soloDuet->in_file = $val["idFile2"]->getClientOriginalName();
+                    ->publicStorage, $id_file2);
+                $soloDuet->in_file = $id_file2;
             }
+
+            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
 
             $soloDuet->save();
         }
@@ -157,10 +187,11 @@ class ApplicationController extends Controller
             $group->count_people = $data->groupCount;
             $group->average_age = $data->groupAverage;
             foreach($request->files as $k => $val) {
+                $group_birthday_file = time().'-'.$val["groupBirthdayFile"]->getClientOriginalName();
                 $val["groupBirthdayFile"]
                     ->move(public_path().$this
-                    ->publicStorage, time().'-'.$val["groupBirthdayFile"]->getClientOriginalName());
-                $group->file = $val["groupBirthdayFile"]->getClientOriginalName();
+                    ->publicStorage, $group_birthday_file);
+                $group->file = $group_birthday_file;
             }
             $group->save();
         }
@@ -192,10 +223,11 @@ class ApplicationController extends Controller
         $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
         foreach($request->files as $k => $val) {
+            $composition_video = time().'-'.$val["compositionVideo"]->getClientOriginalName();
             $val["compositionVideo"]
                 ->move(public_path().$this
-                ->publicStorage, time().'-'.$val["compositionVideo"]->getClientOriginalName());
-            $presentation->video = $val["compositionVideo"]->getClientOriginalName();
+                ->publicStorage, $composition_video);
+            $presentation->video = $composition_video;
         }
         $presentation->save();
      }
@@ -222,15 +254,33 @@ class ApplicationController extends Controller
         }
 
     }
-    public function deleteMembers($id)
+    public function addApproved($id)
     {
         $model = Application::find($id);
 
-        if($model->delete()){
+        $model->status = 'approved';
+
+        if($model->save()){
             return ;
         }
 
     }
+    public function deleteMembers($id)
+    {
+
+        $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
+        if(!$model->group){
+            for($i = 0; $i < count($model->soloDuet); $i++) {
+                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["passport_photo"]));
+                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["in_file"]));
+            }
+        } else {
+            unlink(public_path($this->publicStorage.$model->group["file"]));
+        }
+        unlink(public_path($this->publicStorage.$model->presentation["video"]));
+        $model->delete();
+    }
+
 
     /**
      * Return all application end calculate rating
@@ -238,8 +288,6 @@ class ApplicationController extends Controller
      */
     public function getRating() {
         $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
-      
-       
         
         // Rating calculation
         $rating = []; 

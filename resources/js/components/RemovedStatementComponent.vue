@@ -55,48 +55,57 @@
             filteredList() {
                 return this.members.filter(members => {
                     return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
+                        || members.file || members.video || members.passport_photo || members.in_file
                 })
             }
         },
         methods: {
-            getFullList(){
-                axios.get('/get-members')
-                .then((response) => {
-                    this.members = [];
-                    response.data.forEach(member => {
-                        if(member.solo_duet.length == 0 && member.status == "archive") {
-                            this.members.push({
-                                name: member.group.name, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                        else if(member.solo_duet.length == 1 && member.status == "archive") {
-                            this.members.push({
-                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}`, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                        else if(member.solo_duet.length == 2 && member.status == "archive") {
-                            this.members.push({
-                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronomic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronomic}`, 
-                                type: member.app_type.name,
-                                id: member.application_id
-                            })
-                        }
-                    });
-                })
-            },
-            unarchiveMember(id){
-                axios.post('/unarchive-members/'+id)
-                    .then((response) => {
-                        if(response.status == 200 ) {
-                            this.getFullList();
-                        }
-                        swal("Учасник був успішно повернений", {
-                            icon: "success",
-                        });
+
+	        getFullList() {
+		        axios.get('/get-archive-members')
+			        .then((response) => {
+				        this.members = [];
+				        response.data.forEach(member => {
+					        if (member.solo_duet.length == 0 && member.status == "archive") {
+						        this.members.push({
+							        name: member.group.name,
+							        file: member.group.file,
+							        video: member.presentation.video,
+							        type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        } else if (member.solo_duet.length == 1 && member.status == "archive") {
+						        this.members.push({
+							        name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}`,
+							        passport_photo: member.solo_duet[0].passport_photo,
+							        in_file: member.solo_duet[0].in_file,
+							        video: member.presentation.video,
+							        type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        } else if (member.solo_duet.length == 2 && member.status == "archive") {
+						        this.members.push({
+							        name: `${member.solo_duet[0].name} ${member.solo_duet[0].surname} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].name} ${member.solo_duet[1].surname} ${member.solo_duet[1].patronymic}`,
+							        passport_photo: `${member.solo_duet[0].passport_photo}, ${member.solo_duet[1].passport_photo}`,
+							        in_file: `${member.solo_duet[0].in_file}, ${member.solo_duet[1].in_file}`,
+							        video: member.presentation.video,
+                                    type: member.app_type.name,
+							        id: member.application_id
+						        })
+					        }
+				        });
+			        })
+	        },
+	        unarchiveMember(id) {
+		        axios.post('/unarchive-members/' + id)
+			        .then((response) => {
+				        if (response.status == 200) {
+					        this.getFullList();
+				        }
+				        swal("Учасник був успішно повернений", {
+					        icon: "success",
+				        });
+
 
                     })
                     .catch((error) => {
