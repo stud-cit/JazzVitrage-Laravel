@@ -238,31 +238,34 @@ class ApplicationController extends Controller
      */
     public function getRating() {
         $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
-        // dd($data->modelKeys() );
-        $res = []; 
-
+      
+       
+        
+        // Rating calculation
+        $rating = []; 
         foreach ($data->modelKeys() as $key => $value) {
             
-            $arrEval = Evaluation::where('application_id', $value)->get()->toArray();
-            $colEval = array_column($arrEval, 'evaluation');
-            $leng = count($colEval);
+            $allEvaluations = Evaluation::where('application_id', $value)->get()->toArray();
             
+            $colEvaluation = array_column($allEvaluations, 'evaluation');
+            
+            $leng = count($colEvaluation);
             if ($leng > 0) {
-                $sum =  array_sum($colEval);
-                $resultRate = $sum /  $leng;       
-                array_push($res, number_format($resultRate, 2, ',', ' '));   
+                $sum =  array_sum($colEvaluation);
+                $resultRate = $sum / $leng;
+                $rating[$key]['rating'] = number_format($resultRate, 2, ',', ' ');   
             } else {
-                array_push($res, NULL);  
+                $rating[$key]['rating'] = NULL;
             }  
         }
+
+        // Convert need for array_map
         $convertedData = $data->toArray();
-        $newArry = [];
-        foreach($convertedData as $row) {
-            $newArry = $row['eval'] = 1;
-        }
 
-        dd($result);
+        $dataWithRating = array_map(function($dataRow, $ratingRow) {
+            return array_merge($dataRow, $ratingRow);
+        }, $convertedData, $rating);
 
-        return response()->json($data);
+        return response()->json($dataWithRating);
     }
 }
