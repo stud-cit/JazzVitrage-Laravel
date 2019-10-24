@@ -46,7 +46,7 @@
                             <p><strong>Тип:</strong> {{ item.type }}</p>
                         </div>
                         <div class="mt-2"></div>
-                        <div class="col-5">
+                        <div class="col-12">
                             <label for="memberDate" class="brtop" v-if="item.type == 'соліст'">Дата народження</label>
                             <p id="memberDate" v-if="item.type == 'соліст'">{{ item.memberDate }}</p>
 
@@ -93,62 +93,62 @@
                             <p></p>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'соліст'">
-                                <div class="col-4">
-                                    <p><strong>Копія свідоцтва про народження або паспорта</strong></p>
-                                    <div class="border statementPhotoDoc"
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc" 
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта</strong></p>
                                 </div>
-                                <div class="col-4">
-                                    <p><strong>Копія ідентифікаційного коду</strong></p>
+                                <div class="col-3">
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія ідентифікаційного коду</strong></p>
                                 </div>
                             </div>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
-                                <div class="col-4">
-                                    <p><strong>Копія свідоцтва про народження або паспорта першого учасника</strong></p>
+                                <div class="col-3">
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo1 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo1">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта першого учасника</strong></p>
                                 </div>
-                                <div class="col-4">
-                                    <p><strong>Копія ідентифікаційного коду першого учасника</strong></p>
+                                <div class="col-3">
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file1 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file1">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія ідентифікаційного коду першого учасника</strong></p>
                                 </div>
-                                <div class="col-4">
-                                    <p><strong>Копія свідоцтва про народження або паспорта другого учасника</strong></p>
+                                <div class="col-3">
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo2 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo2">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта другого учасника</strong></p>
                                 </div>
-                                <div class="col-4">
-                                    <p><strong>Копія ідентифікаційного коду другого учасника</strong></p>
+                                <div class="col-3">
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file2 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file2">
                                             <i class="fa fa-search"></i>
                                         </silentbox-single>
                                     </div>
+                                    <p><strong>Копія ідентифікаційного коду другого учасника</strong></p>
                                 </div>
                             </div>
 
