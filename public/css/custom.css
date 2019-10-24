@@ -76,6 +76,10 @@
     width:320px;
 }
 
+.span-mr {
+    margin-right: 120px;
+}
+
 .statementPhotoDoc {
     background-size: cover;
     margin-bottom: 10px;
@@ -90,7 +94,7 @@
     border: 1px solid silver;
     border-radius: 50px;
     left: 37%;
-    top: 25%;
+    top: 62%;
     color: #000;
     opacity: 0.3;
     transition: 0.5s;

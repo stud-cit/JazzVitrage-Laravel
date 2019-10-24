@@ -89,11 +89,12 @@
                             <p id="concertDate">{{ `${item.concertSurname} ${item.concertName} ${item.concertPatronymic}` }}</p>
                             </div>
 
-                            <label for="memberPhoto" class="brtop">Фото документів</label>
+                            <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
                             <p></p>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'соліст'">
                                 <div class="col-4">
+                                    <p><strong>Копія свідоцтва про народження або паспорта</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo">
@@ -102,6 +103,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <p><strong>Копія ідентифікаційного коду</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file">
@@ -113,6 +115,7 @@
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
                                 <div class="col-4">
+                                    <p><strong>Копія свідоцтва про народження або паспорта першого учасника</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo1 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo1">
@@ -121,6 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <p><strong>Копія ідентифікаційного коду першого учасника</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file1 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file1">
@@ -129,6 +133,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <p><strong>Копія свідоцтва про народження або паспорта другого учасника</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo2 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.passport_photo2">
@@ -137,6 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
+                                    <p><strong>Копія ідентифікаційного коду другого учасника</strong></p>
                                     <div class="border statementPhotoDoc"
                                          :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file2 + ')' }">
                                         <silentbox-single :src="'/memberFiles/'+item.in_file2">
@@ -146,14 +152,13 @@
                                 </div>
                             </div>
 
-                            <div id="memberPhoto" class="row"
+                            <div id="memberDoc" class="row mb-2"
                                  v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
-                                <div class="col-4">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.file + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.file">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-8">
+                                    <label for="memberDoc" class="brtop mb-2">Документ с датами народження учасників</label>
+                                    <div class="align-center file-item ml-5">
+                                        <div class="mb-2"><img class="ml-4" src="/img/file.png" alt=""><div class="span-mr">{{item.file}}</div></div>
+                                        <button type="button" @click="downloadDoc(item.groupId)">Завантажити</button>
                                     </div>
                                 </div>
                             </div>
@@ -228,6 +233,7 @@ export default {
 	                        compositionTiming2: member.presentation.time_two,
 	                        file: member.group.file,
 
+                            groupId: member.group.group_people_id,
                             id: member.application_id
                         })
                     }
@@ -322,6 +328,31 @@ export default {
 			            text: 'Не вдалося'
 		            });
 	            });
+        },
+	    forceFileDownload(response, groupId){
+		    const url = window.URL.createObjectURL(new Blob([response.data]))
+		    const link = document.createElement('a')
+		    link.href = url
+		    link.setAttribute('download', this.members[groupId].file)
+		    document.body.appendChild(link)
+		    link.click()
+	    },
+	    downloadDoc(groupId){
+        	axios({
+                method: 'get',
+                url: '/memberFiles/'+this.members[groupId].file,
+		        responseType: 'arraybuffer'
+            })
+            .then(response => {
+                this.forceFileDownload(response, groupId)
+            })
+		    .catch((error) => {
+                swal({
+                    icon: "error",
+                    title: 'Помилка',
+                    text: 'Не вдалося завантажити документ'
+                });
+            });
         },
         archiveMember(id){
             axios.post('/archive-members/'+id)
