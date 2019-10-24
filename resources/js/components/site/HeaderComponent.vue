@@ -16,7 +16,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
-                                <a class="dropdown-item" href="#">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
+                                <a class="dropdown-item" href="/applications">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
                             </div>
                         </li>
 
@@ -29,7 +29,7 @@
                                 <a class="dropdown-item" href="/gallery">ФЕСТИВАЛЬ</a>           
                             </div>
                         </li>
-                        <li><a class="nav-item nav-link" href="#">ПОЛОЖЕННЯ</a></li>
+                        <li><a class="nav-item nav-link" :href="info.file">ПОЛОЖЕННЯ</a></li>
 
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНТАКТИ</a>

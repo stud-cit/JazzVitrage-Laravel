@@ -85,7 +85,7 @@ export default {
             axios.get('/get-rating')
             .then((response) => {
                 response.data.forEach(member => {
-                    if(member.solo_duet.length == 0 && member.status == "approved") {
+                    if(member.solo_duet.length == 0) {
                         this.members.push({
                             id: member.application_id,
                             name: member.group.name, 
@@ -93,7 +93,7 @@ export default {
                             evaluation: member.rating
                         })
                     }
-                    else if(member.solo_duet.length == 1 && member.status == "approved") {
+                    else if(member.solo_duet.length == 1) {
                         this.members.push({
                             id: member.application_id,
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`, 
@@ -101,7 +101,7 @@ export default {
                             evaluation: member.rating
                         })
                     }
-                    else if(member.solo_duet.length == 2 && member.status == "approved") {
+                    else if(member.solo_duet.length == 2) {
                         this.members.push({
                             id: member.application_id,
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`, 
