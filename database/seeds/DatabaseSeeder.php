@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             QuotesTableSeeder::class,
             QuestionsTableSeeder::class,
+            PeriodsTableSeeder::class,
         ]);
     }
 }
