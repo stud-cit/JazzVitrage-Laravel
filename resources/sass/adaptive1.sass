@@ -91,9 +91,18 @@
     .gallery
         .page-nav
             font-size: 20px
+        .title-section
+            font-size: 30px!important
         .gallery-item
             width: 50%
             flex-grow: 0
+        .video-gallery-item
+            width: 50%
+            flex-grow: 0
+        .gallery-content
+            .col-4
+                flex: 0 0 50%
+                max-width: 50%
     .footer
         padding: 0 0 10px
         .container
@@ -166,13 +175,21 @@
         .page-nav
             font-size: 14px
         .title-section
-            font-size: 31px!important
+            font-size: 26px!important
         .gallery-item
             width: 100%
             height: auto
             flex-grow: 0
+        .video-gallery-item
+            width: 100%
+            height: auto
+            flex-grow: 0
+        .gallery-content
+            .col-4
+                flex: 0 0 100%
+                max-width: 100%
     .main-section
-        padding-top: 135px
+        padding-top: 80px
     .preview
         &::after
             display: none
@@ -216,6 +233,7 @@
                     font-size: 10px
 
         .member-jury-card
+            margin-top: 20px
             flex-direction: column
             align-items: center
             justify-content: center
@@ -223,6 +241,7 @@
                 margin-top: -2px
                 max-width: 100%
             .picture
+                width: 100%
                 max-width: 100%
                 img
                     width: 100%
