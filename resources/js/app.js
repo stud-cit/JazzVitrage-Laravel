@@ -42,6 +42,7 @@ import EvaluationComponent from './components/jury/EvaluationComponent';
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
 import AddToOrgCommitteeComponent from './components/superAdmin/AddToOrgCommitteeComponent';
 import AddAdminOrgCommitteeComponent from './components/superAdmin/AddAdminOrgCommitteeComponent';
+import PeriodComponent from './components/superAdmin/PeriodComponent';
 
 const router = new VueRouter({
     mode: 'history',
@@ -80,7 +81,8 @@ const app = new Vue({
         AddJuryComponent,
         AddToOrgCommitteeComponent,
         AddAdminOrgCommitteeComponent,
-        QuestionComponent
+        QuestionComponent,
+        PeriodComponent,
     },
     router
 });
