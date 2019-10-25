@@ -105,8 +105,8 @@
 					
 					<li class="nav-item" title="Додати журі">
 						<a class="nav-link" href="/admin/period">
-							<i class="fa fa-gavel"></i>
-							<span class="nav-link-text">Перід проведення</span>
+							<i class="fa fa-calendar"></i>
+							<span class="nav-link-text">Період проведення</span>
 						</a>
 					</li>
 
