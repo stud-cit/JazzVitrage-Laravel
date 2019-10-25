@@ -335,10 +335,10 @@
                 })
             },
             getMembers() {
-                axios.get('/get-members')
+                axios.get('/get-approved-members')
                 .then((response) => {
                     response.data.forEach((member, index) => {
-                        if(member.solo_duet.length == 0 && member.status == "approved") {
+                        if(member.solo_duet.length == 0) {
                             this.members.push({
                                 index,
                                 age: member.group.average_age,
@@ -349,7 +349,7 @@
                                 nomination: member.nomination.name
                             })
                         }
-                        else if(member.solo_duet.length == 1 && member.status == "approved") {
+                        else if(member.solo_duet.length == 1) {
                             this.members.push({
                                 index,
                                 age: this.getAge(member.solo_duet[0].data_birthday),
@@ -360,7 +360,7 @@
                                 nomination: member.nomination.name
                             })
                         }
-                        else if(member.solo_duet.length == 2 && member.status == "approved") {
+                        else if(member.solo_duet.length == 2) {
                             this.members.push({
                                 index,
                                 age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,

@@ -136,6 +136,7 @@ Auth::routes();
     Route::get('get-quotes', 'InfoController@getQuotes');
 
     Route::get('get-members',  'ApplicationController@getMembers');
+    Route::get('get-approved-members', 'ApplicationController@getApprovedMembers');
     Route::get('get-nominations',  'ApplicationController@getNominations');
     Route::get('get-apptype', 'ApplicationController@getAppType');
 

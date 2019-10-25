@@ -69,7 +69,7 @@ export default {
     },
     methods: {
         getFullList() {
-            axios.get('/get-all-members')
+            axios.get('/get-approved-members')
             .then((response) => {
                 response.data.forEach(member => {
                    console.log(member); 
