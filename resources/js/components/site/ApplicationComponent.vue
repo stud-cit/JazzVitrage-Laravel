@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError"></span>
                             <div class="input-row">
@@ -278,7 +278,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError1"></span>
                             <div class="input-row">
@@ -434,7 +434,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate2')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError2"></span>
                             <div class="input-row">
