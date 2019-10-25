@@ -9,7 +9,7 @@
 
                 <div class="d-xl-flex navbar-order">
 
-                    <router-link :to="{name: 'applications'}" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" class="d-none add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
