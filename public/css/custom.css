@@ -76,21 +76,25 @@
     width:320px;
 }
 
+.span-mr {
+    margin-right: 120px;
+}
+
 .statementPhotoDoc {
     background-size: cover;
     margin-bottom: 10px;
-    height: 100px;
+    height: 150px;
+    width: 100%;
     color: #fff;
+    text-align: center;
 }
 
 .statementPhotoDoc .fa-search {
     background: #fff;
-    position: absolute;
+    margin-top: 50px;
     padding: 15px;
     border: 1px solid silver;
     border-radius: 50px;
-    left: 37%;
-    top: 25%;
     color: #000;
     opacity: 0.3;
     transition: 0.5s;

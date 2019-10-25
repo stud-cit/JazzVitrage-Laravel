@@ -83,6 +83,7 @@ export default {
     methods: {
         getFullList() {
             axios.get('/get-rating')
+
             .then((response) => {
                 response.data.forEach(member => {
                     if(member.solo_duet.length == 0) {

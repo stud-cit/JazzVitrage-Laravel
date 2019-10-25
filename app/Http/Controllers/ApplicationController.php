@@ -47,6 +47,12 @@ class ApplicationController extends Controller
          return response()->json($data);
      }
 
+     public function getApprovedMembers()
+     {
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '=', 'approved')->get();
+         return response()->json($data);
+     }
+
      public function getMember($id)
      {
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('application_id', '=', $id)->get();
@@ -287,7 +293,7 @@ class ApplicationController extends Controller
      * Return json
      */
     public function getRating() {
-        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->created()->get();
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->approved()->get();
         
         // Rating calculation
         $rating = []; 

@@ -78,7 +78,7 @@
                     <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
-                        <b class="mt-3">Дата народження:</b> {{ member.data_birthday }}
+                        <b class="mt-3">Дата народження:</b> {{ member[0].data_birthday }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
