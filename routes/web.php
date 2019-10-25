@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/admin/question', function () {
         return view('admin.admin.question');
     });
+
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');
     Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('put-quote', 'InfoController@putQuote');
     Route::post('delete-quote/{id}/', 'InfoController@deleteQuote');
     Route::get('get-rating', 'ApplicationController@getRating')->name('rating');
+   
 });
 
 // Роль Орг.Комітет
@@ -84,9 +86,7 @@ Route::group(['middleware' => ['auth', 'role:orgComittee']], function () {
 
 // Роль Журі
 Route::group(['middleware' => ['auth', 'role:jury']], function () {
-    Route::get('/admin/information', function () {
-        return view('admin.jury.information');
-    });
+   
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
     });
@@ -109,6 +109,9 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::get('/admin/add-admin-org-committee', function () {
         return view('admin.superAdmin.addAdminOrgCommittee');
     });
+    Route::get('/admin/period', function () {
+        return view('admin.superAdmin.period');
+    });
     // VUE запросы
     Route::get('get-all-jury', 'UserController@getAllJury');
     Route::get('get-all-org', 'UserController@getAllOrg');
@@ -120,7 +123,9 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('update-org/{id}/', 'UserController@updateOrg');
     Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
-    //->name('to-rate');
+    Route::get('get-period', 'PeriodController@getPeriod')->name('period');
+    Route::post('update-period', 'PeriodController@updatePeriod')->name('upadte-period');
+    
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');
