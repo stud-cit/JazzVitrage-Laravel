@@ -18,6 +18,7 @@ import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
+import NewHead from './components/site/NewHead'
 
 import VueRouter from 'vue-router';
 
@@ -99,6 +100,11 @@ const router = new VueRouter({
             path: '/position',
             name: 'position',
             component: PositionComponent,
+        },
+        {
+            path: '/nhead',
+            name: 'nhead',
+            component: NewHead,
         }
     ],
 });
@@ -119,7 +125,8 @@ const app = new Vue({
         OrganizationCommittee,
         PositionComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        NewHead
     },
     router
 });
