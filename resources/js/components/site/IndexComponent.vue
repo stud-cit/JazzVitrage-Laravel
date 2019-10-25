@@ -49,13 +49,20 @@
         <section class="sections position">
             <div class="container">
                 <div class="row">
+                    <div class="col-12 mb-5 d-xl-none">
+                        <h2 class="title-section">Положення</h2>
+                        <p class="subtitle">КОНКУРСУ</p>
+                    </div>
                     <div class="col-xl-7">
                         <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="col-xl-5">
-                        <h2 class="title-section">Положення</h2>
-                        <p class="subtitle">КОНКУРСУ</p>
+                        <div class="d-none d-xl-block">
+                            <h2 class="title-section">Положення</h2>
+                            <p class="subtitle">КОНКУРСУ</p>
+                        </div>
                         <p class="text">{{ info.provisions_text }}</p>
+
                         <div class="btn-group">
                             <a :href="info.file" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>
                             <a :href="info.file" class="btn btn-download" download="">ЗАВАНТАЖИТИ</a>
