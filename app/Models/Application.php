@@ -9,6 +9,7 @@ class Application extends Model
 	protected $primaryKey = 'application_id';
 	public const CREATED = 'created';
 	public const ARCHIVE = 'archive';
+    public const APPROVED = 'approved';
 
     public function appType()
 	{
@@ -54,4 +55,7 @@ class Application extends Model
 		return $query->where('status', self::CREATED);
 	}
 
+    public function scopeApproved($query) {
+        return $query->where('status', self::APPROVED);
+    }
 }

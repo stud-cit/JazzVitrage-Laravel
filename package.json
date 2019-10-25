@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@dongido/vue-viaudio": "^0.3.5",
         "slick-carousel": "^1.8.1",
         "sweetalert": "^2.1.2",
         "vee-validate": "^2.2.15",

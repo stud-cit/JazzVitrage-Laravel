@@ -7,16 +7,16 @@
       <table class="table table-bordered accordion" id="accordion">
           <thead>
                 <tr>
-                    
+
                     <th>#</th>
                     <th>ПІБ Учасника</th>
                     <th>Тип Заявки</th>
-                    
+
                     <th width="30px"></th>
                     <th width="30px"></th>
                 </tr>
           </thead>
-          
+
           <tbody class="card" v-for="(item, index) in filteredMembersList">
                 <tr>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
@@ -30,7 +30,7 @@
                     </td>
                     <td>
                         <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id)"></i>
-                                           
+
                     <td>
 
                         <i class="fa fa-2x fa-times-circle btn btn-default p-0"  @click="archiveMember(item.id)"></i>
@@ -46,7 +46,7 @@
                             <p><strong>Тип:</strong> {{ item.type }}</p>
                         </div>
                         <div class="mt-2"></div>
-                        <div class="col-5">
+                        <div class="col-12">
                             <label for="memberDate" class="brtop" v-if="item.type == 'соліст'">Дата народження</label>
                             <p id="memberDate" v-if="item.type == 'соліст'">{{ item.memberDate }}</p>
 
@@ -89,6 +89,80 @@
                             <p id="concertDate">{{ `${item.concertSurname} ${item.concertName} ${item.concertPatronymic}` }}</p>
                             </div>
 
+                            <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
+                            <p></p>
+
+                            <div id="memberPhoto" class="row" v-if="item.type == 'соліст'">
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc" 
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc"
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.in_file">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія ідентифікаційного коду</strong></p>
+                                </div>
+                            </div>
+
+                            <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc"
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo1 + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo1">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта першого учасника</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc"
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file1 + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.in_file1">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія ідентифікаційного коду першого учасника</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc"
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo2 + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo2">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія свідоцтва про народження або паспорта другого учасника</strong></p>
+                                </div>
+                                <div class="col-3">
+                                    <div class="border statementPhotoDoc"
+                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file2 + ')' }">
+                                        <silentbox-single :src="'/memberFiles/'+item.in_file2">
+                                            <i class="fa fa-search"></i>
+                                        </silentbox-single>
+                                    </div>
+                                    <p><strong>Копія ідентифікаційного коду другого учасника</strong></p>
+                                </div>
+                            </div>
+
+                            <div id="memberDoc" class="row mb-2"
+                                 v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
+                                <div class="col-8">
+                                    <label for="memberDoc" class="brtop mb-2">Документ с датами народження учасників</label>
+                                    <div class="align-center file-item ml-5">
+                                        <div class="mb-2"><img class="ml-4" src="/img/file.png" alt=""><div class="span-mr">{{item.file}}</div></div>
+                                        <button type="button" @click="downloadDoc(item.groupId)">Завантажити</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <label class="brtop mb-3">Програма та хронометраж кожного твору</label>
                             <p>Перший твір:</p>
                             <p class="composition-style">Назва: {{ item.compositionName }} Автор: {{ item.compositionAuthor }} Хронометраж: {{ item.compositionTiming }}</p>
@@ -129,6 +203,7 @@ export default {
             axios.get('/get-members')
             .then((response) => {
                 this.members = [];
+                this.memberPhoto = [];
                 response.data.filter( app => {
                     return app.status == "created";
                 }).forEach(member => {
@@ -156,7 +231,9 @@ export default {
 	                        compositionName2: member.presentation.composition_two,
 	                        compositionAuthor2: member.presentation.author_two,
 	                        compositionTiming2: member.presentation.time_two,
+	                        file: member.group.file,
 
+                            groupId: member.group.group_people_id,
                             id: member.application_id
                         })
                     }
@@ -184,6 +261,8 @@ export default {
 	                        compositionName2: member.presentation.composition_two,
 	                        compositionAuthor2: member.presentation.author_two,
 	                        compositionTiming2: member.presentation.time_two,
+	                        passport_photo: member.solo_duet[0].passport_photo,
+	                        in_file: member.solo_duet[0].in_file,
 
                             id: member.application_id
                         })
@@ -214,6 +293,10 @@ export default {
 	                        compositionName2: member.presentation.composition_two,
 	                        compositionAuthor2: member.presentation.author_two,
 	                        compositionTiming2: member.presentation.time_two,
+	                        passport_photo1: member.solo_duet[0].passport_photo,
+	                        in_file1: member.solo_duet[0].in_file,
+	                        passport_photo2: member.solo_duet[1].passport_photo,
+	                        in_file2: member.solo_duet[1].in_file,
                             id: member.application_id
                         })
                     }
@@ -244,6 +327,31 @@ export default {
 			            text: 'Не вдалося'
 		            });
 	            });
+        },
+	    forceFileDownload(response, groupId){
+		    const url = window.URL.createObjectURL(new Blob([response.data]))
+		    const link = document.createElement('a')
+		    link.href = url
+		    link.setAttribute('download', this.members[groupId].file)
+		    document.body.appendChild(link)
+		    link.click()
+	    },
+	    downloadDoc(groupId){
+        	axios({
+                method: 'get',
+                url: '/memberFiles/'+this.members[groupId].file,
+		        responseType: 'arraybuffer'
+            })
+            .then(response => {
+                this.forceFileDownload(response, groupId)
+            })
+		    .catch((error) => {
+                swal({
+                    icon: "error",
+                    title: 'Помилка',
+                    text: 'Не вдалося завантажити документ'
+                });
+            });
         },
         archiveMember(id){
             axios.post('/archive-members/'+id)
