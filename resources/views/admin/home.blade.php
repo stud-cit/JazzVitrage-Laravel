@@ -35,11 +35,6 @@
         {{-- Журі --}}
 
         @if (Auth::user()->role == 'jury' || Auth::user()->role == 'superAdmin')
-
-            <a href="/admin/information" class="col-8 col-sm-5 col-md-3  category-items">
-                <div class="category-icon"><i class="fa fa-info-circle fa-3x"></i></div>
-                Інформація
-            </a>
             
             <a href="/admin/all-statements" class="col-8 col-sm-5 col-md-3  category-items">
                 <div class="category-icon"><i class="fa fa-address-card fa-3x"></i></div>
@@ -55,6 +50,10 @@
             <a href="/admin/add-jury" class="col-8 col-sm-5 col-md-3  category-items">
                 <div class="category-icon"><i class="fa fa-gavel fa-3x"></i></div>
                 Додати журі
+            </a>
+            <a href="/admin/period" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-info-circle fa-3x"></i></div>
+                Період проведення
             </a>
 
             <a href="/admin/add-to-org-committee" class="col-8 col-sm-5 col-md-3  category-items">
