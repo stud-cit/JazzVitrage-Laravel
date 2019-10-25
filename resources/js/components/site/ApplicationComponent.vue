@@ -105,8 +105,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate" v-on:keyup="ValidateDOB()" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
-                                           v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                    <input type="text" ref="memberDate" v-on:keyup="ValidateDOB()" minlength="10" maxlength="10" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
+                                           v-validate="{ regex: /^(?:(?:31(-)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:0?2)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: true}"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
@@ -143,7 +143,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: false}"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
@@ -272,8 +272,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate1" name="memberDate" v-on:keyup="ValidateDOB1()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
-                                        v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                    <input type="text" ref="memberDate1" name="memberDate" minlength="10" maxlength="10" v-on:keyup="ValidateDOB1()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required
+                                        v-validate="{ regex: /^(?:(?:31(-)(?:0[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:02)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0[1-9]|1\d|2[0-8])(-)(?:(?:0[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
                                          v-validate="{ required: true }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
@@ -310,7 +310,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" id="memberBirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: false }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
@@ -373,7 +373,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="idFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                             data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
@@ -385,7 +385,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="idFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile" class="d-none" type="file"
                                            v-validate="{ required: false }"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile">
@@ -428,8 +428,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate2" name="memberDate2" v-on:keyup="ValidateDOB2()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
-                                        v-validate="{ regex: /[0-9]{2}-[0-9]{2}-[0-9]{4}/ }"
+                                    <input type="text" ref="memberDate2" name="memberDate2" minlength="10" maxlength="10" v-on:keyup="ValidateDOB2()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required
+                                        v-validate="{ regex: /^(?:(?:31(-)(?:0[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:02)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0[1-9]|1\d|2[0-8])(-)(?:(?:0[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
                                            data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
                                 </div>
                             </div>
@@ -454,7 +454,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="member2BirthdayFile" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="member2BirthdayFile">
@@ -466,7 +466,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" id="member2BirthdayFile" class="d-none" type="file"
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="member2BirthdayFile" class="d-none" type="file"
                                            v-validate="{ required: false }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="member2BirthdayFile">
@@ -529,7 +529,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file"
+                                    <input @change="getInputFile" name="idFile2" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile2" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile2">
@@ -541,7 +541,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" id="idFile2" class="d-none" type="file"
+                                    <input @change="getInputFile" name="idFile2" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile2" class="d-none" type="file"
                                            v-validate="{ required: false }"
                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
                                     <label for="idFile2">
@@ -603,7 +603,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".doc, .docx, .pdf" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
                                         v-validate="{ required: true }"
                                            data-vv-as="Документ с датами народження учасників">
                                     <label for="groupBirthdayFile">
@@ -615,7 +615,7 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".doc, .docx, .pdf" class="d-none" type="file" placeholder="../birthdays.jpg "
                                            v-validate="{ required: false }"
                                            data-vv-as="Документ с датами народження учасників">
                                     <label for="groupBirthdayFile">
@@ -1246,45 +1246,50 @@
                 const parts = dateString.split("-");
                 const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
                 const dtCurrent = new Date();             
-                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                    return false;
-                }
-
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                if (dateString.length == 10){    
+                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
                         return false;
                     }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не менше 8 років"
                             return false;
                         }
-                    }
-                } 
-                
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() < dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                                return false;
+                            }
+                        }
+                    } 
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не більше 17 років"
                             return false;
                         }
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                                return false;
+                            }
+                        }
                     }
-                }
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                   
+                    lblError.innerHTML = "";
+                    return true;
+                } 
                 
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                    return false;
-                }
-                
-                lblError.innerHTML = "";
-                return true;
-                
+                else {
+                    lblError.innerHTML = "";  
+                }   
             },
 
             ValidateDOB1() {
@@ -1293,45 +1298,50 @@
                 const parts = dateString.split("-");
                 const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
                 const dtCurrent = new Date();             
-                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                    return false;
-                }
-
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                if (dateString.length == 10){    
+                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
                         return false;
                     }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не менше 8 років"
                             return false;
                         }
-                    }
-                } 
-                
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() < dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                                return false;
+                            }
+                        }
+                    } 
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не більше 17 років"
                             return false;
                         }
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                                return false;
+                            }
+                        }
                     }
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                    
+                    lblError.innerHTML = "";
+                    return true;
                 }
-                
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                    return false;
-                }
-                
-                lblError.innerHTML = "";
-                return true;
-                
+
+                else {
+                    lblError.innerHTML = "";  
+                } 
             },
 
             ValidateDOB2() {
@@ -1340,45 +1350,51 @@
                 const parts = dateString.split("-");
                 const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
                 const dtCurrent = new Date();             
-                if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                    lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                    return false;
-                }
-
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                    if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                if (dateString.length == 10){    
+                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
+                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
                         return false;
                     }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() < dtDOB.getDate()) {
+
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
+                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не менше 8 років"
                             return false;
                         }
-                    }
-                } 
-                
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                    if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                    if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                        if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() < dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
+                                return false;
+                            }
+                        }
+                    } 
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
+                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
                             lblError.innerHTML = "Учаснику має бути не більше 17 років"
                             return false;
                         }
+                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
+                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                                return false;
+                            }
+                        }
                     }
+                    
+                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
+                        return false;
+                    }
+                    
+                    lblError.innerHTML = "";
+                    return true;
                 }
                 
-                else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                    lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                    return false;
+                else {
+                    lblError.innerHTML = "";  
                 }
-                
-                lblError.innerHTML = "";
-                return true;
-                
+
             },
 
             prevStep(event){
