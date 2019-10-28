@@ -52,13 +52,6 @@
 
 					@php $role = 'Журі' @endphp
 
-					<li class="nav-item" title="Інформація">
-						<a class="nav-link" href="/admin/information">
-							<i class="fa fa-info-circle"></i>
-							<span class="nav-link-text">Інформація</span>
-						</a>
-					</li>
-
 					<li class="nav-item" title="Всі заяви">
 						<a class="nav-link" href="/admin/all-statements">
 							<i class="fa fa-address-card"></i>
@@ -109,6 +102,13 @@
 				@if (Auth::user()->role == 'superAdmin')
 
 					@php $role = 'Супер Адмін' @endphp
+					
+					<li class="nav-item" title="Додати журі">
+						<a class="nav-link" href="/admin/period">
+							<i class="fa fa-calendar"></i>
+							<span class="nav-link-text">Період проведення</span>
+						</a>
+					</li>
 
 					<li class="nav-item" title="Додати журі">
 						<a class="nav-link" href="/admin/add-jury">
