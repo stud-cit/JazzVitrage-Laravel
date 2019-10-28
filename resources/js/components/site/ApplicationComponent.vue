@@ -870,7 +870,7 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" id="compositionVideo" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
@@ -882,7 +882,7 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" class="d-none" type="file" placeholder="../birthdays.jpg "
                                            v-validate="{ required: false }"
                                            data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
