@@ -6,13 +6,9 @@
             
         </div>
         <div class="col-8">
-        <Media 
-            :kind="'video'"
-            :controls="true"
-            :style="{width: '100%'}"
-            :src="['/memberFiles/'+program.video]"
-        >
-        </Media>
+            <video width="100%" controls>
+                <source v-if="program.video" :src="'/memberFiles/'+program.video" type="video/mp4">
+            </video>
         </div>
         <div class="col-4">
             <form>
@@ -113,7 +109,6 @@
 </template>
 
 <script>
-    import Media from '@dongido/vue-viaudio';
     export default {
         data() {
             return {
@@ -141,9 +136,6 @@
                 hasError: false,
                 hasRecord: false,
             }
-        },
-        components: {
-            Media
         },
         watch: {
             stylisticMatching: function (val) {
