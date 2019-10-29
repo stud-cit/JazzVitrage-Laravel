@@ -18,4 +18,10 @@ class PeriodController extends Controller
         $model = Period::where('id', 1)->update( $request->all() );
         return response('ok', 200);
     }
+
+    public function isOpenedRegistration() {
+        $model = Period::isRegistration();
+        
+        return response()->json($model);
+    } 
 }

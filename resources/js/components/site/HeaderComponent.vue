@@ -43,7 +43,8 @@
 
 
                     </div>
-                    <router-link :to="{name: 'applications'}" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="add-application">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                 </div>
             </div>
         </nav>
@@ -62,12 +63,14 @@
                 info: {
                     logo: '',
                     ticker: ''
-                }
+                },
+                isRegistration: false,
             };
         },
 
         created () {
             this.getInfo();
+            this.isOpenedRegistration();
         },
         computed: {
 
@@ -80,7 +83,15 @@
                             Object.assign(this.info, item);
                         })
                     })
-            }
+            },
+            isOpenedRegistration() {
+                axios
+                    .get('/is-opened-registration')
+                    .then( ( response ) => {
+                        this.isRegistration = response.data;
+                    })
+                    .catch( ( error ) => console.error(error) )
+            },
         },
 
     }

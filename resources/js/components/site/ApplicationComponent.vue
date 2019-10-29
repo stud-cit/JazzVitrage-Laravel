@@ -1,5 +1,6 @@
 <template>
     <div>
+        <template v-if="isRegistration">
         <section class="sections main-section applications">
             <div class="application-for-participation">
                 <h2 class="title-section">Заявка на участь</h2>
@@ -1105,6 +1106,11 @@
             </div>
 
         </section>
+        </template>
+        <template v-else>
+            <h1>Сторінка недоступна</h1>
+        </template>
+        
     </div>
 </template>
 
@@ -1185,18 +1191,28 @@
                     files: {
 
                     }
-                }
+                },
+                isRegistration: false,
             };
         },
 
         created () {
             document.title = "Заповнити заявку";
             this.getNominations();
+            this.isOpenedRegistration();
         },
         computed: {
 
         },
         methods: {
+            isOpenedRegistration() {
+                axios
+                    .get('/is-opened-registration')
+                    .then( ( response ) => {
+                        this.isRegistration = response.data;
+                    })
+                    .catch( ( error ) => console.error(error) )
+            },
             getNominations() {
                 axios.get('/get-nominations')
                 .then((response) => {
