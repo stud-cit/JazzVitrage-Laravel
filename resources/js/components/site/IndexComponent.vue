@@ -49,13 +49,20 @@
         <section class="sections position">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-7">
-                        <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="col-xl-5">
+                    <div class="col-12 mb-5 d-xl-none">
                         <h2 class="title-section">Положення</h2>
                         <p class="subtitle">КОНКУРСУ</p>
+                    </div>
+                    <div class="col-lg-7 col-xl-7">
+                        <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-lg-5 col-xl-5">
+                        <div class="d-none d-xl-block">
+                            <h2 class="title-section">Положення</h2>
+                            <p class="subtitle">КОНКУРСУ</p>
+                        </div>
                         <p class="text">{{ info.provisions_text }}</p>
+
                         <div class="btn-group">
                             <a :href="info.file" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>
                             <a :href="info.file" class="btn btn-download" download="">ЗАВАНТАЖИТИ</a>
@@ -68,7 +75,7 @@
             <div class="container">
                 <h2 class="title-section">ГАЛЕРЕЯ</h2>
                 <div class="row">
-                    <div class="col-xl-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
+                    <div class="col-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
                 </div>
                 <div class="text-center">
                     <router-link :to="{name: 'gallery'}"><button class="archive">АРХІВ</button></router-link>
@@ -79,7 +86,7 @@
             <div class="container">
                 <h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>
 
-                <table class="table-members">
+                <table class="table-responsive table-members">
                     <tr class="table-title">
                         <th>N</th>
                         <th>П.І.Б. /<br>
@@ -95,27 +102,34 @@
                         <td>{{ item.schoolName }}</td>
                         <td>{{ item.teacher }}</td>
                     </tr>
-                </table>
-                <div class="search-block">
-                    <input type="text" v-model="searchMember" placeholder="ПОШУК">
-                    <select v-model="searchNomination" class="nomination">
-                        <option value="" selected="selected">номінація</option>
-                        <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
-                    </select>
-                    <select v-model="ageCategory" class="category">
-                        <option value="" selected="selected" >вік.категорія</option>
-                        <option value="8-10">Від 8 до 10 років</option>
-                        <option value="11-13">Від 11 до 13 років</option>
-                        <option value="14-17">Від 14 до 17 років</option>
-                    </select>
-                    <button class="clean" @click="clean">Очистити</button>
+                    <tr class="search">
+                        <td colspan="5">
+                        <div class="search-block">
+                            <input type="text" v-model="searchMember" placeholder="ПОШУК">
+                            <select v-model="searchNomination" class="nomination">
+                                <option value="" selected="selected">номінація</option>
+                                <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
+                            </select>
+                            <select v-model="ageCategory" class="category">
+                                <option value="" selected="selected" >вік.категорія</option>
+                                <option value="8-10">Від 8 до 10 років</option>
+                                <option value="11-13">Від 11 до 13 років</option>
+                                <option value="14-17">Від 14 до 17 років</option>
+                            </select>
+                            <button class="clean" @click="clean">Очистити</button>
 
-                </div>
-                <ul class="pagination">
-                    <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
-                    <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
-                    <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
-                </ul>
+                        </div>
+                        <ul class="pagination">
+                            <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
+                            <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
+                            <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
+                        </ul>
+                        </td>
+                    </tr>
+                </table>
+
+
+
             </div>
 
         </section>
@@ -146,25 +160,7 @@
 
                                     </div>
                                 </div>
-                                <!--<div class=" carousel-item active" v-for="(video, index) in videos" :key="index" v-if="index < 1">-->
-                                    <!--<div class="d-flex w-100">-->
-                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video " frameborder="0" allowfullscreen></iframe>-->
-                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index+1].url.slice(videos[index+1].url.length - 11, videos[index+1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="carousel-item"  v-else-if="index%2 != 0 && index > 1">-->
-                                    <!--<div class="d-flex w-100">-->
-                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index-1].url.slice(videos[index-1].url.length - 11, videos[index-1].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
-                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash;for the last element&ndash;&gt;-->
-                                <!--<div class="carousel-item"  v-else-if="index%2 == 0 && index == videos.length-1">-->
-                                    <!--<div class="d-flex w-100">-->
 
-                                        <!--<iframe  :src="'https://www.youtube.com/embed/'+videos[index].url.slice(videos[index].url.length - 11, videos[index].url.length)" class="video active-video" frameborder="0" allowfullscreen></iframe>-->
-                                    <!--</div>-->
-                                <!--</div>-->
                             </div>
                             <a class="carousel-control-prev" href="#carouselVideo" role="button" data-slide="prev">
                                 <div class="control-bg">
