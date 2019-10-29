@@ -196,7 +196,7 @@
                 //this.evaluation = this.evaluation;
                 const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
 
-                axios.post('/to-rate/', {
+                axios.post('/to-rate', {
                     application_id: this.program.application_id,
                     evaluation,
                     stylistic_matching: stylisticMatching,

@@ -284,6 +284,7 @@ class ApplicationController extends Controller
             unlink(public_path($this->publicStorage.$model->group["file"]));
         }
         unlink(public_path($this->publicStorage.$model->presentation["video"]));
+        Evaluation::where("application_id", $id)->delete();
         $model->delete();
     }
 
