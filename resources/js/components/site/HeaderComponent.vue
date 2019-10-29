@@ -8,8 +8,7 @@
 
 
                 <div class="d-xl-flex navbar-order">
-
-                    <router-link :to="{name: 'applications'}" class="d-none add-application d-md-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-md-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -50,6 +49,7 @@
 
                     </div>
 
+git add
                 </div>
             </div>
         </nav>
@@ -68,12 +68,14 @@
                 info: {
                     logo: '',
                     ticker: ''
-                }
+                },
+                isRegistration: false,
             };
         },
 
         created () {
             this.getInfo();
+            this.isOpenedRegistration();
         },
         computed: {
 
@@ -86,7 +88,15 @@
                             Object.assign(this.info, item);
                         })
                     })
-            }
+            },
+            isOpenedRegistration() {
+                axios
+                    .get('/is-opened-registration')
+                    .then( ( response ) => {
+                        this.isRegistration = response.data;
+                    })
+                    .catch( ( error ) => console.error(error) )
+            },
         },
 
     }

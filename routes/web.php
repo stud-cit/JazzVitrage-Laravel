@@ -1,4 +1,5 @@
 <?php
+use App\Models\Period;
 //Головна
 Route::get('/', 'SiteController@index')->name('site');
 Route::get('/application', 'ApplicationController@index');
@@ -132,7 +133,7 @@ Route::post('post-all-info', 'InfoController@postAllInfo');
 Auth::routes();
 
 // VUE запросы
-
+    Route::get('is-opened-registration', 'PeriodController@isOpenedRegistration');
     Route::get('get-all-info', 'InfoController@getAllInfo');
 
     Route::get('get-foto', 'GalleryController@getFoto');
@@ -161,6 +162,11 @@ Auth::routes();
     Route::post('post-question', 'QuestionController@postQuestion');
 
     Route::get('/{any}', ['as' => 'site', function () {
+
+        if (Route::get('/applications')  && !Period::isRegistration() ) {
+            abort(404);
+        }
+
         return view('layouts.site.index');
     }])->where('any', '.*');
 

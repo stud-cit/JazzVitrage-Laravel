@@ -1,5 +1,6 @@
 <template>
     <div>
+        <template v-if="isRegistration">
         <section class="sections main-section applications">
             <div class="application-for-participation">
                 <h2 class="title-section">Заявка на участь</h2>
@@ -111,7 +112,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError"></span>
                             <div class="input-row">
@@ -278,7 +279,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError1"></span>
                             <div class="input-row">
@@ -434,7 +435,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate2')">
-                                    Введіть дані у форматі ХХ-ХХ-ХХХХ
+                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
                             </span>
                             <span class="errors" id="lblError2"></span>
                             <div class="input-row">
@@ -870,7 +871,7 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" id="compositionVideo" class="d-none" type="file"
                                         v-validate="{ required: true }"
                                            data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
@@ -882,7 +883,7 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" class="d-none" type="file" placeholder="../birthdays.jpg "
+                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" class="d-none" type="file" placeholder="../birthdays.jpg "
                                            v-validate="{ required: false }"
                                            data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
                                     <label for="compositionVideo">
@@ -1105,6 +1106,11 @@
             </div>
 
         </section>
+        </template>
+        <template v-else>
+            <h1>Сторінка недоступна</h1>
+        </template>
+        
     </div>
 </template>
 
@@ -1185,18 +1191,28 @@
                     files: {
 
                     }
-                }
+                },
+                isRegistration: false,
             };
         },
 
         created () {
             document.title = "Заповнити заявку";
             this.getNominations();
+            this.isOpenedRegistration();
         },
         computed: {
 
         },
         methods: {
+            isOpenedRegistration() {
+                axios
+                    .get('/is-opened-registration')
+                    .then( ( response ) => {
+                        this.isRegistration = response.data;
+                    })
+                    .catch( ( error ) => console.error(error) )
+            },
             getNominations() {
                 axios.get('/get-nominations')
                 .then((response) => {

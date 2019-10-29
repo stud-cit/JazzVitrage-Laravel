@@ -49,7 +49,7 @@ class Application extends Model
 	 * Scope a query to only created application.
 	 * 
 	 * @param \Illuminate\Database\Eloquent\Builder $query
-	 * @return \Illuminate\Dtabase\Eloquent\Builder
+	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function scopeCreated($query) {
 		return $query->where('status', self::CREATED);
