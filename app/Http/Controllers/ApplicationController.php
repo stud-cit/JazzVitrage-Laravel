@@ -93,13 +93,13 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
-                $member_birthday_file = time().'-'.$val["memberBirthdayFile"]->getClientOriginalName();
+                $member_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["memberBirthdayFile"]->getClientOriginalName();
                 $val["memberBirthdayFile"]
                     ->move(public_path().$this
                     ->publicStorage, $member_birthday_file);
                 $soloDuet->passport_photo = $member_birthday_file;
 
-                $id_file = time().'-'.$val["idFile"]->getClientOriginalName();
+                $id_file = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile"]->getClientOriginalName();
                 $val["idFile"]
                     ->move(public_path().$this
                     ->publicStorage, $id_file);
@@ -130,13 +130,13 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
-                $member_birthday_file = time().'-'.$val["memberBirthdayFile"]->getClientOriginalName();
+                $member_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["memberBirthdayFile"]->getClientOriginalName();
                 $val["memberBirthdayFile"]
                     ->move(public_path().$this
                     ->publicStorage, $member_birthday_file);
                 $soloDuet->passport_photo = $member_birthday_file;
 
-                $id_file = time().'-'.$val["idFile"]->getClientOriginalName();
+                $id_file = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile"]->getClientOriginalName();
                 $val["idFile"]
                     ->move(public_path().$this
                     ->publicStorage, $id_file);
@@ -165,13 +165,13 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
 
             foreach($request->files as $k => $val) {
-                $member2_birthday_file = time().'-'.$val["member2BirthdayFile"]->getClientOriginalName();
+                $member2_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["member2BirthdayFile"]->getClientOriginalName();
                 $val["member2BirthdayFile"]
                     ->move(public_path().$this
                     ->publicStorage, $member2_birthday_file);
                 $soloDuet->passport_photo = $member2_birthday_file;
 
-                $id_file2 = time().'-'.$val["idFile2"]->getClientOriginalName();
+                $id_file2 = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile2"]->getClientOriginalName();
                 $val["idFile2"]
                     ->move(public_path().$this
                     ->publicStorage, $id_file2);
@@ -193,7 +193,7 @@ class ApplicationController extends Controller
             $group->count_people = $data->groupCount;
             $group->average_age = $data->groupAverage;
             foreach($request->files as $k => $val) {
-                $group_birthday_file = time().'-'.$val["groupBirthdayFile"]->getClientOriginalName();
+                $group_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["groupBirthdayFile"]->getClientOriginalName();
                 $val["groupBirthdayFile"]
                     ->move(public_path().$this
                     ->publicStorage, $group_birthday_file);
@@ -229,7 +229,7 @@ class ApplicationController extends Controller
         $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
         foreach($request->files as $k => $val) {
-            $composition_video = time().'-'.$val["compositionVideo"]->getClientOriginalName();
+            $composition_video = mb_strimwidth(uniqid(),0, 10).'-'.$val["compositionVideo"]->getClientOriginalName();
             $val["compositionVideo"]
                 ->move(public_path().$this
                 ->publicStorage, $composition_video);
@@ -284,6 +284,7 @@ class ApplicationController extends Controller
             unlink(public_path($this->publicStorage.$model->group["file"]));
         }
         unlink(public_path($this->publicStorage.$model->presentation["video"]));
+        Evaluation::where("application_id", $id)->delete();
         $model->delete();
     }
 
