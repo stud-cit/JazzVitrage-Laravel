@@ -6,7 +6,7 @@
 
                 <table class="table-members">
                     <tr class="table-title">
-                        <th>N</th>
+                        <th>№</th>
                         <th>П.І.Б. /<br>
                             НАЗВА КОЛЕКТИВУ </th>
                         <th>АДРЕСА</th>
@@ -27,7 +27,7 @@
                         <option value="" selected="selected">номінація</option>
                         <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
                     </select>
-                    <select v-model="ageCategory" class="category">
+                    <select v-model="ageCategory"  class="category">
                         <option value="" selected="selected" >вік.категорія</option>
                         <option value="8-10">Від 8 до 10 років</option>
                         <option value="11-13">Від 11 до 13 років</option>
@@ -53,8 +53,8 @@
                     pageNumber: 0,
                     size: 4
                 },
-	            ageCategory: '',
                 members: [],
+                ageCategory: '',
                 nominations: [],
                 searchMember: '',
                 searchNomination: '',
@@ -63,20 +63,22 @@
         },
 
         created () {
+            this.getInfo();
             this.getNominations();
             this.getMembers();
+
         },
         computed: {
-	        filteredList() {
-		        return this.members.filter(members => {
-			        return (
-				        (this.ageCategory == '' || members.age >= this.ageCategory.split('-')[0] && members.age <= this.ageCategory.split('-')[1]) &&
-				        (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) ||
-					        members.schoolAddress.toLowerCase().includes(this.searchMember.toLowerCase()) ||
-					        members.schoolName.toLowerCase().includes(this.searchMember.toLowerCase())) &&
-				        members.nomination.includes(this.searchNomination))
-		        })
-	        },
+            filteredList() {
+                return this.members.filter(members => {
+                    return (
+                    (this.ageCategory == '' || members.age >= this.ageCategory.split('-')[0] && members.age <= this.ageCategory.split('-')[1]) &&
+                    (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) || 
+                    members.schoolAddress.toLowerCase().includes(this.searchMember.toLowerCase()) ||
+                    members.schoolName.toLowerCase().includes(this.searchMember.toLowerCase())) &&
+                    members.nomination.includes(this.searchNomination))
+                })
+            },
             paginatedData(){
                 const start = this.pagination.pageNumber * this.pagination.size;
                 const end = start + this.pagination.size;
@@ -93,6 +95,17 @@
             prevPage(){
                 this.pagination.pageNumber--;
             },
+            getInfo() {
+                axios.get('/get-all-info')
+                    .then((response) => {
+                        response.data.info.map(item => {
+                            Object.assign(this.info, item);
+                        });
+                        response.data.contact.map(item => {
+                            Object.assign(this.contact[item.caption], item.contacts_items);
+                        });
+                    })
+            },
             getNominations() {
                 axios.get('/get-nominations')
                 .then((response) => {
@@ -103,10 +116,12 @@
                 axios.get('/get-approved-members')
                 .then((response) => {
                     response.data.forEach((member, index) => {
+
                         if(member.solo_duet.length == 0) {
+
                             this.members.push({
                                 index,
-	                            age: member.group.average_age,
+                                age: member.group.average_age,
                                 name: member.group.name, 
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
@@ -117,7 +132,7 @@
                         else if(member.solo_duet.length == 1) {
                             this.members.push({
                                 index,
-	                            age: this.getAge(member.solo_duet[0].data_birthday),
+                                age: this.getAge(member.solo_duet[0].data_birthday),
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
@@ -128,7 +143,7 @@
                         else if(member.solo_duet.length == 2) {
                             this.members.push({
                                 index,
-	                            age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,
+                                age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                                 schoolAddress: member.preparation.school_address,
                                 schoolName: member.preparation.school_one,
@@ -138,6 +153,17 @@
                         }
                     });
                 });
+            },
+
+            getAge(dateString) {
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
             },
             clean() {
                 this.searchMember = '',
