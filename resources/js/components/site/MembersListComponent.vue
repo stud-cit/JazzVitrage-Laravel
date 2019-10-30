@@ -108,7 +108,7 @@
                 })
             },
             getMembers() {
-                axios.get('/get-members')
+                axios.get('/get-approved-members')
                 .then((response) => {
                     response.data.forEach((member, index) => {
                         if(member.solo_duet.length == 0) {

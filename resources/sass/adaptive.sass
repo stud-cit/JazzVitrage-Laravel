@@ -37,11 +37,7 @@
                width: 100%
                max-width: 608px
                height: 280px
-   .position
-      .row
-         .btn-group
-            .btn-download
-               width: 200px
+
    .contacts
       padding-bottom: 45px
       .left-layer
@@ -79,8 +75,13 @@
                padding-left: 75px
                .number-text
                   display: none
+   .members
+      .table-members
+         display: block
+         width: 100%
+         overflow-x: auto
 
-@media (max-width: 768px)
+@media (max-width: 991px)
    .header
       .navbar-light
          min-height: 65px
@@ -103,7 +104,6 @@
          .title-section
             font-size: 26px
 
-   /* org.comitet */
 
    .main-section.juries
       .container
@@ -139,11 +139,6 @@
          .description
             padding: 60px 15px 60px 35px
             border-radius: 0
-
-   /* anthem */
-
-
-   /* заява на участие */
 
    .step-block
       .step-form
@@ -349,6 +344,49 @@
             .subtitle
                margin-top: 10px
                font-size: 14px
+   .contacts
+      display: flex
+      flex-flow: column
+      padding-bottom: 0
+
+      .left-layer
+         background: url('../../public/img/contacts-layer-768px.png') no-repeat
+         width: 100%
+         height: 390px
+         left: 0
+         right: 0
+         z-index: 1
+         position: static
+
+         img
+            display: none
+
+         .text-layer
+            top: 60px
+            left: 158px
+            right: 0
+            height: auto
+
+      .right-layer
+         padding: 0 0 65px 0
+         margin: 0
+
+         .contacts-title
+            width: 608px
+            margin: 60px auto 0
+
+         .subtitle
+            width: 608px
+            margin: 0 auto
+
+         .contacts-form
+            width: 608px
+            margin: 0 auto
+
+            .text-center
+               .submit
+                  width: 296px
+                  height: 65px
 
 // mobile
 @media (max-width: 414px)

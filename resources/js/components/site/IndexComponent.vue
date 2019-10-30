@@ -75,7 +75,7 @@
             <div class="container">
                 <h2 class="title-section">ГАЛЕРЕЯ</h2>
                 <div class="row">
-                    <div class="col-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
+                    <div class="col-12 col-sm-6 col-lg-4 gallery-item" v-for="item in foto.slice(0, 6)" :key="item.foto_id"><img :src="'/img/uploads/'+item.file" alt="" class="gallery-img"></div>
                 </div>
                 <div class="text-center">
                     <router-link :to="{name: 'gallery'}"><button class="archive">АРХІВ</button></router-link>
@@ -86,7 +86,7 @@
             <div class="container">
                 <h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>
 
-                <table class="table-responsive table-members">
+                <table class="table-members">
                     <tr class="table-title">
                         <th>N</th>
                         <th>П.І.Б. /<br>
