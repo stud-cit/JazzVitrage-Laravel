@@ -49,7 +49,6 @@
 
                     </div>
 
-git add
                 </div>
             </div>
         </nav>
