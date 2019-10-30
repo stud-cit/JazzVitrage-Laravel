@@ -33,9 +33,7 @@
                 v-model.number="statusApplication"
                 v-bind:disabled="readonlyApplicationPeriod" >
 
-            <label class="form-check-label" for="status">
-                {{ statusApplication ? 'Прийом заявок для участі в конкурсі відкрито' :  'Прийом заявок закрито'}}
-            </label>
+            <label class="form-check-label" for="status">Прийом заявок для участі в конкурсі відкрито</label>
 
         </div>
             <button
@@ -100,5 +98,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+    
 
 </style>
