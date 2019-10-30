@@ -88,7 +88,7 @@
 
                 <table class="table-members">
                     <tr class="table-title">
-                        <th>N</th>
+                        <th>№</th>
                         <th>П.І.Б. /<br>
                             НАЗВА КОЛЕКТИВУ </th>
                         <th>АДРЕСА</th>
