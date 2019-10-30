@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // VUE запросы
     Route::get('is-opened-registration', 'PeriodController@isOpenedRegistration');
