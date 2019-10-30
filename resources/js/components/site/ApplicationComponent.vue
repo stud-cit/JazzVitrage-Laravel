@@ -1210,6 +1210,12 @@
                     .get('/is-opened-registration')
                     .then( ( response ) => {
                         this.isRegistration = response.data;
+                        if ( !this.isRegistration ) {
+                           swal("Увага", "На даний момент подача заявок зупинена." ,"info")
+                                .then( ( value ) => {
+                                    this.$router.push({name: "index"});
+                                });   
+                        }
                     })
                     .catch( ( error ) => console.error(error) )
             },

@@ -162,11 +162,6 @@ Auth::routes();
     Route::post('post-question', 'QuestionController@postQuestion');
 
     Route::get('/{any}', ['as' => 'site', function () {
-
-        if (Route::get('/applications')  && !Period::isRegistration() ) {
-            abort(404);
-        }
-
         return view('layouts.site.index');
     }])->where('any', '.*');
 
