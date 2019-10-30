@@ -81,6 +81,16 @@ export default {
                     if(response.status == 200) {
                         this.getFullList();
                     }
+                    swal("Запис був успішно доданий до архіву", {
+                        icon: "success",
+                    });
+			    })
+                .catch((error) => {
+                    swal({
+                        icon: "error",
+                        title: 'Помилка',
+                        text: 'Не вдалося додати заяву до архіву'
+                    });
                 })
         }
     },
