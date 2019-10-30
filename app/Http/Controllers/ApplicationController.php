@@ -31,7 +31,7 @@ class ApplicationController extends Controller
 
      public function getMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '!=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '=', 'created')->get();
          return response()->json($data);
      }
      
@@ -264,7 +264,7 @@ class ApplicationController extends Controller
     {
         $model = Application::find($id);
 
-        $model->status = 'approved';
+        $model->status = Application::APPROVED;
 
         if($model->save()){
             return ;

@@ -204,9 +204,7 @@ export default {
             .then((response) => {
                 this.members = [];
                 this.memberPhoto = [];
-                response.data.filter( app => {
-                    return app.status == "created";
-                }).forEach(member => {
+                response.data.forEach(member => {
                     if(member.solo_duet.length == 0) {
                         this.members.push({
                             name: member.group.name,
