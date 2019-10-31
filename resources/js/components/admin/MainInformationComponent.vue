@@ -361,9 +361,9 @@ export default {
 
         edit(event, table, el) {
             this.$validator.validateAll().then((result) => {
-                if (!result) {	
-                    return;
-                }
+	            if (!result) {
+		            return;
+	            }
                 else {
                     const textElement = document.getElementById(el);
                     if(this.showButton) {
