@@ -18,7 +18,8 @@ import Jury from './components/site/JuryComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
-import NewHead from './components/site/NewHead'
+import NewHead from './components/site/NewHead';
+import Error404 from './components/site/Error404';
 
 import VueRouter from 'vue-router';
 
@@ -105,6 +106,11 @@ const router = new VueRouter({
             path: '/nhead',
             name: 'nhead',
             component: NewHead,
+        },
+        {
+            path: '/*',
+            name: 'error',
+            component: Error404,
         }
     ],
 });
