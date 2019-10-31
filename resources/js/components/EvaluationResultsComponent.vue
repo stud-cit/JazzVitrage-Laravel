@@ -2,7 +2,7 @@
     <div>
         <h1 v-if="hasError" class='text-center'>Ой лишенько... виникли проблеми</h1>
         <template v-else>
-            <form role="form" class="search">
+            <form role="form" @submit.prevent class="search">
                     <i class="fa fa-search" aria-hidden="true"></i>
                     <input v-model="search" type="text" class="form-control">
             </form>
