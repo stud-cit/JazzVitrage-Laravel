@@ -133,7 +133,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff', 'wav'] }" name="audio" class="custom-file-input" id="audio" ref="audio" @change="previewFiles">
+                                <input type="file" v-validate="{ 'ext':['mp3', 'flac', 'aif', 'ac3', 'amr', 'aud', 'iff', 'wav'] }" accept=".mp3, .flac, .aif, .ac3, .amr, .aud, .iff, .wav" name="audio" class="custom-file-input" id="audio" ref="audio" @change="previewFiles">
                                 <span class="custom-file-control">{{ info.audio.split('/')[2] }}</span>
                             </label>
                         </div>
