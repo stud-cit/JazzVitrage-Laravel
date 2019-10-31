@@ -5,6 +5,8 @@
          margin: 0
       .picture
          max-width: 50%
+.navbar-expand-lg>.container
+   padding: 0 15px
 @media (max-width: 1199px)
    .header
       .navbar-light
@@ -187,9 +189,9 @@
 
    .sections
       .container
-         max-width: 608px
-         box-sizing: border-box
-         padding: 0
+         //max-width: 608px
+         //box-sizing: border-box
+         //padding: 0
 
          .title-section
             font-size: 50px
@@ -240,10 +242,10 @@
 
 
    .container
-      width: 100%
-      max-width: 608px
-      margin: 0 auto
-      box-sizing: border-box
+      //width: 100%
+      //max-width: 608px
+      //margin: 0 auto
+      //box-sizing: border-box
 
    .nominations
       //background: #14042f
@@ -408,7 +410,7 @@
 
       .sections
          .container
-            width: 338px
+            //width: auto
 
       .members
          .container
@@ -480,10 +482,14 @@
          .left-layer
             background: url('../../public/img/contacts-layer-414px.png') no-repeat
             width: 100%
-            height: 385px
+            height: auto
 
             .text-layer
-               left: 15%
+               position: static
+               padding: 25px 20px
+               .text-row
+                  .text-field, title-field
+                     height: auto
 
          .right-layer
             padding-bottom: 96px
@@ -502,17 +508,18 @@
                font-size: 10px
 
             .contacts-form
-               width: 338px
+               width: auto
                padding: 0
 
                .form-row
-                  input
+                  input, textarea
                      font-size: 15px
+                     padding: 8px 15px
 
                .text-center
 
                   .submit
-                     width: 338px
+                     width: 100%
                      height: 65px
 
       // regstr
@@ -670,7 +677,7 @@
          display: flex
          flex-direction: row-reverse
          justify-content: space-between
-         width: 60%
+         //width: 60%
          .add-application
             display: block
             margin: 0
@@ -679,10 +686,10 @@
             text-align: center
             font-size: 10px
    .container
-      width: 100%
-      max-width: 338px
-      margin: 0 auto
-      box-sizing: border-box
+      //width: 100%
+      //max-width: 338px
+      //margin: 0 auto
+      //box-sizing: border-box
    .gallery
       .page-nav
          font-size: 14px
@@ -728,7 +735,7 @@
          iframe
             height: 203px !important
       .title-section
-         font-size: 41px !important
+         font-size: 26px !important
       .btn-group
          flex-direction: column
          align-items: center

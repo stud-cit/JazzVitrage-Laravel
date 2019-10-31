@@ -206,24 +206,26 @@
                 </div>
             </div>
             <div class="right-layer">
-                <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
-                <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
-                <form enctype="multipart/form-data" class="contacts-form">
-                    <div class="form-row">
-                        <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
-                        <input type="text" v-model="name" id="name" placeholder="ВАШЕ ІМ'Я">
-                    </div>
-                    <div class="form-row">
-                        <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
-                        <input type="email" v-model="email" id="email" placeholder="ПОШТА">
-                    </div>
-                    <div class="form-row">
-                        <textarea name="" v-model="questionText" id="question" cols="30" rows="6"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="button" class="submit" @click="postQuestion">НАДІСЛАТИ</button>
-                    </div>
-                </form>
+                <div class="container">
+                    <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
+                    <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
+                    <form enctype="multipart/form-data" class="contacts-form">
+                        <div class="form-row">
+                            <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
+                            <input type="text" v-model="name" id="name" placeholder="ВАШЕ ІМ'Я">
+                        </div>
+                        <div class="form-row">
+                            <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
+                            <input type="email" v-model="email" id="email" placeholder="ПОШТА">
+                        </div>
+                        <div class="form-row">
+                            <textarea name="" v-model="questionText" id="question" cols="30" rows="6"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="submit" @click="postQuestion">НАДІСЛАТИ</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
