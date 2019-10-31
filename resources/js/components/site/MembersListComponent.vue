@@ -62,7 +62,6 @@
 			};
 		},
 		created () {
-			this.getInfo();
 			this.getNominations();
 			this.getMembers();
 		},
@@ -92,17 +91,6 @@
 			},
 			prevPage(){
 				this.pagination.pageNumber--;
-			},
-			getInfo() {
-				axios.get('/get-all-info')
-					.then((response) => {
-						response.data.info.map(item => {
-							Object.assign(this.info, item);
-						});
-						response.data.contact.map(item => {
-							Object.assign(this.contact[item.caption], item.contacts_items);
-						});
-					})
 			},
 			getNominations() {
 				axios.get('/get-nominations')
