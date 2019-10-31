@@ -44,11 +44,11 @@
                 <div class="col-5">
 					<div>
 						<label for="jury-photo" class="brtop">Фото</label>
-						<input type="file" name="jury-photo" ref="file" class="form-control-file" id="jury-photo"
-							v-validate="{ required: true}"
+						<input type="file" name="jury-photo" accept="image/*" ref="file" class="form-control-file" id="jury-photo"
+							v-validate="'image'"
 								data-vv-as="Фото">
 						<span class="errors text-danger" v-if="errors.has('jury-photo')">
-								{{ errors.first('jury-photo') }}
+								Файл повинен бути зображенням
 						</span>
 					</div>
                     <div>

@@ -194,8 +194,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
-                                           v-validate="{ regex: /[0-9]{10}/ }"
+                                    <input type="text" name="idCode" maxlength="10" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
+                                           v-validate="{ regex: /^\d{10}$/ }"
                                            data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
@@ -360,8 +360,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
-                                        v-validate="{ regex: /[0-9]{10}/ }"
+                                    <input type="text" name="idCode" maxlength="10" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
+                                        v-validate="{ regex: /^\d{10}$/ }"
                                             data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
@@ -516,8 +516,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode2" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2" required
-                                        v-validate="{ regex: /[0-9]{10}/ }"
+                                    <input type="text" name="idCode2" maxlength="10" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2" required
+                                        v-validate="{ regex: /^\d{10}$/ }"
                                            data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР">
                                 </div>
                             </div>
@@ -574,7 +574,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupName')">
-                                    Поле повинно бути заповнене
+                                    Поле має бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -585,7 +585,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupCount')">
-                                    Введіть корректні дані
+                                    Введіть корректні дані в діапазоні від 1 до 99
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -596,7 +596,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupAverage')">
-                                    Введіть корректні дані
+                                    Введіть корректні дані в діапазоні від 8 до 17
                             </span>
                             <h3 class="step-title">Документ с датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
@@ -669,13 +669,13 @@
                                     <img src="img/step2-data.png" alt="" class="input-img">
 
                                     <input type="text" name="schoolPhone" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
-                                        v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ }"
+                                        v-validate="{ required: true, regex: /^(\+380)(\d{7,9})$/ }"
 
                                            data-vv-as="ТЕЛЕФОН">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('schoolPhone')">
-                                    Введіть дані у форматі +380
+                                    Введіть дані у форматі +380 та корректну кількість символів
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -730,8 +730,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input name="teacherIdCode" type="text" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА" v-model="registration.data.teacherIdCode" required
-                                        v-validate="{ regex: /[0-9]{10}/ }"
+                                    <input name="teacherIdCode" type="text" maxlength="10" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА" v-model="registration.data.teacherIdCode" required
+                                        v-validate="{ regex: /^\d{10}$/ }"
                                            data-vv-as="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА">
                                 </div>
                             </div>
@@ -743,13 +743,13 @@
                                     <img src="img/input-phone.png" alt="" class="input-img">
 
                                     <input type="text" name="teacherPhone" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
-                                        v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ }"
+                                        v-validate="{ required: true, regex: /^(\+380)(\d{7,9})$/ }"
 
                                            data-vv-as="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('teacherPhone')">
-                                    Введіть дані у форматі +380
+                                    Введіть дані у форматі +380 та корректну кількість символів 
                             </span>
                             <div class="input-row checkbox-row">
                                     <label for="concertmaster" >
