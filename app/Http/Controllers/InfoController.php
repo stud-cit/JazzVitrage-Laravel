@@ -16,6 +16,11 @@ class InfoController extends Controller
         $contact = Contacts::with('contactsItems')->get();
         return response()->json(['info' => $info, 'contact' => $contact]);
     }
+    public function getPersonalDoc()
+    {
+        $doc = DB::select('select personal_data from position_section');
+        return response()->json(['personal' => $doc]);
+    }
     public function postContact(Request $request)
     {
         if($request->id) {

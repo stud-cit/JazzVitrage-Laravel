@@ -135,6 +135,7 @@ Auth::routes(['register' => false]);
 // VUE запросы
     Route::get('is-opened-registration', 'PeriodController@isOpenedRegistration');
     Route::get('get-all-info', 'InfoController@getAllInfo');
+    Route::get('get-personal-doc', 'InfoController@getPersonalDoc');
 
     Route::get('get-foto', 'GalleryController@getFoto');
     Route::get('get-foto/{year}/', 'GalleryController@getFotoYear');

@@ -1089,7 +1089,7 @@
                                 <label for="groupCheck3" >
                                     <input @change="checked = !checked" name="groupCheck3" id="groupCheck3" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1125,6 +1125,9 @@
 	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
+	            personal: {
+		            personal_data: ''
+                },
 
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
@@ -1200,6 +1203,7 @@
             document.title = "Заповнити заявку";
             this.getNominations();
             this.isOpenedRegistration();
+	        this.getPersonal();
         },
         computed: {
 
@@ -1418,6 +1422,15 @@
                 }
 
             },
+
+	        getPersonal() {
+		        axios.get('/get-personal-doc')
+			        .then((response) => {
+				        response.data.personal.map(item => {
+					        Object.assign(this.personal, item);
+				        })
+			        })
+	        },
 
             prevStep(event){
                 event.preventDefault();
