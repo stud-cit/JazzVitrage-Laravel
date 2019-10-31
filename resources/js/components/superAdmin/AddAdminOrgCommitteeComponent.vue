@@ -72,6 +72,7 @@
 				name: '',
 				surname: '',
 				email: '',
+				defaultPatronymic: 'default',
 				form: new FormData,
 				table_form: new FormData
 			};
@@ -146,6 +147,7 @@
 						this.form.append('name', this.name);
 						this.form.append('surname', this.surname);
 						this.form.append('email', this.email);
+	                    this.form.append('patronymic', this.defaultPatronymic);
                       	axios.post('/post-all-admin', this.form)
 						.then((response) => {
 						this.admin = [];
