@@ -28,7 +28,7 @@ Route::get('get-org-view', 'ContactsController@organizingCommittee');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', function () {
         return view('admin.home');
-    });
+    })->name('admin');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
