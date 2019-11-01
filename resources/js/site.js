@@ -19,9 +19,6 @@ import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
 import NewHead from './components/site/NewHead';
-//Журі
-import AllStatementComponent from './components/jury/AllStatementComponent';
-import EvaluationComponent from './components/jury/EvaluationComponent';
 
 import Error404 from './components/site/Error404';
 
@@ -112,17 +109,7 @@ const router = new VueRouter({
             component: NewHead,
         },
         {
-            path: '/admin/all-statements',
-            name: 'jury-all-statements',
-            component: AllStatementComponent,
-        },
-        {
-            path: '/admin/all-statements/:id',
-            name: 'jury-evaluation',
-            component: EvaluationComponent,
-        },
-        {
-            path: '/*',
+            path: '*',
             name: 'error',
             component: Error404,
         }
