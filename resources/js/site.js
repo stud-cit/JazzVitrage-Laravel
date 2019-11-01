@@ -112,17 +112,7 @@ const router = new VueRouter({
             component: NewHead,
         },
         {
-            path: '/admin/all-statements',
-            name: 'jury-all-statements',
-            component: AllStatementComponent,
-        },
-        {
-            path: '/admin/all-statements/:id',
-            name: 'jury-evaluation',
-            component: EvaluationComponent,
-        },
-        {
-            path: '/*',
+            path: '*',
             name: 'error',
             component: Error404,
         }
