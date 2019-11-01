@@ -80,14 +80,11 @@
                     <div class="row">
                         <div class="col-9">
                             <input name="video" type="text" class="form-control" v-model="info.video" id="video" disabled
-                                v-validate="{ required: true}" 
-                                    data-vv-as="Відео для положення конкурсу (YouTube)">
-                            <span class="errors text-danger" v-if="errors.has('video')">
-                                {{ errors.first('video') }}
-                            </span>
+                                v-validate="{required: true, regex: /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/}">
+                            <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary edit" @click='edit($event, "position_section", "video")'>Редагувати</button>
+                            <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary edit" @click='edit($event, "position_section", "video")'>Редагувати</button>
                         </div>
                     </div>
                     <iframe class="mt-3" width="100%" height="300" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>

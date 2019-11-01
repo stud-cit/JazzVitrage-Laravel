@@ -37,7 +37,7 @@
 
         </div>
             <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-secondary mb-3"
                 v-on:click.prevent="editPeriod"
                 type="submit"
                 >

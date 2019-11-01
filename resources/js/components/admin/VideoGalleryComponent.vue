@@ -4,18 +4,13 @@
 
         <div class="row">
             <div class="col-6">
-                
-                <label for="video" class="brtop">Посилання на відео (YouTube)</label>
-                <input type="text" name="video" v-model="video" class="form-control" id="video"
-                    v-validate="{ required: true}"
-						data-vv-as="Посилання на відео (YouTube)">
-               
                 <div>
-                <span class="errors text-danger" v-if="errors.has('video')">
-								{{ errors.first('video') }}
-						</span>
-                 </div>     
-                <button type="button" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
+                <label for="video" class="brtop">Посилання на відео (YouTube)</label>
+                    <input type="text" v-validate="{regex: /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/}" ref="video" name="video" v-model="video" class="form-control" id="video">
+                    <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
+                </div>
+                <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
+                
             </div>
             <div class="col-6">
                 <label for="yearCompetition" class="brtop">Рік проведення конкурсу</label>
@@ -75,6 +70,19 @@ export default {
                         }).then(() => {
                             this.urls = [];
                             this.getVideo();
+                           
+		                swal("Файл завантажено", {
+			            icon: "success",
+			            timer: 1000,
+			            button: false
+		            });
+	            })
+	            .catch((error) => {
+		            swal({
+			            icon: "error",
+			            title: 'Помилка',
+			            text: 'Файл не обрано'
+		            });
                         })
                 }
             });

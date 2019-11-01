@@ -956,7 +956,7 @@
                                 <label for="groupCheck1" >
                                     <input @change="checked = !checked" name="groupCheck1" id="groupCheck1" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1026,7 +1026,7 @@
                                 <label for="groupCheck2" >
                                     <input @change="checked = !checked" name="groupCheck2" id="groupCheck2" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a href="">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">

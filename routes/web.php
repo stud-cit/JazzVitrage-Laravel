@@ -65,8 +65,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('post-quote', 'InfoController@postQuote');
     Route::post('put-quote', 'InfoController@putQuote');
     Route::post('delete-quote/{id}/', 'InfoController@deleteQuote');
-    Route::get('get-rating', 'ApplicationController@getRating')->name('rating');
-   
 });
 
 // Роль Орг.Комітет
@@ -83,6 +81,7 @@ Route::group(['middleware' => ['auth', 'role:orgComittee']], function () {
     Route::get('/admin/evaluation-results', function () {
         return view('admin.orgСommittee.evaluationResults');
     });
+    Route::get('get-rating', 'ApplicationController@getRating')->name('rating');
 });
 
 // Роль Журі
@@ -94,6 +93,7 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::post('to-rate', 'EvaluationController@toRate')->name('to-rate');
     Route::get('has-record/{application_id}', 'EvaluationController@hasRecord')->name('has-record');
     Route::post('to-rate-update/{evaluation_id}', 'EvaluationController@toRateUpdate')->name('to-rate-update');
+    
     Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
      });

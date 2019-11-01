@@ -129,7 +129,21 @@
 					.then((response) => {
 						this.admin = [];
 						this.getFullAdminOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
+						});
 					})
+					.catch((error) => {
+						this.jurys = [];
+						this.getFullJuryList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
+						});
+					});
 					
 			},
 			getFullAdminOrgCommitteeList() {
