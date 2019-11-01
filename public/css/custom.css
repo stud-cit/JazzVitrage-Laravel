@@ -57,7 +57,7 @@
 }
 
 .text-area-width {
-    width:320px;
+    width:250px;
 }
 
 .edit-photo .form-group{padding:0;margin:0}
@@ -72,9 +72,7 @@
     width: 135px;
 }
 
-.text-area-width {
-    width:320px;
-}
+
 
 .span-mr {
     margin-right: 120px;

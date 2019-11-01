@@ -135,7 +135,7 @@ class EvaluationController extends Controller
             'originality' => "required|numeric|min:$min|max:$max",
             'stylistic_matching' => "required|numeric|min:$min|max:$max"
         ]);
-        $model = Evaluation::find($evaluation_id);
+        $model = Evaluation::where("application_id", $evaluation_id);
 
         $data = $request->all();
         $model->update($data);
