@@ -20,17 +20,18 @@
                 <div class="col-5">
                     <label for="foto">Фото в оригінальній якості</label>
                     <label class="custom-file w-100">
-                        <input type="file" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" multiple>
+                        <input type="file" name="foto" v-validate="'image'" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept="image/*" multiple>
                         <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
                     </label>
                     <div v-for="(item, index) in file" :key="index">
                         <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
+                        <span class="text-danger" v-if="errors.has('foto')">Файл повинен бути зображенням</span>
                     </div>
                     <!-- Временное решение -->
                     <transition name="load">
                         <div v-if="load" style="text-align:center">Завантаження</div>
                     </transition>
-                    <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" :disabled="file.length == 0" @click="uploadFile">Додати</button>
+                    <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" :disabled="file.length == 0 || errors.has('foto')" @click="uploadFile">Додати</button>
                 </div>
             </div>
         </form>

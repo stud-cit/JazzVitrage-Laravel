@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     
     Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
-     })->where('any', '[0-9]');
+     });
 });
 
 // Роль Супер Адмін
