@@ -102,8 +102,8 @@
                             </textarea>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes(index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="quote !== editing && quote.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='edit(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes(quote, index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="quote !== editing && quote.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editQuote(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                             <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
 						{{ errors.first('quote') }}
 					</span>
                     <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addQuotes">Додати цитату</button>
-                    
+
                 </div>
                 <div class="col-2"></div>
                 <div class="col-5">
@@ -385,6 +385,29 @@ export default {
                 }
             });
         },
+	    editQuote(quote, el, index) {
+		    this.$validator.validateAll().then((result) => {
+			    if (!result) {
+				    return;
+			    }
+			    else {
+				    const textElement = document.getElementById(el);
+				    if(this.showButton) {
+					    textElement.removeAttribute('disabled');
+					    textElement.focus();
+					    this.showButton = false;
+				    }
+				    else {
+					    textElement.setAttribute('disabled', 'disabled');
+					    axios.post('/put-quote', {
+						    id: this.quotes[index].quote_id,
+						    text: this.quotes[index].text,
+					    })
+					    this.showButton = true;
+				    }
+			    }
+		    });
+	    },
 	    getAllInfo() {
 		    axios.get('/get-all-info')
 			    .then((response) => {
@@ -414,12 +437,12 @@ export default {
                     }
              });
         },
-        delQuotes(index, id) {
-            if(id) {
-                axios.post('/delete-quote/'+id);
-            }
-            this.quotes.splice(index, 1);
-        },
+	    delQuotes(quote, index, id) {
+		    if (id == quote.quote_id) {
+			    axios.post('/delete-quote/' + id);
+			    this.quotes.splice(index, 1);
+		    }
+	    },
         saveQuotes(quote, el, index) { 
             this.$validator.validateAll().then((result) => {
                     if (!result) {	
