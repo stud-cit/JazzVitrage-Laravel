@@ -172,7 +172,7 @@
         methods: {
             getEvaluation() {
                 axios.get(`/has-record/${this.$route.params.id}/`)
-                    .then( (response)  => {
+                    .then( ( response )  => {
                         this.hasRecord = this.isRecord(response.data);
                         const {stylistic_matching, artistic_value, artistry, originality, evaluation } = response.data;
                        
@@ -192,8 +192,6 @@
             },
             // need make validation 
             createEvaluation() {
-                // call setter
-                //this.evaluation = this.evaluation;
                 const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
 
                 axios.post('/to-rate', {
@@ -224,9 +222,6 @@
                 });
             },
             updateEvaluation() {
-                // call setter
-                //this.evaluation = this.evaluation;
-                
                 const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
 
                 axios.post(`/to-rate-update/${this.$route.params.id}`, {
@@ -282,7 +277,7 @@
                     .catch( error => console.error(error) );
             },
             getAllMembers() {
-                axios.get('/get-all-members')
+                axios.get('/get-approved-members')
                     .then( ( response ) => {
                         this.count = response.data.length - 1;
                         this.memberIds = response.data.map( (row) => row.application_id);

@@ -49,7 +49,9 @@ class ApplicationController extends Controller
 
      public function getApprovedMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '=', 'approved')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')
+            ->approved()
+            ->get();
          return response()->json($data);
      }
 
