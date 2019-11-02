@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse nav-menu" id="nav-menu">
                     <div class="navbar-nav">
                         <li class="dropdown">
-                            <a class="nav-item nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
+                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>

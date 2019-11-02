@@ -23,7 +23,9 @@
         <div class="row">
             <div class="col-4" v-for="(item, index) in urls" :key="item.video_id">
                 <div class="border fotoGallery">
-                    <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
+                    <div class="bg-black">
+                        <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
+                    </div>
                     <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
@@ -32,7 +34,24 @@
     </div>
 
 </template>
+<style>
+    .fotoGallery{
+        padding: 24px 0;
+        height: 250px;
+        background-color: black;
+    }
+    .fotoGallery .fa-times-circle {
+        position: static;
+    }
 
+    .bg-black{
+        position: absolute;
+        top: -1px;
+        left: 15px;
+        padding: 0 5px
+    }
+
+</style>
 <script>
 export default {
     data() {

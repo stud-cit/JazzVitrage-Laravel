@@ -38,9 +38,13 @@
         <br>
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in foto" :key="item.foto_id">
-                <div class="border fotoGallery" :style="{ backgroundImage: 'url(' + '/img/uploads/'+item.file + ')' }">
-                    <i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i>
-                    <i class="fa fa-calendar"> {{ item.year }}</i>
+                <div class="border fotoGallery" >
+                    <div class="bg-black d-flex justify-content-between width-100 align-items-center">
+                        <i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i>
+                        <i class="fa fa-calendar "> {{ item.year }}</i>
+                    </div>
+                    <div class="gallery-img" :style="{ backgroundImage: 'url(' + '/img/uploads/'+item.file + ')'  }"></div>
+                    <!-- <img :src="'/img/uploads/'+item.file" alt=""> -->
                     <silentbox-single :src="'/img/uploads/'+item.file" :description="String(item.year)">
                         <i class="fa fa-search"></i>
                     </silentbox-single>
@@ -146,5 +150,19 @@ export default {
     .uploadFiles i {
         position: absolute;
         right: 10px;
+    }
+    .fotoGallery{
+        height: auto
+    }
+    .fotoGallery .fa-calendar{
+        position: static
+    }
+    .fotoGallery .width-100{
+        width: calc(100% - 30px);
+    }
+    .gallery-img{
+        background-size: cover;
+        margin-bottom: 10px;
+        height: 200px;
     }
 </style>

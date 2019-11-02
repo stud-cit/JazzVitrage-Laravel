@@ -24,17 +24,16 @@
       .row
          display: flex
          justify-content: center
-         .col-7
-            max-width: 608px
-            width: 100%
+         .col-12
             display: flex
             flex-direction: column
             justify-content: center
             align-items: center
             text-align: center
             .preview-text
-               width: 608px
+               width: auto
                margin-bottom: 340px
+
             .preview-logo
                width: 100%
                max-width: 608px
@@ -100,6 +99,16 @@
             margin: 10px 0
             .nav-item
                 text-align: center
+         .nav-menu
+            .dropdown-menu
+               position: absolute
+               margin-left: 50%
+               transform: translateX(-50%)
+               .dropdown-item
+                     font-size: 12px
+                     white-space: initial
+                     line-height: 1.5
+                     padding: 10px
 
    .sections
       .application-for-participation
@@ -107,7 +116,15 @@
 
          .title-section
             font-size: 26px
-
+   .preview
+      &::after
+         top: 55%
+      .row
+         .col-12
+            .preview-text
+               width: auto
+               max-width: 100%
+               margin-bottom: 340px
 
    .main-section.juries
       .container
@@ -250,14 +267,15 @@
    .nominations
       //background: #14042f
       .title-nominations
-         .title
-            margin-top: -10px
-            font-size: 30px
-            font-weight: 900
-         .subtitle
-            margin-top: 0 !important
-            font-size: 11px
-            font-weight: 500
+         .text
+            .title
+               margin-top: -10px
+               font-size: 30px
+               font-weight: 900
+            .subtitle
+               margin-top: 0 !important
+               font-size: 11px
+               font-weight: 500
       .nominations-list
          flex-direction: column
          justify-content: center
@@ -292,11 +310,6 @@
    .gallery
       .page-nav
          font-size: 20px
-      .title-section
-         font-size: 30px !important
-      .gallery-item
-         width: 50%
-         flex-grow: 0
       .video-gallery-item
          width: 50%
          flex-grow: 0
@@ -361,6 +374,7 @@
          right: 0
          z-index: 1
          position: static
+         background-size: cover
 
          img
             display: none
@@ -384,13 +398,31 @@
             margin: 0 auto
 
          .contacts-form
-            width: 608px
+            width: auto
             margin: 0 auto
 
             .text-center
                .submit
                   width: 296px
                   height: 65px
+@media(max-width: 767px)
+   .sections
+      .container
+         //max-width: 608px
+         //box-sizing: border-box
+         //padding: 0
+
+         .title-section
+            font-size: 50px
+
+         .row
+            .gallery-item
+               margin: 4px 0
+               width: 100%
+               .gallery-img
+                  width: 100%
+                  height: auto
+   
 
 // mobile
 @media (max-width: 414px)
@@ -398,15 +430,24 @@
    body
 
       .header
+         .navbar-light
+            .nav-menu
+               .navbar-nav
+                  flex-flow: column
+                  align-items: center
 
-         .nav-menu
-            .navbar-nav
-               flex-flow: column
-               align-items: center
-
-               li
-                  .nav-item
-                     font-size: 16px
+                  li
+                     .nav-item
+                        font-size: 16px
+               .dropdown-menu
+                  position: static
+                  margin-left: 0
+                  transform: translateX(0)
+                  .dropdown-item
+                        font-size: 16px
+                        white-space: initial
+                        line-height: 1.5
+                        padding: 12px
 
       .sections
          .container
@@ -716,22 +757,20 @@
       &::after
          display: none
       .row
-         .col-7
-            flex: 0 0 0
-            width: 100%
-            max-width: 338px
+         .col-12
             .preview-logo
-               margin: 0
+               margin: 20px 0
             .preview-text
-               width: 338px
                margin: 0 0 105px
+               font-size: 16px
    .nominations
       .title-nominations
-         .title
-            margin-top: -18px
-            font-size: 18px !important
-         .subtitle
-            font-size: 7px !important
+         .text
+            .title
+               margin-top: -18px
+               font-size: 18px !important
+            .subtitle
+               font-size: 7px !important
    .position
       text-align: center
       .col-xl-7
