@@ -254,11 +254,15 @@
 								this.committees = [];
 								this.getFullOrgCommitteeList();
 							})
+								.catch((error) => {
+									swal({
+										icon: "error",
+										title: 'Помилка',
+										text: 'Поштові адреси усіх членів журі не повинні повторюватись'
+									});
+								});
 					}
-				}).catch(() => {
-                    console.log(2);
-
-                });
+				})
 			},
 			deleteOrgCommittee(id, index) {
 				swal({

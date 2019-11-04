@@ -99,9 +99,9 @@
                             </textarea>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes(quote, index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes($event, quote, index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <button v-if="quote !== editing && quote.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editQuote(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                            <button :disabled="errors.has('quote')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <span class="errors text-danger" v-if="errors.has('quote')">
@@ -383,27 +383,10 @@ export default {
             });
         },
 	    editQuote(quote, el, index) {
-		    this.$validator.validateAll().then((result) => {
-			    if (!result) {
-				    return;
-			    }
-			    else {
-				    const textElement = document.getElementById(el);
-				    if(this.showButton) {
-					    textElement.removeAttribute('disabled');
-					    textElement.focus();
-					    this.showButton = false;
-				    }
-				    else {
-					    textElement.setAttribute('disabled', 'disabled');
-					    axios.post('/put-quote', {
-						    id: this.quotes[index].quote_id,
-						    text: this.quotes[index].text,
-					    })
-					    this.showButton = true;
-				    }
-			    }
-		    });
+		    const textElement = document.querySelectorAll('#'+el)[index];
+		    textElement.removeAttribute('disabled');
+		    textElement.focus();
+		    this.editing = quote;
 	    },
 	    getAllInfo() {
 		    axios.get('/get-all-info')
@@ -434,8 +417,9 @@ export default {
                     }
              });
         },
-	    delQuotes(quote, index, id) {
+	    delQuotes(event, quote, index, id) {
 		    if (id == quote.quote_id) {
+		    	event.preventDefault();
 			    axios.post('/delete-quote/' + id);
 			    this.quotes.splice(index, 1);
 		    }

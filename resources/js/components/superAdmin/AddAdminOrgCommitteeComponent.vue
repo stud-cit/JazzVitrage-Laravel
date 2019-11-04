@@ -169,10 +169,13 @@
 						})
 					}
 
-                }).catch(() => {
-                    console.log(2);
-
-                });
+                }).catch((error) => {
+					swal({
+						icon: "error",
+						title: 'Помилка',
+						text: 'Поштові адреси усіх членів журі не повинні повторюватись'
+					});
+				});
 			},
 			deleteAdminOrgCommittee(id, index) {
 				swal({
