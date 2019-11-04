@@ -16,7 +16,7 @@
       <tbody v-for="(item, index) in filteredList" :key="index">
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
-                    {{index+1}}
+                    {{item.id}}
                 </td>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
                     {{ item.name }}
