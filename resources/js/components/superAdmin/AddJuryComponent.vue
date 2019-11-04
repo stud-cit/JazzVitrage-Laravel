@@ -323,6 +323,13 @@
 								this.jurys = [];
 								this.getFullJuryList();
 							})
+							.catch((error) => {
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Поштові адреси усіх членів журі не повинні повторюватись'
+								});
+							});
 					}
 				});
 			},
