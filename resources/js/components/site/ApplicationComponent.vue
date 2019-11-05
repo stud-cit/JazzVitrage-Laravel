@@ -860,7 +860,7 @@
                                     <img src="img/input-video.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="compositionVideo" accept=".ogm, .ogg, .3pg, .wmv, .mpg, .webm, .ogv, .mov, .asx, .mpeg, .mp4, .m4v, .avi, .mkv, .asf" id="compositionVideo" class="d-none" type="file" required
-                                        v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf']}">
+                                        v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf'], size: 102400}">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
                                     </label>
@@ -871,7 +871,7 @@
                                     <img src="img/input-video.png" alt="" class="input-img">
 
                                     <input @change="getInputFile" name="compositionVideo" id="compositionVideo" accept=".ogm, .3pg, .wmv, .mpg, .webm, .ogv, .mov, .asx, .mpeg, .mp4, .m4v, .avi, .mkv, .asf" class="d-none" type="file" required
-                                           v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf']}">
+                                           v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf'], size: 102400}">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
                                     </label>
@@ -879,7 +879,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('compositionVideo')">
-                                    Оберіть файл відео-формату
+                                    Оберіть файл відео-формату розміром не більше 100 Мб
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
