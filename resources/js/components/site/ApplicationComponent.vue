@@ -1088,6 +1088,9 @@
                             </div>
                         </form>
                     </transition>
+                    <div v-if="preloader" class="preloader">
+                        <img src="img/JV.gif" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -1107,6 +1110,7 @@
                 steps: [true, false, false, false, false],
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
+                preloader: false,
                 concertmaster: false,
 	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
@@ -1443,24 +1447,27 @@
                 for (let key in this.registration.files) {
                     formData.append('files['+key+']', this.registration.files[key])
                 }
-
+                this.preloader = !this.preloader;
+                console.log(this.preloader);
                 axios.post('/send-app', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
                     })
                     .then((response) => {
+
                         if(response.status == 200 ) {
-                            swal({
+                            swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
                                 icon: "success",
-                                text: "заявка успішно надіслана"
                             });
                             this.$router.push({name: "index"});
                         }
-	                    swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
-		                    icon: "success",
-	                    });
+                        else{
+                            this.preloader = !this.preloader;
+                        }
+
                     })
+
                     .catch((error) => {
                         swal({
                             icon: "error",
@@ -1472,3 +1479,16 @@
         },
     }
 </script>
+<style scoped lang="sass">
+    .preloader
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 100%
+        position: fixed
+        top: 0
+        left: 0
+        background: rgba(0,0,0,0.8)
+
+</style>
