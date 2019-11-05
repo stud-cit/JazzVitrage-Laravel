@@ -179,7 +179,7 @@
                     <div class="row mt-2" v-for="(phone, index) in contact.phones" :key="'phone'+index">
                         <div class="col-9">
                             <input type="text" name="phones" class="form-control" v-model="phone.contact" id="phones" :disabled="phone.disabled == '' ? phone.disabled : true"
-                                v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _()]?\d[- _()]?){10,14}(\s*)?$/ }"
+                                v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _()]?\d[- _()]?){10,12}(\s*)?$/ }"
                                     data-vv-as="Телефон">
                         </div>
                         <div class="col-3">

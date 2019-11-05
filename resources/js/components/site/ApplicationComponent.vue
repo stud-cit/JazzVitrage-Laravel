@@ -132,8 +132,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
-                                           v-validate="{ required: true}"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="'image'"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -144,8 +144,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
-                                           v-validate="{ required: false}"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="'image'"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberBirthdayFile')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
 
                             <div class="d-flex align-items-center justify-content-between">
@@ -208,9 +208,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
-                                           v-validate="{ required: true}"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" accept="image/*" required
+                                           v-validate="'image'">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -220,9 +219,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file"
-                                           v-validate="{ required: false}"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile" id="idFile" accept="image/*" class="d-none" type="file" required
+                                           v-validate="'image'">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -230,7 +228,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idFile')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
@@ -299,9 +297,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
-                                         v-validate="{ required: true }"
-                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
+                                         v-validate="'image'">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -311,9 +308,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="memberBirthdayFile" class="d-none" type="file"
-                                           v-validate="{ required: false }"
-                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="'image'">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -321,7 +317,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberBirthdayFile')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
@@ -374,9 +370,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile" class="d-none" type="file"
-                                        v-validate="{ required: true }"
-                                            data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile" accept="image/*" id="idFile" class="d-none" type="file" required
+                                        v-validate="'image'">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -386,9 +381,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile" class="d-none" type="file"
-                                           v-validate="{ required: false }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile" accept="image/*" id="idFile" class="d-none" type="file" required
+                                           v-validate="'image'">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -396,7 +390,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idFile')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
                             <h3 class="step-title">Другий учасник дуету</h3>
                             <div class="input-row">
@@ -455,9 +449,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="member2BirthdayFile" class="d-none" type="file"
-                                        v-validate="{ required: true }"
-                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept="image/*" id="member2BirthdayFile" class="d-none" type="file" required
+                                        v-validate="'image'">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -467,9 +460,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".png, .bmp, .gif, .jpeg, .jpg" id="member2BirthdayFile" class="d-none" type="file"
-                                           v-validate="{ required: false }"
-                                           data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept="image/*" id="member2BirthdayFile" class="d-none" type="file" required
+                                           v-validate="'image'">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -477,7 +469,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('member2BirthdayFile')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
@@ -530,9 +522,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile2" class="d-none" type="file"
-                                        v-validate="{ required: true }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile2" accept="image/*" id="idFile2" class="d-none" type="file" required
+                                        v-validate="'image'">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
                                     </label>
@@ -542,9 +533,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" accept=".png, .bmp, .gif, .jpeg, .jpg" id="idFile2" class="d-none" type="file"
-                                           v-validate="{ required: false }"
-                                           data-vv-as="КОПІЯ ДОКУМЕНТА">
+                                    <input @change="getInputFile" name="idFile2" accept="image/*" id="idFile2" class="d-none" type="file" required
+                                           v-validate="'image'">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
                                     </label>
@@ -552,7 +542,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idFile2')">
-                                    Файл не обрано
+                                    Оберіть файл графічного формату
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
@@ -598,15 +588,14 @@
                             <span class="errors" v-if="errors.has('groupAverage')">
                                     Введіть корректні дані в діапазоні від 8 до 17
                             </span>
-                            <h3 class="step-title">Документ с датами народження учасників <i class="hint"></i></h3>
+                            <h3 class="step-title">Документ з датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
                                 <div class="input-container" v-if="fileTitle.groupBirthdayFile == null">
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".doc, .docx, .pdf" id="groupBirthdayFile" class="d-none" type="file" placeholder="../birthdays.jpg "
-                                        v-validate="{ required: true }"
-                                           data-vv-as="Документ с датами народження учасників">
+                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf" id="groupBirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -616,9 +605,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".doc, .docx, .pdf" class="d-none" type="file" placeholder="../birthdays.jpg "
-                                           v-validate="{ required: false }"
-                                           data-vv-as="Документ с датами народження учасників">
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -626,7 +614,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupBirthdayFile')">
-                                    Файл не обрано
+                                    Файл повинен відповідати формату: pdf, doc, txt, docx
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
@@ -871,9 +859,8 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" id="compositionVideo" class="d-none" type="file"
-                                        v-validate="{ required: true }"
-                                           data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
+                                    <input @change="getInputFile" name="compositionVideo" accept=".ogm, .ogg, .3pg, .wmv, .mpg, .webm, .ogv, .mov, .asx, .mpeg, .mp4, .m4v, .avi, .mkv, .asf" id="compositionVideo" class="d-none" type="file" required
+                                        v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf']}">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
                                     </label>
@@ -883,9 +870,8 @@
 
                                     <img src="img/input-video.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" accept=".avi, .mp4, .mav, .wmv, .mov, .3gp, .mkv, .flv, .swf, .mpg, .mpeg, .asf" class="d-none" type="file" placeholder="../birthdays.jpg "
-                                           v-validate="{ required: false }"
-                                           data-vv-as="ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО">
+                                    <input @change="getInputFile" name="compositionVideo" id="compositionVideo" accept=".ogm, .3pg, .wmv, .mpg, .webm, .ogv, .mov, .asx, .mpeg, .mp4, .m4v, .avi, .mkv, .asf" class="d-none" type="file" required
+                                           v-validate="{'ext':['ogm', 'ogg', '3pg', 'wmv', 'mpg', 'webm', 'ogv', 'mov', 'asx', 'mpeg', 'mp4', 'm4v', 'avi', 'mkv', 'asf']}">
                                     <label for="compositionVideo">
                                         <span>{{fileTitle.compositionVideo}}</span>
                                     </label>
@@ -893,7 +879,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('compositionVideo')">
-                                    Файл не обрано
+                                    Оберіть файл відео-формату
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
