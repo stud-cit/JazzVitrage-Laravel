@@ -13,6 +13,9 @@ class InfoController extends Controller
     public function getAllInfo()
     {
         $info = DB::select('select logo_section.*, position_section.*, hymn_section.* from logo_section, position_section, hymn_section');
+        $info[0]->provisions_text = htmlspecialchars_decode($info[0]->provisions_text);
+        $info[0]->description = htmlspecialchars_decode($info[0]->description);
+        $info[0]->ticker = htmlspecialchars_decode($info[0]->ticker);
         $contact = Contacts::with('contactsItems')->get();
         return response()->json(['info' => $info, 'contact' => $contact]);
     }
@@ -55,7 +58,7 @@ class InfoController extends Controller
     }
     public function postInfo(Request $request)
     {
-        $res = DB::update('update '.$request->table.' set '.$request->row.' = "'.html_entity_decode($request->value).'" where id = 1');
+        $res = DB::update('update '.$request->table.' set '.$request->row.' = "'.htmlspecialchars($request->value).'" where id = 1');
     }
     public function postInfoFile(Request $request)
     {
@@ -77,6 +80,7 @@ class InfoController extends Controller
         $quotes = new Quotes;
         $quotes->text = $request->text;
         $quotes->save();
+        return response()->json(["quote_id" => $quotes->quote_id]);
     }
     public function putQuote(Request $request)
     {

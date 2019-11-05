@@ -441,9 +441,10 @@
 								text: this.quotes[index].text,
 							})
 						} else {
-
 							axios.post('/post-quote', {
 								text: this.quotes[index].text,
+							}).then(res => {
+								this.quotes[index].quote_id = res.data.quote_id
 							})
 						}
 					}
