@@ -1472,7 +1472,7 @@
                         swal({
                             icon: "error",
                             title: 'Помилка',
-                            text: error.response.status
+                            text: String(error.response.status)
                         });
                     });
             },
