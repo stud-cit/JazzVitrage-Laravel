@@ -29,6 +29,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', function () {
         return view('admin.home');
     })->name('admin');
+
+    // Юзеры
+
+    Route::get('/admin/profile/{id}', function () {
+        return view('admin.profile');
+    })->name('profile');
+
+    Route::get('/user/{id}', 'UserController@getUserId');
+    Route::post('/user/{id}', 'UserController@updateUser');
+    Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {

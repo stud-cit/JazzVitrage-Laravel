@@ -154,7 +154,7 @@
 			<div class="user-block">
 				<div class="user-content d-none d-lg-flex">
 					<img src="{{ url('/') }}/img/user.png" alt="">
-					<div class="welcome">{{ Auth::user()->name }} {{ Auth::user()->surname }} ({{ $role }})</div>
+					<div class="welcome"><a href="/admin/profile/{{ Auth::user()->user_id }}">{{ Auth::user()->name }} {{ Auth::user()->surname }}</a> ({{ $role }})</div>
 				</div>
 				<a class="logout" data-toggle="modal" data-target="#modalLogout">
 					<i class="fa fa-fw fa-sign-out"></i>Вихід
