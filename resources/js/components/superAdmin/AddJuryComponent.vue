@@ -186,7 +186,7 @@
                     <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
                     <span class="title" id="span_id">Додати файл</span>
 
-					<input type="file" ref="juryfile" class="form-control-file" id="jury-photo">
+					<input type="file" ref="juryfile" accept='image/*' class="form-control-file" id="jury-photo">
 				</label>
                 </div>`;
 

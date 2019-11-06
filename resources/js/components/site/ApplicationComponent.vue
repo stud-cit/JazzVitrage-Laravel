@@ -656,14 +656,12 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
 
-                                    <input type="text" name="schoolPhone" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
-                                        v-validate="{ required: true, regex: /^(\+380)(\d{7,9})$/ }"
-
-                                           data-vv-as="ТЕЛЕФОН">
+                                    <input type="text" name="schoolPhone" maxlength="13" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
+                                        v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('schoolPhone')">
-                                    Введіть дані у форматі +380 та корректну кількість символів
+                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -730,14 +728,12 @@
                                 <div class="input-container">
                                     <img src="img/input-phone.png" alt="" class="input-img">
 
-                                    <input type="text" name="teacherPhone" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
-                                        v-validate="{ required: true, regex: /^(\+380)(\d{7,9})$/ }"
-
-                                           data-vv-as="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА">
+                                    <input type="text" name="teacherPhone" maxlength="13" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
+                                        v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('teacherPhone')">
-                                    Введіть дані у форматі +380 та корректну кількість символів 
+                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри) 
                             </span>
                             <div class="input-row checkbox-row">
                                     <label for="concertmaster" >
