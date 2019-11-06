@@ -22,7 +22,7 @@ class CreateTasksPresentation extends Migration
             $table->string('composition_two', 50);
             $table->string('author_two', 50);
             $table->string('time_two', 50);
-            $table->string('video', 100);
+            $table->string('video');
             $table->integer('application_id')->unsigned();
             $table->timestamps();
         });

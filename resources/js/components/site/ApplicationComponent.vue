@@ -1455,7 +1455,7 @@
                 formData.append('data', JSON.stringify(this.registration.data));
 
                 for (let key in this.registration.files) {
-                    formData.append('files['+key+']', this.registration.files[key])
+                    formData.append(key, this.registration.files[key])
                 }
 
                 axios.post('/send-app', formData, {
@@ -1479,7 +1479,7 @@
                         swal({
                             icon: "error",
                             title: 'Помилка',
-                            text: error.response.status
+                            text: String(error.response.status)
                         });
                     });
             },

@@ -162,6 +162,8 @@ Auth::routes(['register' => false]);
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
     Route::post('post-question', 'QuestionController@postQuestion');
 
+    Route::get('/member-files/{id}/{file}', 'ApplicationController@download');
+
     Route::get('/{any}', ['as' => 'site', function () {
         return view('layouts.site.index');
     }])->where('any', '.*');

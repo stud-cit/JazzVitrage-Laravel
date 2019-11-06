@@ -17,7 +17,7 @@
                 </tr>
           </thead>
 
-          <tbody class="card" v-for="(item, index) in filteredMembersList">
+          <tbody class="card" v-for="(item, index) in filteredMembersList" :key="item.application_id">
                 <tr>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
                         {{index+1}}
@@ -30,9 +30,8 @@
                     </td>
                     <td>
                         <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id)"></i>
-
+                    </td>
                     <td>
-
                         <i class="fa fa-2x fa-times-circle btn btn-default p-0"  @click="archiveMember(item.id)"></i>
                     </td>
                 </tr>
@@ -93,73 +92,60 @@
                             <p></p>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'соліст'">
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc" 
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія свідоцтва про народження або паспорта</strong></p>
+                                    <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
                                 </div>
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.in_file">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія ідентифікаційного коду</strong></p>
+                                    <label class="brtop mb-2">Копія ідентифікаційного коду</label>
                                 </div>
                             </div>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo1 + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo1">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo1)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія свідоцтва про народження або паспорта першого учасника</strong></p>
+                                    <label class="brtop mb-2">Копія свідоцтва про народження або паспорта першого учасника</label>
                                 </div>
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file1 + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.in_file1">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file1)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія ідентифікаційного коду першого учасника</strong></p>
+                                    <label class="brtop mb-2">Копія ідентифікаційного коду першого учасника</label>
                                 </div>
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.passport_photo2 + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.passport_photo2">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo2)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія свідоцтва про народження або паспорта другого учасника</strong></p>
+                                    <label class="brtop mb-2">Копія свідоцтва про народження або паспорта другого учасника</label>
                                 </div>
-                                <div class="col-3">
-                                    <div class="border statementPhotoDoc"
-                                         :style="{ backgroundImage: 'url(' + '/memberFiles/'+item.in_file2 + ')' }">
-                                        <silentbox-single :src="'/memberFiles/'+item.in_file2">
-                                            <i class="fa fa-search"></i>
-                                        </silentbox-single>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file2)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
-                                    <p><strong>Копія ідентифікаційного коду другого учасника</strong></p>
+                                    <label class="brtop mb-2">Копія ідентифікаційного коду другого учасника</label>
                                 </div>
                             </div>
 
-                            <div id="memberDoc" class="row mb-2"
-                                 v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
-                                <div class="col-8">
-                                    <label for="memberDoc" class="brtop mb-2">Документ с датами народження учасників</label>
-                                    <div class="align-center file-item ml-5">
-                                        <div class="mb-2"><img class="ml-4" src="/img/file.png" alt=""><div class="span-mr">{{item.file}}</div></div>
-                                        <button type="button" @click="downloadDoc(item.groupId)">Завантажити</button>
+                            <div id="memberDoc" class="row mb-2" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.file)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
                                     </div>
+                                    <label class="brtop mb-2">Документ с датами народження учасників</label>
                                 </div>
                             </div>
 
@@ -209,7 +195,6 @@ export default {
                         this.members.push({
                             name: member.group.name,
                             type: member.app_type.name,
-
 	                        memberAverage: member.group.average_age,
 	                        teacherIdCode: member.preparation.teacher_in,
 	                        schoolName: member.preparation.school_one,
@@ -304,7 +289,7 @@ export default {
                 swal({
                     icon: "error",
                     title: 'Помилка',
-                    text: error.response.status
+                    text: String(error.response.status)
                 });
             });
         },
@@ -326,31 +311,6 @@ export default {
 		            });
 	            });
         },
-	    forceFileDownload(response, groupId){
-		    const url = window.URL.createObjectURL(new Blob([response.data]))
-		    const link = document.createElement('a')
-		    link.href = url
-		    link.setAttribute('download', this.members[groupId].file)
-		    document.body.appendChild(link)
-		    link.click()
-	    },
-	    downloadDoc(groupId){
-        	axios({
-                method: 'get',
-                url: '/memberFiles/'+this.members[groupId].file,
-		        responseType: 'arraybuffer'
-            })
-            .then(response => {
-                this.forceFileDownload(response, groupId)
-            })
-		    .catch((error) => {
-                swal({
-                    icon: "error",
-                    title: 'Помилка',
-                    text: 'Не вдалося завантажити документ'
-                });
-            });
-        },
         archiveMember(id){
             axios.post('/archive-members/'+id)
                 .then((response) => {
@@ -369,6 +329,16 @@ export default {
                         text: 'Не вдалося додати заяву до архіву'
                     });
                 });
+        },
+        getFile(file) {
+            axios({
+                url: "/"+file,
+                method: 'GET',
+                responseType: 'blob'
+            }).then((response) => {
+                var fileURL = window.URL.createObjectURL(response.data);
+                window.open(fileURL);
+            });
         }
     }
 }

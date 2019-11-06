@@ -14,19 +14,20 @@ use App\Models\Nomination;
 use Illuminate\Support\Facades\Session;
 use App\Mail\MemberEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
-    protected $publicStorage = '/memberFiles/';
+    protected $publicStorage = "member-files/";
 
     public function index()
     {	
         return view('application');
     }
 
-    public function store(Request $request)
+    public function download($id, $file)
     {
-        // TO DO
+        return Storage::download($this->publicStorage.$id."/".$file);
     }
 
      public function getMembers()
@@ -91,29 +92,17 @@ class ApplicationController extends Controller
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 0;
             $soloDuet->application_id = $app->application_id;
-
-            foreach($request->files as $k => $val) {
-                $member_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["memberBirthdayFile"]->getClientOriginalName();
-                $val["memberBirthdayFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $member_birthday_file);
-                $soloDuet->passport_photo = $member_birthday_file;
-
-                $id_file = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile"]->getClientOriginalName();
-                $val["idFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $id_file);
-                $soloDuet->in_file = $id_file;
-            }
-
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
+            $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
+            $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
+            
+            // Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+            //     $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+            //     $message->from('jazz@gmail.com', 'jazz');
+            // });
 
             $soloDuet->save();
         }
-
+        
         if($data->appType == 2) {
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
@@ -128,25 +117,13 @@ class ApplicationController extends Controller
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
+            $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
+            $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
 
-            foreach($request->files as $k => $val) {
-                $member_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["memberBirthdayFile"]->getClientOriginalName();
-                $val["memberBirthdayFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $member_birthday_file);
-                $soloDuet->passport_photo = $member_birthday_file;
-
-                $id_file = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile"]->getClientOriginalName();
-                $val["idFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $id_file);
-                $soloDuet->in_file = $id_file;
-            }
-
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
+            // Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+            //     $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+            //     $message->from('jazz@gmail.com', 'jazz');
+            // });
 
             $soloDuet->save();
 
@@ -163,25 +140,13 @@ class ApplicationController extends Controller
             $soloDuet->in = $data->idCode2;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
+            $soloDuet->passport_photo = $request->member2BirthdayFile->store($this->publicStorage.$app->application_id);
+            $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
 
-            foreach($request->files as $k => $val) {
-                $member2_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["member2BirthdayFile"]->getClientOriginalName();
-                $val["member2BirthdayFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $member2_birthday_file);
-                $soloDuet->passport_photo = $member2_birthday_file;
-
-                $id_file2 = mb_strimwidth(uniqid(),0,10).'-'.$val["idFile2"]->getClientOriginalName();
-                $val["idFile2"]
-                    ->move(public_path().$this
-                    ->publicStorage, $id_file2);
-                $soloDuet->in_file = $id_file2;
-            }
-
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
+            // Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
+            //     $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
+            //     $message->from('jazz@gmail.com', 'jazz');
+            // });
 
             $soloDuet->save();
         }
@@ -192,13 +157,8 @@ class ApplicationController extends Controller
             $group->name = $data->groupName;
             $group->count_people = $data->groupCount;
             $group->average_age = $data->groupAverage;
-            foreach($request->files as $k => $val) {
-                $group_birthday_file = mb_strimwidth(uniqid(),0,10).'-'.$val["groupBirthdayFile"]->getClientOriginalName();
-                $val["groupBirthdayFile"]
-                    ->move(public_path().$this
-                    ->publicStorage, $group_birthday_file);
-                $group->file = $group_birthday_file;
-            }
+            $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
+
             $group->save();
         }
 
@@ -228,14 +188,13 @@ class ApplicationController extends Controller
         $presentation->author_two = $data->compositionAuthor2;
         $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
-        foreach($request->files as $k => $val) {
-            $composition_video = mb_strimwidth(uniqid(),0, 10).'-'.$val["compositionVideo"]->getClientOriginalName();
-            $val["compositionVideo"]
-                ->move(public_path().$this
-                ->publicStorage, $composition_video);
-            $presentation->video = $composition_video;
-        }
+
+        $file = $request->compositionVideo->store('public');
+        $presentation->video = str_replace('public/', '', $file);
+
         $presentation->save();
+
+        return response('ok', 200);
      }
 
     public function archiveMembers($id)
@@ -273,19 +232,12 @@ class ApplicationController extends Controller
     }
     public function deleteMembers($id)
     {
-
         $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
-        if(!$model->group){
-            for($i = 0; $i < count($model->soloDuet); $i++) {
-                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["passport_photo"]));
-                unlink(public_path($this->publicStorage.$model->soloDuet[$i]["in_file"]));
-            }
-        } else {
-            unlink(public_path($this->publicStorage.$model->group["file"]));
-        }
-        unlink(public_path($this->publicStorage.$model->presentation["video"]));
+        Storage::deleteDirectory("member-files/".$model->application_id);
+        Storage::delete("public/".$model->presentation["video"]);
         Evaluation::where("application_id", $id)->delete();
         $model->delete();
+        return response('ok', 200);
     }
 
 
