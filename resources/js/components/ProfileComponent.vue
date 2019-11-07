@@ -61,7 +61,7 @@
                                 <label for="email"><h4>Email</h4></label>
                                 <input type="email" class="form-control" name="email" id="email" v-model="data.email" required
                                     v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
-                                <span class="errors" v-if="errors.has('schoolEmail')">
+                                <span class="errors text-danger" v-if="errors.has('email')">
                                     Введіть дані у форматі name@email.com
                                 </span>
                             </div>
