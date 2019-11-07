@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/{id}', 'UserController@getUserId');
     Route::post('/user/{id}', 'UserController@updateUser');
     Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
+
+    Route::get('/member-files/{id}/{file}', 'ApplicationController@download');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
@@ -171,8 +173,6 @@ Auth::routes(['register' => false]);
 
     Route::post('delete-members/{id}/',  'ApplicationController@deleteMembers');
     Route::post('post-question', 'QuestionController@postQuestion');
-
-    Route::get('/member-files/{id}/{file}', 'ApplicationController@download');
 
     Route::get('/{any}', ['as' => 'site', function () {
         return view('layouts.site.index');

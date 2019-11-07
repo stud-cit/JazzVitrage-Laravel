@@ -179,7 +179,7 @@ export default {
     },
     methods: {
         getFullList(){
-            axios.get('/get-members')
+            axios.get('/get-approved-members')
             .then((response) => {
                 this.members = [];
                 this.memberPhoto = [];
@@ -311,24 +311,34 @@ export default {
 				    });
 			    });
 	    },
-        archiveMember(event){
-            const id =  event.target.getAttribute('data-value');
+        archiveMember(id){
             axios.post('/archive-members/'+id)
                 .then((response) => {
-                    if(response.status == 200) {
+                    if(response.status == 200 ) {
                         this.getFullList();
                     }
                     swal("Запис був успішно доданий до архіву", {
                         icon: "success",
                     });
-			    })
+
+                })
                 .catch((error) => {
                     swal({
                         icon: "error",
                         title: 'Помилка',
                         text: 'Не вдалося додати заяву до архіву'
                     });
-                })
+                });
+        },
+        getFile(file) {
+            axios({
+                url: "/"+file,
+                method: 'GET',
+                responseType: 'blob'
+            }).then((response) => {
+                var fileURL = window.URL.createObjectURL(response.data);
+                window.open(fileURL);
+            });
         }
     },
 }
