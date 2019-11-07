@@ -5,7 +5,7 @@
                 <h2 class="title-section">ФЕСТИВАЛЬ ДЖАЗ-ВIтраж</h2>
                 <div class="row">
                     <router-link 
-                        class="col-lg-4 gallery-item"
+                        class="col-12 col-md-6 col-xl-4 gallery-item"
                         :to="{ name: 'gallery-year', params: { id: item.year } }" 
                         v-for="item in foto" :key="item.foto_id"
                     >

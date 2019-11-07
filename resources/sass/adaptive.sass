@@ -3,10 +3,12 @@
 .juries
    .member-jury-card
       .description
-         max-width: 50%
+         width: 50%
          margin: 0
       .picture
-         max-width: 50%
+         width: 50%
+         img
+            width: 100%
 .navbar-expand-lg>.container
    padding: 0 15px
 @media (min-width: 1401px) and (max-width: 1600px)
@@ -223,7 +225,7 @@
                margin: 4px 0
 
                .gallery-img
-                  width: 296px
+                  width: 100%
                   height: 292px
 
          .text-center
@@ -314,7 +316,7 @@
                   align-items: center
    .gallery
       .page-nav
-         font-size: 20px
+         font-size: 16px
       .video-gallery-item
          width: 50%
          flex-grow: 0
@@ -387,23 +389,22 @@
       padding-bottom: 0
 
       .left-layer
-         background: url('../../public/img/contacts-layer-768px.png') no-repeat
-         width: 100%
-         height: 390px
-         left: 0
-         right: 0
-         z-index: 1
          position: static
+         background: url('../../public/img/contacts-layer-768px.png') no-repeat
          background-size: cover
+         width: 100%
+         height: auto
+
+         .text-layer
+            position: static
+            padding: 30px 40px
+            .text-row
+               .text-field, title-field
+                  height: auto
 
          img
             display: none
 
-         .text-layer
-            top: 60px
-            left: 158px
-            right: 0
-            height: auto
 
       .right-layer
          padding: 0 0 65px 0
@@ -449,6 +450,17 @@
       padding: 20px 35px
    .applications .step-block .step-form .step-title
       font-size: 16px
+   .gallery .video-gallery-item .dark-bg .caption
+      font-size: 60px
+   .gallery .video-gallery-item .dark-bg .caption:hover
+      font-size: 75px
+   .jury-list .next, .jury-list .prev
+      display: none
+   .juries .title-juries .text .title
+      font-size: 18px
+      margin-top: -2px
+   .juries .title-juries .text .subtitle
+      margin-top: 5px
 // mobile
 @media (max-width: 414px)
    // main page
@@ -818,11 +830,13 @@
          .text
             top: 12px
             .title
-               font-size: 19px
+               font-size: 16px
+               margin-top: -1px
             .subtitle
-               margin-top: 0
+               margin-top: 2px
                font-size: 10px
-
+      .jury-list .next, .jury-list .prev
+         display: none
       .member-jury-card
          margin-top: 20px
          flex-direction: column
@@ -841,3 +855,5 @@
    .applications .step-block .step-form .input-container img, .applications .step-block .step-form .select-block .star
       margin: 0 10px
       max-height: 20px
+   .main-section.juries .container .title-section
+      font-size: 22px
