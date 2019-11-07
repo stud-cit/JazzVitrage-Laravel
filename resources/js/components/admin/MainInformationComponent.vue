@@ -306,6 +306,8 @@ export default {
                         contact: this.contact.socials[index].contact,
                         contact_title: this.contact.socials[index].contact_title,
                         contact_section_id: 3
+                    }).then((res) => {
+                        this.contact.socials[index].contact_items_id = res.data.id
                     })
                 }
             });
@@ -328,6 +330,8 @@ export default {
                         id: this.contact[el][index].contact_items_id,
                         contact: this.contact[el][index].contact,
                         contact_section_id: this.contact[el][index].contact_section_id
+                    }).then((res) => {
+                        this.contact[el][index].contact_items_id = res.data.id
                     })
                 }
             });
