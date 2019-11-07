@@ -1,5 +1,47 @@
 <template>
     <div>
+        <!--<section class="sections main-section members">-->
+            <!--<div class="container">-->
+                <!--<h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>-->
+
+                <!--<table class="table-members">-->
+                    <!--<tr class="table-title">-->
+                        <!--<th>№</th>-->
+                        <!--<th>П.І.Б. /<br>-->
+                            <!--НАЗВА КОЛЕКТИВУ </th>-->
+                        <!--<th>АДРЕСА</th>-->
+                        <!--<th>НАЗВА ЗАКЛАДУ</th>-->
+                        <!--<th>ВИКЛАДАЧ</th>-->
+                    <!--</tr>-->
+                    <!--<tr v-for="item in paginatedData" :key="item.index">-->
+                        <!--<td>{{ item.index+1 }}</td>-->
+                        <!--<td>{{ item.name }}</td>-->
+                        <!--<td>{{ item.schoolAddress }}</td>-->
+                        <!--<td>{{ item.schoolName }}</td>-->
+                        <!--<td>{{ item.teacher }}</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <!--<div class="search-block">-->
+                    <!--<input type="text" v-model="searchMember" placeholder="ПОШУК">-->
+                    <!--<select v-model="searchNomination" class="nomination">-->
+                        <!--<option value="" selected="selected">номінація</option>-->
+                        <!--<option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>-->
+                    <!--</select>-->
+                    <!--<select v-model="ageCategory"  class="category">-->
+                        <!--<option value="" selected="selected" >вік.категорія</option>-->
+                        <!--<option value="8-10">Від 8 до 10 років</option>-->
+                        <!--<option value="11-13">Від 11 до 13 років</option>-->
+                        <!--<option value="14-17">Від 14 до 17 років</option>-->
+                    <!--</select>-->
+                    <!--<button class="clean" @click="clean">Очистити</button>-->
+                <!--</div>-->
+                <!--<ul class="pagination">-->
+                    <!--<li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>-->
+                    <!--<li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>-->
+                    <!--<li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</section>-->
         <section class="sections main-section members">
             <div class="container">
                 <h2 class="title-section">СПИСКИ УЧАСНИКІВ</h2>
@@ -20,27 +62,36 @@
                         <td>{{ item.schoolName }}</td>
                         <td>{{ item.teacher }}</td>
                     </tr>
+                    <tr class="search">
+                        <td colspan="5">
+                            <div class="search-block">
+                                <input type="text" v-model="searchMember" placeholder="ПОШУК">
+                                <select v-model="searchNomination" class="nomination">
+                                    <option value="" selected="selected">номінація</option>
+                                    <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
+                                </select>
+                                <select v-model="ageCategory" class="category">
+                                    <option value="" selected="selected" >вік.категорія</option>
+                                    <option value="8-10">Від 8 до 10 років</option>
+                                    <option value="11-13">Від 11 до 13 років</option>
+                                    <option value="14-17">Від 14 до 17 років</option>
+                                </select>
+                                <button class="clean" @click="clean">Очистити</button>
+
+                            </div>
+                            <ul class="pagination">
+                                <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
+                                <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
+                                <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
+                            </ul>
+                        </td>
+                    </tr>
                 </table>
-                <div class="search-block">
-                    <input type="text" v-model="searchMember" placeholder="ПОШУК">
-                    <select v-model="searchNomination" class="nomination">
-                        <option value="" selected="selected">номінація</option>
-                        <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
-                    </select>
-                    <select v-model="ageCategory"  class="category">
-                        <option value="" selected="selected" >вік.категорія</option>
-                        <option value="8-10">Від 8 до 10 років</option>
-                        <option value="11-13">Від 11 до 13 років</option>
-                        <option value="14-17">Від 14 до 17 років</option>
-                    </select>
-                    <button class="clean" @click="clean">Очистити</button>
-                </div>
-                <ul class="pagination">
-                    <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
-                    <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
-                    <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
-                </ul>
+
+
+
             </div>
+
         </section>
     </div>
 </template>
