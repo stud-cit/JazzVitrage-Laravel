@@ -29,6 +29,8 @@ import RemovedStatementComponent from './components/RemovedStatementComponent';
 import ListParticipantsComponent from './components/ListParticipantsComponent';
 import EvaluationResultsComponent from './components/EvaluationResultsComponent';
 
+import ProfileComponent from './components/ProfileComponent';
+
 // Адмін
 import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import FotoGalleryComponent from './components/admin/FotoGalleryComponent';
@@ -52,6 +54,11 @@ const router = new VueRouter({
         //     name: 'home',
         //     component: NewStatementComponent
         // },
+        {
+            path: '/admin/profile/:id',
+            name: 'profile',
+            component: ProfileComponent,
+        },
         {
             path: '/admin/all-statements',
             name: 'jury-all-statements',
@@ -83,6 +90,7 @@ const app = new Vue({
         AddAdminOrgCommitteeComponent,
         QuestionComponent,
         PeriodComponent,
+        ProfileComponent
     },
     router
 });

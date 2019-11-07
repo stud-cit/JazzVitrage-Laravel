@@ -20,9 +20,9 @@ class CreateSoloDuetTable extends Migration
             $table->string('patronymic', 50);
             $table->string('member_email', 50);
             $table->date('data_birthday');
-            $table->string('passport_photo', 50);
+            $table->string('passport_photo');
             $table->string('in', 50);
-            $table->string('in_file', 50);
+            $table->string('in_file');
             $table->string('parent_name', 50);
             $table->string('parent_surname', 50);
             $table->string('parent_patronymic', 50);

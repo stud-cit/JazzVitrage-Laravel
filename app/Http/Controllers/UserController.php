@@ -6,6 +6,13 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     protected $userStorage = '/img/user-photo/';
+
+    public function getUserId($id)
+    {
+        $data = Users::find($id);
+        return response()->json($data);
+    }
+
     public function getAllJury()
     {
         $data = Users::where('role', 'jury')->get();
@@ -39,42 +46,31 @@ class UserController extends Controller
         $jury_data->informations = $request->informations;
         $jury_data->save();
     }
-    public function updateJury(Request $request, $id)
-    {
-        $update_jury = Users::find($id);
-        $update_jury->role = 'jury';
-        $update_jury->name = $request->name;
-        $update_jury->surname = $request->surname;
-        $update_jury->patronymic = $request->patronymic;
+
+    
+    function updateUser(Request $request, $id) {
+        $model = Users::find($id);
+        $data = json_decode($request->data);
+        foreach($data as $key => $value) {
+            $model->$key = $value;
+        }
+        $model->password = Hash::make($data->password);
         if ($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
-            $update_jury->photo = $name;
+            $model->photo = $name;
         }
-        $update_jury->email = $request->email;
-        $update_jury->rank = $request->rank;
-        $update_jury->nominations = $request->nominations;
-        $update_jury->informations = $request->informations;
-        $update_jury->save();
+        $model->save();
     }
 
-    public function postOrg(Request $request)
-    {
-        $org_data = new Users;
-        $org_data->role = 'orgComittee';
-        $org_data->name = $request->name;
-        $org_data->surname = $request->surname;
-        $org_data->patronymic = $request->patronymic;
-        $org_data->password = Hash::make('password');
-
-        $file = $request->photo;
-        $name = time().'-'.$file->getClientOriginalName();
-        $file->move(public_path().$this->userStorage, $name);
-        $org_data->photo = $name;
-        $org_data->email = $request->email;
-        $org_data->informations = $request->informations;
-        $org_data->save();
+    function checkPasswordUser(Request $request, $id) {
+        $data = Users::find($id);
+        if (Hash::check($request->password, $data->password)) {
+            return response('ok', 200);
+        } else {
+            return response('error', 401);
+        }
     }
 
     public function updateOrg(Request $request, $id)
@@ -95,6 +91,36 @@ class UserController extends Controller
         $update_org->informations = $request->informations;
         $update_org->save();
     }
+    public function updateAdmin(Request $request, $id)
+    {
+        $update_admin = Users::find($id);
+        $update_admin->role = 'admin';
+        $update_admin->name = $request->name;
+        $update_admin->surname = $request->surname;
+        $update_admin->password = Hash::make('password');
+        $update_admin->email = $request->email;
+        $update_admin->save();
+    }
+
+    public function postOrg(Request $request)
+    {
+        $org_data = new Users;
+        $org_data->role = 'orgComittee';
+        $org_data->name = $request->name;
+        $org_data->surname = $request->surname;
+        $org_data->patronymic = $request->patronymic;
+        $org_data->password = Hash::make('password');
+
+        $file = $request->photo;
+        $name = time().'-'.$file->getClientOriginalName();
+        $file->move(public_path().$this->userStorage, $name);
+        $org_data->photo = $name;
+        $org_data->email = $request->email;
+        $org_data->informations = $request->informations;
+        $org_data->save();
+    }
+
+
 
     public function postAdmin(Request $request)
     {
@@ -106,17 +132,6 @@ class UserController extends Controller
         $admin_data->email = $request->email;
         $admin_data->patronymic = $request->patronymic;
         $admin_data->save();
-    }
-
-    public function updateAdmin(Request $request, $id)
-    {
-        $update_admin = Users::find($id);
-        $update_admin->role = 'admin';
-        $update_admin->name = $request->name;
-        $update_admin->surname = $request->surname;
-        $update_admin->password = Hash::make('password');
-        $update_admin->email = $request->email;
-        $update_admin->save();
     }
 
     public function editUser(Request $request)
