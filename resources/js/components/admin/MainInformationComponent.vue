@@ -424,29 +424,27 @@ export default {
 			    this.quotes.splice(index, 1);
 		    }
 	    },
-        saveQuotes(quote, el, index) { 
-            this.$validator.validateAll().then((result) => {
-                    if (!result) {	
-                        return;
-                    }
-                    else {
-                        this.selectElement(el, this.quotes[index], index);
-                        if(quote.quote_id) {
-                            axios.post('/put-quote', {
-                                id: this.quotes[index].quote_id,
-                                text: this.quotes[index].text,
-                            })
-                        } else {
-                            
-                                    axios.post('/post-quote', {
-                                        text: this.quotes[index].text,
-                                    })
-                                }
-                    }
-            });
-    
-             
-        },
+	    saveQuotes(quote, el, index) {
+		    this.$validator.validateAll().then((result) => {
+			    if (!result) {
+				    return;
+			    } else {
+				    this.selectElement(el, this.quotes[index], index);
+				    if (quote.quote_id) {
+					    axios.post('/put-quote', {
+						    id: this.quotes[index].quote_id,
+						    text: this.quotes[index].text,
+					    })
+				    } else {
+					    axios.post('/post-quote', {
+						    text: this.quotes[index].text,
+					    }).then(res => {
+						    this.quotes[index].quote_id = res.data.quote_id
+					    })
+				    }
+			    }
+		    });
+	    },
         // End Quotes
 
         add(arr) {

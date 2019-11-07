@@ -152,30 +152,30 @@
 						this.admin.push(...response.data)
 					})
 			},
-			postAdmin(){
+			postAdmin() {
 				this.$validator.validateAll().then((result) => {
-                    if (!result) {	
+					if (!result) {
 						return;
-					}
-					else{
+					} else {
 						this.form.append('name', this.name);
 						this.form.append('surname', this.surname);
 						this.form.append('email', this.email);
-	                    this.form.append('patronymic', this.defaultPatronymic);
-                      	axios.post('/post-all-admin', this.form)
-						.then((response) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-						})
+						this.form.append('patronymic', this.defaultPatronymic);
+						axios.post('/post-all-admin', this.form)
+							.then((response) => {
+								this.admin = [];
+								this.getFullAdminOrgCommitteeList();
+							})
+							.catch((error) => {
+								swal({
+									icon: "error",
+									title: 'Помилка',
+									text: 'Користувач с даною поштою вже існує'
+								});
+							});
 					}
 
-                }).catch((error) => {
-					swal({
-						icon: "error",
-						title: 'Помилка',
-						text: 'Поштові адреси усіх членів журі не повинні повторюватись'
-					});
-				});
+				})
 			},
 			deleteAdminOrgCommittee(id, index) {
 				swal({
