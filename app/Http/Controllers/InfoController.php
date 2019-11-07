@@ -37,6 +37,7 @@ class InfoController extends Controller
         $contacts->contact_title = $request->contact_title;
         $contacts->contact = $request->contact;
         $contacts->save();
+        return response()->json(["id" => $contacts->contact_items_id]);
     }
     public function postSocial(Request $request)
     {
@@ -50,6 +51,7 @@ class InfoController extends Controller
         $contacts->contact_title = $request->contact_title;
         $contacts->contact = $request->contact;
         $contacts->save();
+        return response()->json(["id" => $contacts->contact_items_id]);
     }
     public function deleteContact($id)
     {
