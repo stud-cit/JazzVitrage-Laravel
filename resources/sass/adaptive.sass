@@ -1,10 +1,14 @@
+.applications .step-block .step-form .title-left .hint
+   display: none
 .juries
    .member-jury-card
       .description
-         max-width: 50%
+         width: 50%
          margin: 0
       .picture
-         max-width: 50%
+         width: 50%
+         img
+            width: 100%
 .navbar-expand-lg>.container
    padding: 0 15px
 @media (min-width: 1401px) and (max-width: 1600px)
@@ -41,7 +45,6 @@
 
             .preview-logo
                width: 100%
-               max-width: 608px
                height: 280px
 
    .contacts
@@ -54,12 +57,11 @@
          padding: 75px 20px 20px 55%
    .gymn
       .wrapper-gymn
-         width: 608px
          margin: 0 auto
          border-radius: 40px 40px 40px 40px
 
          .couplets
-            border-radius: 40px 40px 0 0
+            //border-radius: 40px 40px 0 0
 
          .media
             top: 0
@@ -223,7 +225,7 @@
                margin: 4px 0
 
                .gallery-img
-                  width: 296px
+                  width: 100%
                   height: 292px
 
          .text-center
@@ -314,7 +316,7 @@
                   align-items: center
    .gallery
       .page-nav
-         font-size: 20px
+         font-size: 16px
       .video-gallery-item
          width: 50%
          flex-grow: 0
@@ -357,6 +359,21 @@
             padding-bottom: 10px
          label:last-child
             padding-bottom: 0
+   .gymn
+      .wrapper-gymn
+         border-radius: 50px 50px 40px 40px
+         width: calc(100% - 2px)
+         margin: 0 auto
+         .couplets
+            border-radius: 40px 40px 0 0
+            margin-top: -1px
+            font-size: 18px
+         .media
+            .overflow
+               .scroll-img
+                  max-height: 100%
+                  overflow: auto
+
    .juries
       .title-juries
          .text
@@ -372,34 +389,32 @@
       padding-bottom: 0
 
       .left-layer
-         background: url('../../public/img/contacts-layer-768px.png') no-repeat
-         width: 100%
-         height: 390px
-         left: 0
-         right: 0
-         z-index: 1
          position: static
+         background: url('../../public/img/contacts-layer-768px.png') no-repeat
          background-size: cover
+         width: 100%
+         height: auto
+
+         .text-layer
+            position: static
+            padding: 30px 40px
+            .text-row
+               .text-field, title-field
+                  height: auto
 
          img
             display: none
 
-         .text-layer
-            top: 60px
-            left: 158px
-            right: 0
-            height: auto
 
       .right-layer
          padding: 0 0 65px 0
          margin: 0
 
          .contacts-title
-            width: 608px
             margin: 60px auto 0
 
          .subtitle
-            width: 608px
+
             margin: 0 auto
 
          .contacts-form
@@ -427,8 +442,25 @@
                .gallery-img
                   width: 100%
                   height: auto
-   
-
+   .applications .step-block .step-numbers
+      display: none
+   .applications .step-block .step-form .select-block .select
+      width: 100%
+   .applications .step-block
+      padding: 20px 35px
+   .applications .step-block .step-form .step-title
+      font-size: 16px
+   .gallery .video-gallery-item .dark-bg .caption
+      font-size: 60px
+   .gallery .video-gallery-item .dark-bg .caption:hover
+      font-size: 75px
+   .jury-list .next, .jury-list .prev
+      display: none
+   .juries .title-juries .text .title
+      font-size: 18px
+      margin-top: -2px
+   .juries .title-juries .text .subtitle
+      margin-top: 5px
 // mobile
 @media (max-width: 414px)
    // main page
@@ -461,7 +493,7 @@
       .members
          .container
             .title-section
-                font-size: 26px
+                font-size: 32px
 
       .gallery
          background: #14042f
@@ -586,7 +618,7 @@
 
          .container
             .step-block
-               max-width: 338px
+               max-width: 100%
                padding: 0
                margin: 20px 0 0 0
 
@@ -669,7 +701,7 @@
                .select-block
                   .select
                      max-width: 80%
-                     font-size: 16px
+                     font-size: 12px
                      background: none
 
       .sections.juries
@@ -712,6 +744,7 @@
 
             .couplets
                padding: 25px 20px
+               font-size: 14px
 
             .media
                .absolute-block
@@ -757,7 +790,7 @@
             flex: 0 0 100%
             max-width: 100%
    .main-section
-      padding-top: 80px
+      padding-top: 130px
    .preview
       &::after
          display: none
@@ -797,11 +830,13 @@
          .text
             top: 12px
             .title
-               font-size: 19px
+               font-size: 16px
+               margin-top: -1px
             .subtitle
-               margin-top: 0
+               margin-top: 2px
                font-size: 10px
-
+      .jury-list .next, .jury-list .prev
+         display: none
       .member-jury-card
          margin-top: 20px
          flex-direction: column
@@ -817,3 +852,8 @@
             img
                width: 100%
 
+   .applications .step-block .step-form .input-container img, .applications .step-block .step-form .select-block .star
+      margin: 0 10px
+      max-height: 20px
+   .main-section.juries .container .title-section
+      font-size: 22px

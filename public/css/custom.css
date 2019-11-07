@@ -108,7 +108,7 @@
     margin-bottom: 10px;
     height: 200px;
     color: #fff;
-    border: none;
+    border: none !important;
 }
 
 .fotoGallery .fa-calendar {

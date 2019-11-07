@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="'image'" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept="image/*">
+                                <input type="file" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept="image/*" v-validate="'image'">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
@@ -199,8 +199,7 @@
                     <div class="row mt-2" v-for="(social, index) in contact.socials" :key="'social'+index">
                         <div class="col-5">
                             <input type="text" name="socialLink" class="form-control" v-model="social.contact" id="socialLink" :disabled="social.disabled == '' ? social.disabled : true"
-                                v-validate="{ required: true}" 
-                                    data-vv-as="Соціальні мережі">
+                                v-validate="{ required: true, regex: /^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)/i}">
                             
                         </div>
                         <div class="col-4">
@@ -218,7 +217,7 @@
                     <div class="row mt-2">
                         <div class="col-5">
                             <span class="errors text-danger" v-if="errors.has('socialLink')">
-                                    {{ errors.first('socialLink') }}
+                                   Некоректне посилання (введіть повну URL-адресу)
                             </span>
                             </div>
                             <div class="col-5">
