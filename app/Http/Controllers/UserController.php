@@ -102,6 +102,26 @@ class UserController extends Controller
         $update_admin->save();
     }
 
+    public function updateJury(Request $request, $id)
+    {
+        $update_jury = Users::find($id);
+        $update_jury->role = 'jury';
+        $update_jury->name = $request->name;
+        $update_jury->surname = $request->surname;
+        $update_jury->patronymic = $request->patronymic;
+        if ($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->userStorage, $name);
+            $update_jury->photo = $name;
+        }
+        $update_jury->email = $request->email;
+        $update_jury->rank = $request->rank;
+        $update_jury->nominations = $request->nominations;
+        $update_jury->informations = $request->informations;
+        $update_jury->save();
+    }
+
     public function postOrg(Request $request)
     {
         $org_data = new Users;
