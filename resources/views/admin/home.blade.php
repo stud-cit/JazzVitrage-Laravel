@@ -52,7 +52,7 @@
                 Додати журі
             </a>
             <a href="/admin/period" class="col-8 col-sm-5 col-md-3  category-items">
-                <div class="category-icon"><i class="fa fa-info-circle fa-3x"></i></div>
+                <div class="category-icon"><i class="fa fa-calendar fa-3x"></i></div>
                 Період проведення
             </a>
 
