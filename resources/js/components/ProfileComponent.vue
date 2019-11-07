@@ -12,8 +12,8 @@
             <ul class="list-group">
                 <li class="list-group-item text-muted">Діяльність</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Роль</strong></span> {{ data.role }}</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Звання </strong></span> {{ data.rank }}</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Номінація</strong></span> {{ data.nominations }}</li>
+                <li v-show="data.rank" class="list-group-item text-right"><span class="pull-left"><strong>Звання </strong></span> {{ data.rank }}</li>
+                <li v-show="data.nominations" class="list-group-item text-right"><span class="pull-left"><strong>Номінація</strong></span> {{ data.nominations }}</li>
             </ul> 
         </div>
 
@@ -34,7 +34,7 @@
                                 <input type="text" class="form-control" name="surname" id="surname" v-model="data.surname">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-show="data.patronymic">
                             <div class="col-8">
                                 <label for="patronymic"><h4>Прізвище</h4></label>
                                 <input type="text" class="form-control" name="patronymic" id="patronymic" v-model="data.patronymic">
@@ -46,7 +46,7 @@
                                 <input type="email" class="form-control" name="email" id="email" v-model="data.email">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-show="data.informations">
                             <div class="col-8">
                                 <label for="info"><h4>Біографія</h4></label>
                                 <textarea class="form-control" id="info" name="info" rows="3" v-model="data.informations"></textarea>
@@ -54,8 +54,10 @@
                         </div>
                         <div class="form-group">
                             <div class="col-8">
+                                <h5 style="border-bottom: 1px solid #dedede;padding-bottom: 10px">Зміна паролю</h5>
                                 <label for="oldPassword"><h4>Старий пароль</h4></label>
                                 <input type="password" class="form-control" name="oldPassword" id="oldPassword" @blur="checkPassword" v-model="password">
+                                <span v-show="errorPassowrd" style="color: red">Пароль не вірний</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -91,7 +93,8 @@ export default {
             data: [],
             password: '',
             newPassword: '',
-            repeatPassword: ''
+            repeatPassword: '',
+            errorPassowrd: false
         }
     },
     created() {
@@ -119,8 +122,10 @@ export default {
                 'Content-Type': 'multipart/form-data'
                 }
             })
-            .then((response) => {
-                //
+            .then(() => {
+                swal("Дані збережено", {
+                    icon: "success",
+                });
             })
         },
         checkPassword() {
@@ -128,7 +133,9 @@ export default {
                 password: this.password
             })
             .then((response) => {
-                //
+                this.errorPassowrd = false;
+            }).catch(() => {
+                this.errorPassowrd = true;
             })
         }
     }
