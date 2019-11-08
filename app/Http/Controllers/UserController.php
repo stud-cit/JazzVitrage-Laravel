@@ -36,10 +36,12 @@ class UserController extends Controller
         $jury_data->surname = $request->surname;
         $jury_data->patronymic = $request->patronymic;
         $jury_data->password = Hash::make('password');
-        $file = $request->photo;
-        $name = time().'-'.$file->getClientOriginalName();
-        $file->move(public_path().$this->userStorage, $name);
-        $jury_data->photo = $name;
+        if($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->userStorage, $name);
+            $jury_data->photo = $name;
+        }
         $jury_data->email = $request->email;
         $jury_data->rank = $request->rank;
         $jury_data->nominations = $request->nominations;
@@ -131,10 +133,12 @@ class UserController extends Controller
         $org_data->patronymic = $request->patronymic;
         $org_data->password = Hash::make('password');
 
-        $file = $request->photo;
-        $name = time().'-'.$file->getClientOriginalName();
-        $file->move(public_path().$this->userStorage, $name);
-        $org_data->photo = $name;
+        if($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->userStorage, $name);
+            $org_data->photo = $name;
+        }
         $org_data->email = $request->email;
         $org_data->informations = $request->informations;
         $org_data->save();
