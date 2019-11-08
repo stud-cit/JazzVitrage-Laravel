@@ -68,7 +68,7 @@
 				load: false,
 				pagination : {
 					pageNumber: 0,
-					size: 3
+					size: 9
 				},
 			}
 		},

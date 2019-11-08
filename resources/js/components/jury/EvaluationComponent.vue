@@ -142,16 +142,16 @@
                 this.evaluation += val;
             },
             artisticValue: function (val) {
-                this.evaluation += val;
+	            this.evaluation += val;
             },
             artistry: function (val) {
                 this.evaluation += val;
             },
             originality: function (val) {
-               this.evaluation += val;
+                this.evaluation += val;
             },
             evaluation: function () {
-                this.evaluation = this.stylisticMatching + this.artisticValue + this.artistry + this.originality;
+                this.evaluation = Number(this.stylisticMatching) + Number(this.artisticValue) + Number(this.artistry) + Number(this.originality);
             }
         },
         created() {
