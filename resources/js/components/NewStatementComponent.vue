@@ -292,7 +292,7 @@ export default {
                 swal({
                     icon: "error",
                     title: 'Помилка',
-                    text: String(error.response.status)
+                    text: 'Не вдалося отримати дані'
                 });
             });
         },
