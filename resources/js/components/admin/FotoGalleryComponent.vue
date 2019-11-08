@@ -1,16 +1,13 @@
 <template>
-    
     <div>
         <form enctype="multipart/form-data">
             <div class="row">
                 <div class="col-5">
-                    
                     <label for="typeEvent">Тип заходу</label>
                     <select class="form-control" v-model="typeEvent" id="typeEvent">
                         <option>Джаз-Вітраж</option>
                         <option>Мастер клас</option>
                     </select>
-
                     <label for="yearCompetition">Рік проведення конкурсу</label>
                     <select class="form-control" v-model="yearCompetition" id="yearCompetition">
                         <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
@@ -37,7 +34,7 @@
         </form>
         <br>
         <div class="row">
-            <silentbox-group class="col-4" v-for="(item, index) in foto" :key="item.foto_id">
+            <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.foto_id">
                 <div class="border fotoGallery" >
                     <div class="bg-black d-flex justify-content-between width-100 align-items-center">
                         <i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i>
@@ -52,91 +49,112 @@
                 </div>
             </silentbox-group>
         </div>
+        <ul v-if="foto.length > 0" class="pagination mt-4 justify-content-center">
+            <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
+            <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
+            <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
+        </ul>
     </div>
-
 </template>
 
 <script>
-
-export default {
-    data() {
-        return {
-            file: [],
-            foto: [],
-            yearCompetition: new Date().getFullYear(),
-            typeEvent: 'Джаз-Вітраж',
-            load: false
-        }
-    },
-    created() {
-        this.getFoto();
-    },
-    computed: {
-        years() {
-            const year = new Date().getFullYear();
-            return Array.from({length: year - 2000}, (value, index) => 2001 + index);
-        }
-    },
-    methods: {
-        getFoto() {
-            axios.get('/get-foto')
-            .then((response) => {
-                this.foto = response.data;
-            })
-        },
-        fieldChange(){
-            let changeFile = this.$refs.file.files;
-            for(let i = 0; i < changeFile.length; i++) {
-                if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
-                    changeFile[i].valid = true;
-                } else {
-                    changeFile[i].valid = false;
-                }
-                this.file.push(changeFile[i]);
-            }
-        },
-        uploadFile(){
-            var form = new FormData;
-            this.load = true;
-            for(let i = 0; i < this.file.length; i++){
-                if(this.file[i].valid) {
-                    form.append('pics[]', this.file[i]);
-                }
-            }
-            form.append('type', this.typeEvent);
-            form.append('year', this.yearCompetition);
-            axios.post('/post-foto', form)
-            .then((res) => {
-                this.file = [];
-                this.load = false;
-                this.getFoto();
-            })
-        },
-        delFile(index) {
-            this.file.splice(index, 1);
-        },
-        delFoto(id, index) {
-            swal({
-                title: "Бажаєте видалити?",
-                text: "Після видалення ви не зможете відновити цей файл!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    axios.post('/delete-foto/'+id)
-                    .then(() => {
-                        this.foto.splice(index, 1);
-                        swal("Файл успішно видалено", {
-                            icon: "success",
-                        });
-                    });
-                }
-            });
-        }
-    }
-}
+	export default {
+		data() {
+			return {
+				file: [],
+				foto: [],
+				yearCompetition: new Date().getFullYear(),
+				typeEvent: 'Джаз-Вітраж',
+				load: false,
+				pagination : {
+					pageNumber: 0,
+					size: 3
+				},
+			}
+		},
+		created() {
+			this.getFoto();
+		},
+		computed: {
+			years() {
+				const year = new Date().getFullYear();
+				return Array.from({length: year - 2000}, (value, index) => 2001 + index);
+			},
+			paginatedData(){
+				const start = this.pagination.pageNumber * this.pagination.size;
+				const end = start + this.pagination.size;
+				return this.foto.slice(start, end);
+			},
+			pageCount(){
+				return Math.ceil(this.foto.length / this.pagination.size);
+			},
+		},
+		methods: {
+			nextPage(){
+				this.pagination.pageNumber++;
+			},
+			prevPage(){
+				this.pagination.pageNumber--;
+			},
+			getFoto() {
+				axios.get('/get-foto')
+					.then((response) => {
+						this.foto = response.data;
+					})
+			},
+			fieldChange(){
+				let changeFile = this.$refs.file.files;
+				for(let i = 0; i < changeFile.length; i++) {
+					if(changeFile[i].type == 'image/jpeg' || changeFile[i].type == 'image/png') {
+						changeFile[i].valid = true;
+					} else {
+						changeFile[i].valid = false;
+					}
+					this.file.push(changeFile[i]);
+				}
+			},
+			uploadFile(){
+				var form = new FormData;
+				this.load = true;
+				for(let i = 0; i < this.file.length; i++){
+					if(this.file[i].valid) {
+						form.append('pics[]', this.file[i]);
+					}
+				}
+				form.append('type', this.typeEvent);
+				form.append('year', this.yearCompetition);
+				axios.post('/post-foto', form)
+					.then((res) => {
+						this.file = [];
+						this.load = false;
+						this.getFoto();
+					})
+			},
+			delFile(index) {
+				this.file.splice(index, 1);
+			},
+			delFoto(id, index) {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити цей файл!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+					.then((willDelete) => {
+						if (willDelete) {
+							axios.post('/delete-foto/'+id)
+								.then(() => {
+									this.foto.splice(index, 1);
+									swal("Файл успішно видалено", {
+										icon: "success",
+									});
+								});
+						}
+					});
+			}
+		}
+	}
 </script>
 
 <style scoped>
