@@ -133,6 +133,13 @@
 
 				@endif
 
+				<li class="nav-item" title="Профіль">
+					<a class="nav-link" href="/admin/profile/{{ Auth::user()->user_id }}">
+						<i class="fa fa-user"></i>
+						<span class="nav-link-text">Профіль</span>
+					</a>
+				</li>
+
 			</ul>
 
 			<ul class="navbar-nav sidenav-toggler">
@@ -153,8 +160,8 @@
 			</ul>
 			<div class="user-block">
 				<div class="user-content d-none d-lg-flex">
-					<img src="{{ url('/') }}/img/user.png" alt="">
-					<div class="welcome"><a href="/admin/profile/{{ Auth::user()->user_id }}">{{ Auth::user()->name }} {{ Auth::user()->surname }}</a> ({{ $role }})</div>
+					<img src="{{ url('/') }}/img/user.png">
+					<div class="welcome"><a style="color:#868e96" href="/admin/profile/{{ Auth::user()->user_id }}">{{ Auth::user()->name }} {{ Auth::user()->surname }}</a> ({{ $role }})</div>
 				</div>
 				<a class="logout" data-toggle="modal" data-target="#modalLogout">
 					<i class="fa fa-fw fa-sign-out"></i>Вихід

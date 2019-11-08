@@ -64,14 +64,14 @@ class UserController extends Controller
         $model->save();
     }
 
-    function checkPasswordUser(Request $request, $id) {
-        $data = Users::find($id);
-        if (Hash::check($request->password, $data->password)) {
-            return response('ok', 200);
-        } else {
-            return response('error', 401);
-        }
-    }
+    // function checkPasswordUser(Request $request, $id) {
+    //     $data = Users::find($id);
+    //     if (Hash::check($request->password, $data->password)) {
+    //         return response('ok', 200);
+    //     } else {
+    //         return response('error', 401);
+    //     }
+    // }
 
     public function updateOrg(Request $request, $id)
     {

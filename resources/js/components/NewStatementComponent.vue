@@ -4,6 +4,9 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
+        <div class="openImg" v-if="test">
+            <img :src="test" @click="closeImg">
+        </div>
       <table class="table table-bordered accordion" id="accordion">
           <thead>
                 <tr>
@@ -16,7 +19,6 @@
                     <th width="30px"></th>
                 </tr>
           </thead>
-
           <tbody class="card" v-for="(item, index) in filteredMembersList" :key="item.application_id">
                 <tr>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
@@ -92,14 +94,14 @@
                             <p></p>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'соліст'">
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.passport_photo)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.in_file)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
@@ -109,28 +111,28 @@
                             </div>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo1)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.passport_photo1)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Копія свідоцтва про народження або паспорта першого учасника</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file1)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.in_file1)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду першого учасника</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.passport_photo2)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.passport_photo2)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Копія свідоцтва про народження або паспорта другого учасника</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.in_file2)">
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.in_file2)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
@@ -171,6 +173,7 @@ export default {
             results: [],
             members: [],
             search: '',
+            test: ''
         };
     },
 
@@ -330,15 +333,31 @@ export default {
                     });
                 });
         },
-        getFile(file) {
+        getFileImg(file) {
             axios({
                 url: "/"+file,
                 method: 'GET',
                 responseType: 'blob'
             }).then((response) => {
                 var fileURL = window.URL.createObjectURL(response.data);
-                window.open(fileURL);
+                this.test = fileURL;
             });
+        },
+        getFile(file) {
+            axios({
+                url: "/"+file,
+                method: 'GET',
+                responseType: 'blob'
+            }).then((response) => {
+                var link = document.createElement('a');
+                var fileURL = window.URL.createObjectURL(response.data);
+                link.setAttribute('href', fileURL);
+                link.setAttribute('download','download');
+                link.click();
+            });
+        },
+        closeImg() {
+            this.test = '';
         }
     }
 }

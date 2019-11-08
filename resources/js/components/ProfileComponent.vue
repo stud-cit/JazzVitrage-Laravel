@@ -46,7 +46,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group" v-show="data.patronymic">
+                        <div class="form-group" v-show="data.role == 'jury' || data.role == 'orgComittee'">
                             <div class="col-8">
                                 <label for="patronymic"><h4>По-батькові</h4></label>
                                 <input type="text" class="form-control" name="patronymic" id="patronymic" v-model="data.patronymic"
@@ -66,7 +66,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group" v-show="data.informations">
+                        <div class="form-group" v-show="data.role == 'jury' || data.role == 'orgComittee'">
                             <div class="col-8">
                                 <label for="info"><h4>Біографія</h4></label>
                                 <textarea class="form-control" id="info" name="info" rows="3" v-model="data.informations"></textarea>
@@ -75,13 +75,6 @@
                         <div class="form-group">
                             <div class="col-8">
                                 <h5 style="border-bottom: 1px solid #dedede;padding-bottom: 10px">Зміна паролю</h5>
-                                <label for="oldPassword"><h4>Старий пароль</h4></label>
-                                <input type="password" class="form-control" name="oldPassword" id="oldPassword" @blur="checkPassword" v-model="password">
-                                <span v-show="errorPassowrd" style="color: red">Пароль не вірний</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-8">
                                 <label for="newPassword"><h4>Новий пароль</h4></label>
                                 <input type="password" class="form-control" name="newPassword" id="newPassword" v-model="newPassword">
                             </div>
@@ -113,8 +106,7 @@ export default {
             data: [],
             password: '',
             newPassword: '',
-            repeatPassword: '',
-            errorPassowrd: false
+            repeatPassword: ''
         }
     },
     created() {
@@ -152,17 +144,14 @@ export default {
                             swal("Дані збережено", {
                                 icon: "success",
                             });
+                        }).catch(() => {
+                            swal({
+                                icon: "error",
+                                title: 'Помилка',
+                                text: 'Не вдалося'
+                            });
                         })
                     }
-            })
-        },
-        checkPassword() {
-            axios.post(`/check-passwrod-user/${this.$route.params.id}`, {
-                password: this.password
-            }).then((response) => {
-                this.errorPassowrd = false;
-            }).catch(() => {
-                this.errorPassowrd = true;
             })
         }
     }
