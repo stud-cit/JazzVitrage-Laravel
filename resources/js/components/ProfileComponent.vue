@@ -3,19 +3,25 @@
     <div class="row">
   	    <div class="col-sm-4">
             <div class="text-center">
-                <img v-if="data.photo" :src="'/img/user-photo/' + data.photo" class="avatar img-circle img-thumbnail" alt="avatar">
-                <img v-else :src="'/img/user.png'" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img v-if="data.photo" :src="data.photo" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img v-else :src="'/img/user.png'" class="avatar img-circle img-thumbnail">
                 <h6>Завантажити інше фото...</h6>
-                <input type="file" name="foto" id="foto" ref="file" accept="image/*" class="text-center center-block file-upload ml-2" v-validate="'image'"><br>
+                <input type="file" id="photo" name="photo" ref="photo" @change="previewFiles($event)" accept="image/*" class="text-center center-block file-upload ml-2" v-validate="'image'"><br>
                 <span class="errors text-danger ml-2" v-if="errors.has('foto')">
                     Оберіть файл графічного формату
                 </span>
             </div>
                 
             <br/>
-            <ul class="list-group">
+            <ul class="list-group" style="margin-bottom: 10px">
                 <li class="list-group-item text-muted">Діяльність</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Роль</strong></span> {{ data.role }}</li>
+                <li class="list-group-item text-right">
+                    <span class="pull-left"><strong>Роль</strong></span> 
+                    <span v-if="data.role == 'jury'">Журі</span>
+                    <span v-if="data.role == 'orgComittee'">Організаційний комітет</span>
+                    <span v-if="data.role == 'admin'">Адмін</span>
+                    <span v-if="data.role == 'superAdmin'">Супер Адмін</span>
+                </li>
                 <li v-show="data.rank" class="list-group-item text-right"><span class="pull-left"><strong>Звання </strong></span> {{ data.rank }}</li>
                 <li v-show="data.nominations" class="list-group-item text-right"><span class="pull-left"><strong>Номінація</strong></span> {{ data.nominations }}</li>
             </ul> 
@@ -66,20 +72,32 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group" v-show="data.role == 'jury' || data.role == 'orgComittee'">
+                        <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
-                                <label for="info"><h4>Біографія</h4></label>
-                                <textarea class="form-control" id="info" name="info" rows="3" v-model="data.informations"></textarea>
+                                <label for="info1"><h4>Членство в спілках журі</h4></label>
+                                <textarea class="form-control" id="info1" name="info1" rows="3" v-model="data.informations"></textarea>
                             </div>
                         </div>
+                        <div class="form-group" v-show="data.role == 'orgComittee'">
+                            <div class="col-8">
+                                <label for="info2"><h4>Біографія</h4></label>
+                                <textarea class="form-control" id="info2" name="info2" rows="3" v-model="data.informations"></textarea>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-8">
-                                <h5 style="border-bottom: 1px solid #dedede;padding-bottom: 10px">Зміна паролю</h5>
+                                <button type="button" :class="editPassword ? 'btn btn-primary' : 'btn btn-light'" @click="editPass">Змінити пароль</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" v-if="editPassword">
+                            <div class="col-8">
                                 <label for="newPassword"><h4>Новий пароль</h4></label>
                                 <input type="password" class="form-control" name="newPassword" id="newPassword" v-model="newPassword">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="editPassword">
                             <div class="col-8">
                                 <label for="repeatPassword"><h4>Повторіть пароль</h4></label>
                                 <input type="password" class="form-control" name="repeatPassword" id="repeatPassword" v-model="repeatPassword">
@@ -107,7 +125,8 @@ export default {
             data: [],
             password: '',
             newPassword: '',
-            repeatPassword: ''
+            repeatPassword: '',
+            editPassword: false
         }
     },
     created() {
@@ -115,7 +134,7 @@ export default {
     },
     computed: {
         checkNewPassword() {
-            return (this.newPassword == this.repeatPassword) && (this.newPassword != '' || this.repeatPassword != '')
+            return !this.editPassword || ((this.newPassword == this.repeatPassword) && (this.newPassword != '' || this.repeatPassword != ''))
         }
     },
     methods: {
@@ -131,6 +150,7 @@ export default {
             axios.get(`/user/${this.$route.params.id}`)
             .then((response) => {
                 this.data = response.data;
+                this.data.photo = this.data.photo;
             })
         },
         save() {
@@ -141,9 +161,8 @@ export default {
                 else {
                     var form = new FormData;
                     this.data.password = this.newPassword;
-                    form.append('photo', this.$refs.file.files[0]);
+                    form.append('photo', this.$refs.photo.files[0]);
                     form.append('data', JSON.stringify(this.data));
-            
                         axios.post(`/user/${this.$route.params.id}`, form, {
                             headers: {
                             'Content-Type': 'multipart/form-data'
@@ -153,6 +172,7 @@ export default {
                             swal("Дані збережено", {
                                 icon: "success",
                             });
+                            this.editPassword = false;
                         }).catch(() => {
                             swal({
                                 icon: "error",
@@ -162,6 +182,19 @@ export default {
                         })
                     }
             })
+        },
+        previewFiles(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.data.photo = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        editPass() {
+            this.editPassword = !this.editPassword;
         }
     }
 }

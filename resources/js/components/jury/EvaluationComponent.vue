@@ -6,7 +6,7 @@
             
         </div>
         <div class="col-8">
-            <video width="100%" controls>
+            <video width="100%" id="videoMember" controls>
                 <source v-if="program.video" :src="'/storage/'+program.video" type="video/mp4">
             </video>
         </div>
@@ -307,12 +307,16 @@
                 
                 this.$router.push({ name: 'jury-evaluation', params: {id: this.memberId } });
                 this.getMember();
+                var container = document.getElementById("videoMember");
+                container.setAttribute("src", '/storage/'+this.program.video);
                 this.getEvaluation();
             },
             prevMember() {
                 this.prevItem();
                 this.$router.push({name: 'jury-evaluation', params: { id: this.memberId } });
                 this.getMember();
+                var container = document.getElementById("videoMember");
+                container.setAttribute("src", '/storage/'+this.program.video);
                 this.getEvaluation();
             },
         },
