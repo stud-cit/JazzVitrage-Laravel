@@ -1421,7 +1421,7 @@
                         }
                     })
                     .then((response) => {
-
+                        this.preloader = false;
                         if(response.status == 200 ) {
                             swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
                                 icon: "success",
@@ -1435,7 +1435,7 @@
                     })
 
                     .catch((error) => {
-                        this.preloader = !this.preloader;
+                        this.preloader = false;
                         swal({
                             icon: "error",
                             title: 'Помилка',
