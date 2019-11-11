@@ -36,10 +36,12 @@ class UserController extends Controller
         $jury_data->surname = $request->surname;
         $jury_data->patronymic = $request->patronymic;
         $jury_data->password = Hash::make('password');
-        $file = $request->photo;
-        $name = time().'-'.$file->getClientOriginalName();
-        $file->move(public_path().$this->userStorage, $name);
-        $jury_data->photo = $name;
+        if($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->userStorage, $name);
+            $jury_data->photo = $this->userStorage.$name;
+        }
         $jury_data->email = $request->email;
         $jury_data->rank = $request->rank;
         $jury_data->nominations = $request->nominations;
@@ -52,16 +54,21 @@ class UserController extends Controller
         $model = Users::find($id);
         $data = json_decode($request->data);
         foreach($data as $key => $value) {
-            $model->$key = $value;
+            if($key != "password") {
+                $model->$key = $value;
+            }
         }
-        $model->password = Hash::make($data->password);
+        if($data->password != "") {
+            $model->password = Hash::make($data->password);
+        }
         if ($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
-            $model->photo = $name;
+            $model->photo = $this->userStorage.$name;
         }
         $model->save();
+        return response('ok', 200);
     }
 
     // function checkPasswordUser(Request $request, $id) {
@@ -85,7 +92,7 @@ class UserController extends Controller
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
-            $update_org->photo = $name;
+            $update_org->photo = $this->userStorage.$name;
         }
         $update_org->email = $request->email;
         $update_org->informations = $request->informations;
@@ -113,7 +120,7 @@ class UserController extends Controller
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . $this->userStorage, $name);
-            $update_jury->photo = $name;
+            $update_jury->photo = $this->userStorage.$name;
         }
         $update_jury->email = $request->email;
         $update_jury->rank = $request->rank;
@@ -130,11 +137,12 @@ class UserController extends Controller
         $org_data->surname = $request->surname;
         $org_data->patronymic = $request->patronymic;
         $org_data->password = Hash::make('password');
-
-        $file = $request->photo;
-        $name = time().'-'.$file->getClientOriginalName();
-        $file->move(public_path().$this->userStorage, $name);
-        $org_data->photo = $name;
+        if($request->hasFile('photo')) {
+            $file = $request->photo;
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . $this->userStorage, $name);
+            $org_data->photo = $this->userStorage.$name;
+        }
         $org_data->email = $request->email;
         $org_data->informations = $request->informations;
         $org_data->save();
@@ -168,7 +176,7 @@ class UserController extends Controller
     {
         $user = Users::find($id);
         if($user->photo != ''){
-            unlink(public_path($this->userStorage.$user->photo));
+            unlink(public_path($user->photo));
         }
         $user->delete();
     }
