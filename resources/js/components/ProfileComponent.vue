@@ -154,34 +154,28 @@ export default {
             })
         },
         save() {
-            this.$validator.validateAll().then((result) => {
-                if (!result) {	
-                    return;
-                }
-                else {
-                    var form = new FormData;
-                    this.data.password = this.newPassword;
-                    form.append('photo', this.$refs.photo.files[0]);
-                    form.append('data', JSON.stringify(this.data));
-                        axios.post(`/user/${this.$route.params.id}`, form, {
-                            headers: {
-                            'Content-Type': 'multipart/form-data'
-                            }
-                        })
-                        .then(() => {
-                            swal("Дані збережено", {
-                                icon: "success",
-                            });
-                            this.editPassword = false;
-                        }).catch(() => {
-                            swal({
-                                icon: "error",
-                                title: 'Помилка',
-                                text: 'Не вдалося'
-                            });
-                        })
+            var form = new FormData;
+            this.data.password = this.newPassword;
+            form.append('photo', this.$refs.photo.files[0]);
+            form.append('data', JSON.stringify(this.data));
+                axios.post(`/user/${this.$route.params.id}`, form, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
                     }
-            })
+                })
+                .then(() => {
+                    swal("Дані збережено", {
+                        icon: "success",
+                    });
+                    this.editPassword = false;
+                }).catch(() => {
+                    swal({
+                        icon: "error",
+                        title: 'Помилка',
+                        text: 'Не вдалося'
+                    });
+                })
+           
         },
         previewFiles(event) {
             var input = event.target;
