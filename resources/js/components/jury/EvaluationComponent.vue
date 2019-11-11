@@ -273,6 +273,9 @@
                         this.type = response.data[0].app_type;
                         this.school = response.data[0].preparation;
                         this.program = response.data[0].presentation;
+                        
+                        var container = document.getElementById("videoMember");
+                        container.setAttribute("src", '/storage/'+this.program.video);
                     })
                     .catch( error => console.error(error) );
             },
@@ -295,7 +298,6 @@
                 }
             },
             prevItem() {
-                
                 this.memberIndex = this.memberIds.indexOf( Number(this.$route.params.id) );
                 if(this.memberIndex > 0) {
                     this.memberIndex -= 1;
@@ -304,20 +306,13 @@
             },
             nextMember () {
                 this.nextItem();
-                
                 this.$router.push({ name: 'jury-evaluation', params: {id: this.memberId } });
                 this.getMember();
-                var container = document.getElementById("videoMember");
-                container.setAttribute("src", '/storage/'+this.program.video);
-                this.getEvaluation();
             },
             prevMember() {
                 this.prevItem();
                 this.$router.push({name: 'jury-evaluation', params: { id: this.memberId } });
                 this.getMember();
-                var container = document.getElementById("videoMember");
-                container.setAttribute("src", '/storage/'+this.program.video);
-                this.getEvaluation();
             },
         },
     }
