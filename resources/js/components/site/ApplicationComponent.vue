@@ -1444,7 +1444,6 @@
                     formData.append(key, this.registration.files[key])
                 }
                 this.preloader = !this.preloader;
-                console.log(this.preloader);
                 axios.post('/send-app', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -1465,6 +1464,7 @@
                     })
 
                     .catch((error) => {
+                        this.preloader = !this.preloader;
                         swal({
                             icon: "error",
                             title: 'Помилка',
