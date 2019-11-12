@@ -6,7 +6,7 @@
                     <div>
 					<label for="surname" class="brtop">Прізвище</label>
                     <input type="text" name="surname" v-model="surname" class="form-control" id="surname"
-						v-validate="{ required: true, regex: /^([а-яіїє']+){2,}$/i }"
+						v-validate="{ required: true, regex: /^([а-яіїє'-]+){2,}$/i }"
                             data-vv-as="Прізвище">
 					<span class="errors text-danger" v-if="errors.has('surname')">
 							{{ errors.first('surname') }}
@@ -14,7 +14,7 @@
 					</div>
                     <label for="name" class="brtop">Ім'я</label>
                     <input type="text" name="name" v-model="name" class="form-control" id="name"
-						v-validate="{ required: true, regex: /^([а-яіїє']+){2,}$/i }"
+						v-validate="{ required: true, regex: /^([а-яіїє'-]+){2,}$/i }"
                             data-vv-as="Ім'я">
 					<span class="errors text-danger" v-if="errors.has('name')">
 							{{ errors.first('name') }}
@@ -118,6 +118,7 @@
 				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
 				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 
+				var regex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
 				var parse_surname = surname_td;
 				var parse_name = name_td;
 				var parse_email = email_td;
@@ -125,26 +126,37 @@
 				this.table_form.append('surname', parse_surname);
 				this.table_form.append('name', parse_name);
 				this.table_form.append('email', parse_email);
-				axios.post('/update-admin/'+id, this.table_form)
-					.then((response) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
-						});
+				
+				if (!regex.test(email_td)){
+					this.editBtn = false;
+					swal({
+						icon: "error",
+						title: 'Помилка',
+						text: 'Некорректна електрона адреса'
 					});
-					
+				}
+
+				else {
+					axios.post('/update-admin/'+id, this.table_form)
+						.then((response) => {
+							this.admin = [];
+							this.getFullAdminOrgCommitteeList();
+							swal("Інформація оновлена", {
+								icon: "success",
+								timer: 1000,
+								button: false
+							});
+						})
+						.catch((error) => {
+							this.jurys = [];
+							this.getFullJuryList();
+							swal({
+								icon: "error",
+								title: 'Помилка',
+								text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
+							});
+						});
+				}	
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')
