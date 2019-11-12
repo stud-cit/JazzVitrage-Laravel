@@ -4,8 +4,8 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
-        <div class="openImg" v-if="test">
-            <img :src="test" @click="closeImg">
+        <div class="openImg" v-if="test" @click="closeImg">
+            <img :src="test">
         </div>
       <table class="table table-bordered accordion" id="accordion">
           <thead>
@@ -87,7 +87,7 @@
                             <div v-if="item.concertSurname == '' || item.concertName == '' || item.concertPatronymic == ''"> </div>
                             <div v-else>
                             <label for="concertDate" class="brtop">ПІП концертмейстра</label>
-                            <p id="concertDate">{{ `${item.concertSurname} ${item.concertName} ${item.concertPatronymic}` }}</p>
+                            <p id="concertDate">{{ `${item.concertName} ${item.concertSurname} ${item.concertPatronymic}` }}</p>
                             </div>
 
                             <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
