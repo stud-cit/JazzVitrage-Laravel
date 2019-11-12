@@ -123,6 +123,7 @@
                 count: 0,
                 // оцінки
                 // score: {
+                    user_id: 0,
                     stylisticMatching: 0,
                     artisticValue: 0,
                     artistry: 0,
@@ -174,9 +175,10 @@
                 axios.get(`/has-record/${this.$route.params.id}/`)
                     .then( ( response )  => {
                         this.hasRecord = this.isRecord(response.data);
-                        const {stylistic_matching, artistic_value, artistry, originality, evaluation } = response.data;
+                        const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id } = response.data;
                        
                         if(this.hasRecord) {
+                            this.user_id = user_id;
                             this.stylisticMatching = stylistic_matching;
                             this.artisticValue = artistic_value;
                             this.artistry = artistry;
@@ -222,9 +224,9 @@
                 });
             },
             updateEvaluation() {
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
-
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality, user_id} = this;
                 axios.post(`/to-rate-update/${this.$route.params.id}`, {
+                    user_id,
                     evaluation,
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
