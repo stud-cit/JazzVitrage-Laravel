@@ -78,30 +78,30 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }"
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }"
                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
 
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }"
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }"
                                            data-vv-as="ІМ'Я">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic" required
-                                           v-validate="{ regex:/^([а-яіїє']+){5,}$/i }"
+                                           v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }"
                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
 
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -168,25 +168,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic" required
-                                           v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -241,25 +241,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic" required
-                                        v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -323,25 +323,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic" required
-                                           v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -386,25 +386,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname2" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname2" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName2" placeholder="ІМ'Я" v-model="registration.data.memberName2" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic2" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic2" required
-                                        v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberName2')">
-                                    Поле "ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -467,25 +467,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname2" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname2" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName2" placeholder="ІМ'Я  " v-model="registration.data.parentName2" required
-                                           v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic2" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic2" required
-                                           v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                           v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentName2')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -658,25 +658,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input name="teacherSurname" type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.teacherSurname" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input name="teacherName" type="text" placeholder="ІМ'Я" v-model="registration.data.teacherName" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input name="teacherPatronymic" type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.teacherPatronymic" required
-                                        v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('teacherSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('teacherName')">
-                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('teacherPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -720,25 +720,25 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="concertSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.concertSurname" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="concertName" placeholder="ІМ'Я" v-model="registration.data.concertName" required
-                                        v-validate="{ regex:/^([а-яіїє']+){2,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="concertPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.concertPatronymic" required
-                                        v-validate="{ regex:/^([а-яіїє']+){5,}$/i }">
+                                        v-validate="{ regex:/^([а-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('concertSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('concertName')">
-                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <span class="errors" v-if="errors.has('concertPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту або тире)
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
