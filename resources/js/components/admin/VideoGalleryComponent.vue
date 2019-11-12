@@ -21,16 +21,20 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-4" v-for="(item, index) in urls" :key="item.video_id">
+            <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.video_id">
                 <div class="border fotoGallery">
                     <div class="bg-black">
                         <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
                     </div>
                     <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                 </div>
-            </div>
+            </silentbox-group>
         </div>
-
+        <ul v-if="urls.length > 0" class="pagination mt-4 justify-content-center">
+            <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
+            <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
+            <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
+        </ul>
     </div>
 
 </template>
@@ -58,7 +62,11 @@ export default {
         return {
             video: '',
             urls: [],
-            yearCompetition: new Date().getFullYear()
+            yearCompetition: new Date().getFullYear(),
+	        pagination : {
+		        pageNumber: 0,
+		        size: 9
+	        },
         }
     },
     created() {
@@ -68,9 +76,23 @@ export default {
         years() {
             const year = new Date().getFullYear();
             return Array.from({length: year - 2000}, (value, index) => 2001 + index);
-        }
+        },
+	    paginatedData(){
+		    const start = this.pagination.pageNumber * this.pagination.size;
+		    const end = start + this.pagination.size;
+		    return this.urls.slice(start, end);
+	    },
+	    pageCount(){
+		    return Math.ceil(this.urls.length / this.pagination.size);
+	    },
     },
     methods: {
+	    nextPage(){
+		    this.pagination.pageNumber++;
+	    },
+	    prevPage(){
+		    this.pagination.pageNumber--;
+	    },
         getVideo() {
             axios.get('/get-video')
             .then((response) => {
