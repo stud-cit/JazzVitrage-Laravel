@@ -178,7 +178,7 @@ class UserController extends Controller
         if($user->photo != ''){
             unlink(public_path($user->photo));
         }
-        Evaluation::where("user_id", $id)->delete();пше
+        Evaluation::where("user_id", $id)->delete();
         $user->delete();
     }
 }
