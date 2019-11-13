@@ -14,7 +14,7 @@
                 <carousel :dots="false" :nav="false" :responsive="{0:{items:1},768:{items:2},1200:{items:3}}" class="jury-list">
                     <template slot="prev"><span class="prev"><i class="fa arrows fa-arrow-circle-left fa-3x" aria-hidden="true"></i></span></template>
                     <router-link class="jury-items" v-for="(item, index) in juryList" :key="index" :to="{ name: 'jury-member', params:{ id: item.user_id}}">
-                        <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
+                        <img v-bind:src="item.photo" alt="">
                         <div class="items-title">{{ `${item.name} ${item.surname}` }}</div>
                     </router-link>
                     <template slot="next" class="asdasd"><span class="next"><i class="fa arrows fa-arrow-circle-right fa-3x" aria-hidden="true"></i></span></template>
