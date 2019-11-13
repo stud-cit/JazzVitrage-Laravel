@@ -36,7 +36,7 @@
     width: 235px;
 }
 .edit-jury-photo{overflow:hidden}
-.edit-jury-photo .form-group{padding:0;margin:0}
+.edit-jury-photo .form-group{padding:0 0 0 9px;margin:0}
 .edit-jury-photo input[type=file]{outline:0;opacity:0;pointer-events:none;user-select:none}
 .edit-jury-photo .label{width:130px;margin-top:-135px;position:relative;z-index: 2;border:2px dashed grey;border-radius:5px;display:block;padding:0;transition:border 300ms ease;cursor:pointer;text-align:center}
 .edit-jury-photo .label i{display:block;font-size:42px;padding-top:16px}

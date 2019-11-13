@@ -135,12 +135,10 @@
 				this.editBtn = id;
 				event.preventDefault();
 				var pib_input = document.createElement('input');
-				var email_input = document.createElement('input');
 				var photo_input = document.createElement('div');
 				var biography_input = document.createElement('textarea');
 
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
 				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
 
@@ -149,12 +147,6 @@
 				pib_input.setAttribute('id', 'pib_data');
 				pib_td.innerHTML = '';
 				pib_td.append(pib_input);
-
-				email_input.setAttribute('value', email_td.innerHTML);
-				email_input.setAttribute('type', 'text');
-				email_input.setAttribute('id', 'email_data');
-				email_td.innerHTML = '';
-				email_td.append(email_input);
 
 
 				photo_input.setAttribute('class', 'edit-org-photo');
@@ -187,13 +179,12 @@
 			save(id, event){
 				this.editBtn = 0;
 				event.preventDefault();
+
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input');
 				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
-				var parse_email = email_td;
 				var parse_photo = photo_td;
 				var parse_biography = biography_td;
 
@@ -205,8 +196,7 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				
-				this.table_form.append('email', parse_email);
+
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('informations', parse_biography);
 

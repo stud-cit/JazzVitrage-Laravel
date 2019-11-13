@@ -86,11 +86,9 @@
 				event.preventDefault();
 				var surname_input = document.createElement('input');
 				var name_input = document.createElement('input');
-				var email_input = document.createElement('input');
 
 				var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
 
 				surname_input.setAttribute('value', surname_td.innerHTML);
 				surname_input.setAttribute('type', 'text');
@@ -103,60 +101,40 @@
 				name_input.setAttribute('id', 'pib_data');
 				name_td.innerHTML = '';
 				name_td.append(name_input);
-
-				email_input.setAttribute('value', email_td.innerHTML);
-				email_input.setAttribute('type', 'text');
-				email_input.setAttribute('id', 'email_data');
-				email_td.innerHTML = '';
-				email_td.append(email_input);
 			},
 
-			save(id, event){
+			save(id, event) {
 				this.editBtn = true;
 				event.preventDefault();
 				var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 
 				var regex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
 				var parse_surname = surname_td;
 				var parse_name = name_td;
-				var parse_email = email_td;
 
 				this.table_form.append('surname', parse_surname);
 				this.table_form.append('name', parse_name);
-				this.table_form.append('email', parse_email);
-				
-				if (!regex.test(email_td)){
-					this.editBtn = false;
-					swal({
-						icon: "error",
-						title: 'Помилка',
-						text: 'Некорректна електрона адреса'
-					});
-				}
 
-				else {
-					axios.post('/update-admin/'+id, this.table_form)
-						.then((response) => {
-							this.admin = [];
-							this.getFullAdminOrgCommitteeList();
-							swal("Інформація оновлена", {
-								icon: "success",
-								timer: 1000,
-								button: false
-							});
-						})
-						.catch((error) => {
-							this.jurys = [];
-							this.getFullJuryList();
-							swal({
-								icon: "error",
-								title: 'Помилка',
-								text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
-							});
+				axios.post('/update-admin/' + id, this.table_form)
+					.then((response) => {
+						this.admin = [];
+						this.getFullAdminOrgCommitteeList();
+						swal("Інформація оновлена", {
+							icon: "success",
+							timer: 1000,
+							button: false
 						});
-				}	
+					})
+					.catch((error) => {
+						this.jurys = [];
+						this.getFullJuryList();
+						swal({
+							icon: "error",
+							title: 'Помилка',
+							text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
+						});
+					});
 			},
 			getFullAdminOrgCommitteeList() {
 				axios.get('/get-all-admin-org')
