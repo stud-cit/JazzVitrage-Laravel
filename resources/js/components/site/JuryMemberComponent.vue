@@ -7,7 +7,7 @@
                 </div>      
                 <div class="member-jury-card" v-for="(item, index) in juryMember" :key="index">
                     <div class="picture">
-                       <img v-bind:src="'../img/user-photo/' + item.photo" alt="">
+                       <img v-bind:src="item.photo" alt="">
                     </div>
                     <div class="description">
                         <h3 class="title-description">{{ `${item.name} ${item.surname}` }}</h3>
