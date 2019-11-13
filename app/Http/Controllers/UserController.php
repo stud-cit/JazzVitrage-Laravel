@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Evaluation;
 class UserController extends Controller
 {
     protected $userStorage = '/img/user-photo/';
@@ -178,6 +179,7 @@ class UserController extends Controller
         if($user->photo != ''){
             unlink(public_path($user->photo));
         }
+        Evaluation::where("user_id", $id)->delete();
         $user->delete();
     }
 }
