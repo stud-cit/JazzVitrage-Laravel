@@ -6,7 +6,7 @@
 					<div>
 						<label for="surname" class="brtop">Прізвище</label>
 						<input type="text" name="surname" v-model="surname" class="form-control" id="surname"
-						v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+						v-validate="{ required: true, regex: /^([а-яіїє'-]+){2,}$/i }"
 								data-vv-as="Прізвище">
 						<span class="errors text-danger" v-if="errors.has('surname')">
 								{{ errors.first('surname') }}
@@ -15,7 +15,7 @@
 					<div>
 						<label for="name" class="brtop">Ім'я</label>
 						<input type="text" name="name" v-model="name" class="form-control" id="name"
-							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){2,}$/i }"
+							v-validate="{ required: true, regex: /^([а-яіїє'-]+){2,}$/i }"
 								data-vv-as="Ім'я">
 						<span class="errors text-danger" v-if="errors.has('name')">
 								{{ errors.first('name') }}
@@ -24,7 +24,7 @@
 					<div>
 						<label for="patronymic" class="brtop">По батькові</label>
 						<input type="text" name="patronymic" v-model="patronymic" class="form-control" id="patronymic"
-							v-validate="{ required: true, regex: /^([a-zа-яіїє']+){5,}$/i }"
+							v-validate="{ required: true, regex: /^([а-яіїє'-]+){5,}$/i }"
 								data-vv-as="По батькові">
 						<span class="errors text-danger" v-if="errors.has('patronymic')">
 								{{ errors.first('patronymic') }}
