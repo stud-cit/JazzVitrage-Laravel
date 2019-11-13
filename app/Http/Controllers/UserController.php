@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Evaluation;
 class UserController extends Controller
 {
     protected $userStorage = '/img/user-photo/';
