@@ -23,9 +23,8 @@
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.video_id">
                 <div class="border fotoGallery">
-                    <div class="bg-black">
-                        <i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i>
-                    </div>
+                    <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i></div>
+                    <div class="calendar"><i class="fa fa-calendar"> {{ item.year }}</i></div>
                     <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                 </div>
             </silentbox-group>

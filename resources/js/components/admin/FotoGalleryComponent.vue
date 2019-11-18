@@ -35,13 +35,10 @@
         <br>
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.foto_id">
-                <div class="border fotoGallery" >
-                    <div class="bg-black d-flex justify-content-between width-100 align-items-center">
-                        <i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i>
-                        <i class="fa fa-calendar "> {{ item.year }}</i>
-                    </div>
+                <div class="border fotoGallery">
+					<div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i></div>
+					<div class="calendar"><i class="fa fa-calendar "> {{ item.year }}</i></div>
                     <div class="gallery-img" :style="{ backgroundImage: 'url(' + '/img/uploads/'+item.file + ')'  }"></div>
-                    <!-- <img :src="'/img/uploads/'+item.file" alt=""> -->
                     <silentbox-single :src="'/img/uploads/'+item.file" :description="String(item.year)">
                         <i class="fa fa-search"></i>
                     </silentbox-single>
