@@ -158,7 +158,6 @@
         created() {
             this.getMember();
             this.getAllMembers();
-            this.getEvaluation();
         },
         computed: {
 
@@ -280,6 +279,7 @@
                         container.setAttribute("src", '/storage/'+this.program.video);
                     })
                     .catch( error => console.error(error) );
+                    this.getEvaluation();
             },
             getAllMembers() {
                 axios.get('/get-approved-members')

@@ -89,7 +89,7 @@
             <tbody id="juryTableID" v-for="(item, index) in jurys" :key="index">
             <tr>
                 <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.name} ${item.surname} ${item.patronymic}` }}</td>
+                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
 
                 <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
 					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
@@ -161,13 +161,12 @@
 				event.preventDefault();
 				var pib_input = document.createElement('input');
 				var photo_input = document.createElement('div');
-				var email_input = document.createElement('input');
 				var rank_input = document.createElement('input');
 				var nomination_select = document.createElement('select');
 				var information_input = document.createElement('textarea');
+
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
 				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5];
 				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6];
@@ -199,13 +198,6 @@
 				photo_input.prepend(photo_label);
 
 				photo_td.append(photo_input);
-
-				email_input.setAttribute('value', email_td.innerHTML);
-				email_input.setAttribute('type', 'text');
-				email_input.setAttribute('id', 'email_data');
-				email_input.setAttribute('class','input-edit-correct');
-				email_td.innerHTML = '';
-				email_td.append(email_input);
 
 				rank_input.setAttribute('value', rank_td.innerHTML);
 				rank_input.setAttribute('type', 'text');
@@ -242,14 +234,12 @@
 				event.preventDefault();
 				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
 				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
-				var email_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input').value;
 				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
 				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
 				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
 
 				var parse_pib = pib_td.split(' ');
 				var parse_photo = photo_td;
-				var parse_email = email_td;
 				var parse_rank = rank_td;
 				var parse_nomination = nomination_td;
 				var parse_information = information_td;
@@ -260,7 +250,6 @@
 				} else {
 					this.table_form.append('patronymic', parse_pib[2]);
 				}
-				this.table_form.append('email', parse_email);
 				this.table_form.append('rank', parse_rank);
 				this.table_form.append('photo', parse_photo.files[0]);
 				this.table_form.append('nominations', parse_nomination);

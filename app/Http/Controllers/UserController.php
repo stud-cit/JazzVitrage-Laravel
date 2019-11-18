@@ -95,7 +95,6 @@ class UserController extends Controller
             $file->move(public_path() . $this->userStorage, $name);
             $update_org->photo = $this->userStorage.$name;
         }
-        $update_org->email = $request->email;
         $update_org->informations = $request->informations;
         $update_org->save();
     }
@@ -106,7 +105,6 @@ class UserController extends Controller
         $update_admin->name = $request->name;
         $update_admin->surname = $request->surname;
         $update_admin->password = Hash::make('password');
-        $update_admin->email = $request->email;
         $update_admin->save();
     }
 
@@ -123,7 +121,6 @@ class UserController extends Controller
             $file->move(public_path() . $this->userStorage, $name);
             $update_jury->photo = $this->userStorage.$name;
         }
-        $update_jury->email = $request->email;
         $update_jury->rank = $request->rank;
         $update_jury->nominations = $request->nominations;
         $update_jury->informations = $request->informations;
