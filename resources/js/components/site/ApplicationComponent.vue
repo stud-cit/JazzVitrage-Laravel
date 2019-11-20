@@ -779,12 +779,12 @@
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
                                     <input type="text" name="timing1" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing1"
-                                        v-validate="{ required: true }"
+                                        v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
                                             data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing1')">
-                                    Введіть корректні дані
+                                    Введіть дані у форматі 00:00 (хвилини-секунди)
                             </span>
                             <h3 class="step-title">Другий твір</h3>
                             <div class="input-row">
@@ -813,12 +813,12 @@
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
                                     <input type="text" name="timing2" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing2"
-                                           v-validate="{ required: true }"
+                                           v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing2')">
-                                    Введіть корректні дані
+                                    Введіть дані у форматі 00:00 (хвилини-секунди)
                             </span>
                             <h4 class="step-title">ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО<i class="hint"></i></h4>
                             <div class="input-row">
