@@ -105,16 +105,21 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate" v-on:keyup="ValidateDOB()" minlength="10" maxlength="10" name="memberDate" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"
-                                           v-validate="{ regex: /^(?:(?:31(-)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:0?2)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
-                                           data-vv-as="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000">
+                                    <img src="img/step2-data.png" class="input-img">
+                                    <Datepicker
+                                        v-model="registration.data.memberDate" 
+                                        placeholder="ДАТА НАРОДЖЕННЯ"
+                                        :dayStr="datepicker.dayStr"
+                                        :min="datepicker.minDate"
+                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
+                                        :popperProps="datepicker.popperProps"
+                                    />
+                                    <input style="display:none" type="text" name="memberDate" v-model="registration.data.memberDate" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
+                                    Поле "Дата народження" має бути заповнене
                             </span>
-                            <span class="errors" id="lblError"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -132,8 +137,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="'image'"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -144,8 +149,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="'image'"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -263,16 +268,21 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate1" name="memberDate" minlength="10" maxlength="10" v-on:keyup="ValidateDOB1()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate" required
-                                        v-validate="{ regex: /^(?:(?:31(-)(?:0[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:02)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0[1-9]|1\d|2[0-8])(-)(?:(?:0[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
-                                           >
+                                    <img src="img/step2-data.png" class="input-img">
+                                    <Datepicker
+                                        v-model="registration.data.memberDate" 
+                                        placeholder="ДАТА НАРОДЖЕННЯ"
+                                        :dayStr="datepicker.dayStr"
+                                        :min="datepicker.minDate"
+                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
+                                        :popperProps="datepicker.popperProps"
+                                    />
+                                    <input style="display:none" type="text" name="memberDate" v-model="registration.data.memberDate" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
+                                    Поле "Дата народження" має бути заповнене
                             </span>
-                            <span class="errors" id="lblError1"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -290,8 +300,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
-                                         v-validate="'image'">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                         v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -408,16 +418,21 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" ref="memberDate2" name="memberDate2" minlength="10" maxlength="10" v-on:keyup="ValidateDOB2()" placeholder="ЧИСЛО, МІСЯЦЬ, РІК НАРОДЖЕННЯ у форматі 01-12-2000" v-model="registration.data.memberDate2" required
-                                        v-validate="{ regex: /^(?:(?:31(-)(?:0[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)(?:02)\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0[1-9]|1\d|2[0-8])(-)(?:(?:0[1-9])|(?:1[0-2]))\4(?:(?:1[9]|[2-9]\d)\d{2})$/ }"
-                                           >
+                                    <img src="img/step2-data.png" class="input-img">
+                                    <Datepicker
+                                        v-model="registration.data.memberDate2" 
+                                        placeholder="ДАТА НАРОДЖЕННЯ"
+                                        :dayStr="datepicker.dayStr"
+                                        :min="datepicker.minDate"
+                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
+                                        :popperProps="datepicker.popperProps"
+                                    />
+                                    <input style="display:none" type="text" name="memberDate2" v-model="registration.data.memberDate2" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate2')">
-                                    Введіть корректні дані у форматі ХХ-ХХ-ХХХХ
+                                    Поле "Дата народження" має бути заповнене
                             </span>
-                            <span class="errors" id="lblError2"></span>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
@@ -434,8 +449,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept="image/*" id="member2BirthdayFile" class="d-none" type="file" required
-                                        v-validate="'image'">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .gif" id="member2BirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -777,10 +792,15 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="timing1" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing1"
-                                        v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
-                                            data-vv-as="ХРОНОМЕТРАЖ">
+                                    <img src="img/input-composition.png" class="input-img">
+                                    <Timepicker 
+                                        type="second" 
+                                        placeholder="ХРОНОМЕТРАЖ" 
+                                        min="02:10:02" 
+                                        max="22:10:00" 
+                                        :timeStr="datepicker.timeStr" 
+                                        :popperProps="datepicker.popperProps"
+                                    />
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing1')">
@@ -864,7 +884,7 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія:
+                                <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -918,7 +938,7 @@
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
                                 <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
+                                <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструвати заяву</button>
                             </div>
                         </form>
 
@@ -927,7 +947,7 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія:
+                                <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -997,7 +1017,7 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія:
+                                <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
@@ -1071,9 +1091,18 @@
 </template>
 
 <script>
+    import { Datepicker, Timepicker } from '@livelybone/vue-datepicker';
+    import '@livelybone/vue-datepicker/lib/css/index.css';
     export default {
+        components: {
+            Datepicker,
+            Timepicker
+        },
         data() {
             return {
+                checkDate: {
+                    date1: true
+                },
                 steps: [true, false, false, false, false],
                 activeStep: 0,
                 birthdayFile: 'завантажити файл',
@@ -1084,6 +1113,13 @@
                 nominations: [],
 	            personal: {
 		            personal_data: ''
+                },
+
+                datepicker: {
+                    popperProps: {},
+                    maxDate: new Date(),
+                    minDate: "2000-01-01",
+                    dayStr: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
                 },
 
                 fileTitle: {
@@ -1162,9 +1198,6 @@
             this.isOpenedRegistration();
 	        this.getPersonal();
         },
-        computed: {
-
-        },
         methods: {
             isOpenedRegistration() {
                 axios
@@ -1187,7 +1220,6 @@
                 })
             },
             nextStep(){
-
                 const steps = this.steps;
                 this.$validator.validateAll().then((result) => {
                     if (!result) {
@@ -1220,164 +1252,6 @@
                     age--;
                 }
                 return age;
-            },
-
-
-            ValidateDOB() {
-                const lblError = document.getElementById("lblError");
-                const dateString = this.$refs.memberDate.value;
-                const parts = dateString.split("-");
-                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
-                const dtCurrent = new Date();             
-                if (dateString.length == 10){    
-                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                        return false;
-                    }
-
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() < dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                                return false;
-                            }
-                        }
-                    } 
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                                return false;
-                            }
-                        }
-                    }
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                   
-                    lblError.innerHTML = "";
-                    return true;
-                } 
-                
-                else {
-                    lblError.innerHTML = "";  
-                }   
-            },
-
-            ValidateDOB1() {
-                const lblError = document.getElementById("lblError1");
-                const dateString = this.$refs.memberDate1.value;
-                const parts = dateString.split("-");
-                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
-                const dtCurrent = new Date();             
-                if (dateString.length == 10){    
-                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                        return false;
-                    }
-
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() < dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                                return false;
-                            }
-                        }
-                    } 
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                                return false;
-                            }
-                        }
-                    }
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                    
-                    lblError.innerHTML = "";
-                    return true;
-                }
-
-                else {
-                    lblError.innerHTML = "";  
-                } 
-            },
-
-            ValidateDOB2() {
-                const lblError = document.getElementById("lblError2");
-                const dateString = this.$refs.memberDate2.value;
-                const parts = dateString.split("-");
-                const dtDOB = new Date(parts[1] + "-" + parts[0] + "-" + parts[2]);
-                const dtCurrent = new Date();             
-                if (dateString.length == 10){    
-                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 8) {
-                        lblError.innerHTML = "Учаснику має бути не менше 8 років" 
-                        return false;
-                    }
-
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 8) {
-                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() < dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не менше 8 років"
-                                return false;
-                            }
-                        }
-                    } 
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-                        if (dtCurrent.getMonth() > dtDOB.getMonth()) {
-                            lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                            return false;
-                        }
-                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-                            if (dtCurrent.getDate() >= dtDOB.getDate()) {
-                                lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                                return false;
-                            }
-                        }
-                    }
-                    
-                    else if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
-                        lblError.innerHTML = "Учаснику має бути не більше 17 років"
-                        return false;
-                    }
-                    
-                    lblError.innerHTML = "";
-                    return true;
-                }
-                
-                else {
-                    lblError.innerHTML = "";  
-                }
-
             },
 
 	        getPersonal() {
@@ -1457,5 +1331,12 @@
         top: 0
         left: 0
         background: rgba(0,0,0,0.8)
-
+</style>
+<style>
+    .selected:before {
+        background: #4B0082 !important;
+    }
+    .item:hover, .year:hover {
+        color: #EE82EE !important;
+    }
 </style>
