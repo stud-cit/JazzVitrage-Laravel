@@ -792,15 +792,10 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/input-composition.png" class="input-img">
-                                    <Timepicker 
-                                        type="second" 
-                                        placeholder="ХРОНОМЕТРАЖ" 
-                                        min="02:10:02" 
-                                        max="22:10:00" 
-                                        :timeStr="datepicker.timeStr" 
-                                        :popperProps="datepicker.popperProps"
-                                    />
+                                    <img src="img/input-composition.png" alt="" class="input-img">
+                                    <input type="text" name="timing1" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing1" maxlength="5"
+                                           v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
+                                           data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing1')">
@@ -832,7 +827,7 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="timing2" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing2"
+                                    <input type="text" name="timing2" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing2" maxlength="5"
                                            v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
