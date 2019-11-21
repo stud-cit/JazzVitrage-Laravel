@@ -36,6 +36,7 @@ import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import FotoGalleryComponent from './components/admin/FotoGalleryComponent';
 import MainInformationComponent from './components/admin/MainInformationComponent';
 import QuestionComponent from './components/admin/QuestionComponent';
+
 //Журі
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
