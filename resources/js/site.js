@@ -26,9 +26,10 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import VueSilentbox from 'vue-silentbox';
+Vue.use(VueSilentbox);
 
 import VeeValidate, { Validator } from 'vee-validate';
-
 import uk from 'vee-validate/dist/locale/uk';
 
 Validator.localize('uk', uk);

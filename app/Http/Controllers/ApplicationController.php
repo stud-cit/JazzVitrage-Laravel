@@ -86,7 +86,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
-            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
+            $soloDuet->data_birthday = $data->memberDate;
             $soloDuet->member_email = $data->memberEmail;
 
             $soloDuet->parent_name = $data->parentName;
@@ -112,7 +112,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->member_email = $data->memberEmail1;
-            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate));
+            $soloDuet->data_birthday = $data->memberDate;
             $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
@@ -135,7 +135,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
             $soloDuet->member_email = $data->memberEmail2;
-            $soloDuet->data_birthday = date("Y-m-d", strtotime($data->memberDate2));
+            $soloDuet->data_birthday = $data->memberDate2;
             $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;

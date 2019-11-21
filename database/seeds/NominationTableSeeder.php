@@ -15,10 +15,10 @@ class NominationTableSeeder extends Seeder
             'name' => 'Вокальний жанр',
         ]);
         DB::table('nomination')->insert([
-            'name' => 'інструментальний жанр',
+            'name' => 'Інструментальний жанр',
         ]);
         DB::table('nomination')->insert([
-            'name' => 'композиція',
+            'name' => 'Композиція',
         ]);
     }
 }

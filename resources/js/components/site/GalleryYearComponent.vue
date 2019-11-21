@@ -7,11 +7,17 @@
                    <h3 class="title"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
                 </div>
                 <div class="gallery-content">
-                    <div class="row align-content-stretch mt-4">
-                        <div class="col-12 col-md-6 col-xl-4 gallery-item" v-for="item in paginatedData" :key="item.foto_id">
+                    <silentbox-group class="row align-content-stretch mt-4">
+                        <silentbox-item class="col-12 col-md-6 col-xl-4 gallery-item"  v-for="item in paginatedData" :key="item.foto_id" :src="'/img/uploads/'+item.file" description="Sunken dreams II. by Arbebuk">
                             <img :src="'/img/uploads/'+item.file" class="gallery-img">
-                        </div>
-                    </div>
+                        </silentbox-item>
+
+                    </silentbox-group>
+                    <!--<div class="row align-content-stretch mt-4">-->
+                        <!--<div class="col-12 col-md-6 col-xl-4 gallery-item" v-for="item in paginatedData" :key="item.foto_id">-->
+                            <!--<img :src="'/img/uploads/'+item.file" class="gallery-img">-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
                 <ul class="pagination d-flex justify-content-center">
                     <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>

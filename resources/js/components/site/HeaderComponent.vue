@@ -8,14 +8,14 @@
 
 
                 <div class="d-xl-flex navbar-order">
-                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-md-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
                 </div>
                 <div class="collapse navbar-collapse nav-menu" id="nav-menu">
-                    <div class="navbar-nav">
+                    <ul class="navbar-nav">
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНКУРС</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,11 +43,13 @@
                                 <a class="dropdown-item" href="/organization-committee">ОРГАНІЗАЦІЙНИЙ КОМІТЕТ</a>
                             </div>
                         </li>
-
+                        <li class="d-inline  d-sm-none" v-if="isRegistration">
+                            <a href="/applications"  class="nav-item nav-link">ЗАПОВНИТИ ЗАЯВКУ</a>
+                        </li>
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
 
 
-                    </div>
+                    </ul>
 
                 </div>
             </div>

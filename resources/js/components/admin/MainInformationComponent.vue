@@ -44,6 +44,27 @@
                             </span>
                         <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "logo_section", "ticker")'>Редагувати</button><br>
                     </div>
+
+
+                    <!-- Згода на збір персональних даних -->
+                    <br>
+                    <h3>Згода на збір персональних даних</h3>
+                    <div>
+                        <label for="personal_data" class="brtop">Файл документу про згоду</label>
+                        <div class="row">
+                            <div class="col-9">
+                                <label class="custom-file w-100">
+                                    <input type="file" class="custom-file-input" accept=".pdf, .doc, .docx, .txt" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="personal_data" id="personal_data" ref="personal_data" @change="previewFiles">
+                                    <span class="custom-file-control">{{ info.personal_data.split('/')[2] }}</span>
+                                </label>
+                            </div>
+                            <div class="col-3">
+                                <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "personal_data", "file")'>Зберегти</button>
+                            </div>
+                            <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати формату: pdf, doc, txt, docx</p>
+                        </div>
+                    </div>
+
                     <!-- Положення -->
                     <br>
                     <h3>Положення</h3>
@@ -65,7 +86,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="document" id="file" ref="file" @change="previewFiles">
+                                <input type="file" class="custom-file-input" accept=".pdf, .doc, .docx, .txt" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="document" id="file" ref="file" @change="previewFiles">
                                 <span class="custom-file-control">{{ info.file.split('/')[2] }}</span>
                             </label>
                         </div>
@@ -247,6 +268,7 @@ export default {
                 video: '',
                 audio: '',
                 file: '',
+                personal_data: '',
                 hymn_text: '',
                 note_image: ''
             },
@@ -344,6 +366,7 @@ export default {
             this.form.append('type', type);
             this.form.append('table', table);
             this.form.append('row', row);
+            console.log(this.$refs[row])
             this.form.append('file', this.$refs[row].files[0]);
             axios.post('/post-info-file', this.form)
 	            .then((response) => {

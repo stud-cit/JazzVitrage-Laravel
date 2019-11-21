@@ -36,9 +36,9 @@
                             <div class="col-8">
                                 <label for="surname"><h4>Прізвище</h4></label>
                                 <input type="text" class="form-control" name="surname" id="surname" v-model="data.surname"
-                                    v-validate="{ required: true, regex: /^([а-яіїє']+){2,}$/i }">
+                                    v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('surname')">
-                                        Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                        Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
                                 </span>
                             </div>
                         </div>
@@ -46,9 +46,9 @@
                             <div class="col-8">
                                 <label for="name"><h4>Ім'я</h4></label>
                                 <input type="text" class="form-control" name="name" id="name" v-model="data.name"
-                                    v-validate="{ required: true, regex: /^([а-яіїє']+){2,}$/i }">
+                                    v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('name')">
-                                        Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери кириличного алфавіту)
+                                        Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
                                 </span>
                             </div>
                         </div>
@@ -56,9 +56,9 @@
                             <div class="col-8">
                                 <label for="patronymic"><h4>По-батькові</h4></label>
                                 <input type="text" class="form-control" name="patronymic" id="patronymic" v-model="data.patronymic"
-                                    v-validate="{ required: true, regex: /^([а-яіїє']+){5,}$/i }">
+                                    v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){5,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('patronymic')">
-                                        Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери кириличного алфавіту)
+                                        Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                                 </span>
                             </div>
                         </div>
