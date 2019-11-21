@@ -116,24 +116,6 @@
                         });
                     });
             },
-            deleteMember(id){
-                axios.post('/delete-members/'+id)
-                    .then((response) => {
-                        if(response.status == 200 ) {
-                            this.getFullList();
-                        }
-                        swal("Учасник був успішно видалений", {
-                            icon: "success",
-                        });
-			        })
-			        .catch((error) => {
-				        swal({
-					        icon: "error",
-					        title: 'Помилка',
-					        text: 'Не вдалося '
-				        });
-			        });
-	        },
 	        deleteMember(id) {
 		        swal({
 			        title: "Бажаєте видалити?",

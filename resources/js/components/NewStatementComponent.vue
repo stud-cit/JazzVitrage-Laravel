@@ -57,6 +57,9 @@
                             <label for="memberDate2" class="brtop" v-if="item.type == 'дует'">Дата народження другого учасника</label>
                             <p id="memberDate2" v-if="item.type == 'дует'">{{ item.memberDate2 }}</p>
 
+                            <label for="nameAgeCategory" class="brtop">Вікова категорія</label>
+                            <p id="nameAgeCategory">{{ item.nameAgeCategory }}</p>
+
                             <label for="memberAverage" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Середній вік учасників</label>
                             <p id="memberAverage" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.memberAverage }}</p>
 
@@ -220,6 +223,7 @@ export default {
 	                        file: member.group.file,
 
                             groupId: member.group.group_people_id,
+	                        nameAgeCategory: member.age_category,
                             id: member.application_id
                         })
                     }
@@ -250,6 +254,7 @@ export default {
 	                        passport_photo: member.solo_duet[0].passport_photo,
 	                        in_file: member.solo_duet[0].in_file,
 
+	                        nameAgeCategory: member.age_category,
                             id: member.application_id
                         })
                     }
@@ -283,6 +288,7 @@ export default {
 	                        in_file1: member.solo_duet[0].in_file,
 	                        passport_photo2: member.solo_duet[1].passport_photo,
 	                        in_file2: member.solo_duet[1].in_file,
+	                        nameAgeCategory: member.age_category,
                             id: member.application_id
                         })
                     }
