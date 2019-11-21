@@ -1146,6 +1146,7 @@
                         compositionAuthor: '',
                         compositionName2: '',
                         compositionAuthor2: '',
+	                    nameAgeCategory: '',
                         ageCategory: 0,
                     },
                     files: {
@@ -1198,12 +1199,42 @@
                     steps[this.activeStep] = true;
                     if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.getAge(this.registration.data.memberDate);
+
+                        if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+	                        this.registration.data.nameAgeCategory = 'молодша';
+                        }
+                        else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
+	                        this.registration.data.nameAgeCategory = 'середня';
+                        }
+                        else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+	                        this.registration.data.nameAgeCategory = 'старша';
+                        }
                     }
                     else if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 != '') {
                         this.registration.data.ageCategory = (this.getAge(this.registration.data.memberDate) + this.getAge(this.registration.data.memberDate2)) / 2;
+
+	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+		                    this.registration.data.nameAgeCategory = 'молодша';
+	                    }
+	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
+		                    this.registration.data.nameAgeCategory = 'середня';
+	                    }
+	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+		                    this.registration.data.nameAgeCategory = 'старша';
+	                    }
                     }
                     else if(this.registration.data.memberDate == '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.registration.data.groupAverage;
+
+	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+		                    this.registration.data.nameAgeCategory = 'молодша';
+	                    }
+	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
+		                    this.registration.data.nameAgeCategory = 'середня';
+	                    }
+	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+		                    this.registration.data.nameAgeCategory = 'старша';
+	                    }
                     }
                 }).catch((err) => {
                     console.log(err);

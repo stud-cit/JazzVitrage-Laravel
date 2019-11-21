@@ -77,6 +77,7 @@ class ApplicationController extends Controller
 
         $app->nomination_id = $data->nomination;
         $app->application_type_id = $data->appType;
+        $app->age_category = $data->nameAgeCategory;
         $app->status = Application::CREATED;
         $app->save();
 
