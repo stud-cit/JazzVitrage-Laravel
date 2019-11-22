@@ -42,6 +42,9 @@
                             <div class="items-title">Композиція</div>
 
                     </div>
+                    <!--<div class="nominations-popup">-->
+
+                    <!--</div>-->
                 </div>
             </div>
         </section>

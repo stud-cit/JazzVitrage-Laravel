@@ -233,12 +233,37 @@ class ApplicationController extends Controller
         }
 
     }
-    public function deleteMembers($id)
+    public function deleteMembers($id, Request $request)
     {
         $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
+
         Storage::deleteDirectory("member-files/".$model->application_id);
         Storage::delete("public/".$model->presentation["video"]);
         Evaluation::where("application_id", $id)->delete();
+
+        if ($model->application_type_id == 1){
+
+            $email = $model->soloDuet[0]->member_email;
+            Mail::raw($request->message, function($message) use ($email){
+                $message->to($email, 'test')->subject('заявка JazzVitrage');
+                $message->from('jazz@gmail.com', 'jazz');
+            });
+        }
+        else if ($model->application_type_id == 2){
+
+            for($i = 0; $i < count($model->soloDuet); $i++) {
+                $email = $model->soloDuet[$i]->member_email;
+                Mail::raw($request->message, function($message) use ($email){
+                    $message->to($email, 'test')->subject('заявка JazzVitrage');
+                    $message->from('jazz@gmail.com', 'jazz');
+                });
+            }
+        }
+//        else {
+//
+//        }
+
+
         $model->delete();
         return response('ok', 200);
     }
