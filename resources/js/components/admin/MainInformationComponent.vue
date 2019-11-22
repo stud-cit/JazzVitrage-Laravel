@@ -366,7 +366,6 @@ export default {
             this.form.append('type', type);
             this.form.append('table', table);
             this.form.append('row', row);
-            console.log(this.$refs[row])
             this.form.append('file', this.$refs[row].files[0]);
             axios.post('/post-info-file', this.form)
 	            .then((response) => {
