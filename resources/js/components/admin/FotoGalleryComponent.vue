@@ -42,6 +42,14 @@
                     <silentbox-single :src="'/img/uploads/'+item.file" :description="String(item.year)">
                         <i class="fa fa-search"></i>
                     </silentbox-single>
+					<div class="edit">
+						<div class="chekbox-two">
+							<label class="checkbox">
+								<input type="checkbox" >
+								<span class="checkbox__icon"></span>
+							</label>
+						</div>
+					</div>
                     <a :href="'/img/uploads/'+item.file" download><i class="fa fa-download"></i></a>
                 </div>
             </silentbox-group>
@@ -96,7 +104,9 @@
 			getFoto() {
 				axios.get('/get-foto')
 					.then((response) => {
-						this.foto = response.data;
+						this.foto = response.data.map(item => {
+							item.checked = false
+						});
 					})
 			},
 			fieldChange(){

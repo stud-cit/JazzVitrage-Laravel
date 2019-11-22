@@ -106,19 +106,21 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
-                                    <Datepicker
+                                    <date-picker 
                                         v-model="registration.data.memberDate" 
-                                        placeholder="ДАТА НАРОДЖЕННЯ"
-                                        :dayStr="datepicker.dayStr"
-                                        :min="datepicker.minDate"
-                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
-                                        :popperProps="datepicker.popperProps"
-                                    />
+                                        value-type="YYYY-MM-DD"
+                                        placeholder="Дата народження"
+                                        :lang="datepicker.lang"
+                                        :default-value="datepicker.minDate"
+                                        :disabled-date="rangeDate"
+                                        :editable="false"
+                                        :popup-style="datepicker.styles"
+                                    ></date-picker>
                                     <input style="display:none" type="text" name="memberDate" v-model="registration.data.memberDate" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Поле "Дата народження" має бути заповнене
+                                    Поле "Дата народження" має бути заповнене {{registration.data.memberDate}}
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -269,14 +271,16 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
-                                    <Datepicker
+                                    <date-picker 
                                         v-model="registration.data.memberDate" 
-                                        placeholder="ДАТА НАРОДЖЕННЯ"
-                                        :dayStr="datepicker.dayStr"
-                                        :min="datepicker.minDate"
-                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
-                                        :popperProps="datepicker.popperProps"
-                                    />
+                                        value-type="YYYY-MM-DD"
+                                        placeholder="Дата народження"
+                                        :lang="datepicker.lang"
+                                        :default-value="datepicker.minDate"
+                                        :disabled-date="rangeDate"
+                                        :editable="false"
+                                        :popup-style="datepicker.styles"
+                                    ></date-picker>
                                     <input style="display:none" type="text" name="memberDate" v-model="registration.data.memberDate" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
@@ -419,14 +423,16 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
-                                    <Datepicker
+                                    <date-picker 
                                         v-model="registration.data.memberDate2" 
-                                        placeholder="ДАТА НАРОДЖЕННЯ"
-                                        :dayStr="datepicker.dayStr"
-                                        :min="datepicker.minDate"
-                                        :max="datepicker.maxDate.getFullYear() + '-' + datepicker.maxDate.getMonth() + '-' + datepicker.maxDate.getDate()" 
-                                        :popperProps="datepicker.popperProps"
-                                    />
+                                        value-type="YYYY-MM-DD"
+                                        placeholder="Дата народження"
+                                        :lang="datepicker.lang"
+                                        :default-value="datepicker.minDate"
+                                        :disabled-date="rangeDate"
+                                        :editable="false"
+                                        :popup-style="datepicker.styles"
+                                    ></date-picker>
                                     <input style="display:none" type="text" name="memberDate2" v-model="registration.data.memberDate2" required v-validate="{ regex: /^\d{4}[.\/-]\d{2}[.\/-]\d{2}$/ }">
                                 </div>
                             </div>
@@ -1086,12 +1092,14 @@
 </template>
 
 <script>
-    import { Datepicker, Timepicker } from '@livelybone/vue-datepicker';
-    import '@livelybone/vue-datepicker/lib/css/index.css';
+    import DatePicker from 'vue2-datepicker';
+    import 'vue2-datepicker/index.css';
+
+    const nowDate = new Date();
+
     export default {
         components: {
-            Datepicker,
-            Timepicker
+            DatePicker
         },
         data() {
             return {
@@ -1109,14 +1117,20 @@
 	            personal: {
 		            personal_data: ''
                 },
-
                 datepicker: {
-                    popperProps: {},
-                    maxDate: new Date(),
-                    minDate: "2000-01-01",
-                    dayStr: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
+                    minDate: new Date(nowDate.getFullYear()-17 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    lang: {
+                        formatLocale: {
+                            months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            monthsShort: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                            weekdays: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+                            weekdaysShort: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД'],
+                            weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
+                        }
+                    },
+                    styles: { left: '300px' }
                 },
-
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
                     member2BirthdayFile: 'завантажити файл',
@@ -1195,6 +1209,9 @@
 	        this.getPersonal();
         },
         methods: {
+            rangeDate(date) {
+                return date <= this.datepicker.minDate || date >= this.datepicker.maxDate;
+            },
             isOpenedRegistration() {
                 axios
                     .get('/is-opened-registration')
@@ -1359,10 +1376,13 @@
         background: rgba(0,0,0,0.8)
 </style>
 <style>
-    .selected:before {
-        background: #4B0082 !important;
+    .mx-icon-calendar {
+        display: none;
     }
-    .item:hover, .year:hover {
-        color: #EE82EE !important;
+    .mx-datepicker {
+        width: 100%;
+    }
+    .active {
+        background: #4B0082 !important;
     }
 </style>

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             LogoSectionSeeder::class,
             PositionSectionSeeder::class,
             VideoGallerySectionSeeder::class,
-            FotoGalleryTableSeeder::class,
+            // FotoGalleryTableSeeder::class,
             UsersTableSeeder::class,
             QuotesTableSeeder::class,
             QuestionsTableSeeder::class,
