@@ -59,7 +59,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');
-    Route::post('delete-foto/{id}/', 'GalleryController@deleteFoto');
+    Route::post('put-foto/', 'GalleryController@putFotoYear');
+    Route::post('delete-foto', 'GalleryController@deleteFoto');
 
     Route::post('post-video', 'GalleryController@postVideo');
     Route::post('delete-video/{id}/', 'GalleryController@deleteVideo');
