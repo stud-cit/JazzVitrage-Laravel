@@ -120,7 +120,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberDate')">
-                                    Поле "Дата народження" має бути заповнене {{registration.data.memberDate}}
+                                    Поле "Дата народження" має бути заповнене
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
@@ -270,7 +270,7 @@
                             </span>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/step2-data.png" class="input-img">
+                                    <img src="img/step2-user.png" alt="" class="input-img">
                                     <date-picker 
                                         v-model="registration.data.memberDate" 
                                         value-type="YYYY-MM-DD"
@@ -1118,7 +1118,7 @@
 		            personal_data: ''
                 },
                 datepicker: {
-                    minDate: new Date(nowDate.getFullYear()-17 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
@@ -1129,7 +1129,7 @@
                             weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
                         }
                     },
-                    styles: { left: '300px' }
+                    styles: { left: '500px' }
                 },
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',
@@ -1382,7 +1382,11 @@
     .mx-datepicker {
         width: 100%;
     }
-    .active {
+    .mx-date-row .active {
         background: #4B0082 !important;
+    }
+    .mx-input {
+        height: 54px;
+        border-radius: 0;
     }
 </style>

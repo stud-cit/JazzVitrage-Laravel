@@ -1,37 +1,47 @@
 <template>
     <div>
-        <form enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-5">
-                    <label for="typeEvent">Тип заходу</label>
-                    <select class="form-control" v-model="typeEvent" id="typeEvent">
-                        <option>Джаз-Вітраж</option>
-                        <option>Мастер клас</option>
-                    </select>
-                    <label for="yearCompetition">Рік проведення конкурсу</label>
-                    <select class="form-control" v-model="yearCompetition" id="yearCompetition">
-                        <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
-                    </select>
-                </div>
-                <div class="col-2"></div>
-                <div class="col-5">
-                    <label for="foto">Фото в оригінальній якості</label>
-                    <label class="custom-file w-100">
-                        <input type="file" name="foto" v-validate="'image'" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept="image/*" multiple>
-                        <span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
-                    </label>
-                    <div v-for="(item, index) in file" :key="index">
-                        <div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
-                        <span class="text-danger" v-if="errors.has('foto')">Файл повинен бути зображенням</span>
-                    </div>
-                    <!-- Временное решение -->
-                    <transition name="load">
-                        <div v-if="load" style="text-align:center">Завантаження</div>
-                    </transition>
-                    <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" :disabled="file.length == 0 || errors.has('foto')" @click="uploadFile">Додати</button>
-                </div>
-            </div>
-        </form>
+		<div class="row">
+			<div class="col-12 mt-1 mb-2">
+				<button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати фото</button>
+				<button type="button" class="btn btn-primary float-right mx-2" @click="delArrayFoto">Видалити</button>
+				<button type="button" class="btn btn-primary float-right" @click="editPhoto">Змінити дату</button>
+				<span class="btn float-right mx-2">Обрано {{id.length}} елементів</span>
+			</div>
+		</div>
+		<transition name="load">
+			<form enctype="multipart/form-data" v-if="showForm">
+				<div class="row">
+					<div class="col-5">
+						<label for="typeEvent">Тип заходу</label>
+						<select class="form-control" v-model="typeEvent" id="typeEvent">
+							<option>Джаз-Вітраж</option>
+							<option>Мастер клас</option>
+						</select>
+						<label for="yearCompetition">Рік проведення конкурсу</label>
+						<select class="form-control" v-model="yearCompetition" id="yearCompetition">
+							<option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
+						</select>
+					</div>
+					<div class="col-2"></div>
+					<div class="col-5">
+						<label for="foto">Фото в оригінальній якості</label>
+						<label class="custom-file w-100">
+							<input type="file" name="foto" v-validate="'image'" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept="image/*" multiple>
+							<span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
+						</label>
+						<div v-for="(item, index) in file" :key="index">
+							<div class="uploadFiles" :style="item.valid ? {color: 'black'} : {color: 'red'}">{{ item.name }} <i class="fa fa-times-circle btn btn-default p-1 mr-3" @click="delFile(index)"></i></div>
+							<span class="text-danger" v-if="errors.has('foto')">Файл повинен бути зображенням</span>
+						</div>
+						<!-- Временное решение -->
+						<transition name="load">
+							<div v-if="load" style="text-align:center">Завантаження</div>
+						</transition>
+						<button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" :disabled="file.length == 0 || errors.has('foto')" @click="uploadFile">Додати</button>
+					</div>
+				</div>
+			</form>
+		</transition>
         <br>
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.foto_id">
@@ -45,7 +55,7 @@
 					<div class="edit">
 						<div class="chekbox-two">
 							<label class="checkbox">
-								<input type="checkbox" >
+								<input type="checkbox" @click="itemFile(item.foto_id)">
 								<span class="checkbox__icon"></span>
 							</label>
 						</div>
@@ -75,6 +85,8 @@
 					pageNumber: 0,
 					size: 9
 				},
+				id: [],
+				showForm: false
 			}
 		},
 		created() {
@@ -104,10 +116,30 @@
 			getFoto() {
 				axios.get('/get-foto')
 					.then((response) => {
-						this.foto = response.data.map(item => {
-							item.checked = false
-						});
+						this.foto = response.data;
 					})
+			},
+			itemFile(id) {
+				if(this.id.indexOf(id) == -1) {
+					this.id.push(id);
+				} else {
+					this.id.splice(this.id.indexOf(id), 1);
+				}
+			},
+			editPhoto() {
+				swal("Введіть бажану дату:", {
+					content: "input",
+				}).then((year) => {
+					axios.post('/put-foto/', {
+							id: this.id,
+							year
+						}).then((res) => {
+							this.getFoto();
+							swal("Дата змінена", {
+								icon: "success",
+							});
+						})
+				});
 			},
 			fieldChange(){
 				let changeFile = this.$refs.file.files;
@@ -140,6 +172,27 @@
 			delFile(index) {
 				this.file.splice(index, 1);
 			},
+			delArrayFoto() {
+				swal({
+					title: "Бажаєте видалити?",
+					text: "Після видалення ви не зможете відновити ці файли!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				}).then((willDelete) => {
+					if (willDelete) {
+						axios.post('/delete-foto', {
+							id: this.id
+						})
+							.then(() => {
+								this.getFoto();
+								swal("Файли успішно видалені", {
+									icon: "success",
+								});
+							});
+					}
+				});
+			},
 			delFoto(id, index) {
 				swal({
 					title: "Бажаєте видалити?",
@@ -150,7 +203,9 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
-							axios.post('/delete-foto/'+id)
+							axios.post('/delete-foto', {
+								id: [id]
+							})
 								.then(() => {
 									this.foto.splice(index, 1);
 									swal("Файл успішно видалено", {
