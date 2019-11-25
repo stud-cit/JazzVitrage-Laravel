@@ -888,7 +888,7 @@
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
-                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
@@ -951,7 +951,7 @@
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
-                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
@@ -1021,7 +1021,7 @@
                                 <h5 class="step-title">Вікова категорія: 
                                     <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
-                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 17">старша</span>
+                                    <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про колектив</h5>
@@ -1250,7 +1250,7 @@
                         else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 	                        this.registration.data.nameAgeCategory = 'середня';
                         }
-                        else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+                        else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
 	                        this.registration.data.nameAgeCategory = 'старша';
                         }
                     }
@@ -1263,7 +1263,7 @@
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 		                    this.registration.data.nameAgeCategory = 'середня';
 	                    }
-	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
 		                    this.registration.data.nameAgeCategory = 'старша';
 	                    }
                     }
@@ -1276,7 +1276,7 @@
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 		                    this.registration.data.nameAgeCategory = 'середня';
 	                    }
-	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 17) {
+	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
 		                    this.registration.data.nameAgeCategory = 'старша';
 	                    }
                     }
