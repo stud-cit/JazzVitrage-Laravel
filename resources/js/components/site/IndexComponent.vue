@@ -7,6 +7,7 @@
                         <div class="col-12 col-xl-7">
                             <img :src="info.logo" width="70%" class="preview-logo">
                             <p class="preview-text">{{ info.description }}</p>
+                            <img src="img/preview-tool-2.png" class="d-xl-none" alt="">
                         </div>
                     </div>
                 </div>
