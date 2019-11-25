@@ -1129,7 +1129,7 @@
                             weekdaysMin: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'НД']
                         }
                     },
-                    styles: { left: '500px' }
+                    styles: { left: '30%' }
                 },
                 fileTitle: {
                     memberBirthdayFile: 'завантажити файл',

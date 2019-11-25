@@ -59,11 +59,12 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');
-    Route::post('put-foto/', 'GalleryController@putFotoYear');
+    Route::post('put-foto', 'GalleryController@putFotoYear');
     Route::post('delete-foto', 'GalleryController@deleteFoto');
 
     Route::post('post-video', 'GalleryController@postVideo');
-    Route::post('delete-video/{id}/', 'GalleryController@deleteVideo');
+    Route::post('put-video', 'GalleryController@putVideoYear');
+    Route::post('delete-video', 'GalleryController@deleteVideo');
 
     Route::get('get-question', 'QuestionController@getQuestion');
     Route::post('delete-question/{id}/', 'QuestionController@deleteQuestion');

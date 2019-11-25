@@ -132,6 +132,14 @@
     color: #fff;
 }
 
+.fotoGallery .edit {
+    display: inline-block;
+    position:absolute;
+    bottom:0px;
+    margin-left: 10px;
+    font-size: 24px;
+}
+
 .fotoGallery .fa-download {
     background: #fff;
     position: absolute;
