@@ -20,6 +20,13 @@ class GalleryController extends Controller
         $data = FotoGallery::orderBy('created_at', 'asc')->where('year', '=', $year)->get();
         return response()->json($data);
     }
+    public function putFotoYear(Request $request)
+    {
+        foreach($request->id as $key => $value) {
+            FotoGallery::where("foto_id", $value)->update(["year" => $request->year]);
+        }
+    }
+    
     public function postFoto(Request $request)
     {
         $this->validate($request, [
@@ -40,11 +47,13 @@ class GalleryController extends Controller
             $foto->save();
         }
     }
-    public function deleteFoto($id)
+    public function deleteFoto(Request $request)
     {
-        $foto = FotoGallery::find($id);
-        if($foto->delete()){
-            unlink(public_path($this->publicStorage.$foto->file));
+        foreach($request->id as $key => $value) {
+            $foto = FotoGallery::find($value);
+            if($foto->delete()){
+                unlink(public_path($this->publicStorage.$foto->file));
+            }
         }
     }
 
