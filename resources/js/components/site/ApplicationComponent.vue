@@ -1382,6 +1382,10 @@
     .mx-datepicker {
         width: 100%;
     }
+    .mx-input {
+        height: 54px;
+        border-radius: 0;  
+    }
     .active {
         background: #4B0082 !important;
     }
