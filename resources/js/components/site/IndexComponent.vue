@@ -214,13 +214,15 @@
                     <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
                     <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
                     <form enctype="multipart/form-data" class="contacts-form">
+                        <label for="name">ВАШЕ ІМ'Я</label>                           
                         <div class="form-row">
                             <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
-                            <input type="text" v-model="name" id="name" placeholder="ВАШЕ ІМ'Я">
+                            <input type="text" v-model="name" id="name">
                         </div>
+                        <label for="email">ПОШТА</label>   
                         <div class="form-row">
                             <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
-                            <input type="email" v-model="email" id="email" placeholder="ПОШТА">
+                            <input type="email" v-model="email" id="email">
                         </div>
                         <div class="form-row">
                             <textarea name="" v-model="questionText" id="question" cols="30" rows="6"></textarea>

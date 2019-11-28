@@ -74,21 +74,25 @@
 
 
                             <h3 class="step-title">Інформація про учасника</h3>
+                            <label>ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
                             <div class="input-row">
+                                
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname" required
+                                    <input type="text" name="memberSurname" id="memberSurname" v-model="registration.data.memberSurname" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }"
                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
 
+                                <!-- <label for="memberName">ІМ'Я</label> -->
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName" required
+                                    <input type="text" name="memberName" id="memberName" v-model="registration.data.memberName" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }"
                                            data-vv-as="ІМ'Я">
                                 </div>
+                                <!-- <label for="memberPatronymic">ПО-БАТЬКОВІ</label> -->
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic" required
+                                    <input type="text" name="memberPatronymic" id="memberPatronymic" v-model="registration.data.memberPatronymic" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }"
                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
@@ -103,13 +107,13 @@
                             <span class="errors" v-if="errors.has('memberPatronymic')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <label>ДАТА НАРОДЖЕННЯ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
                                     <date-picker 
                                         v-model="registration.data.memberDate" 
                                         value-type="YYYY-MM-DD"
-                                        placeholder="Дата народження"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
                                         :disabled-date="rangeDate"
@@ -122,10 +126,11 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail" placeholder="Електронна пошта" v-model="registration.data.memberEmail" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                    <input type="text" name="memberEmail" id="memberEmail" v-model="registration.data.memberEmail" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
                                         v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
                                         data-vv-as="Електронна пошта">
                                 </div>
@@ -172,17 +177,20 @@
                                 </div>
                             </div>
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
+                                <label v-if="registration.data.idMemberType == 1">ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname" required
+                                    <input type="text" name="parentSurname" v-model="registration.data.parentSurname" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName" required
+                                    <input type="text" name="parentName" v-model="registration.data.parentName" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic" required
+                                    <input type="text" name="parentPatronymic" v-model="registration.data.parentPatronymic" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -195,10 +203,16 @@
                             <span class="errors" v-if="errors.has('parentPatronymic')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <div class="input-row" v-if="registration.data.idMemberType == 1">
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType == 0"> 
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
+                            </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" maxlength="10" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
+                                    <input type="text" name="idCode" id="idCode" maxlength="10" v-model="registration.data.idCode" required
                                            v-validate="{ regex: /^\d{10}$/ }">
                                 </div>
                             </div>
@@ -244,18 +258,19 @@
 
                         <form class="step-form" v-else-if="activeStep == 1 && registration.data.appType == 2">
                             <h3 class="step-title">Перший учасник дуету</h3>
+                            <label>ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="memberSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname" required
+                                    <input type="text" name="memberSurname" v-model="registration.data.memberSurname" required
                                         v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberName" placeholder="ІМ'Я" v-model="registration.data.memberName" required
+                                    <input type="text" name="memberName" v-model="registration.data.memberName" required
                                         v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic" required
+                                    <input type="text" name="memberPatronymic" v-model="registration.data.memberPatronymic" required
                                         v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -268,13 +283,13 @@
                             <span class="errors" v-if="errors.has('memberPatronymic')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <label>Дата народження</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <date-picker 
                                         v-model="registration.data.memberDate" 
                                         value-type="YYYY-MM-DD"
-                                        placeholder="Дата народження"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
                                         :disabled-date="rangeDate"
@@ -287,10 +302,11 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>Електронна пошта</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail1" placeholder="Електронна пошта" v-model="registration.data.memberEmail1" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                    <input type="text" name="memberEmail1" id="memberEmail1" v-model="registration.data.memberEmail1" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
                                            v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
                                            data-vv-as="Електронна пошта">
                                 </div>
@@ -334,17 +350,20 @@
                                 </div>
                             </div>
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
+                                <label>ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="parentSurname" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname" required
+                                    <input type="text" name="parentSurname" v-model="registration.data.parentSurname" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentName" placeholder="ІМ'Я  " v-model="registration.data.parentName" required
+                                    <input type="text" name="parentName" v-model="registration.data.parentName" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentPatronymic" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic" required
+                                    <input type="text" name="parentPatronymic" v-model="registration.data.parentPatronymic" required
                                            v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -357,10 +376,16 @@
                             <span class="errors" v-if="errors.has('parentPatronymic')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <div class="input-row" v-if="registration.data.idMemberType == 1">
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType == 0"> 
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
+                            </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" maxlength="10" :placeholder="registration.data.idMemberType == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode" required
+                                    <input type="text" name="idCode" maxlength="10" v-model="registration.data.idCode" required
                                         v-validate="{ regex: /^\d{10}$/ }">
                                 </div>
                             </div>
@@ -396,18 +421,19 @@
                                     Оберіть файл графічного формату
                             </span>
                             <h3 class="step-title">Другий учасник дуету</h3>
+                            <label>ПРІЗВИЩЕ Ім’я по-батькові</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="memberSurname2" placeholder="ПРІЗВИЩЕ" v-model="registration.data.memberSurname2" required
+                                    <input type="text" name="memberSurname2" v-model="registration.data.memberSurname2" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberName2" placeholder="ІМ'Я" v-model="registration.data.memberName2" required
+                                    <input type="text" name="memberName2" v-model="registration.data.memberName2" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="memberPatronymic2" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.memberPatronymic2" required
+                                    <input type="text" name="memberPatronymic2" v-model="registration.data.memberPatronymic2" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -420,13 +446,13 @@
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <label>ДАТА НАРОДЖЕННЯ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
                                     <date-picker 
                                         v-model="registration.data.memberDate2" 
                                         value-type="YYYY-MM-DD"
-                                        placeholder="Дата народження"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
                                         :disabled-date="rangeDate"
@@ -439,10 +465,11 @@
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail2" placeholder="Електронна пошта" v-model="registration.data.memberEmail2" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                    <input type="text" name="memberEmail2" v-model="registration.data.memberEmail2" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
                                            v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                                 </div>
                             </div>
@@ -485,17 +512,20 @@
                                 </div>
                             </div>
                             <div class="input-row" v-if="registration.data.idMemberType2 == 1">
+                                <label>ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType2 == 1">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="parentSurname2" placeholder="ПРІЗВИЩЕ " v-model="registration.data.parentSurname2" required
+                                    <input type="text" name="parentSurname2" v-model="registration.data.parentSurname2" required
                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentName2" placeholder="ІМ'Я  " v-model="registration.data.parentName2" required
+                                    <input type="text" name="parentName2" v-model="registration.data.parentName2" required
                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="parentPatronymic2" placeholder="ПО-БАТЬКОВІ  " v-model="registration.data.parentPatronymic2" required
+                                    <input type="text" name="parentPatronymic2" v-model="registration.data.parentPatronymic2" required
                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -508,10 +538,16 @@
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <div class="input-row" v-if="registration.data.idMemberType2 == 1">
+                                <label  >ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                            </div>
+                            <div class="input-row" v-if="registration.data.idMemberType2 == 0"> 
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
+                            </div>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode2" maxlength="10" :placeholder="registration.data.idMemberType2 == 1 ? 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ' : 'ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ'" v-model="registration.data.idCode2" required
+                                    <input type="text" name="idCode2" maxlength="10" v-model="registration.data.idCode2" required
                                         v-validate="{ regex: /^\d{10}$/ }">
                                 </div>
                             </div>
@@ -556,11 +592,11 @@
 
                         <form class="step-form" v-else-if="activeStep == 1 && registration.data.appType > 2">
                             <h3 class="step-title">Інформація про колектив</h3>
-
+                            <label>НАЗВА КОЛЕКТИВУ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="groupName" placeholder="НАЗВА КОЛЕКТИВУ" v-model="registration.data.groupName"
+                                    <input type="text" name="groupName" v-model="registration.data.groupName"
                                         v-validate="{ required: true }"
                                            data-vv-as="НАЗВА КОЛЕКТИВУ">
                                 </div>
@@ -568,20 +604,22 @@
                             <span class="errors" v-if="errors.has('groupName')">
                                     Поле має бути заповнене
                             </span>
+                            <label>КІЛЬКІСТЬ УЧАСНИКІВ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="groupCount" placeholder="КІЛЬКІСТЬ УЧАСНИКІВ" v-model="registration.data.groupCount" required
+                                    <input type="text" name="groupCount" v-model="registration.data.groupCount" required
                                         v-validate="{ regex: /^[0-9]{1,2}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupCount')">
                                     Введіть корректні дані в діапазоні від 1 до 99
                             </span>
+                            <label>СЕРЕДНІЙ ВІК УЧАСНИКІВ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="groupAverage" placeholder="СЕРЕДНІЙ ВІК УЧАСНИКІВ" v-model="registration.data.groupAverage" required
+                                    <input type="text" name="groupAverage" v-model="registration.data.groupAverage" required
                                         v-validate="{ regex: /^(([8-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
                                 </div>
                             </div>
@@ -630,10 +668,11 @@
                     <transition name="fade" >
                         <form class="step-form" v-if="activeStep == 2">
                             <h3 class="step-title">Інформація про УЧБОВИЙ ЗАКЛАД </h3>
+                            <label>НАЗВА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-castle.png" alt="" class="input-img" >
-                                    <input name="schoolName" type="text" placeholder="НАЗВА" v-model="registration.data.schoolName"
+                                    <input name="schoolName" type="text" v-model="registration.data.schoolName"
                                         v-validate="{ required: true }"
                                             data-vv-as="НАЗВА">
                                 </div>
@@ -641,10 +680,11 @@
                             <span class="errors" v-if="errors.has('schoolName')">
                                     Введіть корректні дані
                             </span>
+                            <label>АДРЕСА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-map.png" alt="" class="input-img">
-                                    <input name="schoolAddress" type="text" placeholder="АДРЕСА" v-model="registration.data.schoolAddress"
+                                    <input name="schoolAddress" type="text" v-model="registration.data.schoolAddress"
                                         v-validate="{ required: true }"
                                            data-vv-as="АДРЕСА">
                                 </div>
@@ -652,21 +692,23 @@
                             <span class="errors" v-if="errors.has('schoolAddress')">
                                     Введіть корректні дані
                             </span>
+                            <label>ТЕЛЕФОН</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
 
-                                    <input type="text" name="schoolPhone" maxlength="13" placeholder="ТЕЛЕФОН" v-model="registration.data.schoolPhone"
+                                    <input type="text" name="schoolPhone" maxlength="13" v-model="registration.data.schoolPhone"
                                         v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('schoolPhone')">
                                     Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                             </span>
+                            <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="schoolEmail" placeholder="E-MAIL" v-model="registration.data.schoolEmail" required
+                                    <input type="text" name="schoolEmail" v-model="registration.data.schoolEmail" required
                                         v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
                                            data-vv-as="E-MAIL">
                                 </div>
@@ -675,18 +717,19 @@
                                     Введіть дані у форматі name@email.com
                             </span>
                             <h3 class="step-title">Інформація про ВИКЛАДАЧА  </h3>
+                            <label> ПРІЗВИЩЕ Ім’я по-батькові</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input name="teacherSurname" type="text" placeholder="ПРІЗВИЩЕ" v-model="registration.data.teacherSurname" required
+                                    <input name="teacherSurname" type="text" v-model="registration.data.teacherSurname" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input name="teacherName" type="text" placeholder="ІМ'Я" v-model="registration.data.teacherName" required
+                                    <input name="teacherName" type="text" v-model="registration.data.teacherName" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input name="teacherPatronymic" type="text" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.teacherPatronymic" required
+                                    <input name="teacherPatronymic" type="text" v-model="registration.data.teacherPatronymic" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -699,31 +742,34 @@
                             <span class="errors" v-if="errors.has('teacherPatronymic')">
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
+                            <label>Електрона пошта</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input name="teacherEmail" type="text" placeholder="E-MAIL" v-model="registration.data.teacherEmail" required
+                                    <input name="teacherEmail" type="text" v-model="registration.data.teacherEmail" required
                                         v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('teacherEmail')">
                                     Введіть дані у форматі name@email.com
                             </span>
+                            <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>  
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input name="teacherIdCode" type="text" maxlength="10" placeholder="ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА" v-model="registration.data.teacherIdCode" required
+                                    <input name="teacherIdCode" type="text" maxlength="10" v-model="registration.data.teacherIdCode" required
                                         v-validate="{ regex: /^\d{10}$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('teacherIdCode')">
                                     Ідентифікаційний номер повинен містити 10 цифр
                             </span>
+                            <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-phone.png" alt="" class="input-img">
 
-                                    <input type="text" name="teacherPhone" maxlength="13" placeholder="КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА" v-model="registration.data.teacherPhone"
+                                    <input type="text" name="teacherPhone" maxlength="13" v-model="registration.data.teacherPhone"
                                         v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                 </div>
                             </div>
@@ -737,18 +783,19 @@
                                         В мене є концертмейстер
                                     </label>
                             </div>
+                            <label v-if="concertmaster"> ПРІЗВИЩЕ Ім’я по-батькові</label>
                             <div class="input-row" v-if="concertmaster">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="concertSurname" placeholder="ПРІЗВИЩЕ" v-model="registration.data.concertSurname" required
+                                    <input type="text" name="concertSurname" v-model="registration.data.concertSurname" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="concertName" placeholder="ІМ'Я" v-model="registration.data.concertName" required
+                                    <input type="text" name="concertName" v-model="registration.data.concertName" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="concertPatronymic" placeholder="ПО-БАТЬКОВІ" v-model="registration.data.concertPatronymic" required
+                                    <input type="text" name="concertPatronymic" v-model="registration.data.concertPatronymic" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
@@ -774,10 +821,11 @@
                         <form class="step-form" v-if="activeStep == 3">
                             <h3 class="step-title">Інформація про ВИСТУП</h3>
                             <h3 class="step-title">перший твір</h3>
+                            <label>НАЗВА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="compositionName" placeholder="НАЗВА" v-model="registration.data.compositionName"
+                                    <input type="text" name="compositionName" v-model="registration.data.compositionName"
                                         v-validate="{ required: true }"
                                            data-vv-as="НАЗВА">
                                 </div>
@@ -785,10 +833,11 @@
                             <span class="errors" v-if="errors.has('compositionName')">
                                     Введіть корректні дані
                             </span>
+                            <label>АВТОР</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-author.png" alt="" class="input-img">
-                                    <input type="text" name="compositionAuthor" placeholder="АВТОР" v-model="registration.data.compositionAuthor"
+                                    <input type="text" name="compositionAuthor" v-model="registration.data.compositionAuthor"
                                         v-validate="{ required: true }"
                                            data-vv-as="АВТОР">
                                 </div>
@@ -796,10 +845,11 @@
                             <span class="errors" v-if="errors.has('compositionAuthor')">
                                     Введіть корректні дані
                             </span>
+                            <label>ХРОНОМЕТРАЖ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="timing1" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing1" maxlength="5"
+                                    <input type="text" name="timing1" v-model="registration.data.timing1" maxlength="5"
                                            v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
@@ -808,10 +858,11 @@
                                     Введіть дані у форматі 00:00 (хвилини-секунди)
                             </span>
                             <h3 class="step-title">Другий твір</h3>
+                            <label>НАЗВА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="compositionName2" placeholder="НАЗВА" v-model="registration.data.compositionName2"
+                                    <input type="text" name="compositionName2" v-model="registration.data.compositionName2"
                                         v-validate="{ required: true }"
                                            data-vv-as="НАЗВА">
                                 </div>
@@ -819,10 +870,11 @@
                             <span class="errors" v-if="errors.has('compositionName2')">
                                     Введіть корректні дані
                             </span>
+                            <label>АВТОР</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-author.png" alt="" class="input-img">
-                                    <input type="text" name="compositionAuthor2" placeholder="АВТОР" v-model="registration.data.compositionAuthor2"
+                                    <input type="text" name="compositionAuthor2" v-model="registration.data.compositionAuthor2"
                                         v-validate="{ required: true }"
                                            data-vv-as="АВТОР">
                                 </div>
@@ -830,10 +882,11 @@
                             <span class="errors" v-if="errors.has('compositionAuthor2')">
                                     Введіть корректні дані
                             </span>
+                            <label>ХРОНОМЕТРАЖ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
-                                    <input type="text" name="timing2" placeholder="ХРОНОМЕТРАЖ" v-model="registration.data.timing2" maxlength="5"
+                                    <input type="text" name="timing2" v-model="registration.data.timing2" maxlength="5"
                                            v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
