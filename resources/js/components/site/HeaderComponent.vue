@@ -47,7 +47,16 @@
                             <a href="/applications"  class="nav-item nav-link">ЗАПОВНИТИ ЗАЯВКУ</a>
                         </li>
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
+                        <li class="dropdown">
+                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >Lang</a>
+                                <div class="dropdown-menu language">
+                                    <img src="images/lang/lang__uk.png" alt="uk" data-google-lang="uk" class="dropdown-item language__img">
+                                    <img src="images/lang/lang__en.png" alt="en" data-google-lang="en" class="dropdown-item language__img">
 
+                                </div>
+
+
+                        </li>
 
                     </ul>
 
