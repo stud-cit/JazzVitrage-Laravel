@@ -115,7 +115,7 @@
                                 <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
                             </select>
                             <select v-model="ageCategory" class="category">
-                                <option value="" selected="selected" >вік.категорія</option>
+                                <option value="" selected="selected" >вік</option>
                                 <option value="8-10">Від 8 до 10 років</option>
                                 <option value="11-13">Від 11 до 13 років</option>
                                 <option value="14-17">Від 14 до 17 років</option>

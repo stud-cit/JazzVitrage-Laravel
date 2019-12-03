@@ -468,8 +468,29 @@
    body .header .navbar-light .nav-menu .navbar-nav
       flex-flow: column
       align-items: center
-   body .header .navbar-light .nav-menu .navbar-nav li .nav-item
-      font-size: 16px
+   body .header .navbar-light .nav-menu .navbar-nav li
+      display: block
+   body
+
+      .header
+         .navbar-light
+            .nav-menu
+               .navbar-nav
+                  flex-flow: column
+                  align-items: center
+
+                  li
+                     .nav-item
+                        font-size: 16px
+               .dropdown-menu
+                  position: static
+                  margin-left: 0
+                  transform: translateX(0)
+                  .dropdown-item
+                     font-size: 16px
+                     white-space: initial
+                     line-height: 1.5
+                     padding: 12px
 
 // mobile
 @media (max-width: 414px)
