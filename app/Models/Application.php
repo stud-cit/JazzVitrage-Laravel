@@ -9,7 +9,15 @@ class Application extends Model
 	protected $primaryKey = 'application_id';
 	public const CREATED = 'created';
 	public const ARCHIVE = 'archive';
-    public const APPROVED = 'approved';
+	public const APPROVED = 'approved';
+	
+    protected $fillable = [
+        'nomination_id',
+        'application_type_id',
+		'age_category',
+		'status',
+		'check'
+    ];
 
     public function appType()
 	{

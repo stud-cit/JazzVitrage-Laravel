@@ -80,7 +80,9 @@ class ApplicationController extends Controller
         $app->age_category = $data->nameAgeCategory;
         $app->status = Application::CREATED;
         $app->save();
-
+        $app->check = $request->checkFile->store($this->publicStorage.$app->application_id);
+        $app->save();
+        
         if($data->appType == 1) {
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
