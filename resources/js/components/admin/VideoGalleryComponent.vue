@@ -1,30 +1,47 @@
 <template>
-
     <div>
-
-        <div class="row">
-            <div class="col-6">
-                <div>
-                <label for="video" class="brtop">Посилання на відео (YouTube)</label>
-                    <input type="text" v-validate="{regex: /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/}" ref="video" name="video" v-model="video" class="form-control" id="video">
-                    <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
+		<div class="row">
+			<div class="col-12 mt-1 mb-2">
+				<button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати відео</button>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right mx-2" @click="delArrayVideo">Видалити</button>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right" @click="editVideo">Змінити дату</button>
+				<span v-if="id.length" class="btn float-right mx-2">Обрано {{id.length}} елементів</span>
+			</div>
+		</div>
+		<hr>
+        <transition name="load">
+            <div class="row" v-if="showForm">
+                <div class="col-6">
+                    <div>
+                    <label for="video" class="brtop">Посилання на відео (YouTube)</label>
+                        <input type="text" v-validate="{regex: /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/}" ref="video" name="video" v-model="video" class="form-control" id="video">
+                        <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
+                    </div>
+                    <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
+                    
                 </div>
-                <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
-                
+                <div class="col-6">
+                    <label for="yearCompetition" class="brtop">Рік проведення конкурсу</label>
+                    <select class="form-control" v-model="yearCompetition" id="yearCompetition">
+                        <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-6">
-                <label for="yearCompetition" class="brtop">Рік проведення конкурсу</label>
-                <select class="form-control" v-model="yearCompetition" id="yearCompetition">
-                    <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}</option>
-                </select>
-            </div>
-        </div>
+        </transition>
         <br>
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.video_id">
                 <div class="border fotoGallery">
                     <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i></div>
                     <div class="calendar"><i class="fa fa-calendar"> {{ item.year }}</i></div>
+					<div class="edit">
+						<div class="chekbox-two">
+							<label class="checkbox">
+								<input type="checkbox" class="checkPhoto" :checked="id.indexOf(item.video_id) != -1 ? true : false" @click="itemFile(item.video_id)">
+								<span class="checkbox__icon"></span>
+							</label>
+						</div>
+					</div>
                     <iframe width="100%" height="100%" :src="'https://www.youtube.com/embed/'+item.url.slice(item.url.length - 11, item.url.length)" frameborder="0" allowfullscreen></iframe>
                 </div>
             </silentbox-group>
@@ -65,7 +82,9 @@ export default {
 	        pagination : {
 		        pageNumber: 0,
 		        size: 9
-	        },
+            },
+            id: [],
+            showForm: false
         }
     },
     created() {
@@ -98,6 +117,13 @@ export default {
                 this.urls = response.data;
             })
         },
+        itemFile(id) {
+            if(this.id.indexOf(id) == -1) {
+                this.id.push(id);
+            } else {
+                this.id.splice(this.id.indexOf(id), 1);
+            }
+        },
         postVideo() {
             this.$validator.validateAll().then((result) => {
                 if (!result) {	
@@ -105,25 +131,55 @@ export default {
                 }
                 else {
                     axios.post('/post-video', {
-                            url: this.video,
-                            year: this.yearCompetition
-                        }).then(() => {
-                            this.urls = [];
+                        url: this.video,
+                        year: this.yearCompetition
+                    }).then((res) => {
+                        this.urls.push(res.data);
+                    }).catch(() => {
+                        swal({
+                            icon: "error",
+                            title: 'Помилка',
+                            text: 'Файл не обрано'
+                        });
+                    })
+                }
+            });
+        },
+        editVideo() {
+            swal("Введіть бажану дату:", {
+                content: "input",
+            }).then((year) => {
+                axios.post('/put-video', {
+                        id: this.id,
+                        year
+                    }).then(() => {
+                        this.id = [];
+                        this.getVideo();
+                        swal("Дата змінена", {
+                            icon: "success",
+                        });
+                    })
+            });
+        },
+        delArrayVideo() {
+            swal({
+                title: "Бажаєте видалити?",
+                text: "Після видалення ви не зможете відновити ці файли!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    axios.post('/delete-video', {
+                        id: this.id
+                    })
+                        .then(() => {
+                            this.id = [];
                             this.getVideo();
-                           
-		                swal("Файл завантажено", {
-			            icon: "success",
-			            timer: 1000,
-			            button: false
-		            });
-	            })
-	            .catch((error) => {
-		            swal({
-			            icon: "error",
-			            title: 'Помилка',
-			            text: 'Файл не обрано'
-		            });
-                        })
+                            swal("Файли успішно видалені", {
+                                icon: "success",
+                            });
+                        });
                 }
             });
         },
@@ -137,8 +193,11 @@ export default {
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.post('/delete-video/'+id)
+                    axios.post('/delete-video', {
+                        id: [id]
+                    })
                     .then(() => {
+                        this.id = [];
                         this.urls.splice(index, 1);
                         swal("Файл успішно видалено", {
                             icon: "success",

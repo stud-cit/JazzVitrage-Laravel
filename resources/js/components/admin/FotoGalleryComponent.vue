@@ -3,11 +3,12 @@
 		<div class="row">
 			<div class="col-12 mt-1 mb-2">
 				<button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати фото</button>
-				<button type="button" class="btn btn-primary float-right mx-2" @click="delArrayFoto">Видалити</button>
-				<button type="button" class="btn btn-primary float-right" @click="editPhoto">Змінити дату</button>
-				<span class="btn float-right mx-2">Обрано {{id.length}} елементів</span>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right mx-2" @click="delArrayFoto">Видалити</button>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right" @click="editPhoto">Змінити дату</button>
+				<span v-if="id.length" class="btn float-right mx-2">Обрано {{id.length}} елементів</span>
 			</div>
 		</div>
+		<hr>
 		<transition name="load">
 			<form enctype="multipart/form-data" v-if="showForm">
 				<div class="row">
@@ -55,7 +56,7 @@
 					<div class="edit">
 						<div class="chekbox-two">
 							<label class="checkbox">
-								<input type="checkbox" @click="itemFile(item.foto_id)">
+								<input type="checkbox" class="checkPhoto" :checked="id.indexOf(item.foto_id) != -1 ? true : false" @click="itemFile(item.foto_id)">
 								<span class="checkbox__icon"></span>
 							</label>
 						</div>
@@ -130,10 +131,11 @@
 				swal("Введіть бажану дату:", {
 					content: "input",
 				}).then((year) => {
-					axios.post('/put-foto/', {
+					axios.post('/put-foto', {
 							id: this.id,
 							year
-						}).then((res) => {
+						}).then(() => {
+							this.id = [];
 							this.getFoto();
 							swal("Дата змінена", {
 								icon: "success",
@@ -164,8 +166,10 @@
 				form.append('year', this.yearCompetition);
 				axios.post('/post-foto', form)
 					.then((res) => {
+						console.log(res.data)
 						this.file = [];
 						this.load = false;
+						this.showForm = false;
 						this.getFoto();
 					})
 			},
@@ -185,6 +189,7 @@
 							id: this.id
 						})
 							.then(() => {
+								this.id = [];
 								this.getFoto();
 								swal("Файли успішно видалені", {
 									icon: "success",
@@ -207,6 +212,7 @@
 								id: [id]
 							})
 								.then(() => {
+									this.id = [];
 									this.foto.splice(index, 1);
 									swal("Файл успішно видалено", {
 										icon: "success",

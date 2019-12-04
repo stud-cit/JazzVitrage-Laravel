@@ -111,6 +111,13 @@
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду</label>
                                 </div>
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
+                                    </div>
+                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
+                                </div>
                             </div>
 
                             <div id="memberPhoto" class="row" v-if="item.type == 'дует'">
@@ -142,6 +149,13 @@
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду другого учасника</label>
                                 </div>
+                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
+                                    </div>
+                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
+                                </div>
                             </div>
 
                             <div id="memberDoc" class="row mb-2" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
@@ -151,6 +165,13 @@
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Документ с датами народження учасників</label>
+                                </div>
+                                <div class="col-2 statementPhotoDoc" @click="getFile(item.check)">
+                                    <i class="fa fa-search"></i>
+                                    <div class="mb-2">
+                                        <img src="/img/file.png">
+                                    </div>
+                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
                                 </div>
                             </div>
 
@@ -221,17 +242,16 @@ export default {
 	                        compositionAuthor2: member.presentation.author_two,
 	                        compositionTiming2: member.presentation.time_two,
 	                        file: member.group.file,
-
                             groupId: member.group.group_people_id,
 	                        nameAgeCategory: member.age_category,
-                            id: member.application_id
+                            id: member.application_id,
+                            check: member.check
                         })
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`, 
                             type: member.app_type.name,
-
 	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
@@ -253,14 +273,13 @@ export default {
 	                        compositionTiming2: member.presentation.time_two,
 	                        passport_photo: member.solo_duet[0].passport_photo,
 	                        in_file: member.solo_duet[0].in_file,
-
 	                        nameAgeCategory: member.age_category,
-                            id: member.application_id
+                            id: member.application_id,
+                            check: member.check
                         })
                     }
                     else if(member.solo_duet.length == 2) {
                         this.members.push({
-
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                             type: member.app_type.name,
 	                        memberDate1: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
@@ -289,7 +308,8 @@ export default {
 	                        passport_photo2: member.solo_duet[1].passport_photo,
 	                        in_file2: member.solo_duet[1].in_file,
 	                        nameAgeCategory: member.age_category,
-                            id: member.application_id
+                            id: member.application_id,
+                            check: member.check
                         })
                     }
                 });
