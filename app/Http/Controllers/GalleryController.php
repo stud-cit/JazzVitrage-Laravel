@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FotoGallery;
 use App\Models\VideoGallery;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GalleryController extends Controller
 {
@@ -38,6 +39,8 @@ class GalleryController extends Controller
             $foto->type = $request->type;
             $foto->year = $request->year;
             $foto->save();
+            $img = Image::make(public_path().$this->publicStorage.$name);
+            $img->save(public_path().$this->publicStorage.$name, 50);
         }
     }
     function deleteFoto(Request $request) {

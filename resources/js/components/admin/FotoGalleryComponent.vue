@@ -166,6 +166,7 @@
 				form.append('year', this.yearCompetition);
 				axios.post('/post-foto', form)
 					.then((res) => {
+						console.log(res.data)
 						this.file = [];
 						this.load = false;
 						this.showForm = false;
