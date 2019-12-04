@@ -1,3 +1,7 @@
+@import 'bootstrap.min.css'
+@import reset.min.css
+@import 'font-awesome.min.css'
+
 html
    min-height: 100vh
    height: 100%
@@ -125,7 +129,7 @@ body
          outline: none
          color: #ffffff
          font-family: Montserrat
-         font-size: 15px
+         font-size: 12px
          font-weight: 700
          letter-spacing: 1.5px
          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
@@ -447,7 +451,7 @@ body
             color: #14042f
 .video-gallery
    padding-top: 35px
-   background-color: rgba(0,0,0, 0.7)
+   background-color: rgba(20,4,47, 0.7)
    #carousel-text
       padding: 0 95px
       padding-bottom: 40px
@@ -691,3 +695,13 @@ body
          font-size: 16px
          font-weight: 500
          letter-spacing: 1.6px
+         a
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 16px
+            &:hover, &:active
+               color: #ffd501
+               text-decoration: none
+
+@import 'site-other.sass'
+@import 'adaptive.sass'
