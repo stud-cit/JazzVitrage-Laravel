@@ -111,7 +111,7 @@
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
+                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
@@ -149,7 +149,7 @@
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду другого учасника</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
+                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
@@ -166,7 +166,7 @@
                                     </div>
                                     <label class="brtop mb-2">Документ с датами народження учасників</label>
                                 </div>
-                                <div class="col-2 statementPhotoDoc" @click="getFile(item.check)">
+                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFile(item.check)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
