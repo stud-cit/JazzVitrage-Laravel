@@ -66,9 +66,11 @@
             </div>
         </nav>
 
-        <marquee class="ticker" scrollamount="10">
+        <div class="ticker" >
+            <span>
             {{ info.ticker }}
-        </marquee>
+            </span>
+        </div>
     </header>
 
 </template>
