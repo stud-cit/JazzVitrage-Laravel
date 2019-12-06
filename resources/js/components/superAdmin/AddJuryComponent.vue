@@ -125,9 +125,9 @@
 				rank: '',
 				additionalInfo: '',
 				options: [
-					{ value: 'Інструментальний жанр' },
-					{ value: 'Вокальний жанр' },
-					{ value: 'Композиція' }
+					{ value: ' Інструментальний жанр' },
+					{ value: ' Вокальний жанр' },
+					{ value: ' Композиція' }
 				],
 				items: [
 					{ id: 1 }
@@ -292,7 +292,7 @@
 				const selects = document.querySelectorAll('select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
-					valOptions.push(selects[index].value);
+					valOptions.push(" "+selects[index].value);
 				}
 				this.form.append('name', this.name);
 				this.form.append('surname', this.surname);
@@ -308,9 +308,8 @@
 					}
 					else {
 						axios.post('/post-all-jury', this.form)
-							.then(() => {
-								this.jurys = [];
-								this.getFullJuryList();
+							.then((res) => {
+								this.jurys.push(res.data);
 							})
 							.catch((error) => {
 								swal({
