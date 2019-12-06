@@ -414,7 +414,7 @@
 
          .subtitle
 
-            margin: 0 auto
+            margin: 15px auto
 
          .contacts-form
             width: auto
@@ -468,8 +468,29 @@
    body .header .navbar-light .nav-menu .navbar-nav
       flex-flow: column
       align-items: center
-   body .header .navbar-light .nav-menu .navbar-nav li .nav-item
-      font-size: 16px
+   body .header .navbar-light .nav-menu .navbar-nav li
+      display: block
+   body
+
+      .header
+         .navbar-light
+            .nav-menu
+               .navbar-nav
+                  flex-flow: column
+                  align-items: center
+
+                  li
+                     .nav-item
+                        font-size: 16px
+               .dropdown-menu
+                  position: static
+                  margin-left: 0
+                  transform: translateX(0)
+                  .dropdown-item
+                     font-size: 16px
+                     white-space: initial
+                     line-height: 1.5
+                     padding: 12px
 
 // mobile
 @media (max-width: 414px)
@@ -506,7 +527,7 @@
                 font-size: 32px
 
       .gallery
-         background: #14042f
+         //background: #14042f
 
          .container
             .row
@@ -809,16 +830,20 @@
             .preview-logo
                margin: 20px 0
             .preview-text
-               margin: 0 0 105px
+               margin: 0 0 15px
                font-size: 16px
    .nominations
       .title-nominations
+         img
+            display: none
          .text
+            position: static
             .title
-               margin-top: -18px
-               font-size: 18px !important
+               margin-top: 0
+               font-size: 26px !important
             .subtitle
-               font-size: 7px !important
+               font-size: 18px !important
+               margin-top: 15px !important
    .position
       text-align: center
       .col-xl-7

@@ -48,7 +48,9 @@
                         </li>
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
                         <li class="dropdown">
-                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >Lang</a>
+                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
+                                <img v-if="!translate" src="images/lang/lang__uk.png">
+                                <img v-else src="images/lang/lang__en.png" ></a>
                                 <div class="dropdown-menu language">
                                     <img src="images/lang/lang__uk.png" alt="uk" data-google-lang="uk" class="dropdown-item language__img">
                                     <img src="images/lang/lang__en.png" alt="en" data-google-lang="en" class="dropdown-item language__img">
@@ -64,9 +66,11 @@
             </div>
         </nav>
 
-        <marquee class="ticker" scrollamount="10">
+        <div class="ticker" >
+            <span>
             {{ info.ticker }}
-        </marquee>
+            </span>
+        </div>
     </header>
 
 </template>
@@ -75,9 +79,11 @@
     export default {
         data() {
             return {
+                translate: false,
                 info: {
                     logo: '',
-                    ticker: ''
+                    ticker: '',
+
                 },
                 isRegistration: false,
             };
@@ -86,6 +92,11 @@
         created () {
             this.getInfo();
             this.isOpenedRegistration();
+            if(this.getCookie('googtrans') =='/uk/en'){
+
+                this.translate = true;
+            }
+
         },
         computed: {
 
@@ -107,7 +118,18 @@
                     })
                     .catch( ( error ) => console.error(error) )
             },
+            getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                console.log(matches[1]);
+                return matches[1] ? decodeURIComponent(matches[1]) : undefined;
+            }
         },
 
     }
 </script>
+<style>
+    /*.translate*/
+
+</style>

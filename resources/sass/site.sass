@@ -1,29 +1,42 @@
+@import 'bootstrap.min.css'
+@import reset.min.css
+@import 'font-awesome.min.css'
+
+html
+   min-height: 100vh
+   height: 100%
 body
+   margin: 0
    line-height: 1
    position: relative
-   background: url("../img/preview-bg.jpg") no-repeat
-   background-attachment: fixed
+   background: #281558 url("../img/preview-bg.jpg") no-repeat center center fixed
    background-size: cover
+   box-sizing: border-box
+   font-family: Montserrat
+   font-size: 16px
    padding-bottom: 96px
-   min-height: 100vh
+   min-height: 100vh !important
    top: 0 !important
+
 
 //language
 
 .skiptranslate
    display: none !important
+.goog-te-spinner-pos
+   display: none !important
 .language.show
    display: flex
    flex-direction: column
    justify-content: center
-   min-width: 0
+   min-width: 56px
    .dropdown-item
       width: auto
 ////////
 
 .sections
-   padding-top: 60px
-   padding-bottom: 270px
+   //padding-top: 60px
+   //padding-bottom: 270px
    .title-section
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
       color: #ffffff
@@ -77,12 +90,14 @@ body
             max-width: 125px
       .nav-menu
          flex-grow: 0
-
+         li
+            display: flex
+            align-items: center
          .dropdown-menu
             padding: 0
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5)
             .dropdown-item
-               padding: 16px
+               padding: 12px
                text-align: center
                color: #410655
                font-family: Montserrat
@@ -114,7 +129,7 @@ body
          outline: none
          color: #ffffff
          font-family: Montserrat
-         font-size: 15px
+         font-size: 12px
          font-weight: 700
          letter-spacing: 1.5px
          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)
@@ -131,6 +146,13 @@ body
       font-weight: 600
       letter-spacing: 2px
       text-transform: uppercase
+      white-space: nowrap
+      overflow: hidden
+      span
+         display: inline-block
+         padding-left: 100%
+         animation: scroll 40s infinite linear
+
 .main-section
    padding-top: 135px
    background-size: cover
@@ -141,7 +163,8 @@ body
    overflow: hidden
 
    .top-layout
-      background-image: linear-gradient(109deg, rgba(255, 255, 255, 0.48) 0%, #7d0ca5 100%)
+      //background-image: linear-gradient(109deg, rgba(255, 255, 255, 0.48) 0%, #7d0ca5 100%)
+      background-image: linear-gradient(109deg, rgba(199, 93, 167, 0.7) 0%, #800089 100%)
       clip-path: polygon(0 0, 87% 0, 70% 100%, 0% 100%)
       min-height: 668px
       .preview-logo
@@ -234,10 +257,12 @@ body
             text-align: center
             color: #ffffff
             font-family: Montserrat
-            font-size: 17px
-            font-weight: 900
+            font-size: 14px
+            font-weight: 500
             letter-spacing: 1.7px
             z-index: 5
+            text-transform: uppercase
+            line-height: 1.5
 
    
 .position
@@ -282,6 +307,9 @@ body
          color: #ffffff
          border-top-right-radius: 10px
          border-bottom-right-radius: 10px
+         display: flex
+         align-items: center
+         justify-content: center
 
       .btn-download
          background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
@@ -315,6 +343,7 @@ body
       margin-top: 25px
       border-radius: 50px 50px 0 0
       border: none
+      overflow: hidden
       width: 100%
       tr
          background-color: #410655
@@ -384,6 +413,9 @@ body
          font-family: "Open Sans"
          font-size: 20px
          font-weight: 400
+         -webkit-appearance: none
+         -moz-appearance: none
+         appearance: none
          outline: none
          &:last-of-type
             border-radius: 0 10px 10px 0
@@ -426,7 +458,7 @@ body
             color: #14042f
 .video-gallery
    padding-top: 35px
-   background-color: rgb(0, 0, 0, 0.3)
+   background-color: rgba(20,4,47, 0.7)
    #carousel-text
       padding: 0 95px
       padding-bottom: 40px
@@ -655,7 +687,7 @@ body
 
 .footer
    padding: 40px 0
-   background-color: #393939
+   background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0.25) 200%)
    position: absolute
    bottom: 0
    left: 0
@@ -670,3 +702,28 @@ body
          font-size: 16px
          font-weight: 500
          letter-spacing: 1.6px
+         a
+            color: #ffffff
+            font-family: Montserrat
+            font-size: 16px
+            &:hover, &:active
+               color: #ffd501
+               text-decoration: none
+
+
+@-moz-keyframes scroll
+   0%
+      transform: translate(0, 0)
+
+   100%
+      transform: translate(-100%, 0)
+@keyframes scroll
+   0%
+      transform: translate(0, 0)
+
+   100%
+      transform: translate(-100%, 0)
+
+
+@import 'site-other.sass'
+@import 'adaptive.sass'

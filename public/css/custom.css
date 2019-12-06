@@ -132,13 +132,24 @@
     color: #fff;
 }
 
+.fotoGallery .edit {
+    display: inline-block;
+    position:absolute;
+    bottom:0px;
+    margin-left: 10px;
+    font-size: 24px;
+}
+
 .fotoGallery .fa-download {
-    background: #fff;
     position: absolute;
-    border: 1px solid silver;
+    color: #999;
+    font-size: 34px;
     padding: 10px;
-    right: 25px;
-    bottom: 20px;
+    right: 15px;
+    bottom: 5px;
+}
+.fa-download:hover {
+    color: #2A7DEA;
 }
 
 .fotoGallery .edit {
