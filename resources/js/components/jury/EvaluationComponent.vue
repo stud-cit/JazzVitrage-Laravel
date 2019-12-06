@@ -269,6 +269,9 @@
             getMember() {
                 axios.get(`/get-member/${this.$route.params.id}`)
                     .then((response) => {
+                        if(response.data.length == 0) {
+                            this.$router.push('/admin/all-statements');
+                        }
                         this.member = response.data[0].solo_duet;
                         this.group = response.data[0].group;
                         this.type = response.data[0].app_type;

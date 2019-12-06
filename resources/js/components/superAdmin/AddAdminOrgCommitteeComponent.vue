@@ -152,9 +152,8 @@
 						this.form.append('email', this.email);
 						this.form.append('patronymic', this.defaultPatronymic);
 						axios.post('/post-all-admin', this.form)
-							.then((response) => {
-								this.admin = [];
-								this.getFullAdminOrgCommitteeList();
+							.then((res) => {
+								this.admin.push(res.data);
 							})
 							.catch((error) => {
 								swal({
