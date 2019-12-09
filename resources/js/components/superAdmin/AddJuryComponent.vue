@@ -58,8 +58,8 @@
                     <label class="brtop">Номінація</label>
                     <div v-for="(item, index) in items" :key="item.id" class="mb-2">
                         <select class="form-control" style="width: 80%">
-                            <option v-for="(option, index) in options" :key="index">
-                                {{ option.value }}
+                            <option v-for="option in nominations" :key="option.nomination_id">
+                                {{ option.name }}
                             </option>
                         </select>
                         <i v-if="index == 0" v-show="items.length < 3" class="fa fa-plus-circle btn btn-default float-right button-position p-0" @click="addNomination"></i>
@@ -67,56 +67,48 @@
                     </div>
                     <label for="info" class="brtop">Членство в спілках журі</label>
                     <textarea class="form-control" v-model="additionalInfo" id="info" rows="3"></textarea>
-                    <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" @click="postAllJury">Додати</button>
+                    <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" @click="postJury">Додати</button>
                 </div>
             </div>
         </form>
         <br>
-        <table class="table table-responsive table-bordered">
-            <thead>
-            <tr>
-                <th width="7%">№</th>
-                <th width="15%">ПІБ журі</th>
-                <th width="15%">Фото</th>
-                <th width="15%">Електронна адреса</th>
-                <th width="15%">Звання члена журі</th>
-                <th width="15%">Номінація</th>
-                <th width="15%">Членство в спілках журі</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody id="juryTableID" v-for="(item, index) in jurys" :key="index">
-            <tr>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
-
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
-					<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
-					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
-				</td>
-
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.rank }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.nominations }}</td>
-                <td class="editing-td" data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-
-                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="edit-save-td">
-                    <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
-                </td>
-                <td class="editing-td text-center" data-toggle="collapse" :data-target="'#collapse'+(index+1)" id="del-td"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
-
-            </tr>
-            </tbody>
-        </table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th width="150px" scope="col">Фото</th>
+					<th scope="col">ПІБ</th>
+					<th scope="col">Електронна пошта</th>
+					<th scope="col">Звання</th>
+					<th scope="col">Номінація</th>
+					<th scope="col">Членство в спілках журі</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in jurys" :key="item.user_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>
+						<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
+						<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
+					</td>
+					<td>{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
+					<td>{{ item.email }}</td>
+					<td>{{ item.rank }}</td>
+					<td>{{ item.nominations }}</td>
+					<td>{{ item.informations }}</td>
+					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				editBtn: 0,
 				jurys: [],
 				name: '',
 				surname: '',
@@ -124,171 +116,43 @@
 				email: '',
 				rank: '',
 				additionalInfo: '',
-				options: [
-					{ value: ' Інструментальний жанр' },
-					{ value: ' Вокальний жанр' },
-					{ value: ' Композиція' }
-				],
+				nominations: [],
 				items: [
 					{ id: 1 }
 				],
 				form: new FormData,
-				table_form: new FormData
 			};
 		},
 		created () {
-			this.getFullJuryList();
+			this.getJury();
+			this.getNomination();
 		},
 		methods: {
 
-			getFileName(evt, index) {
-				var tr = document.querySelectorAll('tr')[index + 1]
-				var file = evt.target.files;
-				var reader = new FileReader();
-				reader.onload = (function(theFile) {
-					return function(e) {
-						tr.querySelector('#photo_value_jury').setAttribute('src', e.target.result);
-					};
-				})(file[0]);
-				reader.readAsDataURL(file[0]);
+			// Номинации
 
-				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
-				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
-
-			},
-			edit(id, event){
-				this.editBtn = id;
-				event.preventDefault();
-				var pib_input = document.createElement('input');
-				var photo_input = document.createElement('div');
-				var rank_input = document.createElement('input');
-				var nomination_select = document.createElement('select');
-				var information_input = document.createElement('textarea');
-
-				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				let photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
-				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
-				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5];
-				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6];
-				pib_input.setAttribute('value', pib_td.innerHTML);
-				pib_input.setAttribute('type', 'text');
-				pib_input.setAttribute('id', 'pib_data');
-				pib_input.setAttribute('class','input-edit-correct');
-				pib_td.innerHTML = '';
-				pib_td.append(pib_input);
-
-
-				photo_input.setAttribute('class', 'edit-jury-photo');
-				photo_input.innerHTML = `<div class="form-group">
-                <label class="label" id="label">
-
-                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
-                    <span class="title" id="span_id">Додати файл</span>
-
-					<input type="file" ref="juryfile" accept='image/*' class="form-control-file" id="jury-photo">
-				</label>
-                </div>`;
-
-				var photo_label = photo_td.querySelector('img');
-
-				photo_label.setAttribute('id', 'photo_value_jury');
-				photo_label.removeAttribute('class');
-				document.getElementById('photo_value_jury').style.opacity = "0.5";
-
-				photo_input.prepend(photo_label);
-
-				photo_td.append(photo_input);
-
-				rank_input.setAttribute('value', rank_td.innerHTML);
-				rank_input.setAttribute('type', 'text');
-				rank_input.setAttribute('id', 'rank_data');
-				rank_input.setAttribute('class','input-edit-correct');
-				rank_td.innerHTML = '';
-				rank_td.append(rank_input);
-
-				nomination_select.setAttribute('id', 'parse_table_select');
-				nomination_select.setAttribute('class','input-edit-correct');
-				nomination_td.innerHTML = '';
-				nomination_td.append(nomination_select);
-				var sel = document.getElementById('parse_table_select');
-				var opt1 = document.createElement('option');
-				var opt2 = document.createElement('option');
-				var opt3 = document.createElement('option');
-				opt1.appendChild( document.createTextNode('Інструментальний жанр') );
-				opt2.appendChild( document.createTextNode('Вокальний жанр') );
-				opt3.appendChild( document.createTextNode('Композиція') );
-				sel.appendChild(opt1);
-				sel.appendChild(opt2);
-				sel.appendChild(opt3);
-
-
-				information_input.value += information_td.innerHTML;
-				information_input.setAttribute('id', 'information_data');
-				information_input.setAttribute('rows', '6');
-				information_input.setAttribute('class', 'text-area-width');
-				information_td.innerHTML = '';
-				information_td.append(information_input);
-			},
-			save(id, event){
-				this.editBtn = 0;
-				event.preventDefault();
-				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input');
-				var rank_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('input').value;
-				var nomination_td = event.target.parentNode.parentNode.querySelectorAll('td')[5].querySelector('select').value;
-				var information_td = event.target.parentNode.parentNode.querySelectorAll('td')[6].querySelector('textarea').value;
-
-				var parse_pib = pib_td.split(' ');
-				var parse_photo = photo_td;
-				var parse_rank = rank_td;
-				var parse_nomination = nomination_td;
-				var parse_information = information_td;
-
-				this.table_form.append('name', parse_pib[0]);
-				this.table_form.append('surname', parse_pib[1]);
-				if (typeof parse_pib[2] == 'undefined') {
-				} else {
-					this.table_form.append('patronymic', parse_pib[2]);
-				}
-				this.table_form.append('rank', parse_rank);
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('nominations', parse_nomination);
-				this.table_form.append('informations', parse_information);
-				axios.post('/update-jury/'+id, this.table_form)
+			getNomination(){
+				axios.get('/get-nominations')
 					.then((response) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
+						this.nominations = response.data;
 					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
-						});
-					});
 			},
 			addNomination(){
-				this.items.push({
-					id: this.items[this.items.length - 1].id+1
-				});
+				this.items.push({ id: this.items[this.items.length - 1].id+1 });
 			},
 			deleteNomination(index) {
 				this.items.splice(index, 1);
 			},
-			getFullJuryList() {
+
+			// Жури
+
+			getJury() {
 				axios.get('/get-all-jury')
 					.then((response) => {
-						this.jurys.push(...response.data)
+						this.jurys = response.data;
 					})
 			},
-			postAllJury(){
+			postJury(){
 				const selects = document.querySelectorAll('select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
@@ -310,6 +174,11 @@
 						axios.post('/post-all-jury', this.form)
 							.then((res) => {
 								this.jurys.push(res.data);
+								swal("Користувача успішно зареєстровано", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
 							})
 							.catch((error) => {
 								swal({
