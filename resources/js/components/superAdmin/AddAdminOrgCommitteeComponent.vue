@@ -36,110 +36,50 @@
             </div>
         </form>
         <br>
-        <table class="table table-responsive table-bordered">
-            <thead>
-            <tr>
-                <th width="7%">№</th>
-                <th width="27%">Прізвище</th>
-                <th width="27%">Ім’я</th>
-                <th width="27%">Електронна адреса</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody v-for="(item, index) in admin" :key="index">
-            <tr>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.surname }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.name }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td id="edit-save-td">
-                    <i v-if="editBtn" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit($event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
-                </td>
-                <td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdminOrgCommittee(item.user_id, index)"></i></td>
-            </tr>
-            </tbody>
-        </table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th scope="col">Прізвище</th>
+					<th scope="col">Ім’я</th>
+					<th scope="col">Електронна пошта</th>
+					<th width="10px" scope="col"></th>
+					<th width="10px" scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in admin" :key="item.user_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>{{ item.surname }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.email }}</td>
+					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteAdmin(item.user_id, index)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				editBtn: true,
 				admin: [],
 				name: '',
 				surname: '',
 				email: '',
 				defaultPatronymic: 'default',
-				form: new FormData,
-				table_form: new FormData
+				form: new FormData
 			};
 		},
 		created () {
-			this.getFullAdminOrgCommitteeList();
+			this.getAdmin();
 		},
 		methods: {
-			edit(event){
-				this.editBtn = false;
-				event.preventDefault();
-				var surname_input = document.createElement('input');
-				var name_input = document.createElement('input');
-
-				var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2];
-
-				surname_input.setAttribute('value', surname_td.innerHTML);
-				surname_input.setAttribute('type', 'text');
-				surname_input.setAttribute('id', 'pib_data');
-				surname_td.innerHTML = '';
-				surname_td.append(surname_input);
-
-				name_input.setAttribute('value', name_td.innerHTML);
-				name_input.setAttribute('type', 'text');
-				name_input.setAttribute('id', 'pib_data');
-				name_td.innerHTML = '';
-				name_td.append(name_input);
-			},
-
-			save(id, event) {
-				this.editBtn = true;
-				event.preventDefault();
-				var surname_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var name_td = event.target.parentNode.parentNode.querySelectorAll('td')[2].querySelector('input').value;
-
-				var regex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
-				var parse_surname = surname_td;
-				var parse_name = name_td;
-
-				this.table_form.append('surname', parse_surname);
-				this.table_form.append('name', parse_name);
-
-				axios.post('/update-admin/' + id, this.table_form)
-					.then((response) => {
-						this.admin = [];
-						this.getFullAdminOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.jurys = [];
-						this.getFullJuryList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ журі, електронна адреса" повинні бути заповнені'
-						});
-					});
-			},
-			getFullAdminOrgCommitteeList() {
+			getAdmin() {
 				axios.get('/get-all-admin-org')
 					.then((response) => {
-						this.admin.push(...response.data)
+						this.admin = response.data;
 					})
 			},
 			postAdmin() {
@@ -154,6 +94,11 @@
 						axios.post('/post-all-admin', this.form)
 							.then((res) => {
 								this.admin.push(res.data);
+								swal("Користувача успішно зареєстровано", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
 							})
 							.catch((error) => {
 								swal({
@@ -166,7 +111,7 @@
 
 				})
 			},
-			deleteAdminOrgCommittee(id, index) {
+			deleteAdmin(id, index) {
 				swal({
 					title: "Бажаєте видалити?",
 					text: "Після видалення ви не зможете відновити даний запис",
@@ -178,9 +123,7 @@
 						if (willDelete) {
 							axios.post('/delete-user/' + id)
 								.then((response) => {
-									if (response.status == 200) {
-										this.admin.splice(index, 1);
-									}
+									this.admin.splice(index, 1);
 									swal("Адміністратор був успішно видалений", {
 										icon: "success",
 									});

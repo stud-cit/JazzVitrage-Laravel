@@ -3,10 +3,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth; 
 use App\Models\Evaluation;
+
 class UserController extends Controller
 {
     protected $userStorage = '/img/user-photo/';
+
+    function pageProfile($id) {
+        $user = Auth::user();
+        if($user->user_id != $id && $user->role != 'superAdmin') {
+            return redirect('admin');
+        }
+        return view('admin.profile');
+    }
 
     public function getUserId($id)
     {

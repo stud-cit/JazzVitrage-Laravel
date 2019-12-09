@@ -32,10 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Юзеры
 
-    Route::get('/admin/profile/{id}', function () {
-        return view('admin.profile');
-    })->name('profile');
-
+    Route::get('/admin/profile/{id}', 'UserController@pageProfile');
     Route::get('/user/{id}', 'UserController@getUserId');
     Route::post('/user/{id}', 'UserController@updateUser');
     Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
