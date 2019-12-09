@@ -109,7 +109,7 @@
                     <tr class="search">
                         <td colspan="5">
                         <div class="search-block">
-                            <input type="text" v-model="searchMember" placeholder="ПОШУК">
+                            <input type="text" v-model="searchMember" :placeholder=" translate ? 'SEARCH' : 'ПОШУК'">
                             <select v-model="searchNomination" class="nomination">
                                 <option value="" selected="selected">номінація</option>
                                 <option v-for="(value, index) in nominations" :value="value.name" :key="index">{{ value.name }}</option>
@@ -137,7 +137,7 @@
             </div>
 
         </section>
-        <section class="sections video-gallery">
+        <section class="sections video-gallery" v-if="videos.length > 0">
             <div class="container">
                 <div id="carousel-text" class="carousel slide" data-ride="carousel">
                     <img src="img/carousel-img.png" alt="" class="carousel-img">
@@ -243,6 +243,7 @@
     export default {
         data() {
             return {
+                translate: false,
                 pagination : {
                     pageNumber: 0,
                     size: 4
@@ -281,6 +282,10 @@
             this.getQuotes();
             this.getNominations();
             this.getMembers();
+            if(this.getCookie('googtrans') =='/uk/en'){
+
+                this.translate = true;
+            }
         },
         computed: {
             filteredList() {
@@ -425,16 +430,13 @@
             },
             nextSlide(event){
 
-                // const container = document.getElementById('carousel-video');
-                console.log(event);
-                // const activeEl = container.querySelector('.active');
-                // if(activeEl.nextSibling) {
-                //     const nextEl = activeEl.nextSibling;
-                // }
-                // else {
-                //     const nextEl = container.firstChild;
-                // }
-                // console.log(nextEl);
+
+            },
+            getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches[1] ? decodeURIComponent(matches[1]) : undefined;
             }
 
         },

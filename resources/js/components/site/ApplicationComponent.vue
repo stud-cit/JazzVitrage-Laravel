@@ -61,7 +61,7 @@
                                 Номінація не обрана
                             </span>
                             <div class="text-right">
-                                <button type="submit"  class="next-step">Далі</button>
+                                <button type="submit"  class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
                         </form>
                     </transition>
@@ -265,8 +265,8 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
 
                         </form>
@@ -618,8 +618,8 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
                         </form>
 
@@ -708,8 +708,8 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
 
                         </form>
@@ -862,8 +862,8 @@
                                     Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
                         </form>
                     </transition>
@@ -976,8 +976,8 @@
                                     Оберіть файл відео-формату розміром не більше 100 Мб
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
-                                <button type="button" @click="nextStep" class="next-step">Далі</button>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
+                                <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
                             </div>
                         </form>
                     </transition>
@@ -1044,7 +1044,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструвати заяву</button>
                             </div>
                         </form>
@@ -1114,7 +1114,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
@@ -1177,7 +1177,7 @@
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
-                                <span class="prev-step" @click="prevStep($event)">Назад</span>
+                                <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" :disabled="!checked" @click="sendApp" class="next-step">Зареєструватися</button>
                             </div>
                         </form>
@@ -1314,6 +1314,7 @@
             this.getNominations();
             this.isOpenedRegistration();
 	        this.getPersonal();
+
         },
         methods: {
             rangeDate(date) {

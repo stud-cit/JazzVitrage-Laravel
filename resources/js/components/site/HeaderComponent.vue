@@ -122,7 +122,6 @@
                 var matches = document.cookie.match(new RegExp(
                     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
                 ));
-                console.log(matches[1]);
                 return matches[1] ? decodeURIComponent(matches[1]) : undefined;
             }
         },
