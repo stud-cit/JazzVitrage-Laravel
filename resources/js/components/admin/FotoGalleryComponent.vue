@@ -129,9 +129,11 @@
 			},
 			editPhoto() {
 				swal("Введіть бажану дату:", {
-					content: "input",
+					content: "input"
 				}).then((year) => {
-					axios.post('/put-foto', {
+					var regex = /(20[0-9]{2})$/;
+            		if (regex.test(year)) {
+						axios.post('/put-foto', {
 							id: this.id,
 							year
 						}).then(() => {
@@ -141,6 +143,13 @@
 								icon: "success",
 							});
 						})
+					}
+					else {
+						swal({
+							icon: "error",
+							title: 'Введіть коректні дані (рік не раніше 2000)'
+						});
+					}
 				});
 			},
 			fieldChange(){
