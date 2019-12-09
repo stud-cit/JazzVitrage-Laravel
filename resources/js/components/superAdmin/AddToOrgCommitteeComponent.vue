@@ -68,13 +68,13 @@
         <table class="table table-responsive table-bordered">
             <thead>
             <tr>
-                <th width="7%">№</th>
+                <th width="5%">№</th>
                 <th width="20%">ПІБ комітету</th>
-                <th width="20%">Електронна адреса</th>
-                <th width="20%">Фото</th>
-                <th width="20%">Біографія</th>
-                <th></th>
-                <th></th>
+                <th width="15%">Електронна адреса</th>
+                <th width="15%">Фото</th>
+                <th>Біографія</th>
+                <th width="5%"></th>
+                <th width="5%"></th>
             </tr>
             </thead>
             <tbody v-for="(item, index) in committees" :key="index">
@@ -201,9 +201,8 @@
 				this.table_form.append('informations', parse_biography);
 
 				axios.post('/update-org/'+id, this.table_form)
-					.then((response) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
+					.then((res) => {
+						this.committees.push(res.data);
 						swal("Інформація оновлена", {
 							icon: "success",
 							timer: 1000,

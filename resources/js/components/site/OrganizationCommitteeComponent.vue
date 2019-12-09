@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <ul class="pagination">
+                <ul v-if="committees.length >= size" class="pagination">
                     <li class="controls active" v-if="pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></li>
                     <li>{{ pageNumber + 1 }} : {{ pageCount }}</li>
                     <li class="controls active" v-if="pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>

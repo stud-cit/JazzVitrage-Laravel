@@ -48,6 +48,7 @@ class UserController extends Controller
         $jury_data->nominations = $request->nominations;
         $jury_data->informations = $request->informations;
         $jury_data->save();
+        return response()->json($jury_data);
     }
 
     
@@ -144,6 +145,7 @@ class UserController extends Controller
         $org_data->email = $request->email;
         $org_data->informations = $request->informations;
         $org_data->save();
+        return response()->json($org_data);
     }
 
 
@@ -158,6 +160,7 @@ class UserController extends Controller
         $admin_data->email = $request->email;
         $admin_data->patronymic = $request->patronymic;
         $admin_data->save();
+        return response()->json($admin_data);
     }
 
     public function editUser(Request $request)
