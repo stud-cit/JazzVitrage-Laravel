@@ -86,14 +86,14 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" accept=".pdf, .doc, .docx, .txt" v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }" name="document" id="file" ref="file" @change="previewFiles">
+                                <input type="file" class="custom-file-input" accept=".pdf" v-validate="{ 'ext':['pdf'] }" name="document" id="file" ref="file" @change="previewFiles">
                                 <span class="custom-file-control">{{ info.file.split('/')[2] }}</span>
                             </label>
                         </div>
                         <div class="col-3">
                             <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "file", "file")'>Зберегти</button>
                         </div>
-                        <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати формату: pdf, doc, txt, docx</p>
+                        <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати pdf-формату</p>
                     </div>
                     </div>
                     <hr>
