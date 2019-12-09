@@ -65,166 +65,56 @@
             </div>
         </form>
         <br>
-        <table class="table table-responsive table-bordered">
-            <thead>
-            <tr>
-                <th width="7%">№</th>
-                <th width="20%">ПІБ комітету</th>
-                <th width="20%">Електронна адреса</th>
-                <th width="20%">Фото</th>
-                <th width="20%">Біографія</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody v-for="(item, index) in committees" :key="index">
-            <tr>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ index + 1 }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.email }}</td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)" @change="getFileName($event, index)">
-                    <img v-if="item.photo" id="item-image" v-bind:src="item.photo" class="preview_img figure-img img-fluid">
-					<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
-                </td>
-                <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">{{ item.informations }}</td>
-
-                <td class="text-center" id="edit-save-td">
-
-                    <i v-if="editBtn !== item.user_id" class="fa fa-2x fa-pencil-square btn btn-default p-0" @click="edit(item.user_id, $event)"></i>
-                    <i v-else class="fa fa-2x fa-check-circle btn btn-default p-0" @click="save(item.user_id, $event)"></i>
-                </td>
-                <td class="text-center"><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
-            </tr>
-            </tbody>
-        </table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10px" scope="col">№</th>
+					<th width="150px" scope="col">Фото</th>
+					<th width="150px" scope="col">ПІБ</th>
+					<th width="180px" scope="col">Електронна пошта</th>
+					<th scope="col">Біографія</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item, index) in committees" :key="item.user_id">
+					<th scope="row">{{ index + 1 }}</th>
+					<td>
+						<img v-if="item.photo" id="item-image" :src="item.photo" class="preview_img figure-img img-fluid">
+						<img v-else id="item-image" :src="'../img/user.png'" class="preview_img figure-img img-fluid">
+					</td>
+					<td>{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
+					<td>{{ item.email }}</td>
+					<td>{{ item.informations }}</td>
+					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
+					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteOrgCommittee(item.user_id, index)"></i></td>
+				</tr>
+			</tbody>
+		</table>
     </div>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				editBtn: 0,
 				committees: [],
 				name: '',
 				surname: '',
 				patronymic: '',
 				email: '',
 				informations: '',
-				form: new FormData,
-				table_form: new FormData
+				form: new FormData
 			};
 		},
 		created () {
-			this.getFullOrgCommitteeList();
+			this.getOrgCommittee();
 		},
 		methods: {
-			getFileName(evt, index) {
-				var tr = document.querySelectorAll('tr')[index + 1]
-				var file = evt.target.files;
-				var reader = new FileReader();
-				reader.onload = (function(theFile) {
-					return function(e) {
-						tr.querySelector('#photo_value_org').setAttribute('src', e.target.result);
-					};
-				})(file[0]);
-				reader.readAsDataURL(file[0]);
-				evt.target.parentNode.querySelector('#span_id').innerHTML = `<br>`;
-				evt.target.parentNode.querySelector('#up_icon').innerHTML = `<br>`;
-			},
-			edit(id, event){
-				this.editBtn = id;
-				event.preventDefault();
-				var pib_input = document.createElement('input');
-				var photo_input = document.createElement('div');
-				var biography_input = document.createElement('textarea');
-
-				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1];
-				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3];
-				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4];
-
-				pib_input.setAttribute('value', pib_td.innerHTML);
-				pib_input.setAttribute('type', 'text');
-				pib_input.setAttribute('id', 'pib_data');
-				pib_td.innerHTML = '';
-				pib_td.append(pib_input);
-
-
-				photo_input.setAttribute('class', 'edit-org-photo');
-				photo_input.innerHTML = `<div class="form-group">
-                <label class="label" id="label">
-                    <i class="material-icons" id="up_icon"><img src="../img/upload-img.png"></i>
-                    <span class="name-title" id="file"></span>
-                    <span class="title" id="span_id">Додати файл</span>
-					<input type="file" ref="juryfile" accept='image/*' class="form-control-file" id="jury-photo">		
-				</label>
-                </div>`;
-				var photo_label = photo_td.querySelector('img');
-
-				photo_label.setAttribute('id', 'photo_value_org');
-				photo_label.removeAttribute('class');
-				document.getElementById('photo_value_org').style.opacity = "0.5";
-
-				photo_input.prepend(photo_label);
-
-				photo_td.append(photo_input);
-
-				biography_input.value += biography_td.innerHTML;
-				biography_input.setAttribute('id', 'biography_data');
-				biography_input.setAttribute('rows', '6');
-				biography_input.setAttribute('class', 'text-area-width');
-				biography_td.innerHTML = '';
-				biography_td.append(biography_input);
-			},
-
-			save(id, event){
-				this.editBtn = 0;
-				event.preventDefault();
-
-				var pib_td = event.target.parentNode.parentNode.querySelectorAll('td')[1].querySelector('input').value;
-				var photo_td = event.target.parentNode.parentNode.querySelectorAll('td')[3].querySelector('input');
-				var biography_td = event.target.parentNode.parentNode.querySelectorAll('td')[4].querySelector('textarea').value;
-
-				var parse_pib = pib_td.split(' ');
-				var parse_photo = photo_td;
-				var parse_biography = biography_td;
-
-
-				this.table_form.append('name', parse_pib[0]);
-				this.table_form.append('surname', parse_pib[1]);
-				if (typeof parse_pib[2] == 'undefined') {
-
-				} else {
-					this.table_form.append('patronymic', parse_pib[2]);
-				}
-
-				this.table_form.append('photo', parse_photo.files[0]);
-				this.table_form.append('informations', parse_biography);
-
-				axios.post('/update-org/'+id, this.table_form)
-					.then((response) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal("Інформація оновлена", {
-							icon: "success",
-							timer: 1000,
-							button: false
-						});
-					})
-					.catch((error) => {
-						this.committees = [];
-						this.getFullOrgCommitteeList();
-						swal({
-							icon: "error",
-							title: 'Помилка',
-							text: 'Поля: "ПІБ комітету, електронна адреса" повинні бути заповнені'
-						});
-					});
-					
-			},
-			getFullOrgCommitteeList() {
+			getOrgCommittee() {
 				axios.get('/get-all-org')
 					.then((response) => {
-						this.committees.push(...response.data)
+						this.committees = response.data;
 					})
 			},
 			postAllOrg(){
@@ -241,8 +131,12 @@
 						this.form.append('informations', this.informations);
 						axios.post('/post-all-org', this.form)
 							.then((response) => {
-								this.committees = [];
-								this.getFullOrgCommitteeList();
+								this.committees.push(response.data);
+								swal("Користувача успішно зареєстровано", {
+									icon: "success",
+									timer: 1000,
+									button: false
+								});
 							})
 								.catch((error) => {
 									swal({

@@ -136,6 +136,8 @@ body
          background-image: linear-gradient(180deg, #ff0000 0%, #ba0b0b 88%, #770707 100%)
          text-decoration: none
          order: 1
+         text-transform: uppercase
+         text-align: center
    .ticker
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24)
       background-color: #810caa
@@ -302,6 +304,7 @@ body
          white-space: pre-line
          border: none
          outline: none
+         //&:active
       .btn-read
          background-image: linear-gradient(180deg, #810caa 0%, #760b9b 89%, #410655 100%)
          color: #ffffff
@@ -310,7 +313,8 @@ body
          display: flex
          align-items: center
          justify-content: center
-
+         &:active
+            background-image: linear-gradient(180deg, #810caa 0%, #760b9b 89%, #410655 100%)
       .btn-download
          background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
          color: #410655
@@ -319,6 +323,8 @@ body
          display: flex
          align-items: center
          justify-content: center
+         &:active
+            background-image: linear-gradient(180deg, #ffd501 0%, #ff9d0b 82%, #ffa064 100%)
 .gallery
    .title-section
       text-align: center

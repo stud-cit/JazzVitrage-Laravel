@@ -17,7 +17,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100" @click='editFile("logo_section", "logo", "img")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('logo')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("logo_section", "logo", "img")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('logo')">Файл повинен бути зображенням</p>
                     </div>
@@ -59,7 +59,7 @@
                                 </label>
                             </div>
                             <div class="col-3">
-                                <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "personal_data", "file")'>Зберегти</button>
+                                <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("position_section", "personal_data", "file")'>Зберегти</button>
                             </div>
                             <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати формату: pdf, doc, txt, docx</p>
                         </div>
@@ -91,7 +91,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100" @click='editFile("position_section", "file", "file")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('document')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("position_section", "file", "file")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('document')">Файл повинен відповідати pdf-формату</p>
                     </div>
@@ -105,7 +105,7 @@
                             <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary edit" @click='edit($event, "position_section", "video")'>Редагувати</button>
+                            <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "position_section", "video")'>Редагувати</button>
                         </div>
                     </div>
                     <iframe class="mt-3" width="100%" height="300" :src="'https://www.youtube.com/embed/'+info.video.slice(info.video.length - 11, info.video.length)" frameborder="0" allowfullscreen></iframe>
@@ -119,16 +119,16 @@
                                     data-vv-as="Цитати">
                             </textarea>
                         </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="delQuotes($event, quote, index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="quote !== editing && quote.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editQuote(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button :disabled="errors.has('quote')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <div class="col-3 pa-0">
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2 mb-1 w-40" style="width: 40px" @click="delQuotes($event, quote, index, quote.quote_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="quote !== editing && quote.disabled != false" type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='editQuote(quote, "quote", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button :disabled="errors.has('quote')" v-else type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='saveQuotes(quote, "quote", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <span class="errors text-danger" v-if="errors.has('quote')">
 						{{ errors.first('quote') }}
 					</span>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="addQuotes">Додати цитату</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block my-2" @click="addQuotes">Додати цитату</button>
 
                 </div>
                 <div class="col-2"></div>
@@ -156,7 +156,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('audio')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "audio", "audio")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('audio')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("hymn_section", "audio", "audio")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('audio')">Файл не відповідає музичному формату</p>
                     </div>
@@ -171,7 +171,7 @@
                             </label>
                         </div>
                         <div class="col-3">
-                            <button type="button" :disabled="errors.has('note')" class="btn btn-outline-secondary edit w-100" @click='editFile("hymn_section", "note_image", "img")'>Зберегти</button>
+                            <button type="button" :disabled="errors.has('note')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("hymn_section", "note_image", "img")'>Зберегти</button>
                         </div>
                         <p class="text-danger col-9" v-if="errors.has('note')">Файл повинен бути зображенням</p>
                     </div>
@@ -190,9 +190,9 @@
 								{{ errors.first('address') }}
 						    </span>
                         </div>
-                        <div class="col-2">
-                            <button v-if="addressItem !== editing" type="button" class="btn btn-outline-secondary float-right" @click='editContact(addressItem, "address", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("address", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <div class="col-2 pa-0">
+                            <button v-if="addressItem !== editing" type="button"  style="width: 40px" class="btn btn-outline-secondary float-right" @click='editContact(addressItem, "address", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button"  style="width: 40px" class="btn btn-outline-secondary float-right" @click='saveContact("address", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <hr>
@@ -203,10 +203,10 @@
                                 v-validate="{ required: true, regex: /^(\s*)?(\+)?([- _()]?\d[- _()]?){10,12}(\s*)?$/ }"
                                     data-vv-as="Телефон">
                         </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, phone.contact_items_id, 'phones')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="phone !== editing && phone.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editContact(phone, "phones", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button :disabled="errors.has('phone')" v-else type="button" class="btn btn-outline-secondary float-right" @click='saveContact("phones", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <div class="col-3 pa-0">
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2 mb-1" style="width: 40px" @click="del(index, phone.contact_items_id, 'phones')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="phone !== editing && phone.disabled != false" type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='editContact(phone, "phones", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button :disabled="errors.has('phone')" v-else type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='saveContact("phones", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                             <span class="errors text-danger" v-if="errors.has('phones')">
@@ -229,10 +229,10 @@
                                     data-vv-as="Соціальні мережі">
                             
                         </div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-outline-secondary float-right ml-2" @click="del(index, social.contact_items_id, 'socials')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button v-if="social !== editing && social.disabled != false" type="button" class="btn btn-outline-secondary float-right" @click='editSocial(social, "social", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button v-else type="button" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        <div class="col-3 pa-0">
+                            <button type="button" class="btn btn-outline-secondary float-right ml-2 mb-1" style="width: 40px" @click="del(index, social.contact_items_id, 'socials')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button v-if="social !== editing && social.disabled != false" type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='editSocial(social, "social", index)'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button v-else type="button" style="width: 40px" class="btn btn-outline-secondary float-right" @click='saveSocial("social", index)'><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -497,5 +497,8 @@ export default {
 <style scope>
     .hasError {
         color: red;
+    }
+    button {
+        overflow:hidden;
     }
 </style>

@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                 <ul class="pagination d-flex justify-content-center">
+                 <ul v-if="video.length >= pagination.size" class="pagination d-flex justify-content-center">
                     <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
                     <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
                     <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
