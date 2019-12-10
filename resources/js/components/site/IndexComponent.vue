@@ -222,8 +222,12 @@
                         <label for="email">ПОШТА</label>   
                         <div class="form-row">
                             <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
-                            <input type="email" v-model="email" id="email">
+                            <input type="email" v-model="email" id="email" name="email"
+                                v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                         </div>
+                        <span class="errors" v-if="errors.has('email')">
+                                Введіть дані у форматі name@email.com
+                        </span>
                         <div class="form-row">
                             <textarea name="" v-model="questionText" id="question" cols="30" rows="6"></textarea>
                         </div>
