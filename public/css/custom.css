@@ -120,13 +120,14 @@
     font-size: 14px;
     color: #fff;
     margin: 10px;
+    margin-top: 0;
 }
 
 .fotoGallery .circle {
     display: inline-block;
     color:#000;
     position:absolute;
-    top:0px;
+    top: -10px;
     margin-left: 10px;
     font-size: 24px;
     color: #fff;
