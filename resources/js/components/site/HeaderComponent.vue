@@ -37,7 +37,7 @@
                         <li><a class="nav-item nav-link" :href="info.file">ПОЛОЖЕННЯ</a></li>
 
                         <li class="dropdown">
-                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >КОНТАКТИ</a>
+                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >ШТАТ</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/juries">ЖУРІ</a>
                                 <a class="dropdown-item" href="/organization-committee">ОРГАНІЗАЦІЙНИЙ КОМІТЕТ</a>
