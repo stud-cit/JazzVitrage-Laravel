@@ -8,7 +8,7 @@
 
 
                 <div class="d-xl-flex navbar-order">
-                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ПОДАТИ ЗАЯВУ</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -21,7 +21,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
-                                <a class="dropdown-item" href="/applications">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
+                                <a class="dropdown-item" href="/applications">ЗАЯВА ДЖАЗ-ВІТРАЖ</a>
                             </div>
                         </li>
 

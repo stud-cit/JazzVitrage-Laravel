@@ -144,8 +144,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".doc, .docx, .pdf, .jpg, .jpeg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                          v-validate="{ 'ext':['doc', 'docx', 'pdf', 'jpg', 'jpeg', 'png', 'gif'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -156,8 +156,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".doc, .docx, .pdf, .jpg, .jpeg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['doc', 'docx', 'pdf', 'jpg', 'jpeg', 'png', 'gif'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -337,8 +337,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                         v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".doc, .docx, .pdf, .jpg, .jpeg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
+                                         v-validate="{ 'ext':['doc', 'docx', 'pdf', 'jpg', 'jpeg', 'png', 'gif'] }">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -499,8 +499,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .gif" id="member2BirthdayFile" class="d-none" type="file" required
-                                        v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".doc, .docx, .pdf, .jpg, .jpeg, .png, .gif" id="member2BirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['doc', 'docx', 'pdf', 'jpg', 'jpeg', 'png', 'gif'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
