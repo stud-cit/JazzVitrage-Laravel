@@ -8,7 +8,7 @@
                 </div>
                 <div class="gallery-content">
                     <silentbox-group class="row align-content-stretch mt-4">
-                        <silentbox-item class="col-12 col-md-6 col-xl-4 gallery-item"  v-for="item in paginatedData" :key="item.foto_id" :src="'/img/uploads/'+item.file" description="Sunken dreams II. by Arbebuk">
+                        <silentbox-item class="col-12 col-md-6 col-xl-4 gallery-item"  v-for="item in paginatedData" :key="item.foto_id" :src="'/img/uploads/'+item.file">
                             <img :src="'/img/uploads/'+item.file" class="gallery-img">
                         </silentbox-item>
 
