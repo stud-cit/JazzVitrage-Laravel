@@ -31,6 +31,8 @@ import EvaluationResultsComponent from './components/EvaluationResultsComponent'
 
 import ProfileComponent from './components/ProfileComponent';
 
+import MasterClassComponent from './components/admin/MasterClassComponent';
+
 // Адмін
 import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
 import FotoGalleryComponent from './components/admin/FotoGalleryComponent';
@@ -91,7 +93,8 @@ const app = new Vue({
         AddAdminOrgCommitteeComponent,
         QuestionComponent,
         PeriodComponent,
-        ProfileComponent
+        ProfileComponent,
+        MasterClassComponent
     },
     router
 });

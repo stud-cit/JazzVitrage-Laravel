@@ -12,10 +12,11 @@ class InfoController extends Controller
 {
     public function getAllInfo()
     {
-        $info = DB::select('select logo_section.*, position_section.*, hymn_section.* from logo_section, position_section, hymn_section');
+        $info = DB::select('select logo_section.*, position_section.*, hymn_section.*, master_class.* from logo_section, position_section, hymn_section, master_class');
         $info[0]->provisions_text = htmlspecialchars_decode($info[0]->provisions_text);
         $info[0]->description = htmlspecialchars_decode($info[0]->description);
         $info[0]->ticker = htmlspecialchars_decode($info[0]->ticker);
+        $info[0]->description_master = htmlspecialchars_decode($info[0]->description_master);
         $contact = Contacts::with('contactsItems')->get();
         return response()->json(['info' => $info, 'contact' => $contact]);
     }

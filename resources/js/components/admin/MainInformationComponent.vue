@@ -247,7 +247,37 @@
                             </span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-secondary btn-block mt-2" @click="add('socials')">Додати соціальну мережу</button>
+                    <button type="button" class="btn btn-outline-secondary btn-block mb-4" @click="add('socials')">Додати соціальну мережу</button>
+
+                    <!-- Майстер клас -->
+                    
+                    <h3>Майстер клас</h3>
+                    <hr>
+                    <label for="logo_master" class="brtop">Логотип</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <label class="custom-file w-100">
+                                <input type="file" class="custom-file-input" id="logo_master" name="logo_master" ref="logo_master" @change="previewFiles($event, 'logo_master')" accept="image/*" v-validate="'image'">
+                                <span class="custom-file-control">Файл не обрано</span>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('logo_master')" class="btn btn-outline-secondary edit w-100 px-0" @click='editFile("master_class", "logo_master", "img")'>Зберегти</button>
+                        </div>
+                        <p class="text-danger col-9" v-if="errors.has('logo')">Файл повинен бути зображенням</p>
+                    </div>
+                    <img v-if="!errors.has('logo_master')" class="mt-3 w-50" :src="info.logo_master">
+                    <hr>
+                    <div>
+                        <label for="description_master" class="brtop">Опис майтер класу</label>
+                        <textarea name="description_master" class="form-control" v-model="info.description_master" id="description_master" rows="4" disabled 
+                            v-validate="{ required: true}" 
+                                data-vv-as="Опис майтер класу"></textarea>
+                        <span class="errors text-danger" v-if="errors.has('description_master')">
+                                {{ errors.first('description_master') }}
+                        </span>
+                        <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "master_class", "description_master")'>Редагувати</button><br><br>
+                    </div>
                 </div>
             </div>
         </form>
@@ -270,7 +300,9 @@ export default {
                 file: '',
                 personal_data: '',
                 hymn_text: '',
-                note_image: ''
+                note_image: '',
+                logo_master: '',
+                description_master: ''
             },
             contact: {
                 address: [],

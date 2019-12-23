@@ -95,6 +95,13 @@
 						</a>
 					</li>
 
+					<li class="nav-item" title="Майстер клас">
+						<a class="nav-link" href="/admin/master-class">
+							<i class="fa fa-star"></i>
+							<span class="nav-link-text">Майстер клас</span>
+						</a>
+					</li>	
+
 				@endif
 
 				{{-- Супер адмін --}}

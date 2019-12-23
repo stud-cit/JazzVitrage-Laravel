@@ -2,6 +2,9 @@ require('./bootstrap');
 
 
 import Vue from 'vue';
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 
 import HeaderComponent from './components/site/HeaderComponent';
@@ -19,12 +22,14 @@ import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
 import NewHead from './components/site/NewHead';
+import MasterMainComponent from './components/site/MasterMainComponent';
 
 import Error404 from './components/site/Error404';
 
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
 
 import VueSilentbox from 'vue-silentbox';
 Vue.use(VueSilentbox);
@@ -108,6 +113,11 @@ const router = new VueRouter({
             path: '/nhead',
             name: 'nhead',
             component: NewHead,
+        },
+        {
+            path: '/master',
+            name: 'master',
+            component: MasterMainComponent,
         },
         {
             path: '*',
