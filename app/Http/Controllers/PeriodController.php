@@ -20,7 +20,11 @@ class PeriodController extends Controller
             'expiration_date' => 'date',
             'status' => 'boolean'
         ]);
-        $model = Period::where('id', 1)->update( $request->all() );
+        $period = Period::find(1);
+        $period->start_date = $request->start_date;
+        $period->expiration_date = $request->expiration_date;
+        $period->status = $request->status;
+        $period->save();
         return response('ok', 200);
     }
 

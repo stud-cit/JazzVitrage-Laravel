@@ -63,7 +63,7 @@ export default {
     methods: {
         getPeriod() {
             axios
-                .get('/get-period')
+                .get('/api/period')
                 .then( ( response ) => {
                     this.startDate = response.data.start_date;
                     this.expirationDate = response.data.expiration_date;
@@ -75,7 +75,7 @@ export default {
         },
         setData() {
             axios
-                .post('/update-period', {
+                .post('/api/period', {
                     start_date: this.startDate,
                     expiration_date: this.expirationDate,
                     status: this.statusApplication

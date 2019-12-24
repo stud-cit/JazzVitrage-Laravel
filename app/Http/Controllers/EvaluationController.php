@@ -135,10 +135,13 @@ class EvaluationController extends Controller
             'originality' => "required|numeric|min:$min|max:$max",
             'stylistic_matching' => "required|numeric|min:$min|max:$max"
         ]);
-        $model = Evaluation::where("application_id", $evaluation_id)->where("user_id", $request->user_id);
-
-        $data = $request->all();
-        $model->update($data);
+        $model = Evaluation::where("application_id", $evaluation_id)->where("user_id", $request->user_id)->first();
+        $model->artistic_value = $request->artistic_value;
+        $model->artistry = $request->artistry;
+        $model->evaluation = $request->evaluation;
+        $model->originality = $request->originality;
+        $model->stylistic_matching = $request->stylistic_matching;
+        $model->save();
         return response('ok', 200);        
     }
 }

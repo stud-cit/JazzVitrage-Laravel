@@ -10,6 +10,9 @@ Route::get('master-request',  'MasterClassController@getRequest');
 Route::post('master-request',  'MasterClassController@postRequest');
 Route::delete('master-request/{id}',  'MasterClassController@deleteRequest')->where(['id' => '^[0-9]+']);
 
+Route::post('period', 'PeriodController@updatePeriod');
+Route::get('period', 'PeriodController@getPeriod');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

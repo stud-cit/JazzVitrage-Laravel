@@ -138,9 +138,6 @@ Route::group(['middleware' => ['auth', 'role:superAdmin']], function () {
     Route::post('update-org/{id}/', 'UserController@updateOrg');
     Route::post('update-admin/{id}/', 'UserController@updateAdmin');
     Route::post('delete-user/{id}/', 'UserController@deleteUser');
-    Route::get('get-period', 'PeriodController@getPeriod')->name('period');
-    Route::post('update-period', 'PeriodController@updatePeriod')->name('upadte-period');
-    
 });
 // Загальна інформація
 Route::post('post-all-info', 'InfoController@postAllInfo');

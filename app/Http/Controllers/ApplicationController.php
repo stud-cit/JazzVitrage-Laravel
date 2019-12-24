@@ -194,8 +194,9 @@ class ApplicationController extends Controller
         $presentation->time_two = $data->timing2;
         $presentation->application_id = $app->application_id;
 
-        $file = $request->compositionVideo->store('public');
-        $presentation->video = str_replace('public/', '', $file);
+        $name = time() . '-' . $request->compositionVideo->getClientOriginalName();
+        $request->compositionVideo->move(public_path() . '/memberFiles/', $name);
+        $presentation->video = '/memberFiles/' . $name;
 
         $presentation->save();
 

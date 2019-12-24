@@ -7,7 +7,7 @@
         </div>
         <div class="col-8">
             <video width="100%" id="videoMember" controls>
-                <source v-if="program.video" :src="'/storage/'+program.video" type="video/mp4">
+                <source v-if="program.video" :src="program.video" type="video/mp4">
             </video>
         </div>
         <div class="col-4">
@@ -279,7 +279,7 @@
                         this.program = response.data[0].presentation;
                         
                         var container = document.getElementById("videoMember");
-                        container.setAttribute("src", '/storage/'+this.program.video);
+                        container.setAttribute("src", this.program.video);
                     })
                     .catch( error => console.error(error) );
                     this.getEvaluation();
