@@ -251,19 +251,22 @@
                             <div class="input-row">
                                 <div class="input-container" v-if="fileTitle.checkFile == null">
                                     <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                                 <div class="input-container" v-if="fileTitle.checkFile !== null">
                                     <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('checkFile')">Файл не обрано</span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -604,19 +607,22 @@
                                 <div class="input-container" v-if="fileTitle.checkFile == null">
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                                 <div class="input-container" v-if="fileTitle.checkFile !== null">
                                     <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('checkFile')">Файл не обрано</span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -694,19 +700,22 @@
                                 <div class="input-container" v-if="fileTitle.checkFile == null">
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                                 <div class="input-container" v-if="fileTitle.checkFile !== null">
                                     <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
+                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file"
+                                        v-validate="{ required: true }">
                                     <label for="checkFile">
                                         <span>{{fileTitle.checkFile}}</span>
                                     </label>
                                 </div>
                             </div>
+                            <span class="errors" v-if="errors.has('checkFile')">Файл не обрано</span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
