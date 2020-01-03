@@ -56,6 +56,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/admin/master-class', function () {
         return view('admin.admin.masterClass');
     });
+    Route::get('/admin/users-messages', function () {
+        return view('admin.admin.usersMessages');
+    });
 
     // VUE запросы
     Route::post('post-foto', 'GalleryController@postFoto');

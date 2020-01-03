@@ -102,6 +102,13 @@
 						</a>
 					</li>	
 
+					<li class="nav-item" title="Повідомлення користувачам">
+						<a class="nav-link" href="/admin/users-messages">
+							<i class="fa fa-envelope"></i>
+							<span class="nav-link-text">Повідомлення користувачам</span>
+						</a>
+					</li>	
+
 				@endif
 
 				{{-- Супер адмін --}}

@@ -92,6 +92,16 @@
                 Питання користувачів
             </a>
 
+            <a href="/admin/master-class" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-star fa-3x"></i></div>
+                Майстер клас
+            </a>
+
+            <a href="/admin/users-messages" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-envelope fa-3x"></i></div>
+                Повідомлення користувачам
+            </a>
+
         @endif
 
     </div>

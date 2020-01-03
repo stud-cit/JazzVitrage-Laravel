@@ -11,6 +11,7 @@ use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
+use App\Models\UserMessages;
 use Illuminate\Support\Facades\Session;
 use App\Mail\MemberEmail;
 use Illuminate\Support\Facades\Mail;
@@ -99,13 +100,8 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
-            
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
-
             $soloDuet->save();
+            $this->sendMail('application_accepted', $soloDuet->member_email);
         }
         
         if($data->appType == 2) {
@@ -115,7 +111,6 @@ class ApplicationController extends Controller
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = $data->memberDate;
-            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
             $soloDuet->parent_patronymic = $data->parentPatronymic;
@@ -124,13 +119,8 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
-
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
-
             $soloDuet->save();
+            $this->sendMail('application_accepted', $soloDuet->member_email);
 
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
@@ -138,7 +128,6 @@ class ApplicationController extends Controller
             $soloDuet->patronymic = $data->memberPatronymic2;
             $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->data_birthday = $data->memberDate2;
-            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
             $soloDuet->parent_patronymic = $data->parentPatronymic2;
@@ -147,13 +136,8 @@ class ApplicationController extends Controller
             $soloDuet->application_id = $app->application_id;
             $soloDuet->passport_photo = $request->member2BirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
-
-            Mail::send(['text' => 'mail'], ['name' => 'jazz', 'soloDuet' => $soloDuet], function($message) use ($soloDuet){
-                $message->to($soloDuet->member_email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
-
             $soloDuet->save();
+            $this->sendMail('application_accepted', $soloDuet->member_email);
         }
 
         if($data->appType > 2) {
@@ -163,7 +147,6 @@ class ApplicationController extends Controller
             $group->count_people = $data->groupCount;
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
-
             $group->save();
         }
 
@@ -227,45 +210,26 @@ class ApplicationController extends Controller
     }
     public function addApproved($id)
     {
-        $model = Application::find($id);
-
+        $model = Application::with('soloDuet')->find($id);
         $model->status = Application::APPROVED;
-
-        if($model->save()){
-            return ;
+        $model->save();
+        for($i = 0; $i < count($model->soloDuet); $i++) {
+            $this->sendMail('application_approved', $model->soloDuet[$i]->member_email);
         }
-
+        return response('ok', 200);
     }
     public function deleteMembers($id, Request $request)
     {
         $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
 
         Storage::deleteDirectory("member-files/".$model->application_id);
-        Storage::delete("public/".$model->presentation["video"]);
+        unlink(public_path($model->presentation["video"]));
+
         Evaluation::where("application_id", $id)->delete();
 
-        if ($model->application_type_id == 1){
-
-            $email = $model->soloDuet[0]->member_email;
-            Mail::raw($request->message, function($message) use ($email){
-                $message->to($email, 'test')->subject('заявка JazzVitrage');
-                $message->from('jazz@gmail.com', 'jazz');
-            });
+        for($i = 0; $i < count($model->soloDuet); $i++) {
+            $this->sendMail('application_denied', $model->soloDuet[$i]->member_email, "\nПричина: ".$request->message);
         }
-        else if ($model->application_type_id == 2){
-
-            for($i = 0; $i < count($model->soloDuet); $i++) {
-                $email = $model->soloDuet[$i]->member_email;
-                Mail::raw($request->message, function($message) use ($email){
-                    $message->to($email, 'test')->subject('заявка JazzVitrage');
-                    $message->from('jazz@gmail.com', 'jazz');
-                });
-            }
-        }
-//        else {
-//
-//        }
-
 
         $model->delete();
         return response('ok', 200);
@@ -306,4 +270,13 @@ class ApplicationController extends Controller
 
         return response()->json($dataWithRating);
     }
+
+    function sendMail($type, $email, $note = '') {
+        $textMessage = UserMessages::where('type', $type)->first();
+        Mail::raw($textMessage->text . $note, function($message) use ($email){
+            $message->to($email, '')->subject('Заявка JazzVitrage');
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
+    }
+
 }

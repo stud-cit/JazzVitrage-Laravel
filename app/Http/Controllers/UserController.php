@@ -2,9 +2,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Models\UserMessages;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth; 
 use App\Models\Evaluation;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -46,7 +48,8 @@ class UserController extends Controller
         $jury_data->name = $request->name;
         $jury_data->surname = $request->surname;
         $jury_data->patronymic = $request->patronymic;
-        $jury_data->password = Hash::make('password');
+        $password = str_random(8);
+        $jury_data->password = Hash::make($password);
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -58,6 +61,8 @@ class UserController extends Controller
         $jury_data->nominations = $request->nominations;
         $jury_data->informations = $request->informations;
         $jury_data->save();
+
+        $this->sendMail('jury_accepted', $jury_data->email, $password);
         return response()->json($jury_data);
     }
 
@@ -99,7 +104,6 @@ class UserController extends Controller
         $update_org->name = $request->name;
         $update_org->surname = $request->surname;
         $update_org->patronymic = $request->patronymic;
-        $update_org->password = Hash::make('password');
         if ($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -115,7 +119,6 @@ class UserController extends Controller
         $update_admin->role = 'admin';
         $update_admin->name = $request->name;
         $update_admin->surname = $request->surname;
-        $update_admin->password = Hash::make('password');
         $update_admin->save();
     }
 
@@ -145,7 +148,8 @@ class UserController extends Controller
         $org_data->name = $request->name;
         $org_data->surname = $request->surname;
         $org_data->patronymic = $request->patronymic;
-        $org_data->password = Hash::make('password');
+        $password = str_random(8);
+        $org_data->password = Hash::make($password);
         if($request->hasFile('photo')) {
             $file = $request->photo;
             $name = time() . '-' . $file->getClientOriginalName();
@@ -155,6 +159,8 @@ class UserController extends Controller
         $org_data->email = $request->email;
         $org_data->informations = $request->informations;
         $org_data->save();
+
+        $this->sendMail('org_accepted', $org_data->email, $password);
         return response()->json($org_data);
     }
 
@@ -166,10 +172,13 @@ class UserController extends Controller
         $admin_data->role = 'admin';
         $admin_data->name = $request->name;
         $admin_data->surname = $request->surname;
-        $admin_data->password = Hash::make('password');
+        $password = str_random(8);
+        $admin_data->password = Hash::make($password);
         $admin_data->email = $request->email;
         $admin_data->patronymic = $request->patronymic;
         $admin_data->save();
+
+        $this->sendMail('admin_accepted', $admin_data->email, $password);
         return response()->json($admin_data);
     }
 
@@ -178,7 +187,6 @@ class UserController extends Controller
         $admin_data = new Users;
         $admin_data->name = $request->name;
         $admin_data->surname = $request->surname;
-        $admin_data->password = Hash::make('password');
         $admin_data->email = $request->email;
         $admin_data->save();
     }
@@ -191,5 +199,13 @@ class UserController extends Controller
         }
         Evaluation::where("user_id", $id)->delete();
         $user->delete();
+    }
+
+    function sendMail($type, $email, $password) {
+        $textMessage = UserMessages::where('type', $type)->first();
+        Mail::raw($textMessage->text . "\nЛогін: ".$email."\nПароль: ".$password, function($message) use ($email){
+            $message->to($email, '')->subject('Реєстрація на сайті JazzVitrage');
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
     }
 }

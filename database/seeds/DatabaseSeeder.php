@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             QuotesTableSeeder::class,
             //QuestionsTableSeeder::class,
             PeriodsTableSeeder::class,
-            MasterClassTableSeeder::class
+            MasterClassTableSeeder::class,
+            UsersMessagesTableSeeder::class,
         ]);
     }
 }

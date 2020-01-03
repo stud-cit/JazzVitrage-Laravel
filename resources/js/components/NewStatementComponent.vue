@@ -10,11 +10,9 @@
       <table class="table table-bordered accordion" id="accordion">
           <thead>
                 <tr>
-
                     <th>№</th>
                     <th>ПІБ Учасника</th>
                     <th>Тип Заявки</th>
-
                     <th width="30px"></th>
                     <th width="30px"></th>
                 </tr>

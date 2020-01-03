@@ -1224,8 +1224,8 @@
 		            personal_data: ''
                 },
                 datepicker: {
-                    minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
-                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
                             months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],

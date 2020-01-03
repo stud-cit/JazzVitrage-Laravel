@@ -17,4 +17,5 @@ yarn-error.log
 package-lock.json
 public/js/site.js
 public/js/app.js
-
+composer.lock
+/public/memberFiles
