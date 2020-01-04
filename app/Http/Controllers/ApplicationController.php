@@ -12,6 +12,7 @@ use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
 use App\Models\UserMessages;
+use App\Models\Period;
 use Illuminate\Support\Facades\Session;
 use App\Mail\MemberEmail;
 use Illuminate\Support\Facades\Mail;
@@ -73,6 +74,7 @@ class ApplicationController extends Controller
         $app = new Application;
         $school = new Preparation;
         $presentation = new Presentation;
+        $titleMessage = 'Заявка на участь в конкурсі JazzVitrage';
 
         $data = json_decode($request->data);
 
@@ -101,7 +103,7 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMail('application_accepted', $soloDuet->member_email);
+            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
         }
         
         if($data->appType == 2) {
@@ -120,7 +122,7 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMail('application_accepted', $soloDuet->member_email);
+            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
 
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
@@ -137,7 +139,7 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->member2BirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMail('application_accepted', $soloDuet->member_email);
+            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
         }
 
         if($data->appType > 2) {
@@ -148,6 +150,7 @@ class ApplicationController extends Controller
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
             $group->save();
+            $this->sendMailGroup('application_accepted', $titleMessage, $group->name, $data->teacherEmail);
         }
 
         $school->school_one = $data->schoolName;
@@ -182,7 +185,6 @@ class ApplicationController extends Controller
         $presentation->video = '/memberFiles/' . $name;
 
         $presentation->save();
-
         return response('ok', 200);
      }
 
@@ -197,40 +199,50 @@ class ApplicationController extends Controller
         }
 
     }
-    public function unarchiveMembers($id)
-    {
+
+    // Відправка учасника в архів
+
+    function unarchiveMembers($id) {
         $model = Application::find($id);
-
         $model->status = Application::CREATED;
-
-        if($model->save()){
-            return ;
-        }
-
+        $model->save();
     }
-    public function addApproved($id)
-    {
-        $model = Application::with('soloDuet')->find($id);
+
+    // Затвердження заявки
+
+    function addApproved($id) {
+        $model = Application::with('soloDuet', 'group', 'preparation')->find($id);
+        $titleMessage = 'Вашу заявку в конкурсі JazzVitrage затверджено';
         $model->status = Application::APPROVED;
         $model->save();
-        for($i = 0; $i < count($model->soloDuet); $i++) {
-            $this->sendMail('application_approved', $model->soloDuet[$i]->member_email);
+
+        if ($model->application_type_id == 1 || $model->application_type_id == 2){
+            for($i = 0; $i < count($model->soloDuet); $i++) {
+                $this->sendMailMember('application_approved', $titleMessage, $model->soloDuet[$i]);
+            }
+        } else {
+            $this->sendMailGroup('application_approved', $titleMessage, $model->group->name, $model->preparation['teacher_email']);
         }
         return response('ok', 200);
     }
-    public function deleteMembers($id, Request $request)
-    {
-        $model = Application::with('soloDuet', 'group', 'presentation')->find($id);
 
+    // Видалення учасника
+
+    function deleteMembers($id, Request $request) {
+        $model = Application::with('soloDuet', 'group', 'presentation', 'preparation')->find($id);
+        $titleMessage = 'Вашу заявку в конкурсі JazzVitrage відхилено';
         Storage::deleteDirectory("member-files/".$model->application_id);
         unlink(public_path($model->presentation["video"]));
 
         Evaluation::where("application_id", $id)->delete();
 
-        for($i = 0; $i < count($model->soloDuet); $i++) {
-            $this->sendMail('application_denied', $model->soloDuet[$i]->member_email, "\nПричина: ".$request->message);
+        if ($model->application_type_id == 1 || $model->application_type_id == 2){
+            for($i = 0; $i < count($model->soloDuet); $i++) {
+                $this->sendMailMember('application_denied', $titleMessage, $model->soloDuet[$i], $request->message);
+            }
+        } else {
+            $this->sendMailGroup('application_denied', $titleMessage, $model->group->name, $model->preparation->teacher_email, $request->message);
         }
-
         $model->delete();
         return response('ok', 200);
     }
@@ -271,10 +283,58 @@ class ApplicationController extends Controller
         return response()->json($dataWithRating);
     }
 
-    function sendMail($type, $email, $note = '') {
+    // Запрошення на Гала-концерт
+
+    function sendInvitation() {
+        $model = Application::with('soloDuet', 'group', 'preparation')->approved()->get();
+        $titleMessage = 'Запрошення на Гала-Концерт';
+        for($i = 0; $i < count($model); $i++) {
+            if ($model[$i]->application_type_id == 1 || $model[$i]->application_type_id == 2){
+                for($j = 0; $j < count($model[$i]->soloDuet); $j++) {
+                    $this->sendMailMember('invitation', $titleMessage, $model[$i]->soloDuet[$j]);
+                }
+            } else {
+                $this->sendMailGroup('invitation', $titleMessage, $model[$i]->group->name, $model[$i]->preparation->teacher_email);
+            }
+        }
+        return response('ok', 200);
+    }
+
+    // Відправка листів
+
+    // Для одного учасника
+    function sendMailMember($type, $title, $member, $note = '') {
+        $period = Period::find(1);
         $textMessage = UserMessages::where('type', $type)->first();
-        Mail::raw($textMessage->text . $note, function($message) use ($email){
-            $message->to($email, '')->subject('Заявка JazzVitrage');
+        $textMessage = $textMessage->text;
+
+        $pib = $member->surname . " " . $member->name . " " . $member->patronymic;
+        $email = $member->member_email;
+
+        $textMessage = str_ireplace('[ПІБ]', $pib, $textMessage);
+        $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
+        $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
+        $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
+
+        Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
+            $message->to($email, '')->subject($title);
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
+    }
+
+    // Для групи
+    function sendMailGroup($type, $title, $groupName, $email, $note = '') {
+        $period = Period::find(1);
+        $textMessage = UserMessages::where('type', $type)->first();
+        $textMessage = $textMessage->text;
+
+        $textMessage = str_ireplace('[ПІБ]', $groupName, $textMessage);
+        $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
+        $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
+        $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
+
+        Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
+            $message->to($email, '')->subject($title);
             $message->from('jazz@gmail.com', 'JazzVitrage');
         });
     }

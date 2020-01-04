@@ -4,6 +4,21 @@
                 <h3>Повідомлення користувачам сайту</h3>
             <div class="row">
                 <div class="col-5">
+                    <label for="invitation" class="brtop">Запрошення на Гала-Концерт</label>
+                    <pre>
+                    <textarea name="invitation" class="form-control" id="invitation" 
+                        v-model="data.invitation.text" rows="6" 
+                        disabled 
+                        v-validate="{ required: true}"
+                        data-vv-as="Запрошення на Гала-Концерт"
+                    ></textarea>
+                    </pre>
+                    <span class="errors text-danger" v-if="errors.has('invitation')">
+                            {{ errors.first('invitation') }}<br>
+                    </span>
+                    <button :disabled="errors.has('invitation')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "invitation")'>Редагувати</button><br><br>
+                    <hr>
+
                     <label for="application_accepted" class="brtop">Повідомлення про реєстрацію учасника в конкурсі</label>
                     <textarea name="application_accepted" class="form-control" id="application_accepted" 
                         v-model="data.application_accepted.text" rows="6" 
@@ -98,7 +113,8 @@ export default {
                 application_denied: {text: ''},
                 jury_accepted: {text: ''},
                 org_accepted: {text: ''},
-                admin_accepted: {text: ''}
+                admin_accepted: {text: ''},
+                invitation: {text: ''}
             }
         }
     },
@@ -110,6 +126,7 @@ export default {
 		    axios.get('/api/users-messages')
 			    .then((response) => {
                     response.data.map(item => {
+                        item.text = item.text.replace(/&quot;/g, "\"").replace(/&#039;/g, "\'");
                         this.data[item.type] = {text: item.text}
                     });
                 })

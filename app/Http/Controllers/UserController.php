@@ -62,7 +62,7 @@ class UserController extends Controller
         $jury_data->informations = $request->informations;
         $jury_data->save();
 
-        $this->sendMail('jury_accepted', $jury_data->email, $password);
+        $this->sendMail('jury_accepted', $jury_data, $password);
         return response()->json($jury_data);
     }
 
@@ -160,7 +160,7 @@ class UserController extends Controller
         $org_data->informations = $request->informations;
         $org_data->save();
 
-        $this->sendMail('org_accepted', $org_data->email, $password);
+        $this->sendMail('org_accepted', $org_data, $password);
         return response()->json($org_data);
     }
 
@@ -178,7 +178,7 @@ class UserController extends Controller
         $admin_data->patronymic = $request->patronymic;
         $admin_data->save();
 
-        $this->sendMail('admin_accepted', $admin_data->email, $password);
+        $this->sendMail('admin_accepted', $admin_data, $password);
         return response()->json($admin_data);
     }
 
@@ -201,10 +201,18 @@ class UserController extends Controller
         $user->delete();
     }
 
-    function sendMail($type, $email, $password) {
+    function sendMail($type, $user, $password) {
+        $titleMessage = 'Реєстрація на сайті JazzVitrage';
         $textMessage = UserMessages::where('type', $type)->first();
-        Mail::raw($textMessage->text . "\nЛогін: ".$email."\nПароль: ".$password, function($message) use ($email){
-            $message->to($email, '')->subject('Реєстрація на сайті JazzVitrage');
+        $textMessage = $textMessage->text;
+
+        $pib = $user->surname . " " . $user->name . " " . $user->patronymic;
+        $email = $user->email;
+
+        $textMessage = str_ireplace('[ПІБ]', $pib, $textMessage);
+
+        Mail::raw(htmlspecialchars_decode($textMessage) . "\nЛогін: ".$email."\nПароль: ".$password, function($message) use ($email, $titleMessage){
+            $message->to($email, '')->subject($titleMessage);
             $message->from('jazz@gmail.com', 'JazzVitrage');
         });
     }

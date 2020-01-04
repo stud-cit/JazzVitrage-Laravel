@@ -35,5 +35,9 @@ class UsersMessagesTableSeeder extends Seeder
             'type' => 'admin_accepted',
             'text' => 'Вас зареєстровано в якості адміністратора на сайті http://fest.jazz.sumy.ua. Перейдіть за наступним посиланням http://fest.jazz.sumy.ua/login і введіть логін і пароль що написано нижче в тескті повідомлення.'
         ]);
+        DB::table('users_messages')->insert([
+            'type' => 'invitation',
+            'text' => 'Запрошуємо Вас на Гала-Концерт JazzVitrage.'
+        ]);
     }
 }

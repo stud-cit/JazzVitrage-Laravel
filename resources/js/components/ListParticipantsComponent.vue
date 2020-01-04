@@ -1,9 +1,15 @@
 <template>
     <div>
+<div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
       <form role="form" @submit.prevent class="search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
+
+      <button type="button" class="btn btn-primary float-right mb-4" @click="sendInvitation">Надіслати учасникам запрошення на Гала-Концерт</button>
+      
         <div class="openImg" v-if="img" @click="closeImg">
             <img :src="img">
         </div>
@@ -352,6 +358,25 @@ export default {
                         title: 'Помилка',
                         text: 'Не вдалося додати заяву до архіву'
                     });
+                });
+        },
+        sendInvitation() {
+            swal({
+                title: "Підтвердіть дію",
+                text: "Всім учасникам конкурсу буде ндіслано запрошення на Гала-Концерт!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((done) => {
+                    if (done) {
+                        axios.post('/api/send-invitation')
+                            .then(() => {
+                                swal("Листи успішно надіслано", {
+                                    icon: "success",
+                                });
+                            });
+                    }
                 });
         },
         getFileImg(file) {

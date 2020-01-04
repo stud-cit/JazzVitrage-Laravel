@@ -12,7 +12,7 @@ class UsersMessagesController extends Controller
         return response()->json($data);
     }
     function putMessage(Request $request) {
-        UserMessages::where("type", $request->page)->update(['text' => $request->text]);
+        UserMessages::where("type", $request->page)->update(['text' => htmlspecialchars($request->text)]);
         return response('ok', 200);
     }
 }
