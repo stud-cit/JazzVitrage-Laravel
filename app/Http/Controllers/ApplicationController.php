@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use App\Models\Evaluation;
@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 use App\Mail\MemberEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Users;
 
 class ApplicationController extends Controller
 {
@@ -339,4 +340,66 @@ class ApplicationController extends Controller
         });
     }
 
+    // Генерація PDF
+
+    // Загальна відомість членів журі
+    function vidomistChlenivZhuriPDF() {
+        $nomination = array(
+            1 => ['vocal', 'Вокальний жанр'], 
+            2 => ['instrumental', 'Інструментальний жанр'], 
+            3 => ['composition', ' Композиція']
+        );
+        $category = array(
+            'junior' => 'молодша', 
+            'middle' => 'середня', 
+            'senior' => 'старша'
+        );
+
+        $data = [];
+
+        foreach ($nomination as $nominationKey => $nominationValue) {
+            foreach ($category as $categoryKey => $categoryValue) {
+                $data[$nominationValue[0].'_soloDuet_'.$categoryKey] = Application::with('soloDuet', 'preparation', 'presentation', 'evaluations')
+                    ->where('nomination_id', $nominationKey)
+                    ->where('application_type_id', '<=', 2)
+                    ->where('age_category', $categoryValue)
+                    ->approved()
+                    ->get();
+                $data[$nominationValue[0].'_soloDuet_'.$categoryKey]->category = $categoryValue;
+                $data[$nominationValue[0].'_soloDuet_'.$categoryKey]->genre = $nominationValue[1];
+                $data[$nominationValue[0].'_soloDuet_'.$categoryKey]->type = 'soloDuet';
+            }
+        }
+            
+        foreach ($nomination as $nominationKey => $nominationValue) {
+            foreach ($category as $categoryKey => $categoryValue) {
+                $data[$nominationValue[0].'_group_'.$categoryKey] = Application::with('group', 'preparation', 'presentation', 'evaluations')
+                    ->where('nomination_id', $nominationKey)
+                    ->where('application_type_id', '>', 2)
+                    ->where('age_category', $categoryValue)
+                    ->approved()
+                    ->get();
+                $data[$nominationValue[0].'_group_'.$categoryKey]->category = $categoryValue;
+                $data[$nominationValue[0].'_group_'.$categoryKey]->genre = $nominationValue[1];
+                $data[$nominationValue[0].'_group_'.$categoryKey]->type = 'group';
+            }
+        }
+
+        $jury = Users::where('role', 'jury')->get();
+
+        $pdf = PDF::loadView('pdf.zahalna_vidomist_chleniv_zhuri', [
+            'data' => $data, 
+            'jury' => $jury
+        ])->setPaper('a4', 'landscape');
+        return $pdf->download('Загальна_відомість_членів_журі.pdf');
+    }
+
+    // Відомість джаз вітраж
+    function vidomistDzhazVitrazhPDF() {
+        $data = Application::with('soloDuet', 'group', 'preparation', 'presentation')
+            ->approved()
+            ->get();
+        $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
+        return $pdf->download('Відомість_джаз_вітраж.pdf');
+    }
 }

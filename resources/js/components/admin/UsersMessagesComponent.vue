@@ -96,6 +96,16 @@
                             {{ errors.first('admin_accepted') }}<br>
                     </span>
                     <button :disabled="errors.has('admin_accepted')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "admin_accepted")'>Редагувати</button><br><br>
+
+                    <hr>
+
+                    <label class="brtop">Примітки</label>
+                    <p>
+                        <b>[ПІБ]</b> - Прізвище, ім'я, по батькові учасника, або назва групи.<br>
+                        <b>[причина вказана адміністратором]</b> - причина відхилення заяви, що вказується адміністратором.<br>
+                        <b>[початок прийому заявок]</b> - початок прийому заявок.<br>
+                        <b>[кінець прийому заявок]</b> - кінець прийому заявок.<br>
+                    </p>
                 </div>
             </div>
         </form>

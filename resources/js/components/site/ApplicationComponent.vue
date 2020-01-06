@@ -1448,10 +1448,10 @@
                     .then((response) => {
                         this.preloader = false;
                         if(response.status == 200 ) {
-                            // swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
-                            //     icon: "success",
-                            // });
-                            // this.$router.push({name: "index"});
+                            swal("“Дякуємо за реєстрацію! Лист з даними\n" + "відправлено на вашу зазначену електронну адресу.”", {
+                                icon: "success",
+                            });
+                            this.$router.push({name: "index"});
                         }
                         else{
                             this.preloader = !this.preloader;

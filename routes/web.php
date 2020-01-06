@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
 
     Route::get('/member-files/{id}/{file}', 'ApplicationController@download');
+
+    Route::get('/admin/vidomist-chleniv-zhuri', 'ApplicationController@vidomistChlenivZhuriPDF');
+    Route::get('/admin/vidomist-dzhaz-vitrazh', 'ApplicationController@vidomistDzhazVitrazhPDF');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {

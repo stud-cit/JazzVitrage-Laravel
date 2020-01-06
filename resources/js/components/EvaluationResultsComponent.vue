@@ -16,22 +16,19 @@
                     <!--</select>-->
 
             <!--</div>-->
+
             <div class="col-sm">
-
-                    <label for="member">Учасник (тип)</label>
-                    <select class="form-control w-50" id="member" @change="searchMembers">
-                        <option value="" selected="selected">всі учасники</option>
-                        <option value="Соліст">Соліст</option>
-                        <option value="Дует">Дует</option>
-                        <option value="Група">Група</option>
-                    </select>
-
+                <label for="member">Учасник (тип)</label>
+                <select class="form-control w-50" id="member" @change="searchMembers">
+                    <option value="" selected="selected">всі учасники</option>
+                    <option value="Соліст">Соліст</option>
+                    <option value="Дует">Дует</option>
+                    <option value="Група">Група</option>
+                </select>
             </div>
-            <div class="col-sm align-self-end">
-                <div class="row justify-content-end mr-2">
-                    <button type="button" class="btn btn-outline-secondary" @click="printData">Згенерувати документ</button>
-
-                </div>
+            <div class="col-sm pt-3">
+                <a href="/admin/vidomist-chleniv-zhuri" class="btn btn-outline-secondary float-right">Загальна відомість членів журі</a>
+                <a href="/admin/vidomist-dzhaz-vitrazh" class="btn btn-outline-secondary float-right mx-2">Відомість джаз вітраж</a>
             </div>
         </div>
         <br>
@@ -137,22 +134,6 @@ export default {
                 }       
             }
         },
-
-        printData()
-        {
-            var mywindow = window.open('', 'new div');
-            mywindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css" />');
-            mywindow.document.write(this.$refs.printTable.outerHTML);
-            mywindow.document.close();
-            mywindow.focus();
-                setTimeout(
-                    function(){
-                        mywindow.print();
-                    },10
-                );
-            return true;
-        },
-
     },
 }
 </script>

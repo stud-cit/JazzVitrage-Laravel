@@ -1,8 +1,5 @@
 <template>
     <div>
-<div class="spinner-border" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
       <form role="form" @submit.prevent class="search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
