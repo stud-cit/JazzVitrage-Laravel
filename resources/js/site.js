@@ -2,9 +2,9 @@ require('./bootstrap');
 
 
 import Vue from 'vue';
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+// import BootstrapVue from "bootstrap-vue";
+// import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap-vue/dist/bootstrap-vue.css";
 
 
 import HeaderComponent from './components/site/HeaderComponent';
@@ -29,7 +29,7 @@ import Error404 from './components/site/Error404';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
-Vue.use(BootstrapVue);
+// Vue.use(BootstrapVue);
 
 import VueSilentbox from 'vue-silentbox';
 Vue.use(VueSilentbox);

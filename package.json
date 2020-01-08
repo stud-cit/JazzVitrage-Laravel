@@ -24,7 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "bootstrap-vue": "^2.1.0",
         "slick-carousel": "^1.8.1",
         "sweetalert": "^2.1.2",
         "vee-validate": "^2.2.15",
