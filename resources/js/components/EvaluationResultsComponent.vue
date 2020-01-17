@@ -38,6 +38,7 @@
                     <th width="30px">№</th>
                     <th>ПІБ Учасника / Назва групи</th>
                     <th>Тип заявки</th>
+                    <th>Номінація</th>
                     <th class="text-center">Оцінка</th>
                 </tr>
             </thead>
@@ -46,11 +47,12 @@
                     <td>{{ index + 1 }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.type }}</td>
+                    <td>{{ item.nomination }}</td>
                     <td class="text-center">{{ item.evaluation }}</td>
                 </tr>
             </tbody>
         </table>
-        
+
 
         </template>
 
@@ -85,23 +87,26 @@ export default {
                         if(member.solo_duet.length == 0) {
                             this.members.push({
                                 id: member.application_id,
-                                name: member.group.name, 
+                                name: member.group.name,
                                 type: member.app_type.name,
-                                evaluation: member.rating
+                                evaluation: member.rating,
+                                nomination: member.nomination.name
                             })
                         } else if(member.solo_duet.length == 1) {
                             this.members.push({
                                 id: member.application_id,
-                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`, 
+                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                                 type: member.app_type.name,
-                                evaluation: member.rating
+                                evaluation: member.rating,
+                                nomination: member.nomination.name
                             })
                         } else if(member.solo_duet.length == 2) {
                             this.members.push({
                                 id: member.application_id,
-                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`, 
+                                name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                                 type: member.app_type.name,
-                                evaluation: member.rating
+                                evaluation: member.rating,
+                                nomination: member.nomination.name
                             })
                         }
                     });
@@ -127,11 +132,11 @@ export default {
                 else {
                     if (filter=="група" && td.innerText!="соліст" && td.innerText!="дует"){
                         tr[i].style.display = "";
-                    } 
+                    }
                     else{
                         tr[i].style.display = "none";
                     }
-                }       
+                }
             }
         },
     },

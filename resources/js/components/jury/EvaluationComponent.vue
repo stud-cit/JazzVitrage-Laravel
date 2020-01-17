@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12 pb-3 comeBack">
             <router-link :to="{ name: 'jury-all-statements' }"><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</router-link>
-            
+
         </div>
         <div class="col-8">
             <video width="100%" id="videoMember" controls>
@@ -13,12 +13,12 @@
         <div class="col-4">
             <form>
                 <label for="stylisticMatching">Стилістична та жанрова відповідність творів.</label>
-                <input 
+                <input
                     type="number"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="stylisticMatching" 
-                    class="form-control" 
+                    v-model.number="stylisticMatching"
+                    class="form-control"
                     id="stylisticMatching" >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
@@ -59,6 +59,7 @@
                     <div class="col-12 evaluationName"><b>Назва:</b> {{ group.name }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
+                        <b>Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Кількість учасників:</b> {{ group.count_people }}
                         <b class="mt-3">Середній вік:</b> {{ group.average_age }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
@@ -74,6 +75,7 @@
                     <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
+                        <b>Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Дата народження:</b> {{ member[0].data_birthday }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
@@ -175,7 +177,7 @@
                     .then( ( response )  => {
                         this.hasRecord = this.isRecord(response.data);
                         const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id } = response.data;
-                       
+
                         if(this.hasRecord) {
                             this.user_id = user_id;
                             this.stylisticMatching = stylistic_matching;
@@ -185,13 +187,13 @@
                             this.evaluation = evaluation;
                         } else {
                             this.setDefaultEvaluate();
-                        } 
+                        }
                     })
                     .catch(function (error) {
                         console.error(error);
                     });
             },
-            // need make validation 
+            // need make validation
             createEvaluation() {
                 const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
 
@@ -248,7 +250,7 @@
                             icon: 'error'
                         });
                     }
-                    
+
                 });
             },
 
@@ -272,12 +274,13 @@
                         if(response.data.length == 0) {
                             this.$router.push('/admin/all-statements');
                         }
-                        this.member = response.data[0].solo_duet;
-                        this.group = response.data[0].group;
-                        this.type = response.data[0].app_type;
-                        this.school = response.data[0].preparation;
-                        this.program = response.data[0].presentation;
-                        
+                        this.member = response.data.solo_duet;
+                        this.group = response.data.group;
+                        this.type = response.data.app_type;
+                        this.nomination = response.data.nomination;
+                        this.school = response.data.preparation;
+                        this.program = response.data.presentation;
+
                         var container = document.getElementById("videoMember");
                         container.setAttribute("src", this.program.video);
                     })
@@ -292,10 +295,10 @@
                         this.memberId = Number (this.$route.params.id);
                         this.memberIndex = this.memberIds.indexOf( this.memberId );
                     });
-                
+
             },
             nextItem() {
-        
+
                 this.memberIndex = this.memberIds.indexOf( Number( this.$route.params.id ) );
                 if(this.memberIndex >= 0 && this.memberIndex < this.count) {
                     this.memberIndex += 1;

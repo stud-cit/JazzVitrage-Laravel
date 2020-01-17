@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Models\UserMessages;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Evaluation;
 use Illuminate\Support\Facades\Mail;
 
@@ -66,7 +66,7 @@ class UserController extends Controller
         return response()->json($jury_data);
     }
 
-    
+
     function updateUser(Request $request, $id) {
         $model = Users::find($id);
         $data = json_decode($request->data);

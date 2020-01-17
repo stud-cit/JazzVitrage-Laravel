@@ -24,7 +24,7 @@ class ApplicationController extends Controller
     protected $publicStorage = "member-files/";
 
     public function index()
-    {	
+    {
         return view('application');
     }
 
@@ -38,16 +38,16 @@ class ApplicationController extends Controller
          $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '=', 'created')->get();
          return response()->json($data);
      }
-     
+
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('status', '!=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '!=', 'archive')->get();
          return response()->json($data);
      }
-     
+
      public function getArciveMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'presentation')->where('status', '=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation', 'nomination')->where('status', '=', 'archive')->get();
          return response()->json($data);
      }
 
@@ -61,7 +61,7 @@ class ApplicationController extends Controller
 
      public function getMember($id)
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation')->where('application_id', '=', $id)->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('application_id', '=', $id)->first();
          return response()->json($data);
      }
 
@@ -86,7 +86,7 @@ class ApplicationController extends Controller
         $app->save();
         $app->check = $request->checkFile->store($this->publicStorage.$app->application_id);
         $app->save();
-        
+
         if($data->appType == 1) {
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
@@ -106,7 +106,7 @@ class ApplicationController extends Controller
             $soloDuet->save();
             $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
         }
-        
+
         if($data->appType == 2) {
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName;
@@ -254,24 +254,24 @@ class ApplicationController extends Controller
      * Return json
      */
     public function getRating() {
-        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations')->approved()->get();
-        
+        $data = Application::with('appType', 'soloDuet', 'group', 'evaluations', 'nomination')->approved()->get();
+
         // Rating calculation
-        $rating = []; 
+        $rating = [];
         foreach ($data->modelKeys() as $key => $value) {
-            
+
             $allEvaluations = Evaluation::where('application_id', $value)->get()->toArray();
-            
+
             $colEvaluation = array_column($allEvaluations, 'evaluation');
-            
+
             $leng = count($colEvaluation);
             if ($leng > 0) {
                 $sum =  array_sum($colEvaluation);
                 $resultRate = $sum / $leng;
-                $rating[$key]['rating'] = number_format($resultRate, 2, ',', ' ');   
+                $rating[$key]['rating'] = number_format($resultRate, 2, ',', ' ');
             } else {
                 $rating[$key]['rating'] = NULL;
-            }  
+            }
         }
 
         // Convert need for array_map
@@ -345,13 +345,13 @@ class ApplicationController extends Controller
     // Загальна відомість членів журі
     function vidomistChlenivZhuriPDF() {
         $nomination = array(
-            1 => ['vocal', 'Вокальний жанр'], 
-            2 => ['instrumental', 'Інструментальний жанр'], 
+            1 => ['vocal', 'Вокальний жанр'],
+            2 => ['instrumental', 'Інструментальний жанр'],
             3 => ['composition', ' Композиція']
         );
         $category = array(
-            'junior' => 'молодша', 
-            'middle' => 'середня', 
+            'junior' => 'молодша',
+            'middle' => 'середня',
             'senior' => 'старша'
         );
 
@@ -370,7 +370,7 @@ class ApplicationController extends Controller
                 $data[$nominationValue[0].'_soloDuet_'.$categoryKey]->type = 'soloDuet';
             }
         }
-            
+
         foreach ($nomination as $nominationKey => $nominationValue) {
             foreach ($category as $categoryKey => $categoryValue) {
                 $data[$nominationValue[0].'_group_'.$categoryKey] = Application::with('group', 'preparation', 'presentation', 'evaluations')
@@ -388,10 +388,10 @@ class ApplicationController extends Controller
         $jury = Users::where('role', 'jury')->get();
 
         $pdf = PDF::loadView('pdf.zahalna_vidomist_chleniv_zhuri', [
-            'data' => $data, 
+            'data' => $data,
             'jury' => $jury
         ])->setPaper('a4', 'landscape');
-        return $pdf->download('Загальна_відомість_членів_журі.pdf');
+        return $pdf->stream('Загальна_відомість_членів_журі.pdf');
     }
 
     // Відомість джаз вітраж

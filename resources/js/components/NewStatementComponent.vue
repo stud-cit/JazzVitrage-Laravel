@@ -13,6 +13,7 @@
                     <th>№</th>
                     <th>ПІБ Учасника</th>
                     <th>Тип Заявки</th>
+                    <th>Номінація</th>
                     <th width="30px"></th>
                     <th width="30px"></th>
                 </tr>
@@ -27,6 +28,9 @@
                     </td>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
                        {{ item.type }}
+                    </td>
+                    <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
+                       {{ item.nomination }}
                     </td>
                     <td>
                         <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id)"></i>
@@ -43,6 +47,7 @@
                         </div>
                         <div class="col-5 type-style">
                             <p><strong>Тип:</strong> {{ item.type }}</p>
+                            <p><strong>Номінація:</strong> {{ item.nomination }}</p>
                         </div>
                         <div class="mt-2"></div>
                         <div class="col-12">
@@ -243,12 +248,13 @@ export default {
                             groupId: member.group.group_people_id,
 	                        nameAgeCategory: member.age_category,
                             id: member.application_id,
-                            check: member.check
+                            check: member.check,
+                            nomination: member.nomination.name
                         })
                     }
                     else if(member.solo_duet.length == 1) {
                         this.members.push({
-                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`, 
+                            name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
 	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        idCode: member.solo_duet[0].in,
@@ -273,7 +279,8 @@ export default {
 	                        in_file: member.solo_duet[0].in_file,
 	                        nameAgeCategory: member.age_category,
                             id: member.application_id,
-                            check: member.check
+                            check: member.check,
+                            nomination: member.nomination.name
                         })
                     }
                     else if(member.solo_duet.length == 2) {
@@ -307,7 +314,8 @@ export default {
 	                        in_file2: member.solo_duet[1].in_file,
 	                        nameAgeCategory: member.age_category,
                             id: member.application_id,
-                            check: member.check
+                            check: member.check,
+                            nomination: member.nomination.name
                         })
                     }
                 });

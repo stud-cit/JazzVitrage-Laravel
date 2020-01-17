@@ -4,18 +4,19 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
         </form>
-        <br> 
+        <br>
       <table class="table table-bordered accordion" id="accordion">
           <thead>
                 <tr>
                     <th>№</th>
                     <th>ПІБ Учасника / Назва групи</th>
                     <th>Тип заявки</th>
+                    <th>Номінація</th>
                     <th width="30px"></th>
                     <th width="30px"></th>
                 </tr>
           </thead>
-          
+
           <tbody class="card" v-for="(item, index) in filteredList" :key="index">
                 <tr>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
@@ -23,8 +24,9 @@
                     </td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.type }}</td>
+                    <td>{{ item.nomination }}</td>
                     <td>
-                        <a href="#" @click="unarchiveMember(item.id)"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>                
+                        <a href="#" @click="unarchiveMember(item.id)"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
                     <td>
                         <a href="#" @click="deleteMember(item.id)"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
                     </td>
@@ -64,7 +66,8 @@
 	        getFullList() {
 		        axios.get('/get-archive-members')
 			        .then((response) => {
-				        this.members = [];
+                        this.members = [];
+                        console.log(response.data)
 				        response.data.forEach(member => {
 					        if (member.solo_duet.length == 0 && member.status == "archive") {
 						        this.members.push({
@@ -72,7 +75,8 @@
 							        file: member.group.file,
 							        video: member.presentation.video,
 							        type: member.app_type.name,
-							        id: member.application_id
+                                    id: member.application_id,
+                                    nomination: member.nomination.name
 						        })
 					        } else if (member.solo_duet.length == 1 && member.status == "archive") {
 						        this.members.push({
@@ -81,7 +85,8 @@
 							        in_file: member.solo_duet[0].in_file,
 							        video: member.presentation.video,
 							        type: member.app_type.name,
-							        id: member.application_id
+                                    id: member.application_id,
+                                    nomination: member.nomination.name
 						        })
 					        } else if (member.solo_duet.length == 2 && member.status == "archive") {
 						        this.members.push({
@@ -90,7 +95,8 @@
 							        in_file: `${member.solo_duet[0].in_file}, ${member.solo_duet[1].in_file}`,
 							        video: member.presentation.video,
                                     type: member.app_type.name,
-							        id: member.application_id
+                                    id: member.application_id,
+                                    nomination: member.nomination.name
 						        })
 					        }
 				        });
