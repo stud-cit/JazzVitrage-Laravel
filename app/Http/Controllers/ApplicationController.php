@@ -93,14 +93,15 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->data_birthday = $data->memberDate;
+            $soloDuet->member_address = $data->memberAddress;
             $soloDuet->member_email = $data->memberEmail;
-
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
             $soloDuet->parent_patronymic = $data->parentPatronymic;
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 0;
             $soloDuet->application_id = $app->application_id;
+            $soloDuet->passport_data = $data->passportData;
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
@@ -112,6 +113,7 @@ class ApplicationController extends Controller
             $soloDuet->name = $data->memberName;
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
+            $soloDuet->member_address = $data->memberAddress;
             $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = $data->memberDate;
             $soloDuet->parent_name = $data->parentName;
@@ -120,6 +122,7 @@ class ApplicationController extends Controller
             $soloDuet->in = $data->idCode;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
+            $soloDuet->passport_data = $data->passportData;
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
@@ -130,6 +133,7 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
             $soloDuet->member_email = $data->memberEmail2;
+            $soloDuet->member_address = $data->memberAddress2;
             $soloDuet->data_birthday = $data->memberDate2;
             $soloDuet->parent_name = $data->parentName2;
             $soloDuet->parent_surname = $data->parentSurname2;
@@ -137,6 +141,7 @@ class ApplicationController extends Controller
             $soloDuet->in = $data->idCode2;
             $soloDuet->is_duet = 1;
             $soloDuet->application_id = $app->application_id;
+            $soloDuet->passport_data = $data->passportData2;
             $soloDuet->passport_photo = $request->member2BirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
             $soloDuet->save();

@@ -126,6 +126,18 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>ДОМАШНЯ АДРЕСА</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress" type="text" v-model="registration.data.memberAddress"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberAddress')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
                             <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
@@ -137,6 +149,29 @@
                             </div>
                             <span class="errors" v-if="errors.has('memberEmail')">
                                     Введіть дані у форматі name@email.com
+                            </span>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData" id="passportData" v-model="registration.data.passportData" 
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -319,6 +354,18 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>ДОМАШНЯ АДРЕСА</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress" type="text" v-model="registration.data.memberAddress"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberAddress')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
                             <label>Електронна пошта</label>
                             <div class="input-row">
                                 <div class="input-container">
@@ -330,6 +377,29 @@
                             </div>
                             <span class="errors" v-if="errors.has('memberEmail1')">
                                     Введіть дані у форматі name@email.com
+                            </span>
+                             <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData" id="passportData" v-model="registration.data.passportData" 
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -482,6 +552,18 @@
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
+                            <label>ДОМАШНЯ АДРЕСА</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress2" type="text" v-model="registration.data.memberAddress2"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('memberAddress2')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
                             <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
@@ -492,6 +574,29 @@
                             </div>
                             <span class="errors" v-if="errors.has('memberEmail2')">
                                     Введіть дані у форматі name@email.com
+                            </span>
+                             <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type2" class="app-type" v-model="registration.data.idPassportType2" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type2" class="app-type" v-model="registration.data.idPassportType2" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType2 == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType2 == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData2" id="passportData2" v-model="registration.data.passportData2" 
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData2') && registration.data.idPassportType2 == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData2') && registration.data.idPassportType2 == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -1261,12 +1366,16 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
+                        memberAddress: '',
+                        passportData: '',
+                        passportData2: '',
 	                    memberEmail: '',
 	                    memberEmail1: '',
 	                    memberEmail2: '',
                         groupName: '',
                         groupCount: '',
                         groupAverage: '',
+                        idPassportType: 1,
                         idMemberType: 1,
                         parentName: '',
                         parentSurname: '',
@@ -1276,7 +1385,9 @@
                         memberSurname2: '',
                         memberPatronymic2: '',
                         memberDate2: '',
+                        memberAddress2: '',
                         idMemberType2: 1,
+                        idPassportType2: 1,
                         parentName2: '',
                         parentSurname2: '',
                         parentPatronymic2: '',
