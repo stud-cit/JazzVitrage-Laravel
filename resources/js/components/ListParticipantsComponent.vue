@@ -55,11 +55,32 @@
                             <label for="memberDate" class="brtop" v-if="item.type == 'соліст'">Дата народження</label>
                             <p id="memberDate" v-if="item.type == 'соліст'">{{ item.memberDate }}</p>
 
+                            <label for="memberAddress" class="brtop" v-if="item.type == 'соліст'">Домашня адреса</label>
+                            <p id="memberAddress" v-if="item.type == 'соліст'">{{ item.memberAddress }}</p>
+
+                            <label for="memberPassportData" class="brtop" v-if="item.type == 'соліст'">Паспортні дані</label>
+                            <p id="memberPassportData" v-if="item.type == 'соліст'">{{ item.memberPassportData }}</p>
+
                             <label for="memberDate1" class="brtop" v-if="item.type == 'дует'">Дата народження першого учасника</label>
                             <p id="memberDate1" v-if="item.type == 'дует'">{{ item.memberDate1 }}</p>
 
                             <label for="memberDate2" class="brtop" v-if="item.type == 'дует'">Дата народження другого учасника</label>
                             <p id="memberDate2" v-if="item.type == 'дует'">{{ item.memberDate2 }}</p>
+
+                            <label for="memberAddress1" class="brtop" v-if="item.type == 'дует'">Домашня адреса першого учасника</label>
+                            <p id="memberAddress1" v-if="item.type == 'дует'">{{ item.memberAddress1 }}</p>
+
+                            <label for="memberAddress2" class="brtop" v-if="item.type == 'дует'">Домашня адреса другого учасника</label>
+                            <p id="memberAddress2" v-if="item.type == 'дует'">{{ item.memberAddress2 }}</p>
+
+                            <label for="memberPassportData1" class="brtop" v-if="item.type == 'дует'">Паспортні дані першого учасника</label>
+                            <p id="memberPassportData1" v-if="item.type == 'дует'">{{ item.memberPassportData1 }}</p>
+
+                            <label for="memberPassportData2" class="brtop" v-if="item.type == 'дует'">Паспортні дані другого учасника</label>
+                            <p id="memberPassportData2" v-if="item.type == 'дует'">{{ item.memberPassportData2 }}</p> 
+
+                            <label for="nameAgeCategory" class="brtop">Вікова категорія</label>
+                            <p id="nameAgeCategory">{{ item.nameAgeCategory }}</p>
 
                             <label for="memberAverage" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Середній вік учасників</label>
                             <p id="memberAverage" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.memberAverage }}</p>
@@ -167,7 +188,7 @@
                                     </div>
                                     <label class="brtop mb-2">Документ с датами народження учасників</label>
                                 </div>
-                                 <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFile(item.check)">
+                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFile(item.check)">
                                     <i class="fa fa-search"></i>
                                     <div class="mb-2">
                                         <img src="/img/file.png">
@@ -251,7 +272,9 @@ export default {
                         this.members.push({
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
-	                        memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
+                            memberDate: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
+                            memberAddress: member.solo_duet[0].member_address,
+                            memberPassportData: member.solo_duet[0].passport_data,
 	                        idCode: member.solo_duet[0].in,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
@@ -273,6 +296,7 @@ export default {
 	                        passport_photo: member.solo_duet[0].passport_photo,
 	                        in_file: member.solo_duet[0].in_file,
                             id: member.application_id,
+                            nameAgeCategory: member.age_category,
                             check: member.check,
                             nomination: member.nomination.name
                         })
@@ -283,8 +307,12 @@ export default {
                             type: member.app_type.name,
 	                        memberDate1: member.solo_duet[0].data_birthday.split('-').reverse().join('-'),
 	                        memberDate2: member.solo_duet[1].data_birthday.split('-').reverse().join('-'),
+                            memberAddress1: member.solo_duet[0].member_address,
+                            memberAddress2: member.solo_duet[1].member_address,
 	                        idCode1: member.solo_duet[0].in,
-	                        idCode2: member.solo_duet[1].in,
+                            idCode2: member.solo_duet[1].in,
+                            memberPassportData1: member.solo_duet[0].passport_data,
+                            memberPassportData2: member.solo_duet[1].passport_data,
 	                        schoolName: member.preparation.school_one,
 	                        schoolAddress: member.preparation.school_address,
 	                        schoolPhone: member.preparation.school_phone,
@@ -307,6 +335,7 @@ export default {
 	                        passport_photo2: member.solo_duet[1].passport_photo,
 	                        in_file2: member.solo_duet[1].in_file,
                             id: member.application_id,
+                            nameAgeCategory: member.age_category,
                             check: member.check,
                             nomination: member.nomination.name
                         })
