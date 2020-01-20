@@ -101,7 +101,7 @@
             </div>
             <div class="col-3">
                 <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
-                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block check-button">Оновити</button>
+                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
@@ -162,7 +162,6 @@
         created() {
             this.getMember();
             this.getAllMembers();
-            this.getUserJury();
         },
         computed: {
 
@@ -178,6 +177,7 @@
             getEvaluation() {
                 axios.get(`/has-record/${this.$route.params.id}/`)
                     .then( ( response )  => {
+	                    this.checkJury();
                         this.hasRecord = this.isRecord(response.data);
                         const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id } = response.data;
 
@@ -274,7 +274,6 @@
             getMember() {
                 axios.get(`/get-member/${this.$route.params.id}`)
                     .then((response) => {
-	                    this.checkJury();
                         if(response.data.length == 0) {
                             this.$router.push('/admin/all-statements');
                         }
@@ -290,6 +289,7 @@
 	                    this.juryNomination = response.data.nomination;
                     })
                     .catch( error => console.error(error) );
+	                this.getUserJury();
                     this.getEvaluation();
             },
             getAllMembers() {
