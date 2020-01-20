@@ -29,6 +29,7 @@
             <div class="col-sm pt-3">
                 <a href="/admin/vidomist-chleniv-zhuri" class="btn btn-outline-secondary float-right">Загальна відомість членів журі</a>
                 <a href="/admin/vidomist-dzhaz-vitrazh" class="btn btn-outline-secondary float-right mx-2">Відомість джаз вітраж</a>
+                <a href="/admin/list-members" class="btn btn-outline-secondary float-right">Список учасників</a>
             </div>
         </div>
         <br>

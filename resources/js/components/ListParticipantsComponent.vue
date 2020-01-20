@@ -77,7 +77,7 @@
                             <p id="memberPassportData1" v-if="item.type == 'дует'">{{ item.memberPassportData1 }}</p>
 
                             <label for="memberPassportData2" class="brtop" v-if="item.type == 'дует'">Паспортні дані другого учасника</label>
-                            <p id="memberPassportData2" v-if="item.type == 'дует'">{{ item.memberPassportData2 }}</p> 
+                            <p id="memberPassportData2" v-if="item.type == 'дует'">{{ item.memberPassportData2 }}</p>
 
                             <label for="nameAgeCategory" class="brtop">Вікова категорія</label>
                             <p id="nameAgeCategory">{{ item.nameAgeCategory }}</p>

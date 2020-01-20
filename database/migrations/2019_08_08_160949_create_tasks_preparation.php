@@ -26,6 +26,9 @@ class CreateTasksPreparation extends Migration
             $table->string('teacher_in', 50);
             $table->string('teacher_email', 50);
             $table->string('teacher_phone', 50);
+            $table->string('teacher_passport_data');
+            $table->string('teacher_passport');
+            $table->string('teacher_address');
             $table->integer('is_concertmaster');
             $table->string('concertmaster_name', 50)->nullable();
             $table->string('concertmaster_surname', 50)->nullable();
@@ -33,7 +36,7 @@ class CreateTasksPreparation extends Migration
             $table->integer('application_id')->unsigned();
             $table->timestamps();
         });
-        
+
         Schema::table('preparation', function (Blueprint $table) {
             $table->index('application_id');
             $table->foreign('application_id')->references('application_id')->on('application')->onDelete('cascade');
