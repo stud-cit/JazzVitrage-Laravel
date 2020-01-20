@@ -8,7 +8,7 @@
 
 
                 <div class="d-xl-flex navbar-order">
-                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ЗАПОВНИТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ПОДАТИ ЗАЯВКУ</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -35,16 +35,13 @@
                             </div>
                         </li>
                         <li><a class="nav-item nav-link" :href="info.file">ПОЛОЖЕННЯ</a></li>
+                        <li><a class="nav-item nav-link" href="/juries">ЖУРІ</a></li>
+                        <li><a class="nav-item nav-link" href="/organization-committee">ОРГ. КОМІТЕТ</a></li>
+                        <li><a class="nav-item nav-link" href="/master">МАЙСТЕР КЛАС</a></li>
 
-                        <li class="dropdown">
-                            <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >ШТАТ</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/juries">ЖУРІ</a>
-                                <a class="dropdown-item" href="/organization-committee">ОРГАНІЗАЦІЙНИЙ КОМІТЕТ</a>
-                            </div>
-                        </li>
-                        <li class="d-inline  d-sm-none" v-if="isRegistration">
-                            <a href="/applications"  class="nav-item nav-link">ЗАПОВНИТИ ЗАЯВКУ</a>
+                        
+                        <li class="d-inline bg-danger d-sm-none w-100 " v-if="isRegistration">
+                            <a href="/applications"  class="nav-item text-light nav-link">ПОДАТИ ЗАЯВКУ</a>
                         </li>
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
                         <li class="dropdown">
