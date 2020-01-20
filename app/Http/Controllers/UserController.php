@@ -20,6 +20,13 @@ class UserController extends Controller
         return view('admin.profile');
     }
 
+    function userJury() {
+        $userJury = Auth::user();
+        if($userJury->role == 'jury') {
+            return response()->json($userJury);
+        }
+    }
+
     public function getUserId($id)
     {
         $data = Users::find($id);

@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin/profile/{id}', 'UserController@pageProfile');
     Route::get('/user/{id}', 'UserController@getUserId');
+    Route::get('/get-user-jury', 'UserController@userJury');
     Route::post('/user/{id}', 'UserController@updateUser');
     Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
 

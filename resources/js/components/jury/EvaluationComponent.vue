@@ -18,7 +18,7 @@
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="stylisticMatching"
-                    class="form-control"
+                    class="form-control check-nomination"
                     id="stylisticMatching" >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
@@ -27,7 +27,7 @@
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artisticValue"
-                    class="form-control"
+                    class="form-control check-nomination"
                     id="artisticValue" >
 
                 <label for="artistry">Артистизм.</label>
@@ -36,7 +36,7 @@
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artistry"
-                    class="form-control"
+                    class="form-control check-nomination"
                     id="artistry" >
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
@@ -45,7 +45,7 @@
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="originality"
-                    class="form-control"
+                    class="form-control check-nomination"
                     id="originality">
             </form>
             <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
@@ -59,7 +59,7 @@
                     <div class="col-12 evaluationName"><b>Назва:</b> {{ group.name }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
-                        <b>Номінація:</b> {{ nomination.name }}
+                        <b class="mt-3">Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Кількість учасників:</b> {{ group.count_people }}
                         <b class="mt-3">Середній вік:</b> {{ group.average_age }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
@@ -100,8 +100,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
-                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
+                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
+                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block check-button">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
@@ -138,6 +138,8 @@
                 maxRating: 100,
                 hasError: false,
                 hasRecord: false,
+	            userJury: '',
+	            juryNomination: ''
             }
         },
         watch: {
@@ -160,6 +162,7 @@
         created() {
             this.getMember();
             this.getAllMembers();
+            this.getUserJury();
         },
         computed: {
 
@@ -271,6 +274,7 @@
             getMember() {
                 axios.get(`/get-member/${this.$route.params.id}`)
                     .then((response) => {
+	                    this.checkJury();
                         if(response.data.length == 0) {
                             this.$router.push('/admin/all-statements');
                         }
@@ -283,6 +287,7 @@
 
                         var container = document.getElementById("videoMember");
                         container.setAttribute("src", this.program.video);
+	                    this.juryNomination = response.data.nomination;
                     })
                     .catch( error => console.error(error) );
                     this.getEvaluation();
@@ -296,6 +301,29 @@
                         this.memberIndex = this.memberIds.indexOf( this.memberId );
                     });
 
+            },
+	        getUserJury() {
+                axios.get('/get-user-jury')
+	                .then((response) => {
+		                this.userJury = response.data;
+	                })
+            },
+            checkJury() {
+	            var juryNomination;
+	            var resultButton;
+
+	            //console.log(this.userJury.nominations);
+	            //console.log(this.juryNomination.name);
+
+	            if(this.userJury.nominations != this.juryNomination.name){
+		            juryNomination = document.getElementsByClassName('check-nomination');
+		            juryNomination[0].setAttribute('disabled', 'disabled');
+		            juryNomination[1].setAttribute('disabled', 'disabled');
+		            juryNomination[2].setAttribute('disabled', 'disabled');
+		            juryNomination[3].setAttribute('disabled', 'disabled');
+		            resultButton = document.getElementsByClassName('check-button');
+		            resultButton[0].hidden = true;
+	            }
             },
             nextItem() {
 
