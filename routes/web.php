@@ -111,6 +111,9 @@ Route::group(['middleware' => ['auth', 'role:jury']], function () {
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
     });
+    Route::get('/admin/jury-evaluation', function () {
+        return view('admin.jury.juryEvaluation');
+    });
     Route::post('to-rate', 'EvaluationController@toRate')->name('to-rate');
     Route::get('has-record/{application_id}', 'EvaluationController@hasRecord')->name('has-record');
     Route::post('to-rate-update/{evaluation_id}', 'EvaluationController@toRateUpdate')->name('to-rate-update');

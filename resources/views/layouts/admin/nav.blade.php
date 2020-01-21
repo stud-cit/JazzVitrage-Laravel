@@ -59,6 +59,13 @@
 						</a>
 					</li>
 
+					<li class="nav-item" title="Оцінювання">
+						<a class="nav-link" href="/admin/jury-evaluation">
+							<i class="fa fa-calendar-check-o"></i>
+							<span class="nav-link-text">Оцінювання</span>
+						</a>
+					</li>
+
 				@endif
 
 				{{-- Адмін --}}

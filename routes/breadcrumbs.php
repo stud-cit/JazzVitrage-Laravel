@@ -31,6 +31,10 @@ Breadcrumbs::register('admin.superAdmin.addAdminOrgCommittee', function($breadcr
 Breadcrumbs::register('admin.jury.allStatements', function($breadcrumbs) {
     $breadcrumbs->push('Всі заяви', route('admin.jury.allStatements'));
 });
+// Оцінювання
+Breadcrumbs::register('admin.jury.juryEvaluation', function($breadcrumbs) {
+    $breadcrumbs->push('Оцінювання', route('admin.jury.juryEvaluation'));
+});
 // Інформація
 Breadcrumbs::register('admin.jury.information', function($breadcrumbs) {
     $breadcrumbs->push('Інформація', route('admin.jury.information'));

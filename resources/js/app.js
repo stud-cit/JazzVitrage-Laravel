@@ -43,6 +43,7 @@ import QuestionComponent from './components/admin/QuestionComponent';
 //Журі
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
+import JuryEvaluationComponent from './components/jury/JuryEvaluationComponent';
 
 //Супер адмін
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
@@ -73,6 +74,11 @@ const router = new VueRouter({
             name: 'jury-evaluation',
             component: EvaluationComponent,
         },
+        {
+            path: '/admin/jury-evaluation',
+            name: 'jury-evaluation-available',
+            component: JuryEvaluationComponent,
+        },
     ],
 });
 
@@ -85,6 +91,7 @@ const app = new Vue({
         ListParticipantsComponent,
         EvaluationResultsComponent,
         EvaluationComponent,
+        JuryEvaluationComponent,
         VideoGalleryComponent,
         FotoGalleryComponent,
         MainInformationComponent,
