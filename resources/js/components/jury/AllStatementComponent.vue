@@ -7,6 +7,7 @@
                 <th>ПІБ Учасника / Назва групи</th>
                 <th>Тип заявки</th>
                 <th>Номінація</th>
+                <th>Оцінка</th>
             </tr>
       </thead>
       <tbody v-for="(item, index) in members" :key="index">
@@ -26,6 +27,7 @@
                 </td>
                 <td>{{ item.app_type.name }}</td>
                 <td>{{ item.nomination.name }}</td>
+                <td>{{ item.rating }}</td>
             </tr>
       </tbody>
       </table>

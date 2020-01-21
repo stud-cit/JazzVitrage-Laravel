@@ -41,8 +41,36 @@ class ApplicationController extends Controller
 
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('status', '!=', 'archive')->get();
-         return response()->json($data);
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination', 'evaluations')->where('status', '!=', 'archive')->get();
+
+
+        // Rating calculation
+        $rating = [];
+        foreach ($data->modelKeys() as $key => $value) {
+
+            $allEvaluations = Evaluation::where('application_id', $value)->get()->toArray();
+
+            $colEvaluation = array_column($allEvaluations, 'evaluation');
+
+            $leng = count($colEvaluation);
+            if ($leng > 0) {
+                $sum =  array_sum($colEvaluation);
+                $resultRate = $sum / $leng;
+                $rating[$key]['rating'] = number_format($resultRate, 2, ',', ' ');
+            } else {
+                $rating[$key]['rating'] = NULL;
+            }
+        }
+
+        // Convert need for array_map
+        $convertedData = $data->toArray();
+
+        $dataWithRating = array_map(function($dataRow, $ratingRow) {
+            return array_merge($dataRow, $ratingRow);
+        }, $convertedData, $rating);
+
+        return response()->json($dataWithRating);
+
      }
 
      public function getArciveMembers()
@@ -170,6 +198,9 @@ class ApplicationController extends Controller
         $school->teacher_in = $data->teacherIdCode;
         $school->teacher_email = $data->teacherEmail;
         $school->teacher_phone = $data->teacherPhone;
+        $school->teacher_passport_data = $data->teacherPassportData;
+        $school->teacher_address = $data->teacherAddress;
+        $school->teacher_passport = $request->teacherPassport->store($this->publicStorage.$app->application_id);
 
         $school->is_concertmaster = ($data->concertName == '') ? 1 : 0;
         $school->concertmaster_name = $data->concertSurname;
@@ -406,5 +437,13 @@ class ApplicationController extends Controller
             ->get();
         $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
         return $pdf->download('Відомість_джаз_вітраж.pdf');
+    }
+
+    function listMembersPDF() {
+        $data = Application::with('soloDuet', 'group', 'preparation')
+            ->approved()
+            ->get();
+        $pdf = PDF::loadView('pdf.list_members', ['data' => $data]);
+        return $pdf->stream('Список_учасників.pdf');
     }
 }
