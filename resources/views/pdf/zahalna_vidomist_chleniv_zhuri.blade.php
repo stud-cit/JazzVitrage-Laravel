@@ -2,8 +2,8 @@
     body { font-family: DejaVu Sans, sans-serif; }
     .page-break { page-break-after: always; }
     .tg  {border-collapse:collapse;border-spacing:0;}
-    .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-    .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg td{font-size:11px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg th{font-size:11px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
     .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
     .tg .tg-0lax{text-align:left;vertical-align:top}
@@ -52,9 +52,9 @@ ______________ Н.О. Цибульська<br>
             <th class="tg-c3ow" rowspan="2">Місто Навч. заклад</th>
             <th class="tg-c3ow" rowspan="2">Дата народження</th>
             <th class="tg-c3ow" rowspan="2">Конкурсна програма</th>
-            <th class="tg-c3ow" rowspan="2">Викладач/концертмейстер</th>
+            <th class="tg-c3ow" rowspan="2">Викладач / концертмейстер</th>
             <th class="tg-c3ow" colspan="{{ count($juryNomination) }}">Члени жюрі</th>
-            <th class="tg-0pky" rowspan="2">Заг.бал</th>
+            <th class="tg-0pky" rowspan="2">Заг. бал</th>
             <th class="tg-0pky" rowspan="2">Сер. бал</th>
             <th class="tg-0pky" rowspan="2">Зайняте місце</th>
         </tr>
@@ -89,19 +89,22 @@ ______________ Н.О. Цибульська<br>
                     <?php
                         $sumEvaluation = 0;
                         $countEvaluation = 0;
+                        $uniqueEvaluations = [];
                     ?>
                     @foreach ($juryNomination as $juryItem)
                         @foreach ($item['evaluations'] as $evaluations)
                             @if($juryItem['user_id'] == $evaluations['user_id'])
+                                <?php array_push($uniqueEvaluations, $evaluations['user_id']); ?>
                                 {{ $countEvaluation++ }}
                                 {{ $sumEvaluation += $evaluations['evaluation'] }}
                                 <td class="tg-0pky">{{ $evaluations['evaluation'] }}</td>
-                            @else
-                            	<td class="tg-0pky">0</td>
                             @endif
                         @endforeach
                     @endforeach
-                    <td class="tg-0pky">{{ $sumEvaluation }}</td>
+                    @for ($i = 0; $i < count($juryNomination) - count(array_unique($uniqueEvaluations)); $i ++)
+                        <td class="tg-0pky">0</td>
+                    @endfor
+                <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
                     <td class="tg-0pky"></td>
                 </tr>
@@ -116,7 +119,7 @@ ______________ Н.О. Цибульська<br>
             <th class="tg-c3ow" rowspan="2">Назва групи</th>
             <th class="tg-c3ow" rowspan="2">Місто Навч. заклад</th>
             <th class="tg-c3ow" rowspan="2">Конкурсна програма</th>
-            <th class="tg-c3ow" rowspan="2">Викладач/концертмейстер</th>
+            <th class="tg-c3ow" rowspan="2">Викладач / концертмейстер</th>
             <th class="tg-c3ow" colspan="{{ count($juryNomination) }}">Члени жюрі</th>
             <th class="tg-0pky" rowspan="2">Заг.бал</th>
             <th class="tg-0pky" rowspan="2">Сер. бал</th>
@@ -143,18 +146,22 @@ ______________ Н.О. Цибульська<br>
                     <?php
                         $sumEvaluation = 0;
                         $countEvaluation = 0;
+                        $uniqueEvaluations = [];
                     ?>
                     @foreach ($juryNomination as $juryItem)
                         @foreach ($item['evaluations'] as $evaluations)
                             @if($juryItem['user_id'] == $evaluations['user_id'])
+                                <?php array_push($uniqueEvaluations, $evaluations['user_id']); ?>
                                 {{ $countEvaluation++ }}
                                 {{ $sumEvaluation += $evaluations['evaluation'] }}
                                 <td class="tg-0pky">{{ $evaluations['evaluation'] }}</td>
-                            @else
-                            	<td class="tg-0pky">0</td>
+
                             @endif
                         @endforeach
                     @endforeach
+                    @for ($i = 0; $i < count($juryNomination) - count(array_unique($uniqueEvaluations)); $i ++)
+                        <td class="tg-0pky">0</td>
+                    @endfor
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
                     <td class="tg-0pky"></td>

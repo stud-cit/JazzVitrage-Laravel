@@ -41,13 +41,19 @@ ____________ Н.О. Цибульська
                     {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }}
                 @endforeach
             </td>
-            <td class="tg-0pky"></td>
             <td class="tg-0pky">
-
+                @foreach ($item['soloDuet'] as $soloDuet)
+                    {{ $soloDuet['passport_data'] }}
+                @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['in'] }}
+                    {{ $soloDuet['member_address'] }}
+                @endforeach
+            </td>
+            <td class="tg-0pky">
+                @foreach ($item['soloDuet'] as $soloDuet)
+                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }}
                 @endforeach
             </td>
             <td class="tg-0pky"></td>
@@ -60,10 +66,8 @@ ____________ Н.О. Цибульська
             <td class="tg-0pky">
                 {{ $item['group']['name'] }} Керівник {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
             </td>
-            <td class="tg-0pky"></td>
-            <td class="tg-0pky">
-
-            </td>
+            <td class="tg-0pky">{{ $item['preparation']['teacher_passport_data'] }}</td>
+            <td class="tg-0pky">{{ $item['preparation']['teacher_address'] }}</td>
             <td class="tg-0pky">{{ $item['preparation']['teacher_in'] }}</td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>

@@ -436,7 +436,7 @@ class ApplicationController extends Controller
             ->approved()
             ->get();
         $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
-        return $pdf->download('Відомість_джаз_вітраж.pdf');
+        return $pdf->stream('Відомість_джаз_вітраж.pdf');
     }
 
     function listMembersPDF() {
