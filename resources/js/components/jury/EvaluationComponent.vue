@@ -312,8 +312,8 @@
 	            var juryNomination;
 	            var resultButton;
 
-	            console.log(this.userJury.nominations);
-	            console.log(this.juryNomination.name);
+	            //console.log(this.userJury.nominations);
+	            //console.log(this.juryNomination.name);
 
 	            if(this.userJury.nominations != this.juryNomination.name){
 		            juryNomination = document.getElementsByClassName('check-nomination');

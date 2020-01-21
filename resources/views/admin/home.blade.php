@@ -40,6 +40,10 @@
                 <div class="category-icon"><i class="fa fa-address-card fa-3x"></i></div>
                 Всі заяви
             </a>
+            <a href="/admin/jury-evaluation" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-calendar-check-o fa-3x"></i></div>
+                Оцінювання
+            </a>
 
         @endif
 
