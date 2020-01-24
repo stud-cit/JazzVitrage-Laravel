@@ -70,6 +70,7 @@ class UserController extends Controller
         $jury_data->save();
 
         $this->sendMail('jury_accepted', $jury_data, $password);
+        $this->sendJuryMail($jury_data);
         return response()->json($jury_data);
     }
 
@@ -168,6 +169,7 @@ class UserController extends Controller
         $org_data->save();
 
         $this->sendMail('org_accepted', $org_data, $password);
+        $this->sendOrgMail($org_data);
         return response()->json($org_data);
     }
 
@@ -186,6 +188,7 @@ class UserController extends Controller
         $admin_data->save();
 
         $this->sendMail('admin_accepted', $admin_data, $password);
+        $this->sendAdminMail($admin_data);
         return response()->json($admin_data);
     }
 
@@ -220,6 +223,42 @@ class UserController extends Controller
 
         Mail::raw(htmlspecialchars_decode($textMessage) . "\nЛогін: ".$email."\nПароль: ".$password, function($message) use ($email, $titleMessage){
             $message->to($email, '')->subject($titleMessage);
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
+    }
+
+    function sendJuryMail($user){
+        $titleGeneralMessage = 'Зареєстровано нового члена журі';
+
+        $pib = $user->surname . " " . $user->name . " " . $user->patronymic . "\n";
+        $email = 'jazzsumy@gmail.com';
+        $nomination = $user->nominations;
+        $rank = $user->rank;
+
+        Mail::raw("ПІБ: ".$pib."\nНомінація: ".$nomination."\nЗвання: ".$rank, function($message) use ($email, $titleGeneralMessage){
+            $message->to($email, '')->subject($titleGeneralMessage);
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
+    }
+    function sendOrgMail($user){
+        $titleGeneralMessage = 'Зареєстровано нового члена організаційного комітету';
+
+        $pib = $user->surname . " " . $user->name . " " . $user->patronymic . "\n";
+        $email = 'jazzsumy@gmail.com';
+
+        Mail::raw("ПІБ: ".$pib, function($message) use ($email, $titleGeneralMessage){
+            $message->to($email, '')->subject($titleGeneralMessage);
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
+    }
+    function sendAdminMail($user){
+        $titleGeneralMessage = 'Зареєстровано нового адміністратора';
+
+        $pib = $user->surname . " " . $user->name . "\n";
+        $email = 'jazzsumy@gmail.com';
+
+        Mail::raw($pib, function($message) use ($email, $titleGeneralMessage){
+            $message->to($email, '')->subject($titleGeneralMessage);
             $message->from('jazz@gmail.com', 'JazzVitrage');
         });
     }
