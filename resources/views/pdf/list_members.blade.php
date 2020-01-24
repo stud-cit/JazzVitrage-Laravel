@@ -30,7 +30,7 @@
             <td class="tg-0pky">{{ count($item['soloDuet']) }}</td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['in'] }}
+                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }}
                 @endforeach
             </td>
             <td class="tg-0pky">
@@ -48,7 +48,7 @@
         <tr>
             <td class="tg-0pky">{{ $line++ }}</td>
             <td class="tg-0pky">
-                {{ $item['group']['name'] }}
+                {{ $item['group']['name'] }} Керівник {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
             </td>
             <td class="tg-0pky">{{ $item['group']['count_people'] }}</td>
             <td class="tg-0pky">{{ $item['preparation']['teacher_in'] }}</td>
