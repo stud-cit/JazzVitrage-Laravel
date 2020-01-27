@@ -55,7 +55,7 @@
 						<label for="info" class="brtop">Біографія</label>
 						<textarea class="form-control" name="informations" v-model="informations" id="info" rows="3" 
 							v-validate="{ required: true}"
-								data-vv-as="Електронна адреса"></textarea>
+								data-vv-as="Біографія"></textarea>
 						<span class="errors text-danger" v-if="errors.has('informations')">
 								{{ errors.first('informations') }}
 						</span>
