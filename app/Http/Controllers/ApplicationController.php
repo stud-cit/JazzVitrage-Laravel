@@ -361,7 +361,7 @@ class ApplicationController extends Controller
 
         // повідомлення керівництву
         $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
-        $generalEmail = 'doratoles@gmail.com';
+        $generalEmail = 'jazzsumy@gmail.com';
 
         for($i = 0; $i < count($model); $i++) {
             if ($model[$i]->application_type_id == 1 && $model[$i]->application_id == $member->application_id) {
@@ -408,7 +408,7 @@ class ApplicationController extends Controller
 
         // повідомлення керівництву
         $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
-        $generalEmail = 'doratoles@gmail.com';
+        $generalEmail = 'jazzsumy@gmail.com';
 
         for($i = 0; $i < count($model); $i++) {
             if ($model[$i]->application_type_id > 2 && $model[$i]->application_id == $groupName->application_id) {
