@@ -40,7 +40,7 @@
                         <li><a class="nav-item nav-link" href="/master">МАЙСТЕР КЛАС</a></li>
 
                         
-                        <li class="d-inline bg-danger d-sm-none w-100 " v-if="isRegistration">
+                        <li class="d-inline bg-danger d-sm-none w-100" v-if="isRegistration">
                             <a href="/applications"  class="nav-item text-light nav-link">ПОДАТИ ЗАЯВКУ</a>
                         </li>
                         <!--<li><a class="nav-item nav-link" href="#">Конфр</a></li>-->
