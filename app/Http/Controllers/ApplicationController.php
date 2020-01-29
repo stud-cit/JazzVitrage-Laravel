@@ -184,7 +184,7 @@ class ApplicationController extends Controller
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
             $group->save();
-            $this->sendMailGroup('application_accepted', $titleMessage, $group->name, $data->teacherEmail);
+            $this->sendMailGroup('application_accepted', $titleMessage, $group, $data->teacherEmail);
         }
 
         $school->school_one = $data->schoolName;
@@ -341,6 +341,7 @@ class ApplicationController extends Controller
 
     // Для одного учасника
     function sendMailMember($type, $title, $member, $note = '') {
+        $model = Application::with('soloDuet')->get();
         $period = Period::find(1);
         $textMessage = UserMessages::where('type', $type)->first();
         $textMessage = $textMessage->text;
@@ -357,10 +358,40 @@ class ApplicationController extends Controller
             $message->to($email, '')->subject($title);
             $message->from('jazz@gmail.com', 'JazzVitrage');
         });
+
+        // повідомлення керівництву
+        $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
+        $generalEmail = 'jazzsumy@gmail.com';
+
+        for($i = 0; $i < count($model); $i++) {
+            if ($model[$i]->application_type_id == 1 && $model[$i]->application_id == $member->application_id) {
+                    $number_aplication = $model[$i]->application_id;
+                    $type = $model[$i]->appType->name;
+                    $nomination = $model[$i]->nomination->name;
+                    //$countSolo = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
+
+                    Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
+                        $message->to($generalEmail, '')->subject($textGeneralMessage);
+                        $message->from('jazz@gmail.com', 'JazzVitrage');
+                    });
+            }
+            else if($model[$i]->application_type_id == 2 && $model[$i]->application_id == $member->application_id) {
+                    $number_aplication = $model[$i]->application_id;
+                    $type = $model[$i]->appType->name;
+                    $nomination = $model[$i]->nomination->name;
+                    //$countDuet = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
+
+                    Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
+                        $message->to($generalEmail, '')->subject($textGeneralMessage);
+                        $message->from('jazz@gmail.com', 'JazzVitrage');
+                    });
+            }
+        }
     }
 
     // Для групи
     function sendMailGroup($type, $title, $groupName, $email, $note = '') {
+        $model = Application::with('group')->get();
         $period = Period::find(1);
         $textMessage = UserMessages::where('type', $type)->first();
         $textMessage = $textMessage->text;
@@ -374,6 +405,24 @@ class ApplicationController extends Controller
             $message->to($email, '')->subject($title);
             $message->from('jazz@gmail.com', 'JazzVitrage');
         });
+
+        // повідомлення керівництву
+        $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
+        $generalEmail = 'jazzsumy@gmail.com';
+
+        for($i = 0; $i < count($model); $i++) {
+            if ($model[$i]->application_type_id > 2 && $model[$i]->application_id == $groupName->application_id) {
+                $number_aplication = $model[$i]->application_id;
+                $type = $model[$i]->appType->name;
+                $nomination = $model[$i]->nomination->name;
+                //$countSolo = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
+
+                Mail::raw("Номер заявки: " . $number_aplication . "\n" . "Тип заявки: " . $type . "\n" . "Номінація: " . $nomination . "\n", function ($message) use ($generalEmail, $textGeneralMessage) {
+                    $message->to($generalEmail, '')->subject($textGeneralMessage);
+                    $message->from('jazz@gmail.com', 'JazzVitrage');
+                });
+            }
+        }
     }
 
     // Генерація PDF
@@ -436,7 +485,7 @@ class ApplicationController extends Controller
             ->approved()
             ->get();
         $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
-        return $pdf->download('Відомість_джаз_вітраж.pdf');
+        return $pdf->stream('Відомість_джаз_вітраж.pdf');
     }
 
     function listMembersPDF() {
