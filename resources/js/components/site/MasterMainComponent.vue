@@ -2,42 +2,44 @@
     <div>
         <div class="bg">
             <section class="master_main">
-                <b-container class="centering">
-                    <b-col cols="12" md="12" sm="12" lg="9">
+                <div class="container centering">
+                    <div class="col-12 col-md-12 col-sm-12 col-lg-9">
                         <div class="text_container">
                             <h2>Lorem ipsum dolor </h2>
                             <p>{{ info.description_master }}</p>
                         </div>
-                    </b-col>
-                </b-container>
+                    </div>
+                </div>
             </section>
             <section class="master_galary">
-                <b-container>
-                    <b-col cols="12">
-                          <b-carousel
-                            id="carousel-fade"
-                            style="text-shadow: 0px 0px 2px #000"
-                            fade
-                            indicators
-                            img-width="1024"
-                            img-height="480"
-                        >
-                            <b-carousel-slide
-                            v-for="item in photo"
-                            :key="item.foto_id"
-                            caption=""
-                            :img-src="'img/uploads/'+item.file"
-                            ></b-carousel-slide>
-
-                        </b-carousel>
-                    </b-col>
-                </b-container>
+                <div class="container">
+                    <h3>Lorem Ipsum</h3>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" :data-slide-to="index" :class="index == 0 ? 'active' : ''" v-for="(item, index) in photo" :key="index"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div :class="index == 0 ? 'carousel-item active' : 'carousel-item'" v-for="(item, index) in photo" :key="index">
+                                <img class="d-block w-100" :src="'/img/uploads/'+item.file">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </div>
+                    </div>
             </section>
             <section class="master_form">
-                <b-container>
-                    <b-col cols="12" sm="12" md="12" lg="8" class="center-block">
+                <div class="container">
+                    <div class="center-block col-12 col-sm-12 col-md-12 col-lg-8">
+                        <h3>Lorem Ipsum</h3>
                         <form>
-                            <input type="text" v-model="request.name" placeholder="Им'я" id="name" name="name" v-validate="{ required: true }">
+                            <input type="text" v-model="request.name" placeholder="Ім'я" id="name" name="name" v-validate="{ required: true }">
                             <span class="errors" v-if="errors.has('name')">
                                 Введіть корректні дані
                             </span>
@@ -51,8 +53,8 @@
                             </span>
                             <input type="button" value="Надіслати" @click="sendRequest">
                         </form>
-                    </b-col>
-                </b-container>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
@@ -98,6 +100,7 @@
 </script>
 
 <style scoped>
+
     .bg{
         background-image: url('/img/master-bg.jpg');
         background-attachment: fixed;
@@ -117,8 +120,8 @@
         content: '';
         position: absolute;
         left: -320px;
-        top: -20%;
-        height: 150%;
+        top: -60%;
+        height: 250%;
         width: 500px;
         background-image: url('/img/master-item.png');
         background-size: contain;
@@ -129,6 +132,13 @@
         font-size: 60px;
         font-weight: 600;
         margin-bottom: 40px;
+    }
+    h3{
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #fff;
+        text-align: center;
     }
     .text_container p{
 
@@ -167,7 +177,6 @@
         margin-top: 40px;
         border: none;
         outline: none;
-        padding-left: 30px;
         color: #fff;
         display: block;
         width: 100%;
@@ -195,7 +204,19 @@
             font-size: 42px;
         }
         .text_container{
-            padding: 60px;
+            padding: 30px;
+        }
+        form{
+            padding: 30px 20px;
+        }
+        .master_form{
+            padding-bottom: 120px;
+        }
+        .master_main{
+            padding-top: 200px;
+        }
+        .master_galary{
+            margin-bottom: 80px;
         }
     }
 </style>
