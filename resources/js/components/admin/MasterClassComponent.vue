@@ -7,6 +7,8 @@
 					<th scope="col">Ім'я</th>
 					<th scope="col">Телефот</th>
 					<th scope="col">Електронна пошта</th>
+                    <th scope="col">Місто</th>
+                    <th scope="col">Адрес школи</th>
 					<th width="10px" scope="col"></th>
 				</tr>
 			</thead>
@@ -16,6 +18,8 @@
 					<td>{{ item.name }}</td>
 					<td>{{ item.phone }}</td>
 					<td>{{ item.email }}</td>
+                    <td>{{ item.sity }}</td>
+                    <td>{{ item.school_address }}</td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteQuestion(item.id, index)"></i></td>
 				</tr>
 			</tbody>

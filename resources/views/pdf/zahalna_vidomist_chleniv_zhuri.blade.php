@@ -104,8 +104,12 @@ ______________ Н.О. Цибульська<br>
                     @for ($i = 0; $i < count($juryNomination) - count(array_unique($uniqueEvaluations)); $i ++)
                         <td class="tg-0pky">0</td>
                     @endfor
-                <td class="tg-0pky">{{ $sumEvaluation }}</td>
-                    <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                    <td class="tg-0pky">{{ $sumEvaluation }}</td>
+                    @if($sumEvaluation)
+                        <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                    @else 
+                        <td class="tg-0pky">0</td>
+                    @endif
                     <td class="tg-0pky"></td>
                 </tr>
 
@@ -163,7 +167,11 @@ ______________ Н.О. Цибульська<br>
                         <td class="tg-0pky">0</td>
                     @endfor
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
-                    <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                    @if($sumEvaluation)
+                        <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                    @else 
+                        <td class="tg-0pky">0</td>
+                    @endif
                     <td class="tg-0pky"></td>
                 </tr>
             @endforeach

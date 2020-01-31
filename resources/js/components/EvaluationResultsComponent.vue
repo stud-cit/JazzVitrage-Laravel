@@ -17,19 +17,20 @@
 
             <!--</div>-->
 
-            <div class="col-sm">
+            <div class="col-2">
                 <label for="member">Учасник (тип)</label>
-                <select class="form-control w-50" id="member" @change="searchMembers">
+                <select class="form-control w-100" id="member" @change="searchMembers">
                     <option value="" selected="selected">всі учасники</option>
                     <option value="Соліст">Соліст</option>
                     <option value="Дует">Дует</option>
                     <option value="Група">Група</option>
                 </select>
             </div>
-            <div class="col-sm pt-3">
-                <a href="/admin/vidomist-chleniv-zhuri" class="btn btn-outline-secondary float-right">Загальна відомість членів журі</a>
-                <a href="/admin/vidomist-dzhaz-vitrazh" class="btn btn-outline-secondary float-right mx-2">Відомість джаз вітраж</a>
-                <a href="/admin/list-members" class="btn btn-outline-secondary float-right">Список учасників</a>
+            <div class="col-10 pt-3">
+                <a href="/admin/vidomist-chleniv-zhuri" target="_blank" class="btn btn-outline-secondary float-right">Загальна відомість членів журі</a>
+                <a href="/admin/vidomist-dzhaz-vitrazh" target="_blank" class="btn btn-outline-secondary float-right mx-2">Відомість джаз вітраж</a>
+                <a href="/admin/list-members" target="_blank" class="btn btn-outline-secondary float-right">Список учасників</a>
+                <a href="/admin/сontact-members" target="_blank" class="btn btn-outline-secondary float-right mx-2">Контактні дані</a>
             </div>
         </div>
         <br>

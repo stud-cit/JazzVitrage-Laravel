@@ -9,6 +9,6 @@ class MasterClassRequest extends Model
     protected $table = 'master_class_req';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'phone', 'email'
+        'name', 'phone', 'email', 'sity', 'school_address'
     ];
 }

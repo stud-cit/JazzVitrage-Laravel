@@ -470,6 +470,8 @@ class ApplicationController extends Controller
             }
         }
 
+        // return response()->json($data);
+
         $jury = Users::where('role', 'jury')->get();
 
         $pdf = PDF::loadView('pdf.zahalna_vidomist_chleniv_zhuri', [
@@ -494,5 +496,13 @@ class ApplicationController extends Controller
             ->get();
         $pdf = PDF::loadView('pdf.list_members', ['data' => $data]);
         return $pdf->stream('Список_учасників.pdf');
+    }
+
+    function сontactMembers() {
+        $data = Application::with('soloDuet', 'group', 'preparation')
+            ->approved()
+            ->get();
+        $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data]);
+        return $pdf->stream('Контактні_дані.pdf');
     }
 }

@@ -16,6 +16,9 @@ class CreateMasterClassTable extends Migration
         Schema::create('master_class', function (Blueprint $table) {
             $table->increments('id');
             $table->string('logo_master');
+            $table->string('title_master');
+            $table->string('title_gallery_master');
+            $table->string('title_req_master');
             $table->text('description_master');
         });
     }

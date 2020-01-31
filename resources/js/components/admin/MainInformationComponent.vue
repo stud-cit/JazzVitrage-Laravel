@@ -25,8 +25,8 @@
                     <hr>
                     <div>
                         <label for="description" class="brtop">Опис сайту</label>
-                        <textarea name="description" class="form-control" v-model="info.description" id="description" rows="4" disabled 
-                            v-validate="{ required: true}" 
+                        <textarea name="description" class="form-control" v-model="info.description" id="description" rows="4" disabled
+                            v-validate="{ required: true}"
                                 data-vv-as="Опис сайту"></textarea>
                         <span class="errors text-danger" v-if="errors.has('description')">
                                 {{ errors.first('description') }}
@@ -37,7 +37,7 @@
                     <div>
                         <label for="ticker" class="brtop">Рухомий рядок</label>
                         <textarea name="ticker" class="form-control" v-model="info.ticker" id="ticker" rows="4" disabled
-                            v-validate="{ required: true}" 
+                            v-validate="{ required: true}"
                                 data-vv-as="Рухомий рядок"></textarea>
                             <span class="errors text-danger" v-if="errors.has('ticker')">
                                 {{ errors.first('ticker') }}
@@ -72,14 +72,14 @@
                     <div>
                         <label for="provisions_text" class="brtop">Короткий опис положення</label>
                         <textarea name="provisions_text" class="form-control" v-model="info.provisions_text" id="provisions_text" rows="4" disabled
-                            v-validate="{ required: true}" 
+                            v-validate="{ required: true}"
                                 data-vv-as="Короткий опис положення"></textarea>
                                 <span class="errors text-danger" v-if="errors.has('provisions_text')">
                                     {{ errors.first('provisions_text') }}
                                 </span>
                                 </div>
                         <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "position_section", "provisions_text")'>Редагувати</button><br><br>
-                    
+
                     <hr>
                     <div>
                     <label for="file" class="brtop">Файл документу про положення</label>
@@ -115,7 +115,7 @@
                     <div class="row mt-2" v-for="(quote, index) in quotes" :key="'quote'+index">
                         <div class="col-9">
                             <textarea name="quote" class="form-control" id="quote" cols="30" rows="3" v-model="quote.text" :disabled="quote.disabled == '' ? quote.disabled : true"
-                                 v-validate="{ required: true}" 
+                                 v-validate="{ required: true}"
                                     data-vv-as="Цитати">
                             </textarea>
                         </div>
@@ -139,7 +139,7 @@
                     <hr>
                     <label for="hymn_text" class="brtop">Текст гімну</label>
                     <textarea name="hymn_text" class="form-control" v-model="info.hymn_text" id="hymn_text" rows="10" disabled
-                        v-validate="{ required: true}" 
+                        v-validate="{ required: true}"
                             data-vv-as="Текст гімну"></textarea>
                             <span class="errors text-danger" v-if="errors.has('hymn_text')">
                                 {{ errors.first('hymn_text') }}
@@ -184,7 +184,7 @@
                     <div class="row" v-for="(addressItem, index) in contact.address" :key="'address'+index">
                         <div class="col-10">
                             <input type="text" name="address" class="form-control" v-model="addressItem.contact" id="address" :disabled="addressItem.disabled == '' ? addressItem.disabled : true"
-                                v-validate="{ required: true}" 
+                                v-validate="{ required: true}"
                                     data-vv-as="Адреса">
                             <span class="errors text-danger" v-if="errors.has('address')">
 								{{ errors.first('address') }}
@@ -221,13 +221,13 @@
                         <div class="col-5">
                             <input type="text" name="socialLink" class="form-control" v-model="social.contact" id="socialLink" :disabled="social.disabled == '' ? social.disabled : true"
                                 v-validate="{ required: true, regex: /^((http|https|ftp):\/\/)(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)/i}">
-                            
+
                         </div>
                         <div class="col-4">
                             <input type="text" name="socialTitle" class="form-control" v-model="social.contact_title" id="socialTitle" :disabled="social.disabled == '' ? social.disabled : true"
-                                v-validate="{ required: true}" 
+                                v-validate="{ required: true}"
                                     data-vv-as="Соціальні мережі">
-                            
+
                         </div>
                         <div class="col-3 pa-0">
                             <button type="button" class="btn btn-outline-secondary float-right ml-2 mb-1" style="width: 40px" @click="del(index, social.contact_items_id, 'socials')"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -250,9 +250,43 @@
                     <button type="button" class="btn btn-outline-secondary btn-block mb-4" @click="add('socials')">Додати соціальну мережу</button>
 
                     <!-- Майстер клас -->
-                    
+
                     <h3>Майстер клас</h3>
                     <hr>
+                    <label for="title_master" class="brtop">Заголовок</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <input name="title_master" type="text" class="form-control" v-model="info.title_master" id="title_master" disabled v-validate="{required: true}">
+                            <span class="text-danger" v-if="errors.has('title_master')">Некоректне посилання</span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('title_master')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "master_class", "title_master")'>Редагувати</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <label for="title_gallery_master" class="brtop">Заголовок галереї</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <input name="title_gallery_master" type="text" class="form-control" v-model="info.title_gallery_master" id="title_gallery_master" disabled v-validate="{required: true}">
+                            <span class="text-danger" v-if="errors.has('title_gallery_master')">Некоректне посилання</span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('title_master')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "master_class", "title_gallery_master")'>Редагувати</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <label for="title_req_master" class="brtop">Заголовок заявок</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <input name="title_req_master" type="text" class="form-control" v-model="info.title_req_master" id="title_req_master" disabled v-validate="{required: true}">
+                            <span class="text-danger" v-if="errors.has('title_req_master')">Некоректне посилання</span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('title_req_master')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "master_class", "title_req_master")'>Редагувати</button>
+                        </div>
+                    </div>
+                    <hr>
+
                     <label for="logo_master" class="brtop">Логотип</label>
                     <div class="row">
                         <div class="col-9">
@@ -270,8 +304,8 @@
                     <hr>
                     <div>
                         <label for="description_master" class="brtop">Опис майтер класу</label>
-                        <textarea name="description_master" class="form-control" v-model="info.description_master" id="description_master" rows="4" disabled 
-                            v-validate="{ required: true}" 
+                        <textarea name="description_master" class="form-control" v-model="info.description_master" id="description_master" rows="4" disabled
+                            v-validate="{ required: true}"
                                 data-vv-as="Опис майтер класу"></textarea>
                         <span class="errors text-danger" v-if="errors.has('description_master')">
                                 {{ errors.first('description_master') }}
@@ -345,7 +379,7 @@ export default {
         },
         saveSocial(el, index) {
             this.$validator.validateAll().then((result) => {
-                if (!result) {	
+                if (!result) {
                     return;
                 }
                 else {
@@ -366,7 +400,7 @@ export default {
                     })
                 }
             });
-               
+
         },
         editContact(phone, el, index) {
             const textElement = document.querySelectorAll('#'+el)[index];
@@ -377,7 +411,7 @@ export default {
         saveContact(el, index) {
 
             this.$validator.validateAll().then((result) => {
-                if (!result) {	
+                if (!result) {
                     return;
                 }
                 else {
@@ -469,7 +503,7 @@ export default {
         },
         addQuotes() {
              this.$validator.validateAll().then((result) => {
-                    if (!result) {	
+                    if (!result) {
                         return;
                     }
                     else {
