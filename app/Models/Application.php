@@ -15,8 +15,7 @@ class Application extends Model
         'nomination_id',
         'application_type_id',
 		'age_category',
-		'status',
-		'check'
+		'status'
     ];
 
     public function appType()

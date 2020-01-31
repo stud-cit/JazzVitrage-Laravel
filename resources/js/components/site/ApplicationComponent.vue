@@ -37,7 +37,7 @@
                     <transition name="fade" >
                         <form @submit.prevent="nextStep"  class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
-                            <div class="input-group">
+                            <div class="input-group type-group">
                                 <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.data.appType" ><i></i>СОЛІСТ</label>
                                 <label><input type="radio" name="app-type" class="app-type" value="2" v-model="registration.data.appType"><i></i>ДУЕТ</label>
                                 <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.data.appType"><i></i>АНСАМБЛЬ</label>
@@ -282,23 +282,7 @@
                             <span class="errors" v-if="errors.has('idFile')">
                                     Оберіть файл графічного формату
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
+                            
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -704,24 +688,7 @@
                             <span class="errors" v-if="errors.has('idFile2')">
                                     Оберіть файл графічного формату
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
+                            
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -794,24 +761,7 @@
                             <span class="errors" v-if="errors.has('groupBirthdayFile')">
                                     Файл повинен відповідати формату: pdf, doc, txt, docx
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
+                            
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -1421,7 +1371,6 @@
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
-                    checkFile: 'завантажити файл',
                 },
                 steps: [
                     {
