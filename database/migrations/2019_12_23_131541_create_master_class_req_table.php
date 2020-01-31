@@ -18,6 +18,8 @@ class CreateMasterClassReqTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('email');
+            $table->string('sity');
+            $table->string('school_address');
             $table->timestamps();
         });
     }

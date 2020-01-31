@@ -5,7 +5,7 @@
                 <div class="container centering">
                     <div class="col-12 col-md-12 col-sm-12 col-lg-9">
                         <div class="text_container">
-                            <h2>Lorem ipsum dolor </h2>
+                            <h2>{{ info.title_master }}</h2>
                             <p>{{ info.description_master }}</p>
                         </div>
                     </div>
@@ -13,7 +13,7 @@
             </section>
             <section class="master_galary">
                 <div class="container">
-                    <h3>Lorem Ipsum</h3>
+                    <h3>{{ info.title_gallery_master }}</h3>
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" :data-slide-to="index" :class="index == 0 ? 'active' : ''" v-for="(item, index) in photo" :key="index"></li>
@@ -37,9 +37,9 @@
             <section class="master_form">
                 <div class="container">
                     <div class="center-block col-12 col-sm-12 col-md-12 col-lg-8">
-                        <h3>Lorem Ipsum</h3>
+                        <h3>{{ info.title_req_master }}</h3>
                         <form>
-                            <input type="text" v-model="request.name" placeholder="Ім'я" id="name" name="name" v-validate="{ required: true }">
+                            <input type="text" v-model="request.name" placeholder="ФІО" id="name" name="name" v-validate="{ required: true }">
                             <span class="errors" v-if="errors.has('name')">
                                 Введіть корректні дані
                             </span>
@@ -51,6 +51,18 @@
                             <span class="errors" v-if="errors.has('email')">
                                 Введіть дані у форматі name@email.com
                             </span>
+
+                            <input type="text" v-model="request.sity" id="sity" name="sity" placeholder="Місто" v-validate="{ required: true }">
+                            <span class="errors" v-if="errors.has('sity')">
+                                Введіть корректні дані
+                            </span>
+
+                            <input type="text" v-model="request.school_address" id="school_address" name="school_address" placeholder="Адрес школи" v-validate="{ required: true }">
+                            <span class="errors" v-if="errors.has('school_address')">
+                                Введіть корректні дані
+                            </span>
+
+
                             <input type="button" value="Надіслати" @click="sendRequest">
                         </form>
                     </div>
@@ -72,12 +84,15 @@
                 request: {
                     name: '',
                     phone: '',
-                    email: ''
+                    email: '',
+                    sity: '',
+                    school_address: ''
                 }
             }
         },
         created() {
             this.getInfo();
+            document.title = "Майстер клас";
         },
         methods: {
             getInfo() {
