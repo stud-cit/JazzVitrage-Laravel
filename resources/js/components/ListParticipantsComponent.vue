@@ -202,6 +202,13 @@
                             <p class="composition-style">Назва: {{ item.compositionName }} Автор: {{ item.compositionAuthor }} Хронометраж: {{ item.compositionTiming }}</p>
                             <p>Другий твір:</p>
                             <p class="composition-style">Назва: {{ item.compositionName2 }} Автор: {{ item.compositionAuthor2 }} Хронометраж: {{ item.compositionTiming2 }}</p>
+                            <br>
+                            <label class="brtop mb-3">Відео конкурсу</label>
+                            <p>
+                                <video width="40%" id="videoMember" controls>
+                                    <source v-if="item.video" :src="item.video" type="video/mp4">
+                                </video>
+                            </p>
                         </div>
                     </td>
                 </tr>
@@ -265,7 +272,8 @@ export default {
                             groupId: member.group.group_people_id,
                             id: member.application_id,
                             check: member.check,
-                            nomination: member.nomination.name
+                            nomination: member.nomination.name,
+                            video: member.presentation.video
                         })
                     }
                     else if(member.solo_duet.length == 1) {
@@ -298,7 +306,8 @@ export default {
                             id: member.application_id,
                             nameAgeCategory: member.age_category,
                             check: member.check,
-                            nomination: member.nomination.name
+                            nomination: member.nomination.name,
+                            video: member.presentation.video
                         })
                     }
                     else if(member.solo_duet.length == 2) {
@@ -337,7 +346,8 @@ export default {
                             id: member.application_id,
                             nameAgeCategory: member.age_category,
                             check: member.check,
-                            nomination: member.nomination.name
+                            nomination: member.nomination.name,
+                            video: member.presentation.video
                         })
                     }
                 });
