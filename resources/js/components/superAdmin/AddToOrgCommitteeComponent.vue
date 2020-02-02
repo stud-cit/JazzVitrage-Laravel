@@ -33,7 +33,7 @@
                     <div>
 						<label for="email" class="brtop">Електронна адреса</label>
 						<input type="email" name="email" v-model="email" class="form-control" id="email"
-							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+							v-validate="{ required: true, regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }"
 								data-vv-as="Електронна адреса">
 						<span class="errors text-danger" v-if="errors.has('email')">
 								{{ errors.first('email') }}

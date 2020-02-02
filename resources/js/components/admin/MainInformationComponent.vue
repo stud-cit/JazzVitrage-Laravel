@@ -65,6 +65,43 @@
                         </div>
                     </div>
 
+
+                    <!-- Логотипи номінацій -->
+                    <br>
+                    <h3>Логотипи номінацій</h3>
+                    <div v-for="item in nominations" :key="item.nomination_id">
+                        <label :for="'instrumental_logo_'+item.nomination_id" class="brtop">{{ item.name }}</label>
+                        <div class="row">
+                            <div class="col-9">
+                                <label class="custom-file w-100">
+                                    <input 
+                                        type="file" 
+                                        class="custom-file-input" 
+                                        :id="'instrumental_logo_'+item.nomination_id" 
+                                        :name="'instrumental_logo_'+item.nomination_id" 
+                                        :ref="'instrumental_logo_'+item.nomination_id" 
+                                        @change="previewFilesNomination($event, item.nomination_id-1)" 
+                                        accept=".png" 
+                                        v-validate="{ 'ext':['png'] }"
+                                    >
+                                    <span class="custom-file-control">Файл не обрано</span>
+                                </label>
+                            </div>
+                            <div class="col-3">
+                                <button 
+                                    type="button" 
+                                    :disabled="errors.has('instrumental_logo_'+item.nomination_id)" 
+                                    class="btn btn-outline-secondary edit w-100 px-0" 
+                                    @click="editNomination(item.nomination_id, 'instrumental_logo_'+item.nomination_id)"
+                                >
+                                    Зберегти
+                                </button>
+                            </div>
+                            <p class="text-danger col-9" v-if="errors.has('instrumental_logo_'+item.nomination_id)">Файл повинен бути зображенням</p>
+                        </div>
+                        <img v-if="!errors.has('instrumental_logo_'+item.nomination_id)" class="mt-3 w-50" :src="item.logo">
+                        <hr>
+                    </div>
                     <!-- Положення -->
                     <br>
                     <h3>Положення</h3>
@@ -338,6 +375,7 @@ export default {
                 logo_master: '',
                 description_master: ''
             },
+            nominations: [],
             contact: {
                 address: [],
                 phones: [],
@@ -358,6 +396,20 @@ export default {
         }
     },
     methods: {
+
+        previewFilesNomination(event, id) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.nominations[id].logo = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+                input.parentNode.querySelector('span').innerHTML = input.files[0].name;
+            }
+        },
+
+
         previewFiles(event, el) {
             var input = event.target;
             if (input.files && input.files[0]) {
@@ -428,6 +480,25 @@ export default {
             });
         },
 
+        editNomination(id, ref) {
+            this.form.append('logo', this.$refs[ref][0].files[0]);
+            axios.post('/api/put-nomination/'+id, this.form)
+	            .then((response) => {
+		            swal("Інформація оновлена", {
+			            icon: "success",
+			            timer: 1000,
+			            button: false
+		            });
+	            })
+	            .catch((error) => {
+		            swal({
+			            icon: "error",
+			            title: 'Помилка',
+			            text: 'Файл не обрано'
+		            });
+	            });
+        },
+
         editFile(table, row, type) {
             this.form.append('type', type);
             this.form.append('table', table);
@@ -485,6 +556,7 @@ export default {
 	    getAllInfo() {
 		    axios.get('/get-all-info')
 			    .then((response) => {
+                    this.nominations = response.data.nominations;
                     response.data.info.map(item => {
                         Object.assign(this.info, item);
                     }),

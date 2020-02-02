@@ -5,6 +5,7 @@
 /public/hot
 /public/img/uploads
 /public/img/user-photo
+/public/img/nominations
 /public/storage
 /storage/*.key
 /vendor

@@ -17,6 +17,7 @@ class CreateTasksNomination extends Migration
             $table->engine = 'InnoDB';
             $table->increments('nomination_id');
             $table->string('name', 100);
+            $table->string('logo');
             $table->timestamps();
         });
     }

@@ -21,31 +21,12 @@
                         <h2 class="title">НОМІНАЦІЇ</h2>
                         <p class="subtitle">У КОНКУРСІ</p>
                     </div>
-
-
                 </div>
                 <div class="nominations-list">
-                    <div  class="nominations-items">
-
-                            <img src="img/piano.png" alt="">
-                            <div class="items-title">Інструментальний жанр</div>
-
+                    <div class="nominations-items" v-for="item in nominations" :key="item.nomination_id">
+                        <img :src="item.logo">
+                        <div class="items-title">{{ item.name }}</div>
                     </div>
-                    <div  class="nominations-items">
-
-                            <img src="img/microphone.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
-
-                    </div>
-                    <div class="nominations-items">
-
-                            <img src="img/nots.png" alt="">
-                            <div class="items-title">Композиція</div>
-
-                    </div>
-                    <!--<div class="nominations-popup">-->
-
-                    <!--</div>-->
                 </div>
             </div>
         </section>

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 
+Route::post('put-nomination/{id}',  'InfoController@putNomination');
+
 Route::get('info-master',  'MasterClassController@getInfo');
 Route::post('info-master',  'MasterClassController@putInfo');
 Route::get('photo-master',  'MasterClassController@getPhoto');
