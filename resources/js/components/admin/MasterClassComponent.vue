@@ -5,7 +5,7 @@
 				<tr>
 					<th width="10px" scope="col">№</th>
 					<th scope="col">Ім'я</th>
-					<th scope="col">Телефот</th>
+					<th scope="col">Телефон</th>
 					<th scope="col">Електронна пошта</th>
                     <th scope="col">Місто</th>
                     <th scope="col">Адрес школи</th>

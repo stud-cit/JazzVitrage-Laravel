@@ -4,7 +4,8 @@
             <div class="container">
                <div class="page-nav">
                    <router-link :to="{ name: 'gallery' }" class="prev-page"><i class="fa fa-angle-left"></i>всі роки</router-link>
-                   <h3 class="title"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
+                   <h3 class="title" v-if="foto.type == 'Джаз-Вітраж'"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
+                   <h3 class="title" v-else> МАЙСТЕР-КЛАС ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
                 </div>
                 <div class="gallery-content">
                     <silentbox-group class="row align-content-stretch mt-4">

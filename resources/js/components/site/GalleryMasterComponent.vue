@@ -2,7 +2,7 @@
     <div>
         <section class="sections main-section gallery">
             <div class="container">
-                <h2 class="title-section">МАЙСТЕР-КЛАС</h2>
+                <h2 class="title-section">МАЙСТЕР-КЛАС ДЖАЗ-ВІТРАЖ</h2>
                 <div class="row">
                     <router-link
                             class="col-12 col-md-6 col-xl-4 gallery-item"
