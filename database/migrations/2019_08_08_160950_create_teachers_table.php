@@ -25,13 +25,13 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_passport_data');
             $table->string('teacher_passport');
             $table->string('teacher_address');
-            $table->integer('preparation_id')->unsigned();
+            $table->integer('application_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('teachers', function (Blueprint $table) {
-            $table->index('preparation_id');
-            $table->foreign('preparation_id')->references('preparation_id')->on('preparation')->onDelete('cascade');
+            $table->index('application_id');
+            $table->foreign('application_id')->references('application_id')->on('application')->onDelete('cascade');
         });
 
     }

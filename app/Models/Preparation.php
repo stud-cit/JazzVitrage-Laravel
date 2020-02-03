@@ -19,9 +19,4 @@ class Preparation extends Model
         'concertmaster_patronymic',
         'application_id'
     ];
-
-    public function app()
-	{
-		return $this->belongsTo('App\Models\Application', 'application_id');
-	}
 }

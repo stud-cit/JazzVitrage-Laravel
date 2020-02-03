@@ -19,6 +19,6 @@ class Teachers extends Model
         'teacher_passport_data',
         'teacher_passport',
         'teacher_address',
-        'preparation_id'
+        'application_id'
     ];
 }
