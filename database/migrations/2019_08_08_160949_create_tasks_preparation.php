@@ -16,20 +16,10 @@ class CreateTasksPreparation extends Migration
         Schema::create('preparation', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('preparation_id');
-            $table->string('school_one', 50);
+            $table->string('school_name', 50);
             $table->string('school_address', 50);
             $table->string('school_email', 50);
             $table->string('school_phone', 50);
-            $table->string('teacher_name', 50);
-            $table->string('teacher_surname', 50);
-            $table->string('teacher_patronymic', 50);
-            $table->string('teacher_in', 50);
-            $table->string('teacher_email', 50);
-            $table->string('teacher_phone', 50);
-            $table->string('teacher_passport_data');
-            $table->string('teacher_passport');
-            $table->string('teacher_address');
-            $table->integer('is_concertmaster');
             $table->string('concertmaster_name', 50)->nullable();
             $table->string('concertmaster_surname', 50)->nullable();
             $table->string('concertmaster_patronymic', 50)->nullable();

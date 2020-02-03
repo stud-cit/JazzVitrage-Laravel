@@ -11,6 +11,7 @@ use App\Models\SoloDuet;
 use App\Models\Preparation;
 use App\Models\Presentation;
 use App\Models\Nomination;
+use App\Models\Teachers;
 use App\Models\UserMessages;
 use App\Models\Period;
 use Illuminate\Support\Facades\Session;
@@ -101,7 +102,6 @@ class ApplicationController extends Controller
 
      public function postApp(Request $request) {
         $app = new Application;
-        $school = new Preparation;
         $presentation = new Presentation;
         $titleMessage = 'Заявка на участь в конкурсі JazzVitrage';
 
@@ -187,27 +187,18 @@ class ApplicationController extends Controller
             $this->sendMailGroup('application_accepted', $titleMessage, $group, $data->teacherEmail);
         }
 
-        $school->school_one = $data->schoolName;
-        $school->school_address = $data->schoolAddress;
-        $school->school_email = $data->schoolEmail;
-        $school->school_phone = $data->schoolPhone;
+        $preparationModel = new Preparation();
+        $preparation = (array) $data->school;
+        $preparation['application_id'] = $app->application_id;
+        $preparationResponse = $preparationModel->create($preparation);
 
-        $school->teacher_name = $data->teacherName;
-        $school->teacher_surname = $data->teacherSurname;
-        $school->teacher_patronymic = $data->teacherPatronymic;
-        $school->teacher_in = $data->teacherIdCode;
-        $school->teacher_email = $data->teacherEmail;
-        $school->teacher_phone = $data->teacherPhone;
-        $school->teacher_passport_data = $data->teacherPassportData;
-        $school->teacher_address = $data->teacherAddress;
-        $school->teacher_passport = $request->teacherPassport->store($this->publicStorage.$app->application_id);
-
-        $school->is_concertmaster = ($data->concertName == '') ? 1 : 0;
-        $school->concertmaster_name = $data->concertSurname;
-        $school->concertmaster_surname = $data->concertName;
-        $school->concertmaster_patronymic = $data->concertPatronymic;
-        $school->application_id = $app->application_id;
-        $school->save();
+        for($i = 0; $i < count($data->teachers); $i++) {
+            $teachersModel = new Teachers();
+            $teacher = (array) $data->teachers[$i];
+            $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+            $teacher['preparation_id'] = $preparationResponse->preparation_id;
+            $teachersModel->create($teacher);
+        }
 
         $presentation->composition_one = $data->compositionName;
         $presentation->author_one = $data->compositionAuthor;

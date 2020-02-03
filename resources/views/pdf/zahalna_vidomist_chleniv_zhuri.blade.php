@@ -72,7 +72,7 @@ ______________ Н.О. Цибульська<br>
                             {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }}
                         @endforeach
                     </td>
-                    <td class="tg-0pky">{{ $item['preparation']['school_address'] }}, {{ $item['preparation']['school_one'] }}</td>
+                    <td class="tg-0pky">{{ $item['preparation']['school_address'] }}, {{ $item['preparation']['school_name'] }}</td>
                     <td class="tg-0pky">
                         @foreach ($item['soloDuet'] as $soloDuet)
                             {{ $soloDuet['data_birthday'] }}
@@ -107,7 +107,7 @@ ______________ Н.О. Цибульська<br>
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
                         <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
-                    @else 
+                    @else
                         <td class="tg-0pky">0</td>
                     @endif
                     <td class="tg-0pky"></td>
@@ -138,7 +138,7 @@ ______________ Н.О. Цибульська<br>
                 <tr>
                     <td class="tg-0pky">{{ $line++ }}</td>
                     <td class="tg-0pky">{{ $item['group']['name'] }}</td>
-                    <td class="tg-0pky">{{ $item['preparation']['school_address'] }}, {{ $item['preparation']['school_one'] }}</td>
+                    <td class="tg-0pky">{{ $item['preparation']['school_address'] }}, {{ $item['preparation']['school_name'] }}</td>
                     <td class="tg-0pky">
                         "{{ $item['presentation']['composition_one'] }}" - {{ $item['presentation']['author_one'] }},
                         "{{ $item['presentation']['composition_two'] }}" - {{ $item['presentation']['author_two'] }}
@@ -169,7 +169,7 @@ ______________ Н.О. Цибульська<br>
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
                         <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
-                    @else 
+                    @else
                         <td class="tg-0pky">0</td>
                     @endif
                     <td class="tg-0pky"></td>

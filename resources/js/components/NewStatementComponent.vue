@@ -76,7 +76,7 @@
                             <p id="memberPassportData1" v-if="item.type == 'дует'">{{ item.memberPassportData1 }}</p>
 
                             <label for="memberPassportData2" class="brtop" v-if="item.type == 'дует'">Паспортні дані другого учасника</label>
-                            <p id="memberPassportData2" v-if="item.type == 'дует'">{{ item.memberPassportData2 }}</p> 
+                            <p id="memberPassportData2" v-if="item.type == 'дует'">{{ item.memberPassportData2 }}</p>
 
                             <label for="nameAgeCategory" class="brtop">Вікова категорія</label>
                             <p id="nameAgeCategory">{{ item.nameAgeCategory }}</p>
@@ -96,11 +96,11 @@
                             <label for="teacherIdCode" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Ідентифікаційний номер викладача</label>
                             <p id="teacherIdCode" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.teacherIdCode }}</p>
 
-                            <label for="schoolName" class="brtop">Назва мистецького навчального закладу</label>
-                            <p id="schoolName">{{ item.schoolName }}</p>
+                            <label for="school_name" class="brtop">Назва мистецького навчального закладу</label>
+                            <p id="school_name">{{ item.school_name }}</p>
 
                             <label for="schoolContact" class="brtop">Адреса, телефон та e-mail навч. закладу</label>
-                            <p id="schoolContact">{{ `${item.schoolAddress} / ${item.schoolPhone} / ${item.schoolEmail}` }}</p>
+                            <p id="schoolContact">{{ `${item.school_address} / ${item.school_phone} / ${item.school_email}` }}</p>
 
                             <label for="teacherDate" class="brtop">ПІП викладача</label>
                             <p id="teacherDate">{{ `${item.teacherSurname} ${item.teacherName} ${item.teacherPatronymic}` }}</p>
@@ -108,10 +108,10 @@
                             <label for="teacherPhone" class="brtop">Контактний телефон викладача</label>
                             <p id="teacherPhone">{{ item.teacherPhone }}</p>
 
-                            <div v-if="item.concertSurname == '' || item.concertName == '' || item.concertPatronymic == ''"> </div>
+                            <div v-if="item.concertmaster_surname == '' || item.concertmaster_name == '' || item.concertmaster_patronymic == ''"> </div>
                             <div v-else>
                             <label for="concertDate" class="brtop">ПІП концертмейстра</label>
-                            <p id="concertDate">{{ `${item.concertName} ${item.concertSurname} ${item.concertPatronymic}` }}</p>
+                            <p id="concertDate">{{ `${item.concertmaster_name} ${item.concertmaster_surname} ${item.concertmaster_patronymic}` }}</p>
                             </div>
 
                             <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
@@ -253,17 +253,17 @@ export default {
                             type: member.app_type.name,
 	                        memberAverage: member.group.average_age,
 	                        teacherIdCode: member.preparation.teacher_in,
-	                        schoolName: member.preparation.school_one,
-	                        schoolAddress: member.preparation.school_address,
-	                        schoolPhone: member.preparation.school_phone,
-	                        schoolEmail: member.preparation.school_email,
+	                        school_name: member.preparation.school_name,
+	                        school_address: member.preparation.school_address,
+	                        school_phone: member.preparation.school_phone,
+	                        school_email: member.preparation.school_email,
 	                        teacherSurname: member.preparation.teacher_surname,
 	                        teacherName: member.preparation.teacher_name,
 	                        teacherPatronymic: member.preparation.teacher_patronymic,
 	                        teacherPhone: member.preparation.teacher_phone,
-	                        concertSurname: member.preparation.concertmaster_surname,
-	                        concertName: member.preparation.concertmaster_name,
-	                        concertPatronymic: member.preparation.concertmaster_patronymic,
+	                        concertmaster_surname: member.preparation.concertmaster_surname,
+	                        concertmaster_name: member.preparation.concertmaster_name,
+	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,
 	                        compositionName: member.presentation.composition_one,
 	                        compositionAuthor: member.presentation.author_one,
 	                        compositionTiming: member.presentation.time_one,
@@ -287,17 +287,17 @@ export default {
                             memberAddress: member.solo_duet[0].member_address,
                             memberPassportData: member.solo_duet[0].passport_data,
 	                        idCode: member.solo_duet[0].in,
-	                        schoolName: member.preparation.school_one,
-	                        schoolAddress: member.preparation.school_address,
-	                        schoolPhone: member.preparation.school_phone,
-	                        schoolEmail: member.preparation.school_email,
+	                        school_name: member.preparation.school_name,
+	                        school_address: member.preparation.school_address,
+	                        school_phone: member.preparation.school_phone,
+	                        school_email: member.preparation.school_email,
 	                        teacherSurname: member.preparation.teacher_surname,
 	                        teacherName: member.preparation.teacher_name,
 	                        teacherPatronymic: member.preparation.teacher_patronymic,
 	                        teacherPhone: member.preparation.teacher_phone,
-	                        concertSurname: member.preparation.concertmaster_surname,
-	                        concertName: member.preparation.concertmaster_name,
-	                        concertPatronymic: member.preparation.concertmaster_patronymic,
+	                        concertmaster_surname: member.preparation.concertmaster_surname,
+	                        concertmaster_name: member.preparation.concertmaster_name,
+	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,
 	                        compositionName: member.presentation.composition_one,
 	                        compositionAuthor: member.presentation.author_one,
 	                        compositionTiming: member.presentation.time_one,
@@ -325,17 +325,17 @@ export default {
                             idCode2: member.solo_duet[1].in,
                             memberPassportData1: member.solo_duet[0].passport_data,
                             memberPassportData2: member.solo_duet[1].passport_data,
-	                        schoolName: member.preparation.school_one,
-	                        schoolAddress: member.preparation.school_address,
-	                        schoolPhone: member.preparation.school_phone,
-	                        schoolEmail: member.preparation.school_email,
+	                        school_name: member.preparation.school_name,
+	                        school_address: member.preparation.school_address,
+	                        school_phone: member.preparation.school_phone,
+	                        school_email: member.preparation.school_email,
 	                        teacherSurname: member.preparation.teacher_surname,
 	                        teacherName: member.preparation.teacher_name,
 	                        teacherPatronymic: member.preparation.teacher_patronymic,
 	                        teacherPhone: member.preparation.teacher_phone,
-	                        concertSurname: member.preparation.concertmaster_surname,
-	                        concertName: member.preparation.concertmaster_name,
-	                        concertPatronymic: member.preparation.concertmaster_patronymic,
+	                        concertmaster_surname: member.preparation.concertmaster_surname,
+	                        concertmaster_name: member.preparation.concertmaster_name,
+	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,
 	                        compositionName: member.presentation.composition_one,
 	                        compositionAuthor: member.presentation.author_one,
 	                        compositionTiming: member.presentation.time_one,
