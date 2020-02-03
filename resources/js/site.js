@@ -23,6 +23,7 @@ import OrganizationCommittee from './components/site/OrganizationCommitteeCompon
 import PositionComponent from './components/site/PositionComponent';
 import NewHead from './components/site/NewHead';
 import MasterMainComponent from './components/site/MasterMainComponent';
+import GalleryMasterComponent from './components/site/GalleryMasterComponent';
 
 import Error404 from './components/site/Error404';
 
@@ -118,6 +119,11 @@ const router = new VueRouter({
             path: '/master',
             name: 'master',
             component: MasterMainComponent,
+        },
+        {
+            path: '/gallery-master',
+            name: 'gallery-master',
+            component: GalleryMasterComponent,
         },
         {
             path: '*',

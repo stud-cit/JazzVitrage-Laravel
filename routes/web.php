@@ -162,6 +162,7 @@ Auth::routes(['register' => false]);
 
     Route::get('get-foto', 'GalleryController@getFoto');
     Route::get('get-foto/{year}/', 'GalleryController@getFotoYear');
+    Route::get('get-jazz-foto', 'GalleryController@getJazzFoto');
     Route::get('get-video', 'GalleryController@getVideo');
     Route::get('get-video/{year}/', 'GalleryController@getVideoYear');
     Route::get('get-quotes', 'InfoController@getQuotes');

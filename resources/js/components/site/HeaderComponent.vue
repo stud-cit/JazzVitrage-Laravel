@@ -32,6 +32,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/gallery-video">ВІДЕО-ГАЛЕРЕЯ</a>
                                 <a class="dropdown-item" href="/gallery">ФЕСТИВАЛЬ</a>
+                                <a class="dropdown-item" href="/gallery-master">МАЙСТЕР-КЛАС</a>
                             </div>
                         </li>
                         <li><a class="nav-item nav-link" :href="info.file">ПОЛОЖЕННЯ</a></li>

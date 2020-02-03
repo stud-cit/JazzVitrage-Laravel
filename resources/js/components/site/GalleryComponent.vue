@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getFoto() {
-      axios.get("/get-foto").then(response => {
+      axios.get("/get-jazz-foto").then(response => {
         const years = [...new Set(response.data.map(item => item.year))];
         years.map(year => {
           this.foto.push({
