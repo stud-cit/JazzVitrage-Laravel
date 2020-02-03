@@ -4,7 +4,7 @@
             <div class="container">
                <div class="page-nav">
                    <router-link :to="{ name: 'gallery' }" class="prev-page"><i class="fa fa-angle-left"></i>всі роки</router-link>
-                   <h3 class="title" v-if="foto.type == 'Джаз-Вітраж'"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
+                   <h3 class="title" v-if="this.photoIndex == 0"> ФЕСТИВАЛЬ ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
                    <h3 class="title" v-else> МАЙСТЕР-КЛАС ДЖАЗ-ВIтраж {{ this.$route.params.id }} рiк</h3>
                 </div>
                 <div class="gallery-content">
@@ -38,6 +38,7 @@
                     pageNumber: 0,
                     size: 6
                 },
+	            photoIndex: '',
                 foto: []
             };
         },
@@ -65,6 +66,14 @@
                 axios.get('/get-foto/'+this.$route.params.id)
                 .then((response) => {
                     this.foto = response.data;
+	                for (let i = 0; i < this.foto.length; i++) {
+		                if (this.foto[i].type == 'Джаз-Вітраж') {
+			                this.photoIndex =+ 0;
+		                }
+		                else {
+			                this.photoIndex =+ 1;
+		                }
+	                }
                 })
             },
         },
