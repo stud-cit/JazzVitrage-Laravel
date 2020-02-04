@@ -85,7 +85,12 @@
                         <td>{{ item.name }}</td>
                         <td>{{ item.school_address }}</td>
                         <td>{{ item.school_name }}</td>
-                        <td>{{ item.teacher }}</td>
+                        <td>
+                            <span v-for="(teacher, index) in item.teachers" :key="teacher.teacher_id">
+                                {{ teacher.teacher_surname }} {{ teacher.teacher_name }} {{ teacher.teacher_patronymic }}
+                                <span v-if="item.teachers.length != index+1">, </span>
+                            </span>
+                        </td>
                     </tr>
                     <tr class="search">
                         <td colspan="5">
@@ -99,7 +104,7 @@
                                 <option value="" selected="selected" >вік</option>
                                 <option value="8-10">Від 8 до 10 років</option>
                                 <option value="11-13">Від 11 до 13 років</option>
-                                <option value="14-17">Від 14 до 17 років</option>
+                                <option value="14-20">Від 14 до 17 років</option>
                             </select>
                             <button class="clean" @click="clean">Очистити</button>
 
@@ -337,6 +342,7 @@
             getMembers() {
                 axios.get('/get-approved-members')
                 .then((response) => {
+                    console.log(response.data)
                     response.data.forEach((member, index) => {
 
                         if(member.solo_duet.length == 0) {
@@ -347,7 +353,7 @@
                                 name: member.group.name,
                                 school_address: member.preparation.school_address,
                                 school_name: member.preparation.school_name,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                teachers: member.teachers,
                                 nomination: member.nomination.name
                             })
                         }
@@ -358,7 +364,7 @@
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                                 school_address: member.preparation.school_address,
                                 school_name: member.preparation.school_name,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                teachers: member.teachers,
                                 nomination: member.nomination.name
                             })
                         }
@@ -369,7 +375,7 @@
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                                 school_address: member.preparation.school_address,
                                 school_name: member.preparation.school_name,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                teacher: member.teachers,
                                 nomination: member.nomination.name
                             });
                         }

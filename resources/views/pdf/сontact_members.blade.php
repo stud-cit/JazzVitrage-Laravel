@@ -32,13 +32,17 @@
                 </td>
             @endif
             <td class="tg-0pky">
-                {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                @endforeach
             </td>
             <td class="tg-0pky">
                 {{ $item['preparation']['school_address'] }}
             </td>
             <td class="tg-0pky">
-                {{ $item['preparation']['teacher_phone'] }}
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_phone'] }} <br>
+                @endforeach
             </td>
         </tr>
     @endforeach

@@ -83,7 +83,9 @@ ______________ Н.О. Цибульська<br>
                         "{{ $item['presentation']['composition_two'] }}" - {{ $item['presentation']['author_two'] }}
                     </td>
                     <td class="tg-0pky">
-                        {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
+                        @foreach ($item['teachers'] as $teachers)
+                            {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                        @endforeach
                         {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
                     </td>
                     <?php
@@ -144,7 +146,9 @@ ______________ Н.О. Цибульська<br>
                         "{{ $item['presentation']['composition_two'] }}" - {{ $item['presentation']['author_two'] }}
                     </td>
                     <td class="tg-0pky">
-                        {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
+                        @foreach ($item['teachers'] as $teachers)
+                            {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                        @endforeach
                         {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
                     </td>
                     <?php

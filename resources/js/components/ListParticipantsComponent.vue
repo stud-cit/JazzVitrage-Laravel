@@ -97,23 +97,6 @@
                             <label for="teacherIdCode" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Ідентифікаційний номер викладача</label>
                             <p id="teacherIdCode" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.teacherIdCode }}</p>
 
-                            <label for="school_name" class="brtop">Назва мистецького навчального закладу</label>
-                            <p id="school_name">{{ item.school_name }}</p>
-
-                            <label for="schoolContact" class="brtop">Адреса, телефон та e-mail навч. закладу</label>
-                            <p id="schoolContact">{{ `${item.school_address} / ${item.school_phone} / ${item.school_email}` }}</p>
-
-                            <label for="teacherDate" class="brtop">ПІП викладача</label>
-                            <p id="teacherDate">{{ `${item.teacherSurname} ${item.teacherName} ${item.teacherPatronymic}` }}</p>
-
-                            <label for="teacherPhone" class="brtop">Контактний телефон викладача</label>
-                            <p id="teacherPhone">{{ item.teacherPhone }}</p>
-
-                            <div v-if="item.concertmaster_surname == '' || item.concertmaster_name == '' || item.concertmaster_patronymic == ''"> </div>
-                            <div v-else>
-                            <label for="concertDate" class="brtop">ПІП концертмейстра</label>
-                            <p id="concertDate">{{ `${item.concertmaster_name} ${item.concertmaster_surname} ${item.concertmaster_patronymic}` }}</p>
-                            </div>
 
                             <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
                             <p></p>
@@ -132,13 +115,6 @@
                                         <img src="/img/file.png">
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду</label>
-                                </div>
-                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
-                                    <i class="fa fa-search"></i>
-                                    <div class="mb-2">
-                                        <img src="/img/file.png">
-                                    </div>
-                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
                                 </div>
                             </div>
 
@@ -171,13 +147,6 @@
                                     </div>
                                     <label class="brtop mb-2">Копія ідентифікаційного коду другого учасника</label>
                                 </div>
-                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFileImg(item.check)">
-                                    <i class="fa fa-search"></i>
-                                    <div class="mb-2">
-                                        <img src="/img/file.png">
-                                    </div>
-                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
-                                </div>
                             </div>
 
                             <div id="memberDoc" class="row mb-2" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
@@ -188,13 +157,47 @@
                                     </div>
                                     <label class="brtop mb-2">Документ с датами народження учасників</label>
                                 </div>
-                                <div v-if="item.check" class="col-2 statementPhotoDoc" @click="getFile(item.check)">
-                                    <i class="fa fa-search"></i>
-                                    <div class="mb-2">
-                                        <img src="/img/file.png">
+                            </div>
+
+                            <hr>
+                            <label for="school_name" class="brtop">Назва мистецького навчального закладу</label>
+                            <p id="school_name">{{ item.school_name }}</p>
+
+                            <label for="schoolContact" class="brtop">Адреса, телефон та e-mail навч. закладу</label>
+                            <p id="schoolContact">{{ `${item.school_address} / ${item.school_phone} / ${item.school_email}` }}</p>
+                            <hr>
+                            <div v-for="teacher in item.teachers" :key="teacher.teacher_id">
+                                <label class="brtop">ПІП викладача</label>
+                                <p>{{ `${teacher.teacher_surname} ${teacher.teacher_name} ${teacher.teacher_patronymic}` }}</p>
+                                <label class="brtop">Контактний телефон викладача</label>
+                                <p>{{ teacher.teacher_phone }}</p>
+                                <label class="brtop">Контактний телефон викладача</label>
+                                <p>{{ teacher.teacher_phone }}</p>
+                                <label class="brtop">Email викладача</label>
+                                <p>{{ teacher.teacher_email }}</p>
+                                <label class="brtop">Домашня адреса викладача</label>
+                                <p>{{ teacher.teacher_address }}</p>
+                                <label class="brtop">Ідентифікаційний номер викладача</label>
+                                <p>{{ teacher.teacher_in }}</p>
+                                <label class="brtop">Дані свідотства про народження або паспорта</label>
+                                <p>{{ teacher.teacher_passport_data }}</p>
+                                <label class="brtop">Фото документів</label>
+                                <div id="memberPhoto" class="row">
+                                    <div class="col-2 statementPhotoDoc" @click="getFileImg(teacher.teacher_passport)">
+                                        <i class="fa fa-search"></i>
+                                        <div class="mb-2">
+                                            <img src="/img/file.png">
+                                        </div>
+                                        <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
                                     </div>
-                                    <label class="brtop mb-2">Документ про оплату добровільних внесків</label>
                                 </div>
+                                <hr>
+                            </div>
+
+                            <div v-if="item.concertmaster_surname == '' || item.concertmaster_name == '' || item.concertmaster_patronymic == ''"> </div>
+                            <div v-else>
+                                <label for="concertDate" class="brtop">ПІП концертмейстра</label>
+                                <p id="concertDate">{{ `${item.concertmaster_name} ${item.concertmaster_surname} ${item.concertmaster_patronymic}` }}</p>
                             </div>
 
                             <label class="brtop mb-3">Програма та хронометраж кожного твору</label>
@@ -250,15 +253,11 @@ export default {
                             name: member.group.name,
                             type: member.app_type.name,
 	                        memberAverage: member.group.average_age,
-	                        teacherIdCode: member.preparation.teacher_in,
 	                        school_name: member.preparation.school_name,
 	                        school_address: member.preparation.school_address,
 	                        school_phone: member.preparation.school_phone,
 	                        school_email: member.preparation.school_email,
-	                        teacherSurname: member.preparation.teacher_surname,
-	                        teacherName: member.preparation.teacher_name,
-	                        teacherPatronymic: member.preparation.teacher_patronymic,
-	                        teacherPhone: member.preparation.teacher_phone,
+	                        teachers: member.teachers,
 	                        concertmaster_surname: member.preparation.concertmaster_surname,
 	                        concertmaster_name: member.preparation.concertmaster_name,
 	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,
@@ -288,10 +287,7 @@ export default {
 	                        school_address: member.preparation.school_address,
 	                        school_phone: member.preparation.school_phone,
 	                        school_email: member.preparation.school_email,
-	                        teacherSurname: member.preparation.teacher_surname,
-	                        teacherName: member.preparation.teacher_name,
-	                        teacherPatronymic: member.preparation.teacher_patronymic,
-	                        teacherPhone: member.preparation.teacher_phone,
+	                        teachers: member.teachers,
 	                        concertmaster_surname: member.preparation.concertmaster_surname,
 	                        concertmaster_name: member.preparation.concertmaster_name,
 	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,
@@ -326,10 +322,7 @@ export default {
 	                        school_address: member.preparation.school_address,
 	                        school_phone: member.preparation.school_phone,
 	                        school_email: member.preparation.school_email,
-	                        teacherSurname: member.preparation.teacher_surname,
-	                        teacherName: member.preparation.teacher_name,
-	                        teacherPatronymic: member.preparation.teacher_patronymic,
-	                        teacherPhone: member.preparation.teacher_phone,
+	                        teachers: member.teachers,
 	                        concertmaster_surname: member.preparation.concertmaster_surname,
 	                        concertmaster_name: member.preparation.concertmaster_name,
 	                        concertmaster_patronymic: member.preparation.concertmaster_patronymic,

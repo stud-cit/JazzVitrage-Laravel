@@ -48,7 +48,10 @@
         <tr>
             <td class="tg-0pky">{{ $line++ }}</td>
             <td class="tg-0pky">
-                {{ $item['group']['name'] }} Керівник {{ $item['preparation']['teacher_surname'] }} {{ $item['preparation']['teacher_name'] }} {{ $item['preparation']['teacher_patronymic'] }}
+                {{ $item['group']['name'] }} Керівник: <br>
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                @endforeach
             </td>
             <td class="tg-0pky">{{ $item['group']['count_people'] }}</td>
             <td class="tg-0pky">{{ $item['preparation']['teacher_in'] }}</td>

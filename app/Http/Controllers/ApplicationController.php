@@ -42,7 +42,7 @@ class ApplicationController extends Controller
 
      public function getAllMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination', 'evaluations')->where('status', '!=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination', 'evaluations', 'teachers')->where('status', '!=', 'archive')->get();
 
 
         // Rating calculation
@@ -76,13 +76,13 @@ class ApplicationController extends Controller
 
      public function getArciveMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'presentation', 'nomination')->where('status', '=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation', 'nomination', 'teachers')->where('status', '=', 'archive')->get();
          return response()->json($data);
      }
 
      public function getApprovedMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination', 'teachers')
             ->approved()
             ->get();
          return response()->json($data);
@@ -90,7 +90,7 @@ class ApplicationController extends Controller
 
      public function getMember($id)
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination')->where('application_id', '=', $id)->first();
+         $data = Application::with('appType', 'soloDuet', 'group', 'preparation', 'presentation', 'nomination', 'teachers')->where('application_id', '=', $id)->first();
          return response()->json($data);
      }
 
@@ -332,52 +332,52 @@ class ApplicationController extends Controller
 
     // Для одного учасника
     function sendMailMember($type, $title, $member, $note = '') {
-        // $model = Application::with('soloDuet')->get();
-        // $period = Period::find(1);
-        // $textMessage = UserMessages::where('type', $type)->first();
-        // $textMessage = $textMessage->text;
+        $model = Application::with('soloDuet')->get();
+        $period = Period::find(1);
+        $textMessage = UserMessages::where('type', $type)->first();
+        $textMessage = $textMessage->text;
 
-        // $pib = $member->surname . " " . $member->name . " " . $member->patronymic;
-        // $email = $member->member_email;
+        $pib = $member->surname . " " . $member->name . " " . $member->patronymic;
+        $email = $member->member_email;
 
-        // $textMessage = str_ireplace('[ПІБ]', $pib, $textMessage);
-        // $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
-        // $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
-        // $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
+        $textMessage = str_ireplace('[ПІБ]', $pib, $textMessage);
+        $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
+        $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
+        $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
 
-        // Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
-        //     $message->to($email, '')->subject($title);
-        //     $message->from('jazz@gmail.com', 'JazzVitrage');
-        // });
+        Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
+            $message->to($email, '')->subject($title);
+            $message->from('jazz@gmail.com', 'JazzVitrage');
+        });
 
-        // // повідомлення керівництву
-        // $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
-        // $generalEmail = 'jazzsumy@gmail.com';
+        // повідомлення керівництву
+        $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
+        $generalEmail = 'jazzsumy@gmail.com';
 
-        // for($i = 0; $i < count($model); $i++) {
-        //     if ($model[$i]->application_type_id == 1 && $model[$i]->application_id == $member->application_id) {
-        //             $number_aplication = $model[$i]->application_id;
-        //             $type = $model[$i]->appType->name;
-        //             $nomination = $model[$i]->nomination->name;
-        //             //$countSolo = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
+        for($i = 0; $i < count($model); $i++) {
+            if ($model[$i]->application_type_id == 1 && $model[$i]->application_id == $member->application_id) {
+                    $number_aplication = $model[$i]->application_id;
+                    $type = $model[$i]->appType->name;
+                    $nomination = $model[$i]->nomination->name;
+                    //$countSolo = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
 
-        //             Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
-        //                 $message->to($generalEmail, '')->subject($textGeneralMessage);
-        //                 $message->from('jazz@gmail.com', 'JazzVitrage');
-        //             });
-        //     }
-        //     else if($model[$i]->application_type_id == 2 && $model[$i]->application_id == $member->application_id) {
-        //             $number_aplication = $model[$i]->application_id;
-        //             $type = $model[$i]->appType->name;
-        //             $nomination = $model[$i]->nomination->name;
-        //             //$countDuet = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
+                    Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
+                        $message->to($generalEmail, '')->subject($textGeneralMessage);
+                        $message->from('jazz@gmail.com', 'JazzVitrage');
+                    });
+            }
+            else if($model[$i]->application_type_id == 2 && $model[$i]->application_id == $member->application_id) {
+                    $number_aplication = $model[$i]->application_id;
+                    $type = $model[$i]->appType->name;
+                    $nomination = $model[$i]->nomination->name;
+                    //$countDuet = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
 
-        //             Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
-        //                 $message->to($generalEmail, '')->subject($textGeneralMessage);
-        //                 $message->from('jazz@gmail.com', 'JazzVitrage');
-        //             });
-        //     }
-        // }
+                    Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
+                        $message->to($generalEmail, '')->subject($textGeneralMessage);
+                        $message->from('jazz@gmail.com', 'JazzVitrage');
+                    });
+            }
+        }
     }
 
     // Для групи
@@ -435,7 +435,7 @@ class ApplicationController extends Controller
 
         foreach ($nomination as $nominationKey => $nominationValue) {
             foreach ($category as $categoryKey => $categoryValue) {
-                $data[$nominationValue[0].'_soloDuet_'.$categoryKey] = Application::with('soloDuet', 'preparation', 'presentation', 'evaluations')
+                $data[$nominationValue[0].'_soloDuet_'.$categoryKey] = Application::with('soloDuet', 'preparation', 'presentation', 'evaluations', 'teachers')
                     ->where('nomination_id', $nominationKey)
                     ->where('application_type_id', '<=', 2)
                     ->where('age_category', $categoryValue)
@@ -449,7 +449,7 @@ class ApplicationController extends Controller
 
         foreach ($nomination as $nominationKey => $nominationValue) {
             foreach ($category as $categoryKey => $categoryValue) {
-                $data[$nominationValue[0].'_group_'.$categoryKey] = Application::with('group', 'preparation', 'presentation', 'evaluations')
+                $data[$nominationValue[0].'_group_'.$categoryKey] = Application::with('group', 'preparation', 'presentation', 'evaluations', 'teachers')
                     ->where('nomination_id', $nominationKey)
                     ->where('application_type_id', '>', 2)
                     ->where('age_category', $categoryValue)
@@ -474,7 +474,7 @@ class ApplicationController extends Controller
 
     // Відомість джаз вітраж
     function vidomistDzhazVitrazhPDF() {
-        $data = Application::with('soloDuet', 'group', 'preparation', 'presentation')
+        $data = Application::with('soloDuet', 'group', 'preparation', 'presentation', 'teachers')
             ->approved()
             ->get();
         $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
@@ -482,7 +482,7 @@ class ApplicationController extends Controller
     }
 
     function listMembersPDF() {
-        $data = Application::with('soloDuet', 'group', 'preparation')
+        $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
         $pdf = PDF::loadView('pdf.list_members', ['data' => $data]);
@@ -490,7 +490,7 @@ class ApplicationController extends Controller
     }
 
     function сontactMembers() {
-        $data = Application::with('soloDuet', 'group', 'preparation')
+        $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
         $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data]);
