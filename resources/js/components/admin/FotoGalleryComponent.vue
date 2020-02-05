@@ -2,10 +2,21 @@
     <div>
 		<div class="row">
 			<div class="col-12 mt-1 mb-2">
-				<button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати фото</button>
-				<button type="button" v-if="id.length" class="btn btn-primary float-right mx-2" @click="delArrayFoto">Видалити</button>
-				<button type="button" v-if="id.length" class="btn btn-primary float-right" @click="editPhoto">Змінити дату</button>
-				<span v-if="id.length" class="btn float-right mx-2">Обрано {{id.length}} елементів</span>
+				<div class="row">
+					<div class="col-9">
+						<button type="button" class="btn btn-primary float-left" @click="showForm = !showForm">Додати фото</button>
+					</div>
+					<div class="col-3">
+						<select class="form-control" placeholder="Сортувати по типу заходу" v-model="typePhoto" id="typePhoto">
+							<option value="Всі фото">Всі фото</option>
+							<option value="Джаз-Вітраж">Джаз-Вітраж</option>
+							<option value="Мастер клас">Мастер клас</option>
+						</select>
+					</div>
+				</div>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right mx-2 mt-2" @click="delArrayFoto">Видалити</button>
+				<button type="button" v-if="id.length" class="btn btn-primary float-right mt-2" @click="editPhoto">Змінити дату</button>
+				<span v-if="id.length" class="btn float-right mx-2 mt-2">Обрано {{id.length}} елементів</span>
 			</div>
 		</div>
 		<hr>
@@ -65,7 +76,7 @@
                 </div>
             </silentbox-group>
         </div>
-        <ul v-if="foto.length > 0" class="pagination mt-4 justify-content-center">
+        <ul v-if="foto.length > 0" class="pagination justify-content-center">
             <li class="controls active" v-if="pagination.pageNumber !== 0" @click="prevPage"><i class="fa fa-long-arrow-left" aria-hidden="true" v-if="pagination.pageNumber !== 0"></i></li>
             <li>{{ pagination.pageNumber + 1 }} : {{ pageCount }}</li>
             <li class="controls active" v-if="pagination.pageNumber <= pageCount -2" @click="nextPage"><i class="fa fa-long-arrow-right" aria-hidden="true" v-if="pagination.pageNumber <= pageCount -2"></i></li>
@@ -81,6 +92,7 @@
 				foto: [],
 				yearCompetition: new Date().getFullYear(),
 				typeEvent: 'Джаз-Вітраж',
+				typePhoto: 'Всі фото',
 				load: false,
 				pagination : {
 					pageNumber: 0,
@@ -98,13 +110,23 @@
 				const year = new Date().getFullYear();
 				return Array.from({length: year - 2000}, (value, index) => 2001 + index);
 			},
-			paginatedData(){
+			filteredList() {
+				return this.foto.filter(photo => {
+					if (this.typePhoto == 'Всі фото'){
+						return this.foto;
+					}
+					else {
+						return photo.type == this.typePhoto
+					}
+				})
+			},
+			paginatedData() {
 				const start = this.pagination.pageNumber * this.pagination.size;
 				const end = start + this.pagination.size;
-				return this.foto.slice(start, end);
+				return this.filteredList.slice(start, end);
 			},
 			pageCount(){
-				return Math.ceil(this.foto.length / this.pagination.size);
+				return Math.ceil(this.filteredList.length / this.pagination.size);
 			},
 		},
 		methods: {
