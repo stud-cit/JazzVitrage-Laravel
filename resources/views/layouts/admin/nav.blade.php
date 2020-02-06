@@ -102,10 +102,10 @@
 						</a>
 					</li>
 
-					<li class="nav-item" title="Майстер клас">
+					<li class="nav-item" title="Заявки майстер клас">
 						<a class="nav-link" href="/admin/master-class">
 							<i class="fa fa-star"></i>
-							<span class="nav-link-text">Майстер клас</span>
+							<span class="nav-link-text">Заявки майстер клас</span>
 						</a>
 					</li>	
 

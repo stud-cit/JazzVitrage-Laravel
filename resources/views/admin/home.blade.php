@@ -98,7 +98,7 @@
 
             <a href="/admin/master-class" class="col-8 col-sm-5 col-md-3  category-items">
                 <div class="category-icon"><i class="fa fa-star fa-3x"></i></div>
-                Майстер клас
+                Заявки майстер клас
             </a>
 
             <a href="/admin/users-messages" class="col-8 col-sm-5 col-md-3  category-items">
