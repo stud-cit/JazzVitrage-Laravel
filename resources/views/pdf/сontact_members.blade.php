@@ -1,6 +1,6 @@
 <style>
     body { font-family: DejaVu Sans, sans-serif; }
-    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg  {border-collapse:collapse;border-spacing:0;width: 100%;}
     .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}

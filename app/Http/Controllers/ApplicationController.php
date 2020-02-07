@@ -184,7 +184,7 @@ class ApplicationController extends Controller
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
             $group->save();
-            $this->sendMailGroup('application_accepted', $titleMessage, $group, $data->teacherEmail);
+
         }
 
         $preparationModel = new Preparation();
@@ -198,6 +198,7 @@ class ApplicationController extends Controller
             $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
             $teacher['application_id'] = $app->application_id;
             $teachersModel->create($teacher);
+            $this->sendMailGroup('application_accepted', $titleMessage, $group, $teacher['teacher_email']);
         }
 
         $presentation->composition_one = $data->compositionName;
@@ -239,7 +240,7 @@ class ApplicationController extends Controller
     // Затвердження заявки
 
     function addApproved($id) {
-        $model = Application::with('soloDuet', 'group', 'preparation')->find($id);
+        $model = Application::with('soloDuet', 'group', 'preparation', 'teachers')->find($id);
         $titleMessage = 'Вашу заявку в конкурсі JazzVitrage затверджено';
         $model->status = Application::APPROVED;
         $model->save();
@@ -249,7 +250,9 @@ class ApplicationController extends Controller
                 $this->sendMailMember('application_approved', $titleMessage, $model->soloDuet[$i]);
             }
         } else {
-            $this->sendMailGroup('application_approved', $titleMessage, $model->group->name, $model->preparation['teacher_email']);
+            for($i = 0; $i < count($model->teachers); $i++) {
+                $this->sendMailGroup('application_approved', $titleMessage, $model->group->name, $model->teachers['teacher_email']);
+            }
         }
         return response('ok', 200);
     }
@@ -257,7 +260,7 @@ class ApplicationController extends Controller
     // Видалення учасника
 
     function deleteMembers($id, Request $request) {
-        $model = Application::with('soloDuet', 'group', 'presentation', 'preparation')->find($id);
+        $model = Application::with('soloDuet', 'group', 'presentation', 'preparation', 'teachers')->find($id);
         $titleMessage = 'Вашу заявку в конкурсі JazzVitrage відхилено';
         Storage::deleteDirectory("member-files/".$model->application_id);
         unlink(public_path($model->presentation["video"]));
@@ -269,7 +272,9 @@ class ApplicationController extends Controller
                 $this->sendMailMember('application_denied', $titleMessage, $model->soloDuet[$i], $request->message);
             }
         } else {
-            $this->sendMailGroup('application_denied', $titleMessage, $model->group->name, $model->preparation->teacher_email, $request->message);
+            for($i = 0; $i < count($model->teachers); $i++) {
+                $this->sendMailGroup('application_denied', $titleMessage, $model->group->name, $model->teachers['teacher_email'], $request->message);
+            }
         }
         $model->delete();
         return response('ok', 200);
