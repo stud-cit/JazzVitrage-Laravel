@@ -22,6 +22,8 @@
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
                                 <a class="dropdown-item" href="/applications">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
+                                <a class="dropdown-item" href="/juries">ЖУРІ</a>
+                                <a class="dropdown-item" :href="info.file">ПОЛОЖЕННЯ</a>
                             </div>
                         </li>
 
@@ -35,10 +37,9 @@
                                 <a class="dropdown-item" href="/gallery-master">МАЙСТЕР-КЛАС</a>
                             </div>
                         </li>
-                        <li><a class="nav-item nav-link" :href="info.file">ПОЛОЖЕННЯ</a></li>
-                        <li><a class="nav-item nav-link" href="/juries">ЖУРІ</a></li>
                         <li><a class="nav-item nav-link" href="/organization-committee">ОРГ. КОМІТЕТ</a></li>
                         <li><a class="nav-item nav-link" href="/master">МАЙСТЕР КЛАС</a></li>
+                        <li><a class="nav-item nav-link" href="https://school.jazz.sumy.ua">МУЗИЧНА ШКОЛА</a></li>
 
                         
                         <li class="d-inline bg-danger d-sm-none w-100" v-if="isRegistration">
