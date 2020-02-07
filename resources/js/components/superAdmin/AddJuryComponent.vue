@@ -32,8 +32,8 @@
 					</div>
 					<div>
 						<label for="jury-photo" class="brtop">Фото</label>
-						<input type="file" name="jury-photo" accept="image/*" ref="juryfile" class="form-control-file" id="jury-photo"
-							v-validate="'image'"
+						<input type="file" name="jury-photo" accept=".jpg, .jpeg, .png, .bmp" ref="juryfile" class="form-control-file" id="jury-photo"
+							v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }"
 								data-vv-as="Фото">
 						<span class="errors text-danger" v-if="errors.has('jury-photo')">
 								Файл повинен бути зображенням

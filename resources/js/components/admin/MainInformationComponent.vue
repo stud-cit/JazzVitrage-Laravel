@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept="image/*" v-validate="'image'">
+                                <input type="file" class="custom-file-input" id="logo" name="logo" ref="logo" @change="previewFiles($event, 'logo')" accept=".jpg, .jpeg, .png, .bmp" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
@@ -203,7 +203,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" v-validate="'image'" name="note" class="custom-file-input" id="note_image" ref="note_image" @change="previewFiles($event, 'note_image')">
+                                <input type="file" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" name="note" class="custom-file-input" accept=".jpg, .jpeg, .png, .bmp" id="note_image" ref="note_image" @change="previewFiles($event, 'note_image')">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
@@ -328,7 +328,7 @@
                     <div class="row">
                         <div class="col-9">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input" id="logo_master" name="logo_master" ref="logo_master" @change="previewFiles($event, 'logo_master')" accept="image/*" v-validate="'image'">
+                                <input type="file" class="custom-file-input" id="logo_master" name="logo_master" ref="logo_master" @change="previewFiles($event, 'logo_master')" accept=".jpg, .jpeg, .png, .bmp" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                 <span class="custom-file-control">Файл не обрано</span>
                             </label>
                         </div>
