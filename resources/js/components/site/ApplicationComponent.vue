@@ -1099,7 +1099,9 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('compositionVideo')">
-                                    Оберіть файл відео-формату розміром не більше 100 Мб
+                                    Оберіть файл відео-формату розміром не більше 100 Мб<br>
+                                    Для зменшення розміру відео, скористейтесть наступним сайтом<br>
+                                    <a :href="compress_url">{{ compress_url }}</a>
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
@@ -1162,7 +1164,7 @@
                                 <label for="groupCheck1" >
                                     <input @change="checked = !checked" name="groupCheck1" id="groupCheck1" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1232,7 +1234,7 @@
                                 <label for="groupCheck2" >
                                     <input @change="checked = !checked" name="groupCheck2" id="groupCheck2" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1296,7 +1298,7 @@
                                 <label for="groupCheck3" >
                                     <input @change="checked = !checked" name="groupCheck3" id="groupCheck3" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1347,9 +1349,8 @@
 	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
-	            personal: {
-		            personal_data: ''
-                },
+                personal_data: '',
+                compress_url: '',
                 datepicker: {
                     minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
@@ -1571,9 +1572,8 @@
 	        getPersonal() {
 		        axios.get('/get-personal-doc')
 			        .then((response) => {
-				        response.data.personal.map(item => {
-					        Object.assign(this.personal, item);
-				        })
+                        this.personal_data = response.data.personal;
+                        this.compress_url = response.data.compress_url;
 			        })
 	        },
 

@@ -22,15 +22,15 @@ class InfoController extends Controller
         $contact = Contacts::with('contactsItems')->get();
         $nominations = Nomination::get();
         return response()->json([
-            'info' => $info, 
-            'contact' => $contact, 
+            'info' => $info,
+            'contact' => $contact,
             'nominations' => $nominations
         ]);
     }
     public function getPersonalDoc()
     {
-        $doc = DB::select('select personal_data from position_section');
-        return response()->json(['personal' => $doc]);
+        $data = DB::select('select personal_data, compress_url from position_section');
+        return response()->json(['personal' => $data[0]->personal_data, 'compress_url' => $data[0]->compress_url]);
     }
     public function postContact(Request $request)
     {

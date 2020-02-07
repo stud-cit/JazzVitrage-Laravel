@@ -74,24 +74,24 @@
                         <div class="row">
                             <div class="col-9">
                                 <label class="custom-file w-100">
-                                    <input 
-                                        type="file" 
-                                        class="custom-file-input" 
-                                        :id="'instrumental_logo_'+item.nomination_id" 
-                                        :name="'instrumental_logo_'+item.nomination_id" 
-                                        :ref="'instrumental_logo_'+item.nomination_id" 
-                                        @change="previewFilesNomination($event, item.nomination_id-1)" 
-                                        accept=".png" 
+                                    <input
+                                        type="file"
+                                        class="custom-file-input"
+                                        :id="'instrumental_logo_'+item.nomination_id"
+                                        :name="'instrumental_logo_'+item.nomination_id"
+                                        :ref="'instrumental_logo_'+item.nomination_id"
+                                        @change="previewFilesNomination($event, item.nomination_id-1)"
+                                        accept=".png"
                                         v-validate="{ 'ext':['png'] }"
                                     >
                                     <span class="custom-file-control">Файл не обрано</span>
                                 </label>
                             </div>
                             <div class="col-3">
-                                <button 
-                                    type="button" 
-                                    :disabled="errors.has('instrumental_logo_'+item.nomination_id)" 
-                                    class="btn btn-outline-secondary edit w-100 px-0" 
+                                <button
+                                    type="button"
+                                    :disabled="errors.has('instrumental_logo_'+item.nomination_id)"
+                                    class="btn btn-outline-secondary edit w-100 px-0"
                                     @click="editNomination(item.nomination_id, 'instrumental_logo_'+item.nomination_id)"
                                 >
                                     Зберегти
@@ -349,6 +349,22 @@
                         </span>
                         <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "master_class", "description_master")'>Редагувати</button><br><br>
                     </div>
+
+
+                    <br>
+                    <h3>Заявки</h3>
+                    <hr>
+                    <label for="compress_url" class="brtop">Посилання на ресурс для стискання відео</label>
+                    <div class="row">
+                        <div class="col-9">
+                            <input name="compress_url" type="text" class="form-control" v-model="info.compress_url" id="compress_url" disabled
+                                v-validate="{required: true}">
+                            <span class="text-danger" v-if="errors.has('compress_url')">Некоректне посилання</span>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" :disabled="errors.has('compress_url')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "position_section", "compress_url")'>Редагувати</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -373,7 +389,8 @@ export default {
                 hymn_text: '',
                 note_image: '',
                 logo_master: '',
-                description_master: ''
+                description_master: '',
+                compress_url: ''
             },
             nominations: [],
             contact: {
@@ -475,6 +492,11 @@ export default {
                     }).then((res) => {
                         this.contact[el][index].contact_section_id = res.data.contact_section_id;
                         this.contact[el][index].contact_items_id = res.data.id;
+                        swal("Інформація оновлена", {
+                            icon: "success",
+                            timer: 1000,
+                            button: false
+                        });
                     })
                 }
             });
@@ -541,7 +563,12 @@ export default {
                             table,
                             row: el,
                             value: textElement.value
-                        })
+                        });
+                        swal("Інформація оновлена", {
+                            icon: "success",
+                            timer: 1000,
+                            button: false
+                        });
                         this.showButton = true;
                     }
                 }
