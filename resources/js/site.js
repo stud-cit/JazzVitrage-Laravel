@@ -18,6 +18,7 @@ import VideoGallery from './components/site/VideoGalleryComponent';
 import VideoGalleryYear from './components/site/VideoGalleryYearComponent';
 import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
+import JuryInNominationComponent from './components/site/JuryInNominationComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
@@ -96,6 +97,11 @@ const router = new VueRouter({
 
         },
         {
+            path: '/jury-nomination/:id/',
+            name: 'jury-in-nomination',
+            component: JuryInNominationComponent,
+        },
+        {
             path: '/juries/:id/',
             name: 'jury-member',
             component: JuryMember,
@@ -145,6 +151,7 @@ const app = new Vue({
         VideoGalleryYear,
         Gymn,
         Jury,
+        JuryInNominationComponent,
         JuryMember,
         OrganizationCommittee,
         PositionComponent,

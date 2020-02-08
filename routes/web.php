@@ -14,6 +14,7 @@ Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
 //Контакти
 Route::get('get-jurys-view', 'ContactsController@getJurys');
 Route::get('get-jury-view/{id}/', 'ContactsController@jury');
+Route::get('get-jury-nomination/{id}/', 'ContactsController@getJuryNomination');
 Route::get('get-org-view', 'ContactsController@organizingCommittee');
 //Положення
 // Route::get('/position', 'PositionController@position');

@@ -22,11 +22,14 @@
                         <p class="subtitle">У КОНКУРСІ</p>
                     </div>
                 </div>
+
                 <div class="nominations-list">
-                    <div class="nominations-items" v-for="item in nominations" :key="item.nomination_id">
+                    <router-link :to="{name: 'jury-in-nomination', params: { id: item.nomination_id }}" v-for="item in nominations" :key="item.nomination_id">
+                    <div class="nominations-items">
                         <img :src="item.logo">
                         <div class="items-title">{{ item.name }}</div>
                     </div>
+                    </router-link>
                 </div>
             </div>
         </section>
@@ -342,7 +345,6 @@
             getMembers() {
                 axios.get('/get-approved-members')
                 .then((response) => {
-                    console.log(response.data)
                     response.data.forEach((member, index) => {
 
                         if(member.solo_duet.length == 0) {
