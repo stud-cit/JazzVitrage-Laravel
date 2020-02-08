@@ -1098,10 +1098,12 @@
 
                                 </div>
                             </div>
+                            <span class="errors">
+                                Якщо розмір відеофайлу перевищує 100 мегабайт, скористайтесь наступним сайтом для зменшення розміру: <br>
+                                <a :href="compress_url" target="_blank">{{ compress_url }}</a>
+                            </span>
                             <span class="errors" v-if="errors.has('compositionVideo')">
-                                    Оберіть файл відео-формату розміром не більше 100 Мб<br>
-                                    Для зменшення розміру відео, скористейтесть наступним сайтом<br>
-                                    <a :href="compress_url">{{ compress_url }}</a>
+                                Оберіть файл відео-формату розміром не більше 100 Мб
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>

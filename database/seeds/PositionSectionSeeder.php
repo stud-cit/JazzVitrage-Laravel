@@ -17,7 +17,7 @@ class PositionSectionSeeder extends Seeder
             'video' => 'https://www.youtube.com/watch?v=fMKZMI8ByTs',
             'file' => '/file/file.docx',
             'personal_data' => '/file/personal.pdf',
-            'compress_url' => 'test'
+            'compress_url' => 'https://clideo.com/ru/resize-video'
         ]);
     }
 }
