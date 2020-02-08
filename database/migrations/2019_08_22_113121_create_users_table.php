@@ -20,12 +20,12 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('user_id');
             $table->string('role', 20); // Роль
-            $table->string('email', 50)->unique();
+            $table->string('email')->unique();
             $table->string('password', 255);
             $table->string('name', 50);
             $table->string('surname', 50);
             $table->string('patronymic', 50);
-            $table->string('photo', 50)->nullable(); // Фото
+            $table->string('photo')->nullable(); // Фото
             $table->string('rank', 50)->nullable(); // Звання
             $table->string('nominations', 50)->nullable(); // Номінація
             $table->text('informations')->nullable(); // Біографія / Членство в спілках журі

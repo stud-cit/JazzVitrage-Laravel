@@ -51,8 +51,8 @@
                                 <img v-if="!translate" src="images/lang/lang__uk.png">
                                 <img v-else src="images/lang/lang__en.png" ></a>
                                 <div class="dropdown-menu language">
-                                    <img src="images/lang/lang__uk.png" alt="uk" data-google-lang="uk" class="dropdown-item language__img">
-                                    <img src="images/lang/lang__en.png" alt="en" data-google-lang="en" class="dropdown-item language__img">
+                                    <img src="/images/lang/lang__uk.png" alt="uk" data-google-lang="uk" class="dropdown-item language__img">
+                                    <img src="/images/lang/lang__en.png" alt="en" data-google-lang="en" class="dropdown-item language__img">
 
                                 </div>
 

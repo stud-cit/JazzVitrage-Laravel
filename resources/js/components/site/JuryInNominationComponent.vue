@@ -3,7 +3,7 @@
         <section class="sections main-section juries">
             <div class="container">
                 <div class="title-juries">
-                    <img src="img/ribbon.png" alt="">
+                    <img src="/img/ribbon.png" alt="">
                     <div class="text">
                         <h2 class="title">НАШЕ ЖУРІ</h2>
                         <p class="subtitle">У КОНКУРСІ</p>
