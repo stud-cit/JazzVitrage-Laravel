@@ -184,7 +184,7 @@ class ApplicationController extends Controller
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
             $group->save();
-            
+
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
@@ -294,6 +294,10 @@ class ApplicationController extends Controller
             $allEvaluations = Evaluation::where('application_id', $value)->get()->toArray();
 
             $colEvaluation = array_column($allEvaluations, 'evaluation');
+
+            $colRecommendation = array_column($allEvaluations, 'recommendation');
+
+            $rating[$key]['recommendation'] = array_sum($colRecommendation);
 
             $leng = count($colEvaluation);
             if ($leng > 0) {

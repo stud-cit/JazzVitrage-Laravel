@@ -880,6 +880,17 @@
                                 <span class="errors" v-if="errors.has('teacher_email_'+index)">
                                         Введіть дані у форматі name@email.com
                                 </span>
+                                <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/input-phone.png" class="input-img">
+                                        <input type="text" :name="'teacher_phone_'+index" maxlength="13" v-model="teacher.teacher_phone"
+                                            v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
+                                    </div>
+                                </div>
+                                <span class="errors" v-if="errors.has('teacher_phone_'+index)">
+                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
+                                </span>
                                 <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -893,14 +904,9 @@
                                 </span>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
-                                    <div class="input-group input-group-right">
-                                        <label><input type="radio" :name="'teacher_passport_type'+index" class="app-type" v-model="teacher.id_passport_type" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
-                                        <label><input type="radio" :name="'teacher_passport_type'+index" class="app-type" v-model="teacher.id_passport_type" value="1"><i></i>ПАСПОРТ</label>
-                                    </div>
                                 </div>
                                 <br>
-                                <label v-if="teacher.id_passport_type == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
-                                <label v-if="teacher.id_passport_type == 1">ПАСПОРТНІ ДАНІ</label>
+                                <label>ПАСПОРТНІ ДАНІ</label>
                                 <div class="input-row">
                                     <div class="input-container">
                                         <img src="img/step2-data.png" class="input-img">
@@ -908,20 +914,16 @@
                                             v-validate="{ required: true }">
                                     </div>
                                 </div>
-                                <span class="errors" v-if="errors.has('teacher_passport_data_'+index) && teacher.id_passport_type == 0">
-                                        Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
-                                </span>
-                                <span class="errors" v-if="errors.has('teacher_passport_data_'+index) && teacher.id_passport_type == 1">
+                                <span class="errors" v-if="errors.has('teacher_passport_data_'+index)">
                                     Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                                 </span>
-
-                                <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
+                                <label>Відсканований паспорт</label>
                                 <div class="input-row">
                                     <div class="input-container" v-if="teacher.teacher_passport == null">
                                         <img src="img/file-image.png" class="input-img">
                                         <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
                                             v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
-                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                            data-vv-as="Відсканований паспорт">
                                         <label :for="'teacher_passport_'+index">
                                             <span>{{teacher.teacher_passport}}</span>
                                         </label>
@@ -930,7 +932,7 @@
                                         <img src="img/file-image.png" class="input-img">
                                         <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
                                             v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
-                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
+                                            data-vv-as="Відсканований паспорт">
                                         <label :for="'teacher_passport_'+index">
                                             <span>{{teacher.teacher_passport}}</span>
                                         </label>
@@ -938,17 +940,6 @@
                                 </div>
                                 <span class="errors" v-if="errors.has('teacher_passport_'+index)">
                                     Оберіть файл графічного або pdf-формату
-                                </span>
-                                <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
-                                <div class="input-row">
-                                    <div class="input-container">
-                                        <img src="img/input-phone.png" class="input-img">
-                                        <input type="text" :name="'teacher_phone_'+index" maxlength="13" v-model="teacher.teacher_phone"
-                                            v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
-                                    </div>
-                                </div>
-                                <span class="errors" v-if="errors.has('teacher_phone_'+index)">
-                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                                 </span>
                                 <hr>
                             </div>
@@ -1437,7 +1428,6 @@
                                 teacher_phone: '',
                                 teacher_passport_data: '',
                                 teacher_address: '',
-                                id_passport_type: 1,
                                 teacher_passport: 'завантажити файл'
                             }
                         ],
@@ -1475,7 +1465,6 @@
                     teacher_phone: '',
                     teacher_passport_data: '',
                     teacher_address: '',
-                    id_passport_type: 1,
                     teacher_passport: 'завантажити файл'
                 });
             },

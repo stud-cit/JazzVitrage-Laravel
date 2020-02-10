@@ -8,7 +8,7 @@
 		</button>
 		<div class="collapse navbar-collapse sidenav" id="navbarResponsive">
 
-			<ul class="navbar-nav navbar-sidenav" id="Accordion">
+			<ul class="navbar-nav navbar-sidenav" id="Accordion"  style="overflow-y: auto">
 
 				{{-- Орг.комітет --}}
 
@@ -107,14 +107,14 @@
 							<i class="fa fa-star"></i>
 							<span class="nav-link-text">Заявки майстер клас</span>
 						</a>
-					</li>	
+					</li>
 
 					<li class="nav-item" title="Повідомлення користувачам">
 						<a class="nav-link" href="/admin/users-messages">
 							<i class="fa fa-envelope"></i>
 							<span class="nav-link-text">Повідомлення користувачам</span>
 						</a>
-					</li>	
+					</li>
 
 				@endif
 
@@ -123,7 +123,7 @@
 				@if (Auth::user()->role == 'superAdmin')
 
 					@php $role = 'Супер Адмін' @endphp
-					
+
 					<li class="nav-item" title="Додати журі">
 						<a class="nav-link" href="/admin/period">
 							<i class="fa fa-calendar"></i>

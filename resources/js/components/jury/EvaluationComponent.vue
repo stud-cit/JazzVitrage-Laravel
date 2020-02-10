@@ -19,7 +19,9 @@
                     v-bind:max="maxEvaluation"
                     v-model.number="stylisticMatching"
                     class="form-control check-nomination"
-                    id="stylisticMatching" >
+                    id="stylisticMatching"
+                    :disabled="userJury != nomination.name"
+                >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
                 <input
@@ -28,7 +30,9 @@
                     v-bind:max="maxEvaluation"
                     v-model.number="artisticValue"
                     class="form-control check-nomination"
-                    id="artisticValue" >
+                    id="artisticValue"
+                    :disabled="userJury != nomination.name"
+                >
 
                 <label for="artistry">Артистизм.</label>
                 <input
@@ -37,7 +41,9 @@
                     v-bind:max="maxEvaluation"
                     v-model.number="artistry"
                     class="form-control check-nomination"
-                    id="artistry" >
+                    id="artistry"
+                    :disabled="userJury != nomination.name"
+                >
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
                 <input
@@ -46,7 +52,18 @@
                     v-bind:max="maxEvaluation"
                     v-model.number="originality"
                     class="form-control check-nomination"
-                    id="originality">
+                    id="originality"
+                    :disabled="userJury != nomination.name"
+                >
+                <br>
+                <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck1"
+                    v-model="recommendation"
+                    :disabled="userJury != nomination.name"
+                >
+                <label class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
             </form>
             <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
         </div>
@@ -107,8 +124,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
-                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
+                <button type="button" v-if="!hasRecord" :disabled="userJury != nomination.name" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
+                <button type="button" v-if="hasRecord && userJury == nomination.name" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
@@ -139,6 +156,7 @@
                     artistry: 0,
                     originality: 0,
                     evaluation: 0,
+                    recommendation: false,
                 // },
                 // мінімальна максимальна оцінка
                 minEvaluation: 0,
@@ -146,8 +164,8 @@
                 maxRating: 100,
                 hasError: false,
                 hasRecord: false,
-	            userJury: '',
-	            juryNomination: ''
+                userJury: '',
+                nomination: ''
             }
         },
         watch: {
@@ -168,11 +186,11 @@
             }
         },
         created() {
+            this.getUserJury();
             this.getMember();
             this.getAllMembers();
         },
         computed: {
-
             nextButtonShow() {
                 return this.memberIndex == this.count ? false : true;
             },
@@ -185,9 +203,8 @@
             getEvaluation() {
                 axios.get(`/has-record/${this.$route.params.id}/`)
                     .then( ( response )  => {
-	                    this.checkJury();
                         this.hasRecord = this.isRecord(response.data);
-                        const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id } = response.data;
+                        const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id, recommendation } = response.data;
 
                         if(this.hasRecord) {
                             this.user_id = user_id;
@@ -196,6 +213,7 @@
                             this.artistry = artistry;
                             this.originality = originality;
                             this.evaluation = evaluation;
+                            this.recommendation = recommendation;
                         } else {
                             this.setDefaultEvaluate();
                         }
@@ -206,7 +224,7 @@
             },
             // need make validation
             createEvaluation() {
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality, recommendation} = this;
 
                 axios.post('/to-rate', {
                     application_id: this.program.application_id,
@@ -214,7 +232,8 @@
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
                     artistry,
-                    originality
+                    originality,
+                    recommendation
                 })
                 .then( (response)  => {
                     swal( `Ваша оцінка ${this.evaluation} із можливих ${this.maxRating}`, {
@@ -236,14 +255,14 @@
                 });
             },
             updateEvaluation() {
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality, user_id} = this;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality, recommendation} = this;
                 axios.post(`/to-rate-update/${this.$route.params.id}`, {
-                    user_id,
                     evaluation,
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
                     artistry,
-                    originality
+                    originality,
+                    recommendation
                 })
                 .then( (response) => {
                     swal(`Оцінку успішно змінено`, {
@@ -271,6 +290,7 @@
                 this.artistry = 0;
                 this.originality = 0;
                 this.evaluation = 0;
+                this.recommendation = false;
             },
             isRecord(obj) {
                 for (let key in obj) {
@@ -292,13 +312,10 @@
                         this.school = response.data.preparation;
                         this.program = response.data.presentation;
                         this.teachers = response.data.teachers;
-
                         var container = document.getElementById("videoMember");
                         container.setAttribute("src", this.program.video);
-	                    this.juryNomination = response.data.nomination;
                     })
                     .catch(error => console.error(error));
-	                this.getUserJury();
                     this.getEvaluation();
             },
             getAllMembers() {
@@ -314,25 +331,8 @@
 	        getUserJury() {
                 axios.get('/get-user-jury')
 	                .then((response) => {
-		                this.userJury = response.data;
+                        this.userJury = response.data.nominations;
 	                })
-            },
-            checkJury() {
-	            var juryNomination;
-	            var resultButton;
-
-	            //console.log(this.userJury.nominations);
-	            //console.log(this.juryNomination.name);
-
-	            if(this.userJury.nominations != this.juryNomination.name){
-		            juryNomination = document.getElementsByClassName('check-nomination');
-		            juryNomination[0].setAttribute('disabled', 'disabled');
-		            juryNomination[1].setAttribute('disabled', 'disabled');
-		            juryNomination[2].setAttribute('disabled', 'disabled');
-		            juryNomination[3].setAttribute('disabled', 'disabled');
-		            resultButton = document.getElementsByClassName('check-button');
-		            resultButton[0].hidden = true;
-	            }
             },
             nextItem() {
 

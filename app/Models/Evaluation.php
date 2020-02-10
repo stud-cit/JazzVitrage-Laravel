@@ -21,7 +21,8 @@ class Evaluation extends Model
         'stylistic_matching',
         'artistic_value',
         'artistry',
-        'originality'
+        'originality',
+        'recommendation'
     ];
 
     /**

@@ -41,6 +41,7 @@
                     <th>ПІБ Учасника / Назва групи</th>
                     <th>Тип заявки</th>
                     <th>Номінація</th>
+                    <th>Рекомендації</th>
                     <th class="text-center">Оцінка</th>
                 </tr>
             </thead>
@@ -50,6 +51,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.type }}</td>
                     <td>{{ item.nomination }}</td>
+                    <td>{{ item.recommendation }}</td>
                     <td class="text-center">{{ item.evaluation }}</td>
                 </tr>
             </tbody>
@@ -92,7 +94,8 @@ export default {
                                 name: member.group.name,
                                 type: member.app_type.name,
                                 evaluation: member.rating,
-                                nomination: member.nomination.name
+                                nomination: member.nomination.name,
+                                recommendation: member.recommendation
                             })
                         } else if(member.solo_duet.length == 1) {
                             this.members.push({
@@ -100,7 +103,8 @@ export default {
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                                 type: member.app_type.name,
                                 evaluation: member.rating,
-                                nomination: member.nomination.name
+                                nomination: member.nomination.name,
+                                recommendation: member.recommendation
                             })
                         } else if(member.solo_duet.length == 2) {
                             this.members.push({
@@ -108,7 +112,8 @@ export default {
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                                 type: member.app_type.name,
                                 evaluation: member.rating,
-                                nomination: member.nomination.name
+                                nomination: member.nomination.name,
+                                recommendation: member.recommendation
                             })
                         }
                     });
