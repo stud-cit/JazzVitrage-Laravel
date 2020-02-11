@@ -397,7 +397,7 @@ class ApplicationController extends Controller
         $textMessage = UserMessages::where('type', $type)->first();
         $textMessage = $textMessage->text;
 
-        $textMessage = str_ireplace('[ПІБ]', $groupName, $textMessage);
+        $textMessage = str_ireplace('[ПІБ]', $groupName->name, $textMessage);
         $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
         $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
         $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
