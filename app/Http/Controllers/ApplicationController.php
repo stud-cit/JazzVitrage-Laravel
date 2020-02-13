@@ -134,6 +134,15 @@ class ApplicationController extends Controller
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
             $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
+
+            for($i = 0; $i < count($data->teachers); $i++) {
+                $teachersModel = new Teachers();
+                $teacher = (array) $data->teachers[$i];
+                $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                $teacher['application_id'] = $app->application_id;
+                $teachersModel->create($teacher);
+            }
+
         }
 
         if($data->appType == 2) {
@@ -174,6 +183,16 @@ class ApplicationController extends Controller
             $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
             $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
+
+
+            for($i = 0; $i < count($data->teachers); $i++) {
+                $teachersModel = new Teachers();
+                $teacher = (array) $data->teachers[$i];
+                $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                $teacher['application_id'] = $app->application_id;
+                $teachersModel->create($teacher);
+            }
+
         }
 
         if($data->appType > 2) {
@@ -503,6 +522,7 @@ class ApplicationController extends Controller
         $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
+            // return response()->json($data);
         $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data]);
         return $pdf->stream('Контактні_дані.pdf');
     }

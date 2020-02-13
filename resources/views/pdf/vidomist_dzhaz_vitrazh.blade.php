@@ -1,8 +1,8 @@
 <style>
     body { font-family: DejaVu Sans, sans-serif; }
     .tg  {border-collapse:collapse;border-spacing:0;}
-    .tg td{font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-    .tg th{font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg td{font-size:12px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg th{font-size:12px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
     .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
     .tg .tg-0lax{text-align:left;vertical-align:top}
@@ -69,9 +69,21 @@ ____________ Н.О. Цибульська
                     {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                 @endforeach
             </td>
-            <td class="tg-0pky">{{ $item['preparation']['teacher_passport_data'] }}</td>
-            <td class="tg-0pky">{{ $item['preparation']['teacher_address'] }}</td>
-            <td class="tg-0pky">{{ $item['preparation']['teacher_in'] }}</td>
+            <td class="tg-0pky">
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_passport_data'] }}
+                @endforeach
+            </td>
+            <td class="tg-0pky">
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_address'] }}
+                @endforeach
+            </td>
+            <td class="tg-0pky">
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_in'] }}
+                @endforeach
+            </td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>

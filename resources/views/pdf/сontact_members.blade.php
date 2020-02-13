@@ -37,7 +37,7 @@
                 @endforeach
             </td>
             <td class="tg-0pky">
-                {{ $item['preparation']['school_address'] }}
+                {{ $item['preparation']['school_name'] }}
             </td>
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)

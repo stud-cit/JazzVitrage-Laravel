@@ -29,9 +29,6 @@ ______________ Н.О. Цибульська<br>
         </td>
     </tr>
 </table>
-
-<div class="page-break"></div>
-
 @foreach ($data as $dataItem)
     <?php
         $line = 1;
@@ -43,6 +40,7 @@ ______________ Н.О. Цибульська<br>
         }
     ?>
     @if(count($dataItem) > 0)
+        <div class="page-break"></div>
         @if($dataItem->type == 'soloDuet')
         <b><i>Номінація «{{ $dataItem->genre }}». Соло та дуети. {{ $dataItem->category }} вікова група</b></i>
         <table class="tg">
