@@ -5,10 +5,11 @@
 				<tr>
 					<th width="10px" scope="col">№</th>
 					<th scope="col">Ім'я</th>
+					<th scope="col">Посада</th>
 					<th scope="col">Телефон</th>
 					<th scope="col">Електронна пошта</th>
                     <th scope="col">Місто</th>
-                    <th scope="col">Адрес школи</th>
+                    <th scope="col">Назва школи</th>
 					<th width="10px" scope="col"></th>
 				</tr>
 			</thead>
@@ -16,10 +17,11 @@
 				<tr v-for="(item, index) in masterRequest" :key="item.id">
 					<th scope="row">{{ index + 1 }}</th>
 					<td>{{ item.name }}</td>
+					<td>{{ item.appointment }}</td>
 					<td>{{ item.phone }}</td>
 					<td>{{ item.email }}</td>
                     <td>{{ item.sity }}</td>
-                    <td>{{ item.school_address }}</td>
+                    <td>{{ item.school_name }}</td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteQuestion(item.id, index)"></i></td>
 				</tr>
 			</tbody>
