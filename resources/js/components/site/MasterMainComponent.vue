@@ -173,9 +173,9 @@
         color: #fff;
         text-align: center;
     }
-    .text_container p{
+    /* .text_container p{
 
-    }
+    } */
     .centering{
         display: flex;
         align-items: center;
