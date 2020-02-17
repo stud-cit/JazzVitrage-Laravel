@@ -1120,7 +1120,7 @@
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
                                 <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
                                 <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
@@ -1183,14 +1183,14 @@
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
                                 <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
                                     <li class="info-item">Електрона адреса: {{registration.data.memberEmail1}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                                 <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname2 + ' ' + registration.data.memberName2 + ' ' + registration.data.memberPatronymic2}}</li>
                                     <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
                                     <li class="info-item">Електрона адреса: {{registration.data.memberEmail2}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>

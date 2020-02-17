@@ -23,7 +23,7 @@ class ContactsController extends Controller
         $nomination = Nomination::where('nomination_id', '=', $id)->get();
         foreach($nomination as $nom_name)
         {
-            $data = Users::orderBy('created_at', 'asc')->where('nominations', '=', $nom_name->name)->get();
+            $data = Users::orderBy('created_at', 'asc')->where('nominations', 'LIKE', '%'.$nom_name->name.'%')->get();
             return response()->json($data);
         }
     }
