@@ -269,7 +269,7 @@ class ApplicationController extends Controller
             }
         } else {
             for($i = 0; $i < count($model->teachers); $i++) {
-                $this->sendMailGroup('application_approved', $titleMessage, $model->group->name, $model->teachers[$i]['teacher_email']);
+                $this->sendMailGroup('application_approved', $titleMessage, $model->group, $model->teachers[$i]['teacher_email']);
             }
         }
         return response('ok', 200);
@@ -291,7 +291,7 @@ class ApplicationController extends Controller
             }
         } else {
             for($i = 0; $i < count($model->teachers); $i++) {
-                $this->sendMailGroup('application_denied', $titleMessage, $model->group->name, $model->teachers[$i]['teacher_email'], $request->message);
+                $this->sendMailGroup('application_denied', $titleMessage, $model->group, $model->teachers[$i]['teacher_email'], $request->message);
             }
         }
         $model->delete();
@@ -350,7 +350,7 @@ class ApplicationController extends Controller
                 }
             } else {
                 for($i = 0; $i < count($model->teachers); $i++) {
-                    $this->sendMailGroup('invitation', $titleMessage, $model[$i]->group->name, $model->teachers[$i]['teacher_email']);
+                    $this->sendMailGroup('invitation', $titleMessage, $model[$i]->group, $model->teachers[$i]['teacher_email']);
                 }
             }
         }
