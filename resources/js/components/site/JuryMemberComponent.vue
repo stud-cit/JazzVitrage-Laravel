@@ -3,7 +3,7 @@
         <section class="sections main-section jury-member juries">
             <div class="container">
                 <div class="page-nav">
-                   <router-link :to="{ name: 'juries'}" class="prev-page"><i class="fa fa-angle-left"></i>всі журі</router-link>
+                   <router-link :to="{ name: 'juries'}" class="prev-page"><i class="fa fa-angle-left"></i>все журі</router-link>
                 </div>      
                 <div class="member-jury-card" v-for="(item, index) in juryMember" :key="index">
                     <div class="picture">

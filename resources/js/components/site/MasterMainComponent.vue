@@ -43,11 +43,14 @@
                             <span class="errors" v-if="errors.has('name')">
                                 Введіть корректні дані
                             </span>
+
+                            <input type="text" v-model="request.appointment" placeholder="Посада" id="appointment" name="appointment">
+
                             <input type="text" v-model="request.phone" placeholder="Телефон" id="phone" name="phone" v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                             <span class="errors" v-if="errors.has('phone')">
                                 Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                             </span>
-                            <input type="text" v-model="request.email" id="email" name="email" placeholder="Email" v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
+                            <input type="text" v-model="request.email" id="email" name="email" placeholder="Email" v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                             <span class="errors" v-if="errors.has('email')">
                                 Введіть дані у форматі name@email.com
                             </span>
@@ -57,8 +60,8 @@
                                 Введіть корректні дані
                             </span>
 
-                            <input type="text" v-model="request.school_address" id="school_address" name="school_address" placeholder="Адрес школи" v-validate="{ required: true }">
-                            <span class="errors" v-if="errors.has('school_address')">
+                            <input type="text" v-model="request.school_name" id="school_name" name="school_name" placeholder="Назва школи" v-validate="{ required: true }">
+                            <span class="errors" v-if="errors.has('school_name')">
                                 Введіть корректні дані
                             </span>
 
@@ -83,10 +86,11 @@
                 photo: [],
                 request: {
                     name: '',
+                    appointment: '',
                     phone: '',
                     email: '',
                     sity: '',
-                    school_address: ''
+                    school_name: ''
                 }
             }
         },
@@ -103,15 +107,29 @@
 				    })
             },
             sendRequest() {
-			    axios.post('/api/master-request', this.request)
-				    .then(() => {
-						swal("Успішно відправлено", {
-							icon: "success",
-						});
-				    })
-            }
-        },
+                this.$validator.validateAll().then((result) => {
+                    if (!result) {
+
+                        return
+                    }
+                    else {
+                        axios.post('/api/master-request', this.request)
+                            .then(() => {
+                                swal("Успішно відправлено", {
+                                    icon: "success",
+                                });
+                            }).catch((error) => {
+                                swal({
+                                    icon: "error",
+                                    title: 'Помилка',
+                                    text: 'Не вдалося'
+                                });
+                            });
+                        }
+                });
+        }
     }
+}
 </script>
 
 <style scoped>
@@ -155,9 +173,9 @@
         color: #fff;
         text-align: center;
     }
-    .text_container p{
+    /* .text_container p{
 
-    }
+    } */
     .centering{
         display: flex;
         align-items: center;
