@@ -905,12 +905,10 @@
                                 <span class="errors" v-if="errors.has('teacher_id_code_'+index)">
                                     Ідентифікаційний номер повинен містити 10 цифр
                                 </span>
-                                -->
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
                                 </div>
                                 <br>
-                                <!--
                                 <label>ПАСПОРТНІ ДАНІ</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -922,7 +920,6 @@
                                 <span class="errors" v-if="errors.has('teacher_passport_data_'+index)">
                                     Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                                 </span>
-                                -->
                                 <label>Відсканований паспорт</label>
                                 <div class="input-row">
                                     <div class="input-container" v-if="teacher.teacher_passport == null">
@@ -947,6 +944,7 @@
                                 <span class="errors" v-if="errors.has('teacher_passport_'+index)">
                                     Оберіть файл графічного або pdf-формату
                                 </span>
+                                -->
                                 <hr>
                             </div>
                             <br>
@@ -1434,7 +1432,7 @@
                                 teacher_phone: '',
                                 //teacher_passport_data: '',
                                 //teacher_address: '',
-                                teacher_passport: 'завантажити файл'
+                                //teacher_passport: 'завантажити файл'
                             }
                         ],
 
@@ -1471,7 +1469,7 @@
                     teacher_phone: '',
                     //teacher_passport_data: '',
                     //teacher_address: '',
-                    teacher_passport: 'завантажити файл'
+                    //teacher_passport: 'завантажити файл'
                 });
             },
             deleteTeacher(index) {
@@ -1590,14 +1588,14 @@
                 this.fileTitle[input.id] = image;
                 this.registration.files[input.id] = input.files[0];
             },
-
+            /*
             getInputTeacherFile(event, index){
                 const input = event.target;
                 this.registration.data.teachers[index].teacher_passport = input.files[0].name;
                 this.registration.data.teachers[index].teacher_passport_index = 'teacher_passport_'+index;
                 this.registration.files['teacher_passport_'+index] = input.files[0];
             },
-
+            */
             sendApp(){
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(this.registration.data));

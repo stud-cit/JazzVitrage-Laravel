@@ -23,7 +23,7 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_email');
             $table->string('teacher_phone');
             //$table->string('teacher_passport_data');
-            $table->string('teacher_passport');
+            //$table->string('teacher_passport');
             //$table->string('teacher_address');
             $table->integer('application_id')->unsigned();
             $table->timestamps();

@@ -17,7 +17,7 @@ class Teachers extends Model
         'teacher_email',
         'teacher_phone',
         //'teacher_passport_data',
-        'teacher_passport',
+        //'teacher_passport',
         //'teacher_address',
         'application_id'
     ];

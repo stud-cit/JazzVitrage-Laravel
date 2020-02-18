@@ -138,7 +138,7 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
                 $teachersModel->create($teacher);
             }
@@ -188,7 +188,7 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
                 $teachersModel->create($teacher);
             }
@@ -207,7 +207,7 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
                 $teachersModel->create($teacher);
                 $this->sendMailGroup('application_accepted', $titleMessage, $group, $teacher['teacher_email']);

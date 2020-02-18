@@ -181,7 +181,6 @@
                                 <p>{{ teacher.teacher_in }}</p>
                                 <label class="brtop">Дані свідотства про народження або паспорта</label>
                                 <p>{{ teacher.teacher_passport_data }}</p>
-                                -->
                                 <label class="brtop">Фото документів</label>
                                 <div id="memberPhoto" class="row">
                                     <div class="col-2 statementPhotoDoc" @click="getFileImg(teacher.teacher_passport)">
@@ -192,6 +191,7 @@
                                         <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
                                     </div>
                                 </div>
+                                -->
                                 <hr>
                             </div>
 
