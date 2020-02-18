@@ -13,12 +13,12 @@ class Teachers extends Model
         'teacher_name',
         'teacher_surname',
         'teacher_patronymic',
-        'teacher_in',
+        //'teacher_in',
         'teacher_email',
         'teacher_phone',
-        'teacher_passport_data',
+        //'teacher_passport_data',
         'teacher_passport',
-        'teacher_address',
+        //'teacher_address',
         'application_id'
     ];
 }

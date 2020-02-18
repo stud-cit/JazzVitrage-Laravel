@@ -69,6 +69,7 @@ ____________ Н.О. Цибульська
                     {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                 @endforeach
             </td>
+            <!--
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
                     {{ $teachers['teacher_passport_data'] }}
@@ -84,6 +85,7 @@ ____________ Н.О. Цибульська
                     {{ $teachers['teacher_in'] }}
                 @endforeach
             </td>
+            -->
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>

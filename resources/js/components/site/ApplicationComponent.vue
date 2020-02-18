@@ -859,6 +859,7 @@
                                 <span class="errors" v-if="errors.has('teacher_patronymic_'+index)">
                                         Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                                 </span>
+                                <!--
                                 <label>Домашня адреса</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -869,6 +870,7 @@
                                 <span class="errors" v-if="errors.has('teacher_address_'+index)">
                                     Поле "Домашня адреса" має бути заповнене
                                 </span>
+                                -->
                                 <label>Електрона пошта</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -891,6 +893,7 @@
                                 <span class="errors" v-if="errors.has('teacher_phone_'+index)">
                                     Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                                 </span>
+                                <!--
                                 <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -902,10 +905,12 @@
                                 <span class="errors" v-if="errors.has('teacher_id_code_'+index)">
                                     Ідентифікаційний номер повинен містити 10 цифр
                                 </span>
+                                -->
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
                                 </div>
                                 <br>
+                                <!--
                                 <label>ПАСПОРТНІ ДАНІ</label>
                                 <div class="input-row">
                                     <div class="input-container">
@@ -917,6 +922,7 @@
                                 <span class="errors" v-if="errors.has('teacher_passport_data_'+index)">
                                     Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                                 </span>
+                                -->
                                 <label>Відсканований паспорт</label>
                                 <div class="input-row">
                                     <div class="input-container" v-if="teacher.teacher_passport == null">
@@ -1261,7 +1267,7 @@
                                 <ul class="info-list" v-for="(teacher, index) in registration.data.teachers" :key="index">
                                     <li class="info-item">Прізвище, ім'я, по-батькові керівника: {{teacher.teacher_surname + ' ' + teacher.teacher_name + ' ' + teacher.teacher_patronymic}}</li>
                                     <li class="info-item">Контактний телефон керівника: {{teacher.teacher_phone}}</li>
-                                    <li class="info-item">Ідентифікаційний номер керівника: {{teacher.teacher_in}}</li>
+                                    <!--<li class="info-item">Ідентифікаційний номер керівника: {{teacher.teacher_in}}</li>-->
                                     <li class="info-item">Електронна пошта керівника: {{teacher.teacher_email}}</li>
                                 </ul>
                             </div>
@@ -1423,11 +1429,11 @@
                                 teacher_name: '',
                                 teacher_surname: '',
                                 teacher_patronymic: '',
-                                teacher_in: '',
+                                //teacher_in: '',
                                 teacher_email: '',
                                 teacher_phone: '',
-                                teacher_passport_data: '',
-                                teacher_address: '',
+                                //teacher_passport_data: '',
+                                //teacher_address: '',
                                 teacher_passport: 'завантажити файл'
                             }
                         ],
@@ -1460,11 +1466,11 @@
                     teacher_name: '',
                     teacher_surname: '',
                     teacher_patronymic: '',
-                    teacher_in: '',
+                    //teacher_in: '',
                     teacher_email: '',
                     teacher_phone: '',
-                    teacher_passport_data: '',
-                    teacher_address: '',
+                    //teacher_passport_data: '',
+                    //teacher_address: '',
                     teacher_passport: 'завантажити файл'
                 });
             },

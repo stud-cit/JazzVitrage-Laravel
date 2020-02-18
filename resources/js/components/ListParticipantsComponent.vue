@@ -175,12 +175,14 @@
                                 <p>{{ teacher.teacher_phone }}</p>
                                 <label class="brtop">Email викладача</label>
                                 <p>{{ teacher.teacher_email }}</p>
+                                <!--
                                 <label class="brtop">Домашня адреса викладача</label>
                                 <p>{{ teacher.teacher_address }}</p>
                                 <label class="brtop">Ідентифікаційний номер викладача</label>
                                 <p>{{ teacher.teacher_in }}</p>
                                 <label class="brtop">Дані свідотства про народження або паспорта</label>
                                 <p>{{ teacher.teacher_passport_data }}</p>
+                                -->
                                 <label class="brtop">Фото документів</label>
                                 <div id="memberPhoto" class="row">
                                     <div class="col-2 statementPhotoDoc" @click="getFileImg(teacher.teacher_passport)">
