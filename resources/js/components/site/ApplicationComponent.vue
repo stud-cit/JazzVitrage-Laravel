@@ -727,11 +727,11 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupAverage" v-model="registration.data.groupAverage" required
-                                        v-validate="{ regex: /^(([8-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
+                                        v-validate="{ regex: /^(([7-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupAverage')">
-                                    Введіть корректні дані в діапазоні від 8 до 17
+                                    Введіть корректні дані в діапазоні від 7 до 17
                             </span>
                             <h3 class="step-title">Документ з датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
@@ -1117,7 +1117,7 @@
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія:
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
@@ -1180,7 +1180,7 @@
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія:
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
@@ -1250,7 +1250,7 @@
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
                                 <h5 class="step-title">Вікова категорія:
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
@@ -1350,7 +1350,7 @@
                 compress_url: '',
                 datepicker: {
                     minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
-                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(nowDate.getFullYear()-7 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
                             months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
@@ -1510,7 +1510,7 @@
                     if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.getAge(this.registration.data.memberDate);
 
-                        if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+                        if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 	                        this.registration.data.nameAgeCategory = 'молодша';
                         }
                         else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
@@ -1523,7 +1523,7 @@
                     else if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 != '') {
                         this.registration.data.ageCategory = (this.getAge(this.registration.data.memberDate) + this.getAge(this.registration.data.memberDate2)) / 2;
 
-	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+	                    if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 		                    this.registration.data.nameAgeCategory = 'молодша';
 	                    }
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
@@ -1536,7 +1536,7 @@
                     else if(this.registration.data.memberDate == '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.registration.data.groupAverage;
 
-	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+	                    if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 		                    this.registration.data.nameAgeCategory = 'молодша';
 	                    }
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {

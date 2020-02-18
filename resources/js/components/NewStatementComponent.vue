@@ -250,7 +250,6 @@ export default {
             .then((response) => {
                 this.members = [];
                 this.memberPhoto = [];
-                console.log(response.data)
                 response.data.forEach(member => {
                     if(member.solo_duet.length == 0) {
                         this.members.push({
