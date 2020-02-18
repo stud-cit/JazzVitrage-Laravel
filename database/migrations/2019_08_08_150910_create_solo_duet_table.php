@@ -18,7 +18,6 @@ class CreateSoloDuetTable extends Migration
             $table->string('name', 50);
             $table->string('surname', 50);
             $table->string('patronymic', 50);
-            $table->string('member_email', 50);
             $table->string('member_address', 150);
             $table->date('data_birthday');
             $table->string('passport_data');

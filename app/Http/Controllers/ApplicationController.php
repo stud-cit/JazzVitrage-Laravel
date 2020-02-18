@@ -122,7 +122,6 @@ class ApplicationController extends Controller
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->data_birthday = $data->memberDate;
             $soloDuet->member_address = $data->memberAddress;
-            $soloDuet->member_email = $data->memberEmail;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
             $soloDuet->parent_patronymic = $data->parentPatronymic;
@@ -133,14 +132,13 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
 
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
-                $teachersModel->create($teacher);
+                $response = $teachersModel->create($teacher);
+                $this->sendMail('soloDuet', 'application_accepted', $titleMessage, $response);
             }
 
         }
@@ -151,7 +149,6 @@ class ApplicationController extends Controller
             $soloDuet->surname = $data->memberSurname;
             $soloDuet->patronymic = $data->memberPatronymic;
             $soloDuet->member_address = $data->memberAddress;
-            $soloDuet->member_email = $data->memberEmail1;
             $soloDuet->data_birthday = $data->memberDate;
             $soloDuet->parent_name = $data->parentName;
             $soloDuet->parent_surname = $data->parentSurname;
@@ -163,13 +160,11 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->memberBirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
 
             $soloDuet = new SoloDuet;
             $soloDuet->name = $data->memberName2;
             $soloDuet->surname = $data->memberSurname2;
             $soloDuet->patronymic = $data->memberPatronymic2;
-            $soloDuet->member_email = $data->memberEmail2;
             $soloDuet->member_address = $data->memberAddress2;
             $soloDuet->data_birthday = $data->memberDate2;
             $soloDuet->parent_name = $data->parentName2;
@@ -182,15 +177,13 @@ class ApplicationController extends Controller
             $soloDuet->passport_photo = $request->member2BirthdayFile->store($this->publicStorage.$app->application_id);
             $soloDuet->in_file = $request->idFile2->store($this->publicStorage.$app->application_id);
             $soloDuet->save();
-            $this->sendMailMember('application_accepted', $titleMessage, $soloDuet);
-
 
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
-                $teachersModel->create($teacher);
+                $response = $teachersModel->create($teacher);
+                $this->sendMail('soloDuet', 'application_accepted', $titleMessage, $response);
             }
 
         }
@@ -207,10 +200,9 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
-                //$teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
                 $teacher['application_id'] = $app->application_id;
-                $teachersModel->create($teacher);
-                $this->sendMailGroup('application_accepted', $titleMessage, $group, $teacher['teacher_email']);
+                $response = $teachersModel->create($teacher);
+                $this->sendMail('group', 'application_accepted', $titleMessage, $response);
             }
         }
 
@@ -264,12 +256,12 @@ class ApplicationController extends Controller
         $model->save();
 
         if ($model->application_type_id == 1 || $model->application_type_id == 2){
-            for($i = 0; $i < count($model->soloDuet); $i++) {
-                $this->sendMailMember('application_approved', $titleMessage, $model->soloDuet[$i]);
+            for($i = 0; $i < count($model->teachers); $i++) {
+                $this->sendMail('soloDuet', 'application_approved', $titleMessage, $model->teachers[$i]);
             }
         } else {
             for($i = 0; $i < count($model->teachers); $i++) {
-                $this->sendMailGroup('application_approved', $titleMessage, $model->group, $model->teachers[$i]['teacher_email']);
+                $this->sendMail('group', 'application_approved', $titleMessage, $model->teachers[$i]);
             }
         }
         return response('ok', 200);
@@ -286,12 +278,12 @@ class ApplicationController extends Controller
         Evaluation::where("application_id", $id)->delete();
 
         if ($model->application_type_id == 1 || $model->application_type_id == 2){
-            for($i = 0; $i < count($model->soloDuet); $i++) {
-                $this->sendMailMember('application_denied', $titleMessage, $model->soloDuet[$i], $request->message);
+            for($i = 0; $i < count($model->teachers); $i++) {
+                $this->sendMail('soloDuet', 'application_denied', $titleMessage, $model->teachers[$i], $request->message);
             }
         } else {
             for($i = 0; $i < count($model->teachers); $i++) {
-                $this->sendMailGroup('application_denied', $titleMessage, $model->group, $model->teachers[$i]['teacher_email'], $request->message);
+                $this->sendMail('group', 'application_denied', $titleMessage, $model->teachers[$i], $request->message);
             }
         }
         $model->delete();
@@ -341,16 +333,16 @@ class ApplicationController extends Controller
     // Запрошення на Гала-концерт
 
     function sendInvitation() {
-        $model = Application::with('soloDuet', 'group', 'preparation')->approved()->get();
+        $model = Application::with('soloDuet', 'group', 'preparation', 'teachers')->approved()->get();
         $titleMessage = 'Запрошення на Гала-Концерт';
         for($i = 0; $i < count($model); $i++) {
             if ($model[$i]->application_type_id == 1 || $model[$i]->application_type_id == 2){
-                for($j = 0; $j < count($model[$i]->soloDuet); $j++) {
-                    $this->sendMailMember('invitation', $titleMessage, $model[$i]->soloDuet[$j]);
+                for($j = 0; $j < count($model[$i]->teachers); $j++) {
+                    $this->sendMail('soloDuet', 'invitation', $titleMessage, $model[$i]->teachers[$j]);
                 }
             } else {
-                for($i = 0; $i < count($model->teachers); $i++) {
-                    $this->sendMailGroup('invitation', $titleMessage, $model[$i]->group, $model->teachers[$i]['teacher_email']);
+                for($j = 0; $j < count($model[$i]->teachers); $j++) {
+                    $this->sendMail('group', 'invitation', $titleMessage, $model[$i]->teachers[$j]);
                 }
             }
         }
@@ -359,67 +351,18 @@ class ApplicationController extends Controller
 
     // Відправка листів
 
-    // Для одного учасника
-    function sendMailMember($type, $title, $member, $note = '') {
-        $model = Application::with('soloDuet')->get();
+    function sendMail($typeMember, $type, $title, $teacher, $note = '') {
+        $model = Application::with($typeMember)->get();
         $period = Period::find(1);
         $textMessage = UserMessages::where('type', $type)->first();
         $textMessage = $textMessage->text;
 
-        $pib = $member->surname . " " . $member->name . " " . $member->patronymic;
-        $email = $member->member_email;
-
-        $textMessage = str_ireplace('[ПІБ]', $pib, $textMessage);
+        $textMessage = str_ireplace('[ПІБ]', $teacher->teacher_surname." ".$teacher->teacher_name." ".$teacher->teacher_patronymic, $textMessage);
         $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
         $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
         $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
 
-        Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
-            $message->to($email, '')->subject($title);
-            $message->from('jazz@gmail.com', 'JazzVitrage');
-        });
-
-        // повідомлення керівництву
-        // $textGeneralMessage = 'Створена нова заявка на участь у конкурсі';
-        // $generalEmail = 'jazzsumy@gmail.com';
-
-        // for($i = 0; $i < count($model); $i++) {
-        //     if ($model[$i]->application_type_id == 1 && $model[$i]->application_id == $member->application_id) {
-        //             $number_aplication = $model[$i]->application_id;
-        //             $type = $model[$i]->appType->name;
-        //             $nomination = $model[$i]->nomination->name;
-        //             //$countSolo = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
-
-        //             Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
-        //                 $message->to($generalEmail, '')->subject($textGeneralMessage);
-        //                 $message->from('jazz@gmail.com', 'JazzVitrage');
-        //             });
-        //     }
-        //     else if($model[$i]->application_type_id == 2 && $model[$i]->application_id == $member->application_id) {
-        //             $number_aplication = $model[$i]->application_id;
-        //             $type = $model[$i]->appType->name;
-        //             $nomination = $model[$i]->nomination->name;
-        //             //$countDuet = 'Кількість заяв у данній категорії: '.count($model[$i]->soloDuet);
-
-        //             Mail::raw("Номер заявки: ".$number_aplication. "\n" . "Тип заявки: ".$type. "\n" . "Номінація: ".$nomination . "\n", function($message) use ($generalEmail, $textGeneralMessage){
-        //                 $message->to($generalEmail, '')->subject($textGeneralMessage);
-        //                 $message->from('jazz@gmail.com', 'JazzVitrage');
-        //             });
-        //     }
-        // }
-    }
-
-    // Для групи
-    function sendMailGroup($type, $title, $groupName, $email, $note = '') {
-        $model = Application::with('group')->get();
-        $period = Period::find(1);
-        $textMessage = UserMessages::where('type', $type)->first();
-        $textMessage = $textMessage->text;
-
-        $textMessage = str_ireplace('[ПІБ]', $groupName->name, $textMessage);
-        $textMessage = str_ireplace('[причина вказана адміністратором]', $note, $textMessage);
-        $textMessage = str_ireplace('[початок прийому заявок]', $period->start_date, $textMessage);
-        $textMessage = str_ireplace('[кінець прийому заявок]', $period->expiration_date, $textMessage);
+        $email = $teacher->teacher_email;
 
         Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
             $message->to($email, '')->subject($title);

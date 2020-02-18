@@ -82,9 +82,11 @@ ______________ Н.О. Цибульська<br>
                     </td>
                     <td class="tg-0pky">
                         @foreach ($item['teachers'] as $teachers)
-                            {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                            Викладач: {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                         @endforeach
-                        {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
+                        @if($item['preparation']['concertmaster_name'] != '')
+                            Концертмейстр: {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
+                        @endif
                     </td>
                     <?php
                         $sumEvaluation = 0;
@@ -145,9 +147,11 @@ ______________ Н.О. Цибульська<br>
                     </td>
                     <td class="tg-0pky">
                         @foreach ($item['teachers'] as $teachers)
-                            {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                            Викладач: {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                         @endforeach
-                        {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
+                        @if($item['preparation']['concertmaster_name'] != '')
+                            Концертмейстр: {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
+                        @endif
                     </td>
                     <?php
                         $sumEvaluation = 0;

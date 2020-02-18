@@ -14,9 +14,9 @@
         <th class="tg-c3ow">№</th>
         <th class="tg-c3ow">ПІБ / Назва групи</th>
         <th class="tg-c3ow">Кількість учасників</th>
-        <th class="tg-c3ow">ІНН учасника / викладача</th>
-        <th class="tg-c3ow">Номер свідотства про народження учасника / викладача</th>
-        <th class="tg-c3ow">Домашня адреса учасника / викладача</th>
+        <th class="tg-c3ow">ІНН учасника</th>
+        <th class="tg-c3ow">Номер свідотства про народження учасника</th>
+        <th class="tg-c3ow">Домашня адреса учасника</th>
     </tr>
     @foreach ($data as $item)
         @if($item['application_type_id'] == 1 || $item['application_type_id'] == 2)
@@ -56,19 +56,13 @@
             <td class="tg-0pky">{{ $item['group']['count_people'] }}</td>
             <!--
             <td class="tg-0pky">
-                @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_in'] }}
-                @endforeach
+                -
             </td>
             <td class="tg-0pky">
-                @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_passport_data'] }}
-                @endforeach
+                -
             </td>
             <td class="tg-0pky">
-                @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_address'] }}
-                @endforeach
+                -
             </td>
             -->
         </tr>
