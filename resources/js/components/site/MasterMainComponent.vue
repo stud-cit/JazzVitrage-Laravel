@@ -18,11 +18,11 @@
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" :data-slide-to="index" :class="index == 0 ? 'active' : ''" v-for="(item, index) in photo" :key="index"></li>
                         </ol>
-                        <div class="carousel-inner">
-                            <div :class="index == 0 ? 'carousel-item active' : 'carousel-item'" v-for="(item, index) in photo" :key="index">
+                        <silentbox-group class="carousel-inner">
+                            <silentbox-item :class="index == 0 ? 'carousel-item active' : 'carousel-item'" v-for="(item, index) in photo" :key="index" :src="'/img/uploads/'+item.file">
                                 <img class="d-block w-100" :src="'/img/uploads/'+item.file">
-                            </div>
-                        </div>
+                            </silentbox-item>
+                        </silentbox-group>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
