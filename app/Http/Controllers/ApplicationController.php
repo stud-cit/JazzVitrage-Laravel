@@ -76,7 +76,7 @@ class ApplicationController extends Controller
 
      public function getArciveMembers()
      {
-         $data = Application::with('appType', 'soloDuet', 'group', 'presentation', 'nomination', 'teachers')->where('status', '=', 'archive')->get();
+         $data = Application::with('appType', 'soloDuet', 'group', 'presentation', 'preparation', 'nomination', 'teachers')->where('status', '=', 'archive')->get();
          return response()->json($data);
      }
 
