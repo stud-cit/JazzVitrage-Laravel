@@ -91,11 +91,11 @@
         created () {
             this.getInfo();
             this.isOpenedRegistration();
-            if(this.getCookie('googtrans') =='/uk/en'){
-
+	        if(document.cookie.indexOf('googtrans=/uk/en') == -1){
+		        this.translate = false;
+	        } else {
                 this.translate = true;
             }
-
         },
         computed: {
 
