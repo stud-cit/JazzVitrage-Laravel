@@ -3,6 +3,7 @@
         <div class="bg">
             <section class="master_main">
                 <div class="container centering">
+                    <img :src="info.logo_master" class="masterImg" :alt="info.title_master">
                     <div class="col-12 col-md-12 col-sm-12 col-lg-9">
                         <div class="text_container">
                             <h2>{{ info.title_master }}</h2>
@@ -79,10 +80,7 @@
     export default {
         data() {
             return {
-                info: {
-                    logo: '',
-                    text: ''
-                },
+                info: {},
                 photo: [],
                 request: {
                     name: '',
@@ -94,7 +92,7 @@
                 }
             }
         },
-        created() {
+        mounted() {
             this.getInfo();
             document.title = "Майстер клас";
         },
@@ -149,7 +147,13 @@
         text-align: right;
         position: relative;
     }
-    .text_container::before{
+    .masterImg {
+        width: 500px;
+        margin-right: -200px;
+        margin-top: 50px;
+        z-index: 2;
+    }
+    /* .text_container::before{
         content: '';
         position: absolute;
         left: -320px;
@@ -160,7 +164,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-    }
+    } */
     .text_container h2{
         font-size: 60px;
         font-weight: 600;
@@ -173,9 +177,6 @@
         color: #fff;
         text-align: center;
     }
-    /* .text_container p{
-
-    } */
     .centering{
         display: flex;
         align-items: center;
@@ -223,10 +224,13 @@
         padding-bottom: 60px;
     }
     @media(max-width: 992px){
-        .text_container::before{
+        .masterImg {
+            display: none;
+        }
+        /* .text_container::before{
             height: 100%;
             top: 0;
-        }
+        } */
     }
     @media(max-width: 767px){
         .master_main{
