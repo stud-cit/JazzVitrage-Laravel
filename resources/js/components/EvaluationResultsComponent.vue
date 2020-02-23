@@ -2,38 +2,28 @@
     <div>
         <h1 v-if="hasError" class='text-center'>Ой лишенько... виникли проблеми</h1>
         <template v-else>
-            <form role="form" @submit.prevent class="search">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <input v-model="search" type="text" class="form-control">
-            </form>
-            <div class="row justify-content-between">
-                <!--<div class="col-sm">-->
-                    <!--<label for="documentType">Тип документу</label>-->
-                    <!--<select class="form-control" id="documentType">-->
-                        <!--<option>хз</option>-->
-                        <!--<option>хз хз</option>-->
-                        <!--<option>хз хз хз</option>-->
-                    <!--</select>-->
-
-            <!--</div>-->
-
-            <div class="col-2">
-                <label for="member">Учасник (тип)</label>
-                <select class="form-control w-100" id="member" @change="searchMembers">
-                    <option value="" selected="selected">всі учасники</option>
-                    <option value="Соліст">Соліст</option>
-                    <option value="Дует">Дует</option>
-                    <option value="Група">Група</option>
-                </select>
+            <div class="row">
+                <div class="col-10">
+                    <form role="form" @submit.prevent class="search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input v-model="search" type="text" class="form-control">
+                    </form>
+                </div>
+                <div class="col-2">
+                    <select class="form-control mt-2 w-100" id="member" @change="searchMembers">
+                        <option value="" selected="selected">всі учасники</option>
+                        <option value="Соліст">Соліст</option>
+                        <option value="Дует">Дует</option>
+                        <option value="Група">Група</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-10 pt-3">
-                <a href="/admin/vidomist-chleniv-zhuri" target="_blank" class="btn btn-outline-secondary float-right">Загальна відомість членів журі</a>
-                <a href="/admin/vidomist-dzhaz-vitrazh" target="_blank" class="btn btn-outline-secondary float-right mx-2">Відомість джаз вітраж</a>
-                <a href="/admin/list-members" target="_blank" class="btn btn-outline-secondary float-right">Список учасників</a>
-                <a href="/admin/сontact-members" target="_blank" class="btn btn-outline-secondary float-right mx-2">Контактні дані</a>
-            </div>
-        </div>
-        <br>
+            <a href="/admin/vidomist-chleniv-zhuri" target="_blank" class="btn btn-outline-secondary">Загальна відомість членів журі</a>
+            <a href="/admin/vidomist-dzhaz-vitrazh" target="_blank" class="btn btn-outline-secondary mx-2">Відомість джаз вітраж</a>
+            <a href="/admin/list-members" target="_blank" class="btn btn-outline-secondary">Список учасників</a>
+            <a href="/admin/сontact-members" target="_blank" class="btn btn-outline-secondary mx-2">Контактні дані</a>
+            <a href="/admin/diploms" target="_blank" class="btn btn-outline-secondary">Таблиця для вручення дипломів</a>
+        <br><br>
         <table class="table table-bordered" ref="printTable" id="allMembers">
             <thead>
                 <tr>

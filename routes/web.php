@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/vidomist-dzhaz-vitrazh', 'ApplicationController@vidomistDzhazVitrazhPDF');
     Route::get('/admin/list-members', 'ApplicationController@listMembersPDF');
     Route::get('/admin/сontact-members', 'ApplicationController@сontactMembers');
+    Route::get('/admin/diploms', 'ApplicationController@diploms');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {

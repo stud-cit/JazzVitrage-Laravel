@@ -28,7 +28,7 @@
 }
 .search i {
     display: block;
-    margin: 30px 0px -30px 10px;
+    margin: 14px 0px -30px 10px;
     font-size: 24px;
 }
 .search input {
@@ -286,6 +286,19 @@
 }
 .custom-file-control:before {
     content: "Вибрати";
+}
+
+.preloader {
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
 }
 
 .openImg {

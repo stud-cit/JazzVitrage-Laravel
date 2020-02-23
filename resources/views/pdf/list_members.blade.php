@@ -54,7 +54,7 @@
                 @endforeach
             </td>
             <td class="tg-0pky">{{ $item['group']['count_people'] }}</td>
-            <!--
+            
             <td class="tg-0pky">
                 -
             </td>
@@ -64,7 +64,7 @@
             <td class="tg-0pky">
                 -
             </td>
-            -->
+           
         </tr>
         @endif
     @endforeach

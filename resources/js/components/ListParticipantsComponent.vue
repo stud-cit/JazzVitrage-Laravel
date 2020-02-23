@@ -4,7 +4,6 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
-
       <button type="button" class="btn btn-primary float-right mb-4" @click="sendInvitation">Надіслати учасникам запрошення на Гала-Концерт</button>
 
         <div class="openImg" v-if="img" @click="closeImg">
@@ -198,20 +197,26 @@
                     </td>
                 </tr>
             </tbody>
-
       </table>
-
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 export default {
     data() {
         return {
             members: [],
             search: '',
-            img: ''
+            img: '',
+            preloader: false
         }
+    },
+    components: {
+        Spinner,
     },
     created() {
         this.getFullList();
@@ -389,11 +394,13 @@ export default {
             })
                 .then((done) => {
                     if (done) {
+                        this.preloader = true;
                         axios.post('/api/send-invitation')
                             .then(() => {
                                 swal("Листи успішно надіслано", {
                                     icon: "success",
                                 });
+                                this.preloader = false;
                             });
                     }
                 });

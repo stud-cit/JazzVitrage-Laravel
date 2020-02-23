@@ -465,8 +465,16 @@ class ApplicationController extends Controller
         $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
-            // return response()->json($data);
         $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data]);
         return $pdf->stream('Контактні_дані.pdf');
+    }
+
+    function diploms() {
+        $data = Application::with('nomination', 'soloDuet', 'group', 'preparation', 'teachers')
+            ->approved()
+            ->get();
+        // return response()->json($data);
+        $pdf = PDF::loadView('pdf.diploms', ['data' => $data]);
+        return $pdf->stream('Дипломи.pdf');
     }
 }

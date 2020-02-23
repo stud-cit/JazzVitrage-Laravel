@@ -824,7 +824,7 @@
                                 <span class="errors" v-if="errors.has('teacher_patronymic_'+index)">
                                         Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                                 </span>
-                                <label>Електрона пошта</label>
+                                <label>Електронна пошта</label>
                                 <div class="input-row">
                                     <div class="input-container">
                                         <img src="img/input-mail.png" class="input-img">
@@ -1026,7 +1026,7 @@
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
                                 <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
-                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -1088,13 +1088,13 @@
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
-                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
+                                    <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname2 + ' ' + registration.data.memberName2 + ' ' + registration.data.memberPatronymic2}}</li>
-                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
+                                    <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate2}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
@@ -1197,7 +1197,7 @@
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
-                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                                    <b>Для оформлення заявки ви повинні дати згоду на збір даних</b>
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
@@ -1248,7 +1248,7 @@
                 compress_url: '',
                 datepicker: {
                     minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
-                    maxDate: new Date(nowDate.getFullYear()-7 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
                             months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],

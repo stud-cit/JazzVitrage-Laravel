@@ -4,8 +4,8 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
-        <div class="openImg" v-if="test" @click="closeImg">
-            <img :src="test">
+        <div class="openImg" v-if="img" @click="closeImg">
+            <img :src="img">
         </div>
       <table class="table table-bordered accordion" id="accordion">
           <thead>
@@ -33,10 +33,10 @@
                        {{ item.nomination }}
                     </td>
                     <td>
-                        <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id)"></i>
+                        <i class="fa fa-2x fa-check-circle btn btn-default p-0" @click="addApproved(item.id, index)"></i>
                     </td>
                     <td>
-                        <i class="fa fa-2x fa-times-circle btn btn-default p-0"  @click="archiveMember(item.id)"></i>
+                        <i class="fa fa-2x fa-times-circle btn btn-default p-0"  @click="archiveMember(item.id, index)"></i>
                     </td>
                 </tr>
                 <tr :id="'collapse'+(index+1)" class="collapse" data-parent="#accordion">
@@ -197,12 +197,15 @@
                     </td>
                 </tr>
             </tbody>
-
       </table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+import Spinner from 'vue-spinner-component/src/Spinner.vue';
 export default {
     data() {
         return {
@@ -210,10 +213,13 @@ export default {
             results: [],
             members: [],
             search: '',
-            test: ''
+            img: '',
+            preloader: false
         };
     },
-
+    components: {
+        Spinner,
+    },
     created () {
         this.getFullList();
     },
@@ -337,17 +343,18 @@ export default {
                 });
             });
         },
-	    addApproved(id){
+	    addApproved(id, index){
+            this.preloader = !this.preloader;
             axios.post('/add-approved/'+id)
                 .then((response) => {
-	                if(response.status == 200 ) {
-		                this.getFullList();
-	                }
+                    this.members.splice(index, 1);
+                    this.preloader = !this.preloader;
 	                swal("Учаснику присвоєно статус: Схвалений", {
 		                icon: "success",
 	                });
                 })
 	            .catch((error) => {
+                    this.preloader = !this.preloader;
 		            swal({
 			            icon: "error",
 			            title: 'Помилка',
@@ -355,18 +362,19 @@ export default {
 		            });
 	            });
         },
-        archiveMember(id){
+        archiveMember(id, index){
+            this.preloader = !this.preloader;
             axios.post('/archive-members/'+id)
                 .then((response) => {
-                    if(response.status == 200 ) {
-                        this.getFullList();
-                    }
+                    this.members.splice(index, 1);
+                    this.preloader = !this.preloader;
                     swal("Запис був успішно доданий до архіву", {
                         icon: "success",
                     });
 
                 })
                 .catch((error) => {
+                    this.preloader = !this.preloader;
                     swal({
                         icon: "error",
                         title: 'Помилка',
@@ -381,7 +389,7 @@ export default {
                 responseType: 'blob'
             }).then((response) => {
                 var fileURL = window.URL.createObjectURL(response.data);
-                this.test = fileURL;
+                this.img = fileURL;
             });
         },
         getFile(file) {
@@ -398,7 +406,7 @@ export default {
             });
         },
         closeImg() {
-            this.test = '';
+            this.img = '';
         }
     }
 }

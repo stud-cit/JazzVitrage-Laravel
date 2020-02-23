@@ -92,9 +92,13 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -104,8 +108,12 @@
 				patronymic: '',
 				email: '',
 				informations: '',
-				form: new FormData
+				form: new FormData,
+				preloader: false
 			};
+		},
+		components: {
+			Spinner,
 		},
 		created () {
 			this.getOrgCommittee();
@@ -123,6 +131,7 @@
 						return;
 					}
 					else {
+						this.preloader = !this.preloader;
 						this.form.append('name', this.name);
 						this.form.append('surname', this.surname);
 						this.form.append('patronymic', this.patronymic);
@@ -131,6 +140,7 @@
 						this.form.append('informations', this.informations);
 						axios.post('/post-all-org', this.form)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								this.committees.push(response.data);
 								swal("Користувача успішно зареєстровано", {
 									icon: "success",
@@ -139,6 +149,7 @@
 								});
 							})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',
@@ -158,9 +169,11 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.post('/delete-user/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = !this.preloader;
 										this.committees.splice(index, 1);
 									}
 									swal("Член орг. комітету був успішно видалений", {
@@ -168,6 +181,7 @@
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

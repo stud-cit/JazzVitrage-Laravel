@@ -34,15 +34,15 @@
                         {{ item.nomination }}
                     </td>
                     <td>
-                        <a href="#" @click="unarchiveMember(item.id)"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
+                        <a href="#" @click="unarchiveMember(item.id, index)"><i class="fa fa-2x fa-check-circle" aria-hidden="true"></i></a>
                     <td>
-                        <a href="#" @click="deleteMember(item.id)"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
+                        <a href="#" @click="deleteMember(item.id, index)"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 <tr :id="'collapse'+(index+1)" class="collapse" data-parent="#accordion">
                     <td colspan="5" class="card-body">
                         <div class="col-5">
-                            <p v-if="item.type == 'соліст' || item.type == 'дует'"><strong>ПІП:</strong> {{ item.name }}</p>
+                            <p v-if="item.type == 'соліст' || item.type == 'дует'"><strong>ПІБ:</strong> {{ item.name }}</p>
                             <p v-else><strong>Назва колективу:</strong> {{ item.name }}</p>
                         </div>
                         <div class="col-5 type-style">
@@ -174,24 +174,6 @@
                                 <p>{{ teacher.teacher_phone }}</p>
                                 <label class="brtop">Email викладача</label>
                                 <p>{{ teacher.teacher_email }}</p>
-                                <!--
-                                <label class="brtop">Домашня адреса викладача</label>
-                                <p>{{ teacher.teacher_address }}</p>
-                                <label class="brtop">Ідентифікаційний номер викладача</label>
-                                <p>{{ teacher.teacher_in }}</p>
-                                <label class="brtop">Дані свідотства про народження або паспорта</label>
-                                <p>{{ teacher.teacher_passport_data }}</p>
-                                <label class="brtop">Фото документів</label>
-                                <div id="memberPhoto" class="row">
-                                    <div class="col-2 statementPhotoDoc" @click="getFileImg(teacher.teacher_passport)">
-                                        <i class="fa fa-search"></i>
-                                        <div class="mb-2">
-                                            <img src="/img/file.png">
-                                        </div>
-                                        <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
-                                    </div>
-                                </div>
-                                -->
                                 <hr>
                             </div>
 
@@ -218,19 +200,26 @@
                 </tr>
             </tbody>
       </table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 
 <script>
+    import Spinner from 'vue-spinner-component/src/Spinner.vue';
     export default {
         data() {
             return {
                 members: [],
                 search: '',
-                test: ''
+                test: '',
+                preloader: false
             };
         },
-
+        components: {
+            Spinner,
+        },
         created () {
             this.getFullList();
         },
@@ -243,12 +232,10 @@
             }
         },
         methods: {
-
 	        getFullList() {
 		        axios.get('/get-archive-members')
 			        .then((response) => {
                         this.members = [];
-                        console.log(response.data)
 				        response.data.forEach(member => {
 					        if (member.solo_duet.length == 0 && member.status == "archive") {
 						        this.members.push({
@@ -373,19 +360,18 @@
             closeImg() {
                 this.test = '';
             },
-	        unarchiveMember(id) {
+	        unarchiveMember(id, index) {
+                this.preloader = !this.preloader;
 		        axios.post('/unarchive-members/' + id)
 			        .then((response) => {
-				        if (response.status == 200) {
-					        this.getFullList();
-				        }
+                        this.members.splice(index, 1);
+                        this.preloader = !this.preloader;
 				        swal("Учасник був успішно повернений", {
 					        icon: "success",
 				        });
-
-
                     })
                     .catch((error) => {
+                        this.preloader = !this.preloader;
                         swal({
                             icon: "error",
                             title: 'Помилка',
@@ -393,7 +379,7 @@
                         });
                     });
             },
-	        deleteMember(id) {
+	        deleteMember(id, index) {
                 swal({
                     title: "Бажаєте видалити?",
                     text: "Вкажіть причину видалення",
@@ -401,30 +387,27 @@
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
-                    // showCancelButton: true,
-                    // closeOnConfirm: false,
                 }).then( (inputValue) => {
-
                     if (inputValue === false) return false;
                     else if (inputValue === "") {
                         swal.showInputError("Ви маєте вказати причину");
                         return false
                     }
                     else if (inputValue){
-                        console.log(inputValue);
                         const data = {
                             message: inputValue,
                         };
+                        this.preloader = !this.preloader;
                         axios.post('/delete-members/' + id, data)
                             .then((response) => {
-                                if (response.status == 200) {
-                                    this.getFullList();
-                                }
+                                this.preloader = !this.preloader;
+                                this.members.splice(index, 1);
                                 swal("Учасник був успішно видалений", {
                                     icon: "success",
                                 });
                             })
                             .catch((error) => {
+                                this.preloader = !this.preloader;
                                 swal({
                                     icon: "error",
                                     title: 'Помилка',
@@ -433,36 +416,6 @@
                             });
                     }
                 })
-
-
-
-		        // swal({
-			    //     title: "Бажаєте видалити?",
-			    //     text: "Після видалення ви не зможете відновити дану заяву",
-			    //     icon: "warning",
-			    //     buttons: true,
-			    //     dangerMode: true,
-		        // })
-			    //     .then((willDelete) => {
-				//         if (willDelete) {
-				// 	        axios.post('/delete-members/' + id)
-				// 		        .then((response) => {
-				// 			        if (response.status == 200) {
-				// 				        this.getFullList();
-				// 			        }
-				// 			        swal("Учасник був успішно видалений", {
-				// 				        icon: "success",
-				// 			        });
-				// 		        })
-				// 		        .catch((error) => {
-				// 			        swal({
-				// 				        icon: "error",
-				// 				        title: 'Помилка',
-				// 				        text: 'Не вдалося'
-				// 			        });
-				// 		        });
-				//         }
-			    //     })
 	        }
         }
     }

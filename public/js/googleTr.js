@@ -6,11 +6,16 @@
 
 const googleTranslateConfig = {
     lang: "uk",
-    /* Если скрипт не работает на поддомене,
-    раскомментируйте и
-    укажите основной домен в свойстве domain */
-    /* domain: "Get-Web.Site" */
+    domain: "fest.jazz.sumy.ua"
 };
+
+if(window.location.search.replace( '?', '') == "hl=en") {
+    TranslateCookieHandler("/" + googleTranslateConfig.lang + "/en", googleTranslateConfig.domain);
+    document.location.href = "/";
+} else if(window.location.search.replace( '?', '') == "hl=uk") {
+    TranslateCookieHandler(null, googleTranslateConfig.domain);
+    document.location.href = "/";
+}
 
 function TranslateInit() {
     let code = TranslateGetCode();

@@ -103,9 +103,13 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -121,7 +125,11 @@
 					{ id: 1 }
 				],
 				form: new FormData,
+				preloader: false
 			};
+		},
+		components: {
+			Spinner,
 		},
 		created () {
 			this.getJury();
@@ -171,9 +179,11 @@
 						return;
 					}
 					else {
+						this.preloader = !this.preloader;
 						axios.post('/post-all-jury', this.form)
 							.then((res) => {
 								this.jurys.push(res.data);
+								this.preloader = !this.preloader;
 								swal("Користувача успішно зареєстровано", {
 									icon: "success",
 									timer: 1000,
@@ -181,6 +191,7 @@
 								});
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',
@@ -200,9 +211,11 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.post('/delete-user/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = !this.preloader;
 										this.jurys.splice(index, 1);
 									}
 									swal("Журі був успішно видалений", {
@@ -210,6 +223,7 @@
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

@@ -10,20 +10,22 @@
 </style>
 <table>
     <tr>
-        <td>
+        <td width="50%">
 <b><i>Загальна відомість членів жюрі обласного дитячого джазового інтернет-фестивалю «Джаз-Вітраж»</i></b><br><br>
 Голова жюрі.   Карпенко Є.В.  __________<br>
 Члени жюрі:<br>
-Даниленко С.А.     __________       Стичук  О.В.  __________<br>
-Письменний  І. А. __________      Зуєв С.П.         __________<br>
-Шерстюк  Є.Я.      __________
+@foreach($jury as $item)
+    {{ $item->surname }} {{ mb_substr($item->surname, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________
+@endforeach
+        </td>
+        <td>
         </td>
 
         <td style="text-align:right">
 Затверджую<br>
 Голова орг. комітету фестивалю<br>
-Начальник відділу культури та<br>
-туризму  Сумської  міської  ради<br>
+Начальник відділу культури<br>
+Сумської міської ради<br>
 ______________ Н.О. Цибульська<br>
 «___»_______________{{ date("Y") }}р.
         </td>
@@ -34,7 +36,7 @@ ______________ Н.О. Цибульська<br>
         $line = 1;
         $juryNomination = [];
         foreach($jury as $item) {
-            if(stristr($item['nominations'], $dataItem->genre) == $dataItem->genre) {
+            if(stristr($item['nominations'], $dataItem->genre)) {
                 array_push($juryNomination, $item);
             }
         }
@@ -118,7 +120,7 @@ ______________ Н.О. Цибульська<br>
             @endforeach
         </table>
         @else
-        <b><i>Номінація «{{ $dataItem->genre }}». ансамбль, хор. {{ $dataItem->category }} вікова група</b></i>
+        <b><i>Номінація «{{ $dataItem->genre }}». ансамбль, @if ($dataItem->genre == " Композиція" || $dataItem->genre == "Інструментальний жанр") оркестр@else хор@endif. {{ $dataItem->category }} вікова група</b></i>
         <table class="tg">
         <tr>
             <th class="tg-c3ow" rowspan="2">№</th>

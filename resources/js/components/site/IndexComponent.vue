@@ -180,7 +180,7 @@
                 </div>
             </div>
         </section>
-        <section class="sections contacts">
+        <section class="sections contacts" id="contacts">
             <div class="left-layer">
                 <img src="img/contacts-layer.png" alt="">
                 <div class="text-layer">
@@ -411,6 +411,9 @@
 					        swal("Питання буде розглядено в найближчий термін", {
 						        icon: "success",
 					        });
+                            this.name = '';
+                            this.email = '';
+	                        this.questionText = '';
 				        }
 			        })
 			        .catch((error) => {

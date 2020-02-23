@@ -58,9 +58,13 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -69,8 +73,12 @@
 				surname: '',
 				email: '',
 				defaultPatronymic: 'default',
-				form: new FormData
+				form: new FormData,
+				preloader: false
 			};
+		},
+		components: {
+			Spinner,
 		},
 		created () {
 			this.getAdmin();
@@ -87,12 +95,14 @@
 					if (!result) {
 						return;
 					} else {
+						this.preloader = !this.preloader;
 						this.form.append('name', this.name);
 						this.form.append('surname', this.surname);
 						this.form.append('email', this.email);
 						this.form.append('patronymic', this.defaultPatronymic);
 						axios.post('/post-all-admin', this.form)
 							.then((res) => {
+								this.preloader = !this.preloader;
 								this.admin.push(res.data);
 								swal("Користувача успішно зареєстровано", {
 									icon: "success",
@@ -101,6 +111,7 @@
 								});
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',
@@ -121,14 +132,17 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.post('/delete-user/' + id)
 								.then((response) => {
+									this.preloader = !this.preloader;
 									this.admin.splice(index, 1);
 									swal("Адміністратор був успішно видалений", {
 										icon: "success",
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

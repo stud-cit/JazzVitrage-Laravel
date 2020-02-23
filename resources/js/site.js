@@ -1,11 +1,6 @@
 require('./bootstrap');
 
-
 import Vue from 'vue';
-// import BootstrapVue from "bootstrap-vue";
-// import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap-vue/dist/bootstrap-vue.css";
-
 
 import HeaderComponent from './components/site/HeaderComponent';
 import FooterComponent from './components/site/FooterComponent';

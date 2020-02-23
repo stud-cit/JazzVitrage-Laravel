@@ -22,7 +22,6 @@
                     <span v-if="data.role == 'admin'">Адмін</span>
                     <span v-if="data.role == 'superAdmin'">Супер Адмін</span>
                 </li>
-                <li v-show="data.rank" class="list-group-item text-right"><span class="pull-left"><strong>Звання </strong></span> {{ data.rank }}</li>
                 <li v-show="data.nominations" class="list-group-item text-right"><span class="pull-left"><strong>Номінація</strong></span> {{ data.nominations }}</li>
             </ul> 
         </div>
@@ -69,6 +68,16 @@
                                     v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                                 <span class="errors text-danger" v-if="errors.has('email')">
                                     Введіть дані у форматі name@email.com
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" v-show="data.role == 'jury'">
+                            <div class="col-8">
+                                <label for="rank"><h4>Звання</h4></label>
+                                <input type="text" class="form-control" name="rank" id="rank" v-model="data.rank"
+                                    v-validate="{ required: true }">
+                                <span class="errors text-danger" v-if="errors.has('rank')">
+                                        Обов'язкове поле
                                 </span>
                             </div>
                         </div>

@@ -57,13 +57,14 @@
                 >
                 <br>
                 <input
+                    style="width: 20px;height: 20px;margin-top: -5px"
                     type="checkbox"
                     class="form-check-input"
                     id="exampleCheck1"
                     v-model="recommendation"
                     :disabled="userJury != nomination.name"
                 >
-                <label class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
+                <label style="font-size: 20px" class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
             </form>
             <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
         </div>

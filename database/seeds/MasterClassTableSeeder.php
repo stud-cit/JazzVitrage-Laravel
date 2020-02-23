@@ -17,6 +17,7 @@ class MasterClassTableSeeder extends Seeder
             'title_master' => 'Lorem Ipsum',
             'title_gallery_master' => 'Lorem Ipsum',
             'title_req_master' => 'Lorem Ipsum',
+            'info_message' => 'Lorem Ipsum'
         ]);
     }
 }

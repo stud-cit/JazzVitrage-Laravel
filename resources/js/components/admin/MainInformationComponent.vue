@@ -322,6 +322,18 @@
                             <button type="button" :disabled="errors.has('title_req_master')" class="btn btn-outline-secondary edit w-100 px-0" @click='edit($event, "master_class", "title_req_master")'>Редагувати</button>
                         </div>
                     </div>
+
+                    <hr>
+                    <div>
+                        <label for="info_message" class="brtop">Додаткова інформація</label>
+                        <textarea name="info_message" class="form-control" v-model="info.info_message" id="info_message" rows="4" disabled
+                            v-validate="{ required: true}"
+                                data-vv-as="Додаткова інформація"></textarea>
+                        <span class="errors text-danger" v-if="errors.has('info_message')">
+                                {{ errors.first('info_message') }}
+                        </span>
+                        <button type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "master_class", "info_message")'>Редагувати</button><br><br>
+                    </div>
                     <hr>
 
                     <label for="logo_master" class="brtop">Логотип</label>
@@ -390,6 +402,7 @@ export default {
                 note_image: '',
                 logo_master: '',
                 description_master: '',
+                info_message: '',
                 compress_url: ''
             },
             nominations: [],
