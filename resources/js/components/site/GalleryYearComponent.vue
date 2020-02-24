@@ -37,6 +37,7 @@
             };
         },
         created () {
+            document.oncontextmenu = true;
             this.getFoto();
         },
         computed: {

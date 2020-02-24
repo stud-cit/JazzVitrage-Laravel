@@ -47,7 +47,7 @@
                              <p style="white-space: pre-wrap;"> &#128270; - {{ info.info_message }}</p>
 
                             <textarea rows="10" cols="45" name="text" v-model="request.info" placeholder="Додаткова інформація"></textarea>
-                
+
                             <span class="errors" v-if="errors.has('school_name')">
                                 Введіть корректні дані
                             </span>
@@ -162,6 +162,7 @@
         color: #fff;
         text-align: right;
         position: relative;
+        white-space: pre-wrap;
     }
     .masterImg {
         width: 500px;
@@ -198,12 +199,12 @@
         object-fit: contain;
         background: black;
     }
-    
+
     #masterImg2 {
         display: none;
     }
-    
-    
+
+
 
     /*3*/
     form{
@@ -245,11 +246,11 @@
         color: #333;
         display: block;
         height: 100px;
-        width: 100%; 
+        width: 100%;
         padding-left: 30px;
         padding-top: 20px;
     }
-    
+
     .center-block {
         display: block;
         margin-right: auto;
@@ -265,7 +266,7 @@
         line-height: 1.5;
         margin-bottom: 20px;
     }
-    
+
     @media(max-width: 992px){
         .masterImg {
             display: none;
@@ -303,7 +304,7 @@
         .col-md-12 {
             margin-top: 0;
         }
-    
+
         .master_galary{
             margin-bottom: 80px;
         }

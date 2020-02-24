@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row align-items-stretch wrapper-gymn">
 
-                    <pre class="col-12 col-lg-5 couplets"><h1>ГІМН</h1>{{ info.hymn_text }}</pre>
+                    <div style="white-space: pre-wrap" class="col-12 col-lg-5 couplets"><h1>ГІМН</h1>{{ info.hymn_text }}</div>
 
                     <div class="col-12 col-lg-7 media">
                         <div class="overflow">
