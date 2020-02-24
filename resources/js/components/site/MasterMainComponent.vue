@@ -266,8 +266,17 @@
         line-height: 1.5;
         margin-bottom: 20px;
     }
-
+    
+    @media(max-width: 1200px){
+        .master_main{
+            height: auto;
+            padding: 50px 0;
+        }
+    }
     @media(max-width: 992px){
+         .master_main{
+            padding: 0;
+        }
         .masterImg {
             display: none;
         }
@@ -277,7 +286,7 @@
         .col-md-12 {
             flex: 0 0 100%;
             max-width: 100%;
-            margin-top: 30%;
+            margin-top: 60px;
         }
         h3{
         font-size: 30px;
