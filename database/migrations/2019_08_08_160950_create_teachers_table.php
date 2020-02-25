@@ -19,8 +19,12 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_name');
             $table->string('teacher_surname');
             $table->string('teacher_patronymic');
+            $table->string('teacher_in')->nullable();
             $table->string('teacher_email');
             $table->string('teacher_phone');
+            $table->string('teacher_passport_data')->nullable();
+            $table->string('teacher_passport')->nullable();
+            $table->string('teacher_address')->nullable();
             $table->integer('application_id')->unsigned();
             $table->timestamps();
         });

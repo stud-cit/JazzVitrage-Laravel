@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-12 col-xl-7">
                             <img :src="info.logo" width="70%" class="preview-logo">
-                            <p class="preview-text">{{ info.description }}</p>
+                            <p class="preview-text" style="white-space: pre-wrap;text-indent: 1.3em">{{ info.description }}</p>
                             <img src="img/preview-tool-2.png" class="d-xl-none" alt="">
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                             <h2 class="title-section">Положення</h2>
                             <p class="subtitle">КОНКУРСУ</p>
                         </div>
-                        <p class="text">{{ info.provisions_text }}</p>
+                        <p class="text" style="white-space: pre-wrap;text-indent: 1.3em">{{ info.provisions_text }}</p>
 
                         <div class="btn-group">
                             <a :href="info.file" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>

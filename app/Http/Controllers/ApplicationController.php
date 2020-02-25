@@ -136,6 +136,9 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
+                if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
+                    $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
                 $this->sendMail('soloDuet', 'application_accepted', $titleMessage, $response);
@@ -181,6 +184,9 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
+                if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
+                    $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
                 $this->sendMail('soloDuet', 'application_accepted', $titleMessage, $response);
@@ -200,6 +206,9 @@ class ApplicationController extends Controller
             for($i = 0; $i < count($data->teachers); $i++) {
                 $teachersModel = new Teachers();
                 $teacher = (array) $data->teachers[$i];
+                if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
+                    $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
                 $this->sendMail('group', 'application_accepted', $titleMessage, $response);

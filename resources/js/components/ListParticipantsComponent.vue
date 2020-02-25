@@ -93,10 +93,6 @@
                             <label for="memberIdCode2" class="brtop" v-if="item.type == 'дует'">Ідентифікаційний номер другого учасника</label>
                             <p id="memberIdCode2" v-if="item.type == 'дует'">{{ item.idCode2 }}</p>
 
-                            <label for="teacherIdCode" class="brtop" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">Ідентифікаційний номер викладача</label>
-                            <p id="teacherIdCode" v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">{{ item.teacherIdCode }}</p>
-
-
                             <label for="memberPhoto" class="brtop" v-if="item.type == 'соліст' || item.type == 'дует'">Фото документів</label>
                             <p></p>
 
@@ -172,6 +168,26 @@
                                 <p>{{ teacher.teacher_phone }}</p>
                                 <label class="brtop">Email викладача</label>
                                 <p>{{ teacher.teacher_email }}</p>
+
+                                <div v-if="item.type == 'ансамбль' || item.type == 'Хор' || item.type == 'Оркестр'">
+                                    <label class="brtop">Домашня адреса викладача</label>
+                                    <p>{{ teacher.teacher_address }}</p>
+                                    <label class="brtop">Ідентифікаційний номер викладача</label>
+                                    <p>{{ teacher.teacher_in }}</p>
+                                    <label class="brtop">Дані свідотства про народження або паспорта</label>
+                                    <p>{{ teacher.teacher_passport_data }}</p>
+                                    <label class="brtop">Фото документів</label>
+                                    <div id="memberPhoto" class="row">
+                                        <div class="col-2 statementPhotoDoc" @click="getFileImg(teacher.teacher_passport)">
+                                            <i class="fa fa-search"></i>
+                                            <div class="mb-2">
+                                                <img src="/img/file.png">
+                                            </div>
+                                            <label class="brtop mb-2">Копія свідоцтва про народження або паспорта</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <hr>
                             </div>
 
