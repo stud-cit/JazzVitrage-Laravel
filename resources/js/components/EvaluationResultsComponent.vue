@@ -32,7 +32,7 @@
                     <th>Тип заявки</th>
                     <th>Номінація</th>
                     <th>Рекомендації</th>
-                    <th class="text-center">Оцінка</th>
+                    <th class="text-center" style="cursor: pointer" @click="sortByEvaluation()">Оцінка</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +59,8 @@ export default {
         return {
             members: [],
             search: '',
-            hasError: false
+            hasError: false,
+            sorted: false
 
         }
     },
@@ -71,7 +72,7 @@ export default {
             return this.members.filter(members => {
                 return members.name.toLowerCase().includes(this.search.toLowerCase()) || members.type.toLowerCase().includes(this.search.toLowerCase())
             })
-        }
+        },
     },
     methods: {
         getFullList() {
@@ -114,7 +115,14 @@ export default {
             })
 
         },
-
+        sortByEvaluation() {
+            if(this.sorted) {
+                this.members.sort((a, b) => a.evaluation > b.evaluation ? 1 : -1);
+            } else {
+                this.members.sort((a, b) => a.evaluation < b.evaluation ? 1 : -1);
+            }
+            this.sorted = !this.sorted;
+        },
         searchMembers(){
             var input, filter, table, tr, td, i;
             input = document.getElementById("member");

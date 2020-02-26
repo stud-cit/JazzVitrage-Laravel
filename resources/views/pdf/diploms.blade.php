@@ -16,7 +16,8 @@
         <th class="tg-c3ow">Номінація</th>
         <th class="tg-c3ow">Вікова категорія</th>
         <th class="tg-0pky">Назва навчального закладу</th>
-        <th class="tg-0pky">Керівник / концертмейстер</th>
+        <th class="tg-0pky">Керівник</th>
+        <th class="tg-0pky">Концертмейстер</th>
     </tr>
     @foreach ($data as $item)
         <tr>
@@ -46,11 +47,11 @@
             </td>
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
-                    Викладач: {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
+                    {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                 @endforeach
-                @if($item['preparation']['concertmaster_name'] != '')
-                    Концертмейстр: {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
-                @endif
+            </td>
+            <td class="tg-0pky">
+                {{ $item['preparation']['concertmaster_surname'] }} {{ $item['preparation']['concertmaster_name'] }} {{ $item['preparation']['concertmaster_patronymic'] }}
             </td>
         </tr>
     @endforeach

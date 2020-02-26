@@ -54,17 +54,23 @@
                 @endforeach
             </td>
             <td class="tg-0pky">{{ $item['group']['count_people'] }}</td>
-            
+
             <td class="tg-0pky">
-                -
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_in'] }} <br>
+                @endforeach
             </td>
             <td class="tg-0pky">
-                -
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_passport_data'] }} <br>
+                @endforeach
             </td>
             <td class="tg-0pky">
-                -
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_address'] }} <br>
+                @endforeach
             </td>
-           
+
         </tr>
         @endif
     @endforeach
