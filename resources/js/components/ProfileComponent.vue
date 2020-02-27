@@ -23,6 +23,20 @@
                     <span v-if="data.role == 'superAdmin'">Супер Адмін</span>
                 </li>
                 <li v-show="data.nominations" class="list-group-item text-right"><span class="pull-left"><strong>Номінація</strong></span> {{ data.nominations }}</li>
+                <li class="list-group-item">
+                    <button type="button" class="container-fluid" :class="editNomination ? 'btn btn-primary' : 'btn btn-light'" @click="editNom">Змінити номінацію</button>
+                    <div class="mt-3" v-if="editNomination">
+                    <div v-for="(item, index) in items" :key="item.id" class="mb-2">
+                        <select class="form-control" style="width: 80%">
+                            <option v-for="option in nominations" :key="option.nomination_id">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                        <i v-if="index == 0" v-show="items.length < 3" class="fa fa-plus-circle btn btn-default float-right button-position p-0" @click="addNomination"></i>
+                        <i v-else class="fa fa-minus-circle btn btn-default float-right button-position p-0" @click="deleteNomination(index)"></i>
+                    </div>
+                    </div>
+                </li>
             </ul> 
         </div>
 
@@ -132,14 +146,20 @@ export default {
     data() {
         return {
             data: [],
+            nominations: [],
             password: '',
             newPassword: '',
             repeatPassword: '',
-            editPassword: false
+            editPassword: false,
+            editNomination: false,
+            items: [
+			    { id: 1 }
+		    ],
         }
     },
     created() {
         this.getUser();
+        this.getNomination();
     },
     computed: {
         checkNewPassword() {
@@ -162,9 +182,27 @@ export default {
                 this.data.photo = this.data.photo;
             })
         },
+        getNomination(){
+			axios.get('/get-nominations')
+				.then((response) => {
+					this.nominations = response.data;
+				})
+		},
+        addNomination(){
+            this.items.push({ id: this.items[this.items.length - 1].id+1 });
+		},
+		deleteNomination(index) {
+			this.items.splice(index, 1);
+		},
         save() {
+            const selects = document.querySelectorAll('select');
+			const valOptions = [];
+			for (let index = 0; index < selects.length; index++) {
+				valOptions.push(" "+selects[index].value);
+			}
             var form = new FormData;
             this.data.password = this.newPassword;
+            this.data.nominations = valOptions.join();
             form.append('photo', this.$refs.photo.files[0]);
             form.append('data', JSON.stringify(this.data));
                 axios.post(`/user/${this.$route.params.id}`, form, {
@@ -177,6 +215,7 @@ export default {
                         icon: "success",
                     });
                     this.editPassword = false;
+                    this.editNomination = false;
                 }).catch(() => {
                     swal({
                         icon: "error",
@@ -198,6 +237,9 @@ export default {
         },
         editPass() {
             this.editPassword = !this.editPassword;
+        },
+        editNom() {
+            this.editNomination = !this.editNomination;
         }
     }
 }
