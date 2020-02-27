@@ -138,6 +138,8 @@ class ApplicationController extends Controller
                 $teacher = (array) $data->teachers[$i];
                 if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
                     $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                } else {
+                    $teacher['teacher_passport'] = null;
                 }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
@@ -186,6 +188,8 @@ class ApplicationController extends Controller
                 $teacher = (array) $data->teachers[$i];
                 if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
                     $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                } else {
+                    $teacher['teacher_passport'] = null;
                 }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
@@ -208,6 +212,8 @@ class ApplicationController extends Controller
                 $teacher = (array) $data->teachers[$i];
                 if(gettype($request[$data->teachers[$i]->teacher_passport_index]) == "object") {
                     $teacher['teacher_passport'] = $request[$data->teachers[$i]->teacher_passport_index]->store($this->publicStorage.$app->application_id);
+                } else {
+                    $teacher['teacher_passport'] = null;
                 }
                 $teacher['application_id'] = $app->application_id;
                 $response = $teachersModel->create($teacher);
@@ -458,7 +464,7 @@ class ApplicationController extends Controller
         $data = Application::with('soloDuet', 'group', 'preparation', 'presentation', 'teachers')
             ->approved()
             ->get();
-        $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data]);
+        $pdf = PDF::loadView('pdf.vidomist_dzhaz_vitrazh', ['data' => $data])->setPaper('a4', 'landscape');
         return $pdf->stream('Відомість_джаз_вітраж.pdf');
     }
 
@@ -466,7 +472,7 @@ class ApplicationController extends Controller
         $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
-        $pdf = PDF::loadView('pdf.list_members', ['data' => $data]);
+        $pdf = PDF::loadView('pdf.list_members', ['data' => $data])->setPaper('a4', 'landscape');
         return $pdf->stream('Список_учасників.pdf');
     }
 

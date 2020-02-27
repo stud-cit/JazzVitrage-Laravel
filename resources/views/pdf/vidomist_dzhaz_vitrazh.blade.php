@@ -48,7 +48,7 @@ ____________ Н.О. Цибульська
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['member_address'] }}
+                    {{ $soloDuet['member_address'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">

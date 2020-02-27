@@ -39,7 +39,7 @@ ______________ Н.О. Цибульська<br>
         $line = 1;
         $juryNomination = [];
         foreach($jury as $item) {
-            if(stristr($item['nominations'], $dataItem->genre)) {
+            if(stristr($item['nominations'], ltrim($dataItem->genre))) {
                 array_push($juryNomination, $item);
             }
         }
@@ -97,20 +97,28 @@ ______________ Н.О. Цибульська<br>
                         $sumEvaluation = 0;
                         $countEvaluation = 0;
                         $uniqueEvaluations = [];
+                        foreach ($juryNomination as $juryItem) {
+                            foreach ($item['evaluations'] as $evaluations) {
+                                if($juryItem['user_id'] == $evaluations['user_id']) {
+                                    $countEvaluation++;
+                                    $sumEvaluation += $evaluations['evaluation'];
+                                    array_push($uniqueEvaluations, $evaluations['evaluation']);
+                                } else {
+                                    array_push($uniqueEvaluations, 0);
+                                }
+                            }
+                        }
                     ?>
-                    @foreach ($juryNomination as $juryItem)
-                        @foreach ($item['evaluations'] as $evaluations)
-                            @if($juryItem['user_id'] == $evaluations['user_id'])
-                                <?php array_push($uniqueEvaluations, $evaluations['user_id']); ?>
-                                {{ $countEvaluation++ }}
-                                {{ $sumEvaluation += $evaluations['evaluation'] }}
-                                <td class="tg-0pky">{{ $evaluations['evaluation'] }}</td>
-                            @endif
-                        @endforeach
-                    @endforeach
-                    @for ($i = 0; $i < count($juryNomination) - count(array_unique($uniqueEvaluations)); $i ++)
-                        <td class="tg-0pky">0</td>
-                    @endfor
+
+                    @if(count($uniqueEvaluations) > 0)
+                        @for ($i = 0; $i < count($uniqueEvaluations); $i ++)
+                            <td class="tg-0pky">{{ $uniqueEvaluations[$i] }}</td>
+                        @endfor
+                    @else
+                        @for ($i = 0; $i < count($juryNomination); $i ++)
+                            <td class="tg-0pky">0</td>
+                        @endfor
+                    @endif
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
                         <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
@@ -162,21 +170,29 @@ ______________ Н.О. Цибульська<br>
                         $sumEvaluation = 0;
                         $countEvaluation = 0;
                         $uniqueEvaluations = [];
+                        foreach ($juryNomination as $juryItem) {
+                            foreach ($item['evaluations'] as $evaluations) {
+                                if($juryItem['user_id'] == $evaluations['user_id']) {
+                                    $countEvaluation++;
+                                    $sumEvaluation += $evaluations['evaluation'];
+                                    array_push($uniqueEvaluations, $evaluations['evaluation']);
+                                } else {
+                                    array_push($uniqueEvaluations, 0);
+                                }
+                            }
+                        }
                     ?>
-                    @foreach ($juryNomination as $juryItem)
-                        @foreach ($item['evaluations'] as $evaluations)
-                            @if($juryItem['user_id'] == $evaluations['user_id'])
-                                <?php array_push($uniqueEvaluations, $evaluations['user_id']); ?>
-                                {{ $countEvaluation++ }}
-                                {{ $sumEvaluation += $evaluations['evaluation'] }}
-                                <td class="tg-0pky">{{ $evaluations['evaluation'] }}</td>
 
-                            @endif
-                        @endforeach
-                    @endforeach
-                    @for ($i = 0; $i < count($juryNomination) - count(array_unique($uniqueEvaluations)); $i ++)
-                        <td class="tg-0pky">0</td>
-                    @endfor
+                    @if(count($uniqueEvaluations) > 0)
+                        @for ($i = 0; $i < count($uniqueEvaluations); $i ++)
+                            <td class="tg-0pky">{{ $uniqueEvaluations[$i] }}</td>
+                        @endfor
+                    @else
+                        @for ($i = 0; $i < count($juryNomination); $i ++)
+                            <td class="tg-0pky">0</td>
+                        @endfor
+                    @endif
+
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
                         <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>

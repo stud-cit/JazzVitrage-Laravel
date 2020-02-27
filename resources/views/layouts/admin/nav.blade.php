@@ -59,6 +59,12 @@
 						</a>
 					</li>
 
+				@endif
+
+				@if (Auth::user()->role == 'jury')
+
+					@php $role = 'Журі' @endphp
+
 					<li class="nav-item" title="Оцінювання">
 						<a class="nav-link" href="/admin/jury-evaluation">
 							<i class="fa fa-calendar-check-o"></i>
