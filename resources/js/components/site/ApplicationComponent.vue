@@ -1395,6 +1395,7 @@
                                 teacher_phone: '',
                                 teacher_passport_data: '',
                                 teacher_address: '',
+                                teacher_passport_index: '',
                                 teacher_passport: 'завантажити файл'
                             }
                         ],
