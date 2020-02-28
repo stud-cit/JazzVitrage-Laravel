@@ -1433,6 +1433,7 @@
                     teacher_phone: '',
                     teacher_passport_data: '',
                     teacher_address: '',
+                    teacher_passport_index: '',
                     teacher_passport: 'завантажити файл'
                 });
             },
@@ -1597,6 +1598,8 @@
             },
         },
     }
+// пишет аноним
+// Дорогой друг! Если ты решишь оптимизировать этот код, но потом поймешь, что совершил ужасную ошибку, пожалуйста, увеличь этот счетчик на единицу: total_hours_wasted_here = 1
 </script>
 <style scoped lang="sass">
     .preloader

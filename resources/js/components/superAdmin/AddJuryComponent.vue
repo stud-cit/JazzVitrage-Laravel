@@ -96,7 +96,7 @@
 					<td>{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
 					<td>{{ item.email }}</td>
 					<td>{{ item.rank }}</td>
-					<td>{{ item.nominations }}</td>
+					<td>{{ item.nominations.replace(";", ", ") }}</td>
 					<td>{{ item.informations }}</td>
 					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
@@ -164,7 +164,7 @@
 				const selects = document.querySelectorAll('select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
-					valOptions.push(" "+selects[index].value);
+					valOptions.push(selects[index].value);
 				}
 				this.form.append('name', this.name);
 				this.form.append('surname', this.surname);
@@ -172,7 +172,7 @@
 				this.form.append('email', this.email);
 				this.form.append('rank', this.rank);
 				this.form.append('photo', this.$refs.juryfile.files[0]);
-				this.form.append('nominations', valOptions);
+				this.form.append('nominations', valOptions.join(';'));
 				this.form.append('informations', this.additionalInfo);
 				this.$validator.validateAll().then((result) => {
                     if (!result) {	

@@ -21,7 +21,8 @@
                     v-model.number="stylisticMatching"
                     class="form-control check-nomination"
                     id="stylisticMatching"
-                    :disabled="userJury != nomination.name"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <span class="errors" v-if="errors.has('stylisticMatching')">
                     Введіть корректні дані в діапазоні від 0 до 25
@@ -36,7 +37,8 @@
                     v-model.number="artisticValue"
                     class="form-control check-nomination"
                     id="artisticValue"
-                    :disabled="userJury != nomination.name"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <span class="errors" v-if="errors.has('artisticValue')">
                     Введіть корректні дані в діапазоні від 0 до 25
@@ -50,7 +52,8 @@
                     v-model.number="artistry"
                     class="form-control check-nomination"
                     id="artistry"
-                    :disabled="userJury != nomination.name"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <span class="errors" v-if="errors.has('artistry')">
                     Введіть корректні дані в діапазоні від 0 до 25
@@ -66,7 +69,7 @@
                     class="form-control check-nomination"
                     id="originality"
                     v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
-                    :disabled="userJury != nomination.name"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <span class="errors" v-if="errors.has('originality')">
                     Введіть корректні дані в діапазоні від 0 до 25
@@ -80,7 +83,7 @@
                     id="exampleCheck1"
                     v-model="recommendation"
                     v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
-                    :disabled="userJury != nomination.name"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <span class="errors" v-if="errors.has('exampleCheck1')">
                         Введіть корректні дані в діапазоні від 0 до 25
@@ -146,8 +149,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" v-if="!hasRecord" :disabled="userJury != nomination.name" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
-                <button type="button" v-if="hasRecord && userJury == nomination.name" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
+                <button type="button" v-if="!hasRecord" :disabled="userJury == null || userJury.indexOf(nomination.name) == -1" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
+                <button type="button" v-if="hasRecord && userJury.indexOf(nomination.name) != -1" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>

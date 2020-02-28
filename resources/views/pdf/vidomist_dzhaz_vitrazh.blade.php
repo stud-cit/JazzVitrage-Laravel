@@ -9,16 +9,18 @@
 </style>
 
 <p align="right">
-«Затверджую»<br>
-Начальник відділу культури<br>
-та туризму СМР<br>
-____________ Н.О. Цибульська
+    Затверджую<br>
+    Голова орг. комітету фестивалю<br>
+    Начальник відділу культури<br>
+    Сумської міської ради<br>
+    ______________ Н.О. Цибульська<br>
+    «___»_______________{{ date("Y") }}р.
 </p>
 <br>
 <p align="center">
 Відомість<br>
 на вручення подарунків учасникам<br>
-І Обласного  дитячого  фестивалю-конкурсу  джазової музики <br> «Джаз-вітраж» ({{ date("d-m-Y") }}р)
+ІV Обласного  дитячого  фестивалю-конкурсу  джазової музики <br> «Джаз-вітраж»
 </p>
 <?php $line = 1; ?>
 <table class="tg">
@@ -38,22 +40,22 @@ ____________ Н.О. Цибульська
             <td class="tg-0pky">{{ $line++ }}</td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }}
+                    {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['passport_data'] }}
+                    {{ $soloDuet['passport_data'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['member_address'] }}
+                    {{ $soloDuet['member_address'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }}
+                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky"></td>
@@ -64,28 +66,28 @@ ____________ Н.О. Цибульська
         <tr>
             <td class="tg-0pky">{{ $line++ }}</td>
             <td class="tg-0pky">
-                {{ $item['group']['name'] }} Керівник: <br>
+                {{ $item['group']['name'] }} <br> Керівник: <br>
                 @foreach ($item['teachers'] as $teachers)
                     {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                 @endforeach
             </td>
-            
+
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_passport_data'] }}
+                    {{ $teachers['teacher_passport_data'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_address'] }}
+                    {{ $teachers['teacher_address'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
-                    {{ $teachers['teacher_in'] }}
+                    {{ $teachers['teacher_in'] }} <br>
                 @endforeach
             </td>
-           
+
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>

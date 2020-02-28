@@ -11,7 +11,7 @@
             </thead>
             <tbody v-for="(item, index) in members" :key="index">
 
-            <tr v-if="item.status == 'approved' && item.nomination.name == userJury.nominations">
+            <tr v-if="item.status == 'approved' && userJury.indexOf(item.nomination.name) != -1">
 
                 <td>{{ index + 1 }}</td>
                 <td v-if="item.solo_duet.length == 0">
@@ -49,14 +49,12 @@
 				axios.get('/get-all-members')
 					.then((response) => {
 						this.members = response.data;
-						//console.log(this.members[0].nomination.name)
 					})
 			},
 			getUserJury() {
 				axios.get('/get-user-jury')
 					.then((response) => {
-						this.userJury = response.data;
-						//console.log(this.userJury.nominations)
+						this.userJury = response.data.nominations;
 					})
 			},
 		}

@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-2"></div>
 					<div class="col-5">
-						<label for="foto">Фото в оригінальній якості</label>
+						<label for="foto">Фото (Ромір фото не повинен перевищувати 3 МБ)</label>
 						<label class="custom-file w-100">
 							<input type="file" name="foto" v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }" class="custom-file-input" id="foto" ref="file" @change="fieldChange()" accept=".jpg, .jpeg, .png, .bmp" multiple>
 							<span class="custom-file-control">{{ `Кількість обраних файлів: ${file.length}` }}</span>
@@ -58,7 +58,7 @@
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.foto_id">
                 <div class="border fotoGallery">
-					<div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i></div>
+					<!-- <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delFoto(item.foto_id, index)"></i></div> -->
 					<div class="calendar"><i class="fa fa-calendar "> {{ item.year }}</i></div>
                     <div class="gallery-img" :style="{ backgroundImage: 'url(' + '/img/uploads/'+item.file + ')'  }"></div>
                     <silentbox-single :src="'/img/uploads/'+item.file" :description="String(item.year)">
@@ -271,7 +271,13 @@
     .fotoGallery{
         height: auto
     }
+    .fotoGallery .calendar {
+        padding: 10px 5px;
+        color:grey;
+    }
     .fotoGallery .fa-calendar{
+        font-size: 16px;
+        font-weight: bold;
         position: static
     }
     .fotoGallery .width-100{

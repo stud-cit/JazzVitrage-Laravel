@@ -23,7 +23,7 @@
             @if($item['application_type_id'] == 1 || $item['application_type_id'] == 2)
                 <td class="tg-0pky">
                     @foreach ($item['soloDuet'] as $soloDuet)
-                        {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }}
+                        {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }} <br>
                     @endforeach
                 </td>
             @else
