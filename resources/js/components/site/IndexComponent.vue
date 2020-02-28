@@ -275,10 +275,10 @@
             this.getQuotes();
             this.getNominations();
             this.getMembers();
-            if(this.getCookie('googtrans') =='/uk/en'){
+            // if(this.getCookie('googtrans') =='/uk/en'){
 
-                this.translate = true;
-            }
+            //     this.translate = true;
+            // }
         },
         computed: {
             filteredList() {
@@ -428,12 +428,12 @@
 
 
             },
-            getCookie(name) {
-                var matches = document.cookie.match(new RegExp(
-                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                ));
-                return matches[1] ? decodeURIComponent(matches[1]) : undefined;
-            }
+            // getCookie(name) {
+            //     var matches = document.cookie.match(new RegExp(
+            //         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            //     ));
+            //     return matches[1] ? decodeURIComponent(matches[1]) : undefined;
+            // }
 
         },
 

@@ -18,7 +18,7 @@
                         <span class="text-danger" v-if="errors.has('video')">Некоректне посилання</span>
                     </div>
                     <button type="button" :disabled="errors.has('video')" class="btn btn-outline-secondary mt-4 px-5" @click="postVideo">Додати</button>
-                    
+
                 </div>
                 <div class="col-6">
                     <label for="yearCompetition" class="brtop">Рік проведення конкурсу</label>
@@ -32,7 +32,7 @@
         <div class="row">
             <silentbox-group class="col-4" v-for="(item, index) in paginatedData" :key="item.video_id">
                 <div class="border fotoGallery">
-                    <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i></div>
+                    <!-- <div class="circle"><i class="fa fa-times-circle btn btn-default p-0" @click="delVideo(item.video_id, index)"></i></div> -->
                     <div class="calendar"><i class="fa fa-calendar"> {{ item.year }}</i></div>
 					<div class="edit">
 						<div class="chekbox-two">
@@ -126,7 +126,7 @@ export default {
         },
         postVideo() {
             this.$validator.validateAll().then((result) => {
-                if (!result) {	
+                if (!result) {
                     return;
                 }
                 else {
@@ -209,3 +209,14 @@ export default {
     }
 }
 </script>
+<style lang="css" scoped>
+    .fotoGallery .calendar {
+        padding: 10px 5px;
+        color:grey;
+    }
+    .fotoGallery .fa-calendar{
+        font-size: 16px;
+        font-weight: bold;
+        position: static
+    }
+</style>

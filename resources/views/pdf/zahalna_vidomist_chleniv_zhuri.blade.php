@@ -12,7 +12,12 @@
     <tr>
         <td width="50%">
 <b><i>Загальна відомість членів жюрі обласного дитячого джазового інтернет-фестивалю «Джаз-Вітраж»</i></b><br><br>
-Голова жюрі. Карпенко Є.В.  __________<br>
+Голова жюрі.
+@foreach($jury as $key => $item)
+    @if(stristr(mb_strtolower($item->rank), "голова"))
+        {{ $item->surname }} {{ mb_substr($item->surname, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________<br>
+    @endif
+@endforeach
 Члени жюрі:<br>
 @foreach($jury as $key => $item)
     {{ $item->surname }} {{ mb_substr($item->surname, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________

@@ -20,7 +20,7 @@
                     v-model.number="stylisticMatching"
                     class="form-control check-nomination"
                     id="stylisticMatching"
-                    :disabled="userJury.indexOf(nomination.name) == -1"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
@@ -31,7 +31,7 @@
                     v-model.number="artisticValue"
                     class="form-control check-nomination"
                     id="artisticValue"
-                    :disabled="userJury.indexOf(nomination.name) == -1"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
 
                 <label for="artistry">Артистизм.</label>
@@ -42,7 +42,7 @@
                     v-model.number="artistry"
                     class="form-control check-nomination"
                     id="artistry"
-                    :disabled="userJury.indexOf(nomination.name) == -1"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
@@ -53,7 +53,7 @@
                     v-model.number="originality"
                     class="form-control check-nomination"
                     id="originality"
-                    :disabled="userJury.indexOf(nomination.name) == -1"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <br>
                 <input
@@ -62,7 +62,7 @@
                     class="form-check-input"
                     id="exampleCheck1"
                     v-model="recommendation"
-                    :disabled="userJury.indexOf(nomination.name) == -1"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
                 >
                 <label style="font-size: 20px" class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
             </form>
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" v-if="!hasRecord" :disabled="userJury.indexOf(nomination.name) == -1" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
+                <button type="button" v-if="!hasRecord" :disabled="userJury == null || userJury.indexOf(nomination.name) == -1" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
                 <button type="button" v-if="hasRecord && userJury.indexOf(nomination.name) != -1" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>

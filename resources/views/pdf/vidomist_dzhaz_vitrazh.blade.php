@@ -9,16 +9,18 @@
 </style>
 
 <p align="right">
-«Затверджую»<br>
-Начальник відділу культури<br>
-та туризму СМР<br>
-____________ Н.О. Цибульська
+    Затверджую<br>
+    Голова орг. комітету фестивалю<br>
+    Начальник відділу культури<br>
+    Сумської міської ради<br>
+    ______________ Н.О. Цибульська<br>
+    «___»_______________{{ date("Y") }}р.
 </p>
 <br>
 <p align="center">
 Відомість<br>
 на вручення подарунків учасникам<br>
-І Обласного  дитячого  фестивалю-конкурсу  джазової музики <br> «Джаз-вітраж» ({{ date("d-m-Y") }}р)
+ІV Обласного  дитячого  фестивалю-конкурсу  джазової музики <br> «Джаз-вітраж»
 </p>
 <?php $line = 1; ?>
 <table class="tg">
@@ -69,7 +71,7 @@ ____________ Н.О. Цибульська
                     {{ $teachers['teacher_surname'] }} {{ $teachers['teacher_name'] }} {{ $teachers['teacher_patronymic'] }} <br>
                 @endforeach
             </td>
-            
+
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
                     {{ $teachers['teacher_passport_data'] }}
@@ -85,7 +87,7 @@ ____________ Н.О. Цибульська
                     {{ $teachers['teacher_in'] }}
                 @endforeach
             </td>
-           
+
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>
             <td class="tg-0pky"></td>

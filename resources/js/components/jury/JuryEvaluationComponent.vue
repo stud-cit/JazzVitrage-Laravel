@@ -49,15 +49,12 @@
 				axios.get('/get-all-members')
 					.then((response) => {
 						this.members = response.data;
-						//console.log(this.members[0].nomination.name)
 					})
 			},
 			getUserJury() {
 				axios.get('/get-user-jury')
 					.then((response) => {
-                        console.log(response.data.nominations)
 						this.userJury = response.data.nominations;
-						//console.log(this.userJury.nominations)
 					})
 			},
 		}

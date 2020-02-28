@@ -23,12 +23,12 @@
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
                                 <a class="dropdown-item" :href="info.file">ПОЛОЖЕННЯ</a>
                                 <a class="dropdown-item" href="/applications">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
-                                
+
                                 <a class="dropdown-item" href="http://school.jazz.sumy.ua/news">НОВИНИ</a>
 
                                 <a class="dropdown-item" href="/members">СПИСОК УЧАСНИКІВ</a>
                                 <a class="dropdown-item" href="/organization-committee">ОРГ. КОМІТЕТ</a>
-                                
+
                             </div>
                         </li>
                         <li class="dropdown">
@@ -44,7 +44,7 @@
                         <li><a class="nav-item nav-link" href="/#contacts">КОНТАКТИ</a></li>
                         <li><a class="nav-item nav-link" href="https://school.jazz.sumy.ua">МУЗИЧНА ШКОЛА</a></li>
 
-                        
+
                         <li class="d-inline bg-danger d-sm-none w-100" v-if="isRegistration">
                             <a href="/applications"  class="nav-item text-light nav-link">ПОДАТИ ЗАЯВКУ</a>
                         </li>

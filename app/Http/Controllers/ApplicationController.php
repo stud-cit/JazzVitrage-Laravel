@@ -329,9 +329,9 @@ class ApplicationController extends Controller
             if ($leng > 0) {
                 $sum =  array_sum($colEvaluation);
                 $resultRate = $sum / $leng;
-                $rating[$key]['rating'] = number_format($resultRate, 2, ',', ' ');
+                $rating[$key]['rating'] = $resultRate;
             } else {
-                $rating[$key]['rating'] = NULL;
+                $rating[$key]['rating'] = 0;
             }
         }
 

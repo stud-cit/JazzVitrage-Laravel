@@ -11,18 +11,18 @@
                     Оберіть файл графічного формату
                 </span>
             </div>
-                
+
             <br/>
             <ul class="list-group" style="margin-bottom: 10px">
                 <li class="list-group-item text-muted">Діяльність</li>
                 <li class="list-group-item text-right">
-                    <span class="pull-left"><strong>Роль</strong></span> 
+                    <span class="pull-left"><strong>Роль</strong></span>
                     <span v-if="data.role == 'jury'">Журі</span>
                     <span v-if="data.role == 'orgComittee'">Організаційний комітет</span>
                     <span v-if="data.role == 'admin'">Адмін</span>
                     <span v-if="data.role == 'superAdmin'">Супер Адмін</span>
                 </li>
-            </ul> 
+            </ul>
         </div>
 
     	<div class="col-sm-8">
@@ -99,9 +99,9 @@
                                         value="Вокальний жанр"
                                         v-model="nominations"
                                     >
-                                    <label 
-                                        style="font-size: 20px" 
-                                        class="form-check-label" 
+                                    <label
+                                        style="font-size: 20px"
+                                        class="form-check-label"
                                         for="vocal"
                                     >
                                         Вокальний жанр
@@ -115,9 +115,9 @@
                                         value="Інструментальний жанр"
                                         v-model="nominations"
                                     >
-                                    <label 
-                                        style="font-size: 20px" 
-                                        class="form-check-label" 
+                                    <label
+                                        style="font-size: 20px"
+                                        class="form-check-label"
                                         for="instrum"
                                     >
                                         Інструментальний жанр
@@ -131,9 +131,9 @@
                                         value="Композиція"
                                         v-model="nominations"
                                     >
-                                    <label 
-                                        style="font-size: 20px" 
-                                        class="form-check-label" 
+                                    <label
+                                        style="font-size: 20px"
+                                        class="form-check-label"
                                         for="compoz"
                                     >
                                         Композиція
@@ -226,7 +226,7 @@ export default {
             axios.get(`/user/${this.$route.params.id}`)
             .then((response) => {
                 this.data = response.data;
-                this.nominations = response.data.nominations.split(";");
+                this.nominations = response.data.nominations ? response.data.nominations.split(";") : "";
                 this.data.photo = this.data.photo;
             })
         },
@@ -275,7 +275,7 @@ export default {
                         text: 'Не вдалося'
                     });
                 })
-           
+
         },
         previewFiles(event) {
             var input = event.target;
