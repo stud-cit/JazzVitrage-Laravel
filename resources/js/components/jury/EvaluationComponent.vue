@@ -15,6 +15,7 @@
                 <label for="stylisticMatching">Стилістична та жанрова відповідність творів.</label>
                 <input
                     type="number"
+                    name="stylisticMatching"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="stylisticMatching"
@@ -22,10 +23,14 @@
                     id="stylisticMatching"
                     :disabled="userJury != nomination.name"
                 >
+                <span class="errors" v-if="errors.has('stylisticMatching')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
                 <input
                     type="number"
+                    name="artisticValue"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artisticValue"
@@ -33,10 +38,13 @@
                     id="artisticValue"
                     :disabled="userJury != nomination.name"
                 >
-
+                <span class="errors" v-if="errors.has('artisticValue')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
                 <label for="artistry">Артистизм.</label>
                 <input
                     type="number"
+                    name="artistry"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artistry"
@@ -44,26 +52,39 @@
                     id="artistry"
                     :disabled="userJury != nomination.name"
                 >
+                <span class="errors" v-if="errors.has('artistry')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
                 <input
                     type="number"
+                    name="originality"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="originality"
                     class="form-control check-nomination"
                     id="originality"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
                     :disabled="userJury != nomination.name"
                 >
+                <span class="errors" v-if="errors.has('originality')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
                 <br>
                 <input
                     style="width: 20px;height: 20px;margin-top: -5px"
                     type="checkbox"
+                    name="exampleCheck1"
                     class="form-check-input"
                     id="exampleCheck1"
                     v-model="recommendation"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
                     :disabled="userJury != nomination.name"
                 >
+                <span class="errors" v-if="errors.has('exampleCheck1')">
+                        Введіть корректні дані в діапазоні від 0 до 25
+                </span>
                 <label style="font-size: 20px" class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
             </form>
             <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
