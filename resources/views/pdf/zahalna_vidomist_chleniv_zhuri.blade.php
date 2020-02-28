@@ -77,13 +77,13 @@ ______________ Н.О. Цибульська<br>
                     <td class="tg-0pky">{{ $line++ }}</td>
                     <td class="tg-0pky">
                         @foreach ($item['soloDuet'] as $soloDuet)
-                            {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }}
+                            {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} <br>
                         @endforeach
                     </td>
                     <td class="tg-0pky">{{ $item['preparation']['school_address'] }}, {{ $item['preparation']['school_name'] }}</td>
                     <td class="tg-0pky">
                         @foreach ($item['soloDuet'] as $soloDuet)
-                            {{ $soloDuet['data_birthday'] }}
+                            {{ $soloDuet['data_birthday'] }} <br>
                         @endforeach
                     </td>
                     <td class="tg-0pky">
@@ -103,15 +103,18 @@ ______________ Н.О. Цибульська<br>
                         $countEvaluation = 0;
                         $uniqueEvaluations = [];
                         foreach ($juryNomination as $juryItem) {
+                            $test = 0;
                             foreach ($item['evaluations'] as $evaluations) {
                                 if($juryItem['user_id'] == $evaluations['user_id']) {
                                     $countEvaluation++;
                                     $sumEvaluation += $evaluations['evaluation'];
-                                    array_push($uniqueEvaluations, $evaluations['evaluation']);
+                                    $test += $evaluations['evaluation'];
+
                                 } else {
-                                    array_push($uniqueEvaluations, 0);
+                                    $test += 0;
                                 }
                             }
+                            array_push($uniqueEvaluations, $test);
                         }
                     ?>
 
@@ -176,15 +179,17 @@ ______________ Н.О. Цибульська<br>
                         $countEvaluation = 0;
                         $uniqueEvaluations = [];
                         foreach ($juryNomination as $juryItem) {
+                            $test = 0;
                             foreach ($item['evaluations'] as $evaluations) {
                                 if($juryItem['user_id'] == $evaluations['user_id']) {
                                     $countEvaluation++;
                                     $sumEvaluation += $evaluations['evaluation'];
-                                    array_push($uniqueEvaluations, $evaluations['evaluation']);
+                                    $test += $evaluations['evaluation'];
                                 } else {
-                                    array_push($uniqueEvaluations, 0);
+                                    $test += 0;
                                 }
                             }
+                            array_push($uniqueEvaluations, $test);
                         }
                     ?>
 

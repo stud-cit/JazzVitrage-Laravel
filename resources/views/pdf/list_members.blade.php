@@ -24,23 +24,23 @@
             <td class="tg-0pky">{{ $line++ }}</td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }}
+                    {{ $soloDuet['surname'] }} {{ $soloDuet['name'] }} {{ $soloDuet['patronymic'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">{{ count($item['soloDuet']) }}</td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }}
+                    {{ $soloDuet['parent_name'] }} {{ $soloDuet['parent_surname'] }} {{ $soloDuet['parent_patronymic'] }} {{ $soloDuet['in'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['passport_data'] }}
+                    {{ $soloDuet['passport_data'] }} <br>
                 @endforeach
             </td>
             <td class="tg-0pky">
                 @foreach ($item['soloDuet'] as $soloDuet)
-                    {{ $soloDuet['member_address'] }}
+                    {{ $soloDuet['member_address'] }} <br>
                 @endforeach
             </td>
         </tr>
