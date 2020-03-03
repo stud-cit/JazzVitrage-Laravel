@@ -1315,8 +1315,8 @@
                 personal_data: '',
                 compress_url: '',
                 datepicker: {
-                    minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
-                    maxDate: new Date(nowDate.getFullYear()-6 + '-' + nowDate.getMonth()+1 + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    minDate: new Date(String(nowDate.getFullYear()-18) + '-' + String(nowDate.getMonth()+1) + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(String(nowDate.getFullYear()-6) + '-' + String(nowDate.getMonth()+1) + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
                             months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
