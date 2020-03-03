@@ -153,7 +153,8 @@
         background-attachment: fixed;
     }
     .master_main{
-        height: calc(100vh - 88px);
+        height: auto;
+        padding: 30px 0 50px;
     }
     .text_container{
         background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(128,128,128,0.5) 100%);
@@ -267,12 +268,6 @@
         margin-bottom: 20px;
     }
     
-    @media(max-width: 1200px){
-        .master_main{
-            height: auto;
-            padding: 50px 0;
-        }
-    }
     @media(max-width: 992px){
          .master_main{
             padding: 0;
