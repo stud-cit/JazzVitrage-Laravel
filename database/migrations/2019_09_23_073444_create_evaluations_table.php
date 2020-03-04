@@ -23,6 +23,7 @@ class CreateEvaluationsTable extends Migration
             $table->tinyInteger('artistry')->default(0);
             $table->tinyInteger('originality')->default(0);
             $table->tinyInteger('evaluation')->default(0);
+            $table->boolean('recommendation')->default(false);
             $table->timestamps();
         });
 

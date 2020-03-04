@@ -26,7 +26,7 @@ class CreatePositionSection extends Migration
             $table->string('video', 100)->nullable();
             $table->string('file', 100)->nullable();
             $table->string('personal_data', 100)->nullable();
-
+            $table->string('compress_url');
             $table->timestamps();
         });
     }

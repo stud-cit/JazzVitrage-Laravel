@@ -16,8 +16,12 @@ class CreateMasterClassReqTable extends Migration
         Schema::create('master_class_req', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('appointment')->nullable();
             $table->string('phone');
             $table->string('email');
+            $table->string('sity');
+            $table->string('school_name');
+            $table->text('info');
             $table->timestamps();
         });
     }

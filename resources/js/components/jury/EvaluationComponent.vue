@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12 pb-3 comeBack">
             <router-link :to="{ name: 'jury-all-statements' }"><i class="fa fa-angle-left" aria-hidden="true"></i> Повернутися до списку</router-link>
-            
+
         </div>
         <div class="col-8">
             <video width="100%" id="videoMember" controls>
@@ -13,40 +13,82 @@
         <div class="col-4">
             <form>
                 <label for="stylisticMatching">Стилістична та жанрова відповідність творів.</label>
-                <input 
+                <input
                     type="number"
+                    name="stylisticMatching"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
-                    v-model.number="stylisticMatching" 
-                    class="form-control" 
-                    id="stylisticMatching" >
+                    v-model.number="stylisticMatching"
+                    class="form-control check-nomination"
+                    id="stylisticMatching"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
+                >
+                <span class="errors" v-if="errors.has('stylisticMatching')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
 
                 <label for="artisticValue">Художньо-естетична цінність та техніко-образна складність виконуваного репертуару.</label>
                 <input
                     type="number"
+                    name="artisticValue"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artisticValue"
-                    class="form-control"
-                    id="artisticValue" >
-
+                    class="form-control check-nomination"
+                    id="artisticValue"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
+                >
+                <span class="errors" v-if="errors.has('artisticValue')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
                 <label for="artistry">Артистизм.</label>
                 <input
                     type="number"
+                    name="artistry"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="artistry"
-                    class="form-control"
-                    id="artistry" >
+                    class="form-control check-nomination"
+                    id="artistry"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
+                >
+                <span class="errors" v-if="errors.has('artistry')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
 
                 <label for="originality">Оригінальність сценічного вигляду.</label>
                 <input
                     type="number"
+                    name="originality"
                     v-bind:min="minEvaluation"
                     v-bind:max="maxEvaluation"
                     v-model.number="originality"
-                    class="form-control"
-                    id="originality">
+                    class="form-control check-nomination"
+                    id="originality"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
+                >
+                <span class="errors" v-if="errors.has('originality')">
+                    Введіть корректні дані в діапазоні від 0 до 25
+                </span>
+                <br>
+                <input
+                    style="width: 20px;height: 20px;margin-top: -5px"
+                    type="checkbox"
+                    name="exampleCheck1"
+                    class="form-check-input"
+                    id="exampleCheck1"
+                    v-model="recommendation"
+                    v-validate="{ regex: /^(0{1,})?([0-9]|1[0-9]|2[0-5])$/ }"
+                    :disabled="userJury == null || userJury.indexOf(nomination.name) == -1"
+                >
+                <span class="errors" v-if="errors.has('exampleCheck1')">
+                        Введіть корректні дані в діапазоні від 0 до 25
+                </span>
+                <label style="font-size: 20px" class="form-check-label" for="exampleCheck1">Рекомендуємо на Гала-Концерт</label>
             </form>
             <p class="evaluation mt-2">Загальна оцінка:  <b>{{evaluation}}</b></p>
         </div>
@@ -59,47 +101,56 @@
                     <div class="col-12 evaluationName"><b>Назва:</b> {{ group.name }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
+                        <b class="mt-3">Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Кількість учасників:</b> {{ group.count_people }}
                         <b class="mt-3">Середній вік:</b> {{ group.average_age }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
-                        <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name} ${school.teacher_patronymic}` }}
+                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
+                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
+                        </div>
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
             </div>
            <div class="col-9" v-if="member.length == 1">
                 <div class="row">
-                    <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}</div>
+                    <div class="col-12 evaluationName"><b>ПІБ:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
+                        <b>Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Дата народження:</b> {{ member[0].data_birthday }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
-                        <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name} ${school.teacher_patronymic}` }}
+                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
+                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
+                        </div>
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
             </div>
             <div class="col-9" v-if="member.length == 2">
                 <div class="row">
-                    <div class="col-12 evaluationName"><b>ПІП:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}, {{ `${member[1].surname} ${member[1].name} ${member[1].patronymic}` }}</div>
+                    <div class="col-12 evaluationName"><b>ПІБ:</b> {{ `${member[0].surname} ${member[0].name} ${member[0].patronymic}` }}, {{ `${member[1].surname} ${member[1].name} ${member[1].patronymic}` }}</div>
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
                         <b class="mt-3">Дата народження:</b> {{ `${member[0].data_birthday}, ${member[1].data_birthday}` }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
-                        <b>ПІП викладача:</b> {{ `${school.teacher_surname} ${school.teacher_name}  ${school.teacher_patronymic}` }}
+                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
+                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
+                        </div>
+
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
             </div>
             <div class="col-3">
-                <button type="button" v-if="!hasRecord" @click="createEvaluation" class="btn btn-secondary btn-block">Зберегти</button>
-                <button type="button" v-if="hasRecord" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
+                <button type="button" v-if="!hasRecord" :disabled="userJury == null || userJury.indexOf(nomination.name) == -1" @click="createEvaluation" class="btn btn-secondary btn-block check-button">Зберегти</button>
+                <button type="button" v-if="hasRecord && userJury.indexOf(nomination.name) != -1" @click="updateEvaluation" class="btn btn-secondary btn-block">Оновити</button>
                 <button type="button" @click="nextMember" v-show="nextButtonShow" class="btn btn-outline-secondary btn-block mt-4">Наступний учасник</button>
                 <button type="button" @click="prevMember" v-show="prevButtonShow" class="btn btn-outline-secondary btn-block mt-4">Попередній учасник</button>
             </div>
@@ -119,6 +170,7 @@
                 type: '',
                 school: '',
                 program: '',
+                teachers: [],
                 group: null,
                 count: 0,
                 // оцінки
@@ -129,6 +181,7 @@
                     artistry: 0,
                     originality: 0,
                     evaluation: 0,
+                    recommendation: false,
                 // },
                 // мінімальна максимальна оцінка
                 minEvaluation: 0,
@@ -136,6 +189,8 @@
                 maxRating: 100,
                 hasError: false,
                 hasRecord: false,
+                userJury: '',
+                nomination: ''
             }
         },
         watch: {
@@ -156,11 +211,11 @@
             }
         },
         created() {
+            this.getUserJury();
             this.getMember();
             this.getAllMembers();
         },
         computed: {
-
             nextButtonShow() {
                 return this.memberIndex == this.count ? false : true;
             },
@@ -174,8 +229,8 @@
                 axios.get(`/has-record/${this.$route.params.id}/`)
                     .then( ( response )  => {
                         this.hasRecord = this.isRecord(response.data);
-                        const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id } = response.data;
-                       
+                        const {stylistic_matching, artistic_value, artistry, originality, evaluation, user_id, recommendation } = response.data;
+
                         if(this.hasRecord) {
                             this.user_id = user_id;
                             this.stylisticMatching = stylistic_matching;
@@ -183,17 +238,18 @@
                             this.artistry = artistry;
                             this.originality = originality;
                             this.evaluation = evaluation;
+                            this.recommendation = recommendation;
                         } else {
                             this.setDefaultEvaluate();
-                        } 
+                        }
                     })
                     .catch(function (error) {
                         console.error(error);
                     });
             },
-            // need make validation 
+            // need make validation
             createEvaluation() {
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality} = this;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality, recommendation} = this;
 
                 axios.post('/to-rate', {
                     application_id: this.program.application_id,
@@ -201,7 +257,8 @@
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
                     artistry,
-                    originality
+                    originality,
+                    recommendation
                 })
                 .then( (response)  => {
                     swal( `Ваша оцінка ${this.evaluation} із можливих ${this.maxRating}`, {
@@ -223,14 +280,14 @@
                 });
             },
             updateEvaluation() {
-                const {evaluation, stylisticMatching, artisticValue, artistry, originality, user_id} = this;
+                const {evaluation, stylisticMatching, artisticValue, artistry, originality, recommendation} = this;
                 axios.post(`/to-rate-update/${this.$route.params.id}`, {
-                    user_id,
                     evaluation,
                     stylistic_matching: stylisticMatching,
                     artistic_value: artisticValue,
                     artistry,
-                    originality
+                    originality,
+                    recommendation
                 })
                 .then( (response) => {
                     swal(`Оцінку успішно змінено`, {
@@ -248,7 +305,7 @@
                             icon: 'error'
                         });
                     }
-                    
+
                 });
             },
 
@@ -258,6 +315,7 @@
                 this.artistry = 0;
                 this.originality = 0;
                 this.evaluation = 0;
+                this.recommendation = false;
             },
             isRecord(obj) {
                 for (let key in obj) {
@@ -272,16 +330,17 @@
                         if(response.data.length == 0) {
                             this.$router.push('/admin/all-statements');
                         }
-                        this.member = response.data[0].solo_duet;
-                        this.group = response.data[0].group;
-                        this.type = response.data[0].app_type;
-                        this.school = response.data[0].preparation;
-                        this.program = response.data[0].presentation;
-                        
+                        this.member = response.data.solo_duet;
+                        this.group = response.data.group;
+                        this.type = response.data.app_type;
+                        this.nomination = response.data.nomination;
+                        this.school = response.data.preparation;
+                        this.program = response.data.presentation;
+                        this.teachers = response.data.teachers;
                         var container = document.getElementById("videoMember");
                         container.setAttribute("src", this.program.video);
                     })
-                    .catch( error => console.error(error) );
+                    .catch(error => console.error(error));
                     this.getEvaluation();
             },
             getAllMembers() {
@@ -292,10 +351,16 @@
                         this.memberId = Number (this.$route.params.id);
                         this.memberIndex = this.memberIds.indexOf( this.memberId );
                     });
-                
+
+            },
+	        getUserJury() {
+                axios.get('/get-user-jury')
+	                .then((response) => {
+                        this.userJury = response.data.nominations;
+	                })
             },
             nextItem() {
-        
+
                 this.memberIndex = this.memberIds.indexOf( Number( this.$route.params.id ) );
                 if(this.memberIndex >= 0 && this.memberIndex < this.count) {
                     this.memberIndex += 1;

@@ -11,8 +11,12 @@ class MasterClassController extends Controller
 {
     function getInfo() {
         $data = MasterClass::first();
-        $photo = FotoGallery::where('type', 'Мастер клас')->get();
+        $photo = FotoGallery::orderBy('year', 'desc')->where('type', 'Мастер клас')->get();
         return response()->json(['info' => $data, 'photo' => $photo]);
+    }
+    function getPhoto() {
+        $data = FotoGallery::orderBy('year', 'desc')->where('type', 'Мастер клас')->get();
+        return response()->json($data);
     }
     function putInfo(Request $request) {
         Info::where("id", 1)->update([$request->column => $request->value]);

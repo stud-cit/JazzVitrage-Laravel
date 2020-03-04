@@ -37,7 +37,7 @@
                     <transition name="fade" >
                         <form @submit.prevent="nextStep"  class="step-form" v-if="activeStep == 0">
                             <h3 class="step-title">тип заявки <i class="hint"></i></h3>
-                            <div class="input-group">
+                            <div class="input-group type-group">
                                 <label><input type="radio" name="app-type" class="app-type" value="1"  v-model="registration.data.appType" ><i></i>СОЛІСТ</label>
                                 <label><input type="radio" name="app-type" class="app-type" value="2" v-model="registration.data.appType"><i></i>ДУЕТ</label>
                                 <label><input type="radio" name="app-type" class="app-type" value="3" v-model="registration.data.appType"><i></i>АНСАМБЛЬ</label>
@@ -76,7 +76,7 @@
                             <h3 class="step-title">Інформація про учасника</h3>
                             <label>ПРІЗВИЩЕ ІМ'Я ПО-БАТЬКОВІ</label>
                             <div class="input-row">
-                                
+
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname" id="memberSurname" v-model="registration.data.memberSurname" required
@@ -99,20 +99,20 @@
 
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <label>ДАТА НАРОДЖЕННЯ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
-                                    <date-picker 
-                                        v-model="registration.data.memberDate" 
+                                    <date-picker
+                                        v-model="registration.data.memberDate"
                                         value-type="YYYY-MM-DD"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
@@ -126,17 +126,40 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
-                            <label>ЕЛЕКТРОННА ПОШТА</label>
+                            <label>ДОМАШНЯ АДРЕСА</label>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail" id="memberEmail" v-model="registration.data.memberEmail" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
-                                        v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
-                                        data-vv-as="Електронна пошта">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress" type="text" v-model="registration.data.memberAddress"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('memberEmail')">
-                                    Введіть дані у форматі name@email.com
+                            <span class="errors" v-if="errors.has('memberAddress')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData" id="passportData" v-model="registration.data.passportData"
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -144,8 +167,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -156,8 +179,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -166,7 +189,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberBirthdayFile')">
-                                    Оберіть файл графічного формату
+                                    Оберіть файл графічного або pdf-формату
                             </span>
 
                             <div class="d-flex align-items-center justify-content-between">
@@ -195,18 +218,18 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
-                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>
                             </div>
-                            <div class="input-row" v-if="registration.data.idMemberType == 0"> 
+                            <div class="input-row" v-if="registration.data.idMemberType == 0">
                                 <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
                             </div>
                             <div class="input-row">
@@ -225,8 +248,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" accept="image/*" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile" id="idFile" class="d-none" type="file" accept=".jpg, .png, .jpeg, .bmp" required
+                                           v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -236,8 +259,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" id="idFile" accept="image/*" class="d-none" type="file" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile" id="idFile" accept=".jpg, .png, .jpeg, .bmp" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -247,23 +270,7 @@
                             <span class="errors" v-if="errors.has('idFile')">
                                     Оберіть файл графічного формату
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
+
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -292,20 +299,20 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <label>Дата народження</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <date-picker 
-                                        v-model="registration.data.memberDate" 
+                                    <date-picker
+                                        v-model="registration.data.memberDate"
                                         value-type="YYYY-MM-DD"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
@@ -319,17 +326,40 @@
                             <span class="errors" v-if="errors.has('memberDate')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
-                            <label>Електронна пошта</label>
+                            <label>ДОМАШНЯ АДРЕСА</label>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail1" id="memberEmail1" v-model="registration.data.memberEmail1" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
-                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
-                                           data-vv-as="Електронна пошта">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress" type="text" v-model="registration.data.memberAddress"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('memberEmail1')">
-                                    Введіть дані у форматі name@email.com
+                            <span class="errors" v-if="errors.has('memberAddress')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
+                             <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type" class="app-type" v-model="registration.data.idPassportType" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData" id="passportData" v-model="registration.data.passportData"
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData') && registration.data.idPassportType == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -337,8 +367,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .gif" id="memberBirthdayFile" class="d-none" type="file" required
-                                         v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                         v-validate="{ 'ext':['pdf', 'jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -348,8 +378,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept="image/*" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -385,18 +415,18 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentName')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <div class="input-row" v-if="registration.data.idMemberType == 1">
-                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                                <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>
                             </div>
-                            <div class="input-row" v-if="registration.data.idMemberType == 0"> 
+                            <div class="input-row" v-if="registration.data.idMemberType == 0">
                                 <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
                             </div>
                             <div class="input-row">
@@ -415,8 +445,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" accept="image/*" id="idFile" class="d-none" type="file" required
-                                        v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile" accept=".jpg, .png, .jpeg, .bmp" id="idFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -426,8 +456,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile" accept="image/*" id="idFile" class="d-none" type="file" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile" accept=".jpg, .png, .jpeg, .bmp" id="idFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile">
                                         <span>{{fileTitle.idFile}}</span>
                                     </label>
@@ -455,20 +485,20 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberName2')">
-                                    Поле "ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('memberPatronymic2')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <label>ДАТА НАРОДЖЕННЯ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" class="input-img">
-                                    <date-picker 
-                                        v-model="registration.data.memberDate2" 
+                                    <date-picker
+                                        v-model="registration.data.memberDate2"
                                         value-type="YYYY-MM-DD"
                                         :lang="datepicker.lang"
                                         :default-value="datepicker.minDate"
@@ -482,16 +512,40 @@
                             <span class="errors" v-if="errors.has('memberDate2')">
                                     Поле "Дата народження" має бути заповнене
                             </span>
-                            <label>ЕЛЕКТРОННА ПОШТА</label>
+                            <label>ДОМАШНЯ АДРЕСА</label>
                             <div class="input-row">
                                 <div class="input-container">
-                                    <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input type="text" name="memberEmail2" v-model="registration.data.memberEmail2" required pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
-                                           v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="memberAddress2" type="text" v-model="registration.data.memberAddress2"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="ДОМАШНЯ АДРЕСА">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('memberEmail2')">
-                                    Введіть дані у форматі name@email.com
+                            <span class="errors" v-if="errors.has('memberAddress2')">
+                                    Поле "Домашня адреса" має бути заповнене
+                            </span>
+                             <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                <div class="input-group input-group-right">
+                                    <label><input type="radio" name="id-passport-type2" class="app-type" v-model="registration.data.idPassportType2" value="0"><i></i>СВІДОЦТВО ПРО НАРОДЖЕННЯ</label>
+                                    <label><input type="radio" name="id-passport-type2" class="app-type" v-model="registration.data.idPassportType2" value="1"><i></i>ПАСПОРТ</label>
+                                </div>
+                            </div>
+                            <br>
+                            <label v-if="registration.data.idPassportType2 == 0">ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ</label>
+                            <label v-if="registration.data.idPassportType2 == 1">ПАСПОРТНІ ДАНІ</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/step2-data.png" alt="" class="input-img">
+                                    <input type="text" name="passportData2" id="passportData2" v-model="registration.data.passportData2"
+                                           v-validate="{ required: true }">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('passportData2') && registration.data.idPassportType2 == 0">
+                                    Поле "ДАНІ СВІДОЦТВА ПРО НАРОДЖЕННЯ" має бути заповнене
+                            </span>
+                            <span class="errors" v-if="errors.has('passportData2') && registration.data.idPassportType2 == 1">
+                                    Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
                             </span>
                             <h3 class="step-title">Відскановане свідоцтво про народження або паспорт за наявністю <i class="hint"></i></h3>
                             <div class="input-row">
@@ -499,8 +553,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .gif" id="member2BirthdayFile" class="d-none" type="file" required
-                                        v-validate="{ 'ext':['pdf', 'jpg', 'png', 'gif'] }">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -510,8 +564,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept="image/*" id="member2BirthdayFile" class="d-none" type="file" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -519,7 +573,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('member2BirthdayFile')">
-                                    Оберіть файл графічного формату
+                                    Оберіть файл графічного або pdf-формату
                             </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
@@ -547,18 +601,18 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentName2')">
-                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                                    Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <span class="errors" v-if="errors.has('parentPatronymic2')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <div class="input-row" v-if="registration.data.idMemberType2 == 1">
-                                <label  >ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>  
+                                <label  >ІДЕНТИФІКАЦІЙНИЙ НОМЕР ОДНОГО З БАТЬКІВ</label>
                             </div>
-                            <div class="input-row" v-if="registration.data.idMemberType2 == 0"> 
+                            <div class="input-row" v-if="registration.data.idMemberType2 == 0">
                                 <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР УЧНЯ</label>
                             </div>
                             <div class="input-row">
@@ -577,8 +631,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" accept="image/*" id="idFile2" class="d-none" type="file" required
-                                        v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile2" accept=".jpg, .png, .jpeg, .bmp" id="idFile2" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
                                     </label>
@@ -588,8 +642,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="idFile2" accept="image/*" id="idFile2" class="d-none" type="file" required
-                                           v-validate="'image'">
+                                    <input @change="getInputFile" name="idFile2" accept=".jpg, .png, .jpeg, .bmp" id="idFile2" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="idFile2">
                                         <span>{{fileTitle.idFile2}}</span>
                                     </label>
@@ -599,24 +653,7 @@
                             <span class="errors" v-if="errors.has('idFile2')">
                                     Оберіть файл графічного формату
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -655,11 +692,11 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupAverage" v-model="registration.data.groupAverage" required
-                                        v-validate="{ regex: /^(([8-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
+                                        v-validate="{ regex: /^(([7-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupAverage')">
-                                    Введіть корректні дані в діапазоні від 8 до 17
+                                    Введіть корректні дані в діапазоні від 7 до 17
                             </span>
                             <h3 class="step-title">Документ з датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
@@ -667,8 +704,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf" id="groupBirthdayFile" class="d-none" type="file" required
-                                        v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }">
+                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf, .jpg, .jpeg, .png, .bmp" id="groupBirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx', 'bmp', 'jpg', 'jpeg', 'png'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -678,8 +715,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx'] }">
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf, .jpg, .jpeg, .png, .bmp" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx', 'bmp', 'jpg', 'jpeg', 'png'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -687,26 +724,9 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupBirthdayFile')">
-                                    Файл повинен відповідати формату: pdf, doc, txt, docx
+                                    Файл повинен відповідати формату: pdf, doc, txt, docx, jpg, jpeg, png, bmp
                             </span>
-                            <h3 class="step-title">Документ про оплату добровільних внесків <i class="hint"></i></h3>
-                            <div class="input-row">
-                                <div class="input-container" v-if="fileTitle.checkFile == null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                                <div class="input-container" v-if="fileTitle.checkFile !== null">
-                                    <img src="img/file-image.png" alt="" class="input-img">
-                                    <input @change="getInputFile" name="checkFile" id="checkFile" class="d-none" type="file">
-                                    <label for="checkFile">
-                                        <span>{{fileTitle.checkFile}}</span>
-                                    </label>
-                                </div>
-                            </div>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
                                 <button type="button" @click="nextStep" class="next-step">Далі <i class="fa fa-arrow-right"></i></button>
@@ -725,24 +745,24 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-castle.png" alt="" class="input-img" >
-                                    <input name="schoolName" type="text" v-model="registration.data.schoolName"
+                                    <input name="school_name" type="text" v-model="registration.data.school.school_name"
                                         v-validate="{ required: true }"
                                             data-vv-as="НАЗВА">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('schoolName')">
+                            <span class="errors" v-if="errors.has('school_name')">
                                     Введіть корректні дані
                             </span>
                             <label>АДРЕСА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/input-map.png" alt="" class="input-img">
-                                    <input name="schoolAddress" type="text" v-model="registration.data.schoolAddress"
+                                    <input name="school_address" type="text" v-model="registration.data.school.school_address"
                                         v-validate="{ required: true }"
                                            data-vv-as="АДРЕСА">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('schoolAddress')">
+                            <span class="errors" v-if="errors.has('school_address')">
                                     Введіть корректні дані
                             </span>
                             <label>ТЕЛЕФОН</label>
@@ -750,85 +770,155 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
 
-                                    <input type="text" name="schoolPhone" maxlength="13" v-model="registration.data.schoolPhone"
+                                    <input type="text" name="school_phone" maxlength="13" v-model="registration.data.school.school_phone"
                                         v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('schoolPhone')">
+                            <span class="errors" v-if="errors.has('school_phone')">
                                     Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
                             </span>
                             <label>ЕЛЕКТРОННА ПОШТА</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="schoolEmail" v-model="registration.data.schoolEmail" required
-                                        v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                    <input type="text" name="school_email" v-model="registration.data.school.school_email" required
+                                        v-validate="{ regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }"
                                            data-vv-as="E-MAIL">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('schoolEmail')">
-                                    Введіть дані у форматі name@email.com
+                            <span class="errors" v-if="errors.has('school_email')">
+                                Введіть дані у форматі name@email.com
                             </span>
-                            <h3 class="step-title">Інформація про ВИКЛАДАЧА  </h3>
-                            <label> ПРІЗВИЩЕ Ім’я по-батькові</label>
-                            <div class="input-row">
-                                <div class="input-container">
-                                    <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input name="teacherSurname" type="text" v-model="registration.data.teacherSurname" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
-                                </div>
-                                <div class="input-container ml-4">
-                                    <input name="teacherName" type="text" v-model="registration.data.teacherName" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
-                                </div>
-                                <div class="input-container ml-4">
-                                    <input name="teacherPatronymic" type="text" v-model="registration.data.teacherPatronymic" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
-                                </div>
-                            </div>
-                            <span class="errors" v-if="errors.has('teacherSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
-                            </span>
-                            <span class="errors" v-if="errors.has('teacherName')">
-                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
-                            </span>
-                            <span class="errors" v-if="errors.has('teacherPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
-                            </span>
-                            <label>Електрона пошта</label>
-                            <div class="input-row">
-                                <div class="input-container">
-                                    <img src="img/input-mail.png" alt="" class="input-img">
-                                    <input name="teacherEmail" type="text" v-model="registration.data.teacherEmail" required
-                                        v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
-                                </div>
-                            </div>
-                            <span class="errors" v-if="errors.has('teacherEmail')">
-                                    Введіть дані у форматі name@email.com
-                            </span>
-                            <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>  
-                            <div class="input-row">
-                                <div class="input-container">
-                                    <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input name="teacherIdCode" type="text" maxlength="10" v-model="registration.data.teacherIdCode" required
-                                        v-validate="{ regex: /^\d{10}$/ }">
-                                </div>
-                            </div>
-                            <span class="errors" v-if="errors.has('teacherIdCode')">
-                                    Ідентифікаційний номер повинен містити 10 цифр
-                            </span>
-                            <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
-                            <div class="input-row">
-                                <div class="input-container">
-                                    <img src="img/input-phone.png" alt="" class="input-img">
 
-                                    <input type="text" name="teacherPhone" maxlength="13" v-model="registration.data.teacherPhone"
-                                        v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
+                            <div v-for="(teacher, index) in registration.data.teachers" :key="index">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h3 class="step-title">Інформація про ВИКЛАДАЧА</h3>
+                                    </div>
+                                    <div class="col-1 text-right mt-0">
+                                        <span v-if="index != 0" class="prev-step" @click="deleteTeacher(index)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                    </div>
                                 </div>
+                                <label>ПРІЗВИЩЕ Ім’я по-батькові</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/step2-user.png" class="input-img">
+                                        <input :name="'teacher_surname_'+index" type="text" v-model="teacher.teacher_surname" required
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                    </div>
+                                    <div class="input-container ml-4">
+                                        <input :name="'teacher_name_'+index" type="text" v-model="teacher.teacher_name" required
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                    </div>
+                                    <div class="input-container ml-4">
+                                        <input :name="'teacher_patronymic_'+index" type="text" v-model="teacher.teacher_patronymic" required
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
+                                    </div>
+                                </div>
+                                <span class="errors" v-if="errors.has('teacher_surname_'+index)">
+                                        Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
+                                </span>
+                                <span class="errors" v-if="errors.has('teacher_name_'+index)">
+                                        Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
+                                </span>
+                                <span class="errors" v-if="errors.has('teacher_patronymic_'+index)">
+                                        Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
+                                </span>
+
+                                <div v-if="registration.data.appType > 2">
+                                    <label>Домашня адреса</label>
+                                    <div class="input-row">
+                                        <div class="input-container">
+                                            <img src="img/input-map.png" class="input-img">
+                                            <input :name="'teacher_address_'+index" type="text" v-model="teacher.teacher_address" required>
+                                        </div>
+                                    </div>
+                                    <span class="errors" v-if="errors.has('teacher_address_'+index)">
+                                        Поле "Домашня адреса" має бути заповнене
+                                    </span>
+                                </div>
+
+                                <label>Електронна пошта</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/input-mail.png" class="input-img">
+                                        <input :name="'teacher_email_'+index" type="text" v-model="teacher.teacher_email" required
+                                            v-validate="{ regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }">
+                                    </div>
+                                </div>
+                                <span class="errors" v-if="errors.has('teacher_email_'+index)">
+                                        Введіть дані у форматі name@email.com
+                                </span>
+                                <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/input-phone.png" class="input-img">
+                                        <input type="text" :name="'teacher_phone_'+index" maxlength="13" v-model="teacher.teacher_phone"
+                                            v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
+                                    </div>
+                                </div>
+                                <span class="errors" v-if="errors.has('teacher_phone_'+index)">
+                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
+                                </span>
+
+                                <div v-if="registration.data.appType > 2">
+                                    <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>
+                                    <div class="input-row">
+                                        <div class="input-container">
+                                            <img src="img/step2-data.png" class="input-img">
+                                            <input :name="'teacher_id_code_'+index" type="text" maxlength="10" v-model="teacher.teacher_in" required
+                                                v-validate="{ regex: /^\d{10}$/ }">
+                                        </div>
+                                    </div>
+                                    <span class="errors" v-if="errors.has('teacher_id_code_'+index)">
+                                        Ідентифікаційний номер повинен містити 10 цифр
+                                    </span>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h3 class="step-title title-left">ДОКУМЕНТ ПРО ПОСВІДЧЕННЯ ОСОБИ: <i class="hint"></i></h3>
+                                    </div>
+                                    <br>
+                                    <label>ПАСПОРТНІ ДАНІ</label>
+                                    <div class="input-row">
+                                        <div class="input-container">
+                                            <img src="img/step2-data.png" class="input-img">
+                                            <input type="text" :name="'teacher_passport_data_'+index" :id="'teacher_passport_data_'+index" v-model="teacher.teacher_passport_data"
+                                                v-validate="{ required: true }">
+                                        </div>
+                                    </div>
+                                    <span class="errors" v-if="errors.has('teacher_passport_data_'+index)">
+                                        Поле "ПАСПОРТНІ ДАНІ" має бути заповнене
+                                    </span>
+                                    <label>Відсканований паспорт</label>
+                                    <div class="input-row">
+                                        <div class="input-container" v-if="teacher.teacher_passport == null">
+                                            <img src="img/file-image.png" class="input-img">
+                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
+                                                v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                                data-vv-as="Відсканований паспорт">
+                                            <label :for="'teacher_passport_'+index">
+                                                <span>{{teacher.teacher_passport}}</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-container" v-if="teacher.teacher_passport !== null">
+                                            <img src="img/file-image.png" class="input-img">
+                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
+                                                v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                                data-vv-as="Відсканований паспорт">
+                                            <label :for="'teacher_passport_'+index">
+                                                <span>{{teacher.teacher_passport}}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <span class="errors" v-if="errors.has('teacher_passport_'+index)">
+                                        Оберіть файл графічного або pdf-формату
+                                    </span>
+                                </div>
+
+                                <hr>
                             </div>
-                            <span class="errors" v-if="errors.has('teacherPhone')">
-                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри) 
-                            </span>
+                            <br>
+                            <button type="button" @click="addTeacher()" style="width: 100%" class="next-step">Додати викладача</button>
+                            <br>
                             <div class="input-row checkbox-row">
                                     <label for="concertmaster" >
                                         <input @change="concertmaster = !concertmaster" id="concertmaster" class="d-none" type="checkbox" >
@@ -840,26 +930,26 @@
                             <div class="input-row" v-if="concertmaster">
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
-                                    <input type="text" name="concertSurname" v-model="registration.data.concertSurname" required
+                                    <input type="text" name="concertmaster_surname" v-model="registration.data.school.concertmaster_surname" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="concertName" v-model="registration.data.concertName" required
+                                    <input type="text" name="concertmaster_name" v-model="registration.data.school.concertmaster_name" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
-                                    <input type="text" name="concertPatronymic" v-model="registration.data.concertPatronymic" required
+                                    <input type="text" name="concertmaster_patronymic" v-model="registration.data.school.concertmaster_patronymic" required
                                         v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
                                 </div>
                             </div>
-                            <span class="errors" v-if="errors.has('concertSurname')">
-                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                            <span class="errors" v-if="errors.has('concertmaster_surname')">
+                                    Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
-                            <span class="errors" v-if="errors.has('concertName')">
-                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
+                            <span class="errors" v-if="errors.has('concertmaster_name')">
+                                    Поле "Ім'я" має бути заповнене не менше, ніж 2 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
-                            <span class="errors" v-if="errors.has('concertPatronymic')">
-                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
+                            <span class="errors" v-if="errors.has('concertmaster_patronymic')">
+                                    Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
@@ -972,8 +1062,12 @@
 
                                 </div>
                             </div>
+                            <span class="errors">
+                                Якщо розмір відеофайлу перевищує 100 мегабайт, скористайтесь наступним сайтом для зменшення розміру: <br>
+                                <a :href="compress_url" target="_blank">{{ compress_url }}</a>
+                            </span>
                             <span class="errors" v-if="errors.has('compositionVideo')">
-                                    Оберіть файл відео-формату розміром не більше 100 Мб
+                                Оберіть файл відео-формату розміром не більше 100 Мб
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
                                 <span class="prev-step" @click="prevStep($event)"><i class="fa fa-arrow-left"></i> Назад</span>
@@ -991,34 +1085,33 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                <h5 class="step-title">Вікова категорія:
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про учасника </h5>
                             <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
-                                <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                <li class="info-item">Електрона адреса: {{registration.data.memberEmail}}</li>
+                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
+                                <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate}}</li>
                                 <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                             </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                             <ul class="info-list">
 
-                                <li class="info-item">Назва: {{registration.data.schoolName}}</li>
-                                <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
-                                <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
-                                <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                                <li class="info-item">Назва: {{registration.data.school.school_name}}</li>
+                                <li class="info-item">Телефон: {{registration.data.school.school_phone}}</li>
+                                <li class="info-item">Адреса: {{registration.data.school.school_address}}</li>
+                                <li class="info-item">Електронна адреса: {{registration.data.school.school_email}}</li>
                             </ul></div>
-                            <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
-                            <ul class="info-list">
-                                <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
-                                <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
-
-                            </ul></div>
-                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                            <div class="result-row"><h5 class="step-title">Інформація про викладача</h5>
+                                <ul class="info-list" v-for="(teacher, index) in registration.data.teachers" :key="index">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{teacher.teacher_surname + ' ' + teacher.teacher_name + ' ' + teacher.teacher_patronymic}}</li>
+                                    <li class="info-item">Контактний телефон: {{teacher.teacher_phone}}</li>
+                                </ul>
+                            </div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.school.concertmaster_surname + ' ' + registration.data.school.concertmaster_name + ' ' + registration.data.school.concertmaster_patronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                             <ul class="info-list">
                                 <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1036,7 +1129,7 @@
                                 <label for="groupCheck1" >
                                     <input @change="checked = !checked" name="groupCheck1" id="groupCheck1" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1054,41 +1147,39 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                <h5 class="step-title">Вікова категорія:
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
                             </div>
                             <div class="result-row"><h5 class="step-title">Інформація про першого учасника </h5>
                                 <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName + ' ' + registration.data.memberSurname + ' ' + registration.data.memberPatronymic}}</li>
-                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail1}}</li>
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname + ' ' + registration.data.memberName + ' ' + registration.data.memberPatronymic}}</li>
+                                    <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про другого учасника </h5>
                                 <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberName2 + ' ' + registration.data.memberSurname2 + ' ' + registration.data.memberPatronymic2}}</li>
-                                    <li class="info-item">Число, місяці, рік народження: {{registration.data.memberDate2}}</li>
-                                    <li class="info-item">Електрона адреса: {{registration.data.memberEmail2}}</li>
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.memberSurname2 + ' ' + registration.data.memberName2 + ' ' + registration.data.memberPatronymic2}}</li>
+                                    <li class="info-item">Число, місяць, рік народження: {{registration.data.memberDate2}}</li>
                                     <li class="info-item">Ідентифікаційний номер: {{registration.data.idCode2}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                                 <ul class="info-list">
 
-                                    <li class="info-item">Назва: {{registration.data.schoolName}}</li>
-                                    <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
-                                    <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
-                                    <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                                    <li class="info-item">Назва: {{registration.data.school.school_name}}</li>
+                                    <li class="info-item">Телефон: {{registration.data.school.school_phone}}</li>
+                                    <li class="info-item">Адреса: {{registration.data.school.school_address}}</li>
+                                    <li class="info-item">Електронна адреса: {{registration.data.school.school_email}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про викладача  </h5>
-                                <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
-                                    <li class="info-item">Контактний телефон: {{registration.data.teacherPhone}}</li>
-
-                                </ul></div>
-                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                                <ul class="info-list" v-for="(teacher, index) in registration.data.teachers" :key="index">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові: {{teacher.teacher_surname + ' ' + teacher.teacher_name + ' ' + teacher.teacher_patronymic}}</li>
+                                    <li class="info-item">Контактний телефон: {{teacher.teacher_phone}}</li>
+                                </ul>
+                            </div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.school.concertmaster_surname + ' ' + registration.data.school.concertmaster_name + ' ' + registration.data.school.concertmaster_patronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
                                     <li class="info-item">Назва та автор першого твору: {{registration.data.compositionName + ' ' + registration.data.compositionAuthor}}</li>
@@ -1106,7 +1197,7 @@
                                 <label for="groupCheck2" >
                                     <input @change="checked = !checked" name="groupCheck2" id="groupCheck2" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
@@ -1124,8 +1215,8 @@
                             <div class="result-row"><h5 class="step-title">Тип заявки: {{appTypes[registration.data.appType]}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Номінація: {{nominations[registration.data.nomination -1].name}}</h5></div>
                             <div class="result-row">
-                                <h5 class="step-title">Вікова категорія: 
-                                    <span v-if="registration.data.ageCategory >= 8 && registration.data.ageCategory <= 10">молодша</span>
+                                <h5 class="step-title">Вікова категорія:
+                                    <span v-if="registration.data.ageCategory >= 7 && registration.data.ageCategory <= 10">молодша</span>
                                     <span v-if="registration.data.ageCategory >= 11 && registration.data.ageCategory <= 13">середня</span>
                                     <span v-if="registration.data.ageCategory >= 14 && registration.data.ageCategory <= 19">старша</span>
                                 </h5>
@@ -1137,20 +1228,21 @@
                                     <li class="info-item">Середній вік учасників: {{registration.data.groupAverage}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про керівника</h5>
-                                <ul class="info-list">
-                                    <li class="info-item">Прізвище, ім'я, по-батькові керівника: {{registration.data.teacherSurname + ' ' + registration.data.teacherName + ' ' + registration.data.teacherPatronymic}}</li>
-                                    <li class="info-item">Контактний телефон керівника: {{registration.data.teacherPhone}}</li>
-                                    <li class="info-item">Ідентифікаційний номер керівника: {{registration.data.teacherIdCode}}</li>
-                                    <li class="info-item">Електронна пошта керівника: {{registration.data.teacherEmail}}</li>
-                                </ul></div>
-                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.concertSurname + ' ' + registration.data.concertName + ' ' + registration.data.concertPatronymic}}</h5></div>
+                                <ul class="info-list" v-for="(teacher, index) in registration.data.teachers" :key="index">
+                                    <li class="info-item">Прізвище, ім'я, по-батькові керівника: {{teacher.teacher_surname + ' ' + teacher.teacher_name + ' ' + teacher.teacher_patronymic}}</li>
+                                    <li class="info-item">Контактний телефон керівника: {{teacher.teacher_phone}}</li>
+                                    <!--<li class="info-item">Ідентифікаційний номер керівника: {{teacher.teacher_in}}</li>-->
+                                    <li class="info-item">Електронна пошта керівника: {{teacher.teacher_email}}</li>
+                                </ul>
+                            </div>
+                            <div class="result-row" v-if="concertmaster"><h5 class="step-title">Прізвище, ім'я, по-батькові концертмейстера:  {{registration.data.school.concertmaster_surname + ' ' + registration.data.school.concertmaster_name + ' ' + registration.data.school.concertmaster_patronymic}}</h5></div>
                             <div class="result-row"><h5 class="step-title">Інформація про мистецький заклад </h5>
                                 <ul class="info-list">
 
-                                    <li class="info-item">Назва: {{registration.data.schoolName}}</li>
-                                    <li class="info-item">Телефон: {{registration.data.schoolPhone}}</li>
-                                    <li class="info-item">Адреса: {{registration.data.schoolAddress}}</li>
-                                    <li class="info-item">Електронна адреса: {{registration.data.schoolEmail}}</li>
+                                    <li class="info-item">Назва: {{registration.data.school.school_name}}</li>
+                                    <li class="info-item">Телефон: {{registration.data.school.school_phone}}</li>
+                                    <li class="info-item">Адреса: {{registration.data.school.school_address}}</li>
+                                    <li class="info-item">Електронна адреса: {{registration.data.school.school_email}}</li>
                                 </ul></div>
                             <div class="result-row"><h5 class="step-title">Інформація про виступ </h5>
                                 <ul class="info-list">
@@ -1169,11 +1261,11 @@
                                 <label for="groupCheck3" >
                                     <input @change="checked = !checked" name="groupCheck3" id="groupCheck3" class="d-none" type="checkbox" v-validate="{ required: true }">
                                     <i></i>
-                                    <p>Даю згоду на збір <a :href="personal.personal_data" target="_blank">персональних даних та права на використання</a></p>
+                                    <p>Даю згоду на збір <a :href="personal_data" target="_blank">персональних даних та права на використання</a></p>
                                 </label>
                             </div>
                             <span class="errors" v-if="!checked">
-                                    Для оформлення заявки ви повинні дати згоду на збір даних
+                                    <b>Для оформлення заявки ви повинні дати згоду на збір даних</b>
                             </span>
                             <div class="d-flex justify-content-between align-items-center mt-5">
 
@@ -1193,7 +1285,7 @@
         <template v-else>
             <h1>Сторінка недоступна</h1>
         </template>
-        
+
     </div>
 </template>
 
@@ -1220,12 +1312,11 @@
 	            checked: false,
                 appTypes: ['', 'СОЛІСТ', 'ДУЕТ', 'АНСАМБЛЬ', 'ХОР', 'ОРКЕСТР'],
                 nominations: [],
-	            personal: {
-		            personal_data: ''
-                },
+                personal_data: '',
+                compress_url: '',
                 datepicker: {
-                    minDate: new Date(nowDate.getFullYear()-18 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
-                    maxDate: new Date(nowDate.getFullYear()-8 + '-' + nowDate.getMonth() + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    minDate: new Date(String(nowDate.getFullYear()-18) + '-' + String(nowDate.getMonth()+1) + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
+                    maxDate: new Date(String(nowDate.getFullYear()-6) + '-' + String(nowDate.getMonth()+1) + '-' + nowDate.getDate()).setHours(0, 0, 0, 0),
                     lang: {
                         formatLocale: {
                             months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
@@ -1244,7 +1335,6 @@
                     idFile: 'завантажити файл',
                     idFile2: 'завантажити файл',
                     compositionVideo: 'завантажити файл',
-                    checkFile: 'завантажити файл',
                 },
                 steps: [
                     {
@@ -1261,12 +1351,13 @@
                         memberSurname: '',
                         memberPatronymic: '',
                         memberDate: '',
-	                    memberEmail: '',
-	                    memberEmail1: '',
-	                    memberEmail2: '',
+                        memberAddress: '',
+                        passportData: '',
+                        passportData2: '',
                         groupName: '',
                         groupCount: '',
                         groupAverage: '',
+                        idPassportType: 1,
                         idMemberType: 1,
                         parentName: '',
                         parentSurname: '',
@@ -1276,24 +1367,39 @@
                         memberSurname2: '',
                         memberPatronymic2: '',
                         memberDate2: '',
+                        memberAddress2: '',
                         idMemberType2: 1,
+                        idPassportType2: 1,
                         parentName2: '',
                         parentSurname2: '',
                         parentPatronymic2: '',
                         idCode2: '',
-                        schoolName: '',
-                        schoolAddress: '',
-                        schoolPhone: '',
-                        teacherIdCode: '',
-                        schoolEmail: '',
-                        teacherSurname: '',
-                        teacherName: '',
-                        teacherPatronymic: '',
-                        teacherEmail: '',
-                        teacherPhone: '',
-                        concertSurname: '',
-                        concertName: '',
-                        concertPatronymic: '',
+
+                        school: {
+                            school_name: '',
+                            school_address: '',
+                            school_phone: '',
+                            school_email: '',
+                            concertmaster_name: '',
+                            concertmaster_surname: '',
+                            concertmaster_patronymic: ''
+                        },
+
+                        teachers: [
+                            {
+                                teacher_name: '',
+                                teacher_surname: '',
+                                teacher_patronymic: '',
+                                teacher_in: '',
+                                teacher_email: '',
+                                teacher_phone: '',
+                                teacher_passport_data: '',
+                                teacher_address: '',
+                                teacher_passport_index: '',
+                                teacher_passport: 'завантажити файл'
+                            }
+                        ],
+
                         compositionName: '',
                         compositionAuthor: '',
                         compositionName2: '',
@@ -1317,6 +1423,23 @@
 
         },
         methods: {
+            addTeacher() {
+                this.registration.data.teachers.push({
+                    teacher_name: '',
+                    teacher_surname: '',
+                    teacher_patronymic: '',
+                    teacher_in: '',
+                    teacher_email: '',
+                    teacher_phone: '',
+                    teacher_passport_data: '',
+                    teacher_address: '',
+                    teacher_passport_index: '',
+                    teacher_passport: 'завантажити файл'
+                });
+            },
+            deleteTeacher(index) {
+                this.registration.data.teachers.splice(index, 1);
+            },
             rangeDate(date) {
                 return date <= this.datepicker.minDate || date >= this.datepicker.maxDate;
             },
@@ -1329,7 +1452,7 @@
                            swal("Увага", "На даний момент подача заявок зупинена." ,"info")
                                 .then( ( value ) => {
                                     this.$router.push({name: "index"});
-                                });   
+                                });
                         }
                     })
                     .catch( ( error ) => console.error(error) )
@@ -1352,39 +1475,39 @@
                     if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.getAge(this.registration.data.memberDate);
 
-                        if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+                        if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 	                        this.registration.data.nameAgeCategory = 'молодша';
                         }
                         else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 	                        this.registration.data.nameAgeCategory = 'середня';
                         }
-                        else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
+                        else if(this.registration.data.ageCategory >= 14) {
 	                        this.registration.data.nameAgeCategory = 'старша';
                         }
                     }
                     else if(this.registration.data.memberDate != '' && this.registration.data.memberDate2 != '') {
                         this.registration.data.ageCategory = (this.getAge(this.registration.data.memberDate) + this.getAge(this.registration.data.memberDate2)) / 2;
 
-	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+	                    if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 		                    this.registration.data.nameAgeCategory = 'молодша';
 	                    }
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 		                    this.registration.data.nameAgeCategory = 'середня';
 	                    }
-	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
+	                    else if(this.registration.data.ageCategory >= 14) {
 		                    this.registration.data.nameAgeCategory = 'старша';
 	                    }
                     }
                     else if(this.registration.data.memberDate == '' && this.registration.data.memberDate2 == '') {
                         this.registration.data.ageCategory = this.registration.data.groupAverage;
 
-	                    if(this.registration.data.ageCategory >= 8 && this.registration.data.ageCategory <= 10) {
+	                    if(this.registration.data.ageCategory >= 7 && this.registration.data.ageCategory <= 10) {
 		                    this.registration.data.nameAgeCategory = 'молодша';
 	                    }
 	                    else if(this.registration.data.ageCategory >= 11 && this.registration.data.ageCategory <= 13) {
 		                    this.registration.data.nameAgeCategory = 'середня';
 	                    }
-	                    else if(this.registration.data.ageCategory >= 14 && this.registration.data.ageCategory <= 19) {
+	                    else if(this.registration.data.ageCategory >= 14) {
 		                    this.registration.data.nameAgeCategory = 'старша';
 	                    }
                     }
@@ -1408,9 +1531,8 @@
 	        getPersonal() {
 		        axios.get('/get-personal-doc')
 			        .then((response) => {
-				        response.data.personal.map(item => {
-					        Object.assign(this.personal, item);
-				        })
+                        this.personal_data = response.data.personal;
+                        this.compress_url = response.data.compress_url;
 			        })
 	        },
 
@@ -1429,7 +1551,13 @@
                 const image = input.value.split('\\').pop();
                 this.fileTitle[input.id] = image;
                 this.registration.files[input.id] = input.files[0];
+            },
 
+            getInputTeacherFile(event, index){
+                const input = event.target;
+                this.registration.data.teachers[index].teacher_passport = input.files[0].name;
+                this.registration.data.teachers[index].teacher_passport_index = 'teacher_passport_'+index;
+                this.registration.files['teacher_passport_'+index] = input.files[0];
             },
 
             sendApp(){
@@ -1470,6 +1598,8 @@
             },
         },
     }
+// пишет аноним
+// Дорогой друг! Если ты решишь оптимизировать этот код, но потом поймешь, что совершил ужасную ошибку, пожалуйста, увеличь этот счетчик на единицу: total_hours_wasted_here = 1
 </script>
 <style scoped lang="sass">
     .preloader

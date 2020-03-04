@@ -84,10 +84,10 @@ class EvaluationController extends Controller
         //
     }
 
-    /** 
+    /**
      * To rate
-     * 
-     * Illuminate\Http\Request $request 
+     *
+     * Illuminate\Http\Request $request
      **/
     public function toRate(Request $request) {
 
@@ -108,7 +108,7 @@ class EvaluationController extends Controller
         ]);
 
         $data = $request->all();
-        
+
         $data['user_id'] = $id;
 
         $model->create($data);
@@ -118,9 +118,9 @@ class EvaluationController extends Controller
 
     public function hasRecord($application_id) {
         $user_id = Auth::id();
-        
+
         $model = Evaluation::where([['application_id', $application_id], ['user_id', $user_id]])->first();
-        
+
         return response()->json($model);
     }
 
@@ -135,13 +135,16 @@ class EvaluationController extends Controller
             'originality' => "required|numeric|min:$min|max:$max",
             'stylistic_matching' => "required|numeric|min:$min|max:$max"
         ]);
-        $model = Evaluation::where("application_id", $evaluation_id)->where("user_id", $request->user_id)->first();
+        $user_id = Auth::id();
+        $model = Evaluation::where("application_id", $evaluation_id)->where("user_id", $user_id)->first();
+
         $model->artistic_value = $request->artistic_value;
         $model->artistry = $request->artistry;
         $model->evaluation = $request->evaluation;
         $model->originality = $request->originality;
         $model->stylistic_matching = $request->stylistic_matching;
+        $model->recommendation = $request->recommendation;
         $model->save();
-        return response('ok', 200);        
+        return response('ok', 200);
     }
 }

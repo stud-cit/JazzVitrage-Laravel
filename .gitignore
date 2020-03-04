@@ -5,6 +5,7 @@
 /public/hot
 /public/img/uploads
 /public/img/user-photo
+/public/img/nominations
 /public/storage
 /storage/*.key
 /vendor
@@ -15,6 +16,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 package-lock.json
-public/js/site.js
-public/js/app.js
-
+public/js/*
+composer.lock
+/public/memberFiles

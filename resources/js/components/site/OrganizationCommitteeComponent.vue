@@ -6,7 +6,7 @@
                 <!--
                 <div class="sortiration-block">
                      сортувати:
-        
+
                         <select name="">
                             <option value="" selected="selected" >Інструментальний жанр</option>
                             <option value="1">Вокальний жанр</option>
@@ -23,7 +23,7 @@
                     <div class="description" :data-target="'#collapse'+(index+1)">
                         <h3 class="title-description">{{ `${item.name} ${item.surname}` }}</h3>
                         <div class="text-description">
-                            {{ item.informations }}
+                             <span style="white-space: pre-wrap">{{ item.informations }}</span>
                         </div>
                     </div>
                 </div>

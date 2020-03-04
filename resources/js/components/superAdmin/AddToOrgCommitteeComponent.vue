@@ -33,7 +33,7 @@
                     <div>
 						<label for="email" class="brtop">Електронна адреса</label>
 						<input type="email" name="email" v-model="email" class="form-control" id="email"
-							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+							v-validate="{ required: true, regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }"
 								data-vv-as="Електронна адреса">
 						<span class="errors text-danger" v-if="errors.has('email')">
 								{{ errors.first('email') }}
@@ -44,8 +44,8 @@
                 <div class="col-5">
 					<div>
 						<label for="jury-photo" class="brtop">Фото</label>
-						<input type="file" name="jury-photo" accept="image/*" ref="file" class="form-control-file" id="jury-photo"
-							v-validate="'image'"
+						<input type="file" name="jury-photo" accept=".jpg, .jpeg, .png, .bmp" ref="file" class="form-control-file" id="jury-photo"
+							v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }"
 								data-vv-as="Фото">
 						<span class="errors text-danger" v-if="errors.has('jury-photo')">
 								Файл повинен бути зображенням
@@ -55,7 +55,7 @@
 						<label for="info" class="brtop">Біографія</label>
 						<textarea class="form-control" name="informations" v-model="informations" id="info" rows="3" 
 							v-validate="{ required: true}"
-								data-vv-as="Електронна адреса"></textarea>
+								data-vv-as="Біографія"></textarea>
 						<span class="errors text-danger" v-if="errors.has('informations')">
 								{{ errors.first('informations') }}
 						</span>
@@ -92,9 +92,13 @@
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -104,8 +108,12 @@
 				patronymic: '',
 				email: '',
 				informations: '',
-				form: new FormData
+				form: new FormData,
+				preloader: false
 			};
+		},
+		components: {
+			Spinner,
 		},
 		created () {
 			this.getOrgCommittee();
@@ -123,6 +131,7 @@
 						return;
 					}
 					else {
+						this.preloader = !this.preloader;
 						this.form.append('name', this.name);
 						this.form.append('surname', this.surname);
 						this.form.append('patronymic', this.patronymic);
@@ -131,6 +140,7 @@
 						this.form.append('informations', this.informations);
 						axios.post('/post-all-org', this.form)
 							.then((response) => {
+								this.preloader = !this.preloader;
 								this.committees.push(response.data);
 								swal("Користувача успішно зареєстровано", {
 									icon: "success",
@@ -139,6 +149,7 @@
 								});
 							})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',
@@ -158,9 +169,11 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.post('/delete-user/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = !this.preloader;
 										this.committees.splice(index, 1);
 									}
 									swal("Член орг. комітету був успішно видалений", {
@@ -168,6 +181,7 @@
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

@@ -72,11 +72,11 @@ body
 
 
 .header
-   position: absolute
-   top: 0
-   left: 0
-   width: 100%
-   z-index: 10
+   //position: absolute
+   //top: 0
+   //left: 0
+   //width: 100%
+   //z-index: 10
 
    .navbar-light
       justify-content: space-between
@@ -123,8 +123,9 @@ body
          .active
             color: #ffa407
       .add-application
+         white-space: nowrap
          padding: 30px
-         margin-left: 22px
+         margin-left: 6px
          border: none
          outline: none
          color: #ffffff
@@ -156,12 +157,12 @@ body
          animation: scroll 40s infinite linear
 
 .main-section
-   padding-top: 135px
+   padding-top: 50px
    background-size: cover
 .preview
    padding-top: 175px
    position: relative
-   padding-bottom: 276px
+   padding-bottom: 216px
    overflow: hidden
 
    .top-layout
@@ -189,7 +190,7 @@ body
       background: url("../img/preview-tool.png") no-repeat
       background-size: cover
       right: 0
-      top: 135px
+      top: 0
 @media (max-width: 1400px)
    .preview
       .top-layout
@@ -198,7 +199,7 @@ body
          right: -14%
 
 .nominations
-   padding-top: 60px
+   padding-top: 20px
    .title-nominations
       position: relative
       display: flex
@@ -227,17 +228,22 @@ body
       display: flex
       justify-content: space-between
       .nominations-items
+         box-sizing: border-box
          position: relative
          background-image: linear-gradient(180deg, #810caa 0%, #760b9b 50%, #410655 100%)
          border: 15px solid #fff
          border-radius: 50%
+         -webkit-border-radius: 50%
+         -moz-border-radius: 50%
          width: 310px
          height: 310px
          display: flex
          justify-content: center
          align-items: flex-end
          overflow: hidden
+         -webkit-overflow: hidden
          text-decoration: none
+         z-index: 3
 
          img
             position: absolute
@@ -263,11 +269,12 @@ body
             font-size: 14px
             font-weight: 500
             letter-spacing: 1.7px
-            z-index: 5
+            z-index: 2
             text-transform: uppercase
             line-height: 1.5
+            box-sizing: border-box
 
-   
+
 .position
    .title-section
       text-align: left
@@ -467,10 +474,12 @@ body
    padding-top: 35px
    background-color: rgba(20,4,47, 0.7)
    #carousel-text
+      white-space: pre-wrap
       padding: 0 95px
       padding-bottom: 40px
       position: relative
       .carousel-item
+         white-space: pre-wrap
          color: #ffffff
          font-family: Montserrat
          font-size: 20px
@@ -542,6 +551,7 @@ body
       .carousel-inner
          .carousel-item.active
             display: flex
+            white-space: pre-wrap
    .pagination
       margin-top: 40px
 
@@ -633,7 +643,7 @@ body
             padding: 10px 0
             display: flex
             align-items: center
-            border-radius: 10px        
+            border-radius: 10px
             input, textarea
                border: none
                padding: 17px 30px

@@ -32,6 +32,7 @@ import EvaluationResultsComponent from './components/EvaluationResultsComponent'
 import ProfileComponent from './components/ProfileComponent';
 
 import MasterClassComponent from './components/admin/MasterClassComponent';
+import UsersMessagesComponent from './components/admin/UsersMessagesComponent';
 
 // Адмін
 import VideoGalleryComponent from './components/admin/VideoGalleryComponent';
@@ -42,6 +43,7 @@ import QuestionComponent from './components/admin/QuestionComponent';
 //Журі
 import AllStatementComponent from './components/jury/AllStatementComponent';
 import EvaluationComponent from './components/jury/EvaluationComponent';
+import JuryEvaluationComponent from './components/jury/JuryEvaluationComponent';
 
 //Супер адмін
 import AddJuryComponent from './components/superAdmin/AddJuryComponent';
@@ -72,6 +74,11 @@ const router = new VueRouter({
             name: 'jury-evaluation',
             component: EvaluationComponent,
         },
+        {
+            path: '/admin/jury-evaluation',
+            name: 'jury-evaluation-available',
+            component: JuryEvaluationComponent,
+        },
     ],
 });
 
@@ -84,6 +91,7 @@ const app = new Vue({
         ListParticipantsComponent,
         EvaluationResultsComponent,
         EvaluationComponent,
+        JuryEvaluationComponent,
         VideoGalleryComponent,
         FotoGalleryComponent,
         MainInformationComponent,
@@ -94,12 +102,15 @@ const app = new Vue({
         QuestionComponent,
         PeriodComponent,
         ProfileComponent,
-        MasterClassComponent
+        MasterClassComponent,
+        UsersMessagesComponent
     },
     router
 });
 
-
-
-
-
+var el = document.querySelectorAll('.nav-item a');
+    for(var i=0;i<el.length; i++){ 
+	    if(el[i].href==window.location){
+            el[i].className="nav-active";
+	    }
+    }

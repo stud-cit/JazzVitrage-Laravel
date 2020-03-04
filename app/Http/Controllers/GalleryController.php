@@ -21,6 +21,10 @@ class GalleryController extends Controller
         $data = FotoGallery::orderBy('created_at', 'asc')->where('year', '=', $year)->get();
         return response()->json($data);
     }
+    function getJazzFoto() {
+        $data = FotoGallery::orderBy('year', 'desc')->where('type', 'Джаз-Вітраж')->get();
+        return response()->json($data);
+    }
     function putFotoYear(Request $request) {
         foreach($request->id as $key => $value) {
             FotoGallery::where("foto_id", $value)->update(["year" => $request->year]);

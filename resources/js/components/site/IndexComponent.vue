@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-12 col-xl-7">
                             <img :src="info.logo" width="70%" class="preview-logo">
-                            <p class="preview-text">{{ info.description }}</p>
+                            <p class="preview-text" style="white-space: pre-wrap;text-indent: 1.3em">{{ info.description }}</p>
                             <img src="img/preview-tool-2.png" class="d-xl-none" alt="">
                         </div>
                     </div>
@@ -21,31 +21,15 @@
                         <h2 class="title">НОМІНАЦІЇ</h2>
                         <p class="subtitle">У КОНКУРСІ</p>
                     </div>
-
-
                 </div>
+
                 <div class="nominations-list">
-                    <div  class="nominations-items">
-
-                            <img src="img/piano.png" alt="">
-                            <div class="items-title">Інструментальний жанр</div>
-
-                    </div>
-                    <div  class="nominations-items">
-
-                            <img src="img/microphone.png" alt="">
-                            <div class="items-title">Вокальний жанр</div>
-
-                    </div>
+                    <router-link :to="{name: 'jury-in-nomination', params: { id: item.nomination_id }}" v-for="item in nominations" :key="item.nomination_id">
                     <div class="nominations-items">
-
-                            <img src="img/nots.png" alt="">
-                            <div class="items-title">Композиція</div>
-
+                        <img :src="item.logo">
+                        <div class="items-title">{{ item.name }}</div>
                     </div>
-                    <!--<div class="nominations-popup">-->
-
-                    <!--</div>-->
+                    </router-link>
                 </div>
             </div>
         </section>
@@ -65,7 +49,7 @@
                             <h2 class="title-section">Положення</h2>
                             <p class="subtitle">КОНКУРСУ</p>
                         </div>
-                        <p class="text">{{ info.provisions_text }}</p>
+                        <p class="text" style="white-space: pre-wrap;text-indent: 1.3em">{{ info.provisions_text }}</p>
 
                         <div class="btn-group">
                             <a :href="info.file" target="_blank" class="btn btn-read">ЧИТАТИ ПОВНІСТЮ</a>
@@ -102,9 +86,14 @@
                     <tr v-for="item in paginatedData" :key="item.index">
                         <td>{{ item.index+1 }}</td>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.schoolAddress }}</td>
-                        <td>{{ item.schoolName }}</td>
-                        <td>{{ item.teacher }}</td>
+                        <td>{{ item.school_address }}</td>
+                        <td>{{ item.school_name }}</td>
+                        <td>
+                            <span v-for="(teacher, index) in item.teachers" :key="teacher.teacher_id">
+                                {{ teacher.teacher_surname }} {{ teacher.teacher_name }} {{ teacher.teacher_patronymic }}
+                                <span v-if="item.teachers.length != index+1">, </span>
+                            </span>
+                        </td>
                     </tr>
                     <tr class="search">
                         <td colspan="5">
@@ -118,7 +107,7 @@
                                 <option value="" selected="selected" >вік</option>
                                 <option value="8-10">Від 8 до 10 років</option>
                                 <option value="11-13">Від 11 до 13 років</option>
-                                <option value="14-17">Від 14 до 17 років</option>
+                                <option value="14-20">Від 14 до 17 років</option>
                             </select>
                             <button class="clean" @click="clean">Очистити</button>
 
@@ -191,7 +180,7 @@
                 </div>
             </div>
         </section>
-        <section class="sections contacts">
+        <section class="sections contacts" id="contacts">
             <div class="left-layer">
                 <img src="img/contacts-layer.png" alt="">
                 <div class="text-layer">
@@ -214,12 +203,12 @@
                     <h2 class="contacts-title">У ВАС Є ПИТАННЯ?</h2>
                     <p class="subtitle">ЗАПОВНІТЬ ФОРМУ НИЖЧЕ</p>
                     <form enctype="multipart/form-data" class="contacts-form">
-                        <label for="name">ВАШЕ ІМ'Я</label>                           
+                        <label for="name">ВАШЕ ІМ'Я</label>
                         <div class="form-row">
                             <span><i class="fa fa-2x fa-user" aria-hidden="true"></i></span>
                             <input type="text" v-model="name" id="name">
                         </div>
-                        <label for="email">ПОШТА</label>   
+                        <label for="email">ПОШТА</label>
                         <div class="form-row">
                             <span><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></span>
                             <input type="email" v-model="email" id="email" name="email"
@@ -286,19 +275,19 @@
             this.getQuotes();
             this.getNominations();
             this.getMembers();
-            if(this.getCookie('googtrans') =='/uk/en'){
+            // if(this.getCookie('googtrans') =='/uk/en'){
 
-                this.translate = true;
-            }
+            //     this.translate = true;
+            // }
         },
         computed: {
             filteredList() {
                 return this.members.filter(members => {
                     return (
                     (this.ageCategory == '' || members.age >= this.ageCategory.split('-')[0] && members.age <= this.ageCategory.split('-')[1]) &&
-                    (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) || 
-                    members.schoolAddress.toLowerCase().includes(this.searchMember.toLowerCase()) ||
-                    members.schoolName.toLowerCase().includes(this.searchMember.toLowerCase())) &&
+                    (members.name.toLowerCase().includes(this.searchMember.toLowerCase()) ||
+                    members.school_address.toLowerCase().includes(this.searchMember.toLowerCase()) ||
+                    members.school_name.toLowerCase().includes(this.searchMember.toLowerCase())) &&
                     members.nomination.includes(this.searchNomination))
                 })
             },
@@ -363,10 +352,10 @@
                             this.members.push({
                                 index,
                                 age: member.group.average_age,
-                                name: member.group.name, 
-                                schoolAddress: member.preparation.school_address,
-                                schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                name: member.group.name,
+                                school_address: member.preparation.school_address,
+                                school_name: member.preparation.school_name,
+                                teachers: member.teachers,
                                 nomination: member.nomination.name
                             })
                         }
@@ -375,9 +364,9 @@
                                 index,
                                 age: this.getAge(member.solo_duet[0].data_birthday),
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
-                                schoolAddress: member.preparation.school_address,
-                                schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                school_address: member.preparation.school_address,
+                                school_name: member.preparation.school_name,
+                                teachers: member.teachers,
                                 nomination: member.nomination.name
                             })
                         }
@@ -386,9 +375,9 @@
                                 index,
                                 age: (this.getAge(member.solo_duet[0].data_birthday) + this.getAge(member.solo_duet[1].data_birthday)) / 2,
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
-                                schoolAddress: member.preparation.school_address,
-                                schoolName: member.preparation.school_one,
-                                teacher: `${member.preparation.teacher_surname} ${member.preparation.teacher_name} ${member.preparation.teacher_patronymic}`,
+                                school_address: member.preparation.school_address,
+                                school_name: member.preparation.school_name,
+                                teacher: member.teachers,
                                 nomination: member.nomination.name
                             });
                         }
@@ -422,6 +411,9 @@
 					        swal("Питання буде розглядено в найближчий термін", {
 						        icon: "success",
 					        });
+                            this.name = '';
+                            this.email = '';
+	                        this.questionText = '';
 				        }
 			        })
 			        .catch((error) => {
@@ -436,12 +428,12 @@
 
 
             },
-            getCookie(name) {
-                var matches = document.cookie.match(new RegExp(
-                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                ));
-                return matches[1] ? decodeURIComponent(matches[1]) : undefined;
-            }
+            // getCookie(name) {
+            //     var matches = document.cookie.match(new RegExp(
+            //         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            //     ));
+            //     return matches[1] ? decodeURIComponent(matches[1]) : undefined;
+            // }
 
         },
 

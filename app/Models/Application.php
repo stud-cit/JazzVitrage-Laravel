@@ -15,8 +15,7 @@ class Application extends Model
         'nomination_id',
         'application_type_id',
 		'age_category',
-		'status',
-		'check'
+		'status'
     ];
 
     public function appType()
@@ -43,7 +42,10 @@ class Application extends Model
 	{
 		return $this->belongsTo('App\Models\Nomination', 'nomination_id');
 	}
-
+	public function teachers()
+	{
+		return $this->hasMany('App\Models\Teachers', 'application_id');
+	}
 
 	/**
 	 *  Get the evaluations for application

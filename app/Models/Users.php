@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword;
 
 class Users extends Authenticatable
 {
@@ -42,5 +43,9 @@ class Users extends Authenticatable
     public function evaluation()
     {
         return $this->hasMany('App\Models\Evaluation', 'user_id');
+    }
+    public function sendPasswordResetNotification($token)
+    {
+       $this->notify(new ResetPassword($token));
     }
 }

@@ -14,6 +14,7 @@ Route::get('/jazz-workshop', 'GalleryController@jazzWorkshop');
 //Контакти
 Route::get('get-jurys-view', 'ContactsController@getJurys');
 Route::get('get-jury-view/{id}/', 'ContactsController@jury');
+Route::get('get-jury-nomination/{id}/', 'ContactsController@getJuryNomination');
 Route::get('get-org-view', 'ContactsController@organizingCommittee');
 //Положення
 // Route::get('/position', 'PositionController@position');
@@ -34,10 +35,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin/profile/{id}', 'UserController@pageProfile');
     Route::get('/user/{id}', 'UserController@getUserId');
+    Route::get('/get-user-jury', 'UserController@userJury');
     Route::post('/user/{id}', 'UserController@updateUser');
     Route::post('/check-passwrod-user/{id}', 'UserController@checkPasswordUser');
 
     Route::get('/member-files/{id}/{file}', 'ApplicationController@download');
+
+    Route::get('/admin/vidomist-chleniv-zhuri', 'ApplicationController@vidomistChlenivZhuriPDF');
+    Route::get('/admin/vidomist-dzhaz-vitrazh', 'ApplicationController@vidomistDzhazVitrazhPDF');
+    Route::get('/admin/list-members', 'ApplicationController@listMembersPDF');
+    Route::get('/admin/сontact-members', 'ApplicationController@сontactMembers');
+    Route::get('/admin/diploms', 'ApplicationController@diploms');
 });
 // Роль Адмін
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
@@ -55,6 +63,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     });
     Route::get('/admin/master-class', function () {
         return view('admin.admin.masterClass');
+    });
+    Route::get('/admin/users-messages', function () {
+        return view('admin.admin.usersMessages');
     });
 
     // VUE запросы
@@ -100,14 +111,17 @@ Route::group(['middleware' => ['auth', 'role:orgComittee']], function () {
 
 // Роль Журі
 Route::group(['middleware' => ['auth', 'role:jury']], function () {
-   
+
     Route::get('/admin/all-statements', function () {
         return view('admin.jury.allStatements');
+    });
+    Route::get('/admin/jury-evaluation', function () {
+        return view('admin.jury.juryEvaluation');
     });
     Route::post('to-rate', 'EvaluationController@toRate')->name('to-rate');
     Route::get('has-record/{application_id}', 'EvaluationController@hasRecord')->name('has-record');
     Route::post('to-rate-update/{evaluation_id}', 'EvaluationController@toRateUpdate')->name('to-rate-update');
-    
+
     Route::get('/admin/all-statements/{any}', function () {
          return view('admin.jury.allStatements');
      });
@@ -150,6 +164,7 @@ Auth::routes(['register' => false]);
 
     Route::get('get-foto', 'GalleryController@getFoto');
     Route::get('get-foto/{year}/', 'GalleryController@getFotoYear');
+    Route::get('get-jazz-foto', 'GalleryController@getJazzFoto');
     Route::get('get-video', 'GalleryController@getVideo');
     Route::get('get-video/{year}/', 'GalleryController@getVideoYear');
     Route::get('get-quotes', 'InfoController@getQuotes');

@@ -32,8 +32,8 @@
 					</div>
 					<div>
 						<label for="jury-photo" class="brtop">Фото</label>
-						<input type="file" name="jury-photo" accept="image/*" ref="juryfile" class="form-control-file" id="jury-photo"
-							v-validate="'image'"
+						<input type="file" name="jury-photo" accept=".jpg, .jpeg, .png, .bmp" ref="juryfile" class="form-control-file" id="jury-photo"
+							v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }"
 								data-vv-as="Фото">
 						<span class="errors text-danger" v-if="errors.has('jury-photo')">
 								Файл повинен бути зображенням
@@ -42,7 +42,7 @@
 					<div>
 						<label for="email" class="brtop">Електронна адреса</label>
 						<input type="email" name="email" v-model="email" class="form-control" id="email"
-							v-validate="{ required: true, regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }"
+							v-validate="{ required: true, regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }"
 								data-vv-as="Електронна адреса">
 						<span class="errors text-danger" v-if="errors.has('email')">
 								{{ errors.first('email') }}
@@ -96,16 +96,20 @@
 					<td>{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
 					<td>{{ item.email }}</td>
 					<td>{{ item.rank }}</td>
-					<td>{{ item.nominations }}</td>
+					<td>{{ item.nominations.replace(";", ", ") }}</td>
 					<td>{{ item.informations }}</td>
 					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
 				</tr>
 			</tbody>
 		</table>
+        <div v-if="preloader" class="preloader">
+            <Spinner :status="preloader" :size="54"></Spinner>
+        </div>
     </div>
 </template>
 <script>
+	import Spinner from 'vue-spinner-component/src/Spinner.vue';
 	export default {
 		data() {
 			return {
@@ -121,7 +125,11 @@
 					{ id: 1 }
 				],
 				form: new FormData,
+				preloader: false
 			};
+		},
+		components: {
+			Spinner,
 		},
 		created () {
 			this.getJury();
@@ -156,7 +164,7 @@
 				const selects = document.querySelectorAll('select');
 				const valOptions = [];
 				for (let index = 0; index < selects.length; index++) {
-					valOptions.push(" "+selects[index].value);
+					valOptions.push(selects[index].value);
 				}
 				this.form.append('name', this.name);
 				this.form.append('surname', this.surname);
@@ -164,16 +172,18 @@
 				this.form.append('email', this.email);
 				this.form.append('rank', this.rank);
 				this.form.append('photo', this.$refs.juryfile.files[0]);
-				this.form.append('nominations', valOptions);
+				this.form.append('nominations', valOptions.join(';'));
 				this.form.append('informations', this.additionalInfo);
 				this.$validator.validateAll().then((result) => {
                     if (!result) {	
 						return;
 					}
 					else {
+						this.preloader = !this.preloader;
 						axios.post('/post-all-jury', this.form)
 							.then((res) => {
 								this.jurys.push(res.data);
+								this.preloader = !this.preloader;
 								swal("Користувача успішно зареєстровано", {
 									icon: "success",
 									timer: 1000,
@@ -181,6 +191,7 @@
 								});
 							})
 							.catch((error) => {
+								this.preloader = !this.preloader;
 								swal({
 									icon: "error",
 									title: 'Помилка',
@@ -200,9 +211,11 @@
 				})
 					.then((willDelete) => {
 						if (willDelete) {
+							this.preloader = !this.preloader;
 							axios.post('/delete-user/' + id)
 								.then((response) => {
 									if (response.status == 200) {
+										this.preloader = !this.preloader;
 										this.jurys.splice(index, 1);
 									}
 									swal("Журі був успішно видалений", {
@@ -210,6 +223,7 @@
 									});
 								})
 								.catch((error) => {
+									this.preloader = !this.preloader;
 									swal({
 										icon: "error",
 										title: 'Помилка',

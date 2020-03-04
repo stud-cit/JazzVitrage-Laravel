@@ -4,26 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Nomination;
 use App\Models\Quotes;
 use App\Models\Contacts;
 use App\Models\ContactsItems;
 
 class InfoController extends Controller
 {
-    public function getAllInfo()
-    {
+    protected $nominationStorage = '/img/nominations/';
+
+    function getAllInfo() {
         $info = DB::select('select logo_section.*, position_section.*, hymn_section.*, master_class.* from logo_section, position_section, hymn_section, master_class');
         $info[0]->provisions_text = htmlspecialchars_decode($info[0]->provisions_text);
         $info[0]->description = htmlspecialchars_decode($info[0]->description);
         $info[0]->ticker = htmlspecialchars_decode($info[0]->ticker);
         $info[0]->description_master = htmlspecialchars_decode($info[0]->description_master);
         $contact = Contacts::with('contactsItems')->get();
-        return response()->json(['info' => $info, 'contact' => $contact]);
+        $nominations = Nomination::get();
+        return response()->json([
+            'info' => $info,
+            'contact' => $contact,
+            'nominations' => $nominations
+        ]);
     }
     public function getPersonalDoc()
     {
-        $doc = DB::select('select personal_data from position_section');
-        return response()->json(['personal' => $doc]);
+        $data = DB::select('select personal_data, compress_url from position_section');
+        return response()->json(['personal' => $data[0]->personal_data, 'compress_url' => $data[0]->compress_url]);
     }
     public function postContact(Request $request)
     {
@@ -102,4 +109,13 @@ class InfoController extends Controller
         $quotes = Quotes::find($id);
         $quotes->delete();
     }
+
+    function putNomination(Request $request, $id) {
+        $model = Nomination::find($id);
+        $name = $this->nominationStorage.uniqid().'.'.$request['logo']->getClientOriginalExtension();
+        $request['logo']->move(public_path().$this->nominationStorage, $name);
+        $model->logo = $name;
+        $model->save();
+    }
+
 }

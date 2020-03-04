@@ -2,9 +2,16 @@
 
 use Illuminate\Http\Request;
 
+Route::post('put-nomination/{id}',  'InfoController@putNomination');
+
 Route::get('info-master',  'MasterClassController@getInfo');
 Route::post('info-master',  'MasterClassController@putInfo');
 Route::get('photo-master',  'MasterClassController@getPhoto');
+
+Route::get('users-messages',  'UsersMessagesController@getMessages');
+Route::post('users-messages',  'UsersMessagesController@putMessage');
+
+Route::post('send-invitation',  'ApplicationController@sendInvitation');
 
 Route::get('master-request',  'MasterClassController@getRequest');
 Route::post('master-request',  'MasterClassController@postRequest');

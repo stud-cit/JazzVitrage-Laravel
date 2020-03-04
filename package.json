@@ -24,7 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "bootstrap-vue": "^2.1.0",
         "slick-carousel": "^1.8.1",
         "sweetalert": "^2.1.2",
         "vee-validate": "^2.2.15",
@@ -32,6 +31,7 @@
         "vue-owl-carousel": "^2.0.3",
         "vue-router": "^3.1.2",
         "vue-silentbox": "^0.1.9",
+        "vue-spinner-component": "^1.0.5",
         "vue2-datepicker": "^3.1.0",
         "vuelidate": "^0.7.4"
     }

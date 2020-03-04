@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="page-nav">
                    <router-link :to="{ name: 'juries'}" class="prev-page"><i class="fa fa-angle-left"></i>всі журі</router-link>
-                </div>      
+                </div>
                 <div class="member-jury-card" v-for="(item, index) in juryMember" :key="index">
                     <div class="picture">
                        <img v-bind:src="item.photo" alt="">
@@ -15,11 +15,11 @@
                            {{ item.nominations }}
                         </div>
                         <div class="text-description">
-                            {{ item.informations }}
+                            <span style="white-space: pre-wrap">{{ item.informations }}</span>
                         </div>
                    </div>
                 </div>
-            </div> 
+            </div>
         </section>
     </div>
 </template>
@@ -37,7 +37,7 @@
 	        this.getJuryList();
         },
         computed: {
-            
+
         },
 	    methods: {
 		    getJuryList() {

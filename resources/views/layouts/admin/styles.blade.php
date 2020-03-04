@@ -6,4 +6,5 @@
 <link href="{{ asset('css/admin.css') }} " rel="stylesheet">
 
 <link href="{{ asset('css/custom.css') }} " rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-corner-indicator.min.css" rel="stylesheet">
 

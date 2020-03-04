@@ -8,7 +8,7 @@
 		</button>
 		<div class="collapse navbar-collapse sidenav" id="navbarResponsive">
 
-			<ul class="navbar-nav navbar-sidenav" id="Accordion">
+			<ul class="navbar-nav navbar-sidenav" id="Accordion"  style="overflow-y: auto">
 
 				{{-- Орг.комітет --}}
 
@@ -61,6 +61,19 @@
 
 				@endif
 
+				@if (Auth::user()->role == 'jury')
+
+					@php $role = 'Журі' @endphp
+
+					<li class="nav-item" title="Оцінювання">
+						<a class="nav-link" href="/admin/jury-evaluation">
+							<i class="fa fa-calendar-check-o"></i>
+							<span class="nav-link-text">Оцінювання</span>
+						</a>
+					</li>
+
+				@endif
+
 				{{-- Адмін --}}
 
 				@if (Auth::user()->role == 'admin' || Auth::user()->role == 'superAdmin')
@@ -95,12 +108,19 @@
 						</a>
 					</li>
 
-					<li class="nav-item" title="Майстер клас">
+					<li class="nav-item" title="Заявки майстер клас">
 						<a class="nav-link" href="/admin/master-class">
 							<i class="fa fa-star"></i>
-							<span class="nav-link-text">Майстер клас</span>
+							<span class="nav-link-text">Заявки майстер клас</span>
 						</a>
-					</li>	
+					</li>
+
+					<li class="nav-item" title="Повідомлення користувачам">
+						<a class="nav-link" href="/admin/users-messages">
+							<i class="fa fa-envelope"></i>
+							<span class="nav-link-text">Повідомлення користувачам</span>
+						</a>
+					</li>
 
 				@endif
 
@@ -109,7 +129,7 @@
 				@if (Auth::user()->role == 'superAdmin')
 
 					@php $role = 'Супер Адмін' @endphp
-					
+
 					<li class="nav-item" title="Додати журі">
 						<a class="nav-link" href="/admin/period">
 							<i class="fa fa-calendar"></i>

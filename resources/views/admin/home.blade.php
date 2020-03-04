@@ -43,6 +43,15 @@
 
         @endif
 
+        @if (Auth::user()->role == 'jury')
+            
+            <a href="/admin/jury-evaluation" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-calendar-check-o fa-3x"></i></div>
+                Оцінювання
+            </a>
+
+        @endif
+
         {{-- Супер адмін --}}
 
         @if (Auth::user()->role == 'superAdmin')
@@ -90,6 +99,16 @@
             <a href="/admin/question" class="col-8 col-sm-5 col-md-3  category-items">
                 <div class="category-icon"><i class="fa fa-question-circle fa-3x"></i></div>
                 Питання користувачів
+            </a>
+
+            <a href="/admin/master-class" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-star fa-3x"></i></div>
+                Заявки майстер клас
+            </a>
+
+            <a href="/admin/users-messages" class="col-8 col-sm-5 col-md-3  category-items">
+                <div class="category-icon"><i class="fa fa-envelope fa-3x"></i></div>
+                Повідомлення користувачам
             </a>
 
         @endif

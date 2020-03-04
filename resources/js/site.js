@@ -1,11 +1,6 @@
 require('./bootstrap');
 
-
 import Vue from 'vue';
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-
 
 import HeaderComponent from './components/site/HeaderComponent';
 import FooterComponent from './components/site/FooterComponent';
@@ -18,18 +13,20 @@ import VideoGallery from './components/site/VideoGalleryComponent';
 import VideoGalleryYear from './components/site/VideoGalleryYearComponent';
 import Gymn from './components/site/GymnComponent';
 import Jury from './components/site/JuryComponent';
+import JuryInNominationComponent from './components/site/JuryInNominationComponent';
 import JuryMember from './components/site/JuryMemberComponent';
 import OrganizationCommittee from './components/site/OrganizationCommitteeComponent';
 import PositionComponent from './components/site/PositionComponent';
 import NewHead from './components/site/NewHead';
 import MasterMainComponent from './components/site/MasterMainComponent';
+import GalleryMasterComponent from './components/site/GalleryMasterComponent';
 
 import Error404 from './components/site/Error404';
 
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
-Vue.use(BootstrapVue);
+// Vue.use(BootstrapVue);
 
 import VueSilentbox from 'vue-silentbox';
 Vue.use(VueSilentbox);
@@ -95,6 +92,11 @@ const router = new VueRouter({
 
         },
         {
+            path: '/jury-nomination/:id/',
+            name: 'jury-in-nomination',
+            component: JuryInNominationComponent,
+        },
+        {
             path: '/juries/:id/',
             name: 'jury-member',
             component: JuryMember,
@@ -120,6 +122,11 @@ const router = new VueRouter({
             component: MasterMainComponent,
         },
         {
+            path: '/gallery-master',
+            name: 'gallery-master',
+            component: GalleryMasterComponent,
+        },
+        {
             path: '*',
             name: 'error',
             component: Error404,
@@ -139,6 +146,7 @@ const app = new Vue({
         VideoGalleryYear,
         Gymn,
         Jury,
+        JuryInNominationComponent,
         JuryMember,
         OrganizationCommittee,
         PositionComponent,
