@@ -288,7 +288,9 @@ class ApplicationController extends Controller
         $model = Application::with('soloDuet', 'group', 'presentation', 'preparation', 'teachers')->find($id);
         $titleMessage = 'Вашу заявку в конкурсі JazzVitrage відхилено';
         Storage::deleteDirectory("member-files/".$model->application_id);
-        unlink(public_path($model->presentation["video"]));
+        if(file_exists(public_path($model->presentation["video"]))) {
+            unlink(public_path($model->presentation["video"]));
+        }
 
         Evaluation::where("application_id", $id)->delete();
 

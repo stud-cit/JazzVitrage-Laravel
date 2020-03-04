@@ -15,12 +15,12 @@
 Голова жюрі.
 @foreach($jury as $key => $item)
     @if(stristr(mb_strtolower($item->rank), "голова"))
-        {{ $item->surname }} {{ mb_substr($item->surname, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________<br>
+        {{ $item->surname }} {{ mb_substr($item->name, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________<br>
     @endif
 @endforeach
 Члени жюрі:<br>
 @foreach($jury as $key => $item)
-    {{ $item->surname }} {{ mb_substr($item->surname, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________
+    {{ $item->surname }} {{ mb_substr($item->name, 0, 1) }}. {{ mb_substr($item->patronymic, 0, 1) }}. __________
     @if(($key % 2) == 0)
         <br>
     @endif
