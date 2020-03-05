@@ -47,7 +47,7 @@
 						<span class="errors text-danger" v-if="errors.has('email')">
 								{{ errors.first('email') }}
 						</span>
-					</div>	
+					</div>
 					<div>
 						<label for="rank" class="brtop">Звання члена журі</label>
 						<input type="text" name="rank" v-model="rank" class="form-control" id="rank">
@@ -65,8 +65,14 @@
                         <i v-if="index == 0" v-show="items.length < 3" class="fa fa-plus-circle btn btn-default float-right button-position p-0" @click="addNomination"></i>
                         <i v-else class="fa fa-minus-circle btn btn-default float-right button-position p-0" @click="deleteNomination(index)"></i>
                     </div>
-                    <label for="info" class="brtop">Членство в спілках журі</label>
-                    <textarea class="form-control" v-model="additionalInfo" id="info" rows="3"></textarea>
+                    <div>
+                        <label for="info" class="brtop">Додаткова інформація</label>
+                        <textarea class="form-control" v-model="additionalInfo" id="info" rows="3"></textarea>
+                    </div>
+                    <div>
+                        <label for="regalia" class="brtop">Регалії</label>
+                        <input type="text" name="regalia" v-model="regalia" class="form-control" id="regalia" data-vv-as="Регалії">
+                    </div>
                     <button type="button" class="btn btn-outline-secondary float-right mt-4 px-5" @click="postJury">Додати</button>
                 </div>
             </div>
@@ -81,7 +87,8 @@
 					<th scope="col">Електронна пошта</th>
 					<th scope="col">Звання</th>
 					<th scope="col">Номінація</th>
-					<th scope="col">Членство в спілках журі</th>
+					<th scope="col">Додаткова інформація</th>
+                    <th scope="col">Регалії</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				</tr>
@@ -96,8 +103,9 @@
 					<td>{{ `${item.surname} ${item.name} ${item.patronymic}` }}</td>
 					<td>{{ item.email }}</td>
 					<td>{{ item.rank }}</td>
-					<td>{{ item.nominations.replace(";", ", ") }}</td>
+					<td>{{ item.nominations}}</td>
 					<td>{{ item.informations }}</td>
+                    <td>{{ item.regalia }}</td>
 					<td><a style="color:#000" :href="'/admin/profile/'+item.user_id"><i class="fa fa-2x fa-pencil-square btn btn-default p-0"></i></a></td>
 					<td><i class="fa fa-2x fa-times-circle btn btn-default p-0" @click="deleteJury(item.user_id, index)"></i></td>
 				</tr>
@@ -119,7 +127,8 @@
 				patronymic: '',
 				email: '',
 				rank: '',
-				additionalInfo: '',
+                additionalInfo: '',
+                regalia: '',
 				nominations: [],
 				items: [
 					{ id: 1 }
@@ -173,9 +182,10 @@
 				this.form.append('rank', this.rank);
 				this.form.append('photo', this.$refs.juryfile.files[0]);
 				this.form.append('nominations', valOptions.join(';'));
-				this.form.append('informations', this.additionalInfo);
+                this.form.append('informations', this.additionalInfo);
+                this.form.append('regalia', this.regalia);
 				this.$validator.validateAll().then((result) => {
-                    if (!result) {	
+                    if (!result) {
 						return;
 					}
 					else {

@@ -25,7 +25,8 @@ class Users extends Authenticatable
         'photo',
         'rank',
         'nominations',
-        'informations'
+        'informations',
+        'regalia'
     ];
     protected $hidden = [
         'password', 'remember_token',

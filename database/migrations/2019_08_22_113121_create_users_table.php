@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('rank', 50)->nullable(); // Звання
             $table->string('nominations', 50)->nullable(); // Номінація
             $table->text('informations')->nullable(); // Біографія / Членство в спілках журі
+            $table->string('regalia')->nullable(); // Регалії
             $table->rememberToken();
             $table->timestamps();
         });

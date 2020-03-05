@@ -82,11 +82,16 @@
                         </div>
                         <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
-                                <label for="info1"><h4>Членство в спілках журі</h4></label>
+                                <label for="info1"><h4>Додаткова інформація</h4></label>
                                 <textarea class="form-control" id="info1" name="info1" rows="3" v-model="data.informations"></textarea>
                             </div>
                         </div>
-
+                        <div class="form-group" v-show="data.role == 'jury'">
+                            <div class="col-8">
+                                <label for="regalia"><h4>Регалії</h4></label>
+                                <input type="text" class="form-control" name="regalia" id="regalia" v-model="data.regalia">
+                            </div>
+                        </div>
                         <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
                                 <label for="info1"><h4>Номінації</h4></label>
@@ -226,7 +231,7 @@ export default {
             axios.get(`/user/${this.$route.params.id}`)
             .then((response) => {
                 this.data = response.data;
-                this.nominations = response.data.nominations ? response.data.nominations.split(";") : "";
+                this.nominations = response.data.nominations ? response.data.nominations.split(";") : [];
                 this.data.photo = this.data.photo;
             })
         },

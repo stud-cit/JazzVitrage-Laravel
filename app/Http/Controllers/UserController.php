@@ -67,6 +67,7 @@ class UserController extends Controller
         $jury_data->rank = $request->rank;
         $jury_data->nominations = $request->nominations;
         $jury_data->informations = $request->informations;
+        $jury_data->regalia = $request->regalia;
         $jury_data->save();
 
         $this->sendMail('jury_accepted', $jury_data, $password);
@@ -119,6 +120,7 @@ class UserController extends Controller
             $update_org->photo = $this->userStorage.$name;
         }
         $update_org->informations = $request->informations;
+        $update_org->regalia = $request->regalia;
         $update_org->save();
     }
     public function updateAdmin(Request $request, $id)

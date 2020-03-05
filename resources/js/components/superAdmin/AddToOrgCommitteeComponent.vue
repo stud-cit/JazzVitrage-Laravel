@@ -38,7 +38,7 @@
 						<span class="errors text-danger" v-if="errors.has('email')">
 								{{ errors.first('email') }}
 						</span>
-					</div>	
+					</div>
                 </div>
                 <div class="col-2"></div>
                 <div class="col-5">
@@ -53,7 +53,7 @@
 					</div>
                     <div>
 						<label for="info" class="brtop">Біографія</label>
-						<textarea class="form-control" name="informations" v-model="informations" id="info" rows="3" 
+						<textarea class="form-control" name="informations" v-model="informations" id="info" rows="3"
 							v-validate="{ required: true}"
 								data-vv-as="Біографія"></textarea>
 						<span class="errors text-danger" v-if="errors.has('informations')">
@@ -73,8 +73,8 @@
 					<th width="150px" scope="col">ПІБ</th>
 					<th width="180px" scope="col">Електронна пошта</th>
 					<th scope="col">Біографія</th>
-					<th scope="col"></th>
-					<th scope="col"></th>
+					<th width="10px" scope="col"></th>
+					<th width="10px" scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -127,7 +127,7 @@
 			},
 			postAllOrg(){
 				this.$validator.validateAll().then((result) => {
-                    if (!result) {	
+                    if (!result) {
 						return;
 					}
 					else {
