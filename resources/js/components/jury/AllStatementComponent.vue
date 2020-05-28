@@ -12,7 +12,7 @@
       </thead>
       <tbody v-for="(item, index) in members" :key="index">
 
-            <tr v-if="item.status == 'approved'">
+            <tr v-if="item && item.status == 'approved'">
 
 
                 <td>{{ index + 1 }}</td>
@@ -27,7 +27,7 @@
                 </td>
                 <td>{{ item.app_type.name }}</td>
                 <td>{{ item.nomination.name }}</td>
-                <td>{{ item.rating }}</td>
+                <td>{{ userJury.role == 'jury' ? (item.evaluations[0] ? item.evaluations[0].evaluation : "") : item.rating }}</td>
             </tr>
       </tbody>
       </table>
@@ -39,19 +39,42 @@
     export default {
         data() {
             return {
-                members: '',
+                members: [],
+                userJury: {},
             }
         },
         created() {
-            this.getFullList();
+            this.getUserJury();
         },
         methods: {
+			getUserJury() {
+				axios.get('/get-user-jury')
+					.then((response) => {
+                        this.userJury = response.data;
+                        if(this.userJury.role == 'jury') {
+                            this.getFullListJury();
+                        } else {
+                            this.getFullList();
+                        }
+                    })
+            },
+            getFullListJury() {
+                axios.get('/get-all-members')
+                    .then((response) => {
+                        this.members = response.data.map(item => {
+                            item.evaluations = item.evaluations.filter(evaluation => {
+                                return evaluation.user_id == this.userJury.user_id
+                            })
+                            return item
+                        })
+                    })
+            },
             getFullList() {
                 axios.get('/get-all-members')
-                .then((response) => {
-                    this.members = response.data;
-                })
-            }
+                    .then((response) => {
+                        this.members = response.data
+                    })
+            },
         }
     }
 </script>

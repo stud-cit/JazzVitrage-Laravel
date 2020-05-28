@@ -104,6 +104,7 @@
                         <b class="mt-3">Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Кількість учасників:</b> {{ group.count_people }}
                         <b class="mt-3">Середній вік:</b> {{ group.average_age }}
+                        <b class="mt-3">Вікова категорія:</b> {{ age_category }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
@@ -122,6 +123,7 @@
                         <b>Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Дата народження:</b> {{ member[0].data_birthday }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
+                        <b class="mt-3">Вікова категорія:</b> {{ age_category }}
                     </div>
                     <div class="col-6">
                         <div v-for="teacher in teachers" :key="teacher.teacher_id">
@@ -138,6 +140,7 @@
                         <b>Тип:</b> {{ type.name }}
                         <b class="mt-3">Дата народження:</b> {{ `${member[0].data_birthday}, ${member[1].data_birthday}` }}
                         <b class="mt-3">Адреса:</b> {{ school.school_address }}
+                        <b class="mt-3">Вікова категорія:</b> {{ age_category }}
                     </div>
                     <div class="col-6">
                         <div v-for="teacher in teachers" :key="teacher.teacher_id">
@@ -168,6 +171,7 @@
                 memberId: 0,
                 member: '',
                 type: '',
+                age_category: '',
                 school: '',
                 program: '',
                 teachers: [],
@@ -333,6 +337,7 @@
                         this.member = response.data.solo_duet;
                         this.group = response.data.group;
                         this.type = response.data.app_type;
+                        this.age_category = response.data.age_category;
                         this.nomination = response.data.nomination;
                         this.school = response.data.preparation;
                         this.program = response.data.presentation;
@@ -345,9 +350,12 @@
             },
             getAllMembers() {
                 axios.get('/get-approved-members')
-                    .then( ( response ) => {
-                        this.count = response.data.length - 1;
-                        this.memberIds = response.data.map( (row) => row.application_id);
+                    .then((response) => {
+                        var members = response.data.filter(item => {
+                            return this.userJury.indexOf(item.nomination.name) != -1;
+                        });
+                        this.count = members.length - 1;
+                        this.memberIds = members.map( (row) => row.application_id);
                         this.memberId = Number (this.$route.params.id);
                         this.memberIndex = this.memberIds.indexOf( this.memberId );
                     });
@@ -360,7 +368,6 @@
 	                })
             },
             nextItem() {
-
                 this.memberIndex = this.memberIds.indexOf( Number( this.$route.params.id ) );
                 if(this.memberIndex >= 0 && this.memberIndex < this.count) {
                     this.memberIndex += 1;

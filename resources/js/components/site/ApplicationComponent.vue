@@ -1592,7 +1592,7 @@
                         swal({
                             icon: "error",
                             title: 'Помилка',
-                            text: String(error.response.status)
+                            text: "Спробуйте надіслати заявку пізніше"
                         });
                     });
             },

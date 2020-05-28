@@ -129,7 +129,7 @@ ______________ Н.О. Цибульська<br>
                     @endif
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
-                        <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                        <td class="tg-0pky">{{ round($sumEvaluation / $countEvaluation) }}</td>
                     @else
                         <td class="tg-0pky">0</td>
                     @endif
@@ -205,7 +205,7 @@ ______________ Н.О. Цибульська<br>
 
                     <td class="tg-0pky">{{ $sumEvaluation }}</td>
                     @if($sumEvaluation)
-                        <td class="tg-0pky">{{ $sumEvaluation / $countEvaluation }}</td>
+                        <td class="tg-0pky">{{ round($sumEvaluation / $countEvaluation) }}</td>
                     @else
                         <td class="tg-0pky">0</td>
                     @endif

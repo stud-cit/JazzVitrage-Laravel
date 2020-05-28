@@ -253,7 +253,7 @@ export default {
                 this.members = [];
                 this.memberPhoto = [];
                 response.data.forEach(member => {
-                    if(member.solo_duet.length == 0) {
+                    if(member.solo_duet.length == 0 && member.group != null) {
                         this.members.push({
                             name: member.group.name,
                             type: member.app_type.name,
@@ -281,7 +281,7 @@ export default {
                             video: member.presentation.video
                         })
                     }
-                    else if(member.solo_duet.length == 1) {
+                    else if(member.solo_duet.length == 1 && member.solo_duet != null) {
                         this.members.push({
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                             type: member.app_type.name,
@@ -312,7 +312,7 @@ export default {
                             video: member.presentation.video
                         })
                     }
-                    else if(member.solo_duet.length == 2) {
+                    else if(member.solo_duet.length == 2 && member.solo_duet != null) {
                         this.members.push({
                             name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                             type: member.app_type.name,
@@ -349,15 +349,8 @@ export default {
                             video: member.presentation.video
                         })
                     }
-                });
+                })
             })
-            .catch((error) => {
-                swal({
-                    icon: "error",
-                    title: 'Помилка',
-                    text: 'Не вдалося отримати дані'
-                });
-            });
         },
 	    addApproved(id, index){
             this.preloader = !this.preloader;

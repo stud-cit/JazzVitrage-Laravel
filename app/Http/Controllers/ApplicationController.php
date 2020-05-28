@@ -111,9 +111,8 @@ class ApplicationController extends Controller
         $app->application_type_id = $data->appType;
         $app->age_category = $data->nameAgeCategory;
         $app->status = Application::CREATED;
+        // $this->sendMailCheck($app, "Заявка");
         $app->save();
-        // $app->check = $request->checkFile->store($this->publicStorage.$app->application_id);
-        // $app->save();
 
         if($data->appType == 1) {
             $soloDuet = new SoloDuet;
@@ -205,6 +204,7 @@ class ApplicationController extends Controller
             $group->count_people = $data->groupCount;
             $group->average_age = $data->groupAverage;
             $group->file = $request->groupBirthdayFile->store($this->publicStorage.$app->application_id);
+            // $this->sendMailCheck($group, "Група");
             $group->save();
 
             for($i = 0; $i < count($data->teachers); $i++) {
@@ -367,6 +367,17 @@ class ApplicationController extends Controller
     }
 
     // Відправка листів
+
+
+    // function sendMailCheck($data, $titleMessage) {
+    //     $textMessage = $data;
+    //     $email = "mishaotroshenko2013@gmail.com";
+    //     $title = "JazzVitrage перевірка - ".$titleMessage;
+    //     Mail::raw(htmlspecialchars_decode($textMessage), function($message) use ($email, $title){
+    //         $message->to($email, '')->subject($title);
+    //         $message->from('jazz@gmail.com', 'JazzVitrage');
+    //     });
+    // }
 
     function sendMail($typeMember, $type, $title, $teacher, $note = '') {
         $model = Application::with($typeMember)->get();

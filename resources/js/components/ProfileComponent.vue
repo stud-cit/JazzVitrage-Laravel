@@ -2,7 +2,7 @@
 <div class="container bootstrap snippet">
     <div class="row">
   	    <div class="col-sm-4">
-            <div class="text-center">
+            <div class="text-center" v-if="authUser.role == 'superAdmin'">
                 <img v-if="data.photo" :src="data.photo" class="avatar img-circle img-thumbnail" alt="avatar">
                 <img v-else :src="'/img/user.png'" class="avatar img-circle img-thumbnail">
                 <h6>Завантажити інше фото...</h6>
@@ -10,6 +10,11 @@
                 <span class="errors text-danger ml-2" v-if="errors.has('foto')">
                     Оберіть файл графічного формату
                 </span>
+            </div>
+
+            <div class="text-center" v-else>
+                <img v-if="data.photo" :src="data.photo" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img v-else :src="'/img/user.png'" class="avatar img-circle img-thumbnail">
             </div>
 
             <br/>
@@ -33,7 +38,7 @@
                         <div class="form-group">
                             <div class="col-8">
                                 <label for="surname"><h4>Прізвище</h4></label>
-                                <input type="text" class="form-control" name="surname" id="surname" v-model="data.surname"
+                                <input type="text" class="form-control" name="surname" id="surname" :disabled="authUser.role != 'superAdmin'" v-model="data.surname"
                                     v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('surname')">
                                         Поле "Прізвище" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
@@ -43,7 +48,7 @@
                         <div class="form-group">
                             <div class="col-8">
                                 <label for="name"><h4>Ім'я</h4></label>
-                                <input type="text" class="form-control" name="name" id="name" v-model="data.name"
+                                <input type="text" class="form-control" name="name" id="name" :disabled="authUser.role != 'superAdmin'" v-model="data.name"
                                     v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){2,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('name')">
                                         Поле "Ім’я" має бути заповнене не менше, ніж 2 символами (вводити лише літери або тире)
@@ -53,7 +58,7 @@
                         <div class="form-group" v-show="data.role == 'jury' || data.role == 'orgComittee'">
                             <div class="col-8">
                                 <label for="patronymic"><h4>По-батькові</h4></label>
-                                <input type="text" class="form-control" name="patronymic" id="patronymic" v-model="data.patronymic"
+                                <input type="text" class="form-control" name="patronymic" id="patronymic" :disabled="authUser.role != 'superAdmin'" v-model="data.patronymic"
                                     v-validate="{ required: true, regex: /^([a-zа-яіїє'-]+){5,}$/i }">
                                 <span class="errors text-danger" v-if="errors.has('patronymic')">
                                         Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери або тире)
@@ -63,7 +68,7 @@
                         <div class="form-group">
                             <div class="col-8">
                                 <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" v-model="data.email" required
+                                <input type="email" class="form-control" name="email" id="email" :disabled="authUser.role != 'superAdmin'" v-model="data.email" required
                                     v-validate="{ regex: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/ }">
                                 <span class="errors text-danger" v-if="errors.has('email')">
                                     Введіть дані у форматі name@email.com
@@ -73,7 +78,7 @@
                         <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
                                 <label for="rank"><h4>Звання</h4></label>
-                                <input type="text" class="form-control" name="rank" id="rank" v-model="data.rank"
+                                <input type="text" class="form-control" name="rank" id="rank" :disabled="authUser.role != 'superAdmin'" v-model="data.rank"
                                     v-validate="{ required: true }">
                                 <span class="errors text-danger" v-if="errors.has('rank')">
                                         Обов'язкове поле
@@ -83,13 +88,13 @@
                         <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
                                 <label for="info1"><h4>Додаткова інформація</h4></label>
-                                <textarea class="form-control" id="info1" name="info1" rows="3" v-model="data.informations"></textarea>
+                                <textarea class="form-control" id="info1" name="info1" :disabled="authUser.role != 'superAdmin'" rows="3" v-model="data.informations"></textarea>
                             </div>
                         </div>
                         <div class="form-group" v-show="data.role == 'jury'">
                             <div class="col-8">
                                 <label for="regalia"><h4>Регалії</h4></label>
-                                <input type="text" class="form-control" name="regalia" id="regalia" v-model="data.regalia">
+                                <input type="text" class="form-control" name="regalia" :disabled="authUser.role != 'superAdmin'" id="regalia" v-model="data.regalia">
                             </div>
                         </div>
                         <div class="form-group" v-show="data.role == 'jury'">
@@ -103,6 +108,7 @@
                                         id="vocal"
                                         value="Вокальний жанр"
                                         v-model="nominations"
+                                        :disabled="authUser.role != 'superAdmin'"
                                     >
                                     <label
                                         style="font-size: 20px"
@@ -119,6 +125,7 @@
                                         id="instrum"
                                         value="Інструментальний жанр"
                                         v-model="nominations"
+                                        :disabled="authUser.role != 'superAdmin'"
                                     >
                                     <label
                                         style="font-size: 20px"
@@ -135,6 +142,7 @@
                                         id="compoz"
                                         value="Композиція"
                                         v-model="nominations"
+                                        :disabled="authUser.role != 'superAdmin'"
                                     >
                                     <label
                                         style="font-size: 20px"
@@ -149,11 +157,11 @@
                         <div class="form-group" v-show="data.role == 'orgComittee'">
                             <div class="col-8">
                                 <label for="info2"><h4>Біографія</h4></label>
-                                <textarea class="form-control" id="info2" name="info2" rows="3" v-model="data.informations"></textarea>
+                                <textarea class="form-control" id="info2" :disabled="authUser.role != 'superAdmin'" name="info2" rows="3" v-model="data.informations"></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" v-if="authUser.role == 'superAdmin'">
                             <div class="col-8">
                                 <button type="button" :class="editPassword ? 'btn btn-primary' : 'btn btn-light'" @click="editPass">Змінити пароль</button>
                             </div>
@@ -172,7 +180,7 @@
                                 <span class="errors text-danger" v-if="checkPass()">Паролі не співпадають</span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" v-if="authUser.role == 'superAdmin'">
                             <div class="col-12">
                                 <button :disabled="!checkNewPassword || errors.any()" class="btn btn-lg btn-success" type="button" @click="save"><i class="glyphicon glyphicon-ok-sign"></i> Зберегти</button>
                             </div>
@@ -199,19 +207,16 @@ export default {
             newPassword: '',
             repeatPassword: '',
             editPassword: false,
-            preloader: false
-            // editNomination: false,
-            // items: [
-			//     { id: 1 }
-		    // ],
+            preloader: false,
+            authUser: []
         }
     },
     components: {
         Spinner,
     },
-    created() {
+    mounted() {
         this.getUser();
-        // this.getNomination();
+        this.getUserAuth();
     },
     computed: {
         checkNewPassword() {
@@ -235,25 +240,13 @@ export default {
                 this.data.photo = this.data.photo;
             })
         },
-        // getNomination(){
-		// 	axios.get('/get-nominations')
-		// 		.then((response) => {
-        //             this.nominations = response.data;
-        //             console.log(this.nominations)
-		// 		})
-		// },
-        // addNomination(){
-        //     this.items.push({ id: this.items[this.items.length - 1].id+1 });
-		// },
-		// deleteNomination(index) {
-		// 	this.items.splice(index, 1);
-		// },
+        getUserAuth() {
+            axios.get('/get-user')
+                .then((response) => {
+                    this.authUser = response.data
+                })
+        },
         save() {
-            // const selects = document.querySelectorAll('select');
-			// const valOptions = [];
-			// for (let index = 0; index < selects.length; index++) {
-			// 	valOptions.push(" "+selects[index].value);
-            // }
             this.preloader = !this.preloader;
             var form = new FormData;
             this.data.password = this.newPassword;

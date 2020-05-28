@@ -27,6 +27,11 @@ class UserController extends Controller
         }
     }
 
+    function getUserAuth() {
+        $user = Auth::user();
+        return response()->json($user);
+    }
+
     public function getUserId($id)
     {
         $data = Users::find($id);

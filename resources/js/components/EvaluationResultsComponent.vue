@@ -84,7 +84,7 @@ export default {
                                 id: member.application_id,
                                 name: member.group.name,
                                 type: member.app_type.name,
-                                evaluation: member.rating,
+                                evaluation: Math.round(member.rating),
                                 nomination: member.nomination.name,
                                 recommendation: member.recommendation
                             })
@@ -93,7 +93,7 @@ export default {
                                 id: member.application_id,
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}`,
                                 type: member.app_type.name,
-                                evaluation: member.rating,
+                                evaluation: Math.round(member.rating),
                                 nomination: member.nomination.name,
                                 recommendation: member.recommendation
                             })
@@ -102,7 +102,7 @@ export default {
                                 id: member.application_id,
                                 name: `${member.solo_duet[0].surname} ${member.solo_duet[0].name} ${member.solo_duet[0].patronymic}, ${member.solo_duet[1].surname} ${member.solo_duet[1].name} ${member.solo_duet[1].patronymic}`,
                                 type: member.app_type.name,
-                                evaluation: member.rating,
+                                evaluation: Math.round(member.rating),
                                 nomination: member.nomination.name,
                                 recommendation: member.recommendation
                             })

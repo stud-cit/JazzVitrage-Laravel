@@ -10,9 +10,7 @@
             </tr>
             </thead>
             <tbody v-for="(item, index) in members" :key="index">
-
-            <tr v-if="item.status == 'approved' && userJury.indexOf(item.nomination.name) != -1">
-
+            <tr>
                 <td>{{ index + 1 }}</td>
                 <td v-if="item.solo_duet.length == 0">
                     <router-link :to="{ name: 'jury-evaluation', params: {id: item.application_id} }">{{ item.group.name }}</router-link>
@@ -28,7 +26,6 @@
             </tr>
             </tbody>
         </table>
-
     </div>
 </template>
 
@@ -40,15 +37,17 @@
 				userJury: '',
 			}
 		},
-		created() {
-			this.getFullList();
+		mounted() {
 			this.getUserJury();
+			this.getFullList();
 		},
 		methods: {
 			getFullList() {
-				axios.get('/get-all-members')
+				axios.get('/get-approved-members')
 					.then((response) => {
-						this.members = response.data;
+                        this.members = response.data.filter(item => {
+                            return this.userJury.indexOf(item.nomination.name) != -1;
+                        });
 					})
 			},
 			getUserJury() {
