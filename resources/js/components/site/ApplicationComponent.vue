@@ -80,20 +80,20 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname" id="memberSurname" v-model="registration.data.memberSurname" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }"
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }"
                                            data-vv-as="ПРІЗВИЩЕ">
                                 </div>
 
                                 <!-- <label for="memberName">ІМ'Я</label> -->
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName" id="memberName" v-model="registration.data.memberName" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }"
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }"
                                            data-vv-as="ІМ'Я">
                                 </div>
                                 <!-- <label for="memberPatronymic">ПО-БАТЬКОВІ</label> -->
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic" id="memberPatronymic" v-model="registration.data.memberPatronymic" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }"
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){5,}$/i }"
                                            data-vv-as="ПО-БАТЬКОВІ">
                                 </div>
 
@@ -167,8 +167,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -179,8 +179,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }"
                                            data-vv-as="Відскановане свідоцтво про народження або паспорт за наявністю">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberBirthdayFile')">
-                                    Оберіть файл графічного або pdf-формату
+                                    Оберіть файл графічного формату
                             </span>
 
                             <div class="d-flex align-items-center justify-content-between">
@@ -206,15 +206,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname" v-model="registration.data.parentSurname" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName" v-model="registration.data.parentName" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic" v-model="registration.data.parentPatronymic" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
@@ -235,8 +235,8 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" id="idCode" maxlength="10" v-model="registration.data.idCode" required
-                                           v-validate="{ regex: /^\d{10}$/ }">
+                                    <input type="text" name="idCode" id="idCode" v-model="registration.data.idCode" required
+                                           v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idCode')">
@@ -287,15 +287,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname" v-model="registration.data.memberSurname" required
-                                        v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName" v-model="registration.data.memberName" required
-                                        v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic" v-model="registration.data.memberPatronymic" required
-                                        v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
+                                        v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname')">
@@ -367,8 +367,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
-                                         v-validate="{ 'ext':['pdf', 'jpg', 'jpeg', 'png', 'bmp'] }">
+                                    <input @change="getInputFile" name="memberBirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="memberBirthdayFile" class="d-none" type="file" required
+                                         v-validate="{ 'ext':['jpg', 'jpeg', 'png', 'bmp'] }">
                                     <label for="memberBirthdayFile">
                                         <span>{{fileTitle.memberBirthdayFile}}</span>
                                     </label>
@@ -403,15 +403,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname" v-model="registration.data.parentSurname" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName" v-model="registration.data.parentName" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic" v-model="registration.data.parentPatronymic" required
-                                           v-validate="{ regex:/^([a-zа-яіїє'-]+){5,}$/i }">
+                                           v-validate="{ regex:/^([a-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname')">
@@ -433,7 +433,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="idCode" maxlength="10" v-model="registration.data.idCode" required
-                                        v-validate="{ regex: /^\d{10}$/ }">
+                                        v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idCode')">
@@ -473,15 +473,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="memberSurname2" v-model="registration.data.memberSurname2" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberName2" v-model="registration.data.memberName2" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="memberPatronymic2" v-model="registration.data.memberPatronymic2" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('memberSurname2')">
@@ -553,8 +553,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
-                                        v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -564,8 +564,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".pdf, .jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }">
+                                    <input @change="getInputFile" name="member2BirthdayFile" accept=".jpg, .png, .jpeg, .bmp" id="member2BirthdayFile" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }">
                                     <label for="member2BirthdayFile">
                                         <span>{{fileTitle.member2BirthdayFile}}</span>
                                     </label>
@@ -573,7 +573,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('member2BirthdayFile')">
-                                    Оберіть файл графічного або pdf-формату
+                                    Оберіть файл графічного формату
                             </span>
                             <div class="d-flex align-items-center justify-content-between">
                                 <h3 class="step-title title-left">ІДЕНТИФІКАЦІЙНИЙ НОМЕР: <i class="hint"></i></h3>
@@ -589,15 +589,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="parentSurname2" v-model="registration.data.parentSurname2" required
-                                           v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentName2" v-model="registration.data.parentName2" required
-                                           v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                           v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="parentPatronymic2" v-model="registration.data.parentPatronymic2" required
-                                           v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
+                                           v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('parentSurname2')">
@@ -619,7 +619,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="idCode2" maxlength="10" v-model="registration.data.idCode2" required
-                                        v-validate="{ regex: /^\d{10}$/ }">
+                                        v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('idCode2')">
@@ -681,22 +681,22 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupCount" v-model="registration.data.groupCount" required
-                                        v-validate="{ regex: /^[0-9]{1,2}$/ }">
+                                        v-validate="{ regex: /^\s*([0-9]{1,2})+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupCount')">
-                                    Введіть корректні дані в діапазоні від 1 до 99
+                                    Введіть ціле значення в діапазоні від 1 до 99
                             </span>
                             <label>СЕРЕДНІЙ ВІК УЧАСНИКІВ</label>
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="groupAverage" v-model="registration.data.groupAverage" required
-                                        v-validate="{ regex: /^(([7-9]{1}|1[0-6])(?:[.,][0-9]{1,})?\r?|17)$/ }">
+                                        v-validate="{ regex: /^\s*([7-9]{1}|1[0-7])+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupAverage')">
-                                    Введіть корректні дані в діапазоні від 7 до 17
+                                    Введіть ціле значення в діапазоні від 7 до 17
                             </span>
                             <h3 class="step-title">Документ з датами народження учасників <i class="hint"></i></h3>
                             <div class="input-row">
@@ -704,8 +704,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf, .jpg, .jpeg, .png, .bmp" id="groupBirthdayFile" class="d-none" type="file" required
-                                        v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx', 'bmp', 'jpg', 'jpeg', 'png'] }">
+                                    <input @change="getInputFile" name="groupBirthdayFile" accept=".jpg, .jpeg, .png, .bmp" id="groupBirthdayFile" class="d-none" type="file" required
+                                        v-validate="{ 'ext':['bmp', 'jpg', 'jpeg', 'png'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -715,8 +715,8 @@
 
                                     <img src="img/file-image.png" alt="" class="input-img">
 
-                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".txt, .doc, .docx, .pdf, .jpg, .jpeg, .png, .bmp" class="d-none" type="file" required
-                                           v-validate="{ 'ext':['pdf', 'doc', 'txt', 'docx', 'bmp', 'jpg', 'jpeg', 'png'] }">
+                                    <input @change="getInputFile" name="groupBirthdayFile" id="groupBirthdayFile" accept=".jpg, .jpeg, .png, .bmp" class="d-none" type="file" required
+                                           v-validate="{ 'ext':['bmp', 'jpg', 'jpeg', 'png'] }">
                                     <label for="groupBirthdayFile">
                                         <span>{{fileTitle.groupBirthdayFile}}</span>
                                     </label>
@@ -724,7 +724,7 @@
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('groupBirthdayFile')">
-                                    Файл повинен відповідати формату: pdf, doc, txt, docx, jpg, jpeg, png, bmp
+                                    Файл повинен відповідати формату: jpg, jpeg, png, bmp
                             </span>
 
                             <div class="d-flex justify-content-between align-items-center mt-5">
@@ -771,7 +771,7 @@
                                     <img src="img/step2-data.png" alt="" class="input-img">
 
                                     <input type="text" name="school_phone" maxlength="13" v-model="registration.data.school.school_phone"
-                                        v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
+                                        v-validate="{ required: true, regex: /^\s*((\+380)(\d{9})|(\d{6,13}))+\s*$/ }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('school_phone')">
@@ -782,7 +782,7 @@
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
                                     <input type="text" name="school_email" v-model="registration.data.school.school_email" required
-                                        v-validate="{ regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }"
+                                        v-validate="{ regex: /^(([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6})+\s*$/ }"
                                            data-vv-as="E-MAIL">
                                 </div>
                             </div>
@@ -804,15 +804,15 @@
                                     <div class="input-container">
                                         <img src="img/step2-user.png" class="input-img">
                                         <input :name="'teacher_surname_'+index" type="text" v-model="teacher.teacher_surname" required
-                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                     </div>
                                     <div class="input-container ml-4">
                                         <input :name="'teacher_name_'+index" type="text" v-model="teacher.teacher_name" required
-                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                     </div>
                                     <div class="input-container ml-4">
                                         <input :name="'teacher_patronymic_'+index" type="text" v-model="teacher.teacher_patronymic" required
-                                            v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
+                                            v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){5,}$/i }">
                                     </div>
                                 </div>
                                 <span class="errors" v-if="errors.has('teacher_surname_'+index)">
@@ -867,7 +867,7 @@
                                         <div class="input-container">
                                             <img src="img/step2-data.png" class="input-img">
                                             <input :name="'teacher_id_code_'+index" type="text" maxlength="10" v-model="teacher.teacher_in" required
-                                                v-validate="{ regex: /^\d{10}$/ }">
+                                                v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                         </div>
                                     </div>
                                     <span class="errors" v-if="errors.has('teacher_id_code_'+index)">
@@ -892,8 +892,8 @@
                                     <div class="input-row">
                                         <div class="input-container" v-if="teacher.teacher_passport == null">
                                             <img src="img/file-image.png" class="input-img">
-                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
-                                                v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
+                                                v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }"
                                                 data-vv-as="Відсканований паспорт">
                                             <label :for="'teacher_passport_'+index">
                                                 <span>{{teacher.teacher_passport}}</span>
@@ -901,8 +901,8 @@
                                         </div>
                                         <div class="input-container" v-if="teacher.teacher_passport !== null">
                                             <img src="img/file-image.png" class="input-img">
-                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".pdf, .jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
-                                                v-validate="{ 'ext':['pdf', 'jpg', 'png', 'jpeg', 'bmp'] }"
+                                            <input @change="getInputTeacherFile($event, index)" :name="'teacher_passport_'+index" accept=".jpg, .png, .jpeg, .bmp" :id="'teacher_passport_'+index" class="d-none" type="file" required
+                                                v-validate="{ 'ext':['jpg', 'png', 'jpeg', 'bmp'] }"
                                                 data-vv-as="Відсканований паспорт">
                                             <label :for="'teacher_passport_'+index">
                                                 <span>{{teacher.teacher_passport}}</span>
@@ -910,7 +910,7 @@
                                         </div>
                                     </div>
                                     <span class="errors" v-if="errors.has('teacher_passport_'+index)">
-                                        Оберіть файл графічного або pdf-формату
+                                        Оберіть файл графічного формату
                                     </span>
                                 </div>
 
@@ -931,15 +931,15 @@
                                 <div class="input-container">
                                     <img src="img/step2-user.png" alt="" class="input-img">
                                     <input type="text" name="concertmaster_surname" v-model="registration.data.school.concertmaster_surname" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="concertmaster_name" v-model="registration.data.school.concertmaster_name" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){2,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){2,}$/i }">
                                 </div>
                                 <div class="input-container ml-4">
                                     <input type="text" name="concertmaster_patronymic" v-model="registration.data.school.concertmaster_patronymic" required
-                                        v-validate="{ regex:/^([a-za-zа-яіїє'-]+){5,}$/i }">
+                                        v-validate="{ regex:/^([a-za-zа-яіїє'_ \ -]+){5,}$/i }">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('concertmaster_surname')">
@@ -993,12 +993,12 @@
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
                                     <input type="text" name="timing1" v-model="registration.data.timing1" maxlength="5"
-                                           v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
+                                           v-validate="{ required: true, regex: /^\s*([0-5][0-9])(:([0-5][0-9]))+\s*$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing1')">
-                                    Введіть дані у форматі 00:00 (хвилини-секунди)
+                                    Введіть дані у форматі 00:00 
                             </span>
                             <h3 class="step-title">Другий твір</h3>
                             <label>НАЗВА</label>
@@ -1030,12 +1030,12 @@
                                 <div class="input-container">
                                     <img src="img/input-composition.png" alt="" class="input-img">
                                     <input type="text" name="timing2" v-model="registration.data.timing2" maxlength="5"
-                                           v-validate="{ required: true, regex: /^([0-5][0-9])(:([0-5][0-9]))$/ }"
+                                           v-validate="{ required: true, regex: /^\s*([0-5][0-9])(:([0-5][0-9]))+\s*$/ }"
                                            data-vv-as="ХРОНОМЕТРАЖ">
                                 </div>
                             </div>
                             <span class="errors" v-if="errors.has('timing2')">
-                                    Введіть дані у форматі 00:00 (хвилини-секунди)
+                                    Введіть дані у форматі 00:00
                             </span>
                             <h4 class="step-title">ВИ ПОВИННІ ЗАВАНТАЖИТИ ОДИН ФАЙЛ, ЯКИЙ БУДЕ МІСТИТИ 2 ВІДЕО<i class="hint"></i></h4>
                             <div class="input-row">
@@ -1592,7 +1592,7 @@
                         swal({
                             icon: "error",
                             title: 'Помилка',
-                            text: "Спробуйте надіслати заявку пізніше"
+                            text: String(error.response.status)
                         });
                     });
             },
