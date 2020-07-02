@@ -432,7 +432,7 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode" maxlength="10" v-model="registration.data.idCode" required
+                                    <input type="text" name="idCode" maxlength="11" v-model="registration.data.idCode" required
                                         v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                 </div>
                             </div>
@@ -618,7 +618,7 @@
                             <div class="input-row">
                                 <div class="input-container">
                                     <img src="img/step2-data.png" alt="" class="input-img">
-                                    <input type="text" name="idCode2" maxlength="10" v-model="registration.data.idCode2" required
+                                    <input type="text" name="idCode2" maxlength="11" v-model="registration.data.idCode2" required
                                         v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                 </div>
                             </div>
@@ -856,7 +856,7 @@
                                     <div class="input-row">
                                         <div class="input-container">
                                             <img src="img/step2-data.png" class="input-img">
-                                            <input :name="'teacher_id_code_'+index" type="text" maxlength="10" v-model="teacher.teacher_in" required
+                                            <input :name="'teacher_id_code_'+index" type="text" maxlength="11" v-model="teacher.teacher_in" required
                                                 v-validate="{ regex: /^\s*(\d{10})+\s*$/ }">
                                         </div>
                                     </div>
@@ -1582,7 +1582,7 @@
                         swal({
                             icon: "error",
                             title: 'Помилка',
-                            text: String(error.response.status)
+                            text: "Спробуйте надіслати заявку пізніше"
                         });
                     });
             },
