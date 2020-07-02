@@ -105,12 +105,8 @@
                         <b class="mt-3">Кількість учасників:</b> {{ group.count_people }}
                         <b class="mt-3">Середній вік:</b> {{ group.average_age }}
                         <b class="mt-3">Вікова категорія:</b> {{ age_category }}
-                        <b class="mt-3">Адреса:</b> {{ school.school_address }}
                     </div>
                     <div class="col-6">
-                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
-                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
-                        </div>
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
@@ -122,13 +118,9 @@
                         <b>Тип:</b> {{ type.name }}
                         <b>Номінація:</b> {{ nomination.name }}
                         <b class="mt-3">Дата народження:</b> {{ member[0].data_birthday }}
-                        <b class="mt-3">Адреса:</b> {{ school.school_address }}
                         <b class="mt-3">Вікова категорія:</b> {{ age_category }}
                     </div>
                     <div class="col-6">
-                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
-                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
-                        </div>
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>
@@ -139,14 +131,9 @@
                     <div class="col-6">
                         <b>Тип:</b> {{ type.name }}
                         <b class="mt-3">Дата народження:</b> {{ `${member[0].data_birthday}, ${member[1].data_birthday}` }}
-                        <b class="mt-3">Адреса:</b> {{ school.school_address }}
                         <b class="mt-3">Вікова категорія:</b> {{ age_category }}
                     </div>
                     <div class="col-6">
-                        <div v-for="teacher in teachers" :key="teacher.teacher_id">
-                            <b>ПІБ викладача:</b> {{ `${teacher.teacher_surname} ${teacher.teacher_name}  ${teacher.teacher_patronymic}` }}
-                        </div>
-
                         <b class="mt-3">Програма кожного твору:</b> {{ `${program.composition_one} - ${program.author_one};` }} <br> {{ `${program.composition_two} - ${program.author_two};` }}
                     </div>
                 </div>

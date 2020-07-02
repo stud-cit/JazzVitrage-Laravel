@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Evaluation;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UserController extends Controller
 {
@@ -64,9 +65,11 @@ class UserController extends Controller
         $jury_data->password = Hash::make($password);
         if($request->hasFile('photo')) {
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path() . $this->userStorage, $name);
             $jury_data->photo = $this->userStorage.$name;
+            $img = Image::make(public_path().$this->userStorage.$name);
+            $img->save(public_path().$this->userStorage.$name, 50);
         }
         $jury_data->email = $request->email;
         $jury_data->rank = $request->rank;
@@ -94,9 +97,11 @@ class UserController extends Controller
         }
         if ($request->hasFile('photo')) {
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path() . $this->userStorage, $name);
             $model->photo = $this->userStorage.$name;
+            $img = Image::make(public_path().$this->userStorage.$name);
+            $img->save(public_path().$this->userStorage.$name, 50);
         }
         $model->save();
         return response('ok', 200);
@@ -167,9 +172,11 @@ class UserController extends Controller
         $org_data->password = Hash::make($password);
         if($request->hasFile('photo')) {
             $file = $request->photo;
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path() . $this->userStorage, $name);
             $org_data->photo = $this->userStorage.$name;
+            $img = Image::make(public_path().$this->userStorage.$name);
+            $img->save(public_path().$this->userStorage.$name, 50);
         }
         $org_data->email = $request->email;
         $org_data->informations = $request->informations;

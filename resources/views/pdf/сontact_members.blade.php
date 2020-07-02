@@ -16,6 +16,7 @@
         <th class="tg-c3ow">Викладач</th>
         <th class="tg-c3ow">Назва закладу</th>
         <th class="tg-c3ow">Телефон викладача</th>
+        <th class="tg-c3ow">Email</th>
     </tr>
     @foreach ($data as $item)
         <tr>
@@ -42,6 +43,11 @@
             <td class="tg-0pky">
                 @foreach ($item['teachers'] as $teachers)
                     {{ $teachers['teacher_phone'] }} <br>
+                @endforeach
+            </td>
+            <td class="tg-0pky">
+                @foreach ($item['teachers'] as $teachers)
+                    {{ $teachers['teacher_email'] }} <br>
                 @endforeach
             </td>
         </tr>

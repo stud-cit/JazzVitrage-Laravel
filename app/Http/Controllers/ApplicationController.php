@@ -493,7 +493,7 @@ class ApplicationController extends Controller
         $data = Application::with('soloDuet', 'group', 'preparation', 'teachers')
             ->approved()
             ->get();
-        $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data]);
+        $pdf = PDF::loadView('pdf.сontact_members', ['data' => $data])->setPaper('a4', 'landscape');
         return $pdf->stream('Контактні_дані.pdf');
     }
 
