@@ -233,7 +233,7 @@ input, select, textarea, button
             align-items: center
             img
                margin: 0 20px
-
+            
             input
                padding: 15px 30px
                background-color: transparent
@@ -244,6 +244,9 @@ input, select, textarea, button
                font-weight: 400
                letter-spacing: 2px
                width: 100%
+               &:focus
+                  background-color: rgb(255, 164, 7, 0.5)
+                  border-radius: 10px
                &::placeholder
                   color: #ffffff
                   font-family: Montserrat
@@ -254,6 +257,8 @@ input, select, textarea, button
             &:first-of-type
                input
                   border-left: 1px solid #fff
+                  &:focus
+                     border-radius: 0px 10px 10px 0px
             label
                display: flex
                justify-content: space-between

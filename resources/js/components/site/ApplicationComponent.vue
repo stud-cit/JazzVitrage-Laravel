@@ -753,6 +753,18 @@
                             <span class="errors" v-if="errors.has('school_name')">
                                     Введіть корректні дані
                             </span>
+                            <label>АДРЕСА</label>
+                            <div class="input-row">
+                                <div class="input-container">
+                                    <img src="img/input-map.png" alt="" class="input-img">
+                                    <input name="school_address" type="text" v-model="registration.data.school.school_address"
+                                        v-validate="{ required: true }"
+                                           data-vv-as="АДРЕСА">
+                                </div>
+                            </div>
+                            <span class="errors" v-if="errors.has('school_address')">
+                                    Введіть корректні дані
+                            </span>
                             <label>ТЕЛЕФОН</label>
                             <div class="input-row">
                                 <div class="input-container">
@@ -813,7 +825,7 @@
                                         Поле "По-батькові" має бути заповнене не менше, ніж 5 символами (вводити лише літери, або тире не використовуючи пропуск)
                                 </span>
 
-                                <div v-if="registration.data.appType > 2 && index == 0">
+                                <div v-if="registration.data.appType > 2">
                                     <label>Домашня адреса</label>
                                     <div class="input-row">
                                         <div class="input-container">
@@ -825,32 +837,30 @@
                                         Поле "Домашня адреса" має бути заповнене
                                     </span>
                                 </div>
-                                <div v-if="index == 0">
-                                    <label>Електронна пошта</label>
-                                    <div class="input-row">
-                                        <div class="input-container">
-                                            <img src="img/input-mail.png" class="input-img">
-                                            <input :name="'teacher_email_'+index" type="text" v-model="teacher.teacher_email" required
-                                                v-validate="{ regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }">
-                                        </div>
+
+                                <label>Електронна пошта</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/input-mail.png" class="input-img">
+                                        <input :name="'teacher_email_'+index" type="text" v-model="teacher.teacher_email" required
+                                            v-validate="{ regex: /^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*\.[a-z]{2,6}$/ }">
                                     </div>
-                                    <span class="errors" v-if="errors.has('teacher_email_'+index)">
-                                            Введіть дані у форматі name@email.com
-                                    </span>
                                 </div>
-                                <div v-if="index == 0">
-                                    <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
-                                    <div class="input-row">
-                                        <div class="input-container">
-                                            <img src="img/input-phone.png" class="input-img">
-                                            <input type="text" :name="'teacher_phone_'+index" maxlength="13" v-model="teacher.teacher_phone"
-                                                v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
-                                        </div>
+                                <span class="errors" v-if="errors.has('teacher_email_'+index)">
+                                        Введіть дані у форматі name@email.com
+                                </span>
+                                <label>КОНТАКТНИЙ ТЕЛЕФОН ВИКЛАДАЧА</label>
+                                <div class="input-row">
+                                    <div class="input-container">
+                                        <img src="img/input-phone.png" class="input-img">
+                                        <input type="text" :name="'teacher_phone_'+index" maxlength="13" v-model="teacher.teacher_phone"
+                                            v-validate="{ required: true, regex: /^((\+380)(\d{9})|(\d{6,13}))$/ }">
                                     </div>
-                                    <span class="errors" v-if="errors.has('teacher_phone_'+index)">
-                                        Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
-                                    </span>
                                 </div>
+                                <span class="errors" v-if="errors.has('teacher_phone_'+index)">
+                                    Введіть номер мобільного телефону у форматі +380 або стаціонарного телефону - від 6 до 13 символів (вводити лише цифри)
+                                </span>
+
                                 <div v-if="registration.data.appType > 2">
                                     <label>ІДЕНТИФІКАЦІЙНИЙ НОМЕР КЕРІВНИКА</label>
                                     <div class="input-row">
@@ -1617,4 +1627,9 @@
         height: 54px;
         border-radius: 0;
     }
+@media(min-width: 1000px){
+    .applications .step-block .step-form .input-container input:focus{
+        border-radius: 0!important;
+    }
+}
 </style>
