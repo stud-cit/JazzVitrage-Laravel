@@ -81,6 +81,9 @@
                     </div>
             </section>
         </div>
+        <div v-if="preloader" class="preloader">
+            <img src="img/JV.gif" alt="">
+        </div>
     </div>
 </template>
 
@@ -90,6 +93,7 @@
             return {
                 info: {},
                 photo: [],
+                preloader: false,
                 request: {
                     name: '',
                     appointment: '',
@@ -120,19 +124,15 @@
                         return
                     }
                     else {
+                        this.preloader = true;
                         axios.post('/api/master-request', this.request)
                             .then(() => {
-                                swal("Успішно відправлено", {
+                                this.preloader = false;
+                                swal("Реєстрацію на майстер-клас виконано успішно", {
                                     icon: "success",
                                 });
-                                this.request.name = '';
-                                this.request.appointment = '';
-                                this.request.phone = '';
-                                this.request.email = '';
-                                this.request.sity = '';
-                                this.request.school_name = '';
-                                this.request.info = '';
                             }).catch((error) => {
+                                this.preloader = false;
                                 swal({
                                     icon: "error",
                                     title: 'Помилка',
@@ -145,7 +145,18 @@
     }
 }
 </script>
-
+<style scoped lang="sass">
+    .preloader
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 100%
+        position: fixed
+        top: 0
+        left: 0
+        background: rgba(0,0,0,0.8)
+</style>
 <style scoped>
 
     .bg{
