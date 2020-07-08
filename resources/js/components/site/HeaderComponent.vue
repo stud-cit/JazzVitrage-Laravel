@@ -4,13 +4,14 @@
         <div v-if="preloader" class="preloader">
             <Spinner :status="preloader" :size="54"></Spinner>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light ">
+        <nav class="navbar navbar-expand-xl navbar-light ">
             <div class="container">
                 <a class ="navbar-brand" href="/"><img :src="info.logo" alt=""></a>
 
 
                 <div class="d-xl-flex navbar-order">
-                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ПОДАТИ ЗАЯВКУ</router-link>
+                    <router-link :to="{name: 'applications'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ЗАЯВА НА ДЖАЗ ВІТРАЖ</router-link>
+                    <router-link :to="{name: 'master'}" v-if="isRegistration" class="d-none add-application d-sm-inline">ЗАЯВА НА МАЙСТЕР-КЛАС</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-menu" >
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -22,7 +23,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/gymn">ГІМН ФЕСТИВАЛЮ</a>
                                 <a class="dropdown-item" :href="info.file">ПОЛОЖЕННЯ</a>
-                                <a class="dropdown-item" href="/applications">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
+                                <a class="dropdown-item" href="/applications" v-if="isRegistration">ЗАЯВКА ДЖАЗ-ВІТРАЖ</a>
 
                                 <a class="dropdown-item" href="http://school.jazz.sumy.ua/news">НОВИНИ</a>
 
@@ -46,7 +47,10 @@
 
 
                         <li class="d-inline bg-danger d-sm-none w-100" v-if="isRegistration">
-                            <a href="/applications"  class="nav-item text-light nav-link">ПОДАТИ ЗАЯВКУ</a>
+                            <a href="/applications"  class="nav-item text-light nav-link">ЗАЯВА НА ДЖАЗ ВІТРАЖ</a>
+                        </li>
+                        <li class="d-inline bg-danger d-sm-none w-100" v-if="isRegistration">
+                            <a href="/master"  class="nav-item text-light nav-link">ЗАЯВА НА МАСТЕР-КЛАС</a>
                         </li>
                         <li class="dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >

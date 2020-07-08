@@ -10,16 +10,44 @@
          img
             width: 100%
 .navbar-expand-lg>.container
-   padding: 0 15px
+   padding: 0 5px
 @media (min-width: 1401px) and (max-width: 1600px)
    .preview
       &::after
          right: -90px
 
+            
 @media (max-width: 1199px)
+   body
+      padding-bottom: 123px
    .header
       .navbar-light
-         min-height: 79px
+         min-height: 65px
+         .navbar-order
+            order: 0
+            margin: 12px 0
+         .navbar-toggler
+            outline: none
+         .add-application
+            padding: 24px
+            margin-right: 10px
+         .navbar-nav
+            display: flex!important
+            flex-direction: row
+            justify-content: space-between
+            margin: 10px 0
+            .nav-item
+                text-align: center
+         .nav-menu
+            .dropdown-menu
+               position: absolute
+               margin-left: 50%
+               transform: translateX(-50%)
+               .dropdown-item
+                     font-size: 12px
+                     white-space: initial
+                     line-height: 1.5
+                     padding: 10px
    .preview
       padding-bottom: 0
       &::after
@@ -88,34 +116,7 @@
          overflow-x: auto
 
 @media (max-width: 991px)
-   body
-      padding-bottom: 123px
-   .header
-      .navbar-light
-         min-height: 65px
-         .navbar-order
-            order: 0
-         .navbar-toggler
-            outline: none
-         .add-application
-            padding: 24px
-            margin-right: 80px
-         .navbar-nav
-            flex-direction: row
-            justify-content: space-between
-            margin: 10px 0
-            .nav-item
-                text-align: center
-         .nav-menu
-            .dropdown-menu
-               position: absolute
-               margin-left: 50%
-               transform: translateX(-50%)
-               .dropdown-item
-                     font-size: 12px
-                     white-space: initial
-                     line-height: 1.5
-                     padding: 10px
+   
 
    .sections
       .application-for-participation
@@ -467,10 +468,39 @@
       margin-top: -2px
    .juries .title-juries .text .subtitle
       margin-top: 5px
-   .header .navbar-light .add-application
-      padding: 24px
-      margin-right: 35px
-      margin-left: 5px
+   body .header .navbar-light .nav-menu .navbar-nav
+      flex-flow: column
+      align-items: center
+   body .header .navbar-light .nav-menu .navbar-nav li
+      display: block
+   body
+      .header
+         .navbar-light
+            .navbar-toggler
+               margin-left: 7px
+            .navbar-order
+               margin: 10px 0
+            .add-application
+               padding: 20px
+               font-size: 8pt
+               margin: 0
+            .nav-menu
+               .navbar-nav
+                  flex-flow: column
+                  align-items: center
+
+                  li
+                     .nav-item
+                        font-size: 16px
+               .dropdown-menu
+                  position: static
+                  margin-left: 0
+                  transform: translateX(0)
+                  .dropdown-item
+                     font-size: 16px
+                     white-space: initial
+                     line-height: 1.5
+                     padding: 12px
 
 @media (max-width: 575px)
 
