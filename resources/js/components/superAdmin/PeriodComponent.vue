@@ -9,7 +9,8 @@
                 class="form-control"
                 type="date"
                 v-model="startDate"
-                v-bind:readonly="readonlyApplicationPeriod" >
+                v-bind:readonly="readonlyApplicationPeriod" 
+                :disabled="!checked">
         </div>  
             
         <div class="form-group">
@@ -20,7 +21,8 @@
                 class="form-control"
                 type="date"
                 v-model="expirationDate" 
-                v-bind:readonly="readonlyApplicationPeriod" >
+                v-bind:readonly="readonlyApplicationPeriod" 
+                :disabled="!checked">
         </div>
 
         <div class="form-group form-check">
@@ -31,7 +33,8 @@
                 class="form-check-input"
                 type="checkbox"
                 v-model.number="statusApplication"
-                v-bind:disabled="readonlyApplicationPeriod" >
+                v-bind:disabled="readonlyApplicationPeriod" 
+                v-model="checked">
 
             <label class="form-check-label" for="status">Прийом заявок для участі в конкурсі відкрито</label>
 
@@ -55,6 +58,7 @@ export default {
             statusApplication: null,
             startDate: null,
             expirationDate: null,
+            checked: false
         }
     },
     created () {
