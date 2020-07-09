@@ -4,6 +4,7 @@
             <i class="fa fa-search" aria-hidden="true"></i>
             <input v-model="search" type="text" class="form-control">
       </form>
+      <button v-if="selectApp.length > 0" type="button" class="btn btn-primary float-right mb-4 ml-4" @click="sendInvitationSelectMember">Надіслати додаткове повідомлення обраним учасникам</button>
       <button type="button" class="btn btn-primary float-right mb-4" @click="sendInvitation">Надіслати учасникам запрошення на Гала-Концерт</button>
 
         <div class="openImg" v-if="img" @click="closeImg">
@@ -12,7 +13,7 @@
       <table class="table table-bordered accordion" id="accordion">
           <thead>
                 <tr>
-
+                    <th></th>
                     <th>#</th>
                     <th>ПІБ Учасника</th>
                     <th>Тип Заявки</th>
@@ -23,6 +24,16 @@
 
           <tbody class="card" v-for="(item, index) in filteredMembersList" :key="item.application_id">
                 <tr>
+                    <td>
+                        <input
+                            style="width: 20px;height: 20px"
+                            type="checkbox"
+                            name="exampleCheck1"
+                            class="form-check-input"
+                            id="exampleCheck1"
+                            @click="selectItem(item.id)"
+                        >
+                    </td>
                     <td data-toggle="collapse" :data-target="'#collapse'+(index+1)">
                         {{index+1}}
                     </td>
@@ -228,7 +239,8 @@ export default {
             members: [],
             search: '',
             img: '',
-            preloader: false
+            preloader: false,
+            selectApp: []
         }
     },
     components: {
@@ -417,7 +429,12 @@ export default {
                                     icon: "success",
                                 });
                                 this.preloader = false;
-                            });
+                            }).catch(() => {
+                                swal("Помилка", {
+                                    icon: "error",
+                                });
+                                this.preloader = false;
+                            })
                     }
                 });
         },
@@ -446,6 +463,40 @@ export default {
         },
         closeImg() {
             this.img = '';
+        },
+        selectItem(id) {
+            if(this.selectApp.indexOf(id) == -1) {
+                this.selectApp.push(id);
+            } else {
+                this.selectApp.splice(this.selectApp.indexOf(id), 1);
+            }
+        },
+        sendInvitationSelectMember() {
+            swal({
+                title: "Підтвердіть дію",
+                text: "Обраним учасникам конкурсу буде ндіслано додаткове повідомлення!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((done) => {
+                    if (done) {
+                        this.preloader = true;
+                        axios.post('/api/send-additional-invitation', {selectApp: this.selectApp})
+                            .then((response) => {
+                                // console.log(response.data)
+                                swal("Листи успішно надіслано", {
+                                    icon: "success",
+                                });
+                                this.preloader = false;
+                            }).catch(() => {
+                                swal("Помилка", {
+                                    icon: "error",
+                                });
+                                this.preloader = false;
+                            })
+                    }
+                });
         }
     },
 }

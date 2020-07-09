@@ -12,6 +12,7 @@ Route::get('users-messages',  'UsersMessagesController@getMessages');
 Route::post('users-messages',  'UsersMessagesController@putMessage');
 
 Route::post('send-invitation',  'ApplicationController@sendInvitation');
+Route::post('send-additional-invitation',  'ApplicationController@sendAdditionalInvitation');
 
 Route::get('master-request',  'MasterClassController@getRequest');
 Route::post('master-request',  'MasterClassController@postRequest');

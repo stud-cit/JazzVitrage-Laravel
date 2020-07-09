@@ -19,6 +19,21 @@
                     <button :disabled="errors.has('invitation')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "invitation")'>Редагувати</button><br><br>
                     <hr>
 
+                    <label for="additional_invitation" class="brtop">Додаткове повідомлення про Гала-концерт</label>
+                    <pre>
+                    <textarea name="additional_invitation" class="form-control" id="additional_invitation" 
+                        v-model="data.additional_invitation.text" rows="6" 
+                        disabled 
+                        v-validate="{ required: true}"
+                        data-vv-as="Додаткове повідомлення про Гала-концерт"
+                    ></textarea>
+                    </pre>
+                    <span class="errors text-danger" v-if="errors.has('additional_invitation')">
+                            {{ errors.first('additional_invitation') }}<br>
+                    </span>
+                    <button :disabled="errors.has('additional_invitation')" type="button" class="btn btn-outline-secondary my-2 px-5 float-right edit" @click='edit($event, "additional_invitation")'>Редагувати</button><br><br>
+                    <hr>
+
                     <label for="master_class_register" class="brtop">Повідомлення про реєстрацію на Майстер-клас</label>
                     <pre>
                     <textarea name="master_class_register" class="form-control" id="master_class_register" 
@@ -140,7 +155,8 @@ export default {
                 org_accepted: {text: ''},
                 admin_accepted: {text: ''},
                 invitation: {text: ''},
-                master_class_register: {text: ''}
+                master_class_register: {text: ''},
+                additional_invitation: {text: ''}
             }
         }
     },
